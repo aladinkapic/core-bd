@@ -37,6 +37,11 @@ class RadnaMjestaController extends Controller{
             'sluzbenici.ime+sluzbenici.prezime' => 'Službenici',
         ];
 
+        foreach ($radna_mjesta as $mjesto){
+            if ($mjesto->rukovodioc == 0) {
+                $mjesto->rukovodioc ='Ne';
+            }  else $mjesto->rukovodioc ='Ne';
+        }
 
 //        $radna_mjesta = collect();
 //        foreach ($ids as $id){
