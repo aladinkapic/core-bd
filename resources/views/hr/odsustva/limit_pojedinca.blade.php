@@ -1,0 +1,77 @@
+@extends('template.main')
+
+@section('content')
+
+    <div class="container">
+        <div class="card ">
+            <div class="card-header ads-darker">
+                Limit odsustva - {{$odsustva[$limiti->odsustvo]}} - za {{$ime_sluzbenika}}
+            </div>
+            <div class="card-body hr-activity tab">
+                <div class="row">
+                    <div class="col-md-12">
+                        @php
+                            $url = '/hr/odsustva/azuriraj_o_limit';
+                        @endphp
+
+                        <form action="{{$url}}" method="post">
+                            @csrf
+
+                            @if(isset($limit))
+                                {{ Form::hidden('id', $limit->id, ['class' => 'form-control']) }}
+                            @endif
+
+                            <table class="table table-sm">
+                                <tbody>
+                                @if(isset($ime_sluzbenika))
+                                    <tr>
+                                        <td><b>Ime i prezime :</b></td>
+                                        <td>{{ Form::text('imeiprezime', isset($ime_sluzbenika) ? $ime_sluzbenika : '', ['class' => 'form-control', 'readonly']) }}</td>
+                                    </tr>
+                                @endif
+
+                                <!-- Ako je službenik_id = 0, znači da se odnosi na apsolutno sve službenike !!!!! -->
+                                {{ Form::hidden('sluzbenik_id', isset($sluzbenik_id) ? $sluzbenik_id : '0', ['class' => 'form-control']) }}
+
+                                <tr>
+                                    <td style="width:140px;"><b>Vrsta odsustva :</b></td>
+                                    <td>
+                                        {!! Form::hidden('odsustvo', $limiti->odsustvo, ['class' => 'form-control']) !!}
+                                        {!! Form::text('odsustvo_wee', $odsustva[$limiti->odsustvo], ['class' => 'form-control', 'readonly']) !!}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Ukupno radnih dana :</b></td>
+                                    <td>{{ Form::number('ukupno', isset($limiti->ukupno) ? $limiti->ukupno : '', ['class' => 'form-control', 'min' => 1 ]) }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Kalendarska godina :</b></td>
+                                    <td>
+                                        {!! Form::text('godina', $limiti->godina, ['class' => 'form-control', 'readonly']) !!}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        {{ Form::checkbox('name', 'value', ['class' => 'form-control']) }}
+                                        Upisom podataka i spremanjem u bazu podataka potvrđujem da su svi uneseni podaci tačni te ne utiču na stabilnost, konzistentnost i integritet sistema i podataka. Svaka izmjena je zapisana.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> </td>
+                                    <td>
+                                        <div class="modal-footer">
+                                            {!! Form::submit('Postavite limit odsustva', ['class' => 'btn btn-primary']) !!}
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+

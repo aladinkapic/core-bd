@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Dodatno extends Model
+{
+    //
+
+    protected $table = 'ugovori_dodatno';
+
+    public function usluzbenik(){
+        return $this->hasOne(Sluzbenik::class, 'id', 'sluzbenik');
+    }
+}

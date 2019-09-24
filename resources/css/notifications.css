@@ -1,0 +1,178 @@
+/******************************** NOTIFICATIONS ************************************/
+
+#notification_w{position:fixed; left:-100%; top:0px; width:100%; height:100%; background:rgba(0,0,0,0.8 ); z-index:2000; }
+#notification_w .notification_back{position:absolute; left:0px; top:0px; width:100%; height:100%;}
+#notification_w .notification{position:absolute; left:0px; top:0px; width:360px; min-height:400px; background:#fff; transition:all 0.2s;  border-radius:5px; text-align:center;}
+#notification_w .notification2{left:calc(50% - 180px); top:calc(50% - 200px);}
+
+#notification_w .notification .exit_not{position:absolute; right:-13px; top:-13px; width:26px; height:26px; background:#fff; text-align:center; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;}
+#notification_w .notification .exit_not:hover{cursor:pointer; background:#FF0D53;}
+#notification_w .notification .exit_not i{font-size:18px; margin-top:3px;}
+#notification_w .notification .exit_not:hover i{color:#fff;}
+
+#notification_w .notification .notification_icon{position:relative; margin-top:30px; margin-bottom:30px; width:100%; text-align:center;}
+#notification_w .notification .notification_icon i{font-size:100px; color:#00BFAC;}
+#notification_w .notification h2{font-family: 'Nunito', sans-serif; color:#00BFAC;}
+#notification_w .notification h4{font-family: 'Nunito', sans-serif; color:grey; margin:0px 20px;}
+
+#notification_w .notification .not_button{position:absolute; bottom:0px; width:100%; height:50px; background:#00BFAC; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;}
+#notification_w .notification .not_button p{font-family: 'Nunito', sans-serif; font-weight:bold; color:#fff; font-size:20px; margin-top:12px;}
+
+/*************************** END OF NOTIFICATIONS **********************************/
+
+
+.hidden, .djevojacko_prezime_input{display:none;}
+
+
+
+
+@keyframes lds-flickr-opacity {
+}
+@-webkit-keyframes lds-flickr-opacity {
+    0% {
+        -webkit-transform: translate(0 0);
+        transform: translate(0 0);
+        opacity: 1;
+    }
+    49.99% {
+        opacity: 1;
+        -webkit-transform: translate(80px, 0);
+        transform: translate(80px, 0);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: translate(80px, 0);
+        transform: translate(80px, 0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+}
+@keyframes lds-flickr {
+    0% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    50% {
+        -webkit-transform: translate(80px, 0);
+        transform: translate(80px, 0);
+    }
+    100% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+}
+@-webkit-keyframes lds-flickr {
+    0% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    50% {
+        -webkit-transform: translate(80px, 0);
+        transform: translate(80px, 0);
+    }
+    100% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+}
+
+.loading_w{position:fixed; left:0px; top:0px; width:100%; height:100%; background:rgba(255,255,255,0.4); z-index:1000; display:none;}
+.lds-flickr {
+    position: absolute;
+    left:calc(50% - 100px);
+    top:calc(50% - 100px);
+}
+.lds-flickr div {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: 60px;
+    left: 20px;
+}
+.lds-flickr div:nth-child(1) {
+    background: #0c85d0;
+    -webkit-animation: lds-flickr 2s linear infinite;
+    animation: lds-flickr 2s linear infinite;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+.lds-flickr div:nth-child(2) {
+    background: #1aafd0;
+    -webkit-animation: lds-flickr 2s linear infinite;
+    animation: lds-flickr 2s linear infinite;
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+.lds-flickr div:nth-child(3) {
+    background: #0c85d0;
+    -webkit-animation: lds-flickr-opacity 2s linear infinite;
+    animation: lds-flickr-opacity 2s linear infinite;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+.lds-flickr {
+    width: 200px !important;
+    height: 200px !important;
+    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
+
+/**************************************** TYPO MISTAKES NOTIFICAITONS *************************************************/
+
+.split_container .notificaiton_area{position:relative; left:15px; top:0px; width:calc(100% - 31px); height:0px; background:rgba(232,35,0,0.3); padding:0px; border-radius:3px; overflow:hidden; transition:all 0.2s; }
+.split_container2 .notificaiton_area{left:20px; width:calc(100% - 40px); }
+.split_container .notificaiton_area p{margin:10px;}
+
+
+
+
+.desna_notifikacija{position:fixed; right:0px; bottom:200px; width:400px; min-height:60px; background:#e0d6f6; border-left:3px solid rgba(76,57,115,0.4); }
+
+
+
+.notifyjs-happyblue-base {
+    white-space: nowrap;
+    background-color: lightblue;
+    padding: 5px;
+}
+.notifyjs-happyblue-superblue {
+    color: white;
+    background-color: blue;
+}
+
+.notifyjs-buttons_style-base {
+    opacity: 0.95;
+    width: 350px;
+    background: #e0d6f6;
+    padding: 5px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.notifyjs-buttons_style-base .title {
+    position:relative;
+    left:0px; width:100%;
+    text-align: center;
+    margin-top:10px;
+}
+
+.notifyjs-buttons_style-base .buttons {
+    width:100%;
+    display:flex;
+    justify-content: center;
+    font-size: 9px;
+    padding: 5px;
+    margin: 2px;
+}
+
+.notifyjs-buttons_style-base button {
+    font-size: 11px;
+    margin: 2px;
+    border:none;
+    padding:5px 15px;
+}

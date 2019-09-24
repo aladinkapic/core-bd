@@ -1,0 +1,17 @@
+/node_modules
+/public/hot
+/public/js/app.js
+/public/storage
+/public/js
+/public/izvjestaji
+/storage/*.key
+/public/css
+/vendor
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.idea
+package-lock.jason

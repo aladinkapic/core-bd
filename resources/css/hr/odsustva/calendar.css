@@ -1,0 +1,101 @@
+.calendar{position:relative; left:-5px; top:0px; width:100%; height:auto; border:1px solid rgba(0,0,0,0.1); display:flex; flex-wrap:wrap;}
+
+.calendar .calendar_buttons{position:relative; left:0px; top:0px; width:100%; height:60px; }
+.calendar .calendar_buttons .butt{position:absolute; left:10px; height:30px; background:#0c85d0; width:120px; top:15px; text-align:center;}
+.calendar .calendar_buttons .first_butt{border-bottom-left-radius: 3px; border-top-left-radius: 3px;}
+.calendar .calendar_buttons .second_butt{margin-left:120px;}
+.calendar .calendar_buttons .third_butt{margin-left:240px; border-bottom-right-radius: 3px; border-top-right-radius: 3px;}
+.calendar .calendar_buttons .butt:hover{cursor:pointer; background:#009AD0;}
+
+
+.calendar .calendar_buttons .butt p{color:#fff; margin-top:6px;}
+
+.calendar .calendar_buttons .currentMonth{position:absolute; width:300px; height:60px; left:calc(50% - 150px); text-align:center;}
+.calendar .calendar_buttons .currentMonth p{font-size:22px; padding-top:10px;}
+.calendar .calendar_buttons .last_butt{margin-left:calc(100% - 220px); width:200px;}
+
+.calendar .day{position:relative; left:0px; top:0px; width:calc(14.28% - 0px); height:120px; }
+.calendar .day:hover{cursor:pointer; background:rgba(0,0,0,0.1);}
+.calendar .day_b{border-bottom:1px solid rgba(0,0,0,0.1);}
+.calendar .day_r{border-right:1px solid rgba(0,0,0,0.1);}
+.calendar .day_merged{height:40px; border-top:1px solid rgba(0,0,0,0.1);}
+.calendar .day_num_g{background:rgba(0,0,0,0.1);}
+.calendar .day_num_r{background:rgba(0,154,208, .2);}
+
+.calendar .day .day_num{position:absolute; right:10px; top:10px; font-weight:bold;}
+.calendar .day .day_of_week{position:absolute; left:10px; font-size:15px; top:8px; font-weight:bold;}
+
+.calendar .day h5{position:absolute; margin-left:20px; margin-top:20px; margin-right:20px; font-size:15px; }
+.calendar .day .fa-trash{position:absolute; right:20px; bottom:20px;  color:#e52d27; opacity:0; transition:all 0.2s; }
+.calendar .day .fa-edit{position:absolute; right:40px; bottom:20px; opacity:0; color:#0c85d0; transition:all 0.2s; }
+.calendar .day:hover .fa-trash{opacity:1; cursor:pointer;}
+.calendar .day:hover .fa-edit{opacity:1; cursor:pointer;}
+
+
+/******************************************** REGISTRUJ ODSUSTVO ******************************************************/
+
+.registruj_odsustvo{position:fixed; left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0.2); z-index:100; display:none; }
+.registruj_odsustvo .registruj_odsustvo_values{position:absolute; width:600px; min-height:500px; left:calc(50% - 300px); top:calc(50% - 250px); border:1px solid rgba(0,0,0,0.2); background:#fff; border-radius:4px;}
+.registruj_odsustvo .registruj_odsustvo_values .registruj_odsustvo_header{position:relative; left:20px; top:0px; width:calc(100% - 40px); height:50px; border-bottom:1px solid rgba(0,0,0,0.1);  }
+.registruj_odsustvo .registruj_odsustvo_values .registruj_odsustvo_header h4{margin-left:0px; padding-top:15px; font-size:17px;}
+.registruj_odsustvo .registruj_odsustvo_values .registruj_odsustvo_header i{position:absolute; right:0px; font-size:20px; top:14px;}
+.registruj_odsustvo .registruj_odsustvo_values .registruj_odsustvo_header i:hover{cursor:pointer; color:#e52d27;}
+
+.registruj_odsustvo .registruj_odsustvo_values .registruj_odustvo_body{margin-left:20px; width:calc(100% - 40px); margin-top:16px;}
+
+.registruj_odsustvo .registruj_odsustvo_values .registruj_odustvo_body .col .form-control{left:0px;  margin-left:-15px; width:calc(100% + 15px);}
+.registruj_odsustvo .registruj_odsustvo_values .registruj_odustvo_body .btn{float:right;}
+
+
+
+
+.mini_calendar{
+    position:absolute;
+    width:300px;
+    background:#fff;
+    left:12px; top:40px;
+    z-index:1000;
+}
+
+.steppsss .mini_calendar{
+    top:60px;
+}
+
+.mini_calendar .calendar_buttons .butt{width:40px; }
+.mini_calendar .calendar_buttons .currentMonth{width:160px; left:calc(50% - 80px);}
+.mini_calendar .calendar_buttons .currentMonth p{font-size:18px; margin-top:7px; }
+
+.mini_calendar .day{height:36px; text-align:center;}
+.mini_calendar .day p{position:relative; left:0px; top:0px; margin:0px; margin-left:10px; }
+.mini_calendar .day .day_of_week222{margin-left:0px; font-size:14px;}
+
+
+td .mini_calendar{left:120px; top:100px;}
+td .mini_calendar .calendar_buttons .butt{height:30px;  }
+
+/***************************************** ADD MONTHS AND YEARS *******************************************************/
+
+.mini_calendar .dodatni_mjeseci{position:relative; width:100%; height:40px; background:rgba(0,0,0,0.05);}
+.mini_calendar .dodatni_mjeseci .months{position:absolute; left:0px; top:0px; width:50%; height:100%; border-right:1px solid rgba(0,0,0,0.1);}
+.mini_calendar .dodatni_mjeseci .years{left:50%; border:none;}
+.mini_calendar .dodatni_mjeseci .months p{position:absolute; left:20px; font-size:16px; top:8px;}
+.mini_calendar .dodatni_mjeseci .months i{position:absolute; right:20px; top:14px;}
+.mini_calendar .dodatni_mjeseci .months i:hover{cursor:pointer; color:#0c85d0;}
+
+.mini_calendar .preview_all{position:absolute; left:calc(100% + 2px); top:0px; overflow:auto; width:0px; height:100%; background:#fff; border:1px solid rgba(0,0,0,0.1); z-index:1000; transition:all 0.4s;}
+.mini_calendar .preview_all .single_row{position:relative; width:100%; height:30px;}
+.mini_calendar .preview_all .single_row:hover{cursor:pointer; background:rgba(0,0,0,0.1);}
+.mini_calendar .preview_all .single_row p{cursor:pointer; color:#0c85d0; margin-left:20px; padding-top:5px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

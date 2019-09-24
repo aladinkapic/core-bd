@@ -1,0 +1,110 @@
+#emails_wrapper{
+    position:relative;
+    left:0px;
+    width:100%;
+    min-height:200px;
+    #email_header{
+        position:relative;
+        left:0px;
+        top:0px;
+        padding-top:20px;
+        padding-bottom:20px;
+        width:100%;
+        background:rgba(0,154,208, .08);
+        text-align:center;
+        h2{
+            margin-top:0px;
+        }
+    }
+
+
+    #content{
+        position:relative;
+        left:15%;
+        width:70%;
+        height:auto;
+
+        h4{
+            margin-top:30px;
+        }
+
+        h5{
+            margin-top:30px;
+        }
+    }
+
+    #email_footer{
+        position:relative;
+        left:0px;
+        width:100%;
+        height:160px;
+        margin-top:200px;
+        background:rgba(0,154,208, .08);
+
+        .footer_image{
+            position:absolute;
+            left:0px;
+            top:0px;
+            width:120px;
+            height:160px;
+            img{
+                position:absolute;
+                left:0px;
+                top:0px;
+                right:0px;
+                bottom:0px;
+                margin:auto;
+            }
+        }
+
+        .footer_text{
+            position:absolute;
+            left:120px;
+            top:0px;
+            width:calc(100% - 300px);
+            height:300px;
+            border-left:1px solid rgba(255,255,255,1);
+            padding-left:20px; padding-top:20px;
+            h4{
+                position:absolute;
+                left:20px;
+                top:20px;
+            }
+            h5{
+                position:absolute;
+                top:60px;
+                margin-top:0px;
+                padding-top:0px;
+            }
+
+            .single_value{
+                position:absolute;
+                width:100%;
+                top:90px;
+                height:30px;
+                img{
+                    position:absolute;
+                    top:7px;
+                }
+
+                #phone_image{
+                    left:200px;
+                }
+                p{
+                    position:absolute;
+                    left:26px;
+                    top:4px;
+                }
+                #telephone_value{
+                    left:226px;
+                }
+            }
+
+            .single_value2{
+                top:120px;
+            }
+        }
+
+    }
+
+}

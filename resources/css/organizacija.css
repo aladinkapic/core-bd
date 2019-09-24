@@ -1,0 +1,19 @@
+.ads-darker th {
+     color: white !important;
+ }
+.organisation-plan .card-header span {
+    font-weight: bold !important;
+}
+.table-white td {
+    padding: 2px 0.75rem !important;
+}
+.table-white {
+
+}
+.table-white thead {
+    background: #f7f7f7;
+}
+.wrap-icon  {
+    background: white;
+    padding:5px;
+}

@@ -1,0 +1,119 @@
+
+/*** Drop down opcije za pregled ostalih karakteristika sluzbenika ***/
+
+.container_block .split_container .drop_down_option{position:relative; left:10px; width:calc(100% - 20px); min-height:40px; border-radius:3px; background:rgba(0,0,0,0.05); padding-bottom:0px; transition:all 0.4s;}
+.container_block .split_container .drop_down_option:hover{background:rgba(0,0,0,0.1); }
+
+.container_block .split_container .drop_down_option .double_row{position:relative; left:0px; top:0px; width:100%; display:flex;}
+.container_block .split_container .drop_down_option .single_row{position:relative; left:0px; top:0px; width:100%; height:auto;}
+.container_block .split_container .drop_down_option .header{height:50px; border-bottom:1px solid rgba(0,0,0,0.1);}
+.container_block .split_container .drop_down_option .header2{margin-top:10px;}
+
+.container_block .split_container .drop_down_option .header p{font-size:18px; margin-left:20px; margin-top:0px; padding-top:10px;}
+.container_block .split_container .drop_down_option .header i{position:absolute; font-size:20px; top:14px;}
+.container_block .split_container .drop_down_option .header .fa-chevron-up,
+.container_block .split_container .drop_down_option .header .fa-chevron-down{right:20px;}
+.container_block .split_container .drop_down_option .header .fa-plus{right:50px;}
+.container_block .split_container .drop_down_option .header i:hover{cursor:pointer; color:rgb(70, 77, 228);}
+
+.container_block .split_container .drop_down_option .predefined_elements{}
+.container_block .split_container .drop_down_option .preview_elements{padding-top:10px;  padding-bottom:20px; transition:all 0.2s;}
+.container_block .split_container .drop_down_option .preview_elements:hover{background:rgba(0,0,0,0.1);}
+
+
+.container_block .split_container .drop_down_option .hidden_input_form{display:none;}
+.container_block .split_container .drop_down_option .add_new_elements{border-top:1px solid rgba(0,0,0,0.1); padding-top:10px; padding-bottom:20px;}
+
+.container_block .split_container .drop_down_option .single_row .control-label{margin-left:20px;}
+.container_block .split_container .drop_down_option .single_row .form-control{margin-left:5px; width:calc(100% - 10px); height:36px; margin-bottom:10px;}
+
+.container_block .split_container .drop_down_option .single_row .btn{margin-left:6px; margin-top:5px;}
+.container_block .split_container .drop_down_option .single_row .dates .control-label{margin-left:6px;}
+.container_block .split_container .drop_down_option .double_row .single_row .dates .form-control{width:calc(100% - 40px); }
+
+
+.container_block .split_container .drop_down_option .preview_elements .edit_elements_icons{position:relative; height:0px; overflow:hidden; left:20px; top:0px; width:calc(100% - 40px); transition:all 0.2s; margin-bottom:10px;}
+.container_block .split_container .drop_down_option .preview_elements:hover .edit_elements_icons{height:30px;}
+.container_block .split_container .drop_down_option .preview_elements .edit_elements_icons .edit_element_icon{position:absolute; right:0px; top:0px; width:30px; height:30px; text-align:right;}
+.container_block .split_container .drop_down_option .preview_elements .edit_elements_icons .edit_element_icon_2{right:30px;}
+.container_block .split_container .drop_down_option .preview_elements .edit_elements_icons .edit_element_icon i{font-size:16px; margin-top:5px;}
+.container_block .split_container .drop_down_option .preview_elements .edit_elements_icons .edit_element_icon:hover i{cursor:pointer;}
+.container_block .split_container .drop_down_option .preview_elements .edit_elements_icons .edit_element_icon:hover .fa-trash{color:red;}
+
+.container_block .split_container .drop_down_option .predefined_elements .preview_elements .btn{display:none;}
+
+
+
+
+/******************************************** DOUBLE ROW STRECH *******************************************************/
+
+.container_block .split_container4 .drop_down_option{left:0px; width:100%; margin-bottom:20px; padding-top:10px; padding-bottom:10px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+@extends('template.main')
+
+@section('content')
+    <div class="container ">
+        @include('hr.ugovori.snippets.menu')
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Privremeni premještaj državnog službenika
+                    </div>
+                    <div class="card-body">
+
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+
+                        <form method="POST" action="{{ route('ugovor.privremeno.store') }}">
+                            @csrf
+                            @method('PUT')
+
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Službenik
+                                </div>
+
+                                <!-- pozivat ćemo funkciju privremeniPremjestaj iz all_functions.js -->
+
+                                <div class="col-md-7">
+                                    <select class="form-control" id="trenutni_sluzbenik" name="sluzbenik" onchange="privremeniPremjestaj();">
+                                        <option value="">Izaberite službenika</option>
+                                        @foreach($sluzbenici as $sluzbenik)
+                                            <option value="{{ $sluzbenik->id }}">{{ $sluzbenik->ime }} {{ $sluzbenik->prezime }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Privremeno radno mjesto
+                                </div>
+                                <div class="col-md-7">
+                                    <select class="form-control" name="privremeno_radno_mjesto" id="privremeno_radno_mjesto">
+                                        <option value="1">Aktivna radna mjesta iz organa javne uprave</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Redovno radno mjesto
+                                </div>
+                                <div class="col-md-7">
+                                    <input required="required" class="form-control" type="text" name="radno_mjesto"
+                                           id="redovno_radno_mjesto" value="" readonly />
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Broj rješenja
+                                </div>
+                                <div class="col-md-7">
+                                    <input class="form-control" type="text" name="broj_rjesenja" placeholder="Broj rješenja..."/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Datum rješenja
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="text" id="datum_rjesenja" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." >
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Datum od
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="text" id="datum_od" class="form-control datepicker" name="datum_od" placeholder="Datum od..." >
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Datum do
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="text" id="datum_do" class="form-control datepicker" name="datum_do" placeholder="Datum do..." >
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+
+                                </div>
+                                <div class="col-md-7">
+                                    <button class="btn btn-success">
+                                        <i class="fa fa-plus"></i> Dodaj
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+@endsection

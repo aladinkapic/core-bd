@@ -1,0 +1,108 @@
+@extends('template.main')
+
+@section('content')
+
+    <div class="container ">
+        @include('hr.ugovori.snippets.menu')
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Dodavanje novog ugovora o mjestu rada
+                    </div>
+                    <div class="card-body">
+
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+
+                        <form method="POST" action="{{ route('ugovor.mjesto_rada.store') }}">
+                            @csrf
+                            @method('PUT')
+
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Službenik
+                                </div>
+                                <div class="col-md-7">
+                                    <select class="form-control" name="sluzbenik">
+                                        @foreach($sluzbenici as $sluzbenik)
+                                            <option value="{{ $sluzbenik->id }}">{{ $sluzbenik->ime }} {{ $sluzbenik->prezime }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Adresa
+                                </div>
+                                <div class="col-md-7">
+                                    <input required="required" class="form-control" type="text" name="adresa"
+                                           placeholder="Unesite adresu..." />
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Sprat
+                                </div>
+                                <div class="col-md-7">
+                                    <input required="required" class="form-control" type="text" name="sprat"
+                                           placeholder="Sprat..."/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Broj kancelarije
+                                </div>
+                                <div class="col-md-7">
+                                    <input class="form-control" type="text" name="broj_kancelarije"
+                                           placeholder="Broj kancelarije..."/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Službeno auto na raspolaganju
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="checkbox" value="1" name="sluzbeno_auto"
+                                              placeholder="Službeno auto na raspolaganju..." >
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    Povjerena stalna sredstva
+                                </div>
+                                <div class="col-md-7">
+                                    <textarea class="form-control"  name="povjerena_stalna_sredstva"
+                                              placeholder="Povjerena stalna sredstva..." ></textarea>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+
+                                </div>
+                                <div class="col-md-7">
+                                    <button class="btn btn-success">
+                                        <i class="fa fa-plus"></i> Dodaj
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+@endsection

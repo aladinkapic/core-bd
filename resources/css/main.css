@@ -1,0 +1,163 @@
+.navbar-default .navbar-nav > li.dropdown:hover > a,
+.navbar-default .navbar-nav > li.dropdown:hover > a:hover,
+.navbar-default .navbar-nav > li.dropdown:hover > a:focus {
+    background-color: rgb(231, 231, 231);
+    color: rgb(85, 85, 85);
+}
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+.box.box-panel, #filter-body{
+    display:none;
+}
+#filteri-naslov{
+    background: white;
+    padding:10px;
+    cursor: pointer
+}
+.fa.fa-arrow-down{
+    font-size:10px;
+    padding-top:5px;
+    vertical-align: bottom;
+}
+.fa.fa-filter{
+    font-size:14px;
+    padding-right: 15px;
+}
+
+.nav-item.dropdown .dropdown-toggle:after {
+    content: '' !important;
+}
+.dropdown .dropdown-menu {
+    margin-top: 0px !important;
+    border: 0;
+    background: #223C61;
+}
+.dropdown .dropdown-menu a {
+    color: white;
+    padding: 14px 20px !important;
+}
+.dropdown .dropdown-menu a:hover {
+    background: #184679;
+}
+.container {
+    max-width: 90% !important;
+}
+.unload {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(255,255,255,0.9);
+    display: none;
+    z-index: 100;
+}
+.unload-img {
+    width: 64px;
+    margin: 10% auto 0;
+}
+.unload-img img {
+    width: 64px;
+}
+
+.unload-img img {
+    animation: beat .5s infinite alternate;
+    transform-origin: center;
+}
+
+/* Heart beat animation */
+@keyframes beat{
+    to { transform: scale(1.4); }
+}
+.steps-wizard li {
+    font-size: 17px;
+}
+.steps-wizard i {
+    margin-right: 10px;
+}
+.btn-xs {
+    padding: 5px 10px !important;
+}
+.napomena{
+    background-color: #ebedee;
+    width: 95%;
+    padding: 20px;
+    padding-right: 30px;
+    margin-top:10px;
+    text-align:justify;
+}
+div.col-1.xdiv{
+    background-color: #ebedee;
+    padding:0 !important;
+}
+.napomenaDelete{
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ebedee;
+    width: 100%;
+    cursor: pointer;
+    padding:10px !important;
+}
+.napomenaDelete:hover{
+    background-color: #ff4144;
+}
+.breadcrumbs {
+    padding-left: 21px;
+}
+.breadcrumbs li {
+    display: inline-block;
+}
+.breadcrumbs_holder {
+    background: #343a40;
+    border-top: 2px solid #454545;
+}
+.breadcrumbs li a  {
+    color: white;
+    font-size: 11px;
+}
+.org-row:hover {
+    background: whitesmoke;
+}
+.org-row:hover .remove-org {
+    display: block !important;
+}
+.remove-org {
+    display: none;
+}
+[control-export-menu] hr {
+    margin: 4px 0!important;
+    padding: 0 !important;
+    width: 25px;
+}
+[control-export-menu] {
+    width:30px !important;
+}
+li.dropdown:hover > .dropdown-menu {
+    background: #343a40 !important;
+}
+.colVisCont {
+    height: 250px;
+    display: inline;
+    overflow: scroll;
+    margin-bottom: 50px;
+}
+.list-group-item.d-flex.justify-content-between.align-items-center:hover{
+    cursor:pointer;
+}
+/*
+    Filters CSS
+ */
+#filtering th:last-child {
+    display: table-cell !important;
+}
+#filtering th:nth-child(n+10){
+    display: none;
+}
+#filtering tbody tr td:nth-child(n+10){
+    display: none;
+}
+#filtering tbody tr td:last-child {
+    display: table-cell !important;
+}
+.pull-pagination-right .pagination {
+    float: right;
+}

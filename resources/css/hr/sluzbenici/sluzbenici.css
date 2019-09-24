@@ -1,0 +1,83 @@
+.container_block{display:flex; flex-wrap:wrap; justify-content: space-between;}
+
+
+.container_block .full_container{width:100%;}
+.container_block .full_container h4{font-size:24px; margin-top:0px; padding-top:10px; padding-bottom:10px;}
+.container_block .full_container_b{margin-top:30px; border:1px solid rgba(0,0,0,0.1); padding-top:20px; text-align:left;}
+.container_block .full_container_b .col label{ margin-left:14px; font-size:14px;}
+
+.container_block .split_container{position:relative; width:calc(50% - 40px); height:auto; border:1px solid rgba(0,0,0,0.1); padding-top:20px; padding-bottom:20px;}
+.container_block .split_container2{width:calc(100% - 380px);}
+.container_block .split_container3{width:300px;}
+.container_block .split_container4{border:none; padding-top:0px;}
+.container_block .split_container5{width:100%; padding-top:20px;}
+
+.container_block .split_container #uslovi_za_radno_mjesto,
+.container_block .split_container #korisnici{position:relative; left:0px; top:0px; width:100%;}
+.container_block .split_container #uslovi_za_radno_mjesto .copied_form,
+.container_block .split_container #korisnici .copied_form{margin-bottom:0px; border-bottom:1px solid rgba(0,0,0,0.1); padding-bottom:10px; position:relative; width:100%; height:auto; }
+.container_block .split_container .copied_form2{margin-top:15px;}
+
+.container_block .split_container .user_details{position:relative; left:0px; top:0px; width:100%; height:40px; background:red; margin-bottom:15px;  }
+.container_block .split_container .copied_form:last-child .user_details{margin:0px;}
+
+
+
+
+
+.container_block .split_container .copied_form .col .offer_users{position:relative; left:15px; top:0px; width:calc(100% - 30px); height:50px; background:#fff; border:1px solid rgba(0,0,0,0.2); border-top:0px; max-height:300px; min-height:200px; overflow:auto; display:none; }
+.container_block .split_container .copied_form .col .offer_users::-webkit-scrollbar{width:3px;}
+.container_block .split_container .copied_form .col .offer_users .single_user{position:relative; left:0px; top:0px; width:100%; height:40px;  text-align:left;}
+.container_block .split_container .copied_form .col .offer_users .single_user:hover{background:rgba(0,0,0,0.1); cursor:pointer;}
+.container_block .split_container .copied_form .col .offer_users .single_user p{font-size:15px; margin-left:10px; position:absolute; top:8px;}
+
+
+.container_block .split_container .copied_form .shadow_delete,
+.container_block .split_container .copied_form .shadow_delete_2{position:absolute; display:block; left:0px; top:0px; width:100%; height:0%; overflow:hidden; background:rgba(0,0,0,0.3); z-index:100; transition:all 0.2s;}
+
+.container_block .split_container .copied_form:hover .shadow_delete,
+.container_block .split_container .copied_form:hover .shadow_delete_2{height:100%;}
+.container_block .split_container .copied_form .shadow_delete .delete_item,
+.container_block .split_container .copied_form .shadow_delete_2 .delete_item{position:absolute; right:15px; top:15px; width:30px; height:30px;}
+.container_block .split_container .copied_form .shadow_delete .edit_item,
+.container_block .split_container .copied_form .shadow_delete_2 .edit_item{right:50px;}
+.container_block .split_container .copied_form .shadow_delete .delete_item i,
+.container_block .split_container .copied_form .shadow_delete_2 .delete_item i{font-size:22px; color:#e52d27;}
+.container_block .split_container .copied_form .shadow_delete .edit_item i,
+.container_block .split_container .copied_form .shadow_delete_2 .edit_item i{font-size:18px; margin-top:1px; color:#0c85d0;}
+.container_block .split_container .copied_form .shadow_delete .delete_item:hover i,
+.container_block .split_container .copied_form .shadow_delete_2 .delete_item:hover i{cursor:pointer;}
+
+
+.container_block .split_container .dates{width:100%; margin-left:13px;}
+.container_block .split_container .dates input{width:calc(100% - 26px);}
+.container_block .split_container .form-group .col .control-label{ margin-left:15px; font-family: 'Nunito', sans-serif; font-size:14px;}
+
+
+
+
+
+/** Desni dio za prikaz slike **/
+.container_block .split_container  .slika_sluzbenika{position:relative; left:13px; top:0px; width:calc(100% - 26px); height:200px; border-radius:3px; border:1px solid rgba(0,0,0,0.1); margin-bottom:27px;}
+.container_block .split_container  .slika_sluzbenika img{position:absolute; left:0px; top:0px; right:0px; bottom:0px; max-width:80%; max-height:80%; margin:auto;}
+.container_block .split_container  .slika_sluzbenika .slika_sluzbenika_sjena{position:absolute; left:0px; top:0px; width:100%; transition:all 0.2s; opacity:0.3; height:100%; border-radius:3px; background:rgba(0,0,0,0.2); text-align:center;}
+.container_block .split_container  .slika_sluzbenika:hover .slika_sluzbenika_sjena{opacity:1; cursor:pointer;}
+.container_block .split_container  .slika_sluzbenika .slika_sluzbenika_sjena i{color:rgb(70, 77, 228); font-size:30px; margin-top:80px;}
+
+
+.container_block .split_container .basic_info{position:relative; text-align:center; left:16px; top:0px; width:calc(100% - 32px); min-height:40px; }
+.container_block .split_container .basic_info h1{}
+.container_block .split_container .basic_info a{color:rgb(70,77,228);}
+
+
+
+
+
+
+
+
+
+.btn{background:#184679;}
+
+
+

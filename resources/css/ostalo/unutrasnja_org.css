@@ -1,0 +1,12 @@
+.pop_forma{position:fixed; left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0.2); z-index:1000; display:none;}
+
+.pop_forma .forma_za_unos{position:absolute; width:600px; min-height:500px; left:calc(50% - 300px); top:calc(50% - 250px); border:1px solid rgba(0,0,0,0.2); background:#fff; border-radius:4px;}
+.pop_forma .forma_za_unos .forma_za_unos_header{position:relative; left:20px; top:0px; width:calc(100% - 40px); height:50px; border-bottom:1px solid rgba(0,0,0,0.1);  }
+.pop_forma .forma_za_unos .forma_za_unos_header h4{margin-left:0px; padding-top:15px; font-size:17px;}
+.pop_forma .forma_za_unos .forma_za_unos_header i{position:absolute; right:0px; font-size:20px; top:14px;}
+.pop_forma .forma_za_unos .forma_za_unos_header i:hover{cursor:pointer; color:#e52d27;}
+
+.pop_forma .forma_za_unos .forma_za_unos_body{margin-left:20px; width:calc(100% - 40px); margin-top:16px; padding-bottom:20px;}
+
+.pop_forma .forma_za_unos .forma_za_unos_body .col .form-control{left:0px;  margin-left:-15px; width:calc(100% + 15px);}
+.pop_forma .forma_za_unos .forma_za_unos_body .btn{float:right; margin-top:30px;}

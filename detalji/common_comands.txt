@@ -1,0 +1,19 @@
+/*** MIGRATIONS ***/
+
+-- kreirajmo migraciju : php artisan make:migration naziv_fajla --create=naziv_tabele
+-- izmjena migracije   : php artisan make:migration naziv_fajla --table="naziv_tabele_koju_mijenjamo"
+
+-- kreirajmo model     : php artisan make:model Models/NazivModela -m ako hoćemo da kreiramo migraciju odmah, dodamo -m)
+-- kreirajmo kontroler : php artisan make:controller --resource NazivKontrolera // ako hoćemo da nam kreira odmah sve metode, koristimo --resource
+
+
+-- pročitaj neki atribut od Modela
+
+    Model::where()->first()->toArray()['sifra']
+
+    Model::where()->pluck('ime')->toArray()[0]
+
+/**********************************************************************************************************************/
+
+php artisan tinker
+    - obriši cijelu tabelu DB::table('naziv_tabele')->truncate();

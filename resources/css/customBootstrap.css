@@ -1,0 +1,95 @@
+control [readonly] {
+    background-color: #fff !important;
+    /* any other styles */
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+    height:0px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #184679;
+    outline: 1px solid slategrey;
+    border-radius: 3px;
+}
+
+.container_w{
+    min-height:400px;
+}
+
+.container .row .steps-wizard .four .single_bar{width:calc(33% - 5px);}
+.container .row .steps-wizard .four .single_bar2{width:calc(50% - 12px);}
+.container .row .steps-wizard .four a{margin-left:10px;}
+
+/******* TOP BAR FONT SIZE *************/
+
+.container .card .card-header h4{position:absolute; margin-top:4px;}
+
+
+
+/*********************************** BRISANJE I UREĐIVANJE LIMITA ZA ODSUSTVA ******************************************/
+
+
+.container .split_container .limits_edit_delete{position:relative; left:0px; top:-20px; width:100%; height:0px; overflow:hidden; transition:all 0.2s; text-align:right; }
+.container .split_container:hover .limits_edit_delete{height:40px;}
+.container .split_container .limits_edit_delete .icon_wrapper{position:relative; width:30px; height:32px; top:10px; display:inline-block; margin-right:16px; text-align:center;}
+.container .split_container .limits_edit_delete .icon_wrapper i{margin-top:10px; font-size:18px;}
+
+
+.checkboxed{width:30px; background:red;}
+
+
+.alert-danger ul{list-style-type: none;}
+
+
+
+
+/*********************************** Dodjeljivanje uloga određenim korisnicima *****************************************/
+
+.custom_span:hover{cursor:pointer;}
+.inside_cells{position:relative; left:0px; top:0px; width:100%; height:100%; }
+.inside_cells .select_roles{position:absolute; left:0px; display:none; top:100%; width:100%;  border:1px solid rgba(0,0,0,0.1); background:#fff; z-index:1000;}
+
+.inside_cells .select_roles .specific_role{position:relative; left:0px; top:0px; width:100%; min-height:40px; border-bottom:1px solid rgba(0,0,0,0.1); padding:10px;}
+.inside_cells .select_roles .specific_role p{max-width:calc(100% - 30px);  margin:0px; }
+.inside_cells .select_roles .specific_role input{position:absolute; right:10px; top:calc(50% - 5px);}
+
+
+
+/************************************************ My Custom alert options *********************************************/
+.alert-danger{position:relative;}
+.my-custom-alert .oznaci_kao_procitano{position:absolute; left:0px; top:0px; width:100%; height:100%; background:#38c172; opacity:0; transition:all 0.3s;}
+.my-custom-alert:hover .oznaci_kao_procitano{opacity:0.9; cursor:pointer;}
+.my-custom-alert .oznaci_kao_procitano p{position:absolute; right:20px; top:14px; color:#fff; margin:0px; font-weight:bold;}
+
+
+/*********************************************** My Custom error handling *********************************************/
+.mine-error-info{ display:none; }
+
+
+.js-example-basic{
+    background:red;
+}
+
+.select2-selection__rendered{
+    text-align:left;
+    padding-left:0px;
+    padding-top:0px;
+    top:0px;
+    margin-top:-10px;
+    height:40px;
+    padding-bottom:20px;
+}
+
+.split_container .select2-selection__rendered, .full_container .select2-selection__rendered{
+    margin-top:0px;
+}
+.readmeebaby:read-only{
+    background:none;
+}
