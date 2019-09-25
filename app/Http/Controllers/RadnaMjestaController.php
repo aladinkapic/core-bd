@@ -22,8 +22,7 @@ class RadnaMjestaController extends Controller{
         // Ovdje trebamo samo isfiltrirati radna mjesta u odnosu na organizacionu jedinuc
         //$radna_mjesta = RadnoMjesto::aktivna();
 
-        $radna_mjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici');
-
+        $radna_mjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija');
         $radna_mjesta = FilterController::filter($radna_mjesta);
 
         $filteri = [
@@ -33,15 +32,10 @@ class RadnaMjestaController extends Controller{
             'broj_izvrsilaca' => 'Broj izvršilaca',
             'orgjed.naziv' => 'Organizacijska jedinica',
             'orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
-            'rukovodioc' => 'Rukovodeća pozicija',
+            'rukovodeca_pozicija.name' => 'Rukovodeća pozicija',
             'sluzbenici.ime+sluzbenici.prezime' => 'Službenici',
         ];
 
-        foreach ($radna_mjesta as $mjesto){
-            if ($mjesto->rukovodioc == 0) {
-                $mjesto->rukovodioc ='Ne';
-            }  else $mjesto->rukovodioc ='Ne';
-        }
 
 //        $radna_mjesta = collect();
 //        foreach ($ids as $id){

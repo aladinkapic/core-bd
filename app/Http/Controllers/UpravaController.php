@@ -13,10 +13,20 @@ class UpravaController extends Controller{
 
 
     public function index()    {
-        $uprave = Uprava::all();
+        $uprave = Uprava::with('tip_javne_uprave');
+        $uprave = FilterController::filter($uprave);
 
+        $filteri = [
+            'naziv' => 'Naziv',
+            'tip_javne_uprave.name' => 'Tip',
+            'ulica' => 'Ulica',
+            'broj' => 'Broj',
+            'telefon' => 'Telefon',
+            'fax' => 'Fax',
+            'web' => 'Web',
+        ];
 
-        return view('/hr/organ_javne_uprave/home', compact('uprave'));
+        return view('/hr/organ_javne_uprave/home', compact('uprave', 'filteri'));
     }
 
     /**

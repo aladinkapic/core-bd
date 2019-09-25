@@ -105,4 +105,7 @@ class Organizacija extends Model{
         return $this->hasMany('App\Models\OrganizacionaJedinica', 'org_id');
     }
 
+    public function aktivan(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'active')->where('type', 'aktivan');
+    }
 }

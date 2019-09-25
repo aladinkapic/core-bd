@@ -18,29 +18,34 @@
         @endif
         <div class="row">
             <div class="col-md-10">
-                <h4 >Organi javne uprave</h4>
-                <button v-on:click="fireTable()" class="btn btn-primary btn-xs"> <i class="fa fa-filter" style="font-size: 11px;"></i> Filteri</button>
-                @include('snippets.buttons')
+                <h4 >{{__('Organi javne uprave')}}</h4>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-success" onClick="window.location='/hr/organ_javne_uprave/add';"> <i class="fa fa-plus fa-1x"></i> Novi organ javne uprave</button>
+                <button class="btn btn-success" onClick="window.location='/hr/organ_javne_uprave/add';"> <i class="fa fa-plus fa-1x"></i> {{__('Novi organ javne uprave')}}</button>
             </div>
         </div>
-        <br />
-        <br />
+
+            @include('template.snippets.filters', ['var' => $uprave])
+
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
-            <th>{{__('Naziv organa javne uprave')}}</th>
-            <th>{{__('Tip organa javne uprave')}}</th>
+            {{--<th>{{__('Naziv organa javne uprave')}}</th>--}}
+            {{--<th>{{__('Tip organa javne uprave')}}</th>--}}
+            @include('template.snippets.filters_header')
+
             <th width="150">{{__('Akcije')}}</th>
             </thead>
             <tbody>
             @if (isset($uprave))
             @foreach($uprave as $uprava)
-            @if($i>10)<?php break; ?> @endif
             <tr class="org-row">
                 <td>{{$uprava -> naziv}}</td>
-                <td>{{ \App\Models\Sifrarnik::dajInstancu('tip_javne_uprave', $uprava->tip) }}</td>
+                <td>{{$uprava->tip_javne_uprave->name}}</td>
+                <td>{{$uprava->ulica}}</td>
+                <td>{{$uprava->broj}}</td>
+                <td>{{$uprava->telefon}}</td>
+                <td>{{$uprava->fax}}</td>
+                <td>{{$uprava->web}}</td>
                 <td class="text-center">
                     <a href="/hr/uprava/viewUprava/{{$uprava -> id}}">
                         <i class="fa fa-eye"></i>

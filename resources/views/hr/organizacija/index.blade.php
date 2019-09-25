@@ -25,10 +25,10 @@
 
         <div class="row">
             <div class="col-md-10">
-                <h4 >Unutrašnja organizacija</h4>
+                <h4>{{__('Unutrašnja organizacija')}}</h4>
             </div>
             <div class="col-md-2">
-                <button class="btn  btn-success" v-on:click="url('{{ route('organizacija.create') }}')"> <i class="fa fa-plus fa-1x"></i> Novi organizacioni plan</button>
+                <button class="btn  btn-success" v-on:click="url('{{ route('organizacija.create') }}')"> <i class="fa fa-plus fa-1x"></i>{{__(' Novi organizacioni plan')}}</button>
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                     <td>{{ \App\Http\Controllers\HelpController::obrniDatum($org->datum_od) }}</td>
                     <td>{{ \App\Http\Controllers\HelpController::obrniDatum($org->datum_do) }}</td>
                     <td>
-                        <span class="badge badge-{{ ($org->active == 0) ? 'danger':'success' }}">{{ ($org->active == 0) ? 'Neaktivno':'Aktivno' }}</span>
+                        <span class="badge badge-{{ ($org->active == 0) ? 'danger':'success' }}">{{$org->aktivan->name}}</span>
                     </td>
                     <td>
                         <a class="btn btn-primary btn-xs" href="/organizacija/edit/{{ $org->id}}">

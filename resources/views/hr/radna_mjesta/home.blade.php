@@ -25,10 +25,10 @@
         <div class="card-body hr-activity tab full_container">
             <table class="table table-bordered" id="filtering">
                 <thead>
-                <tr>
+                <th>
                     @include('template.snippets.filters_header')
                     <th scope="col" style="text-align:center;" class="akcije">Akcije</th>
-                </tr>
+                </th>
                 </thead>
                 <tbody>
                 @foreach($radna_mjesta as $radnoMjesto)
@@ -47,10 +47,10 @@
                             {{ $radnoMjesto->orgjed->organizacija->organ->naziv ?? '' }}
                         </td>
                         <td>
-                            {{ $radnoMjesto->orgjed->naziv }}
+                            {{ $radnoMjesto->orgjed->naziv ?? ''}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->rukovodioc == 0 ? 'Ne' : 'Da' }}
+                            {{ $radnoMjesto->rukovodeca_pozicija->name ?? ''}}
                         </td>
                         <td>
                             <ul>

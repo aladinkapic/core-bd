@@ -1,0 +1,30 @@
+/*
+    Filters CSS
+ */
+#filtering th:first-child,
+#filtering td:first-child{
+    text-align:center;
+    width:80px;
+}
+#filtering th:last-child {
+    display: table-cell !important;
+}
+
+
+#filtering th:nth-child(n+5){
+    display: none;
+}
+#filtering tbody tr td:nth-child(n+5){
+    display: none;
+}
+#filtering th, #filtering tbody tr td{display:none;}
+
+#filtering tbody tr td:last-child {
+    display: table-cell !important;
+}
+.pull-pagination-right .pagination {
+    float: right;
+}
+.btn-xs {
+    font-size: 11px;
+}

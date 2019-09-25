@@ -46,6 +46,8 @@ class Sifrarnik extends Model{
         array('trenutno_radi', 'Trenutno zaposlen'),
         array('clanovi_porodice', 'Članovi porodice'),
         array('kategorija_ispita', 'Kategorija ispita'),
+        array('rukovodeca_pozicija', 'Rukovodeća pozicija'),
+
     );
 
     public static function dajKljucneRijeci(){

@@ -72,16 +72,16 @@ class OrganizacijaController extends Controller
     public function index(Request $request)
     {
 
-        $organizacija = Organizacija::with('organ')->orderBy('id', 'DESC');
+        $organizacija = Organizacija::with('organ')->with('aktivan')->orderBy('id', 'DESC');
         $organizacija = FilterController::filter($organizacija);
 
         $filteri = [
             'id' => 'ID',
             'naziv' => 'Naziv',
-            'org.organ.naziv' => 'Organ javne uprave',
-            'org.datum_od' => 'Datum važenja od',
-            'org.datum_do' => 'Datum važenja do',
-            'active' => 'Aktivan'
+            'organ.naziv' => 'Organ javne uprave',
+            'datum_od' => 'Datum važenja od',
+            'datum_do' => 'Datum važenja do',
+            'aktivan.name' => 'Aktivan'
         ];
 
         return view('hr.organizacija.index')->with(compact('organizacija', 'filteri'));

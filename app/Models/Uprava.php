@@ -10,4 +10,9 @@ class Uprava extends Model{
     protected $fillable = [
         'tin', 'naziv', 'tip', 'ulica', 'broj', 'telefon', 'fax', 'web', 'email', 'check'
     ];
+
+    public function tip_javne_uprave(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'tip')->where('type', 'tip_javne_uprave');
+    }
 }
+
