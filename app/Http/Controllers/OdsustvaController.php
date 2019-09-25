@@ -55,8 +55,40 @@ class OdsustvaController extends Controller{
             ->with('strucnaSprema')
             ->with('vjestine')
             ->with('zasnivanjeRO')
-            ->with('radnoMjesto.orgjed.organizacija.organ')
-            ->get();
+            ->with('radnoMjesto.orgjed.organizacija.organ');
+
+
+        $sluzbenici = FilterController::filter($sluzbenici);
+
+        $filteri = ['id' => 'ID',
+            'ime+prezime' => 'Ime i prezime',
+            'email' => 'E-Mail',
+            'jmbg' => 'JMB',
+            'ime_roditelja' => 'Ime roditelja',
+            'spol_sl.name' => 'Spol',
+            'kategorija_sl.name' => 'Kategorija',
+            'drzavljanstvo_1' => 'Državljanstvo',
+            'nacionalnost_sl.name' => 'Nacionalnost',
+            'bracni_status_sl.name' => 'Bračni status',
+            'mjesto_rodjenja' => 'Mjesto rođenja',
+            'datum_rodjenja' => 'Datum rođenja',
+            'licna_karta' => 'Broj lične karte',
+            'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
+            'id1' => 'PIO',
+            'radnoMjesto.naziv_rm' => 'Radno mjesto',
+            'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
+            'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
+            'radnoMjesto.rukovodioc' => 'Rukovodioc',
+            'prebivaliste.adresa_prebivalista+prebivaliste.mjesto_prebivalista+prebivaliste.adresa_boravista' => 'Prebivalište',
+            'id2' => 'Stručna sprema',
+            'id3' => 'Položeni ispiti',
+            'id4' => 'Kontakt informacije',
+            'id5' => 'Dodatne vještine',
+            'id6' => 'Zasnivanje radnog odnosa',
+            'id7' => 'Prethodno radno iskustvo',
+            'id8' => 'Prestanak radnog odnosa',
+            'id9' => 'Članovi porodice',
+        ];
 
 
 //        $sluzbenici = Sluzbenik::get();
@@ -65,7 +97,7 @@ class OdsustvaController extends Controller{
 
 
 
-        return view('hr.sluzbenici.pregled', compact('sluzbenici', 'odsustva'));
+        return view('hr.sluzbenici.pregled', compact('sluzbenici', 'odsustva', 'filteri'));
     }
 
     public function kalendar($sluzbenik_id){
