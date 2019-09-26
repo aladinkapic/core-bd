@@ -9,12 +9,16 @@ use App\Models\Sifrarnik;
 class TemeController extends Controller
 {
     public function index()    {
-        $teme = Tema::all();
-        foreach ($teme as $tema){
-            $tema->oblast = ( $tema->oblast = Sifrarnik::dajInstancu('oblasti',  $tema->oblast));
-        }
+        $teme = Tema::with('oblast_s');
+        $teme = FilterController::filter($teme);
 
-        return view('/osposobljavanje_i_usavrsavanje/teme/home', compact('teme'));
+        $filteri = [
+            "naziv" => "Naziv",
+            "oblast_s.name" => "Oblast",
+            "napomena" => "Napomena",
+        ];
+
+        return view('/osposobljavanje_i_usavrsavanje/teme/home', compact('teme', 'filteri'));
     }
     public function create()
     {

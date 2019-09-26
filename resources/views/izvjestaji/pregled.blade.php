@@ -21,49 +21,82 @@
         <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
             <div class="col-md-10" >
                 <h4>Pregled svih izvještaja</h4>
-                <button v-on:click="fireTable()" class="btn btn-primary btn-xs"> <i class="fa fa-filter" style="font-size: 11px;"></i> Filteri</button>
             </div>
         </div>
 
+        <br />
 
-        <div class="card-body hr-activity tab full_container">
-            <table class="table table-bordered low-padding" id="filtering">
-                <thead >
-                <tr >
-                    <th scope="col" width="40px;" style="text-align:center;">ID</th>
-                    <th scope="col">Naziv izvještaja</th>
-                    <th scope="col">Kreirao</th>
-                    <th scope="col">Datum</th>
-                    <th scope="col" style="text-align:center;">Akcije</th>
+        @include('template.snippets.filters', ['var'  => $izvjestaji])
+
+
+        <table id="filtering" class="table table-condensed table-bordered">
+            <thead>
+            <tr>
+                @include('template.snippets.filters_header')
+                <th style="text-align:center;" class="akcije" style="width: 15%;">{{__('Akcija')}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($izvjestaji as $izvjestaj)
+                <tr>
+                    <td>{{$izvjestaj->naziv_korisnicki}}</td>
+                    <td>{{$izvjestaj->created_at}}</td>
+                    {{--<td style="text-align:center;" class="akcije">--}}
+                        {{--@if($izvjestaj->what == 'word')--}}
+                            {{--<a href="/izvjestaji/word/{{$izvjestaj->naziv.'.docx'}}" v-bind:download="{!! $izvjestaj->naziv_korisnicki !!}">--}}
+                            {{--<i class="fa fa-file-word"></i>--}}
+                            {{--<span style="margin-left:10px;">Preuzmite izvještaj</span>--}}
+                            {{--</a>--}}
+                            {{--@elseif($izvjestaj->what == 'pdf')--}}
+                            {{--@elseif($izvjestaj->what == 'excel')--}}
+                            {{--@endif--}}
+                    {{--</td>--}}
                 </tr>
-                </thead>
-                <tbody>
-                <tr class="izvjestaj-row"   v-for="(izvjestaj, index) in items" v-bind:style=" index > 10 ? 'display: none;' : 'display: table-row;'">
-                    <td scope="row" width="40px;" style="text-align:center;">@{{ izvjestaj.id }}</td>
-                    <td>@{{ izvjestaj.naziv_korisnicki }}</td>
-                    <td>
-                        <span v-if="izvjestaj.sluzbenik">
-                            @{{ izvjestaj.sluzbenik.ime }} @{{ izvjestaj.sluzbenik.prezime }}
-                        </span>
-                    </td>
-                    <td>@{{ izvjestaj.created_at }} </td>
-                    <td style="text-align:center;">
-                        <a v-if="izvjestaj.what === 'word'" v-bind:href="'/izvjestaji/word/' + izvjestaj.naziv + '.docx'" v-bind:download="izvjestaj.naziv_korisnicki">
-                            <i class="fa fa-file-word" v-if="izvjestaj.what === 'word'"></i>
-                            <span style="margin-left:10px;">Preuzmite izvještaj</span>
-                        </a>
-                        <a v-if="izvjestaj.what === 'pdf'" v-bind:href="'/izvjestaji/pdf/' + izvjestaj.naziv + '.pdf'" v-bind:download="izvjestaj.naziv_korisnicki">
-                            <i class="fa fa-file-pdf" style="color:#333;" v-if="izvjestaj.what === 'pdf'"></i>
-                            <span style="margin-left:10px;">Preuzmite izvještaj</span>
-                        </a>
-                        <a v-if="izvjestaj.what === 'excel'" v-bind:href="'/izvjestaji/excel/' + izvjestaj.naziv + '.xlsx'" v-bind:download="izvjestaj.naziv_korisnicki">
-                            <i class="fa fa-file-excel" style="color:green;" v-if="izvjestaj.what === 'excel'"></i>
-                            <span style="margin-left:10px;">Preuzmite izvještaj</span>
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-@endsection
+@stop
+
+
+        {{--<div class="card-body hr-activity tab full_container">--}}
+            {{--<table class="table table-bordered low-padding" id="filtering">--}}
+                {{--<thead >--}}
+                {{--<tr >--}}
+                    {{--<th scope="col" width="40px;" style="text-align:center;">ID</th>--}}
+                    {{--<th scope="col">Naziv izvještaja</th>--}}
+                    {{--<th scope="col">Kreirao</th>--}}
+                    {{--<th scope="col">Datum</th>--}}
+                    {{--<th scope="col" style="text-align:center;">Akcije</th>--}}
+                {{--</tr>--}}
+                {{--</thead>--}}
+                {{--<tbody>--}}
+                {{--<tr class="izvjestaj-row"   v-for="(izvjestaj, index) in items" v-bind:style=" index > 10 ? 'display: none;' : 'display: table-row;'">--}}
+                    {{--<td scope="row" width="40px;" style="text-align:center;">@{{ izvjestaj.id }}</td>--}}
+                    {{--<td>@{{ izvjestaj.naziv_korisnicki }}</td>--}}
+                    {{--<td>--}}
+                        {{--<span v-if="izvjestaj.sluzbenik">--}}
+                            {{--@{{ izvjestaj.sluzbenik.ime }} @{{ izvjestaj.sluzbenik.prezime }}--}}
+                        {{--</span>--}}
+                    {{--</td>--}}
+                    {{--<td>@{{ izvjestaj.created_at }} </td>--}}
+                    {{--<td style="text-align:center;">--}}
+                        {{--<a v-if="izvjestaj.what === 'word'" v-bind:href="'/izvjestaji/word/' + izvjestaj.naziv + '.docx'" v-bind:download="izvjestaj.naziv_korisnicki">--}}
+                            {{--<i class="fa fa-file-word" v-if="izvjestaj.what === 'word'"></i>--}}
+                            {{--<span style="margin-left:10px;">Preuzmite izvještaj</span>--}}
+                        {{--</a>--}}
+                        {{--<a v-if="izvjestaj.what === 'pdf'" v-bind:href="'/izvjestaji/pdf/' + izvjestaj.naziv + '.pdf'" v-bind:download="izvjestaj.naziv_korisnicki">--}}
+                            {{--<i class="fa fa-file-pdf" style="color:#333;" v-if="izvjestaj.what === 'pdf'"></i>--}}
+                            {{--<span style="margin-left:10px;">Preuzmite izvještaj</span>--}}
+                        {{--</a>--}}
+                        {{--<a v-if="izvjestaj.what === 'excel'" v-bind:href="'/izvjestaji/excel/' + izvjestaj.naziv + '.xlsx'" v-bind:download="izvjestaj.naziv_korisnicki">--}}
+                            {{--<i class="fa fa-file-excel" style="color:green;" v-if="izvjestaj.what === 'excel'"></i>--}}
+                            {{--<span style="margin-left:10px;">Preuzmite izvještaj</span>--}}
+                        {{--</a>--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
+                {{--</tbody>--}}
+            {{--</table>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--@endsection--}}

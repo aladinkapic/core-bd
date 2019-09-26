@@ -49,7 +49,7 @@ if(isset($tema)) $naslov = 'Uređivanje teme za obuku'; else $naslov = 'Nova tem
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Oblast')}}</label>
                                                 <div class="col-sm-9">
-                                                    {!! Form::select('oblast', $oblasti, isset($tema) ? $tema->tip : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'oblast', 'autocomplete' => 'off']) !!}
+                                                    {!! Form::select('oblast', $oblasti, isset($tema) ? $tema->oblast : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'oblast', 'autocomplete' => 'off']) !!}
                                                 </div>
                                             </div>
                                             <div class="form-group row">

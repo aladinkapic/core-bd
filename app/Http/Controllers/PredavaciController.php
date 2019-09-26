@@ -12,10 +12,18 @@ use Illuminate\Support\Facades\DB;
 class PredavaciController extends Controller
 {
     public function index()    {
-        $predavaci = Predavac::all();
+        $predavaci = Predavac::query();
+        $predavaci = FilterController::filter($predavaci);
 
+        $filteri = [
+            "ime" => "Ime",
+          "prezime" => "Prezime",
+          "telefon" => "Telefon",
+          "mail" => "E-mail",
+          "napomena" => 'Napomena',
+        ];
 
-        return view('/osposobljavanje_i_usavrsavanje/predavaci/home', compact('predavaci'));
+        return view('/osposobljavanje_i_usavrsavanje/predavaci/home', compact('predavaci', 'filteri'));
     }
 
     public function create()
