@@ -16,10 +16,21 @@ use DB;
 class DisciplinskaOdgovornostController extends Controller{
     public function index(){
         $odgovornosti = DisciplinskaOdgovornost::with('sluzbenik')
-            ->with('sluzbenik.radnoMjesto')
-            ->get();
+            ->with('sluzbenik.radnoMjesto');
+        $odgovornosti = FilterController::filter($odgovornosti);
 
-        return view('/hr/disciplinska_odgovornost/home', compact('odgovornosti'));
+        $filteri = [
+            'sluzbenik.ime_prezime'=>'Službenik',
+            'sluzbenik.radnoMjesto.naziv_rm'=>'Radno mjesto',
+            'datum_povrede'=>'Datum povrede',
+            'opis_povrede'=>'Opis povrede',
+            'opis_disciplinske_mjere'=>'Opis disciplinske mjere',
+            'broj_rjesenja_zabrane'=>'Broj rješenja zabrane',
+            'datum_rjesenja_zabrane'=>'Datum rješenja zabrane',
+            'datum_zavrsetka_zabrane'=>'Datum završetka zabrane',
+        ];
+
+        return view('/hr/disciplinska_odgovornost/home', compact('odgovornosti', 'filteri'));
     }
 
     public function create(){
@@ -248,12 +259,21 @@ class DisciplinskaOdgovornostController extends Controller{
     function pregledZalbi(){
         $zalbe = Zalbe::with('disciplinskaOdgovornost')
             ->with('disciplinskaOdgovornost.sluzbenik')
-            ->with('disciplinskaOdgovornost.sluzbenik.radnoMjesto')
-            ->get();
+            ->with('disciplinskaOdgovornost.sluzbenik.radnoMjesto');
+        $zalbe = FilterController::filter($zalbe);
 
+        $filteri = [
+            'disciplinskaOdgovornost.sluzbenik.ime_prezime'=>'Službenik',
+            'disciplinskaOdgovornost.sluzbenik.radnoMjesto.naziv_rm'=>'Radno mjesto',
+            'disciplinskaOdgovornost.opis_disciplinske_mjere'=>'Opis disciplinske mjere',
+            'broj_ulozene_zalbe'=>'Broj uložene žalbe',
+            'datum_ulozene_zalbe'=>'Datum uložene žalbe',
+            'broj_odluke_zalbe'=>'Broj odluke žalbe',
+            'datum_odluke_zalbe'=>'Datum odluke žalbe',
+        ];
 //        dd($zalbe[0]->disciplinskaOdgovornost->created_at);
 
-        return view('hr.disciplinska_odgovornost.zalbe.pregled', compact('zalbe'));
+        return view('hr.disciplinska_odgovornost.zalbe.pregled', compact('zalbe', 'filteri'));
     }
 
     public function unosZalbe(){
@@ -337,10 +357,19 @@ class DisciplinskaOdgovornostController extends Controller{
     public function pregledSuspenzija(){
         $suspenzije = Suspenzija::with('disciplinskaOdgovornost')
             ->with('disciplinskaOdgovornost.sluzbenik')
-            ->with('disciplinskaOdgovornost.sluzbenik.radnoMjesto')
-            ->get();
+            ->with('disciplinskaOdgovornost.sluzbenik.radnoMjesto');
+        $suspenzije = FilterController::filter($suspenzije);
 
-        return view('hr.disciplinska_odgovornost.suspenzije.pregled', compact('suspenzije'));
+        $filteri = [
+            'disciplinskaOdgovornost.sluzbenik.ime_prezime'=>'Službenik',
+            'disciplinskaOdgovornost.sluzbenik.rasdnoMjesto.naziv_rm'=>'Radno mjesto',
+            'disciplinskaOdgovornost.opis_disciplinske_mjere'=>'Opis disciplinske mjere',
+            'broj_rjesenja'=>'Broj rješenja',
+            'razlog_udaljenja'=>'Razlog udaljenja',
+            'datum_udaljenja'=>'Datum udaljenja',
+        ];
+
+        return view('hr.disciplinska_odgovornost.suspenzije.pregled', compact('suspenzije', 'filteri'));
     }
 
     public function unosSuspenzija(){

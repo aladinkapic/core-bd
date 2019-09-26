@@ -1,11 +1,5 @@
 @extends('template.main')
 
-
-@section('other_js_links')
-    <script>
-        app.items = {!! $ugovori !!};
-    </script>
-@stop
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
