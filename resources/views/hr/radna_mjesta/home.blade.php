@@ -1,9 +1,5 @@
 @extends('template.main')
-@section('other_js_links')
-    <script>
-        app.items = {!! $radna_mjesta !!};
-    </script>
-@endsection
+
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
@@ -55,7 +51,7 @@
                         <td>
                             <ul>
                                 @foreach($radnoMjesto->sluzbenici as $sluzbenik)
-                                    <li > {{ $sluzbenik->ime }} {{ $sluzbenik->prezime }} </li>
+                                    <li > {{ $sluzbenik->ime_prezime }} </li>
                                 @endforeach
                             </ul>
 

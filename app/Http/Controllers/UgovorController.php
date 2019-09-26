@@ -21,9 +21,18 @@ class UgovorController extends Controller{
      */
 
     public function index(Request $request){
-        $ugovori = RadniStatus::with('usluzbenik')->get()->toJson();
+        $ugovori = RadniStatus::with('usluzbenik');
+        $ugovori = FilterController::filter($ugovori);
 
-        return view('hr.ugovori.index')->with(compact('ugovori'));
+        $filteri = [
+            'broj'=>'Broj ugovora/odluke',
+            'usluzbenik.ime_prezime'=>'Službenik',
+            'datum'=>'Datum ugovora/odluke',
+            'datum_isteka'=>'Datum isteka ugovora/odluke',
+            'datum_isteka_probni'=>'Datum isteka probnog perioda',
+            'broj_sati'=>'Broj sati',
+        ];
+        return view('hr.ugovori.index')->with(compact('ugovori', 'filteri'));
     }
 
     public function createRadniStatus(Request $request){
@@ -109,9 +118,20 @@ class UgovorController extends Controller{
 
     public function indexMjestoRada(Request $request){
 
-        $ugovori = MjestoRada::with('usluzbenik')->get();
+        $ugovori = MjestoRada::with('usluzbenik')->with('sluzbeno_autoq')->with('rm');
+        $ugovori = FilterController::filter($ugovori);
 
-        return view('hr.ugovori.mjesto_rada.index')->with(compact('ugovori'));
+        $filteri = [
+            'usluzbenik.ime_prezime'=>'Službenik',
+            'adresa'=>'Adresa',
+            'sprat'=>'Sprat',
+            'broj_kancelarije'=>'Broj kancelarije',
+            'sluzbeno_autoq.name'=>'Službeno auto na raspolaganju',
+            'povjerena_stalna_sredstva'=>'Povjerena stalna sredstva',
+            'rm.naziv_rm'=>'Radno mjesto',
+        ];
+
+        return view('hr.ugovori.mjesto_rada.index')->with(compact('ugovori', 'filteri'));
     }
 
     public function createMjestoRada(Request $request){
@@ -169,9 +189,20 @@ class UgovorController extends Controller{
 
     public function indexPrivremeno(Request $request){
 
-        $ugovori = Privremeno::with('usluzbenik')->get();
+        $ugovori = Privremeno::with('usluzbenik')->with('mjesto')->with('privremeno_mjesto');
+        $ugovori = FilterController::filter($ugovori);
 
-        return view('hr.ugovori.privremeno.index')->with(compact('ugovori'));
+        $filteri = [
+            'usluzbenik.ime_prezime'=>'Službenik',
+            'mjesto.naziv_rm'=>'Redovno radno mjesto',
+            'privremeno_mjesto.naziv_rm'=>'Privremeno radno mjesto',
+            'broj_rjesenja'=>'Broj rješenja',
+            'datum_rjesenja'=>'Datum rješenja',
+            'datum_od'=>'Datum od',
+            'datum_do'=>'Datum do',
+        ];
+
+        return view('hr.ugovori.privremeno.index')->with(compact('ugovori', 'filteri'));
     }
 
     public function createPrivremeno(Request $request){
@@ -270,9 +301,17 @@ class UgovorController extends Controller{
 
     public function indexPrestanak(Request $request){
 
-        $ugovori = Prestanak::with('usluzbenik')->get();
+        $ugovori = Prestanak::with('usluzbenik')->with('radno_mj');
+        $ugovori = FilterController::filter($ugovori);
 
-        return view('hr.ugovori.prestanak.index')->with(compact('ugovori'));
+        $filteri = [
+            'usluzbenik.ime_prezime'=>'Službenik',
+            'radno_mj.naziv_mjesta'=>'Radno mjesto',
+            'razlog'=>'Razlog',
+            'rjesenje'=>'Broj rješenja',
+            'datum_rjesenja'=>'Datum rješenja',
+        ];
+        return view('hr.ugovori.prestanak.index')->with(compact('ugovori', 'filteri'));
     }
 
     public function createPrestanak(Request $request){

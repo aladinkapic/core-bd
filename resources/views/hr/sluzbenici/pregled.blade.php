@@ -50,71 +50,124 @@
                 @foreach($sluzbenici as $sluzbenik)
                     <tr class="sluzbenik-row">
                         <td scope="row" width="40px;" style="text-align:center;">{{ $sluzbenik->id }}</td>
-                        <td>{{ $sluzbenik->ime }} {{ $sluzbenik->prezime }}</td>
+                        <td>{{ $sluzbenik->ime_prezime }}</td>
                         <td>{{ $sluzbenik->email }}</td>
                         <td>{{ $sluzbenik->jmbg }}</td>
                         <td>{{ $sluzbenik->ime_roditelja }}</td>
-                        <td>{{ $sluzbenik->spol_sl && $sluzbenik->spol_sl->name || '/' }}</td>
-                        <td>{{ $sluzbenik->kategorija_sl && $sluzbenik->kategorija_sl->name || '/' }}</td>
-                        <td>{{ $sluzbenik->drzavljanstvo_1 || 'name' }}</td>
-                        <td>{{ $sluzbenik->nacionalnost_sl && $sluzbenik->nacionalnost_sl->name || '/' }}</td>
-                        <td>{{ $sluzbenik->bracni_status_sl && $sluzbenik->bracni_status_sl->name || '/' }}</td>
+                        <td>{{ $sluzbenik->spol_sl->name ?? '' }}</td>
+                        <td>{{ $sluzbenik->kategorija_sl ? $sluzbenik->kategorija_sl->name : '' }}</td>
+                        <td>{{ $sluzbenik->drzavljanstvo_1 }}</td>
+                        <td>{{ $sluzbenik->nacionalnost_sl ? $sluzbenik->nacionalnost_sl->name : '' }}</td>
+                        <td>{{ $sluzbenik->bracni_status_sl ? $sluzbenik->bracni_status_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->mjesto_rodjenja }}</td>
                         <td>{{ $sluzbenik->datum_rodjenja }}</td>
                         <td>{{ $sluzbenik->licna_karta }}</td>
                         <td>{{ $sluzbenik->mjesto_idavanja_lk }}</td>
-                        <td>PIO</td>
-                        <td><span>{{ $sluzbenik->radnoMjesto->naziv_rm ?? '' }}</span></td>
-                        <td>
-                            <span>{{ $sluzbenik->radnoMjesto->orgjed->naziv ?? '' }}</span>
-                        </td>
-                        <td><span>{{ $sluzbenik->radnoMjesto->orgjed->organizacija->organ->naziv ?? ''}}</span></td>
+                        <td>{{ $sluzbenik->PIO }}</td>
 
                         <!-- Radno mjesto službenika -->
-                        <td>
-                            {{ ($sluzbenik->radnoMjesto && $sluzbenik->radnoMjesto->rukovodioc == 1) ? 'Da' : 'Ne' ?? '' }}
-
-                        </td>
+                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->naziv_rm : '' }}</td>
+                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->orgjed ? $sluzbenik->radnoMjesto->orgjed->naziv : '' : ''}}</td>
+                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->orgjed ? $sluzbenik->radnoMjesto->orgjed->organizacija ? $sluzbenik->radnoMjesto->orgjed->organizacija->organ ? $sluzbenik->radnoMjesto->orgjed->organizacija->organ->naziv : '' : '' : '' : ''}}</td>
+                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->rukovodioc_s->name : '' }}</td>
 
                         <!---- Previbalište službenika ---->
                         <td>
-                            <ul style="list-style: none; margin: 0; padding: 0;">
-                                @foreach($sluzbenik->prebivaliste as $preb)
-                                    <li>
-                                        <b>Adresa prebivališta</b>: {{ $preb->adresa_prebivalista }}<br/>
-                                        <b>Mjesto prebivališta</b>: {{ $preb->mjesto_prebivalista }}<br/>
-                                        <b>Adresa boravišta</b>: {{ $preb->adresa_boravista }}<br/>
-                                        <hr/>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            @if($sluzbenik->prebivaliste)
+                                <ul>
+                                    @foreach($sluzbenik->prebivaliste as $prebivaliste)
+                                        <li>
+                                            {{ $prebivaliste->adresa_prebivalista }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </td>
+                        <td>
+                            @if($sluzbenik->prebivaliste)
+                                <ul>
+                                    @foreach($sluzbenik->prebivaliste as $prebivaliste)
+                                        <li>
+                                            {{ $prebivaliste->mjesto_prebivalista }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                        <td>
+                            @if($sluzbenik->prebivaliste)
+                                <ul>
+                                    @foreach($sluzbenik->prebivaliste as $prebivaliste)
+                                        <li>
+                                            {{ $prebivaliste->adresa_boravista }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                        {{--<td>--}}
+                            {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
+                                {{--@foreach($sluzbenik->prebivaliste as $preb)--}}
+                                    {{--<li>--}}
+                                        {{--<b>Adresa prebivališta</b>: {{ $preb->adresa_prebivalista }}<br/>--}}
+                                        {{--<b>Mjesto prebivališta</b>: {{ $preb->mjesto_prebivalista }}<br/>--}}
+                                        {{--<b>Adresa boravišta</b>: {{ $preb->adresa_boravista }}<br/>--}}
+                                        {{--<hr/>--}}
+                                    {{--</li>--}}
+                                {{--@endforeach--}}
+                            {{--</ul>--}}
+                        {{--</td>--}}
 
                         <!---- Stručna sprema službenika ---->
                         <td>
-                            <ul style="list-style: none; margin: 0; padding: 0;">
-                                @foreach(($sluzbenik->strucna_sprema ? $sluzbenik->strucna_sprema : []) as $ss)
-                                    <li>
-                                        <b>Stepen stručne spreme</b>: {{ $ss->stepen_s_s }}<br/>
-                                        <b>Obrazovna institucija</b>: {{ $ss->obrazovna_institucija }}<br/>
-
-                                        <!-- Diploma poslana na provjeru ; Ovdje ćemo hard coding uraditi za DA ili JE -->
-                                        <!-- TODO: -->
-
-                                        @if($ss->diploma_poslana_na_provjeru)
-                                            <b>Diploma poslana na provjeru</b>: DA<br/>
-                                        @else
-                                            <b>Diploma poslana na provjeru</b>: NE<br/>
-                                        @endif
-
-                                    <!-- ------------------------------------------------------------------------- -->
-                                        <b>Nostrifikacija</b>: {{ $ss->nostrifikacija }}<br/>
-                                        <b>Datum zavšetka</b>: {{ $ss->datum_zavrsetka }}<br/>
-
-                                    </li>
-                                @endforeach
-                            </ul>
+                            @if($sluzbenik->strucna_sprema)
+                                <ul>
+                                    @foreach($sluzbenik->strucna_sprema as $sprema)
+                                        <li>
+                                            {{ $sprema->stepen_s_s }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </td>
+                        <td>
+                            @if($sluzbenik->strucna_sprema)
+                                <ul>
+                                    @foreach($sluzbenik->strucna_sprema as $sprema)
+                                        <li>
+                                            {{ $sprema->obrazovna_institucija }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                    {{--<td>--}}
+                    {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
+                    {{--@foreach(($sluzbenik->strucna_sprema ? $sluzbenik->strucna_sprema : []) as $ss)--}}
+                    {{--<li>--}}
+                    {{--<b>Stepen stručne spreme</b>: {{ $ss->stepen_s_s }}<br/>--}}
+                    {{--<b>Obrazovna institucija</b>: {{ $ss->obrazovna_institucija }}<br/>--}}
+
+                    {{--<!-- Diploma poslana na provjeru ; Ovdje ćemo hard coding uraditi za DA ili JE -->--}}
+                    {{--<!-- TODO: -->--}}
+
+                    {{--@if($ss->diploma_poslana_na_provjeru)--}}
+                    {{--<b>Diploma poslana na provjeru</b>: DA<br/>--}}
+                    {{--@else--}}
+                    {{--<b>Diploma poslana na provjeru</b>: NE<br/>--}}
+                    {{--@endif--}}
+
+                    {{--<!-- ------------------------------------------------------------------------- -->--}}
+                    {{--<b>Nostrifikacija</b>: {{ $ss->nostrifikacija }}<br/>--}}
+                    {{--<b>Datum zavšetka</b>: {{ $ss->datum_zavrsetka }}<br/>--}}
+
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                    {{--</td>--}}
+
+
+
 
                         <!-- Ispiti službenika -->
                         <td>
@@ -260,8 +313,6 @@
             </table>
 
             <br/>
-
-
 
 
         </div>

@@ -92,7 +92,7 @@
                             @endif
 
                             @if(\App\Models\Sluzbenik::hasRole('odsustva', $me))
-                                <a href="/hr/odsustva/izaberi_korisnika" class="stat-card stat-card-light col-md-3">
+                                <a href="{{route('odsustva.izaberi', ['odsustva'=>'true'])}}" class="stat-card stat-card-light col-md-3">
                                     <div class="stat-card-body">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>

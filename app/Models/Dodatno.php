@@ -10,6 +10,8 @@ class Dodatno extends Model
 
     protected $table = 'ugovori_dodatno';
 
+    protected $guarded = ['id'];
+
     public function usluzbenik(){
         return $this->hasOne(Sluzbenik::class, 'id', 'sluzbenik');
     }

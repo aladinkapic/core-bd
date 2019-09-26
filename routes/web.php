@@ -108,7 +108,7 @@ Route::prefix('/api')->group(function(){
 
 Route::prefix('hr/odsustva')->group(function () {
     /* praznici */
-    Route::get('/izaberi_korisnika',     'OdsustvaController@izaberi_korisnika');
+    Route::get('/izaberi_korisnika',     'SluzbenikController@pregledSluzbenika')->name('odsustva.izaberi');
     Route::get('/praznici/dodaj',        'OdsustvaController@dodajPraznik')->name('odsustva.dodajpraznik');
     Route::get('/uredi_praznik',         'OdsustvaController@urediPraznike');
     Route::post('/spremi_praznik',       'OdsustvaController@spremiPraznik');

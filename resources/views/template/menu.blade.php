@@ -73,7 +73,7 @@
                             <a class="dropdown-item" href="/hr/organ_javne_uprave/home">Organ javne uprave</a>
                             <a class="dropdown-item" href="{{route('sluzbenik.pregled')}}">Državni službenici</a>
                             <a class="dropdown-item" href="{{ route('ugovor.index') }}">Registar ugovora</a>
-                            <a class="dropdown-item" href="/hr/odsustva/izaberi_korisnika">Odsustva</a>
+                            <a class="dropdown-item" href="{{route('odsustva.izaberi', ['odsustva'=>'true'])}}">{{__('Odsustva')}}</a>
                             <a class="dropdown-item" href="/hr/upravljanje_ucinkom/home">Upravljanje učinkom</a>
                             <a class="dropdown-item" href="/hr/disciplinska_odgovornost/home">Disciplinska odgovornost</a>
                         </div>

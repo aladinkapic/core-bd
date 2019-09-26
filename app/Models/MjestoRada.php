@@ -13,4 +13,13 @@ class MjestoRada extends Model
     public function usluzbenik(){
         return $this->hasOne(Sluzbenik::class, 'id', 'sluzbenik');
     }
+
+    public function sluzbeno_autoq(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'sluzbeno_auto')
+            ->where('type', '=', 'sluzbeno_auto');
+    }
+
+    public function rm(){
+        return $this->hasOne(RadnoMjesto::class,'id', 'radno_mjesto');
+    }
 }

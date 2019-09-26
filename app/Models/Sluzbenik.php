@@ -139,15 +139,15 @@ class Sluzbenik extends Model{
             ->where('type', '=', 'spolovi');
     }
     public function kategorija_sl(){
-        return $this->hasOne('App\Models\Sifrarnik', 'value', 'pol')
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'kategorija')
             ->where('type', '=', 'kategorija');
     }
     public function bracni_status_sl(){
-        return $this->hasOne('App\Models\Sifrarnik', 'value', 'pol')
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'bracni_status')
             ->where('type', '=', 'bracni_status');
     }
     public function nacionalnost_sl(){
-        return $this->hasOne('App\Models\Sifrarnik', 'value', 'pol')
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'nacionalnost')
             ->where('type', '=', 'nacionalnost');
     }
 

@@ -103,5 +103,8 @@ class RadnoMjesto extends Model{
     public function rukovodeca_pozicija(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'rukovodioc')->where('type', 'rukovodeca_pozicija');
     }
-//    public static function()
-}
+
+    public function rukovodioc_s(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'rukovodioc')
+            ->where('type', '=', 'rukovodeca_pozicija');
+    }}

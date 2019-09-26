@@ -33,7 +33,7 @@ class RadnaMjestaController extends Controller{
             'orgjed.naziv' => 'Organizacijska jedinica',
             'orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'rukovodeca_pozicija.name' => 'Rukovodeća pozicija',
-            'sluzbenici.ime+sluzbenici.prezime' => 'Službenici',
+            'sluzbenici.ime_prezime' => 'Službenici',
         ];
 
 

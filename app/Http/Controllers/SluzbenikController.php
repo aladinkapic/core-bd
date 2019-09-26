@@ -460,6 +460,8 @@ class SluzbenikController extends Controller
 
     public function pregledSluzbenika(Request $request)
     {
+        $odsustva = $request->odsustva;
+
         $sluzbenici = Sluzbenik::with('clanoviPorodice')
             ->with('spol_sl')
             ->with('bracni_status_sl')
@@ -474,32 +476,39 @@ class SluzbenikController extends Controller
             ->with('strucnaSprema')
             ->with('vjestine')
             ->with('zasnivanjeRO')
-            ->with('radnoMjesto.orgjed.organizacija.organ');
-
+            ->with('radnoMjesto.orgjed.organizacija.organ')
+            ->with('radnoMjesto.rukovodioc_s');
 
         $sluzbenici = FilterController::filter($sluzbenici);
+       //dd($sluzbenici);
 
         $filteri = ['id' => 'ID',
-            'ime+prezime' => 'Ime i prezime',
+            'ime_prezime' => 'Ime i prezime',
             'email' => 'E-Mail',
             'jmbg' => 'JMB',
             'ime_roditelja' => 'Ime roditelja',
+
             'spol_sl.name' => 'Spol',
             'kategorija_sl.name' => 'Kategorija',
             'drzavljanstvo_1' => 'Državljanstvo',
             'nacionalnost_sl.name' => 'Nacionalnost',
             'bracni_status_sl.name' => 'Bračni status',
+
             'mjesto_rodjenja' => 'Mjesto rođenja',
             'datum_rodjenja' => 'Datum rođenja',
             'licna_karta' => 'Broj lične karte',
             'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
-            'id1' => 'PIO',
+            'PIO' => 'PIO',
             'radnoMjesto.naziv_rm' => 'Radno mjesto',
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
             'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
-            'radnoMjesto.rukovodioc' => 'Rukovodioc',
-            'prebivaliste.adresa_prebivalista+prebivaliste.mjesto_prebivalista+prebivaliste.adresa_boravista' => 'Prebivalište',
-            'id2' => 'Stručna sprema',
+            'radnoMjesto.rukovodioc_s.name' => 'Rukovodioc',
+            'prebivaliste.adresa_prebivalista' => 'Adresa boravita',
+            'prebivaliste.mjesto_prebivalista' => 'Mjesto prebivališta',
+            'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
+
+            'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
+            'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
             'id3' => 'Položeni ispiti',
             'id4' => 'Kontakt informacije',
             'id5' => 'Dodatne vještine',
@@ -510,7 +519,7 @@ class SluzbenikController extends Controller
         ];
 
 
-        return view('hr.sluzbenici.pregled', compact('sluzbenici', 'filteri'));
+        return view('hr.sluzbenici.pregled', compact('sluzbenici', 'filteri', 'odsustva'));
     }
 
 

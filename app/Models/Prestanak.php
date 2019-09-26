@@ -15,4 +15,8 @@ class Prestanak extends Model
     public function usluzbenik(){
         return $this->hasOne(Sluzbenik::class, 'id', 'sluzbenik');
     }
+
+    public function radno_mj(){
+        return $this->hasOne(RadnoMjesto::class, 'id', 'radno_mjesto');
+    }
 }
