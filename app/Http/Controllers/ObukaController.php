@@ -38,7 +38,19 @@ class ObukaController extends Controller
      */
     public function index()
     {
-        $obuke = Obuka::all();
+        $obuke = Obuka::query();
+        $obuke = FilterController::filter($obuke);
+//dd($obuke);
+        $filteri = [
+            "naziv" => "Naziv obuke",
+            "vrsta" => "Vrsta obuke",
+            "organizator" => "Organizator obuke",
+            "broj_polaznika" => 'Maksimalan broj polaznika',
+            "" => 'Srednja ocjena / broj ocjena',
+            "d" => 'Instance obuke',
+        ];
+
+
         foreach ($obuke as $obuka) {
             $n = OcjenaObuke::where('obuka_id', $obuka->id)->count('ocjena');
             $sveocjene = OcjenaObuke::where('obuka_id', $obuka->id)->get();
@@ -61,7 +73,7 @@ class ObukaController extends Controller
             $ocjene[$i] = $i;
         }
 
-        return view('/osposobljavanje_i_usavrsavanje/obuke/home', compact('obuke', 'ocjene'));
+        return view('/osposobljavanje_i_usavrsavanje/obuke/home', compact('obuke', 'ocjene', 'filteri'));
     }
 
     /**
