@@ -8,7 +8,7 @@ class Dodatno extends Model
 {
     //
 
-    protected $table = 'ugovori_dodatno';
+    protected $table = 'ugovori_dodatne_djelatnosti';
 
     protected $guarded = ['id'];
 

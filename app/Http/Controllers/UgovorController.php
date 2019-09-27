@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\registarUgovora\PrestanakRadnogOdnosa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\RadniStatus;
@@ -374,26 +375,28 @@ class UgovorController extends Controller{
 
     public function indexDodatno(Request $request){
 
-        $ugovori = Dodatno::with('usluzbenik')->get();
+        $ugovori = Dodatno::with('usluzbenik');
+        $ugovori = FilterController::filter($ugovori);
 
-        return view('hr.ugovori.dodatno.index')->with(compact('ugovori'));
+        $filteri = [
+            'usluzbenik.ime_prezime'=>'Službenik',
+            'razlog'=>'Razlog',
+            'rjesenje'=>'Rješenje',
+            'datum_rjesenja'=>'Datum rješenja',
+        ];
+
+        return view('hr.ugovori.dodatno.index')->with(compact('ugovori', 'filteri'));
     }
 
-    public function createDodatno(Request $request){
+    public function createDodatno(){
 
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
 
         return view('hr.ugovori.dodatno.create')->with(compact('sluzbenici'));
     }
     public function storeDodatno(Request $request){
-
-        $data = $request->except(['_token', '_method']);
-
-        foreach($data as $key => $value){
-            if(strtotime($value)){
-                $data[$key] = Carbon::parse($value);
-            }
-        }
+        $request=HelpController::formatirajRequest($request);
+        $data = $request->except(['_token', '_method','radno_mjesto']);
 
         $object = new Dodatno();
         $object->fill($data);
@@ -413,19 +416,53 @@ class UgovorController extends Controller{
     }
     public function updateDodatno(Request $request, $id){
 
-        $data = $request->except(['_token', '_method']);
+        $data = $request->except(['_token', '_method','radno_mjesto']);
 
-        foreach($data as $key => $value){
-            if(strtotime($value)){
-                $data[$key] = Carbon::parse($value);
-            }
-        }
 
         $object = Dodatno::find($id);
         $object->fill($data);
         $object->save();
 
         return redirect(route('ugovor.dodatno.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
+    }
 
+    public function destroyDodatno($id){
+        $org_jed = Dodatno::find($id);
+
+        $org_jed->delete();
+
+        return redirect(route('ugovor.dodatno.index'))->with(['success' => 'Uspješno izbrisano!']);
+    }
+
+    public function destroyPrestanak($id){
+        $org_jed = Prestanak::find($id);
+
+        $org_jed->delete();
+
+        return redirect(route('ugovor.prestanak.index'))->with(['success' => 'Uspješno izbrisano!']);
+    }
+
+    public function destroyPrivremeno($id){
+        $org_jed = Privremeno::find($id);
+
+        $org_jed->delete();
+
+        return redirect(route('ugovor.privremeno.index'))->with(['success' => 'Uspješno izbrisano!']);
+    }
+
+    public function destroyMjestoRada($id){
+        $org_jed = MjestoRada::find($id);
+
+        $org_jed->delete();
+
+        return redirect(route('ugovor.mjesto_rada.index'))->with(['success' => 'Uspješno izbrisano!']);
+    }
+
+    public function destroyRadniStatus($id){
+        $org_jed = RadniStatus::find($id);
+
+        $org_jed->delete();
+
+        return redirect(route('ugovor.index'))->with(['success' => 'Uspješno izbrisano!']);
     }
 }

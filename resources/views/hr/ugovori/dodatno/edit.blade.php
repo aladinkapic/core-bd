@@ -45,16 +45,6 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Radno mjesto
-                                    </div>
-                                    <div class="col-md-7">
-                                        <input required="required" value="{{ $ugovor->radno_mjesto }}" class="form-control" type="hidden" name="radno_mjesto"
-                                               placeholder="Sprat..."/> Viši stručni saradnik za pitanja
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="row">
-                                    <div class="col-md-5">
                                         Broj rješenja
                                     </div>
                                     <div class="col-md-7">
@@ -67,7 +57,7 @@
                                         Datum rješenja
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_rjesenja) }}" class="form-control" name="datum_rjesenja" placeholder="Datum rješenja..." >
+                                        <input type="text" id="sef" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_rjesenja) }}" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." >
                                     </div>
                                 </div>
 

@@ -407,17 +407,20 @@ Route::prefix('ugovori')->group(function () {
 
     Route::get('index', 'UgovorController@index')->name('ugovor.index');
     Route::get('radni-status/create', 'UgovorController@createRadniStatus')->name('ugovor.radni_status.create');
+    Route::get('radni-status/destroy/{id}', 'UgovorController@destroyRadniStatus')->name('ugovor.radni_status.destroy');
     Route::put('radni-status/store', 'UgovorController@storeRadniStatus')->name('ugovor.radni_status.store');
     Route::get('radni-status/edit/{id}', 'UgovorController@editRadniStatus')->name('ugovor.radni_status.edit');
     Route::patch('radni-status/edit/{id}', 'UgovorController@updateRadniStatus')->name('ugovor.radni_status.update');
 
     Route::get('mjesto-rada/index', 'UgovorController@indexMjestoRada')->name('ugovor.mjesto_rada.index');
+    Route::get('mjesto-rada/destroy/{id}', 'UgovorController@destroyMjestoRada')->name('ugovor.mjesto_rada.destroy');
     Route::get('mjesto-rada/create', 'UgovorController@createMjestoRada')->name('ugovor.mjesto_rada.create');
     Route::put('mjesto-rada/create', 'UgovorController@storeMjestoRada')->name('ugovor.mjesto_rada.store');
     Route::get('mjesto-rada/edit/{id}', 'UgovorController@editMjestoRada')->name('ugovor.mjesto_rada.edit');
     Route::patch('mjesto-rada/edit/{id}', 'UgovorController@updateMjestoRada')->name('ugovor.mjesto_rada.update');
 
     Route::get('privremeno/index',          'UgovorController@indexPrivremeno')->name('ugovor.privremeno.index');
+    Route::get('privremeno/destroy/{id}',          'UgovorController@destroyPrivremeno')->name('ugovor.privremeno.destroy');
     Route::get('privremeno/create',         'UgovorController@createPrivremeno')->name('ugovor.privremeno.create');
     Route::post('privremeno/radna_mjesta',  'UgovorController@radnaMjesta')->name('ugovor.privremeno.radnamjesta');
     Route::put('privremeno/create',         'UgovorController@storePrivremeno')->name('ugovor.privremeno.store');
@@ -429,6 +432,7 @@ Route::prefix('ugovori')->group(function () {
      */
 
     Route::get('prestanak/index', 'UgovorController@indexPrestanak')->name('ugovor.prestanak.index');
+    Route::get('prestanak/destroy/{id}', 'UgovorController@destroyPrestanak')->name('ugovor.prestanak.destroy');
     Route::get('prestanak/create', 'UgovorController@createPrestanak')->name('ugovor.prestanak.create');
     Route::put('prestanak/create', 'UgovorController@storePrestanak')->name('ugovor.prestanak.store');
     Route::get('prestanak/edit/{id}', 'UgovorController@editPrestanak')->name('ugovor.prestanak.edit');
@@ -439,6 +443,7 @@ Route::prefix('ugovori')->group(function () {
      */
 
     Route::get('dodatno/index', 'UgovorController@indexDodatno')->name('ugovor.dodatno.index');
+    Route::get('dodatno/destroy/{id}', 'UgovorController@destroyDodatno')->name('ugovor.dodatno.destroy');
     Route::get('dodatno/create', 'UgovorController@createDodatno')->name('ugovor.dodatno.create');
     Route::put('dodatno/create', 'UgovorController@storeDodatno')->name('ugovor.dodatno.store');
     Route::get('dodatno/edit/{id}', 'UgovorController@editDodatno')->name('ugovor.dodatno.edit');

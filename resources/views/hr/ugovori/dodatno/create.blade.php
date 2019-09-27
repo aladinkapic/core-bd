@@ -42,16 +42,7 @@
                                     <textarea class="form-control"  name="razlog"></textarea>
                                 </div>
                             </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    Radno mjesto
-                                </div>
-                                <div class="col-md-7">
-                                    <input required="required" class="form-control" type="hidden" name="radno_mjesto"
-                                           placeholder="Sprat..."/> Viši stručni saradnik za pitanja
-                                </div>
-                            </div>
+
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
@@ -67,7 +58,7 @@
                                     Datum rješenja
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="datum_rjesenja" placeholder="Datum rješenja..." >
+                                    <input type="text" id=nekiid" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." >
                                 </div>
                             </div>
                             <br/>

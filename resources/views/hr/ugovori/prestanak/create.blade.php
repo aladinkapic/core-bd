@@ -67,7 +67,7 @@
                                     Datum rješenja
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="datum_rjesenja" placeholder="Datum rješenja..." >
+                                    <input type="text" id="nek" class="form-control" name="datum_rjesenja datepicker" placeholder="Datum rješenja..." >
                                 </div>
                             </div>
                             <br/>

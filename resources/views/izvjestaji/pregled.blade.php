@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
             <div class="col-md-10">
-                <h4>Pregled svih izvještaja</h4>
+                <h4>{{__('Pregled svih izvještaja')}}</h4>
             </div>
         </div>
 
@@ -46,17 +46,17 @@
                         @if($izvjestaj->what == 'word')
                             <a href="/izvjestaji/word/{{$izvjestaj->naziv.'.docx'}}">
                                 <i class="fa fa-file-word" style="color:blue;"></i>
-                                <span style="margin-left:10px;">Preuzmite izvještaj</span>
+                                <span style="margin-left:10px;">{{__('Preuzmite izvještaj')}}</span>
                             </a>
                         @elseif($izvjestaj->what == 'pdf')
                             <a href="/izvjestaji/pdf/{{$izvjestaj->naziv.'.pdf'}}">
                                 <i class="fa fa-file-pdf" style="color:red;"></i>
-                                <span style="margin-left:10px;">Preuzmite izvještaj</span>
+                                <span style="margin-left:10px;">{{__('Preuzmite izvještaj')}}</span>
                             </a>
                         @elseif($izvjestaj->what == 'excel')
                             <a href="/izvjestaji/excel/{{$izvjestaj->naziv.'.excel'}}">
                                 <i class="fa fa-file-excel" style="color:green;"></i>
-                                <span style="margin-left:10px;">Preuzmite izvještaj</span>
+                                <span style="margin-left:10px;">{{__('Preuzmite izvještaj')}}</span>
                             </a>
                         @endif
                     </td>

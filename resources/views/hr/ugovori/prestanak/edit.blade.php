@@ -67,7 +67,7 @@
                                         Datum rješenja
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_rjesenja) }}" class="form-control" name="datum_rjesenja" placeholder="Datum rješenja..." >
+                                        <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_rjesenja) }}" class="form-control" name="datum_rjesenja datepicker" placeholder="Datum rješenja..." >
                                     </div>
                                 </div>
 
@@ -89,8 +89,4 @@
         </div>
 
     </div>
-
-
-
-
 @endsection
