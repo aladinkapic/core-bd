@@ -28,12 +28,17 @@ class ActivityLogController extends Controller
 
     public function index()
     {
-        $logs = ActivityLog::take(50)->where('user_id', Crypt::decryptString(Session::get('ID')))->orderBy('created_at', 'DESC')->get();
+        $logs = ActivityLog::with('sluzbenik')->orderBy('created_at', 'DESC');
+        $logs = FilterController::filter($logs);
 
-        foreach ($logs as $log) {
-            $log->created_at = Carbon::parse(date_format($log['created_at'], 'd.m.Y H:i:s'));
-        }
-        return view('/ostalo/historizacija/home', compact('logs'));
+        $filteri = [
+            "sluzbenik.ime_prezime" => "Ime i prezime",
+            "modul" => "Modul",
+            "operation" => "Operacija",
+            "created_at" => "Izvršeno",
+        ];
+
+        return view('/ostalo/historizacija/home', compact('logs', 'filteri'));
     }
 
     /**
@@ -54,8 +59,22 @@ class ActivityLogController extends Controller
      */
     public function store($user_id, $function, $tableName, $oldData, $newData)
     {
+        $model = null;
+        for ($i = strlen($function); $i > 0; $i--) {
+            if ($function[$i - 1] === '\\') break;
+            $model .= $function[$i - 1];
+        }
+        $model = implode(array_reverse(str_split($model)));
+
+        $operacija = null;
+        if ($oldData == $newData)
+            $operacija = __('Brisanje');
+        else if ($oldData == "[]")
+            $operacija = __('Spremanje');
+        else $operacija = __('Uređivanje');
+
         DB::table('activity_logs')->insert(
-            ['created_at' => Carbon::now(), 'user_id' => $user_id, 'operation' => $function, 'tabela' => $tableName, 'old_data' => $oldData, 'new_data' => $newData]
+            ['created_at' => Carbon::now(), 'user_id' => $user_id, 'operation' => $operacija, 'tabela' => $tableName, 'old_data' => $oldData, 'new_data' => $newData, 'modul' => $model]
         );
     }
 

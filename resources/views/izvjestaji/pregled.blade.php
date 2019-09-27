@@ -1,13 +1,13 @@
 @extends('template.main')
-@section('other_js_links')
-    <script>
-        app.items = {!! $izvjestaji !!};
-        /* setTimeout(function(){
-            app.fireTable();
-        }, 1000); */
+{{--@section('other_js_links')--}}
+    {{--<script>--}}
+        {{--app.items = {!! $izvjestaji !!};--}}
+        {{--/* setTimeout(function(){--}}
+            {{--app.fireTable();--}}
+        {{--}, 1000); */--}}
 
-    </script>
-@endsection
+    {{--</script>--}}
+{{--@endsection--}}
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
@@ -41,6 +41,16 @@
                 <tr>
                     <td>{{$izvjestaj->naziv_korisnicki}}</td>
                     <td>{{$izvjestaj->created_at}}</td>
+                    @if($izvjestaj->what == 'pdf')
+
+                    <td style="text-align:center;" class="akcije">
+                        <a onclick="download({{'/izvjestaji/pdf/'.$izvjestaj->naziv.'.pdf'}})">
+                        <i class="fa fa-file-word"></i>
+                        <span style="margin-left:10px;">{{__('Preuzmite izvještaj')}}</span>
+                        </a>
+                    </td>
+                    @endif
+
                     {{--<td style="text-align:center;" class="akcije">--}}
                         {{--@if($izvjestaj->what == 'word')--}}
                             {{--<a href="/izvjestaji/word/{{$izvjestaj->naziv.'.docx'}}" v-bind:download="{!! $izvjestaj->naziv_korisnicki !!}">--}}
@@ -57,7 +67,37 @@
         </table>
     </div>
 @stop
+@section('js')
+    <script>
+        function download(id){
+            alert();
+            var oReq = new XMLHttpRequest();
+            // The Endpoint of your server
+            var URLToPDF = id;
 
+            // Configure XMLHttpRequest
+            oReq.open("GET", URLToPDF, true);
+
+            // Important to use the blob response type
+            oReq.responseType = "blob";
+
+            // When the file request finishes
+            // Is up to you, the configuration for error events etc.
+            oReq.onload = function() {
+                // Once the file is downloaded, open a new window with the PDF
+                // Remember to allow the POP-UPS in your browser
+                var file = new Blob([oReq.response], {
+                    type: 'application/pdf'
+                });
+
+                // Generate file download directly in the browser !
+                saveAs(file, "mypdffilename.pdf");
+            };
+
+            oReq.send();
+        }
+    </script>
+    @endsection
 
         {{--<div class="card-body hr-activity tab full_container">--}}
             {{--<table class="table table-bordered low-padding" id="filtering">--}}
