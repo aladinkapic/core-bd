@@ -43,7 +43,7 @@ class ExportController extends Controller{
             $izvjestaji->naziv            = $name;
             $izvjestaji->what             = $what;
             $izvjestaji->naziv_korisnicki = $result;
-            $izvjestaji->id_sluzbenika    = '1';
+            $izvjestaji->id_sluzbenika    = $id;
             $izvjestaji->save();
 
             return $izvjestaji->id;

@@ -44,17 +44,17 @@
 
                     <td style="text-align:center;" class="akcije">
                         @if($izvjestaj->what == 'word')
-                            <a href="/izvjestaji/word/{{$izvjestaj->naziv.'.docx'}}">
+                            <a href="/izvjestaji/word/{{$izvjestaj->naziv.'.docx'}}" download="{{$izvjestaj->naziv_korisnicki}}">
                                 <i class="fa fa-file-word" style="color:blue;"></i>
                                 <span style="margin-left:10px;">{{__('Preuzmite izvještaj')}}</span>
                             </a>
                         @elseif($izvjestaj->what == 'pdf')
-                            <a href="/izvjestaji/pdf/{{$izvjestaj->naziv.'.pdf'}}">
+                            <a href="/izvjestaji/pdf/{{$izvjestaj->naziv.'.pdf'}}" download="{{$izvjestaj->naziv_korisnicki}}">
                                 <i class="fa fa-file-pdf" style="color:red;"></i>
                                 <span style="margin-left:10px;">{{__('Preuzmite izvještaj')}}</span>
                             </a>
                         @elseif($izvjestaj->what == 'excel')
-                            <a href="/izvjestaji/excel/{{$izvjestaj->naziv.'.excel'}}">
+                            <a href="/izvjestaji/excel/{{$izvjestaj->naziv.'.xlsx'}}" download="{{$izvjestaj->naziv_korisnicki}}">
                                 <i class="fa fa-file-excel" style="color:green;"></i>
                                 <span style="margin-left:10px;">{{__('Preuzmite izvještaj')}}</span>
                             </a>

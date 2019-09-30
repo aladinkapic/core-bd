@@ -151,19 +151,35 @@ class Auth extends Controller{
             ->with('radnoMjesto.orgjed.organizacija.organ');
 
 		$sluzbenici = FilterController::filter($sluzbenici);
-		
-		$filteri = [		'ime+prezime' => 'Ime i prezime',
-		'email' => 'E-mail',
-		'ime_roditelja' => 'Ime roditelja',
-		'spol_sl.name' => 'Spol',
-		'kategorija_sl.name' => 'Kategorija',
-		'drzavljanstvo_1' => 'Državljanstvo',
-		'nacionalnost_sl.name' => 'Nacionalnost',
-		'bracni_status_sl.name' => 'Bračni status',
-		'mjesto_rodjenja' => 'Mjesto rođenja',
 
-		
-		];
+        $filteri = ['id' => 'ID',
+            'ime_prezime' => 'Ime i prezime',
+            'email' => 'E-Mail',
+            'jmbg' => 'JMB',
+            'ime_roditelja' => 'Ime roditelja',
+
+            'spol_sl.name' => 'Spol',
+            'kategorija_sl.name' => 'Kategorija',
+            'drzavljanstvo_1' => 'Državljanstvo',
+            'nacionalnost_sl.name' => 'Nacionalnost',
+            'bracni_status_sl.name' => 'Bračni status',
+
+            'mjesto_rodjenja' => 'Mjesto rođenja',
+            'datum_rodjenja' => 'Datum rođenja',
+            'licna_karta' => 'Broj lične karte',
+            'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
+            'PIO' => 'PIO',
+            'radnoMjesto.naziv_rm' => 'Radno mjesto',
+            'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
+            'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
+            'radnoMjesto.rukovodioc_s.name' => 'Rukovodioc',
+            'prebivaliste.adresa_prebivalista' => 'Adresa boravita',
+            'prebivaliste.mjesto_prebivalista' => 'Mjesto prebivališta',
+            'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
+
+            'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
+            'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
+        ];
 		
 		
 		

@@ -28,7 +28,8 @@
                                 </div>
                                 <span>{{__('Upražnjenih radnih mjesta')}}</span>
                             </div>
-                            <div class="stat-card danger-border col-md-3" onclick="window.location='/obavijesti/pregled';">
+                            <div class="stat-card danger-border col-md-3"
+                                 onclick="window.location='/obavijesti/pregled';">
                                 <div class="stat-card-body">
                                     69
                                 </div>
@@ -92,7 +93,8 @@
                             @endif
 
                             @if(\App\Models\Sluzbenik::hasRole('odsustva', $me))
-                                <a href="{{route('odsustva.izaberi', ['odsustva'=>'true'])}}" class="stat-card stat-card-light col-md-3">
+                                <a href="{{route('odsustva.izaberi', ['odsustva'=>'true'])}}"
+                                   class="stat-card stat-card-light col-md-3">
                                     <div class="stat-card-body">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
@@ -131,12 +133,14 @@
                     </div>
                     <div class="card-body hr-activity tab">
                         <div class="row">
-                            <a href="{{route('ekonkurs.request')}}" class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-bars"></i>
-                                </div>
-                                <span>{{__('E-konkurs')}}</span>
-                            </a>
+                            @if(\App\Models\Sluzbenik::hasRole('predavaci', $me))
+                                <a href="{{route('ekonkurs.request')}}" class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-bars"></i>
+                                    </div>
+                                    <span>{{__('E-konkurs')}}</span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -149,27 +153,36 @@
                     </div>
                     <div class="card-body hr-activity tab">
                         <div class="row">
-                            <a href="osposobljavanje_i_usavrsavanje/obuke/home"
-                               class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-book-open"></i>
-                                </div>
-                                <span>{{__('Obuke')}}</span>
-                            </a>
-                            <a href="/osposobljavanje_i_usavrsavanje/predavaci/home"
-                               class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-chalkboard-teacher"></i>
-                                </div>
-                                <span>{{__('Predavači')}}</span>
-                            </a>
-                            <a href="/osposobljavanje_i_usavrsavanje/teme/home"
-                               class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-list-ul"></i>
-                                </div>
-                                <span>{{__('Teme za obuku')}}</span>
-                            </a>
+
+                            @if(\App\Models\Sluzbenik::hasRole('predavaci', $me))
+                                <a href="osposobljavanje_i_usavrsavanje/obuke/home"
+                                   class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <span>{{__('Obuke')}}</span>
+                                </a>
+                            @endif
+
+                            @if(\App\Models\Sluzbenik::hasRole('predavaci', $me))
+                                <a href="/osposobljavanje_i_usavrsavanje/predavaci/home"
+                                   class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                    </div>
+                                    <span>{{__('Predavači')}}</span>
+                                </a>
+                            @endif
+
+                            @if(\App\Models\Sluzbenik::hasRole('teme_za_obuku', $me))
+                                <a href="/osposobljavanje_i_usavrsavanje/teme/home"
+                                   class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-list-ul"></i>
+                                    </div>
+                                    <span>{{__('Teme za obuku')}}</span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -182,55 +195,67 @@
                     </div>
                     <div class="card-body hr-activity tab">
                         <div class="row">
-                            <a href="{{route('internotrziste.pregled')}}" class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-bookmark"></i>
-                                </div>
-                                <span>{{__('Interno tržište rada')}}</span>
-                            </a>
-                            <a href="{{route('pregled.strateskogplaniranja')}}"
-                               class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-calendar-check"></i>
-                                </div>
-                                <span>{{__('Strateško planiranje')}}</span>
-                            </a>
+                            @if(\App\Models\Sluzbenik::hasRole('interno_trziste', $me))
+                                <a href="{{route('internotrziste.pregled')}}"
+                                   class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-bookmark"></i>
+                                    </div>
+                                    <span>{{__('Interno tržište rada')}}</span>
+                                </a>
+                            @endif
 
-                            <a href="{{route('izvjestaji.pregled')}}" class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-clone"></i>
-                                </div>
-                                <span>{{__('Izvještaji')}}</span>
-                            </a>
+                            @if(\App\Models\Sluzbenik::hasRole('stratesko_pl', $me))
+                                <a href="{{route('pregled.strateskogplaniranja')}}"
+                                   class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <span>{{__('Strateško planiranje')}}</span>
+                                </a>
+                            @endif
 
-                            <a href="/ostalo/historizacija/home" class="stat-card stat-card-light col-md-3">
-                                <div class="stat-card-body">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <span>{{__('Historizacija')}}</span>
-                            </a>
+                            @if(\App\Models\Sluzbenik::hasRole('izvjestaji', $me))
+                                <a href="{{route('izvjestaji.pregled')}}" class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-clone"></i>
+                                    </div>
+                                    <span>{{__('Izvještaji')}}</span>
+                                </a>
+                            @endif
+
+                            @if(\App\Models\Sluzbenik::hasRole('historizacija', $me))
+                                <a href="/ostalo/historizacija/home" class="stat-card stat-card-light col-md-3">
+                                    <div class="stat-card-body">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <span>{{__('Historizacija')}}</span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 @foreach($notifications as $notification)
-                    <div class="alert alert-danger my-custom-alert" role="alert" id="notification-id-{{$notification->sluzbenik->id}}">
+                    <div class="alert alert-danger my-custom-alert" role="alert"
+                         id="notification-id-{{$notification->sluzbenik->id}}">
                         Obavijest : Službenik
                         <a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>
                         {{json_decode($notification->data, true)['poruka']}}
 
                         {{--@if(json_decode($notification->data, true)['what'] == 'zasnivanjeRO')--}}
-                            {{----}}
+                        {{----}}
                         {{--@elseif(json_decode($notification->data, true)['what'] == 'penzionisanje')--}}
-                            {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
-                            {{--stiče pravo na penzionisanje za manje od 8 mjeseci.--}}
+                        {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
+                        {{--stiče pravo na penzionisanje za manje od 8 mjeseci.--}}
                         {{--@elseif(json_decode($notification->data, true)['what'] == 'starosna_dob')--}}
-                            {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
-                            {{--je upravo napunio 64 godine života. Molimo vas poduzmite određene akcije.--}}
+                        {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
+                        {{--je upravo napunio 64 godine života. Molimo vas poduzmite određene akcije.--}}
                         {{--@endif--}}
 
-                        <div class="oznaci_kao_procitano" onclick="sakrijNotifikacije('{{$notification->sluzbenik->id}}', '{{$notification->id}}');">
+                        <div class="oznaci_kao_procitano"
+                             onclick="sakrijNotifikacije('{{$notification->sluzbenik->id}}', '{{$notification->id}}');">
                             <p>OZNAČI KAO PROČITANO</p>
                         </div>
                     </div>
