@@ -30,25 +30,6 @@
             <tbody>
             @if (isset($logs))
                 @foreach($logs as $log)
-<!--                    --><?php
-//                    $model = null;
-//                    for ($i = strlen($log->operation); $i > 0; $i--) {
-//                        if ($log->operation[$i - 1] === '\\') break;
-//                        $model .= $log->operation[$i - 1];
-//                    }
-//                    $model = implode(array_reverse(str_split($model)));
-//                    ?>
-
-<!--                    --><?php
-//                    $operacija = null;
-//                    if ($log->old_data == $log->new_data)
-//                        $operacija = __('Brisanje');
-//                    else if ($log->old_data == "[]")
-//                        $operacija = __('Spremanje');
-//                    else $operacija = __('Uređivanje');
-//
-//                    ?>
-
                     <tr class="org-row">
                         <td>{{$log -> sluzbenik->ime_prezime}}</td>
                         <td>{{$log -> modul }}</td>

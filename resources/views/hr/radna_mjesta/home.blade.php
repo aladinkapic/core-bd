@@ -21,10 +21,10 @@
         <div class="card-body hr-activity tab full_container">
             <table class="table table-bordered" id="filtering">
                 <thead>
-                <th>
+                <tr>
                     @include('template.snippets.filters_header')
                     <th scope="col" style="text-align:center;" class="akcije">Akcije</th>
-                </th>
+                </tr>
                 </thead>
                 <tbody>
                 @foreach($radna_mjesta as $radnoMjesto)

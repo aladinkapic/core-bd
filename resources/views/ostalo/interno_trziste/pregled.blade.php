@@ -15,15 +15,13 @@
         @include('ostalo/interno_trziste/fajlovi/menu')
         @include('ostalo/interno_trziste/fajlovi/forma')
 
+        @include('template.snippets.filters', ['var'  => $planovi])
 
-        <table class="table table-bordered"  id="filtering">
-            <thead >
-            <tr >
-                <th scope="col" width="40px;" class="text-center">ID</th>
-                <th scope="col">Naziv radnog mjesta</th>
-                <th scope="col">Šifra radnog mjesta</th>
-                <th scope="col">Ukupan broj izvršilaca</th>
-                <th scope="col">Broj izvršilaca</th>
+
+        <table class="table table-bordered" id="filtering">
+            <thead>
+            <tr>
+                @include('template.snippets.filters_header')
                 @if(!isset($prekobrojni))
                     <th scope="col" class="text-center">Rješenje</th>
                 @endif
@@ -32,16 +30,17 @@
             </thead>
             <tbody>
 
-            @php $i=1; @endphp
             @foreach($planovi as $plan)
                 @foreach($plan->organizacioneJedinice as $orgJedinica)
                     @foreach($orgJedinica->radnaMjesta as $radnoMjesto)
                         @if(isset($prekobrojni))
                             @if($radnoMjesto->broj_izvrsilaca < $radnoMjesto->sluzbenici->count())
                                 <tr>
-                                    <th scope="row" width="40px;" class="text-center">{{$radnoMjesto->id}}</th>
                                     <td>
                                         {{$radnoMjesto->naziv_rm}}
+                                    </td>
+                                    <td>
+                                        {{$orgJedinica->naziv}}
                                     </td>
                                     <td>
                                         {{$radnoMjesto->sifra_rm}}
@@ -53,7 +52,8 @@
                                         {{$radnoMjesto->sluzbenici->count()}}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{route('internotrziste.sviprekobrojniljudi', ['id' => $radnoMjesto->id])}}" title="Pregled svih službenika na radnom mjestu">
+                                        <a href="{{route('internotrziste.sviprekobrojniljudi', ['id' => $radnoMjesto->id])}}"
+                                           title="Pregled svih službenika na radnom mjestu">
                                             <i class="fa fa-eye" style="margin-left:10px;"></i> Pregled
                                         </a>
                                     </td>
@@ -61,9 +61,11 @@
                             @endif
                         @elseif($radnoMjesto->broj_izvrsilaca >= $radnoMjesto->sluzbenici->count())
                             <tr>
-                                <th scope="row" width="40px;" class="text-center">{{$radnoMjesto->id}}</th>
                                 <td>
                                     {{$radnoMjesto->naziv_rm}}
+                                </td>
+                                <td>
+                                    {{$orgJedinica->naziv}}
                                 </td>
                                 <td>
                                     {{$radnoMjesto->sifra_rm}}
@@ -75,12 +77,14 @@
                                     {{$radnoMjesto->sluzbenici->count()}}
                                 </td>
                                 <td class="text-center">
-                                    <a href="#" title="Dodajte / uredite rješenje" class="rjesenje" data-id="{{ $radnoMjesto->id }}" data-name="{{ $radnoMjesto->naziv_rm }}">
+                                    <a href="#" title="Dodajte / uredite rješenje" class="rjesenje"
+                                       data-id="{{ $radnoMjesto->id }}" data-name="{{ $radnoMjesto->naziv_rm }}">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('radnamjesta.rjesenje', ['id' => $radnoMjesto->id, 'what' => 'true'])}}" title="Pregledajte radno mjesto">
+                                    <a href="{{route('radnamjesta.rjesenje', ['id' => $radnoMjesto->id, 'what' => 'true'])}}"
+                                       title="Pregledajte radno mjesto">
                                         <i class="fa fa-eye" style="margin-left:10px;"></i>
                                     </a>
                                 </td>
