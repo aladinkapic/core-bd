@@ -19,7 +19,7 @@ class UpravljanjeUcinkomController extends Controller
             'usluzbenik.ime_prezime'=>'Službenik',
             'mjesto.naziv_rm'=>'Radno mjesto',
             'kategorija_ocjene.name'=>'Kategorija',
-            'godina'=>'Godina',
+            'godina'=>'Godina ocjenjivanja',
             'ocjena'=>'Ocjena',
             'opisna_ocjena'=>'Opisna ocjena'
         ];
@@ -81,7 +81,7 @@ class UpravljanjeUcinkomController extends Controller
 
         $exists = UpravljanjeUcinkom::where('sluzbenik', '=', $request->sluzbenik)->where('godina', '=', $request->godina)->where('kategorija', '=', $request->kategorija)->first();
         if ($exists) {
-            return redirect('/hr/upravljanje_ucinkom/add')->with('error', __('Službenik je prethodno ocjenjen sa ovim podaacima!'));
+            return redirect('/hr/upravljanje_ucinkom/add')->with('error', __('Službenik je prethodno ocjenjen sa ovim podacima!'));
         }
         else {
             try {

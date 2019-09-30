@@ -61,7 +61,7 @@
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
                                                 <div class="col-sm-9">
-                                                    {!! Form::select('ocjena', [1=>1,2=>2,3=>3,4=>4,5=>5], isset($ucinak) ? round($ucinak->ocjena) : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena', 'autocomplete' => 'off']) !!}
+                                                    {!! Form::number('ocjena', isset($ucinak) ? round($ucinak->ocjena) : '', ['class' => 'form-control','step'=>'any','min'=>1,'max'=>3, 'rows' => 1, 'id' => 'ocjena', 'autocomplete' => 'off']) !!}
                                                 </div>
                                             </div>
                                             @if ($errors ->has('ocjena'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('ocjena')}}</p></div>@endif
@@ -75,7 +75,11 @@
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Opisna ocjena')}}</label>
                                                 <div class="col-sm-9">
-                                                    {!! Form::textarea('opisna_ocjena', isset($ucinak) ? $ucinak->opisna_ocjena : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'opisna_ocjena', 'autocomplete' => 'off']) !!}
+                                                    {!! Form::select('opisna_ocjena',[
+                                                    "Ne zadovoljava očekivanja"=>"Ne zadovoljava očekivanja",
+                                                    "Zadovoljava očekivanja"  => "Zadovoljava očekivanja",
+                                                      "Nadmašuje očekivanja" => "Nadmašuje očekivanja"],
+                                                       isset($ucinak) ? $ucinak->opisna_ocjena : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'opisna_ocjena', 'autocomplete' => 'off']) !!}
                                                 </div>
                                             </div>
                                             @if ($errors ->has('opisna_ocjena'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('opisna_ocjena')}}</p></div>@endif
