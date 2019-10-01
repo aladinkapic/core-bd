@@ -31,7 +31,7 @@
                                     <select class="form-control" id="trenutni_sluzbenik" name="sluzbenik" onchange="privremeniPremjestaj();">
                                         <option value="">Izaberite službenika</option>
                                         @foreach($sluzbenici as $sluzbenik)
-                                            <option value="{{ $sluzbenik->id }}">{{ $sluzbenik->ime }} {{ $sluzbenik->prezime }}</option>
+                                            <option value="{{ $sluzbenik->id ?? '1'}}">{{ $sluzbenik->ime ?? '/'}} {{ $sluzbenik->prezime ?? '/'}}</option>
                                         @endforeach
                                     </select>
                                 </div>

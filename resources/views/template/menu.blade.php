@@ -17,7 +17,7 @@
                     <div class="col-md-6">
                         <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                            {{ $me->ime }} {{ $me->prezime }}
+                            {{ $me->ime ?? '/'}} {{ $me->prezime ?? '/'}}
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ route('sluzbenik.dodatno', ['id' => $me->id]) }}">Moj

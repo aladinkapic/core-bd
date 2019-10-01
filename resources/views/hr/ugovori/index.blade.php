@@ -47,17 +47,17 @@
             <tbody>
             @foreach($ugovori as $ugovor)
                 <tr>
-                    <td>{{$ugovor->broj}}</td>
+                    <td>{{$ugovor->broj ?? '/'}}</td>
                     <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
-                    <td>{{$ugovor->datum}}</td>
-                    <td>{{$ugovor->datum_isteka}}</td>
-                    <td>{{$ugovor->datum_isteka_probni}}</td>
-                    <td>{{$ugovor->broj_sati}}</td>
+                    <td>{{$ugovor->datum ?? '/'}}</td>
+                    <td>{{$ugovor->datum_isteka ?? '/'}}</td>
+                    <td>{{$ugovor->datum_isteka_probni ?? '/'}}</td>
+                    <td>{{$ugovor->broj_sati ?? '/'}}</td>
                     <td style="text-align:center;" class="akcije">
-                        <a href="{{ '/ugovori/radni-status/edit/' . $ugovor->id }}">
+                        <a href="{{ '/ugovori/radni-status/edit/' . $ugovor->id ?? '1'}}">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a href="{{ '/ugovori/radni-status/destroy/' . $ugovor->id }}"
+                        <a href="{{ '/ugovori/radni-status/destroy/' . $ugovor->id ?? '1'}}"
                            style="margin-left:10px;">
                             <i class="fa fa-times"></i>
                         </a>

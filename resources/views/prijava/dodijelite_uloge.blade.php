@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Dodjeljivanje uloga za  {{$sluzbenik->ime}} {{$sluzbenik->prezime  }}
+                        Dodjeljivanje uloga za  {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime  ?? '/'}}
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -32,12 +32,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'pristup')
                                             @php $found = true; @endphp
-                                            <input keyword="pristup" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="pristup" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="pristup" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="pristup" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -53,12 +53,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'radna_mjesta')
                                             @php $found = true; @endphp
-                                            <input keyword="radna_mjesta" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="radna_mjesta" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="radna_mjesta" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="radna_mjesta" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -75,12 +75,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'unutrasnja_org')
                                             @php $found = true; @endphp
-                                            <input keyword="unutrasnja_org" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="unutrasnja_org" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="unutrasnja_org" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="unutrasnja_org" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -97,12 +97,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'organ_ju')
                                             @php $found = true; @endphp
-                                            <input keyword="organ_ju" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="organ_ju" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="organ_ju" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="organ_ju" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -119,12 +119,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'sluzbenici')
                                             @php $found = true; @endphp
-                                            <input keyword="sluzbenici" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="sluzbenici" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="sluzbenici" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="sluzbenici" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -141,12 +141,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'regitar_ugovora')
                                             @php $found = true; @endphp
-                                            <input keyword="regitar_ugovora" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="regitar_ugovora" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="regitar_ugovora" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="regitar_ugovora" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -163,12 +163,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'odsustva')
                                             @php $found = true; @endphp
-                                            <input keyword="odsustva" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="odsustva" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="odsustva" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="odsustva" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -185,12 +185,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'upravljanje_ucin')
                                             @php $found = true; @endphp
-                                            <input keyword="upravljanje_ucin" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="upravljanje_ucin" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="upravljanje_ucin" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="upravljanje_ucin" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -207,12 +207,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'disciplinska_odg')
                                             @php $found = true; @endphp
-                                            <input keyword="disciplinska_odg" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="disciplinska_odg" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="disciplinska_odg" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="disciplinska_odg" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -229,12 +229,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'ekonkurs')
                                             @php $found = true; @endphp
-                                            <input keyword="ekonkurs" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="ekonkurs" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="ekonkurs" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="ekonkurs" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -251,12 +251,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'obuke')
                                             @php $found = true; @endphp
-                                            <input keyword="obuke" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="obuke" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="obuke" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="obuke" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -273,12 +273,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'predavaci')
                                             @php $found = true; @endphp
-                                            <input keyword="predavaci" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="predavaci" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="predavaci" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="predavaci" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -295,12 +295,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'teme_za_obuku')
                                             @php $found = true; @endphp
-                                            <input keyword="teme_za_obuku" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="teme_za_obuku" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="teme_za_obuku" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="teme_za_obuku" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -317,12 +317,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'interno_trziste')
                                             @php $found = true; @endphp
-                                            <input keyword="interno_trziste" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="interno_trziste" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="interno_trziste" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="interno_trziste" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -339,12 +339,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'stratesko_pl')
                                             @php $found = true; @endphp
-                                            <input keyword="stratesko_pl" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="stratesko_pl" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="stratesko_pl" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="stratesko_pl" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -361,12 +361,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'izvjestaji')
                                             @php $found = true; @endphp
-                                            <input keyword="izvjestaji" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="izvjestaji" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="izvjestaji" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="izvjestaji" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -383,12 +383,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'historizacija')
                                             @php $found = true; @endphp
-                                            <input keyword="historizacija" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="historizacija" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="historizacija" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="historizacija" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>
@@ -405,12 +405,12 @@
                                     @foreach($sluzbenik->uloge as $uloga)
                                         @if($uloga->keyword == 'postavke')
                                             @php $found = true; @endphp
-                                            <input keyword="postavke" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                            <input keyword="postavke" @if($uloga->vrijednost) checked @endif type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                         @endif
                                     @endforeach
                                 @endif
                                 @if(!$found)
-                                    <input keyword="postavke" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id}}">
+                                    <input keyword="postavke" type="checkbox" class="specific_role_value" sluzbenik_id="{{$sluzbenik->id ?? '1'}}">
                                 @endif
                             </div>
                         </div>

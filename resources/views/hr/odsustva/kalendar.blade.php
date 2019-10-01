@@ -17,7 +17,7 @@
                 <ul class="four">
                     <li class="{{ Request::path() == 'hr/odsustva/kalendar/'.$sluzbenik_id ? 'active' : '' }} single_bar">
                         <i class="far fa-calendar-alt"></i>
-                        <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id)}}">Pregled kalendara državnog službenika</a>
+                        <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id ?? '1')}}">Pregled kalendara državnog službenika</a>
                     </li>
                     <li class="single_bar">
                         <i class="fa fa-list-ul"></i>

@@ -29,15 +29,15 @@
                 <tbody>
                 @foreach($radna_mjesta as $radnoMjesto)
                     <tr class="radnoMjesto-row">
-                        <td scope="col" width="40px;" class="text-center">{{ $radnoMjesto->id }}</td>
+                        <td scope="col" width="40px;" class="text-center">{{ $radnoMjesto->id ?? '1'}}</td>
                         <td>
-                            {{ $radnoMjesto->naziv_rm }}
+                            {{ $radnoMjesto->naziv_rm ?? '/'}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->sifra_rm }}
+                            {{ $radnoMjesto->sifra_rm ?? '/'}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->broj_izvrsilaca }}
+                            {{ $radnoMjesto->broj_izvrsilaca ?? '/'}}
                         </td>
                         <td>
                             {{ $radnoMjesto->orgjed->organizacija->organ->naziv ?? '' }}
@@ -58,12 +58,12 @@
                         </td>
 
                         <td class="text-center akcije">
-                            <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{ $radnoMjesto->id }}"
+                            <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"
                                title="Pregledajte radno mjesto">
                                 <i class="fa fa-eye" style="margin-right:10px;"></i>
                             </a>
 
-                            <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{ $radnoMjesto->id }}"
+                            <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"
                                title="Uredite radno mjesto">
                                 <i class="fas fa-edit"></i>
                             </a>

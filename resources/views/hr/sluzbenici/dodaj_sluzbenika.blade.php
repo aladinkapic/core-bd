@@ -24,7 +24,7 @@
                 @endif
                 <h4 style="position:absolute; margin-top:-6px;">
                     @if(isset($sluzbenik))
-                        {{$sluzbenik->ime}} {{$sluzbenik->prezime}}
+                        {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
                     @else
                         Unesite službenika
                     @endif
@@ -38,7 +38,7 @@
         <div class="container container_block">
             <div class="full_container">
                 <h4 style="margin-top:10px;">
-                    Dodatne informacije o {{$sluzbenik->ime}} {{$sluzbenik->prezime}}
+                    Dodatne informacije o {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
                 </h4>
             </div>
 

@@ -28,7 +28,7 @@
                                     <div class="col-md-7">
                                         <select disabled class="form-control" name="sluzbenik">
                                             @foreach($sluzbenici as $sluzbenik)
-                                                <option @if($sluzbenik->id == $ugovor->sluzbenik) selected="selected" @endif value="{{ $sluzbenik->id }}">{{ $sluzbenik->ime }} {{ $sluzbenik->prezime }}</option>
+                                                <option @if($sluzbenik->id == $ugovor->sluzbenik) selected="selected" @endif value="{{ $sluzbenik->id ?? '1'}}">{{ $sluzbenik->ime ?? '/'}} {{ $sluzbenik->prezime ?? '/'}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -39,7 +39,7 @@
                                         Razlog
                                     </div>
                                     <div class="col-md-7">
-                                        <textarea class="form-control" name="razlog">{{ $ugovor->razlog }}</textarea>
+                                        <textarea class="form-control" name="razlog">{{ $ugovor->razlog ?? '/'}}</textarea>
                                     </div>
                                 </div>
                                 <br/>
@@ -48,7 +48,7 @@
                                         Radno mjesto
                                     </div>
                                     <div class="col-md-7">
-                                        <input required="required" value="{{ $ugovor->radno_mjesto }}" class="form-control" type="hidden" name="radno_mjesto"
+                                        <input required="required" value="{{ $ugovor->radno_mjesto ?? '/'}}" class="form-control" type="hidden" name="radno_mjesto"
                                                placeholder="Sprat..."/> Viši stručni saradnik za pitanja
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                         Broj rješenja
                                     </div>
                                     <div class="col-md-7">
-                                        <input value="{{ $ugovor->rjesenje }}" class="form-control" type="text" name="rjesenje" placeholder="Broj rješenja..."/>
+                                        <input value="{{ $ugovor->rjesenje ?? '/'}}" class="form-control" type="text" name="rjesenje" placeholder="Broj rješenja..."/>
                                     </div>
                                 </div>
                                 <br/>

@@ -28,10 +28,10 @@
                         @foreach($odsustva as $odsustvo)
                             <tr>
                                 <th scope="row">{{ ++$counter }}</th>
-                                <td>{{$odsustvo -> naziv_odsustva}}</td>
+                                <td>{{$odsustvo -> naziv_odsustva ?? '/'}}</td>
 
                                 <td style="text-align:center;">
-                                    <a href="/hr/odsustva/obrisi_vrstu_ods/{{$odsustvo->id}}">
+                                    <a href="/hr/odsustva/obrisi_vrstu_ods/{{$odsustvo->id ?? '1'}}">
                                         <i class="fas fa-trash-alt"></i> Izbrišite
                                     </a>
                                 </td>

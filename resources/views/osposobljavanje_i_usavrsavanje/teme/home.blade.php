@@ -39,17 +39,17 @@
                 <tbody>
                 @foreach($teme as $tema)
                     <tr>
-                        <td>{{$tema->naziv}}</td>
-                        <td>{{$tema->oblast_s->name}}</td>
-                        <td>{{$tema->napomena}}</td>
+                        <td>{{$tema->naziv ?? '/'}}</td>
+                        <td>{{$tema->oblast_s->name ?? '/'}}</td>
+                        <td>{{$tema->napomena ?? '/'}}</td>
                         <td class="text-center">
-                        <a href="/osposobljavanje_i_usavrsavanje/teme/viewTema/{{$tema -> id}}">
+                        <a href="/osposobljavanje_i_usavrsavanje/teme/viewTema/{{$tema -> id ?? '1'}}">
                         <i class="fa fa-eye"></i>
                         </a>
-                        <a href="/osposobljavanje_i_usavrsavanje/teme/editTema/{{$tema -> id}}" style="margin-left:10px;">
+                        <a href="/osposobljavanje_i_usavrsavanje/teme/editTema/{{$tema -> id ?? '1'}}" style="margin-left:10px;">
                         <i class="fas fa-edit"></i>
                         </a>
-                        <a href="/osposobljavanje_i_usavrsavanje/teme/delete/{{$tema -> id}}" style="margin-left:10px;">
+                        <a href="/osposobljavanje_i_usavrsavanje/teme/delete/{{$tema -> id ?? '1'}}" style="margin-left:10px;">
                         <i class="fas fa-times"></i>
                         </a>
                         </td>

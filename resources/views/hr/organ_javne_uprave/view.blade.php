@@ -26,41 +26,41 @@
                             <tbody>
                             <tr>
                                 <td><b>Identifikaciski broj – TIN:</b></td>
-                                <td> {{$uprava -> tin}} </td>
+                                <td> {{$uprava -> tin ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>Naziv organa javne uprave:</b></td>
-                                <td> {{$uprava -> naziv}} </td>
+                                <td> {{$uprava -> naziv ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>Tip organa javne uprave:</b></td>
-                                <td> {{$uprava -> tip}} </td>
+                                <td> {{$uprava -> tip ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>Ulica:</b></td>
-                                <td> {{$uprava -> ulica}} </td>
+                                <td> {{$uprava -> ulica ?? '/'}} </td>
                             </tr>
 
                             <tr>
                                 <td><b>Broj:</b></td>
-                                <td> {{$uprava -> broj}} </td>
+                                <td> {{$uprava -> broj ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>Telefon:</b></td>
-                                <td>{{$uprava -> telefon}}</td>
+                                <td>{{$uprava -> telefon ?? '/'}}</td>
                             </tr>
 
                             <tr>
                                 <td><b>Fax:</b></td>
-                                <td>{{$uprava -> fax}}</td>
+                                <td>{{$uprava -> fax ?? '/'}}</td>
                             </tr>
                             <tr>
                                 <td><b>Web:</b></td>
-                                <td>{{$uprava -> web}}</td>
+                                <td>{{$uprava -> web ?? '/'}}</td>
                             </tr>
                             <tr>
                                 <td><b>E-mail:</b></td>
-                                <td>{{$uprava -> email}}</td>
+                                <td>{{$uprava -> email ?? '/'}}</td>
                             </tr>
                             </tbody>
                         </table>

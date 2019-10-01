@@ -15,7 +15,7 @@
 
         <div class="card ">
             <div class="card-header ads-darker">
-                <a href="/osposobljavanje_i_usavrsavanje/teme/editTema/{{$tema -> id}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> Izmijeni</button></a>
+                <a href="/osposobljavanje_i_usavrsavanje/teme/editTema/{{$tema -> id ?? '1'}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> Izmijeni</button></a>
                 <h3>{{__('Tema za obuku')}}</h3>
             </div>
             <div class="card-body hr-activity tab">
@@ -25,15 +25,15 @@
                             <tbody>
                             <tr>
                                 <td><b>{{__('Naziv obuke')}}</b></td>
-                                <td> {{$tema -> naziv}} </td>
+                                <td> {{$tema -> naziv ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>{{__('Oblast')}}</b></td>
-                                <td> {{$tema -> oblast}} </td>
+                                <td> {{$tema -> oblast ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>{{__('Napomena')}}</b></td>
-                                <td>{{$tema -> napomena}}</td>
+                                <td>{{$tema -> napomena ?? '/'}}</td>
                             </tr>
                             </tbody>
                         </table>

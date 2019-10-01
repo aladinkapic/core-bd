@@ -51,23 +51,23 @@
                 <tr>
                     <td>{{$odgovornost->sluzbenik->ime_prezime ?? ''}}</td>
                     <td>{{$odgovornost->sluzbenik->radnoMjesto->naziv_rm ?? ''}}</td>
-                    <td>{{$odgovornost->datum_povrede}}</td>
-                    <td>{{$odgovornost->opis_povrede}}</td>
-                    <td>{{$odgovornost->opis_disciplinske_mjere}}</td>
-                    <td>{{$odgovornost->broj_rjesenja_zabrane}}</td>
-                    <td>{{$odgovornost->datum_rjesenja_zabrane}}</td>
-                    <td>{{$odgovornost->datum_zavrsetka_zabrane}}</td>
+                    <td>{{$odgovornost->datum_povrede ?? '/'}}</td>
+                    <td>{{$odgovornost->opis_povrede ?? '/'}}</td>
+                    <td>{{$odgovornost->opis_disciplinske_mjere ?? '/'}}</td>
+                    <td>{{$odgovornost->broj_rjesenja_zabrane ?? '/'}}</td>
+                    <td>{{$odgovornost->datum_rjesenja_zabrane ?? '/'}}</td>
+                    <td>{{$odgovornost->datum_zavrsetka_zabrane ?? '/'}}</td>
 
                     <td class="text-center">
-                        <a href="{{Route('disciplinska.pregledaj', ['id' => $odgovornost->id])}}"
+                        <a href="{{Route('disciplinska.pregledaj', ['id' => $odgovornost->id ?? '1'])}}"
                            title="Pregledajte disciplinsku odgovornost">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a href="{{Route('disciplinska.uredite', ['id' => $odgovornost->id])}}" style="margin-left:10px;"
+                        <a href="{{Route('disciplinska.uredite', ['id' => $odgovornost->id ?? '1'])}}" style="margin-left:10px;"
                            title="Uredite  disciplinsku odgovornost">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="{{ '/hr/disciplinska_odgovornost/obrisi/' . $odgovornost->id }}"
+                        <a href="{{ '/hr/disciplinska_odgovornost/obrisi/' . $odgovornost->id ?? '1'}}"
                            style="margin-left:10px;">
                             <i class="fa fa-times"></i>
                         </a>

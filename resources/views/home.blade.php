@@ -239,9 +239,9 @@
             <div class="col-md-4">
                 @foreach($notifications as $notification)
                     <div class="alert alert-danger my-custom-alert" role="alert"
-                         id="notification-id-{{$notification->sluzbenik->id}}">
+                         id="notification-id-{{$notification->sluzbenik->id ?? '1'}}">
                         Obavijest : Službenik
-                        <a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>
+                        <a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime ?? '/'}} {{$notification->sluzbenik->prezime ?? '/'}}</a>
                         {{json_decode($notification->data, true)['poruka']}}
 
                         {{--@if(json_decode($notification->data, true)['what'] == 'zasnivanjeRO')--}}
@@ -255,7 +255,7 @@
                         {{--@endif--}}
 
                         <div class="oznaci_kao_procitano"
-                             onclick="sakrijNotifikacije('{{$notification->sluzbenik->id}}', '{{$notification->id}}');">
+                             onclick="sakrijNotifikacije('{{$notification->sluzbenik->id ?? '1'}}', '{{$notification->id ?? '1'}}');">
                             <p>OZNAČI KAO PROČITANO</p>
                         </div>
                     </div>
@@ -282,10 +282,10 @@
                                             on">
                                     <div class="col-12 row" style="padding-right: 0;">
                                         <div class="col-5">
-                                            {{$notifikacija['naziv']}}
+                                            {{$notifikacija['naziv'] ?? '/'}}
                                         </div>
                                         <div class="col-5" style="padding-right: 0 !important;">
-                                            {{$notifikacija['od'].' Do '.$notifikacija['do']}}
+                                            {{$notifikacija['od'].' Do '.$notifikacija['do'] ?? '/'}}
                                         </div>
                                         @if (isset($notifikacija['doDanas']))
                                             <div class="col-2" style="padding-right: 0 !important;">

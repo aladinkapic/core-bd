@@ -22,9 +22,9 @@
                 @php $i = 1; @endphp
                 @foreach($kljucne_rijec as $rijec)
                     <tr>
-                        <td class="text-center">{{$i++}}</td>
-                        <td>{{$rijec[1]}}</td>
-                        <td class="text-center">{{$rijec[2]}}</td>
+                        <td class="text-center">{{$i++ ?? '/'}}</td>
+                        <td>{{$rijec[1] ?? '/'}}</td>
+                        <td class="text-center">{{$rijec[2] ?? '/'}}</td>
                         <td width="120px" class="text-center">
                             <a href="{{route('dodaj.sifrarnik', ['type' => $rijec[0]])}}">
                                 Pregled

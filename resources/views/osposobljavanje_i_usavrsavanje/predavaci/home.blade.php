@@ -38,16 +38,16 @@
                 <tbody>
                 @foreach($predavaci as $predavac)
                     <tr>
-                        <td>{{$predavac->ime}}</td>
-                        <td>{{$predavac->prezime}}</td>
-                        <td>{{$predavac->telefon}}</td>
-                        <td>{{$predavac->mail}}</td>
-                        <td>{{$predavac->napomena}}</td>
+                        <td>{{$predavac->ime ?? '/'}}</td>
+                        <td>{{$predavac->prezime ?? '/'}}</td>
+                        <td>{{$predavac->telefon ?? '/'}}</td>
+                        <td>{{$predavac->mail ?? '/'}}</td>
+                        <td>{{$predavac->napomena ?? '/'}}</td>
                         <td style="text-align:center;" class="akcije">
-                            <a href="{{ '/ugovori/mjesto-rada/edit/' . $predavac->id }}">
+                            <a href="{{ '/ugovori/mjesto-rada/edit/' . $predavac->id ?? '1'}}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="{{ '/ugovori/mjesto-rada/destroy/' . $predavac->id }}"
+                            <a href="{{ '/ugovori/mjesto-rada/destroy/' . $predavac->id ?? '1'}}"
                                style="margin-left:10px;">
                                 <i class="fa fa-times"></i>
                             </a>

@@ -22,7 +22,7 @@ if(isset($tema)) $naslov = 'Uređivanje teme za obuku'; else $naslov = 'Nova tem
             <div id="msform">
                 <!-- Tittle -->
                 <div class="tittle">
-                    <h2>{{$naslov }}</h2>
+                    <h2>{{$naslov ?? '/'}}</h2>
                     <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
                             zabilježene.')}}</p>
                     <br />

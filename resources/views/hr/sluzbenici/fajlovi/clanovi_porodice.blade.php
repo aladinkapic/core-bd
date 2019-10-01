@@ -12,7 +12,7 @@
     @php $elements_counter = 0; $index_counter = 0; @endphp <!-- counter za jedinstven ID svakog elementa -->
 
         @foreach($clanovi_porodice as $clanovi_porodice_s)
-            <div class="preview_elements input_element{{$elements_counter}}">
+            <div class="preview_elements input_element{{$elements_counter ?? '/'}}">
                 @if(!isset($pregled))
                     <div class="edit_elements_icons">
                         <div class="edit_element_icon" title="Uredite" onclick="edit_property(9, '{{$elements_counter}}');">
@@ -21,7 +21,7 @@
                         <form action="/hr/sluzbenici/obrisi_sadrzaj/" method="post">
                         @csrf <!-- {{ csrf_field() }} -->
 
-                            <label for="input_form_ispit{{$elements_counter}}">
+                            <label for="input_form_ispit{{$elements_counter ?? '/'}}">
                                 <div class="edit_element_icon edit_element_icon_2" title="Obrišite">
                                     <i class="fa fa-trash"></i>
                                 </div>
