@@ -1,0 +1,734 @@
+#steps {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+#steps form {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+#steps ul {
+  position: relative;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+#steps ul li {
+  width: 25%;
+  height: 70px;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+#steps ul li .steps-back-left,
+#steps ul li .steps-back-right {
+  position: absolute;
+  width: 50%;
+  height: 10px;
+  left: 0px;
+  background: #dfe1e2;
+  top: 20px;
+  z-index: -5;
+}
+
+#steps ul li .steps-back-right {
+  left: 50%;
+}
+
+#steps ul li .steps-circle {
+  display: inline-flex;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 20px);
+  background: #dfe1e2;
+  border-radius: 50%;
+  justify-content: center;
+}
+
+#steps ul li .steps-circle i {
+  position: relative;
+  text-align: center;
+  font-size: 22px;
+  color: #fff;
+  margin-top: 12px;
+  /*
+                    left:calc(50% - 11px);
+                    top:calc(50% - 16px); */
+}
+
+#steps ul li p {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#steps ul .active .steps-circle,
+#steps ul .active .steps-back-left {
+  background: #3490dc;
+}
+
+#steps ul .steps-hidden {
+  display: none;
+}
+
+#steps ul .steps-before .steps-circle,
+#steps ul .steps-before .steps-back-left,
+#steps ul .steps-before .steps-back-right {
+  background: #3490dc;
+}
+
+#steps ul .steps-left-lines .steps-back-left {
+  background-image: linear-gradient(to left, #dfe1e2, #F5F5F5);
+}
+
+#steps ul .steps-right-lines .steps-back-right {
+  background-image: linear-gradient(to right, #dfe1e2, #F5F5F5);
+}
+
+#steps .steps-buttons {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin-top: 30px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+#steps .steps-buttons .step-button {
+  text-align: center;
+  position: relative;
+  height: 36px;
+  background: #1b1e21;
+  margin: 0px 20px;
+  color: #fff;
+  border-radius: 3px;
+  padding-top: 2px;
+}
+
+#steps .steps-buttons .step-button p {
+  margin: 5px 20px;
+  border-radius: 3px;
+}
+
+#steps .steps-buttons .step-next {
+  background: #3490dc;
+}
+
+#steps .steps-buttons .step-button:hover {
+  cursor: pointer;
+}
+
+#steps .steps-buttons .step-button-colorful {
+  background: #38c172;
+}
+
+#steps .single-header-for-tables {
+  position: relative;
+  left: 0px;
+  width: 100%;
+  height: 60px;
+  margin-top: 20px;
+  padding: 10px 5px 15px 5px;
+}
+
+#steps .single-header-for-tables h4 {
+  margin-left: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+section {
+  position: relative;
+  left: 0px;
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+section .split-two {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: 80px;
+  height: auto;
+  width: calc(50% - 15px);
+  margin-top: 30px;
+  padding: 10px 5px 15px 5px;
+}
+
+section .single-one {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: 80px;
+  width: 100%;
+  margin-top: 30px;
+  padding: 10px 5px 15px 5px;
+}
+
+section .single-one-without-padding {
+  padding: 0px;
+}
+
+section .single-one-without-padding .steps-inner-header {
+  margin-top: 5px;
+}
+
+section .section-header {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 5px 15px 5px;
+}
+
+section .section-header h4 {
+  margin-left: 20px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+section .section-header .buttons {
+  position: absolute;
+  right: 20px;
+  height: 36px;
+  background: #38C172;
+  top: 18px;
+  border-radius: 3px;
+  display: inline-flex;
+  overflow: hidden;
+}
+
+section .section-header .buttons .small-button {
+  position: relative;
+  min-width: 36px;
+  height: 36px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+section .section-header .buttons .small-button i {
+  font-size: 14px;
+  color: #fff;
+  margin-top: 11px;
+}
+
+section .section-header .buttons .small-button .fa-angle-left {
+  color: #fff;
+  font-size: 20px;
+  margin-top: 8px;
+  top: 0px;
+}
+
+section .section-header .buttons .small-button p {
+  color: #fff;
+  margin-right: 14px;
+  margin-top: 7px;
+}
+
+section .section-header .buttons .small-button-border {
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+section .section-header .buttons .small-button:hover {
+  cursor: pointer;
+  background: #1d68a7;
+}
+
+section .section-header .buttons .small-button-edit:hover {
+  background: #857b26;
+}
+
+section .section-header .buttons .small-button-delete:hover {
+  background: #ae1c17;
+}
+
+section .section-header-without {
+  border: none;
+}
+
+section .section-header-without .buttons {
+  right: 0px;
+}
+
+section .split-two .steps-inside-element,
+section .single-one .steps-inside-element {
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  transition: all 0.2s;
+}
+
+section .split-two .steps-inside-element .steps-inside-element-delete,
+section .single-one .steps-inside-element .steps-inside-element-delete {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background: #3490dc;
+  text-align: center;
+  border-radius: 3px;
+  z-index: 100;
+  opacity: 0;
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+section .split-two .steps-inside-element .steps-inside-element-delete i,
+section .single-one .steps-inside-element .steps-inside-element-delete i {
+  position: absolute;
+  right: 5px;
+  top: calc(50% - 5px);
+  font-size: 10px;
+  color: #fff;
+}
+
+section .split-two .steps-inside-element .steps-inside-element-delete:hover,
+section .single-one .steps-inside-element .steps-inside-element-delete:hover {
+  cursor: pointer;
+}
+
+section .split-two .steps-inside-element:hover,
+section .single-one .steps-inside-element:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+section .split-two .steps-inside-element-two:hover,
+section .single-one .steps-inside-element-two:hover {
+  background: none;
+}
+
+section .split-two .steps-inside-element:hover .steps-inside-element-delete,
+section .single-one .steps-inside-element:hover .steps-inside-element-delete {
+  opacity: 1;
+}
+
+section .split-two .steps-inner-header,
+section .single-one .steps-inner-header {
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+
+section .split-two .steps-inner-header h4,
+section .single-one .steps-inner-header h4 {
+  margin-top: 0px;
+  padding-top: 15px;
+  margin-left: 15px;
+}
+
+section .steps-row {
+  position: relative;
+  width: 100%;
+  flex-wrap: nowrap;
+  display: inline-flex;
+  transition: all 0.2s;
+  /* Here we can define image - like user profile image or something like that */
+}
+
+section .steps-row .steps-col {
+  position: relative;
+  width: 100%;
+  padding: 5px 15px 10px 15px;
+  transition: all 0.2s;
+}
+
+section .steps-row .steps-col .custom-control {
+  width: calc(100% - 80px);
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+section .steps-row .steps-col .steps-col-check-check {
+  position: absolute;
+  right: 15px;
+  top: 36px;
+  width: 80px;
+  height: 37px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-left: 0px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: center;
+  background: #fff;
+}
+
+section .steps-row .steps-col .steps-col-check-check .steps-col-check-wrapper {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: calc(50% - 8px);
+  left: calc(50% - 8px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+section .steps-row .steps-col .steps-col-check-check .steps-col-check-wrapper .fa-check {
+  position: absolute;
+  font-size: 20px;
+  color: #2fa360;
+}
+
+section .steps-row .steps-col .steps-col-check-check .steps-col-check-wrapper:hover {
+  cursor: pointer;
+}
+
+section .steps-row .steps-col .steps-col-check-check input {
+  padding-top: 10px;
+}
+
+section .steps-row .steps-col .steps-col-check {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+section .steps-row .steps-col .steps-col-check .steps-col-check-name {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: calc(100% - 380px);
+  height: 100%;
+}
+
+section .steps-row .steps-col .steps-col-check .steps-col-check-name p {
+  margin-left: 20px;
+  padding-top: 8px;
+}
+
+section .steps-row .steps-col .steps-col-check .steps-col-check-datepicker {
+  position: absolute;
+  right: 80px;
+  top: 0px;
+  width: 300px;
+  height: 100%;
+}
+
+section .steps-row .steps-col .steps-col-warn {
+  width: 100%;
+  background: #F2DEDE;
+  padding: 3px;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+
+section .steps-row .steps-col .steps-col-warn p {
+  margin: 0px;
+  margin-left: 5px;
+  width: calc(100% - 10px);
+  margin-bottom: 5px;
+}
+
+section .steps-row .steps-datepicker {
+  height: 80px;
+  overflow: visible;
+}
+
+section .steps-row .steps-image {
+  position: relative;
+  width: calc(100% - 30px);
+  left: 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  height: 232px;
+}
+
+section .steps-row .steps-image img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  max-width: 90%;
+  max-height: 90%;
+  margin: auto;
+}
+
+section .steps-row .steps-image .steps-image-shadow {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 232px;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  text-align: center;
+}
+
+section .steps-row .steps-image .steps-image-shadow i {
+  font-size: 60px;
+  position: absolute;
+  left: calc(50% - 30px);
+  top: calc(50% - 30px);
+  color: grey;
+  transition: all 0.2s;
+  opacity: 0.1;
+}
+
+section .steps-row .steps-image:hover .steps-image-shadow {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+section .steps-row .steps-image:hover .steps-image-shadow i {
+  color: #3490dc;
+  opacity: 1;
+}
+
+section .steps-row .file-input {
+  display: none;
+}
+
+section .copy-button-wrapper {
+  position: absolute;
+  right: 20px;
+  top: 26px;
+  width: 74px;
+  height: 20px;
+  background: #3490dc;
+  text-align: center;
+  border-radius: 3px;
+  z-index: 100;
+}
+
+section .copy-button-wrapper i {
+  position: absolute;
+  right: 5px;
+  top: calc(50% - 5px);
+  font-size: 10px;
+  color: #fff;
+}
+
+section .copy-button-wrapper p {
+  position: absolute;
+  left: 5px;
+  font-size: 10px;
+  color: #fff;
+  margin-top: 3px;
+}
+
+section .copy-button-wrapper:hover {
+  cursor: pointer;
+}
+
+.active-section {
+  display: inline-flex;
+}
+
+.small-section .copy-button-wrapper {
+  right: 50px;
+}
+
+.small-section .show-button-wrapper {
+  position: absolute;
+  right: 20px;
+  top: 26px;
+  width: 20px;
+  height: 20px;
+  background: #3490dc;
+  text-align: center;
+  border-radius: 3px;
+  z-index: 100;
+}
+
+.small-section .show-button-wrapper i {
+  position: absolute;
+  right: 5px;
+  top: calc(50% - 5px);
+  font-size: 10px;
+  color: #fff;
+}
+
+.small-section .show-button-wrapper:hover {
+  cursor: pointer;
+}
+
+#upload-files {
+  position: relative;
+  left: 15px;
+  top: 15px;
+  width: calc(100% - 30px);
+  margin-bottom: 30px;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+#upload-files label {
+  position: relative;
+  display: block;
+  width: 40%;
+}
+
+#upload-files label #upload-files-label {
+  position: relative;
+  background: #fff;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 300px;
+  border-radius: 5px;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+#upload-files label #upload-files-label i {
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.3);
+  margin-top: 110px;
+  transition: all 0.2s;
+}
+
+#upload-files label #upload-files-label p {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+}
+
+#upload-files label #upload-files-label:hover {
+  cursor: pointer;
+}
+
+#upload-files label #upload-files-label:hover i,
+#upload-files label #upload-files-label:hover p {
+  color: #333;
+}
+
+#upload-files #uploaded-files {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: calc(60% - 30px);
+  height: 100%;
+}
+
+#upload-files #uploaded-files p {
+  font-weight: bold;
+}
+
+#upload-files #uploaded-files .single-saved-file {
+  margin-bottom: 15px;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 90px;
+  background: #fff;
+  border-radius: 3px;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-image {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-image i {
+  font-size: 30px;
+  margin-top: 20px;
+  color: rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: calc(100% - 70px);
+  height: 90px;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details .single-saved-file-details-name {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details .single-saved-file-details-name p {
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details .single-saved-file-details-name .steps-inside-element-delete {
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+  text-align: right;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details .single-saved-file-details-name .steps-inside-element-delete i {
+  font-size: 16px;
+  color: #333;
+  opacity: 0.2;
+  transition: all 0.2s;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details .single-saved-file-details-progress {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  margin-top: 4px;
+  width: calc(100% - 20px);
+  border-radius: 2px;
+  height: 8px;
+  /* background:#0c85d0; */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details .single-saved-file-details-progress .single-progress-element {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 50%;
+  height: 100%;
+  background: #0c85d0;
+}
+
+#upload-files #uploaded-files .single-saved-file .single-saved-file-details .single-saved-file-details-percentage {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+#upload-files #uploaded-files .single-saved-file:hover {
+  cursor: pointer;
+}
+
+#upload-files #uploaded-files .single-saved-file:hover .single-saved-file-image i {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+#upload-files #uploaded-files .single-saved-file:hover .single-saved-file-details .single-saved-file-details-name .steps-inside-element-delete i {
+  opacity: 1;
+}
+

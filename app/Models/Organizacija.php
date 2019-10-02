@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Organizacija extends Model{
 
     public $table = 'organizacija';
+    protected $guarded = ['id'];
 
     public function organ(){
         return $organ = $this->hasOne(Organ::class, 'id', 'oju_id');
@@ -39,8 +40,10 @@ class Organizacija extends Model{
 
             if($copy->parent_id != null){
 
-                $parent_new = OrganizacionaJedinica::select('id')->where('before_id', '=', $copy->parent_id)->first();
-                $copy->parent_id = $parent_new->id;
+                try{
+                    $parent_new = OrganizacionaJedinica::select('id')->where('before_id', '=', $copy->parent_id)->firstOrFail();
+                    $copy->parent_id = $parent_new->id;
+                }catch (\Exception $e){}
 
             }
             $copy->save();

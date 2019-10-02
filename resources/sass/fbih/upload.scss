@@ -1,0 +1,154 @@
+#upload-files{
+    position:relative;
+    left:15px;
+    top:15px;
+    width:calc(100% - 30px);
+    margin-bottom:30px;
+    display:inline-flex;
+    justify-content: space-between;
+    label{
+        position:relative;
+        display:block;
+        width:40%;
+        #upload-files-label{
+            position:relative;
+            background:#fff;
+            left:0px;
+            top:0px;
+            width:100%;
+            height:300px;
+            border-radius:5px;
+            border:1px dashed rgba(0,0,0,.2);
+            text-align:center;
+            i{
+                font-size:60px;
+                color:rgba(0,0,0,0.3);
+                margin-top:110px;
+                transition:all 0.2s;
+            }
+            p{
+                font-weight:bold;
+                color:rgba(0,0,0,0.3);
+                transition:all 0.2s;
+            }
+        }
+        #upload-files-label:hover{cursor:pointer;}
+        #upload-files-label:hover i,
+        #upload-files-label:hover p{color:#333;}
+    }
+
+    #uploaded-files{
+        position:relative;
+        left:0px;
+        top:0px;
+        width:calc(60% - 30px);
+        height:100%;
+
+        p{font-weight:bold;}
+
+        .single-saved-file{
+            margin-bottom:15px;
+            position:relative;
+            left:0px;
+            top:0px;
+            width:100%;
+            height:90px;
+            background:#fff;
+            border-radius:3px;
+            display:inline-flex;
+            justify-content: space-between;
+            .single-saved-file-image{
+                position:relative;
+                left:0px;
+                top:0px;
+                width:70px;
+                height:70px;
+                text-align:center;
+                i{
+                    font-size:30px;
+                    margin-top:20px;
+                    color:rgba(0,0,0,0.3);
+                    transition:all 0.2s;
+                }
+            }
+            .single-saved-file-details{
+                position:relative;
+                left:0px;
+                top:0px;
+                width:calc(100% - 70px);
+                height:90px;
+                .single-saved-file-details-name{
+                    position:relative;
+                    left:0px;
+                    top:0px;
+                    margin-top:16px;
+                    width:100%;
+                    p{
+                        font-size:18px;
+                        margin-bottom:0px;
+                    }
+                    .steps-inside-element-delete{
+                        position:absolute;
+                        right:20px;
+                        top:0px;
+                        width:30px;
+                        height:30px;
+                        text-align:right;
+                        i{
+                            font-size:16px;
+                            color:#333;
+                            opacity:0.2;
+                            transition:all 0.2s;
+                        }
+                    }
+                }
+                .single-saved-file-details-progress{
+                    position:relative;
+                    left:0px;
+                    top:0px;
+                    margin-top:4px;
+                    width:calc(100% - 20px);
+                    border-radius:2px;
+                    height:8px;
+                    /* background:#0c85d0; */
+                    border:1px solid rgba(0,0,0,0.1);
+                    text-align:center;
+                    .single-progress-element{
+                        position:relative;
+                        left:0px;
+                        top:0px;
+                        width:50%;
+                        height:100%;
+                        background:#0c85d0;
+                    }
+                }
+                .single-saved-file-details-percentage{
+                    position:relative;
+                    left:0px;
+                    top:0px;
+                    width:100%;
+                    margin-top:4px;
+                }
+            }
+        }
+
+        .single-saved-file:hover{
+            cursor:pointer;
+            .single-saved-file-image{
+                i{
+                    color:rgba(0,0,0,0.8);
+                }
+            }
+
+            .single-saved-file-details {
+                .single-saved-file-details-name {
+                    .steps-inside-element-delete {
+                        i {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
