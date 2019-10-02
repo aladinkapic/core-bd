@@ -37,19 +37,19 @@
                             @if($radnoMjesto->broj_izvrsilaca < $radnoMjesto->sluzbenici->count())
                                 <tr>
                                     <td>
-                                        {{$radnoMjesto->naziv_rm}}
+                                        {{$radnoMjesto->naziv_rm ?? '/'}}
                                     </td>
                                     <td>
-                                        {{$orgJedinica->naziv}}
+                                        {{$orgJedinica->naziv ?? '/'}}
                                     </td>
                                     <td>
-                                        {{$radnoMjesto->sifra_rm}}
+                                        {{$radnoMjesto->sifra_rm ?? '/'}}
                                     </td>
                                     <td>
-                                        {{$radnoMjesto->broj_izvrsilaca}}
+                                        {{$radnoMjesto->broj_izvrsilaca ?? '/'}}
                                     </td>
                                     <td>
-                                        {{$radnoMjesto->sluzbenici->count()}}
+                                        {{$radnoMjesto->sluzbenici->count() ?? '/'}}
                                     </td>
                                     <td class="text-center">
                                         <a href="{{route('internotrziste.sviprekobrojniljudi', ['id' => $radnoMjesto->id])}}"
@@ -62,23 +62,23 @@
                         @elseif($radnoMjesto->broj_izvrsilaca >= $radnoMjesto->sluzbenici->count())
                             <tr>
                                 <td>
-                                    {{$radnoMjesto->naziv_rm}}
+                                    {{$radnoMjesto->naziv_rm ?? '/'}}
                                 </td>
                                 <td>
-                                    {{$orgJedinica->naziv}}
+                                    {{$orgJedinica->naziv ?? '/'}}
                                 </td>
                                 <td>
-                                    {{$radnoMjesto->sifra_rm}}
+                                    {{$radnoMjesto->sifra_rm ?? '/'}}
                                 </td>
                                 <td>
-                                    {{$radnoMjesto->broj_izvrsilaca}}
+                                    {{$radnoMjesto->broj_izvrsilaca ?? '/'}}
                                 </td>
                                 <td>
-                                    {{$radnoMjesto->sluzbenici->count()}}
+                                    {{$radnoMjesto->sluzbenici->count() ?? '/'}}
                                 </td>
                                 <td class="text-center">
                                     <a href="#" title="Dodajte / uredite rješenje" class="rjesenje"
-                                       data-id="{{ $radnoMjesto->id }}" data-name="{{ $radnoMjesto->naziv_rm }}">
+                                       data-id="{{ $radnoMjesto->id ?? '1'}}" data-name="{{ $radnoMjesto->naziv_rm ?? '/'}}">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </td>

@@ -22,25 +22,25 @@
                             <div class="card col-3">
                                 <div class="card-body">
                                     <h5 class="card-title">{{__('Službenik')}}</h5>
-                                    <h4 class="card-text">{{$log -> sluzbenik -> ime}} {{$log -> sluzbenik -> prezime}}</h4>
+                                    <h4 class="card-text">{{$log -> sluzbenik -> ime ?? '/'}} {{$log -> sluzbenik -> prezime ?? '/'}}</h4>
                                 </div>
                             </div>
                             <div class="card col-3">
                                 <div class="card-body">
                                     <h5 class="card-title">{{__('Modul')}}</h5>
-                                    <h4 class="card-text">{{$log -> modul}}</h4>
+                                    <h4 class="card-text">{{$log -> modul ?? '/'}}</h4>
                                 </div>
                             </div>
                             <div class="card col-3">
                                 <div class="card-body">
                                     <h5 class="card-title">{{__('Operacija')}}</h5>
-                                    <h4 class="card-text">{{$log -> operation}}</h4>
+                                    <h4 class="card-text">{{$log -> operation ?? '/'}}</h4>
                                 </div>
                             </div>
                             <div class="card col-3">
                                 <div class="card-body">
                                     <h5 class="card-title">{{__('Izvršeno')}}</h5>
-                                    <h4 class="card-text">{{$log->created_at }}</h4>
+                                    <h4 class="card-text">{{$log->created_at ?? '/'}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                     @foreach($log->old_data as $data => $key)
                                         <tr>
                                             <td>
-                                                {{$data}}
+                                                {{$data ?? '/'}}
                                             </td>
                                             <td>
                                                 <?php

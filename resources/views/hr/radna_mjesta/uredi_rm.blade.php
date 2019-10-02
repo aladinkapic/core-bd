@@ -298,7 +298,7 @@
                                             @php $i=0; @endphp
                                             @foreach($odabrani_sluzbenici as $sluzbenik)
 
-                                                <div class="copied_form sluzbenici*{{$sluzbenik->id}}" id="nekaamo" style="padding-top:20px;">
+                                                <div class="copied_form sluzbenici*{{$sluzbenik->id ?? '1'}}" id="nekaamo" style="padding-top:20px;">
 
                                                     {!! Form::hidden('id_sluzben[]', $sluzbenik->id, ['class' => 'form-control']) !!}
 

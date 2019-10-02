@@ -63,7 +63,7 @@
                                                    name="filter[]">
                                                <option value="">Odaberi...</option>
                                                @foreach($filteri as $key => $value)
-                                                   <option {{ ($key == $vrijednost) ? 'selected="selected"' : '' }} value="{{ $key }}">{{ $value }}</option>
+                                                   <option {{ ($key == $vrijednost) ? 'selected="selected"' : '' }} value="{{ $key ?? '/'}}">{{ $value ?? '/'}}</option>
                                                @endforeach
                                            </select>
                                        </div>

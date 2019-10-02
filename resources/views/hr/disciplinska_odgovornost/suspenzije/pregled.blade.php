@@ -46,17 +46,17 @@
                         <td>{{$suspenzija->disciplinskaOdgovornost->sluzbenik->ime_prezime ?? ''}}</td>
                         <td>{{$suspenzija->disciplinskaOdgovornost->sluzbenik->radnoMjesto->naziv_rm ?? ''}}</td>
                         <td>{{$suspenzija->disciplinskaOdgovornost->opis_disciplinske_mjere ?? ''}}</td>
-                        <td>{{$suspenzija->broj_rjesenja}}</td>
-                        <td>{{$suspenzija->razlog_udaljenja}}</td>
-                        <td>{{$suspenzija->datum_udaljenja}}</td>
+                        <td>{{$suspenzija->broj_rjesenja ?? '/'}}</td>
+                        <td>{{$suspenzija->razlog_udaljenja ?? '/'}}</td>
+                        <td>{{$suspenzija->datum_udaljenja ?? '/'}}</td>
                         <td style="text-align:center;" class="akcije">
-                            <a href="{{ '/hr/disciplinska_odgovornost/pregledajte_suspenzija/' . $suspenzija->id }}">
+                            <a href="{{ '/hr/disciplinska_odgovornost/pregledajte_suspenzija/' . $suspenzija->id ?? '1'}}">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="{{ '/hr/disciplinska_odgovornost/uredite_suspenzija/' . $suspenzija->id }}" style="margin-left:10px;">
+                            <a href="{{ '/hr/disciplinska_odgovornost/uredite_suspenzija/' . $suspenzija->id ?? '1'}}" style="margin-left:10px;">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="{{ '/hr/disciplinska_odgovornost/obrisite_suspenziju/' . $suspenzija->id }}"
+                            <a href="{{ '/hr/disciplinska_odgovornost/obrisite_suspenziju/' . $suspenzija->id ?? '1'}}"
                                style="margin-left:10px;">
                                 <i class="fa fa-times"></i>
                             </a>

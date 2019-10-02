@@ -29,17 +29,17 @@
             @if (isset($sluzbenici))
                 @foreach($sluzbenici as $korisnik)
                     <tr>
-                        <td> {{$korisnik->ime_prezime}} </td>
+                        <td> {{$korisnik->ime_prezime ?? '/'}} </td>
                         <td>
                             @if($korisnik->radnoMjesto)
-                                {{$korisnik->radnoMjesto->naziv_rm}}
+                                {{$korisnik->radnoMjesto->naziv_rm ?? '/'}}
                             @else
                                 -
                             @endif
                         </td>
                         <td class="text-center">
                             @if($korisnik->privremeniPremjestaj)
-                                {{$korisnik->privremeniPremjestaj->naziv_rm}}
+                                {{$korisnik->privremeniPremjestaj->naziv_rm ?? '/'}}
                             @else
                                 -
                             @endif

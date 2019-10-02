@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <select class="form-control" name="sluzbenik">
-                                            <option selected="selected" value="{{ $sluzbenik->id }}">{{$sluzbenik->ime}} {{$sluzbenik->prezime}}</option>
+                                            <option selected="selected" value="{{ $sluzbenik->id ?? '1'}}">{{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}</option>
                                         </select>
 
                                         {{--<input required="required" readonly value="" class="form-control" type="text" name="sluzbenik"/>--}}
@@ -41,7 +41,7 @@
                                     <div class="col-md-7">
                                         <select class="form-control" name="privremeno_radno_mjesto">
                                             @foreach($radnaMjesta as $radnoMjesto)
-                                                <option value="{{ $radnoMjesto->id }}">{{ $radnoMjesto->naziv_rm }}</option>
+                                                <option value="{{ $radnoMjesto->id ?? '1'}}">{{ $radnoMjesto->naziv_rm ?? '/'}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -52,7 +52,7 @@
                                         Redovno radno mjesto
                                     </div>
                                     <div class="col-md-7">
-                                        <input required="required" value="@if($sluzbenik->radnoMjesto) {{$sluzbenik->radnoMjesto->naziv_rm}} @endif" class="form-control" type="text" name="radno_mjesto"/>
+                                        <input required="required" value="@if($sluzbenik->radnoMjesto) {{$sluzbenik->radnoMjesto->naziv_rm ?? '/'}} @endif" class="form-control" type="text" name="radno_mjesto"/>
                                     </div>
                                 </div>
                                 <br/>

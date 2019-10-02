@@ -25,24 +25,24 @@
                     <button onClick="window.location='{{route('sluzbenik.pregled')}}';" class="btn btn-light float-right" ><i class="fa fa-chevron-circle-left"></i> Nazad na pregled službenika </button>
                 @endif
                 <h4 style="position:absolute; margin-top:-6px;">
-                    {{$sluzbenik->ime}} {{$sluzbenik->prezime}}
+                    {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
                 </h4>
             </div>
         </div>
         @include('/hr/sluzbenici/fajlovi/osnovne_info')
         <div class="split_container split_container3" style="height:360px;">
             <div class="slika_sluzbenika">
-                <img src="{{ asset('slike/slike_sluzbenika/'.$sluzbenik->fotografija) }}" id="slika_sluz" alt="">
+                <img src="{{ asset('slike/slike_sluzbenika/'.$sluzbenik->fotografija ?? '/') }}" id="slika_sluz" alt="">
                 <input type="hidden" name="fotografija" id="fotografija">
                 <div class="slika_sluzbenika_sjena" title="Fotografija "></div>
             </div>
 
             <div class="basic_info">
-                <h3>{{$sluzbenik->ime.' '.$sluzbenik->prezime}}</h3>
+                <h3>{{$sluzbenik->ime.' '.$sluzbenik->prezime ?? '/'}}</h3>
             </div>
 
             <div class="basic_info">
-                <a href="{{asset('/hr/sluzbenici/uredi_sluzbenika/'.$sluzbenik->id)}}">
+                <a href="{{asset('/hr/sluzbenici/uredi_sluzbenika/'.$sluzbenik->id ?? '1')}}">
                     <p>Uredite karton radnika</p>
                 </a>
             </div>
@@ -51,7 +51,7 @@
         @if(isset($what))
             <div class="split_container split_container2">
                 <h4 style="margin-top:0px; margin-left:15px;">
-                    Rješenje o prekobrojnim ljudima za {{$sluzbenik->ime}} {{$sluzbenik->prezime}}
+                    Rješenje o prekobrojnim ljudima za {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
                 </h4>
 
                 {!! Form::textarea('', isset($sluzbenik) ? $sluzbenik->rjesenje : '', ['class' => 'form-control', 'rows' => 6, 'id' => 'naziv_rm_inp', 'readonly', 'style="margin-left:15px; width:calc(100% - 30px); margin-top:20px;"']) !!}
@@ -60,7 +60,7 @@
 
         <div class="full_container">
             <h4 style="margin-top:10px;">
-                Dodatne informacije o {{$sluzbenik->ime}} {{$sluzbenik->prezime}}
+                Dodatne informacije o {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
             </h4>
         </div>
 

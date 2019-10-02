@@ -31,12 +31,12 @@
             @if (isset($logs))
                 @foreach($logs as $log)
                     <tr class="org-row">
-                        <td>{{$log -> sluzbenik->ime_prezime}}</td>
-                        <td>{{$log -> modul }}</td>
-                        <td>{{$log-> operation }}</td>
-                        <td>{{$log->created_at}}</td>
+                        <td>{{$log -> sluzbenik->ime_prezime ?? '/'}}</td>
+                        <td>{{$log -> modul ?? '/'}}</td>
+                        <td>{{$log-> operation ?? '/'}}</td>
+                        <td>{{$log->created_at ?? '/'}}</td>
                         <td class="text-center">
-                            <a href="/ostalo/historizacija/detalji/{{$log -> id}}">
+                            <a href="/ostalo/historizacija/detalji/{{$log -> id ?? '1'}}">
                                 <i class="fa fa-eye"></i>
                             </a>
                         </td>

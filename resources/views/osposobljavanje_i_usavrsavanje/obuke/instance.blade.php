@@ -35,9 +35,9 @@
                 ?>
                 <tr style="border-left: solid 5px {{$color}} ;">
                     <td>
-                        Od: {{$instanca->odrzavanje_od}}
+                        Od: {{$instanca->odrzavanje_od ?? '/'}}
                         <br>
-                        Do: {{$instanca->odrzavanje_do}}
+                        Do: {{$instanca->odrzavanje_do ?? '/'}}
                     </td>
                     <td>
                         @if($instanca->status ==='Između')
@@ -103,7 +103,7 @@
                         </div>
                     </td>
                     <td>
-                        <a href="/osposobljavanje_i_usavrsavanje/obuke/deleteInstance/{{$instanca -> id}}" style="margin-left:10px;">
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/deleteInstance/{{$instanca -> id ?? '1'}}" style="margin-left:10px;">
                             <i class="fas fa-times"></i>
                         </a>
                     </td>

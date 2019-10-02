@@ -47,18 +47,18 @@
                         <td>{{$zalba->disciplinskaOdgovornost->sluzbenik->ime_prezime ?? ''}}</td>
                         <td>{{$zalba->disciplinskaOdgovornost->sluzbenik->radnoMjesto->naziv_rm ?? ''}}</td>
                         <td>{{$zalba->disciplinskaOdgovornost->opis_disciplinske_mjere ?? ''}}</td>
-                        <td>{{$zalba->broj_ulozene_zalbe}}</td>
-                        <td>{{$zalba->datum_ulozene_zalbe}}</td>
-                        <td>{{$zalba->broj_odluke_zalbe}}</td>
-                        <td>{{$zalba->datum_odluke_zalbe}}</td>
+                        <td>{{$zalba->broj_ulozene_zalbe ?? '/'}}</td>
+                        <td>{{$zalba->datum_ulozene_zalbe ?? '/'}}</td>
+                        <td>{{$zalba->broj_odluke_zalbe ?? '/'}}</td>
+                        <td>{{$zalba->datum_odluke_zalbe ?? '/'}}</td>
                         <td style="text-align:center;" class="akcije">
-                            <a href="{{ '/hr/disciplinska_odgovornost/pregledajte_zalbu/' . $zalba->id }}" style="margin-left:10px;">
+                            <a href="{{ '/hr/disciplinska_odgovornost/pregledajte_zalbu/' . $zalba->id ?? '1'}}" style="margin-left:10px;">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="{{ '/hr/disciplinska_odgovornost/uredite_zalbu/' . $zalba->id }}" style="margin-left:10px;">
+                            <a href="{{ '/hr/disciplinska_odgovornost/uredite_zalbu/' . $zalba->id ?? '1'}}" style="margin-left:10px;">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="{{ '/hr/disciplinska_odgovornost/obrisite_zalbu/' . $zalba->id }}"
+                            <a href="{{ '/hr/disciplinska_odgovornost/obrisite_zalbu/' . $zalba->id ?? '1'}}"
                                style="margin-left:10px;">
                                 <i class="fa fa-times"></i>
                             </a>

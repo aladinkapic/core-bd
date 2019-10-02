@@ -28,7 +28,7 @@
                                 <div class="col-md-7">
                                     <select class="form-control" name="sluzbenik">
                                         @foreach($sluzbenici as $sluzbenik)
-                                            <option value="{{ $sluzbenik->id }}">{{ $sluzbenik->ime }} {{ $sluzbenik->prezime }}</option>
+                                            <option value="{{ $sluzbenik->id ?? '1'}}">{{ $sluzbenik->ime ?? '/'}} {{ $sluzbenik->prezime ?? '/'s}}</option>
                                         @endforeach
                                     </select>
                                 </div>
