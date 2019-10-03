@@ -192,8 +192,24 @@ class Auth extends Controller{
     public function dodijeliUlogu($id){
         $sluzbenik = Sluzbenik::where('id', $id)->first();
 
+        $sifra = substr(md5(time()), '0', '10');
 
-        return view('prijava.dodijelite_uloge', ['id' => $id], compact('sluzbenik'));
+        $pin = mt_rand(4000, 9999);
+
+        return view('prijava.dodijelite_uloge', ['id' => $id], compact('sluzbenik', 'sifra', 'pin'));
+    }
+
+    public function validirajSifru(Request $request){
+        try {
+            $sluzbenik = Sluzbenik::where('id', '=', $request->sluzbenik_id)->update([
+                'sifra'                        => $request->sifra,
+                'pin'                          => $request->pin,
+            ]);
+            return json_encode(array('code' => '0000', 'message' => 'Uspješno promijenjena šifra'));
+
+        } catch (\Exception $e) {
+            return json_encode(array('code' => '8658', 'message' => 'Neuspješno mijenjanje šifre !'));
+        }
     }
 
     public function azurirajUloge(Request $request){

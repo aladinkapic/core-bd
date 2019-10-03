@@ -418,22 +418,39 @@
                         <!-- ---------------------------------------------------------------------------- -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
-            </div>
-        </div>
 
+            </div>
+            {{--{!! Form::label('sluzbenik_id', __('Ime službenika').' : ', ['class' => '']) !!}--}}
+            {{--{!! Form::select('sluzbenik_id', '', 0,  ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off']) !!}--}}
+            {{--{!! Form::hidden('sifra', '', ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off']) !!}--}}
+            {{--{!! Form::hidden('pin', '', ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off']) !!}--}}
+            <div class="row ml-5">
+                {{--<form method="POST" action="/uloge/validiraj-sifru" id="promijeni-sifru">--}}
+                    {{--@csrf--}}
+                <div>
+                    <!-- Dodijeljivanje sifre -->
+
+                    <div>
+                        <div>
+                            <h4>{{__('Dodijeljivanje sifre za')}} {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime  ?? '/'}}</h4>
+                        </div>
+
+                        <div>
+                            <div>
+                                {!! Form::hidden('sifra', $sifra, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sifra']) !!}
+                                {!! Form::hidden('pin', $pin, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'pin']) !!}
+                                {!! Form::hidden('sluzbenik_id', $sluzbenik->id, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sluzbenik_id']) !!}
+                                <button type="submit" id="buton-to-change-code" class="btn btn-primary">Spremite promijene</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{--</form>--}}
+            </div>
+
+        </div>
     </div>
+
 @endsection

@@ -43,6 +43,10 @@ Route::prefix('/')->group(function () {
 
 });
 
+/*** Dodjeljivanje šifre i PIN-a ***/
+
+
+
 /*
  * API Route
  */
@@ -326,6 +330,7 @@ Route::prefix('uloge')->middleware('role:postavke')->group(function () {
     Route::get('/pregled_uloga',              'Auth@pregledUloga')->name('izvjestaji.pregled.uloga');
     Route::get('/dodijeliUlogu/{id}',         'Auth@dodijeliUlogu')->name("izvjestaji.dodijeli.ulogu");
     Route::post('/azuriraj_uloge',            'Auth@azurirajUloge')->name('izvjestaji.azuriraj.uloge');
+    Route::post('/validiraj-sifru',           'Auth@validirajSifru')->name('validiranje-sifre');
 });
 
 
