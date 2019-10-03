@@ -33,7 +33,7 @@
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
-            <a target="_blank" href="{{ \Illuminate\Support\Facades\Storage::url($organizacija->pravilnik) }}">
+            <a target="_blank" href="/pravilnici/{{$organizacija->pravilnik}}">
                 <i class="fa fa-file"></i> Preuzmi pravilnik
             </a>
         </li>

@@ -363,12 +363,13 @@ Route::prefix('organizacija')->group(function () {
      *
      */
 
-    Route::get('index', 'OrganizacijaController@index')->name('organizacija.index');
-    Route::get('edit/{id}', 'OrganizacijaController@edit')->name('organizacija.edit');
-    Route::get('create', 'OrganizacijaController@create')->name('organizacija.create');
-    Route::put('store', 'OrganizacijaController@store')->name('organizacija.store');
-    Route::delete('destroy/{id}', 'OrganizacijaController@destroy')->name('organizacija.destroy');
-    Route::post('active/{id}', 'OrganizacijaController@active')->name('organizacija.active');
+    Route::get('index',             'OrganizacijaController@index')->name('organizacija.index');
+    Route::get('edit/{id}',         'OrganizacijaController@edit')->name('organizacija.edit');
+    Route::get('create',            'OrganizacijaController@create')->name('organizacija.create');
+    Route::get('nova',              'OrganizacijaController@nova')->name('organizacija.novaaa');
+    Route::put('store',             'OrganizacijaController@store')->name('organizacija.store');
+    Route::delete('destroy/{id}',   'OrganizacijaController@destroy')->name('organizacija.destroy');
+    Route::post('active/{id}',      'OrganizacijaController@active')->name('organizacija.active');
 
 
     /*
