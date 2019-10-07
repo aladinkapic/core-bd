@@ -258,7 +258,7 @@ class UgovorController extends Controller{
 
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
 
-        $ugovor = Privremeno::find($id)->first();
+        $ugovor = Privremeno::where('id', $id)->first();
         $sluzbenik  = Sluzbenik::where('id', $ugovor->sluzbenik)->first();
 
         $radnaMjesta = ''; // Definišimo praznu varijablu radna mjesta
