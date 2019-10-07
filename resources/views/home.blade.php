@@ -149,7 +149,7 @@
 
                 <div class="card bg-light">
                     <div class="card-header ads-darker">
-                        {{__('Osposobljavanje i usavršavanje')}}
+                        {{__('Program stručnog usavršavanja')}}
                     </div>
                     <div class="card-body hr-activity tab">
                         <div class="row">
