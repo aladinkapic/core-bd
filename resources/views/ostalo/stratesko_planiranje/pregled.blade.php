@@ -26,12 +26,12 @@
             @php $i=1; @endphp
             @foreach($strat_plan as $plan)
                 <tr >
-                    <th scope="col" width="40px;" class="text-center">{{$i++}}</th>
-                    <th scope="col">{{$plan->naziv}}</th>
-                    <th scope="col">{{$plan->br_plan_godina}} godina</th>
+                    <th scope="col" width="40px;" class="text-center">{{$i++ ?? '/'}}</th>
+                    <th scope="col">{{$plan->naziv ?? '/'}}</th>
+                    <th scope="col">{{$plan->br_plan_godina ?? '/'}} godina</th>
                     <th scope="col">Ime i prezime</th>
                     <th scope="col">
-                        {{$plan->created_at}}
+                        {{$plan->created_at ?? '/'}}
                     </th>
                     <th scope="col" class="text-center">
                         <a href="{{route('pregled.strateskoplaniranje', ['id' => $plan->id])}}" title="Pregledajte strateško planiranje">

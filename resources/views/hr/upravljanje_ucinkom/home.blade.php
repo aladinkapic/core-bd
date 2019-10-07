@@ -39,18 +39,18 @@
                 <tr>
                     <td>{{$ucinak -> usluzbenik->ime_prezime ?? ''}}</td>
                     <td>{{$ucinak -> mjesto->naziv_rm ?? ''}}</td>
-                    <td>{{$ucinak -> kategorija_ocjene->name}}</td>
-                    <td>{{$ucinak -> godina}}</td>
-                    <td>{{$ucinak -> ocjena}}</td>
-                    <td>{{$ucinak -> opisna_ocjena}}</td>
+                    <td>{{$ucinak -> kategorija_ocjene->name ?? '/'}}</td>
+                    <td>{{$ucinak -> godina ?? '/'}}</td>
+                    <td>{{$ucinak -> ocjena ?? '/'}}</td>
+                    <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
                     <td class="text-center">
-                        <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id}}">
+                        <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id ?? '1'}}">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id}}" style="margin-left:10px;">
+                        <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="/hr/upravljanje_ucinkom/delete/{{$ucinak -> id}}" style="margin-left:10px;">
+                        <a href="/hr/upravljanje_ucinkom/delete/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">
                             <i class="fas fa-times"></i>
                         </a>
                     </td>

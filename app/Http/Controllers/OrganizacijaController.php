@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\HelpController;
+
 use App\Models\Kretanje;
 use App\Models\Organ;
 use App\Models\Organizacija;
@@ -14,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Util\Filter;
 use Validator;
-use App\Http\Controllers\HelpController;
+
 
 
 class OrganizacijaController extends Controller
@@ -115,6 +117,9 @@ class OrganizacijaController extends Controller
 
         return view('hr.organizacija.create');
     }
+    public function nova(){
+        return view('hr.organizacija.nova');
+    }
 
     public function destroy(Request $request, $id)
     {
@@ -129,8 +134,13 @@ class OrganizacijaController extends Controller
 
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+        $file = $request->file('dokument');
+
+        $ext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $name = md5($file->getClientOriginalName() . time()) . '.' . $ext;
+
+        $file->move("pravilnici/", $name);
 
         $poruke = HelpController::getValidationMessages();
         $validacija = Validator::make($request->all(), [
@@ -142,30 +152,44 @@ class OrganizacijaController extends Controller
             'agree' => 'required'
         ], $poruke);
 
-        if ($validacija->fails()) {
-            return redirect(route('organizacija.create'))
-                ->withErrors($validacija)
-                ->withInput();
-        }
+//        if ($validacija->fails()) {
+//            return redirect(route('organizacija.create'))
+//                ->withErrors($validacija)
+//                ->withInput();
+//        }
 
         $select = Organizacija::where('oju_id', '=', $request->get('oju_id'))->orderBy('id', 'DESC')->first();
 
-        if (isset($select) && $select->active == 0) {
-            return redirect(route('organizacija.create'))->withErrors(['status' => 'Za ovaj organ javne uprave već postoji neaktivna unutrašnja organizacija!']);
+//        if (isset($select) && $select->active == 0) {
+//            return redirect(route('organizacija.create'))->withErrors(['status' => 'Za ovaj organ javne uprave već postoji neaktivna unutrašnja organizacija!']);
+//        }
+
+//        $path = $request->dokument->store('docs');
+
+        try{
+            $organizacija = Organizacija::create([
+                'naziv' => $request->get('naziv'),
+                'opis' => $request->get('opis'),
+                'datum_od' => HelpController::format($request->get('datum_od')),
+                'datum_do' => HelpController::format($request->get('datum_do')),
+                'oju_id' => $request->get('oju_id'),
+                'active' => 0,
+                'pravilnik' => $name
+            ]);
+        }catch (\Exception $e){
+            dd($e);
         }
+//        $organizacija = new Organizacija();
+//
+//        $organizacija->naziv = $request->get('naziv');
+//        $organizacija->opis = $request->get('opis');
+//        $organizacija->datum_od = HelpController::format($request->get('datum_od'));
+//        $organizacija->datum_do = HelpController::format($request->get('datum_do'));
+//        $organizacija->oju_id = $request->get('oju_id');
+//        $organizacija->active = 0;
+//        $organizacija->pravilnik = $name;
+//        $organizacija->save();
 
-        $path = $request->dokument->store('docs');
-
-        $organizacija = new Organizacija();
-
-        $organizacija->naziv = $request->get('naziv');
-        $organizacija->opis = $request->get('opis');
-        $organizacija->datum_od = HelpController::format($request->get('datum_od'));
-        $organizacija->datum_do = HelpController::format($request->get('datum_do'));
-        $organizacija->oju_id = $request->get('oju_id');
-        $organizacija->active = 0;
-        $organizacija->pravilnik = $path;
-        $organizacija->save();
 
 
         if ($request->get('org_plan')) {

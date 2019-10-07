@@ -16,15 +16,15 @@
         @php $i=1; @endphp
         @foreach($radna_mjesta as $radno_mjesto)
             <tr>
-                <th scope="row" width="40px;" class="text-center">{{$radno_mjesto->id}}</th>
+                <th scope="row" width="40px;" class="text-center">{{$radno_mjesto->id ?? '1'}}</th>
                 <td>
-                    {{$radno_mjesto->naziv_rm}}
+                    {{$radno_mjesto->naziv_rm ?? '/'}}
                 </td>
                 <td>
-                    {{$radno_mjesto->sifra_rm}}
+                    {{$radno_mjesto->sifra_rm ?? '/'}}
                 </td>
                 <td>
-                    {{$radno_mjesto->broj_izvrsilaca}}
+                    {{$radno_mjesto->broj_izvrsilaca ?? '/'}}
                 </td>
                 <td>
                     {{ \App\Models\OrganizacionaJedinica::where('id', '=', $radno_mjesto->id_oj)->first()->naziv }}
@@ -39,11 +39,11 @@
 
                 @endphp
                 <td class="text-center">
-                    <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{$radno_mjesto->id}}" title="Pregledajte radno mjesto">
+                    <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{$radno_mjesto->id ?? '1'}}" title="Pregledajte radno mjesto">
                         <i class="fa fa-eye" style="margin-right:10px;"></i>
                     </a>
 
-                    <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{$radno_mjesto->id}}" title="Uredite radno mjesto">
+                    <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{$radno_mjesto->id ?? '1'}}" title="Uredite radno mjesto">
                         <i class="fas fa-edit"></i>
                     </a>
                 </td>

@@ -39,21 +39,21 @@
             @if (isset($uprave))
             @foreach($uprave as $uprava)
             <tr class="org-row">
-                <td>{{$uprava -> naziv}}</td>
-                <td>{{$uprava->tip_javne_uprave->name}}</td>
-                <td>{{$uprava->ulica}}</td>
-                <td>{{$uprava->broj}}</td>
-                <td>{{$uprava->telefon}}</td>
-                <td>{{$uprava->fax}}</td>
-                <td>{{$uprava->web}}</td>
+                <td>{{$uprava -> naziv ?? '/'}}</td>
+                <td>{{$uprava->tip_javne_uprave->name ?? '/'}}</td>
+                <td>{{$uprava->ulica ?? '/'}}</td>
+                <td>{{$uprava->broj ?? '/'}}</td>
+                <td>{{$uprava->telefon ?? '/'}}</td>
+                <td>{{$uprava->fax ?? '/'}}</td>
+                <td>{{$uprava->web ?? '/'}}</td>
                 <td class="text-center">
-                    <a href="/hr/uprava/viewUprava/{{$uprava -> id}}">
+                    <a href="/hr/uprava/viewUprava/{{$uprava -> id ?? '1'}}">
                         <i class="fa fa-eye"></i>
                     </a>
-                    <a href="/hr/uprava/editUprava/{{$uprava -> id}}" style="margin-left:10px;">
+                    <a href="/hr/uprava/editUprava/{{$uprava -> id ?? '1'}}" style="margin-left:10px;">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="/hr/uprava/delete/{{$uprava -> id}}" style="margin-left:10px;">
+                    <a href="/hr/uprava/delete/{{$uprava -> id ?? '1'}}" style="margin-left:10px;">
                         <i class="fas fa-times"></i>
                     </a>
                 </td>

@@ -60,7 +60,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                                     <i class="fab fa-leanpub"></i>
                                 </div>
                                 <p>
-                                    {{$naslov}}
+                                    {{$naslov ?? '/'}}
                                 </p>
                             </div>
                         </li>
@@ -92,7 +92,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                     <form method="POST" id="kreiranje" action="{{$formlink}}" enctype="multipart/form-data">
                         @csrf
                         @if (isset($instanca) and ($instanca) === 'new')
-                            <input type="hidden" value="{{$obuka->id}}" name="obukaid"/>
+                            <input type="hidden" value="{{$obuka->id ?? '1'}}" name="obukaid"/>
                             @endif
                         <input type="hidden" name="status" value="0"/>
                         <section class="active">
@@ -358,7 +358,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
         </section>
     </div>
     @if (isset($obuka))
-        <div id="maxsluz" hidden>{{$obuka -> broj_polaznika}}</div>
+        <div id="maxsluz" hidden>{{$obuka -> broj_polaznika ?? '/'}}</div>
     @endif
 
 @stop

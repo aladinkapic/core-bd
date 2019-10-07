@@ -114,13 +114,13 @@
                 <div class="split_container" style="width:calc(100% - 20px); margin-left:-6px; margin-top:30px;">
 
                     <div class="limits_edit_delete">
-                        <a href="/hr/odsustva/uredi_praznik/{{$praznik->id}}" title="Uredite praznik {{$praznik->naziv_praznika}}">
+                        <a href="/hr/odsustva/uredi_praznik/{{$praznik->id ?? '1'}}" title="Uredite praznik {{$praznik->naziv_praznika ?? '/'}}">
                             <div class="icon_wrapper">
                                 <i class="fas fa-edit"></i>
                             </div>
                         </a>
-                        <a href="{{asset('/hr/odsustva/obrisi_praznik/'.$praznik->id)}}" title="Obrišite limit odsustva">
-                            <div class="icon_wrapper" title="Izbrišite praznik {{$praznik->naziv_praznika}}">
+                        <a href="{{asset('/hr/odsustva/obrisi_praznik/'.$praznik->id ?? '1')}}" title="Obrišite limit odsustva">
+                            <div class="icon_wrapper" title="Izbrišite praznik {{$praznik->naziv_praznika ?? '/'}}">
                                 <i class="fas fa-trash"></i>
                             </div>
                         </a>

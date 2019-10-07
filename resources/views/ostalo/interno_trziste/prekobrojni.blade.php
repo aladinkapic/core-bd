@@ -32,10 +32,10 @@
                 @foreach($sluzbenici as $korisnik)
                     <tr>
                         <th scope="row" width="40px;" class="text-center">{{$i++}}</th>
-                        <td> {{$korisnik->ime}} {{$korisnik->prezime}} </td>
-                        <td> {{$korisnik->radnoMjesto->naziv_rm}} </td>
+                        <td> {{$korisnik->ime ?? '/'}} {{$korisnik->prezime ?? '/'}} </td>
+                        <td> {{$korisnik->radnoMjesto->naziv_rm ?? '/'}} </td>
                         <td class="text-center">
-                            <a href="#" title="Dodajte / uredite rješenje" class="rjesenje rjesenje_korisnika" data-id="{{ $korisnik->id }}" data-name="{{ $korisnik->ime }} {{ $korisnik->prezime }}">
+                            <a href="#" title="Dodajte / uredite rješenje" class="rjesenje rjesenje_korisnika" data-id="{{ $korisnik->id ?? '1'}}" data-name="{{ $korisnik->ime ?? '/'}} {{ $korisnik->prezime ?? '/'}}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>

@@ -15,7 +15,7 @@
 
         <div class="card ">
             <div class="card-header ads-darker">
-                <a href="/osposobljavanje_i_usavrsavanje/predavaci/editPredavac/{{$predavac -> id}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> {{__('Izmijeni')}}</button></a>
+                <a href="/osposobljavanje_i_usavrsavanje/predavaci/editPredavac/{{$predavac -> id ?? '1'}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> {{__('Izmijeni')}}</button></a>
                 <h3>{{__('Predavač')}}</h3>
             </div>
             <div class="card-body hr-activity tab">
@@ -25,24 +25,24 @@
                             <tbody>
                             <tr>
                                 <td><b>{{__('Ime predavača')}}</b></td>
-                                <td> {{$predavac -> ime}} </td>
+                                <td> {{$predavac -> ime ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>{{__('Prezime predavača')}}</b></td>
-                                <td> {{$predavac -> prezime}} </td>
+                                <td> {{$predavac -> prezime ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>{{__('Telefon')}}</b></td>
-                                <td> {{$predavac -> telefon}} </td>
+                                <td> {{$predavac -> telefon ?? '/'}} </td>
                             </tr>
 
                             <tr>
                                 <td><b>{{__('E-mail')}}</b></td>
-                                <td> {{$predavac -> mail}} </td>
+                                <td> {{$predavac -> mail ?? '/'}} </td>
                             </tr>
                             <tr>
                                 <td><b>{{__('Napomena')}}</b></td>
-                                <td>{{$predavac -> napomena}}</td>
+                                <td>{{$predavac -> napomena ?? '/'}}</td>
                             </tr>
                             <tr>
                                 <td><b>{{__('Teme za obuku')}}</b></td>

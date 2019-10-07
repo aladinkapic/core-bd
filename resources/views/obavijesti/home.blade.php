@@ -16,18 +16,18 @@
             </thead>
             <tbody>
             @foreach($notifications as $notification)
-                <tr {{$notification->class}}>
-                    <td>{{$notification->what}}</td>
-                    <td>{{$notification->sluzbenik}}</td>
-                    <td>{{$notification->message}}</td>
-                    <td>{{$notification->created_at}}</td>
+                <tr {{$notification->class ?? '/'}}>
+                    <td>{{$notification->what ?? '/'}}</td>
+                    <td>{{$notification->sluzbenik ?? '/'}}</td>
+                    <td>{{$notification->message ?? '/'}}</td>
+                    <td>{{$notification->created_at ?? '/'}}</td>
                     @if($notification->read_at == null)
                     <td id="celijaPregledaj" style="text-align: center;" onclick="pregledaj(this);" onmouseleave="checkhide(this);" onmouseover="checkhover(this);">
-                        <i style="display: none;" id="{{$notification->id}}" class="fas fa-check"></i>
-                        <p id="hiddenid" style="display:none;">{{$notification->id}}</p>
+                        <i style="display: none;" id="{{$notification->id ?? '1'}}" class="fas fa-check"></i>
+                        <p id="hiddenid" style="display:none;">{{$notification->id ?? '1'}}</p>
                     </td>
                         @else
-                    <td><p id="hiddenid" style="display:none;">{{$notification->id}}</p>
+                    <td><p id="hiddenid" style="display:none;">{{$notification->id ?? '1'}}</p>
                     </td>
                     @endif
                 </tr>

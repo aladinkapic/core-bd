@@ -600,3 +600,31 @@ $(document).ready(function(){
 
 
 });
+
+$(document).ready(function() {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#buton-to-change-code').click(function () {
+        // e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/uloge/validiraj-sifru',
+            data: {sluzbenik_id : $("#sluzbenik_id").val(), sifra : $("#sifra").val(), pin : $("#pin").val()},
+            success: function (data) {
+                data = JSON.parse(data);
+                if(data['code'] === '0000'){
+                    $.notify(data['message'], 'success');
+                }else{
+                    $.notify(data['message']);
+                }
+                console.log(data);
+            }
+        });
+    });
+
+});

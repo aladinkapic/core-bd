@@ -49,21 +49,21 @@
                 <tbody>
                 @foreach($sluzbenici as $sluzbenik)
                     <tr class="sluzbenik-row">
-                        <td scope="row" width="40px;" style="text-align:center;">{{ $sluzbenik->id }}</td>
-                        <td>{{ $sluzbenik->ime_prezime }}</td>
-                        <td>{{ $sluzbenik->email }}</td>
-                        <td>{{ $sluzbenik->jmbg }}</td>
-                        <td>{{ $sluzbenik->ime_roditelja }}</td>
+                        <td scope="row" width="40px;" style="text-align:center;">{{ $sluzbenik->id ?? '1'}}</td>
+                        <td>{{ $sluzbenik->ime_prezime ?? '/'}}</td>
+                        <td>{{ $sluzbenik->email ?? '/'}}</td>
+                        <td>{{ $sluzbenik->jmbg ?? '/'}}</td>
+                        <td>{{ $sluzbenik->ime_roditelja ?? '/'}}</td>
                         <td>{{ $sluzbenik->spol_sl->name ?? '' }}</td>
                         <td>{{ $sluzbenik->kategorija_sl ? $sluzbenik->kategorija_sl->name : '' }}</td>
-                        <td>{{ $sluzbenik->drzavljanstvo_1 }}</td>
+                        <td>{{ $sluzbenik->drzavljanstvo_1 ?? '/' }}</td>
                         <td>{{ $sluzbenik->nacionalnost_sl ? $sluzbenik->nacionalnost_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->bracni_status_sl ? $sluzbenik->bracni_status_sl->name : '' }}</td>
-                        <td>{{ $sluzbenik->mjesto_rodjenja }}</td>
-                        <td>{{ $sluzbenik->datum_rodjenja }}</td>
-                        <td>{{ $sluzbenik->licna_karta }}</td>
-                        <td>{{ $sluzbenik->mjesto_idavanja_lk }}</td>
-                        <td>{{ $sluzbenik->PIO }}</td>
+                        <td>{{ $sluzbenik->mjesto_rodjenja ?? '/' }}</td>
+                        <td>{{ $sluzbenik->datum_rodjenja ?? '/'}}</td>
+                        <td>{{ $sluzbenik->licna_karta ?? '/'}}</td>
+                        <td>{{ $sluzbenik->mjesto_idavanja_lk ?? '/'}}</td>
+                        <td>{{ $sluzbenik->PIO ?? '/'}}</td>
 
                         <!-- Radno mjesto službenika -->
                         <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->naziv_rm : '' }}</td>
@@ -77,7 +77,7 @@
                                 <ul>
                                     @foreach($sluzbenik->prebivaliste as $prebivaliste)
                                         <li>
-                                            {{ $prebivaliste->adresa_prebivalista }}
+                                            {{ $prebivaliste->adresa_prebivalista ?? '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
@@ -88,7 +88,7 @@
                                 <ul>
                                     @foreach($sluzbenik->prebivaliste as $prebivaliste)
                                         <li>
-                                            {{ $prebivaliste->mjesto_prebivalista }}
+                                            {{ $prebivaliste->mjesto_prebivalista ?? '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
@@ -99,7 +99,7 @@
                                 <ul>
                                     @foreach($sluzbenik->prebivaliste as $prebivaliste)
                                         <li>
-                                            {{ $prebivaliste->adresa_boravista }}
+                                            {{ $prebivaliste->adresa_boravista ?? '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
@@ -124,7 +124,7 @@
                                 <ul>
                                     @foreach($sluzbenik->strucna_sprema as $sprema)
                                         <li>
-                                            {{ $sprema->stepen_s_s }}
+                                            {{ $sprema->stepen_s_s ?? '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
@@ -135,7 +135,7 @@
                                 <ul>
                                     @foreach($sluzbenik->strucna_sprema as $sprema)
                                         <li>
-                                            {{ $sprema->obrazovna_institucija }}
+                                            {{ $sprema->obrazovna_institucija ?? '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
@@ -174,11 +174,11 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->ispiti) ? $sluzbenik->ispiti : [] as $ispiti)
                                     <li>
-                                        <b>Ispit za rad u organima JU</b>: {{ $ispiti->ispit_za_rad }}<br/>
-                                        <b>Pravosudni ispit</b>: {{ $ispiti->pravosudni_isp }}<br/>
-                                        <b>Stručni ispit</b>: {{ $ispiti->strucni_isp }}<br/>
-                                        <b>Datum završetka</b>: {{ $ispiti->datum_zavrsetka }}<br/>
-                                        <b>Nostrifikacija</b>: {{ $ispiti->nostrifikacija }}<br/>
+                                        <b>Ispit za rad u organima JU</b>: {{ $ispiti->ispit_za_rad ?? '/'}}<br/>
+                                        <b>Pravosudni ispit</b>: {{ $ispiti->pravosudni_isp ?? '/'}}<br/>
+                                        <b>Stručni ispit</b>: {{ $ispiti->strucni_isp ?? '/'}}<br/>
+                                        <b>Datum završetka</b>: {{ $ispiti->datum_zavrsetka ?? '/'}}<br/>
+                                        <b>Nostrifikacija</b>: {{ $ispiti->nostrifikacija ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -190,10 +190,10 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->kontakt_detalji) ? $sluzbenik->kontakt_detalji : [] as $kontakt)
                                     <li>
-                                        <b>Službeni telefon</b>: {{ $kontakt->sluzbeni_tel }}<br/>
-                                        <b>Službeni email</b>: {{ $kontakt->sluzbeni_mail }}<br/>
-                                        <b>Privatni telefon</b>: {{ $kontakt->mobilni_tel }}<br/>
-                                        <b>Privatni e-mail</b>: {{ $kontakt->email }}<br/>
+                                        <b>Službeni telefon</b>: {{ $kontakt->sluzbeni_tel ?? '/'}}<br/>
+                                        <b>Službeni email</b>: {{ $kontakt->sluzbeni_mail ?? '/'}}<br/>
+                                        <b>Privatni telefon</b>: {{ $kontakt->mobilni_tel ?? '/'}}<br/>
+                                        <b>Privatni e-mail</b>: {{ $kontakt->email ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -206,11 +206,11 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->vjestine ? $sluzbenik->vjestine : []) as $vjestine)
                                     <li>
-                                        <b>Vrsta vještine</b>: {{ $vjestine->vrsta_vjestine }}<br/>
-                                        <b>Nivo vještine</b>: {{ $vjestine->nivo_vjestine }}<br/>
-                                        <b>Institucija</b>: {{ $vjestine->institucija }}<br/>
-                                        <b>Broj uvjerenja</b>: {{ $vjestine->broj_uvjerenja }}<br/>
-                                        <b>Datum uvjerenja</b>: {{ $vjestine->datum_uvjerenja }}<br/>
+                                        <b>Vrsta vještine</b>: {{ $vjestine->vrsta_vjestine ?? '/'}}<br/>
+                                        <b>Nivo vještine</b>: {{ $vjestine->nivo_vjestine ?? '/'}}<br/>
+                                        <b>Institucija</b>: {{ $vjestine->institucija ?? '/'}}<br/>
+                                        <b>Broj uvjerenja</b>: {{ $vjestine->broj_uvjerenja ?? '/'}}<br/>
+                                        <b>Datum uvjerenja</b>: {{ $vjestine->datum_uvjerenja ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -222,15 +222,15 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->zasnivanje_r_o ? $sluzbenik->zasnivanje_r_o : []) as $zasnivanje)
                                     <li>
-                                        <b>Datum zasnivanja radnog odnosa</b>: {{ $zasnivanje->datum_zasnivanja_o }}
+                                        <b>Datum zasnivanja radnog odnosa</b>: {{ $zasnivanje->datum_zasnivanja_o ?? '/'}}
                                         <br/>
-                                        <b>Način zasnivanja radnog odnosa</b>: {{ $zasnivanje->nacin_zasnivanja_r_o }}
+                                        <b>Način zasnivanja radnog odnosa</b>: {{ $zasnivanje->nacin_zasnivanja_r_o ?? '/'}}
                                         <br/>
-                                        <b>Vrsta radnog odnosa</b>: {{ $zasnivanje->vrsta_r_o }}<br/>
-                                        <b>Obračunati radni staž</b>: {{ $zasnivanje->obracunati_r_staz }}<br/>
-                                        <b>Obračunati radni staž godina</b>: {{ $zasnivanje->obracunati_r_s_god }}<br/>
-                                        <b>Obračunati radni staž mjeseci</b>: {{ $zasnivanje->obracunati_r_s_mje }}<br/>
-                                        <b>Obračunati radni staž dana</b>: {{ $zasnivanje->obracunati_r_s_dan }}<br/>
+                                        <b>Vrsta radnog odnosa</b>: {{ $zasnivanje->vrsta_r_o ?? '/'}}<br/>
+                                        <b>Obračunati radni staž</b>: {{ $zasnivanje->obracunati_r_staz ?? '/'}}<br/>
+                                        <b>Obračunati radni staž godina</b>: {{ $zasnivanje->obracunati_r_s_god ?? '/'}}<br/>
+                                        <b>Obračunati radni staž mjeseci</b>: {{ $zasnivanje->obracunati_r_s_mje ?? '/'}}<br/>
+                                        <b>Obračunati radni staž dana</b>: {{ $zasnivanje->obracunati_r_s_dan ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -242,21 +242,21 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->prethodno_r_i) ? $sluzbenik->prethodno_r_i : [] as $prethodno )
                                     <li>
-                                        <b>Poslodavac</b>: {{ $prethodno->poslodavac }}<br/>
-                                        <b>Sjedište poslodavca</b>: {{ $prethodno->sjediste_poslodavca }}<br/>
-                                        <b>Datum početka</b>: {{ $prethodno->period_zaposlenja_od }}<br/>
-                                        <b>Datum završetka</b>: {{ $prethodno->period_zaposlenja_do }}<br/>
-                                        <b>Radno vrijeme</b>: {{ $prethodno->radno_vrijeme }}<br/>
-                                        <b>Opis poslova</b>: {{ $prethodno->opis_poslova }}<br/>
-                                        <b>Stečeno radno iskustvo</b>: {{ $prethodno->steceno_radno_iskustvo }}<br/>
-                                        <b>Ostvareni radni staž</b>: {{ $prethodno->ostvareni_radni_staz }}<br/>
-                                        <b>Staž osiguranja</b>: {{ $prethodno->staz_osiguranja }}<br/>
-                                        <b>Dobrovoljno osiguranje</b>: {{ $prethodno->dobrovoljno_osiguranje }}<br/>
-                                        <b>Penzioni staž</b>: {{ $prethodno->penzioni_staz }}<br/>
-                                        <b>Staž sa uvećanim trajanjem</b>: {{ $prethodno->staz_sa_uvecanim_trajanjem }}
+                                        <b>Poslodavac</b>: {{ $prethodno->poslodavac ?? '/'}}<br/>
+                                        <b>Sjedište poslodavca</b>: {{ $prethodno->sjediste_poslodavca ?? '/'}}<br/>
+                                        <b>Datum početka</b>: {{ $prethodno->period_zaposlenja_od ?? '/'}}<br/>
+                                        <b>Datum završetka</b>: {{ $prethodno->period_zaposlenja_do ?? '/'}}<br/>
+                                        <b>Radno vrijeme</b>: {{ $prethodno->radno_vrijeme ?? '/'}}<br/>
+                                        <b>Opis poslova</b>: {{ $prethodno->opis_poslova ?? '/'}}<br/>
+                                        <b>Stečeno radno iskustvo</b>: {{ $prethodno->steceno_radno_iskustvo ?? '/'}}<br/>
+                                        <b>Ostvareni radni staž</b>: {{ $prethodno->ostvareni_radni_staz ?? '/'}}<br/>
+                                        <b>Staž osiguranja</b>: {{ $prethodno->staz_osiguranja ?? '/'}}<br/>
+                                        <b>Dobrovoljno osiguranje</b>: {{ $prethodno->dobrovoljno_osiguranje ?? '/'}}<br/>
+                                        <b>Penzioni staž</b>: {{ $prethodno->penzioni_staz ?? '/'}}<br/>
+                                        <b>Staž sa uvećanim trajanjem</b>: {{ $prethodno->staz_sa_uvecanim_trajanjem ?? '/'}}
                                         <br/>
-                                        <b>Država gdje je staž ostvaren</b>: {{ $prethodno->drzava_sa_stazom }}<br/>
-                                        <b>Trajanje staža u državi</b>: {{ $prethodno->trajanje_staza_u_drzavi }}<br/>
+                                        <b>Država gdje je staž ostvaren</b>: {{ $prethodno->drzava_sa_stazom ?? '/'}}<br/>
+                                        <b>Trajanje staža u državi</b>: {{ $prethodno->trajanje_staza_u_drzavi ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -268,8 +268,8 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->prestanak_ro) ? $sluzbenik->prestanak_ro : [] as $prestanak)
                                     <li>
-                                        <b>Datum prestanka</b>: {{ $prestanak->datum_prestanka }}<br/>
-                                        <b>Osnov za prestanak</b>: {{ $prestanak->osnov_za_prestanak }}<br/>
+                                        <b>Datum prestanka</b>: {{ $prestanak->datum_prestanka ?? '/'}}<br/>
+                                        <b>Osnov za prestanak</b>: {{ $prestanak->osnov_za_prestanak ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -281,8 +281,8 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->clanovi_porodice) ? $sluzbenik->clanovi_porodice : [] as $clanovi )
                                     <li>
-                                        <b>Srodstvo</b>: {{ $clanovi->srodstvo }}<br/>
-                                        <b>Datum rođenja</b>: {{ $clanovi->datum_rodjenja }}<br/>
+                                        <b>Srodstvo</b>: {{ $clanovi->srodstvo ?? '/'}}<br/>
+                                        <b>Datum rođenja</b>: {{ $clanovi->datum_rodjenja ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -290,18 +290,18 @@
                         </td>
                         <td style="text-align:center;" class="akcije">
                             @if(isset($odsustva))
-                                <a href="{{ '/hr/odsustva/kalendar/' . $sluzbenik->id }}">
+                                <a href="{{ '/hr/odsustva/kalendar/' . $sluzbenik->id ?? '1'}}">
                                     <i class="fa fa-eye"></i> Odsustva
                                 </a>
                             @elseif(isset($uloge))
-                                <a href="{{ '/uloge/dodijeliUlogu/' . $sluzbenik->id }}">
+                                <a href="{{ '/uloge/dodijeliUlogu/' . $sluzbenik->id ?? '1'}}">
                                     <i class="fa fa-eye"></i> Uredite uloge
                                 </a>
                             @else
-                                <a href="{{ '/hr/sluzbenici/uredi_sluzbenika/' . $sluzbenik->id }}">
+                                <a href="{{ '/hr/sluzbenici/uredi_sluzbenika/' . $sluzbenik->id ?? '1'}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="{{ '/hr/sluzbenici/dodatno_o_sluzbeniku/' . $sluzbenik->id }}"
+                                <a href="{{ '/hr/sluzbenici/dodatno_o_sluzbeniku/' . $sluzbenik->id ?? '1'}}"
                                    style="margin-left:10px;">
                                     <i class="fa fa-eye"></i>
                                 </a>

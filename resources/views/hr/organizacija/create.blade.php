@@ -103,14 +103,14 @@
                                             <label for="staticEmail" class="col-sm-3 col-form-label">Naziv</label>
                                             <div class="col-sm-9">
                                                 <input required="required" type="text" value="{{ old('naziv') }}" name="naziv" class="form-control" id="staticEmail"
-                                                       placeholder="Unesite naziv organizacionog plana...">
+                                                       placeholder="Unesite naziv organizacionog plana..." autocomplete="off">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label">Opis</label>
                                             <div class="col-sm-9">
-                                                <textarea required="required" class="form-control"  name="opis">{{ old('opis') }}</textarea>
+                                                <textarea required="required" class="form-control"  name="opis" autocomplete="off">{{ old('opis') }}</textarea>
                                             </div>
                                         </div>
 
@@ -124,13 +124,13 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label">Početni datum</label>
                                             <div class="col-sm-9">
-                                                <input required="required" type="text" name="datum_od" value="{{ old('datum_od') }}" id="datum_od" class="form-control datepicker" placeholder="d.m.Y">
+                                                <input required="required" type="text" name="datum_od" value="{{ old('datum_od') }}" autocomplete="off" id="datum_od" class="form-control datepicker" placeholder="d.m.Y">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label">Krajnji datum</label>
                                             <div class="col-sm-9">
-                                                <input required="required" type="text" name="datum_do" value="{{ old('datum_do') }}" id="datum_do" class="form-control datepicker" placeholder="d.m.Y">
+                                                <input required="required" type="text" name="datum_do" value="{{ old('datum_do') }}" autocomplete="off" id="datum_do" class="form-control datepicker" placeholder="d.m.Y">
                                             </div>
                                         </div>
 

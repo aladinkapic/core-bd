@@ -38,10 +38,10 @@
             <tbody>
             @foreach($obuke as $obuka)
                 <tr class="org-row">
-                    <td>{{$obuka -> naziv}}</td>
-                    <td>{{$obuka -> vrsta}}</td>
-                    <td>{{$obuka->organizator}}</td>
-                    <td> {{$obuka->broj_polaznika}}</td>
+                    <td>{{$obuka -> naziv ?? '/'}}</td>
+                    <td>{{$obuka -> vrsta ?? '/'}}</td>
+                    <td>{{$obuka->organizator ?? '/'}}</td>
+                    <td> {{$obuka->broj_polaznika ?? '/'}}</td>
                     <td>
                         <div class="row">
                             <div class="col-3">
@@ -50,7 +50,7 @@
                             <div class="col-9">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal" data-whatever="{{$obuka->id}}">
+                                        data-target="#exampleModal" data-whatever="{{$obuka->id ?? '/'}}">
                                     <i class="fas fa-check-square"></i>
                                     {{__('Ocjeni')}}
                                 </button>
@@ -134,7 +134,7 @@
                     <td>
                         {{$obuka->brInstanci}}
                         &nbsp&nbsp
-                        <a href="/osposobljavanje_i_usavrsavanje/obuke/addInstancu/{{$obuka -> id}}">
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/addInstancu/{{$obuka -> id ?? '1'}}">
                             <button class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus"></i>
                                 {{__('Dodaj')}}
@@ -142,7 +142,7 @@
                         </a>
                         &nbsp&nbsp&nbsp
                         @if ($obuka->brInstanci > 0)
-                            <a href="/osposobljavanje_i_usavrsavanje/obuke/instance/{{$obuka -> id}}">
+                            <a href="/osposobljavanje_i_usavrsavanje/obuke/instance/{{$obuka -> id ?? '1'}}">
                                 <button class="btn btn-secondary btn-sm">
                                     <i class="fas fa-eye"></i>
                                     {{__('Pregledaj')}}
@@ -151,14 +151,14 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <a href="/osposobljavanje_i_usavrsavanje/obuke/view/{{$obuka -> id}}">
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/view/{{$obuka -> id ?? '1'}}">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a href="/osposobljavanje_i_usavrsavanje/obuke/edit/{{$obuka -> id}}"
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/edit/{{$obuka -> id ?? '1'}}"
                            style="margin-left:10px;">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="/osposobljavanje_i_usavrsavanje/obuke/delete/{{$obuka -> id}}"
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/delete/{{$obuka -> id ?? '1'}}"
                            style="margin-left:5px;">
                             <i class="fas fa-times"></i>
                         </a>

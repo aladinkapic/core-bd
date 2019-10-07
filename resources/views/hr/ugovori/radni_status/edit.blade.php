@@ -47,7 +47,7 @@
                                 <div class="col-md-7">
                                     <select class="form-control" name="sluzbenik">
                                         @foreach($sluzbenici as $sluzbenik)
-                                            <option @if($sluzbenik->id == $ugovor->sluzbenik) selected="selected" @endif value="{{ $sluzbenik->id }}">{{ $sluzbenik->ime }} {{ $sluzbenik->prezime }}</option>
+                                            <option @if($sluzbenik->id == $ugovor->sluzbenik) selected="selected" @endif value="{{ $sluzbenik->id ?? '1'}}">{{ $sluzbenik->ime ?? '/'}} {{ $sluzbenik->prezime ?? '/'}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -88,7 +88,7 @@
                                     Broj sati
                                 </div>
                                 <div class="col-md-7">
-                                    <input required="required" value="{{ $ugovor->broj_sati }}" class="form-control" type="text" name="broj_sati"
+                                    <input required="required" value="{{ $ugovor->broj_sati ?? '/'}}" class="form-control" type="text" name="broj_sati"
                                            placeholder="Broj sati..."/>
                                 </div>
                             </div>

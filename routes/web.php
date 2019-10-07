@@ -43,6 +43,10 @@ Route::prefix('/')->group(function () {
 
 });
 
+/*** Dodjeljivanje šifre i PIN-a ***/
+
+
+
 /*
  * API Route
  */
@@ -326,6 +330,7 @@ Route::prefix('uloge')->middleware('role:postavke')->group(function () {
     Route::get('/pregled_uloga',              'Auth@pregledUloga')->name('izvjestaji.pregled.uloga');
     Route::get('/dodijeliUlogu/{id}',         'Auth@dodijeliUlogu')->name("izvjestaji.dodijeli.ulogu");
     Route::post('/azuriraj_uloge',            'Auth@azurirajUloge')->name('izvjestaji.azuriraj.uloge');
+    Route::post('/validiraj-sifru',           'Auth@validirajSifru')->name('validiranje-sifre');
 });
 
 
@@ -358,12 +363,13 @@ Route::prefix('organizacija')->group(function () {
      *
      */
 
-    Route::get('index', 'OrganizacijaController@index')->name('organizacija.index');
-    Route::get('edit/{id}', 'OrganizacijaController@edit')->name('organizacija.edit');
-    Route::get('create', 'OrganizacijaController@create')->name('organizacija.create');
-    Route::put('store', 'OrganizacijaController@store')->name('organizacija.store');
-    Route::delete('destroy/{id}', 'OrganizacijaController@destroy')->name('organizacija.destroy');
-    Route::post('active/{id}', 'OrganizacijaController@active')->name('organizacija.active');
+    Route::get('index',             'OrganizacijaController@index')->name('organizacija.index');
+    Route::get('edit/{id}',         'OrganizacijaController@edit')->name('organizacija.edit');
+    Route::get('create',            'OrganizacijaController@create')->name('organizacija.create');
+    Route::get('nova',              'OrganizacijaController@nova')->name('organizacija.novaaa');
+    Route::put('store',             'OrganizacijaController@store')->name('organizacija.store');
+    Route::delete('destroy/{id}',   'OrganizacijaController@destroy')->name('organizacija.destroy');
+    Route::post('active/{id}',      'OrganizacijaController@active')->name('organizacija.active');
 
 
     /*

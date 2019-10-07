@@ -44,15 +44,15 @@
                     <td><a href="{{route('sluzbenik.dodatno', ['id_sluzbenika'=>$ugovor->sluzbenik])}}">{{$ugovor->usluzbenik->ime_prezime ?? ''}}</a></td>
                     <td>{{$ugovor->mjesto->naziv_rm ?? ''}}</td>
                     <td>{{$ugovor->privremeno_mjesto->naziv_rm ?? ''}}</td>
-                    <td>{{$ugovor->broj_rjesenja}}</td>
-                    <td>{{$ugovor->datum_rjesenja}}</td>
-                    <td>{{$ugovor->datum_od}}</td>
-                    <td>{{$ugovor->datum_do}}</td>
+                    <td>{{$ugovor->broj_rjesenja ?? '/'}}</td>
+                    <td>{{$ugovor->datum_rjesenja ?? '/'}}</td>
+                    <td>{{$ugovor->datum_od ?? '/'}}</td>
+                    <td>{{$ugovor->datum_do ?? '/'}}</td>
                     <td style="text-align:center;" class="akcije">
-                        <a href="{{ '/ugovori/privremeno/edit/' . $ugovor->id }}">
+                        <a href="{{ '/ugovori/privremeno/edit/' . $ugovor->id ?? '1'}}">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a href="{{ '/ugovori/privremeno/destroy/' . $ugovor->id }}"
+                        <a href="{{ '/ugovori/privremeno/destroy/' . $ugovor->id ?? '1'}}"
                            style="margin-left:10px;">
                             <i class="fa fa-times"></i>
                         </a>
