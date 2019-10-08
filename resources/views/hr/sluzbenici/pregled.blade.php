@@ -39,8 +39,6 @@
 
             @include('template.snippets.filters', ['var'  => $sluzbenici])
 
-            {{--<span style="display: none;" id="pol1">{{$sluzbenici->where('pol',1)->count()}}</span>--}}
-            {{--<span style="display: none;" id="pol2">{{$sluzbenici->where('pol',2)->count()}}</span>--}}
             @php
                 $q = $sluzbenici->where('datum_rodjenja','<',(date('Y')-70).'-01-01')->where('datum_rodjenja','>',(date('Y')-75).'-01-01')->count();
                 $w = $sluzbenici->where('datum_rodjenja','<',(date('Y')-65).'-01-01')->where('datum_rodjenja','>',(date('Y')-70).'-01-01')->count();
@@ -82,8 +80,6 @@
                 ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-20).'-01-01')->where('datum_rodjenja','>',(date('Y')-25).'-01-01')->where('pol',2)->count()
                 ];
             @endphp
-
-            {{--<span style="display: none;">{{$sluzbenici->where('pol',1)->count()}}</span>--}}
 
 
             <table class="table table-bordered low-padding" id="filtering">
@@ -152,7 +148,6 @@
                                 </ul>
                             @endif
                         </td>
-<<<<<<< HEAD
 
                         <td>
                             <ul>
@@ -161,36 +156,8 @@
                                 @endforeach
                             </ul>
                         </td>
-                        {{--<td>--}}
-                            {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
-                                {{--@foreach($sluzbenik->prebivaliste as $preb)--}}
-                                    {{--<li>--}}
-                                        {{--<b>Adresa prebivališta</b>: {{ $preb->adresa_prebivalista }}<br/>--}}
-                                        {{--<b>Mjesto prebivališta</b>: {{ $preb->mjesto_prebivalista }}<br/>--}}
-                                        {{--<b>Adresa boravišta</b>: {{ $preb->adresa_boravista }}<br/>--}}
-                                        {{--<hr/>--}}
-                                    {{--</li>--}}
-                                {{--@endforeach--}}
-                            {{--</ul>--}}
-                        {{--</td>--}}
-
-                        <!---- Stručna sprema službenika ---->
-=======
-                    {{--<td>--}}
-                    {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
-                    {{--@foreach($sluzbenik->prebivaliste as $preb)--}}
-                    {{--<li>--}}
-                    {{--<b>Adresa prebivališta</b>: {{ $preb->adresa_prebivalista }}<br/>--}}
-                    {{--<b>Mjesto prebivališta</b>: {{ $preb->mjesto_prebivalista }}<br/>--}}
-                    {{--<b>Adresa boravišta</b>: {{ $preb->adresa_boravista }}<br/>--}}
-                    {{--<hr/>--}}
-                    {{--</li>--}}
-                    {{--@endforeach--}}
-                    {{--</ul>--}}
-                    {{--</td>--}}
 
                     <!---- Stručna sprema službenika ---->
->>>>>>> b0c8262cace0291410a82b32658f050d57d5812c
                         <td>
                             @if($sluzbenik->strucna_sprema)
                                 <ul>

@@ -524,27 +524,130 @@ $(document).ready(function(){
         }
     });
 
+    // First hide one of them that are supposed to be hidden
+
+    let hiddeThem = function(){
+        let currentUrl = window.location.href.split('?')[0];
+        // localStorage.clear();
+        //
+        // console.log(JSON.parse(localStorage[currentUrl]));
+
+        // $("#filtering tbody tr").each(function(){
+        //     $("td", this).each(function(){
+        //         if($(this).index() > 4){
+        //             $(this).toggle();
+        //         }
+        //     });
+        // });
+        //
+        // $("#filtering th").each(function(){
+        //     if($(this).index() > 4){
+        //         $(this).toggle();
+        //     }
+        // });
+
+    };
+
+
+    hiddeThem();
+
+
+
     /*
         Fill checkable column names
      */
 
-    $("#filtering th").each(function () {
+    let initialValues = [], updateIntialValues = false;
 
-        let $this = $(this);
+    let setCheckPoints = function(){
+        let currentUrl = window.location.href.split('?')[0];
 
-        let checked = "";
+        if(typeof localStorage[currentUrl] === "undefined"){
+            updateIntialValues = true;
+        }else console.log("We already set it!");
 
-        console.log($this.css('display'));
+        if(updateIntialValues){ // Ako nema ništa, ako prvi put otvaramo, onda ponudi inicijalne vrijednosti
+            // Set first values
+            $("#filtering tbody tr").each(function(){
+                $("td", this).each(function(){
+                    if($(this).index() < 4){
+                        // $(this).css('display', 'block');
+                        $(this).show();
+                        // console.log($(this).text());
+                    }else{
+                        $(this).hide();
+                    }
+                });
+            });
 
-        if($this.css('display') != 'none') {
-            checked = 'checked="checked"';
+
+            $("#filtering th").each(function () {
+                let $this = $(this);
+                let checked = "";
+
+                if($this.index() < 4){
+                    $(this).show();
+                }else $(this).hide();
+
+                if($this.css('display') !== 'none') {
+                    checked = 'checked="checked"';
+                    initialValues.push($this.html().replace(new RegExp(' ', 'g'), '')); // Postavi unutar toga
+                }
+                let fillable = '<a class="dropdown-item"><input type="checkbox" ' + checked + ' id="' + $this.html().replace(new RegExp(' ', 'g'), '') + '" /> <label for="' + $this.html().replace(new RegExp(' ', 'g'), '') + '">' + $this.html() + '</label></a>';
+
+                $(".fill-column-names").append(fillable);
+            });
+
+            localStorage.setItem(currentUrl, JSON.stringify(initialValues));
+        }else{
+            let jsonValues = JSON.parse(localStorage.getItem(currentUrl));
+
+            $("#filtering th").each(function () {
+                let $this = $(this);
+                let checked = "";
+
+                for(let i=0; i<jsonValues.length; i++){
+                    if(jsonValues[i] === $this.html().replace(new RegExp(' ', 'g'), '')){
+                        checked = 'checked="checked"';
+                    }
+                }
+
+                let fillable = '<a class="dropdown-item"><input type="checkbox" ' + checked + ' id="' + $this.html().replace(new RegExp(' ', 'g'), '') + '" /> <label for="' + $this.html().replace(new RegExp(' ', 'g'), '') + '">' + $this.html() + '</label></a>';
+
+                $(".fill-column-names").append(fillable);
+            });
+
+            // Kada smo postavili ono što treba da je čekirano, sad je vrijeme da uredimo ono što nije :)))
+            for(var i=0; i<jsonValues.length; i++){
+                let label = $('[for="' + jsonValues[i] + '"]').html();
+
+                let head_element = $('th:contains("' + label + '")');
+
+                let head_index = head_element.index();
+
+                // console.log("Treba: " + jsonValues[i] + ', index:' +  head_index);
+
+                $("#filtering tbody tr").each(function(){
+                    $("td", this).each(function(){
+                        if($(this).index() == head_index){
+                            // $(this).css('display', 'block');
+                            $(this).show();
+
+                            // console.log($(this).text());
+                        }else{
+                            // console.log("Ne treba : " + $(this).text());
+                        }
+                    });
+                });
+
+                head_element.show();
+                // head_element.css('display', 'block');
+            }
         }
+        console.log(localStorage.getItem(currentUrl));
+    }
 
-        let fillable = '<a class="dropdown-item"><input type="checkbox" ' + checked + ' id="' + $this.html().replace(new RegExp(' ', 'g'), '') + '" /> <label for="' + $this.html().replace(new RegExp(' ', 'g'), '') + '">' + $this.html() + '</label></a>';
-
-        $(".fill-column-names").append(fillable);
-
-    });
+    setCheckPoints();
 
 
     $(".return-none").click(function(e){
@@ -560,7 +663,6 @@ $(document).ready(function(){
         let id = ($("label", this).attr('for') == undefined) ? $(this).attr('for') : $("label", this).attr('for');
 
         let checkbox = $("#" + id);
-
         if(checkbox.attr('checked') == 'checked'){
             //checkbox.attr('checked', false);
             //checkbox.prop( "checked", false );
@@ -580,17 +682,36 @@ $(document).ready(function(){
     $(".fill-column-names").on('change', 'input', function (){
 
 
-
         let label = $('[for="' + $(this).attr('id') + '"]').html();
 
         let head_element = $('th:contains("' + label + '")');
+
         let head_index = head_element.index();
+
+        let currentUrl = window.location.href.split('?')[0];
+        initialValues = JSON.parse(localStorage.getItem(currentUrl));
+
+
+        let foundInChecking = -1;
+        for(let j=0; j<initialValues.length; j++){
+            if(initialValues[j] === $(this).attr('id')) foundInChecking = j;
+        }
+
+        if(foundInChecking >= 0) initialValues.splice(foundInChecking, 1);
+        else initialValues.push($(this).attr('id')); // Postavi unutar toga
+        // console.log("Found : " + foundInChecking);
+
+        console.log("After click : " + initialValues);
+
+        localStorage.setItem(currentUrl, JSON.stringify(initialValues));
+
+        console.log(initialValues);
 
         $("#filtering tbody tr").each(function(){
             $("td", this).each(function(){
                 if($(this).index() == head_index){
                     $(this).toggle();
-                }
+                } //else console.log("Nije moguće : " + )
             });
         });
 
