@@ -105,7 +105,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-graduation-cap"></i> Osposobljavanje i usavršavanje
+                        <i class="fa fa-graduation-cap"></i> {{__('Program stručnog usavršavanja')}}
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

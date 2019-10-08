@@ -41,7 +41,7 @@
             <tbody>
             @foreach($ugovori as $ugovor)
                 <tr>
-                    <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
+                    <td><a href="{{route('sluzbenik.dodatno', ['id_sluzbenika'=>$ugovor->sluzbenik])}}">{{$ugovor->usluzbenik->ime_prezime ?? ''}}</a></td>
                     <td>{{$ugovor->mjesto->naziv_rm ?? ''}}</td>
                     <td>{{$ugovor->privremeno_mjesto->naziv_rm ?? ''}}</td>
                     <td>{{$ugovor->broj_rjesenja ?? '/'}}</td>

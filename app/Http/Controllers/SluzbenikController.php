@@ -695,5 +695,4 @@ class SluzbenikController extends Controller
         return back()->withInput(['brisanje_dijela' => 'Izbrisali smo nešto :D ']);
     }
 
-
 }
