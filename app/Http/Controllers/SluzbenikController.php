@@ -507,6 +507,8 @@ class SluzbenikController extends Controller
             'prebivaliste.mjesto_prebivalista' => 'Mjesto prebivališta',
             'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
 
+            'zasnivanjeRO.datum_zasnivanja_o' => 'Datum zasnivanja radnog odnosa',
+
             'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
             'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
             'id3' => 'Položeni ispiti',

@@ -105,6 +105,14 @@
                                 </ul>
                             @endif
                         </td>
+
+                        <td>
+                            <ul>
+                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                    <li>{{$zasnivanje->datum_zasnivanja_o}}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                         {{--<td>--}}
                             {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
                                 {{--@foreach($sluzbenik->prebivaliste as $preb)--}}
