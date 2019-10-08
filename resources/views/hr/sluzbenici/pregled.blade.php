@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
             <div class="col-md-10">
-                <h4>Lista državnih službenika</h4>
+                <h4>{{__('Lista državnih službenika')}}</h4>
                 <!---<button v-on:click="fireTable()" class="btn btn-primary btn-xs"><i class="fa fa-filter"
                                                                                    style="font-size: 11px;"></i> Filteri
                 </button>--->
@@ -28,7 +28,7 @@
             @if(!isset($odsustva))
                 <div class="col-md-2">
                     <button class="btn btn-success" v-on:click="url('{{ route('sluzbenik.dodaj') }}')"><i
-                                class="fa fa-plus fa-1x"></i> Dodajte novog službenika
+                                class="fa fa-plus fa-1x"></i>{{__(' Dodajte novog službenika')}}
                     </button>
                 </div>
             @endif
@@ -38,6 +38,53 @@
         <div class="card-body hr-activity tab full_container">
 
             @include('template.snippets.filters', ['var'  => $sluzbenici])
+
+            {{--<span style="display: none;" id="pol1">{{$sluzbenici->where('pol',1)->count()}}</span>--}}
+            {{--<span style="display: none;" id="pol2">{{$sluzbenici->where('pol',2)->count()}}</span>--}}
+            @php
+                $q = $sluzbenici->where('datum_rodjenja','<',(date('Y')-70).'-01-01')->where('datum_rodjenja','>',(date('Y')-75).'-01-01')->count();
+                $w = $sluzbenici->where('datum_rodjenja','<',(date('Y')-65).'-01-01')->where('datum_rodjenja','>',(date('Y')-70).'-01-01')->count();
+                $e=  $sluzbenici->where('datum_rodjenja','<',(date('Y')-60).'-01-01')->where('datum_rodjenja','>',(date('Y')-65).'-01-01')->count();
+                $r = $sluzbenici->where('datum_rodjenja','<',(date('Y')-55).'-01-01')->where('datum_rodjenja','>',(date('Y')-60).'-01-01')->count();
+                $t = $sluzbenici->where('datum_rodjenja','<',(date('Y')-50).'-01-01')->where('datum_rodjenja','>',(date('Y')-55).'-01-01')->count();
+                $y = $sluzbenici->where('datum_rodjenja','<',(date('Y')-45).'-01-01')->where('datum_rodjenja','>',(date('Y')-50).'-01-01')->count();
+                $u = $sluzbenici->where('datum_rodjenja','<',(date('Y')-40).'-01-01')->where('datum_rodjenja','>',(date('Y')-45).'-01-01')->count();
+                $i = $sluzbenici->where('datum_rodjenja','<',(date('Y')-35).'-01-01')->where('datum_rodjenja','>',(date('Y')-40).'-01-01')->count();
+                $o=  $sluzbenici->where('datum_rodjenja','<',(date('Y')-30).'-01-01')->where('datum_rodjenja','>',(date('Y')-35).'-01-01')->count();
+                $p = $sluzbenici->where('datum_rodjenja','<',(date('Y')-25).'-01-01')->where('datum_rodjenja','>',(date('Y')-30).'-01-01')->count();
+                $l = $sluzbenici->where('datum_rodjenja','<',(date('Y')-20).'-01-01')->where('datum_rodjenja','>',(date('Y')-25).'-01-01')->count();
+
+                $mm = [
+                 $sluzbenici->where('datum_rodjenja','<',(date('Y')-70).'-01-01')->where('datum_rodjenja','>',(date('Y')-75).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-65).'-01-01')->where('datum_rodjenja','>',(date('Y')-70).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-60).'-01-01')->where('datum_rodjenja','>',(date('Y')-65).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-55).'-01-01')->where('datum_rodjenja','>',(date('Y')-60).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-50).'-01-01')->where('datum_rodjenja','>',(date('Y')-55).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-45).'-01-01')->where('datum_rodjenja','>',(date('Y')-50).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-40).'-01-01')->where('datum_rodjenja','>',(date('Y')-45).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-35).'-01-01')->where('datum_rodjenja','>',(date('Y')-40).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-30).'-01-01')->where('datum_rodjenja','>',(date('Y')-35).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-25).'-01-01')->where('datum_rodjenja','>',(date('Y')-30).'-01-01')->where('pol',1)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-20).'-01-01')->where('datum_rodjenja','>',(date('Y')-25).'-01-01')->where('pol',1)->count()
+                ];
+
+            $zz = [
+                 $sluzbenici->where('datum_rodjenja','<',(date('Y')-70).'-01-01')->where('datum_rodjenja','>',(date('Y')-75).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-65).'-01-01')->where('datum_rodjenja','>',(date('Y')-70).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-60).'-01-01')->where('datum_rodjenja','>',(date('Y')-65).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-55).'-01-01')->where('datum_rodjenja','>',(date('Y')-60).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-50).'-01-01')->where('datum_rodjenja','>',(date('Y')-55).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-45).'-01-01')->where('datum_rodjenja','>',(date('Y')-50).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-40).'-01-01')->where('datum_rodjenja','>',(date('Y')-45).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-35).'-01-01')->where('datum_rodjenja','>',(date('Y')-40).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-30).'-01-01')->where('datum_rodjenja','>',(date('Y')-35).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-25).'-01-01')->where('datum_rodjenja','>',(date('Y')-30).'-01-01')->where('pol',2)->count()
+                ,$sluzbenici->where('datum_rodjenja','<',(date('Y')-20).'-01-01')->where('datum_rodjenja','>',(date('Y')-25).'-01-01')->where('pol',2)->count()
+                ];
+            @endphp
+
+            {{--<span style="display: none;">{{$sluzbenici->where('pol',1)->count()}}</span>--}}
+
 
             <table class="table table-bordered low-padding" id="filtering">
                 <thead>
@@ -105,20 +152,20 @@
                                 </ul>
                             @endif
                         </td>
-                        {{--<td>--}}
-                            {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
-                                {{--@foreach($sluzbenik->prebivaliste as $preb)--}}
-                                    {{--<li>--}}
-                                        {{--<b>Adresa prebivališta</b>: {{ $preb->adresa_prebivalista }}<br/>--}}
-                                        {{--<b>Mjesto prebivališta</b>: {{ $preb->mjesto_prebivalista }}<br/>--}}
-                                        {{--<b>Adresa boravišta</b>: {{ $preb->adresa_boravista }}<br/>--}}
-                                        {{--<hr/>--}}
-                                    {{--</li>--}}
-                                {{--@endforeach--}}
-                            {{--</ul>--}}
-                        {{--</td>--}}
+                    {{--<td>--}}
+                    {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
+                    {{--@foreach($sluzbenik->prebivaliste as $preb)--}}
+                    {{--<li>--}}
+                    {{--<b>Adresa prebivališta</b>: {{ $preb->adresa_prebivalista }}<br/>--}}
+                    {{--<b>Mjesto prebivališta</b>: {{ $preb->mjesto_prebivalista }}<br/>--}}
+                    {{--<b>Adresa boravišta</b>: {{ $preb->adresa_boravista }}<br/>--}}
+                    {{--<hr/>--}}
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                    {{--</td>--}}
 
-                        <!---- Stručna sprema službenika ---->
+                    <!---- Stručna sprema službenika ---->
                         <td>
                             @if($sluzbenik->strucna_sprema)
                                 <ul>
@@ -169,7 +216,7 @@
 
 
 
-                        <!-- Ispiti službenika -->
+                    <!-- Ispiti službenika -->
                         <td>
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->ispiti) ? $sluzbenik->ispiti : [] as $ispiti)
@@ -222,15 +269,20 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->zasnivanje_r_o ? $sluzbenik->zasnivanje_r_o : []) as $zasnivanje)
                                     <li>
-                                        <b>Datum zasnivanja radnog odnosa</b>: {{ $zasnivanje->datum_zasnivanja_o ?? '/'}}
+                                        <b>Datum zasnivanja radnog
+                                            odnosa</b>: {{ $zasnivanje->datum_zasnivanja_o ?? '/'}}
                                         <br/>
-                                        <b>Način zasnivanja radnog odnosa</b>: {{ $zasnivanje->nacin_zasnivanja_r_o ?? '/'}}
+                                        <b>Način zasnivanja radnog
+                                            odnosa</b>: {{ $zasnivanje->nacin_zasnivanja_r_o ?? '/'}}
                                         <br/>
                                         <b>Vrsta radnog odnosa</b>: {{ $zasnivanje->vrsta_r_o ?? '/'}}<br/>
                                         <b>Obračunati radni staž</b>: {{ $zasnivanje->obracunati_r_staz ?? '/'}}<br/>
-                                        <b>Obračunati radni staž godina</b>: {{ $zasnivanje->obracunati_r_s_god ?? '/'}}<br/>
-                                        <b>Obračunati radni staž mjeseci</b>: {{ $zasnivanje->obracunati_r_s_mje ?? '/'}}<br/>
-                                        <b>Obračunati radni staž dana</b>: {{ $zasnivanje->obracunati_r_s_dan ?? '/'}}<br/>
+                                        <b>Obračunati radni staž godina</b>: {{ $zasnivanje->obracunati_r_s_god ?? '/'}}
+                                        <br/>
+                                        <b>Obračunati radni staž
+                                            mjeseci</b>: {{ $zasnivanje->obracunati_r_s_mje ?? '/'}}<br/>
+                                        <b>Obračunati radni staž dana</b>: {{ $zasnivanje->obracunati_r_s_dan ?? '/'}}
+                                        <br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -248,15 +300,20 @@
                                         <b>Datum završetka</b>: {{ $prethodno->period_zaposlenja_do ?? '/'}}<br/>
                                         <b>Radno vrijeme</b>: {{ $prethodno->radno_vrijeme ?? '/'}}<br/>
                                         <b>Opis poslova</b>: {{ $prethodno->opis_poslova ?? '/'}}<br/>
-                                        <b>Stečeno radno iskustvo</b>: {{ $prethodno->steceno_radno_iskustvo ?? '/'}}<br/>
+                                        <b>Stečeno radno iskustvo</b>: {{ $prethodno->steceno_radno_iskustvo ?? '/'}}
+                                        <br/>
                                         <b>Ostvareni radni staž</b>: {{ $prethodno->ostvareni_radni_staz ?? '/'}}<br/>
                                         <b>Staž osiguranja</b>: {{ $prethodno->staz_osiguranja ?? '/'}}<br/>
-                                        <b>Dobrovoljno osiguranje</b>: {{ $prethodno->dobrovoljno_osiguranje ?? '/'}}<br/>
-                                        <b>Penzioni staž</b>: {{ $prethodno->penzioni_staz ?? '/'}}<br/>
-                                        <b>Staž sa uvećanim trajanjem</b>: {{ $prethodno->staz_sa_uvecanim_trajanjem ?? '/'}}
+                                        <b>Dobrovoljno osiguranje</b>: {{ $prethodno->dobrovoljno_osiguranje ?? '/'}}
                                         <br/>
-                                        <b>Država gdje je staž ostvaren</b>: {{ $prethodno->drzava_sa_stazom ?? '/'}}<br/>
-                                        <b>Trajanje staža u državi</b>: {{ $prethodno->trajanje_staza_u_drzavi ?? '/'}}<br/>
+                                        <b>Penzioni staž</b>: {{ $prethodno->penzioni_staz ?? '/'}}<br/>
+                                        <b>Staž sa uvećanim
+                                            trajanjem</b>: {{ $prethodno->staz_sa_uvecanim_trajanjem ?? '/'}}
+                                        <br/>
+                                        <b>Država gdje je staž ostvaren</b>: {{ $prethodno->drzava_sa_stazom ?? '/'}}
+                                        <br/>
+                                        <b>Trajanje staža u državi</b>: {{ $prethodno->trajanje_staza_u_drzavi ?? '/'}}
+                                        <br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -314,7 +371,127 @@
 
             <br/>
 
+            <h4>{{__('Grafici')}}</h4>
+
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="doughnut-chart" width="800" height="450"
+                            style="display: block; width: 762px; height: 381px;" width="762" height="381"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="line-chart" width="800" height="450"></canvas>
+                </div>
+            </div>
 
         </div>
+        @section('js')
+            <script type="text/javascript">
+                new Chart(document.getElementById("doughnut-chart"), {
+                    type: 'pie',
+                    data: {
+                        labels: ["Muškarci", "Žene"],
+                        datasets: [
+                            {
+                                label: "Population (millions)",
+                                backgroundColor: ["#3e95cd", "#ff6384"],
+                                data: [{{$sluzbenici->where('pol',1)->count().','.$sluzbenici->where('pol',2)->count()}}]
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: {reverse: true},
+
+                        title: {
+                            display: true,
+                            text: 'Spolna struktura službenika'
+                        }
+                    }
+                });
+
+
+                new Chart(document.getElementById("line-chart"), {
+                    type: 'line',
+                    data: {
+                        labels: [
+                            '70-75',
+                            '65-70',
+                            '60-65',
+                            '55-60',
+                            '50-55',
+                            '45-50',
+                            '40-45',
+                            '35-40',
+                            '30-35',
+                            '25-30',
+                            '20-25',
+                        ],
+                        datasets: [{
+                            label: 'Dobna struktura',
+                            backgroundColor: "#3cba9f",
+                            borderColor: "#3cba9f",
+                            data: [
+                                {{$q.','.$w.','.$e.','.$r.','.$t.','.$y.','.$u.','.$i.','.$o.','.$p.','.$l}}
+                            ],
+                            fill: false,
+                        },
+                            {
+                                label: 'Muškarci',
+                                fill: false,
+                                backgroundColor: "#3e95cd",
+                                borderColor: "#3e95cd",
+                                data: [
+                                    {{implode(',',$mm)}}
+
+                                ],
+                            },
+                            {
+                                label: 'Žene',
+                                fill: false,
+                                backgroundColor: "#ff6384",
+                                borderColor: "#ff6384",
+                                data: [
+                                    {{implode(',',$zz)}}
+
+                                ],
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: 'Struktura zaposlenika'
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Godine'
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Broj'
+                                }
+                            }]
+                        }
+                    }
+                });
+
+
+            </script>
+        @endsection
     </div>
 @endsection
+

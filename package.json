@@ -18,10 +18,10 @@
         "lodash": "^4.17.15",
         "popper.js": "^1.15.0",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.22.12",
+        "sass": "^1.23.0",
         "sass-loader": "^7.3.1",
         "size-limit": "^0.21.1",
-        "tablefilter": "^0.6.96",
+        "tablefilter": "^0.6.100",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.8"
     },
