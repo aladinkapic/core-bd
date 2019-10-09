@@ -227,4 +227,7 @@ class Sluzbenik extends Model{
         return Sluzbenik::where('id', '=', Crypt::decryptString(Session::get('ID')))->first();
     }
 
+    public function sluzbenikRel(){
+        return $this->hasOne(RadnoMjestoSluzbenik::class, 'sluzbenik_id', 'id');
+    }
 }
