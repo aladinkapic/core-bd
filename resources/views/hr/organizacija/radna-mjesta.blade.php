@@ -40,26 +40,35 @@
 
                         @php $i=1; @endphp
 
-                        @foreach($radna_mjesta as $rm)
-                            <tr>
-                                <td scope="row" width="40px;" class="text-center">{{$i++}}</td>
-                                <td>
-                                    {{$rm->naziv_rm ?? '/'}}
-                                </td>
-                                <td>
-                                    {{$rm->sifra_rm ?? '/'}}
-                                </td>
-                                <td class="text-center">
-                                    <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{$rm->id ?? '1'}}" title="Pregledajte radno mjesto">
-                                        <i class="fa fa-eye" style="margin-right:10px;"></i>
-                                    </a>
+                        @foreach($organizacija->organizacioneJedinice as $orgJed)
+                            @foreach($orgJed->radnaMjesta as $rm)
+                                <tr>
+                                    <td scope="row" width="40px;" class="text-center">{{$i++}}</td>
+                                    <td>
+                                        {{$rm->naziv_rm ?? '/'}}
+                                    </td>
+                                    <td>
+                                        {{$rm->sifra_rm ?? '/'}}
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            @foreach($rm->sluzbeniciRel as $sl)
+                                                <li>{{$sl->sluzbenik->ime_prezime ?? '/'}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{$rm->id ?? '1'}}" title="Pregledajte radno mjesto">
+                                            <i class="fa fa-eye" style="margin-right:10px;"></i>
+                                        </a>
 
-                                    <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{$rm->id ?? '1'}}" title="Uredite radno mjesto">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
+                                        <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{$rm->id ?? '1'}}" title="Uredite radno mjesto">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
 
-                            </tr>
+                                </tr>
+                            @endforeach
                         @endforeach
                         </tbody>
                     </table>

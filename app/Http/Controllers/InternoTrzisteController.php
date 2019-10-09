@@ -29,7 +29,7 @@ class InternoTrzisteController extends Controller{
 //            $query->where('vrsta', '=', 'kandidat')->where('konkurs', '=', $konkurs->id);
 //        })->get();;
         $organi = Organ::with('organizacija.organizacioneJedinice.radnaMjesta.sluzbenici')->get();
-        dd($organi[24]->organizacija->organizacioneJedinice[7]);
+//        dd($organi[24]->organizacija->organizacioneJedinice[7]);
 
         $planovi = Organizacija::where('active', '1');
         $planovi = FilterController::filter($planovi);
