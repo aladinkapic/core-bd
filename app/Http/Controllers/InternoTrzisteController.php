@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App;
+use App\Models\Organ;
 use App\Models\Organizacija;
 use App\Models\RadnoMjesto;
 use App\Models\Sluzbenik;
@@ -24,10 +25,17 @@ class InternoTrzisteController extends Controller{
      ******************************************************************************************************************/
 
     public function pregled(){
+//        $oragani = Organ::whereHas('prijava', function ($query) use ($konkurs) {
+//            $query->where('vrsta', '=', 'kandidat')->where('konkurs', '=', $konkurs->id);
+//        })->get();;
+        $organi = Organ::with('organizacija.organizacioneJedinice.radnaMjesta.sluzbenici')->get();
+        dd($organi[24]->organizacija->organizacioneJedinice[7]);
+
         $planovi = Organizacija::where('active', '1');
         $planovi = FilterController::filter($planovi);
 
         $filteri = [
+            'id' => '#',
             'organizacioneJedinice.radnaMjesta.naziv_rm'=>'Naziv radnog mjesta',
             'organizacioneJedinice.naziv'=>'Naziv organizacione jedinice',
             'organizacioneJedinice.radnaMjesta.sifra_rm'=>'Šifra radnog mjesta',

@@ -247,9 +247,9 @@ Route::prefix('ostalo/stratesko_planiranje')->group(function () {
 /*********************************************** Interno tržište rada *************************************************/
 Route::prefix('/ostalo/interno_trziste')->group(function () {
     Route::get('pregled',             'InternoTrzisteController@pregled')->name('internotrziste.pregled');
-    Route::get('radnomjesto/{id}',   'InternoTrzisteController@radnoMjesto')->name('internotrziste.radnomjesto');
-    Route::post('rjesenje',          'InternoTrzisteController@rjesenje');
-    Route::post('rjesenjeKorisnika', 'InternoTrzisteController@rjesenjeKorisnika');
+    Route::get('radnomjesto/{id}',    'InternoTrzisteController@radnoMjesto')->name('internotrziste.radnomjesto');
+    Route::post('rjesenje',           'InternoTrzisteController@rjesenje');
+    Route::post('rjesenjeKorisnika',  'InternoTrzisteController@rjesenjeKorisnika');
 
 
     Route::get('prekobrojni_ljudi',   'InternoTrzisteController@prekobrojniLjudi')->name('internotrziste.prekobrojniljudi');
@@ -383,8 +383,8 @@ Route::prefix('organizacija')->group(function () {
         Pregled organizacionog plana
     */
 
-    Route::get('shema/{id}', 'OrganizacijaController@shema')->name('organizacija.shema');
-    Route::get('radna-mjesta/{id}', 'OrganizacijaController@radnaMjesta')->name('organizacija.radna-mjesta');
+    Route::get('shema/{id}',         'OrganizacijaController@shema')->name('organizacija.shema');
+    Route::get('radna-mjesta/{id}',  'OrganizacijaController@radnaMjesta')->name('organizacija.radna-mjesta');
     Route::get('jedinica/edit/{id}', 'OrganizacijaController@editJedinica')->name('organizacija.jedinica.edit');
 
 

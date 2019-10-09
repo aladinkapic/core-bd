@@ -96,7 +96,7 @@ class RadnoMjesto extends Model
             ->join('organizacija', function ($join) {
                 $join->on('organizacija.id', '=', 'org_jedinica.org_id');
             })
-            ->where('organizacija.id', '=', $id)->paginate(30);
+            ->where('organizacija.id', '=', $id);
     }
 
     public function sluzbenici()

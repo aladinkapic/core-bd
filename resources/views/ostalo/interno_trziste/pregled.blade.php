@@ -30,12 +30,14 @@
             </thead>
             <tbody>
 
+            @php $counter = 1; @endphp
             @foreach($planovi as $plan)
                 @foreach($plan->organizacioneJedinice as $orgJedinica)
                     @foreach($orgJedinica->radnaMjesta as $radnoMjesto)
                         @if(isset($prekobrojni))
                             @if($radnoMjesto->broj_izvrsilaca < $radnoMjesto->sluzbenici->count())
                                 <tr>
+                                    <td>{{$counter++}}</td>
                                     <td>
                                         {{$radnoMjesto->naziv_rm ?? '/'}}
                                     </td>
