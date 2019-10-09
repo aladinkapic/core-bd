@@ -528,8 +528,10 @@ $(document).ready(function(){
 
     let hiddeThem = function(){
         let currentUrl = window.location.href.split('?')[0];
-        // localStorage.clear();
+            // localStorage.clear();
         //
+        // console.log(currentUrl);
+        // return;
         // console.log(JSON.parse(localStorage[currentUrl]));
 
         // $("#filtering tbody tr").each(function(){

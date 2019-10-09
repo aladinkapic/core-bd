@@ -17,6 +17,7 @@ class UpravaController extends Controller{
         $uprave = FilterController::filter($uprave);
 
         $filteri = [
+            'id' => '#',
             'naziv' => 'Naziv',
             'tip_javne_uprave.name' => 'Tip',
             'ulica' => 'Ulica',
