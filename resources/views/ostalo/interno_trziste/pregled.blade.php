@@ -18,7 +18,7 @@
         @include('template.snippets.filters', ['var'  => $radnaMjesta])
 
 
-        <table class="table table-bordered table-sm" id="filtering">
+        <table class="table table-bordered low-padding" id="filtering">
             <thead>
             <tr>
                 @include('template.snippets.filters_header')
@@ -33,11 +33,12 @@
             @php $counter = 1; @endphp
 
             @foreach($radnaMjesta as $rm)
-                @if($rm->broj_izvrsilaca > $rm->sluzbeniciRel->count())
+                @if($rm->broj_izvrsilaca >= $rm->sluzbeniciRel->count())
                     <tr>
                         <td>{{$counter++}}</td>
                         <td>{{$rm->naziv_rm}}</td>
                         <td>{{$rm->orgjed->naziv }}</td>
+                        <td>{{$rm->orgjed->organizacija->organ->naziv}}</td>
                         <td>{{$rm->sifra_rm ?? '/'}}</td>
                         <td>{{$rm->broj_izvrsilaca ?? '/'}}</td>
                         <td>{{$rm->sluzbeniciRel->count()}}</td>
@@ -46,8 +47,8 @@
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a href="{{route('radnamjesta.rjesenje', ['id' => $rm->id, 'what' => 'true'])}}"
-                               title="Pregledajte radno mjesto">
-                                <i class="fa fa-eye" style="margin-left:10px;"></i>
+                               title="Pregledajte radno mjesto" class="btn btn-secondary btn-xs">
+                                Pregled
                             </a>
                         </td>
                     </tr>

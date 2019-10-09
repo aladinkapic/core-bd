@@ -26,6 +26,7 @@ class UgovorController extends Controller{
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [
+            'id' => '#',
             'broj'=>'Broj ugovora/odluke',
             'usluzbenik.ime_prezime'=>'Službenik',
             'datum'=>'Datum ugovora/odluke',
@@ -123,6 +124,7 @@ class UgovorController extends Controller{
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [
+            'id' => '#',
             'usluzbenik.ime_prezime'=>'Službenik',
             'adresa'=>'Adresa',
             'sprat'=>'Sprat',
@@ -194,6 +196,7 @@ class UgovorController extends Controller{
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [
+            'id' => '#',
             'usluzbenik.ime_prezime'=>'Službenik',
             'mjesto.naziv_rm'=>'Redovno radno mjesto',
             'privremeno_mjesto.naziv_rm'=>'Privremeno radno mjesto',
@@ -230,6 +233,7 @@ class UgovorController extends Controller{
         $request = HelpController::formatirajRequest($request);
         $data = $request->all();
 
+
         $sluzbenik = Sluzbenik::where('id', '=', $data['sluzbenik']);
         
 //        foreach($data as $key => $value){
@@ -245,7 +249,7 @@ class UgovorController extends Controller{
         $object->save();
 
 
-        $sluzbenik->update(['privremeni_premjestaj' => $data['privremeno_radno_mjesto']]);
+        $sluzbenik->update(['privremeni_premjestaj' => $object->id]);
 
         return redirect(route('ugovor.privremeno.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
 
@@ -306,6 +310,7 @@ class UgovorController extends Controller{
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [
+            'id' => '#',
             'usluzbenik.ime_prezime'=>'Službenik',
             'radno_mj.naziv_mjesta'=>'Radno mjesto',
             'razlog'=>'Razlog',
@@ -379,6 +384,7 @@ class UgovorController extends Controller{
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [
+            'id' => '#',
             'usluzbenik.ime_prezime'=>'Službenik',
             'razlog'=>'Razlog',
             'rjesenje'=>'Rješenje',

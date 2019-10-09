@@ -14,7 +14,7 @@
     <div class="container">
 
         @include('hr.ugovori.snippets.menu')
-        <hr />
+        @include('template.snippets.filters', ['var'  => $ugovori])
         <br />
         <div class="row">
             <div class="col-md-10">
@@ -35,19 +35,21 @@
             <thead>
             <tr>
                 @include('template.snippets.filters_header')
-                <th style="text-align:center;" class="akcije" style="width: 15%;">{{__('Akcija')}}</th>
+                <th class="akcije text-center" width="120px">{{__('Akcije')}}</th>
             </tr>
             </thead>
             <tbody>
+            @php $counter = 1; @endphp
             @foreach($ugovori as $ugovor)
                 <tr>
+                    <td>{{$counter++}}</td>
                     <td><a href="{{route('sluzbenik.dodatno', ['id_sluzbenika'=>$ugovor->sluzbenik])}}">{{$ugovor->usluzbenik->ime_prezime ?? ''}}</a></td>
                     <td>{{$ugovor->mjesto->naziv_rm ?? ''}}</td>
                     <td>{{$ugovor->privremeno_mjesto->naziv_rm ?? ''}}</td>
                     <td>{{$ugovor->broj_rjesenja ?? '/'}}</td>
-                    <td>{{$ugovor->datum_rjesenja ?? '/'}}</td>
-                    <td>{{$ugovor->datum_od ?? '/'}}</td>
-                    <td>{{$ugovor->datum_do ?? '/'}}</td>
+                    <td>{{$ugovor->datumRjesenja() ?? '/'}}</td>
+                    <td>{{$ugovor->datumOd() ?? '/'}}</td>
+                    <td>{{$ugovor->datumDo() ?? '/'}}</td>
                     <td style="text-align:center;" class="akcije">
                         <a href="{{ '/ugovori/privremeno/edit/' . $ugovor->id ?? '1'}}">
                             <i class="fa fa-edit"></i>
