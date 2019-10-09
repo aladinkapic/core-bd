@@ -28,22 +28,39 @@ class InternoTrzisteController extends Controller{
 //        $oragani = Organ::whereHas('prijava', function ($query) use ($konkurs) {
 //            $query->where('vrsta', '=', 'kandidat')->where('konkurs', '=', $konkurs->id);
 //        })->get();;
-        $organi = Organ::with('organizacija.organizacioneJedinice.radnaMjesta.sluzbenici')->get();
-        dd($organi[24]->organizacija->organizacioneJedinice[7]);
+//        $organi = Organ::with('organizacija.organizacioneJedinice.radnaMjesta.sluzbeniciRel.sluzbenik')->get();
+//        dd($organi[24]->organizacija->organizacioneJedinice[7]);
 
-        $planovi = Organizacija::where('active', '1');
-        $planovi = FilterController::filter($planovi);
+
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
+            $query->where('active', '=', 1);
+        })->with('sluzbeniciRel.sluzbenik')
+        ->with('orgjed.organizacija.organ');
+
+        $radnaMjesta = FilterController::filter($radnaMjesta);
 
         $filteri = [
             'id' => '#',
-            'organizacioneJedinice.radnaMjesta.naziv_rm'=>'Naziv radnog mjesta',
-            'organizacioneJedinice.naziv'=>'Naziv organizacione jedinice',
-            'organizacioneJedinice.radnaMjesta.sifra_rm'=>'Šifra radnog mjesta',
-            'organizacioneJedinice.radnaMjesta.broj_izvrsilaca'=>'Ukupan broj izvršilaca',
-            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
+            'naziv_rm'=>'Naziv radnog mjesta',
+            'orgjed.naziv'=>'Naziv organizacione jedinice',
+            'sifra_rm'=>'Šifra radnog mjesta',
+            'broj_izvrsilaca'=>'Ukupan broj izvršilaca',
+            ''=>'Broj izvršilaca',
         ];
 
-        return view('ostalo.interno_trziste.pregled', compact('planovi', 'filteri'));
+//        $planovi = Organizacija::where('active', '1');
+//        $planovi = FilterController::filter($planovi);
+//
+//        $filteri = [
+//            'id' => '#',
+//            'organizacioneJedinice.radnaMjesta.naziv_rm'=>'Naziv radnog mjesta',
+//            'organizacioneJedinice.naziv'=>'Naziv organizacione jedinice',
+//            'organizacioneJedinice.radnaMjesta.sifra_rm'=>'Šifra radnog mjesta',
+//            'organizacioneJedinice.radnaMjesta.broj_izvrsilaca'=>'Ukupan broj izvršilaca',
+//            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
+//        ];
+
+        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri'));
     }
 
     public function radnoMjesto($id){

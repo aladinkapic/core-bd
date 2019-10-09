@@ -229,14 +229,18 @@ class OrganizacijaController extends Controller
         $sluzbenici = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id');
         $radna_mjesta = RadnoMjesto::organizacijska($id);
 
-//        $organizacija = Organizacija::where('id', '=', $id)->with('organizacioneJedinice.radnaMjesta.sluzbenici');
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query) use ($id) {
+            $query->where('id', '=', $id);
+        })->with('sluzbeniciRel.sluzbenik');
 
-        $radna_mjesta = FilterController::filter($radna_mjesta);
+
+        $radna_mjesta = FilterController::filter($radnaMjesta);
 
         $filteri = [
-            'organizacioneJedinice.radnaMjesta.id' => '#',
+            'id' => '#',
             'naziv_rm' => 'Naziv radnog mjesta',
-            'sifra' => 'Šifra'
+            'sifra' => 'Šifra',
+            'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 
 

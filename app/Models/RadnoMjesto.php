@@ -99,9 +99,12 @@ class RadnoMjesto extends Model
             ->where('organizacija.id', '=', $id);
     }
 
-    public function sluzbenici()
-    {
+    public function sluzbenici(){
         return $this->hasMany('App\Models\Sluzbenik', 'radno_mjesto');
+    }
+
+    public function sluzbeniciRel(){
+        return $this->hasMany(RadnoMjestoSluzbenik::class, 'radno_mjesto_id', 'id');
     }
 
     public static function parent($org_jed)
