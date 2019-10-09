@@ -22,9 +22,7 @@
             <thead>
             <tr>
                 @include('template.snippets.filters_header')
-{{--                @if(!isset($prekobrojni))--}}
-{{--                    <th scope="col" class="text-center">Rješenje</th>--}}
-{{--                @endif--}}
+                <th>Rješenje</th>
                 <th width="120px" class="text-center">Akcije</th>
             </tr>
             </thead>
@@ -46,9 +44,11 @@
                             <a href="#" title="Dodajte / uredite rješenje" class="rjesenje" data-id="{{ $rm->id ?? '1'}}" data-name="{{ $rm->naziv_rm ?? '/'}}">
                                 <i class="fas fa-edit"></i>
                             </a>
+                        </td>
+                        <td class="text-center">
                             <a href="{{route('radnamjesta.rjesenje', ['id' => $rm->id, 'what' => 'true'])}}"
-                               title="Pregledajte radno mjesto" class="btn btn-secondary btn-xs">
-                                Pregled
+                               title="Pregledajte radno mjesto">
+                                <button class="btn my-button">Pregled</button>
                             </a>
                         </td>
                     </tr>

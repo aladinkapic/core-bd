@@ -44,8 +44,8 @@
                         <td>{{$rm->sluzbeniciRel->count()}}</td>
                         <td class="text-center">
                             <a href="{{route('radnamjesta.rjesenje', ['id' => $rm->id, 'what' => 'true'])}}"
-                               title="Pregledajte radno mjesto" class="btn btn-secondary btn-xs">
-                                Pregled
+                               title="Pregledajte radno mjesto">
+                                <button class="btn my-button">Pregled</button>
                             </a>
                         </td>
                     </tr>
