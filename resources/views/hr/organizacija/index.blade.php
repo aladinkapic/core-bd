@@ -36,7 +36,7 @@
 
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
-            <td class="text-center">#</td>
+            <th class="text-center">#</th>
                 @include('template.snippets.filters_header')
                 <th width="150">Akcije</th>
             </thead>
