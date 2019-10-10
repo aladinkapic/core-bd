@@ -1,4 +1,4 @@
-@include('hr.organizacija.snippets.menu')
+{{--@include('hr.organizacija.snippets.menu')--}}
 <section class="multi_step_form">
     <form id="msform" class=""  method="post" action="/hr/radna_mjesta/spremi_mjesto">
 

@@ -16,7 +16,7 @@
         @php $i=1; @endphp
         @foreach($radna_mjesta as $radno_mjesto)
             <tr>
-                <th scope="row" width="40px;" class="text-center">{{$radno_mjesto->id ?? '1'}}</th>
+                <td scope="row" width="40px;" class="text-center">{{$radno_mjesto->id ?? '1'}}</td>
                 <td>
                     {{$radno_mjesto->naziv_rm ?? '/'}}
                 </td>

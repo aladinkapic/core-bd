@@ -41,12 +41,14 @@
             <thead>
             <tr>
                 @include('template.snippets.filters_header')
-                <th style="text-align:center;" class="akcije" style="width: 15%;">{{__('Akcija')}}</th>
+                <th class="akcije text-center" width="120px">{{__('Akcije')}}</th>
             </tr>
             </thead>
             <tbody>
+            @php $counter = 1; @endphp
             @foreach($ugovori as $ugovor)
                 <tr>
+                    <td>{{$counter++}}</td>
                     <td>{{$ugovor->broj ?? '/'}}</td>
                     <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
                     <td>{{$ugovor->datum ?? '/'}}</td>

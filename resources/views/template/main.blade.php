@@ -10,7 +10,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/all.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+{{--        <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">--}}
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
               integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -49,8 +49,8 @@
         <script src="{{ asset('js/app.js') }}"></script>
         <script>@yield('vue-code')</script>
 
-
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
         @yield('other_js_links')
-
+        @yield('js')
     </body>
 </html>

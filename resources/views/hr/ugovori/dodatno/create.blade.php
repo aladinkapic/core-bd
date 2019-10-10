@@ -39,7 +39,7 @@
                                     {{__('Razlog')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <textarea class="form-control"  name="razlog"></textarea>
+                                    <textarea class="form-control"  name="razlog" autocomplete="off"></textarea>
                                 </div>
                             </div>
 
@@ -49,7 +49,7 @@
                                     {{__('Broj rješenja')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" name="rjesenje" placeholder="Broj rješenja..."/>
+                                    <input class="form-control" type="text" name="rjesenje" placeholder="Broj rješenja..." autocomplete="off">
                                 </div>
                             </div>
                             <br/>
@@ -58,7 +58,7 @@
                                     {{__('Datum rješenja')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id=nekiid" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." >
+                                    <input type="text" id=nekiid" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." autocomplete="off">
                                 </div>
                             </div>
                             <br/>

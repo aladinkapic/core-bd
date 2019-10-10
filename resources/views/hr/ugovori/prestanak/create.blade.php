@@ -58,7 +58,7 @@
                                     {{__('Broj rješenja')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" name="rjesenje" placeholder="Broj rješenja..."/>
+                                    <input class="form-control" type="text" name="rjesenje" placeholder="Broj rješenja..." autocomplete="off">
                                 </div>
                             </div>
                             <br/>
@@ -67,7 +67,7 @@
                                     {{__('Datum rješenja')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="nek" class="form-control" name="datum_rjesenja datepicker" placeholder="Datum rješenja..." >
+                                    <input type="text" id="nek" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." autocomplete="off" >
                                 </div>
                             </div>
                             <br/>

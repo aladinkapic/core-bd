@@ -96,12 +96,15 @@ class RadnoMjesto extends Model
             ->join('organizacija', function ($join) {
                 $join->on('organizacija.id', '=', 'org_jedinica.org_id');
             })
-            ->where('organizacija.id', '=', $id)->paginate(30);
+            ->where('organizacija.id', '=', $id);
     }
 
-    public function sluzbenici()
-    {
+    public function sluzbenici(){
         return $this->hasMany('App\Models\Sluzbenik', 'radno_mjesto');
+    }
+
+    public function sluzbeniciRel(){
+        return $this->hasMany(RadnoMjestoSluzbenik::class, 'radno_mjesto_id', 'id');
     }
 
     public static function parent($org_jed)

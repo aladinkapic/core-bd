@@ -99,6 +99,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('datum_zasnivanja_o',__('Datum donošenja sve potrebne dokumentacije').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('datum_donosenja_dokumentacije', $zas_r_o_s->datum_donosenja_dokumentacije ? \App\Http\Controllers\HelpController::obrniDatum($zas_r_o_s->datum_donosenja_dokumentacije): '', ['class' => 'form-control read_stuffs datepicker', 'id' => 'datum_donosenja_dokumentacije'.$index_counter++, 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                        <div class="single_row">
+                            {!! Form::label('napomena', __('Minuli radni staž').' : ', ['class' => ' control-label'] )  !!}
+                            <div class="col-lg-12">
+                                {!!  Form::text('minuli_radni_staz', $zas_r_o_s->minuli_radni_staz ,['class' => 'form-control read_stuffs', 'id' => 'staz', 'maxlength' => '100', 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="single_row">
                         <div class="col-lg-12">
@@ -175,6 +191,20 @@
                     </div>
                 </div>
 
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('datum_zasnivanja_o',__('Datum donošenja sve potrebne dokumentacije').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('datum_donosenja_dokumentacije', '' , ['class' => 'form-control datepicker', 'id' => 'datum_donosenja_dokumentacije'.$index_counter++, 'autocomplete' => 'off', '']) !!}
+                        </div>
+                    </div>
+                    <div class="single_row">
+                        {!! Form::label('napomena', __('Minuli radni staž').' : ', ['class' => ' control-label'] )  !!}
+                        <div class="col-lg-12">
+                            {!!  Form::text('minuli_radni_staz', '' ,['class' => 'form-control', 'id' => 'staz', 'maxlength' => '100', 'autocomplete' => 'off']) !!}
+                        </div>
+                    </div>
+                </div>
 
                 <div class="single_row">
                     <div class="col-lg-12">

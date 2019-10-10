@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App;
+use App\Models\Organ;
 use App\Models\Organizacija;
 use App\Models\RadnoMjesto;
 use App\Models\Sluzbenik;
@@ -24,18 +25,45 @@ class InternoTrzisteController extends Controller{
      ******************************************************************************************************************/
 
     public function pregled(){
-        $planovi = Organizacija::where('active', '1');
-        $planovi = FilterController::filter($planovi);
+//        $oragani = Organ::whereHas('prijava', function ($query) use ($konkurs) {
+//            $query->where('vrsta', '=', 'kandidat')->where('konkurs', '=', $konkurs->id);
+//        })->get();;
+//        $organi = Organ::with('organizacija.organizacioneJedinice.radnaMjesta.sluzbeniciRel.sluzbenik')->get();
+//        dd($organi[24]->organizacija->organizacioneJedinice[7]);
+
+
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
+            $query->where('active', '=', 1);
+        })->with('sluzbeniciRel.sluzbenik')
+        ->with('orgjed.organizacija.organ');
+
+
+        $radnaMjesta = FilterController::filter($radnaMjesta);
 
         $filteri = [
-            'organizacioneJedinice.radnaMjesta.naziv_rm'=>'Naziv radnog mjesta',
-            'organizacioneJedinice.naziv'=>'Naziv organizacione jedinice',
-            'organizacioneJedinice.radnaMjesta.sifra_rm'=>'Šifra radnog mjesta',
-            'organizacioneJedinice.radnaMjesta.broj_izvrsilaca'=>'Ukupan broj izvršilaca',
-            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
+            'id' => '#',
+            'naziv_rm'=>'Naziv radnog mjesta',
+            'orgjed.naziv'=>'Naziv organizacione jedinice',
+            'orgjed.organizacija.organ.naziv'=>'Organ javne uprave',
+            'sifra_rm'=>'Šifra radnog mjesta',
+            'broj_izvrsilaca'=>'Ukupan broj izvršilaca',
+            ''=>'Broj izvršilaca',
+            'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 
-        return view('ostalo.interno_trziste.pregled', compact('planovi', 'filteri'));
+//        $planovi = Organizacija::where('active', '1');
+//        $planovi = FilterController::filter($planovi);
+//
+//        $filteri = [
+//            'id' => '#',
+//            'organizacioneJedinice.radnaMjesta.naziv_rm'=>'Naziv radnog mjesta',
+//            'organizacioneJedinice.naziv'=>'Naziv organizacione jedinice',
+//            'organizacioneJedinice.radnaMjesta.sifra_rm'=>'Šifra radnog mjesta',
+//            'organizacioneJedinice.radnaMjesta.broj_izvrsilaca'=>'Ukupan broj izvršilaca',
+//            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
+//        ];
+
+        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri'));
     }
 
     public function radnoMjesto($id){
@@ -80,19 +108,26 @@ class InternoTrzisteController extends Controller{
 
     /******************************************* PREKOBROJNI LJUDI ****************************************************/
     public function prekobrojniLjudi(){
-        $planovi = Organizacija::where('active', '1');
         $prekobrojni = true;
-        $planovi = FilterController::filter($planovi);
+
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
+            $query->where('active', '=', 1);
+        })->with('sluzbeniciRel.sluzbenik')
+            ->with('orgjed.organizacija.organ');
+
+        $radnaMjesta = FilterController::filter($radnaMjesta);
 
         $filteri = [
-            'organizacioneJedinice.radnaMjesta.naziv_rm'=>'Naziv radnog mjesta',
-            'organizacioneJedinice.naziv'=>'Naziv organizacione jedinice',
-            'organizacioneJedinice.radnaMjesta.sifra_rm'=>'Šifra radnog mjesta',
-            'organizacioneJedinice.radnaMjesta.broj_izvrsilaca'=>'Ukupan broj izvršilaca',
-            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
+            'id' => '#',
+            'naziv_rm'=>'Naziv radnog mjesta',
+            'orgjed.naziv'=>'Naziv organizacione jedinice',
+            'orgjed.organizacija.organ.naziv'=>'Organ javne uprave',
+            'sifra_rm'=>'Šifra radnog mjesta',
+            'broj_izvrsilaca'=>'Ukupan broj izvršilaca',
+            ''=>'Broj izvršilaca',
         ];
 
-        return view('ostalo.interno_trziste.pregled', compact('planovi', 'prekobrojni', 'filteri'));
+        return view('ostalo.interno_trziste.prekobrojni', compact('radnaMjesta', 'prekobrojni', 'filteri'));
     }
 
     public function sviPrekobrojniLjudi($id){
@@ -106,13 +141,23 @@ class InternoTrzisteController extends Controller{
     /****************************************** PRIVREMENI PREMJEŠTAJ *************************************************/
 
     public function privremeniPremjestaj(){
-        $sluzbenici = Sluzbenik::whereNotNull('privremeni_premjestaj');
+        $sluzbenici = Sluzbenik::whereNotNull('privremeni_premjestaj')->with('privremeniPremjestajRel.privremeno_mjesto')
+            ->with('radnoMjesto')
+        ;
+
+//        dd($sluzbenici->get()[1]->privremeniPremjestajRel->datumRjesenja());
+
         $sluzbenici = FilterController::filter($sluzbenici);
 
         $filteri = [
+            'id' => '#',
             'ime_prezime'=>'Ime i prezime službenika',
-            'radnoMjesto->naziv_rm'=>'Radno mjesto',
-            'privremeniPremjestaj->naziv_rm'=>'Privremeni premještaj',
+            'radnoMjesto.naziv_rm'=>'Radno mjesto',
+            'privremeniPremjestajRel.privremeno_mjesto.naziv_rm'=>'Privremeni premještaj',
+            'privremeniPremjestajRel.broj_rjesenja'=>'Broj rješenja',
+            'privremeniPremjestajRel.datum_rjesenja'=>'Datum rješenja',
+            'privremeniPremjestajRel.datum_od'=>'Datum od',
+            'privremeniPremjestajRel.datum_do'=>'Datum do',
         ];
 
         return view('ostalo.interno_trziste.privremeni_premjestaj', compact('sluzbenici', 'filteri'));
