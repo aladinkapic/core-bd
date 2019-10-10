@@ -85,7 +85,7 @@
             <table class="table table-bordered low-padding" id="filtering">
                 <thead>
                 <tr>
-                    <td class="text-center">#</td>
+                    <th class="text-center">#</th>
                     @include('template.snippets.filters_header')
                     <th style="text-align:center;" class="akcije">Akcije</th>
                 </tr>
