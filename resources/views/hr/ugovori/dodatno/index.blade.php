@@ -54,7 +54,7 @@
                     <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
                     <td>{{$ugovor->razlog ?? '/'}}</td>
                     <td>{{$ugovor->rjesenje ?? '/'}}</td>
-                    <td>{{$ugovor->datum_rjesenja ?? '/'}}</td>
+                    <td>{{$ugovor->datumRješenja() ?? '/'}}</td>
                     <td style="text-align:center;" class="akcije">
                         <a href="{{ '/ugovori/dodatno/edit/' . $ugovor->id ?? '1'}}">
                             <i class="fa fa-edit"></i>

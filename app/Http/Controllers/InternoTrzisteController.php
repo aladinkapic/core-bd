@@ -51,8 +51,8 @@ class InternoTrzisteController extends Controller{
             'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 
-//        $planovi = Organizacija::where('active', '1');
-//        $planovi = FilterController::filter($planovi);
+        $planovi = Organizacija::where('active', '1');
+        $planovi = FilterController::filter($planovi);
 //
 //        $filteri = [
 //            'id' => '#',
@@ -63,7 +63,7 @@ class InternoTrzisteController extends Controller{
 //            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
 //        ];
 
-        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri'));
+        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri', 'planovi'));
     }
 
     public function radnoMjesto($id){
@@ -130,7 +130,7 @@ class InternoTrzisteController extends Controller{
         return view('ostalo.interno_trziste.prekobrojni', compact('radnaMjesta', 'prekobrojni', 'filteri'));
     }
 
-    public function sviPrekobrojniLjudi($id){
+    public function sviPrekobrojniLjudi($id) {
         $sluzbenici = Sluzbenik::where('radno_mjesto', $id)->get();
 
         return view('ostalo.interno_trziste.prekobrojni', compact('sluzbenici'));

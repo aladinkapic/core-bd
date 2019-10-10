@@ -20,19 +20,8 @@
 
         <br />
 
-<<<<<<< HEAD
-        <div class="row">
-            <div class="col-md-9">
-                @include('hr.organizacija.snippets.menu')
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa fa-expand" style="float: right; cursor: pointer;" v-on:click="expand()"></i>
-                        {{__('Prikaz organizacione sheme')}}
-                    </div>
-                    <div class="card-body" style="padding: 0px;">
-                        <div style="width:100%; height:700px;" id="orgchart"/>
-                    </div>
-=======
+        @include('hr.organizacija.snippets.menu')
+
         <div class="tree-wrapper">
             <div class="zoom-buttons">
                 <div class="single-zoom-button zoom-out-it">
@@ -40,7 +29,7 @@
                 </div>
                 <div class="single-zoom-button zoom-in-it">
                     <i class="fas fa-search-plus"></i>
->>>>>>> 7554e10d530d26eeb6430c614d7843cb88813ac1
+
                 </div>
             </div>
             <div class="tree-inside-wrapper">

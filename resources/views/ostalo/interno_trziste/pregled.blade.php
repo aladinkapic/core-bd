@@ -22,20 +22,20 @@
             <thead>
             <tr>
                 @include('template.snippets.filters_header')
-<<<<<<< HEAD
+
                 @if(!isset($prekobrojni))
                     <th scope="col" class="text-center">{{__('Rješenje')}}</th>
                 @endif
                 <th scope="col" class="text-center">{{__('Pregled')}}</th>
-=======
+
                 <th>Rješenje</th>
                 <th width="120px" class="text-center">Akcije</th>
->>>>>>> eef30d848374e32202a9150e15193c7c7b9d0e5b
+
             </tr>
             </thead>
             <tbody>
 
-<<<<<<< HEAD
+
             @foreach($planovi as $plan)
                 @foreach($plan->organizacioneJedinice as $orgJedinica)
                     @foreach($orgJedinica->radnaMjesta as $radnoMjesto)
@@ -61,7 +61,12 @@
                                         <a href="{{route('internotrziste.sviprekobrojniljudi', ['id' => $radnoMjesto->id])}}"
                                            title="Pregled svih službenika na radnom mjestu">
                                             <i class="fa fa-eye" style="margin-left:10px;"></i> {{__('Pregled')}}
-=======
+                                @endif
+                            @endif
+                        @endforeach
+                    @endforeach
+                @endforeach
+
             @php $counter = 1; @endphp
 
             @foreach($radnaMjesta as $rm)
@@ -81,7 +86,7 @@
                                     @foreach($rm->sluzbeniciRel as $sl)
                                         <a href="{{route('sluzbenik.dodatno', ['id' => $sl->sluzbenik->id])}}">
                                             <li>{{$sl->sluzbenik->ime_prezime}}</li>
->>>>>>> eef30d848374e32202a9150e15193c7c7b9d0e5b
+
                                         </a>
                                     @endforeach
                                 </ul>

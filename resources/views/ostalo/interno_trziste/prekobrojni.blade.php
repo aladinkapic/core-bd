@@ -17,7 +17,7 @@
 
         @include('template.snippets.filters', ['var'  => $radnaMjesta])
 
-<<<<<<< HEAD
+
         <div class="split_container split_container5" style="padding:0px;">
             <table class="table table-bordered text-left">
                 <thead >
@@ -32,7 +32,8 @@
                 <tbody>
                 @php $i=1; @endphp
                 @foreach($sluzbenici as $korisnik)
-=======
+                @endforeach
+
 
         <table class="table table-bordered low-padding" id="filtering">
             <thead>
@@ -50,7 +51,7 @@
 
             @foreach($radnaMjesta as $rm)
                 @if($rm->broj_izvrsilaca < $rm->sluzbeniciRel->count())
->>>>>>> eef30d848374e32202a9150e15193c7c7b9d0e5b
+
                     <tr>
                         <td>{{$counter++}}</td>
                         <td>{{$rm->naziv_rm}}</td>

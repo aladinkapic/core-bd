@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Dodatno extends Model
 {
@@ -14,5 +15,10 @@ class Dodatno extends Model
 
     public function usluzbenik(){
         return $this->hasOne(Sluzbenik::class, 'id', 'sluzbenik');
+    }
+
+    public function datumRješenja(){
+        if(!$this->datum_rjesenja) return '';
+        return Carbon::parse($this->datum_rjesenja)->format('d.m.Y');
     }
 }

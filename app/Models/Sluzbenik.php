@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Notifications\Notifiable;
@@ -146,6 +147,12 @@ class Sluzbenik extends Model{
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'nacionalnost')
             ->where('type', '=', 'nacionalnost');
     }
+
+    public function datumRodjenja(){
+        if(!$this->datum_rodjenja) return '';
+        return Carbon::parse($this->datum_rodjenja)->format('d.m.Y');
+    }
+
 
 
     public static function whereOrgan($id){

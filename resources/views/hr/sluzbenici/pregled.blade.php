@@ -107,7 +107,7 @@
                         <td>{{ $sluzbenik->nacionalnost_sl ? $sluzbenik->nacionalnost_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->bracni_status_sl ? $sluzbenik->bracni_status_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->mjesto_rodjenja ?? '/' }}</td>
-                        <td>{{ $sluzbenik->datum_rodjenja ?? '/'}}</td>
+                        <td>{{ $sluzbenik->datumRodjenja() ?? '/'}}</td>
                         <td>{{ $sluzbenik->licna_karta ?? '/'}}</td>
                         <td>{{ $sluzbenik->mjesto_idavanja_lk ?? '/'}}</td>
                         <td>{{ $sluzbenik->PIO ?? '/'}}</td>
@@ -266,7 +266,7 @@
                                 @foreach(($sluzbenik->zasnivanje_r_o ? $sluzbenik->zasnivanje_r_o : []) as $zasnivanje)
                                     <li>
                                         <b>Datum zasnivanja radnog
-                                            odnosa</b>: {{ $zasnivanje->datum_zasnivanja_o ?? '/'}}
+                                            odnosa</b>: {{ $zasnivanje->datumZasnivanjaRO() ?? '/'}}
                                         <br/>
                                         <b>Način zasnivanja radnog
                                             odnosa</b>: {{ $zasnivanje->nacin_zasnivanja_r_o ?? '/'}}
