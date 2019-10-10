@@ -428,10 +428,9 @@ class OdsustvaController extends Controller{
 
     public function urediLimitSluzbenika($id, $sluzbenik_id){
         $ime_sluzbenika = Sluzbenik::find($sluzbenik_id)->first()->toArray()['ime'];
-        $odsustva   = Sifrarnik::dajSifrarnik('vrsta_odsustava');
-        $limiti = DB::table('limit_odsustva')->where('id', '=', $id)->first();
+        $odsustva       = Sifrarnik::dajSifrarnik('vrsta_odsustva');
+        $limiti         = DB::table('limit_odsustva')->where('id', '=', $id)->first();
 
-        dd($limiti);
 
         return view('/hr/odsustva/limit_pojedinca', compact('odsustva', 'limiti', 'ime_sluzbenika', 'sluzbenik_id'));
     }
