@@ -20,11 +20,11 @@
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
             <th width="10%">{{__('Trajanje obuke')}}	</th>
-            <th width="10%">{{__('Status')}}</th>
+            <th width="5%">{{__('Status')}}</th>
             <th width="10%">{{__('Predavači	')}}</th>
             <th width="30%">{{__('Službenici')}}</th>
             <th width="35%">{{__('Postavke')}}</th>
-            <th width="5%">{{__('Akcije')}}</th>
+            <th class="text-center" width="10%">{{__('Akcije')}}</th>
             </thead>
             <tbody>
             @foreach($instance as $instanca)
@@ -102,7 +102,11 @@
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td class="text-center">
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/ocjenaInstance/{{$instanca -> id ?? '1'}}" style="margin-left:10px;"
+                        title="Ocjeni instancu">
+                            <i class="fas fa-check-square"></i>
+                        </a>
                         <a href="/osposobljavanje_i_usavrsavanje/obuke/deleteInstance/{{$instanca -> id ?? '1'}}" style="margin-left:10px;">
                             <i class="fas fa-times"></i>
                         </a>

@@ -555,6 +555,8 @@ Route::post('/osposobljavanje_i_usavrsavanje/obuke/update/{id}', 'ObukaControlle
 
 Route::get('/osposobljavanje_i_usavrsavanje/obuke/addInstancu/{id}', 'ObukaController@addInstancu');
 Route::get('/osposobljavanje_i_usavrsavanje/obuke/prikazInstance/{id}', 'ObukaController@pregledInstance');
+Route::get('/osposobljavanje_i_usavrsavanje/obuke/ocjenaInstance/{id}', 'ObukaController@ocjenaInstance');
+Route::get('/osposobljavanje_i_usavrsavanje/obuke/ocjenaInstance/{id}/{sl}', 'ObukaController@ocjenaInstance');
 Route::post('/osposobljavanje_i_usavrsavanje/obuke/addInstancu', 'ObukaController@addInstancu');
 Route::post('/osposobljavanje_i_usavrsavanje/obuke/storeInstancu', 'ObukaController@storeInstancu');
 Route::get('/osposobljavanje_i_usavrsavanje/obuke/instance/{id}', 'ObukaController@instance');

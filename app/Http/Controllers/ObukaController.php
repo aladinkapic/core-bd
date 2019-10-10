@@ -229,10 +229,7 @@ class ObukaController extends Controller
 
     public function pregledInstance($id)
     {
-        $instanca = ObukaInstanca::where('id', $id)
-            ->with('sviPredavaci')
-            ->with('sviSluzbenici')
-            ->first();
+        $instanca = ObukaInstanca::where('id', $id)->with('sviPredavaci')->with('sviSluzbenici')->first();
         $readonly = 'readonly';
         $obuka = Obuka::findOrFail($instanca->obuka_id);
         $pregled = true;
@@ -244,7 +241,7 @@ class ObukaController extends Controller
             $niztema[$tema['id']] = $tema['naziv'];
         }
 
-        $nizpredavaca  = [];
+        $nizpredavaca = [];
 
 
         $nizsluzbenika = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id');
@@ -287,13 +284,13 @@ class ObukaController extends Controller
         $instanca->odrzavanje_do = $request->kraj;
         $instanca->save();
 
-        foreach ($request->predavaci as $key=>$value){
+        foreach ($request->predavaci as $key => $value) {
             $predavac = new InstancePredavaci();
             $predavac->predavac_id = $value;
             $predavac->instanca_id = $instanca->id;
             $predavac->save();
         }
-        foreach ($request->sluzbenici as $key=>$value){
+        foreach ($request->sluzbenici as $key => $value) {
             $sl = new InstanceSluzbenici();
             $sl->sluzbenik_id = $value;
             $sl->instanca_id = $instanca->id;
@@ -404,5 +401,33 @@ class ObukaController extends Controller
 
         return redirect('/osposobljavanje_i_usavrsavanje/obuke/home')->with('success', __('Uspješno ste ocjenili obuku!'));
 
+    }
+
+    public function ocjenaInstance($id, Request $request,$sl = null)
+    {
+
+
+        if (isset($sl)) {
+            $ocjena = InstanceSluzbenici::where('instanca_id', $id)->where('sluzbenik_id', $sl)->first();
+            $ocjena->update([$ocjena->ocjena = NULL]);
+        }
+
+        if (isset($request->ocjena) and isset($request->sluzbenik_id)) {
+            $ocjena = InstanceSluzbenici::where('instanca_id', $id)->where('sluzbenik_id', $request->sluzbenik_id)->first();
+            $ocjena->update([$ocjena->ocjena = $request->ocjena]);
+        }
+
+
+        $instanca = InstanceSluzbenici::where('instanca_id', $id)->with('imeSluzbenika');
+
+        $instanca = FilterController::filter($instanca);
+
+        $filteri = ['imeSluzbenika.ime_prezime' => 'Službenik', 'ocjena' => 'Ocjena', 'updated_at' => 'Izvršeno'];
+
+
+
+
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/ocjenjivanjeInstance', compact('instanca', 'filteri'));
     }
 }
