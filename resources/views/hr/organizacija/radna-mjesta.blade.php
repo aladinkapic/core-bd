@@ -28,7 +28,7 @@
                 @include('hr.radna_mjesta.fajlovi.sva_radna_mjesta')
 
                 <button class="btn btn-success" v-on:click="toggle('#dodaj')">
-                    <i class="fa fa-plus"></i> Dodaj radno mjesto
+                    <i class="fa fa-plus"></i> {{__('Dodaj radno mjesto')}}
                 </button>
 
                 <div id="dodaj" style="display: none;">

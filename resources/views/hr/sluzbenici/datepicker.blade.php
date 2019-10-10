@@ -25,7 +25,7 @@
 <div class="container">
 
     <div class="dates" style="margin-top:100px; color:#2471a3;">
-        <label>Choose DOB</label>
+        <label>{{__('Choose DOB')}}</label>
         <input type="text" style="width:200px; " class="form-control" id="usr1" name="event_date" placeholder="DD-MM-YYYY" autocomplete="off" >
     </div>
 </div>

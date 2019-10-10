@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Izmjena ugovora o rasporedu na radno mjesto
+                        {{__('Izmjena ugovora o rasporedu na radno mjesto')}}
                     </div>
                     <div class="card-body">
 
@@ -23,7 +23,7 @@
 
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Službenik
+                                        {{__('Službenik')}}
                                     </div>
                                     <div class="col-md-7">
                                         <select class="form-control" name="sluzbenik">
@@ -36,7 +36,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Privremeno radno mjesto
+                                        {{__('Privremeno radno mjesto')}}
                                     </div>
                                     <div class="col-md-7">
                                         <select class="form-control" name="privremeno_radno_mjesto">
@@ -49,7 +49,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Redovno radno mjesto
+                                        {{__('Redovno radno mjesto')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input required="required" value="@if($sluzbenik->radnoMjesto) {{$sluzbenik->radnoMjesto->naziv_rm ?? '/'}} @endif" class="form-control" type="text" name="radno_mjesto"/>
@@ -58,7 +58,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Broj rješenja
+                                        {{__('Broj rješenja')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input value="{{ $ugovor->broj_rjesenja }}" class="form-control" type="text" name="broj_rjesenja" placeholder="Broj rješenja..."/>
@@ -67,7 +67,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Datum rješenja
+                                        {{__('Datum rješenja')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_rjesenja) }}" class="form-control datepicker" id="datum_rjesenja" name="datum_rjesenja" placeholder="Datum rješenja..." >
@@ -76,7 +76,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Datum od
+                                        {{__('Datum od')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_od) }}" class="form-control datepicker" id="datum_od" name="datum_od" placeholder="Datum od..." >
@@ -85,7 +85,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Datum do
+                                        {{__('Datum do')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_do) }}" class="form-control datepicker" id="datum_do" name="datum_do" placeholder="Datum do..." >
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <button class="btn btn-success">
-                                            <i class="fa fa-plus"></i> Ažurirajte
+                                            <i class="fa fa-plus"></i> {{__('Ažurirajte')}}
                                         </button>
                                     </div>
                                 </div>

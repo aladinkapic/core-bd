@@ -1,12 +1,12 @@
 @extends('template.main')
-@section('title') Planiranje kadrova @endsection
+@section('title') {{__('Planiranje kadrova')}} @endsection
 
 @section('content')
     <div class="container">
         <div class="card-header ads-darker" style="height:60px;">
-            <button onClick="window.location='{{ route('pregled.strateskogplaniranja') }}';" class="btn btn-light float-right" ><i class="fas fa-chevron-left"></i> Strateško planiranje</button>
+            <button onClick="window.location='{{ route('pregled.strateskogplaniranja') }}';" class="btn btn-light float-right" ><i class="fas fa-chevron-left"></i> {{__('Strateško planiranje')}}</button>
             <h4 style="padding-top:6px; margin-top:0px;">
-                Strateško planiranje - planiranje kadrova
+                {{__('Strateško planiranje - planiranje kadrova')}}
             </h4>
         </div>
 
@@ -125,7 +125,7 @@
                         @if(!isset($id))
                             <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                                 <button type="submit" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">
-                                    Spremite
+                                    {{__('Spremite')}}
                                     <i class="fas fa-save"></i>
                                 </button>
                             </div>

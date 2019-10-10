@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') Dodajte novog službenika @stop
+@section('title') {{__('Dodajte novog službenika')}} @stop
 
 <!-- css links -->
 @section('breadcrumbs')
@@ -22,7 +22,7 @@
         <div class="full_container">
             <div class="card-header ads-darker" style="height:60px;">
                 @if(!isset($odsustva))
-                    <button onClick="window.location='{{route('sluzbenik.pregled')}}';" class="btn btn-light float-right" ><i class="fa fa-chevron-circle-left"></i> Nazad na pregled službenika </button>
+                    <button onClick="window.location='{{route('sluzbenik.pregled')}}';" class="btn btn-light float-right" ><i class="fa fa-chevron-circle-left"></i> {{__('Nazad na pregled službenika')}} </button>
                 @endif
                 <h4 style="position:absolute; margin-top:-6px;">
                     {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
@@ -43,7 +43,7 @@
 
             <div class="basic_info">
                 <a href="{{asset('/hr/sluzbenici/uredi_sluzbenika/'.$sluzbenik->id ?? '1')}}">
-                    <p>Uredite karton radnika</p>
+                    <p>{{__('Uredite karton radnika')}}</p>
                 </a>
             </div>
         </div>
@@ -51,7 +51,7 @@
         @if(isset($what))
             <div class="split_container split_container2">
                 <h4 style="margin-top:0px; margin-left:15px;">
-                    Rješenje o prekobrojnim ljudima za {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
+                    {{__('Rješenje o prekobrojnim ljudima za')}} {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
                 </h4>
 
                 {!! Form::textarea('', isset($sluzbenik) ? $sluzbenik->rjesenje : '', ['class' => 'form-control', 'rows' => 6, 'id' => 'naziv_rm_inp', 'readonly', 'style="margin-left:15px; width:calc(100% - 30px); margin-top:20px;"']) !!}
@@ -60,14 +60,14 @@
 
         <div class="full_container">
             <h4 style="margin-top:10px;">
-                Dodatne informacije o {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
+                {{__('Dodatne informacije o')}} {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
             </h4>
         </div>
 
         <div class="split_container split_container2">
             @if ($errors->any())
                 <div class="alert alert-danger">
-                    Molimo Vas da popunite sva polja!
+                    {{__('Molimo Vas da popunite sva polja!')}}
                 </div>
             @endif
 

@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') Upražnjena radna mjesta @endsection
+@section('title') {{__('Upražnjena radna mjesta')}} @endsection
 
 @section('breadcrumbs')
 

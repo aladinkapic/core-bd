@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') Upražnjena radna mjesta @endsection
+@section('title') {{__('Upražnjena radna mjesta')}} @endsection
 
 @section('breadcrumbs')
 
@@ -21,10 +21,10 @@
                 <thead >
                 <tr>
                     <th scope="col" width="40px;" class="text-center">#</th>
-                    <th scope="col">Ime i prezime službenika</th>
-                    <th scope="col">Radno mjesto</th>
-                    <th scope="col" class="text-center" width="140px">Rješenje</th>
-                    <th scope="col" class="text-center" width="140px">Pregled</th>
+                    <th scope="col">{{__('Ime i prezime službenika')}}</th>
+                    <th scope="col">{{__('Radno mjesto')}}</th>
+                    <th scope="col" class="text-center" width="140px">{{__('Rješenje')}}</th>
+                    <th scope="col" class="text-center" width="140px">{{__('Pregled')}}</th>
                 </tr>
                 </thead>
                 <tbody>

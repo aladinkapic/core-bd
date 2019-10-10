@@ -1,6 +1,6 @@
 <div class="drop_down_option">
     <div class="single_row header header2">
-        <p>Radni staž kod prethodnih poslodavaca</p>
+        <p>{{__('Radni staž kod prethodnih poslodavaca')}}</p>
         <i class="fas arrow-icon fa-chevron-down" onclick="prikazi_elemente(7);"></i>
         @if(!isset($pregled))
             <i class="fas fa-plus" title="Dodajte nove podatke o mjestu prebivališta" onclick="prikazi_elemente(7, 'hidden_input_form');"></i>

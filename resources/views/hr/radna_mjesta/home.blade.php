@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
             <div class="col-md-10">
-                <h4>Lista radnih mjesta</h4>
+                <h4>{{__('Lista radnih mjesta')}}</h4>
 
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <thead>
                 <tr>
                     @include('template.snippets.filters_header')
-                    <th scope="col" style="text-align:center;" class="akcije">Akcije</th>
+                    <th scope="col" style="text-align:center;" class="akcije">{{__('Akcije')}}</th>
                 </tr>
                 </thead>
                 <tbody>

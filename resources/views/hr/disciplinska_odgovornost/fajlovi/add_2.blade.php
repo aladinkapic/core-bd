@@ -4,8 +4,8 @@
         @csrf
         @if(!isset($disciplinska))
             <div class="tittle">
-                <h2>Unos disciplinske odgovornosti</h2>
-                <p>Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.</p>
+                <h2>{{__('Unos disciplinske odgovornosti')}}</h2>
+                <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
             </div>
         @endif
 
@@ -105,7 +105,7 @@
                                     <div class="col-lg-12">
                                         <select class="js-example-basic-single form-control"
                                                 name="sluzbenik_id_kom[]" style="width:100%">
-                                            <option value="0">Izaberite službenika</option>
+                                            <option value="0">{{__('Izaberite službenika')}}</option>
                                             @foreach($nizsluzbenika as $id => $imeprezime)
                                                 <option value="{{$id}}">{{$imeprezime}}</option>
                                             @endforeach
@@ -136,7 +136,7 @@
                         </div>
                         <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                             <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('uslovi_za_radno_mjesto', 'form_for_copy');">
-                                Dodajte člana komisije
+                                {{__('Dodajte člana komisije')}}
                                 <i style="margin-left:15px;" class="fas fa-save"></i>
                             </button>
                         </div>
@@ -170,7 +170,7 @@
                                     <div class="col-lg-12">
                                         <select class="js-example-basic-single form-control"
                                                 name="sluzbenik_id_med[]" style="width:100%">
-                                            <option value="0">Izaberite službenika</option>
+                                            <option value="0">{{__('Izaberite službenika')}}</option>
                                             @foreach($nizsluzbenika as $id => $imeprezime)
                                                 <option value="{{$id}}">{{$imeprezime}}</option>
                                             @endforeach
@@ -202,7 +202,7 @@
                         </div>
                         <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                             <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">
-                                Dodajte medijatora
+                                {{__('Dodajte medijatora')}}
                                 <i class="fas fa-save"></i>
                             </button>
                         </div>
@@ -219,15 +219,15 @@
             <div class="buttons" style="text-align:center;">
                 <button type="button" class="btn btn-dark" >
                     <i class="fas fa-chevron-left"></i>
-                    Nazad
+                    {{__('Nazad')}}
                 </button>
                 <button type="button" class="btn btn-blue" >
-                    Dalje
+                    {{__('Dalje')}}
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 <button type="submit" class="btn btn-success">
                     <i class="fab fa-telegram"></i>
-                    Spremite
+                   {{__(' Spremite')}}
                 </button>
             </div>
         </div>

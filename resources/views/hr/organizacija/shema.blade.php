@@ -93,7 +93,7 @@
 
     <div class="container">
 
-        <h4>Organizaciona shema</h4>
+        <h4>{{__('Organizaciona shema')}}</h4>
 
         <br />
 
@@ -103,7 +103,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-expand" style="float: right; cursor: pointer;" v-on:click="expand()"></i>
-                        Prikaz organizacione sheme
+                        {{__('Prikaz organizacione sheme')}}
                     </div>
                     <div class="card-body" style="padding: 0px;">
                         <div style="width:100%; height:700px;" id="orgchart"/>

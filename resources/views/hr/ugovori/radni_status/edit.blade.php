@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Izmjena ugovora o rasporedu na radno mjesto
+                        {{__('Izmjena ugovora o rasporedu na radno mjesto')}}
                     </div>
                     <div class="card-body">
 
@@ -32,7 +32,7 @@
                             @method('PATCH')
                             <div class="row">
                                 <div class="col-md-5">
-                                    Broj ugovora/odluke
+                                    {{__('Broj ugovora/odluke')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input required="required" class="form-control" value="{{ $ugovor->broj }}" type="text" name="broj"
@@ -42,7 +42,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Službenik
+                                    {{__('Službenik')}}
                                 </div>
                                 <div class="col-md-7">
                                     <select class="form-control" name="sluzbenik">
@@ -55,7 +55,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum rješenja
+                                    {{__('Datum rješenja')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input value="{{ \Carbon\Carbon::parse($ugovor->datum)->format('d.m.Y') }}" id="datum-ugovora" required="required" class="form-control datepicker" type="text" name="datum"
@@ -65,7 +65,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum isteka rješenja
+                                    {{__('Datum isteka rješenja')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input value="{{ \Carbon\Carbon::parse($ugovor->datum_isteka)->format('d.m.Y') }}" id="datum-isteka-ugovora" class="form-control datepicker" type="text" name="datum_isteka"
@@ -75,7 +75,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum isteka probnog perioda
+                                    {{__('Datum isteka probnog perioda')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input value="{{ \Carbon\Carbon::parse($ugovor->datum_isteka_probni)->format('d.m.Y') }}" id="datum-isteka-probnog" class="form-control datepicker" type="text" name="datum_isteka_probni"
@@ -85,7 +85,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Broj sati
+                                    {{__('Broj sati')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input required="required" value="{{ $ugovor->broj_sati ?? '/'}}" class="form-control" type="text" name="broj_sati"
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <button class="btn btn-success">
-                                        <i class="fa fa-plus"></i> Sačuvaj
+                                        <i class="fa fa-plus"></i> {{__('Sačuvaj')}}
                                     </button>
                                 </div>
                             </div>

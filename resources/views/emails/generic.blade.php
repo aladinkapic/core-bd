@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Obavijest sa stranice</title>
+        <title>{{__('Obavijest sa stranice')}}</title>
         <!-- Styles -->
         <link href="{{ asset('css/all.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -139,24 +139,24 @@
     <body>
         <div id="emails_wrapper">
             <div id="email_header">
-                <h2>Vlada Brčko Distrikta</h2>
-                <h5>Pododjeljenje za ljudske resurse Brčko Distrikta</h5>
+                <h2>{{__('Vlada Brčko Distrikta')}}</h2>
+                <h5>{{__('Pododjeljenje za ljudske resurse Brčko Distrikta')}}</h5>
             </div>
 
             <div id="content">
-                <h4>Poštovani John Doe</h4>
+                <h4>{{__('Poštovani John Doe')}}</h4>
                 <h5>
-                    Obaviještavamo vas da je ovo poruka samo testnog karaktera i kao takva ne treb biti shvaćena ozbiljno.
+                    {{__('Obaviještavamo vas da je ovo poruka samo testnog karaktera i kao takva ne treb biti shvaćena ozbiljno.
                     U slučaju da vas stvarno zanima svrha ove poruke, obratite se njenom tvorcu koji također veze nema šta
                     ona treba da predstavlja. Cilj pisanja ove poruke je da bi se ustanovio konzistentan template koji
-                    će se moći u opštem slučaju koristiti u mnoge svrhe.
+                    će se moći u opštem slučaju koristiti u mnoge svrhe.')}}
 
                     <br><br>
 
-                    Za sva ostala pitanja obratite se Vladi Brčko Distrikta koja je zaposlila ove ljude.
+                    {{__('Za sva ostala pitanja obratite se Vladi Brčko Distrikta koja je zaposlila ove ljude.')}}
 
 
-                    P.S. Jesam slatki, right ? Vaš email
+                    {{__('P.S. Jesam slatki, right ? Vaš email')}}
                 </h5>
             </div>
 
@@ -166,8 +166,8 @@
                 </div>
 
                 <div class="footer_text">
-                    <h4>Vlada Brčkog distrikta</h4>
-                    <h5>Pododjeljenje za ljudske resurse Brčko Distrikta</h5>
+                    <h4>{{__('Vlada Brčkog distrikta')}}</h4>
+                    <h5>{{__('Pododjeljenje za ljudske resurse Brčko Distrikta')}}</h5>
 
                     <div class="single_value">
                         {{ Html::Image('images/envelope.png', '', ['width' => 16]) }}
@@ -178,7 +178,7 @@
                     </div>
                     <div class="single_value single_value2">
                         {{ Html::Image('images/grid-world.png', '', ['width' => 16]) }}
-                        <p>www.mojadomena.com</p>
+                        <p>{{__('www.mojadomena.com')}}</p>
                     </div>
                 </div>
             </div>

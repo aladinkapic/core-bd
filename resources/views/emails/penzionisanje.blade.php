@@ -4,7 +4,7 @@
 	</head>
 
 	<body>
-		<h4> Hello there </h4>
+		<h4>{{__(' Hello there ')}}</h4>
 
 	</body>
 

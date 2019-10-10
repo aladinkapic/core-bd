@@ -9,8 +9,8 @@
         <div class="col-sm-12">
             <div class="card ">
                 <div class="card-header ads-darker">
-                    <button onClick="window.location='/hr/odsustva/dodaj_vrstu_odsust';" class="btn btn-light float-right" ><i class="fa fa-plus-circle"></i> Dodaj novo odsustvo</button>
-                    <h4>Pregled vrsta odsustava</h4>
+                    <button onClick="window.location='/hr/odsustva/dodaj_vrstu_odsust';" class="btn btn-light float-right" ><i class="fa fa-plus-circle"></i> {{__('Dodaj novo odsustvo')}}</button>
+                    <h4>{{__('Pregled vrsta odsustava')}}</h4>
                 </div>
                 <div class="card-body hr-activity tab">
                     <br />
@@ -18,8 +18,8 @@
                         <thead >
                         <tr >
                             <th scope="col" width="40px;" style="text-align:center;">#</th>
-                            <th scope="col">Vrsta odsustva</th>
-                            <th scope="col" width="120px;" style="text-align:center;">Akcije</th>
+                            <th scope="col">{{__('Vrsta odsustva')}}</th>
+                            <th scope="col" width="120px;" style="text-align:center;">{{__('Akcije')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
 
                                 <td style="text-align:center;">
                                     <a href="/hr/odsustva/obrisi_vrstu_ods/{{$odsustvo->id ?? '1'}}">
-                                        <i class="fas fa-trash-alt"></i> Izbrišite
+                                        <i class="fas fa-trash-alt"></i> {{__('Izbrišite')}}
                                     </a>
                                 </td>
                             </tr>

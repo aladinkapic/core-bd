@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') Upražnjena radna mjesta @endsection
+@section('title') {{__('Upražnjena radna mjesta')}} @endsection
 
 @section('breadcrumbs')
 
@@ -23,9 +23,9 @@
             <tr>
                 @include('template.snippets.filters_header')
                 @if(!isset($prekobrojni))
-                    <th scope="col" class="text-center">Rješenje</th>
+                    <th scope="col" class="text-center">{{__('Rješenje')}}</th>
                 @endif
-                <th scope="col" class="text-center">Pregled</th>
+                <th scope="col" class="text-center">{{__('Pregled')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -54,7 +54,7 @@
                                     <td class="text-center">
                                         <a href="{{route('internotrziste.sviprekobrojniljudi', ['id' => $radnoMjesto->id])}}"
                                            title="Pregled svih službenika na radnom mjestu">
-                                            <i class="fa fa-eye" style="margin-left:10px;"></i> Pregled
+                                            <i class="fa fa-eye" style="margin-left:10px;"></i> {{__('Pregled')}}
                                         </a>
                                     </td>
                                 </tr>

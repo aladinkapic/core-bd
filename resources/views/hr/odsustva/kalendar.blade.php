@@ -17,15 +17,15 @@
                 <ul class="four">
                     <li class="{{ Request::path() == 'hr/odsustva/kalendar/'.$sluzbenik_id ? 'active' : '' }} single_bar">
                         <i class="far fa-calendar-alt"></i>
-                        <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id ?? '1')}}">Pregled kalendara državnog službenika</a>
+                        <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id ?? '1')}}">{{__('Pregled kalendara državnog službenika')}}</a>
                     </li>
                     <li class="single_bar">
                         <i class="fa fa-list-ul"></i>
-                        <a href="/hr/odsustva/lista_odsustava/01.{{date('m')}}.{{date('Y')}}/{{cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'))}}.{{date('m')}}.{{date('Y')}}/{{$sluzbenik_id}}">Lista odsustava</a>
+                        <a href="/hr/odsustva/lista_odsustava/01.{{date('m')}}.{{date('Y')}}/{{cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'))}}.{{date('m')}}.{{date('Y')}}/{{$sluzbenik_id}}">{{__('Lista odsustava')}}</a>
                     </li>
                     <li class="single_bar">
                         <i class="far fa-calendar-times"></i>
-                        <a href="/hr/odsustva/limiti_pojedinca/{{$sluzbenik_id}}/{{date('Y')}}">Limit odsustava</a>
+                        <a href="/hr/odsustva/limiti_pojedinca/{{$sluzbenik_id}}/{{date('Y')}}">{{__('Limit odsustava')}}</a>
                     </li>
                 </ul>
             </div>
@@ -34,7 +34,7 @@
         <div class="registruj_odsustvo">
             <div class="registruj_odsustvo_values">
                 <div class="registruj_odsustvo_header">
-                    <h4>Registrujte odsustvo</h4>
+                    <h4>{{__('Registrujte odsustvo')}}</h4>
                     <i class="fas fa-times" title="Zatvorite" onclick="openDialbox();"></i>
                 </div>
 
@@ -89,13 +89,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="napomena" class="col-form-label">Napomena :</label>
+                            <label for="napomena" class="col-form-label">{{__('Napomena :')}}</label>
                             <textarea class="form-control" id="napomena"></textarea>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"  onclick="openDialbox();">Zatvorite</button>
-                            <button type="button" class="btn btn-primary" onclick="unesiOdsustvo();">Unesite odsustvo</button>
+                            <button type="button" class="btn btn-secondary"  onclick="openDialbox();">{{__('Zatvorite')}}</button>
+                            <button type="button" class="btn btn-primary" onclick="unesiOdsustvo();">{{__('Unesite odsustvo')}}</button>
                         </div>
                     </div>
                 </div>

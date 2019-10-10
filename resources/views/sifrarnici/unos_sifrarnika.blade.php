@@ -1,12 +1,12 @@
 @extends('template.main')
-@section('title') Naziv šifrarnika @endsection
+@section('title') {{__('Naziv šifrarnika')}} @endsection
 
 @section('content')
     <div class="container">
         <div class="card" style="width:100%;">
             <div class="card-header ads-darker">
-                <button style="float:right;" onClick="window.location=' {{route('dodaj.sifrarnik', ['type' => $type])}} ';" class="btn btn-light" ><i class="fas fa-chevron-circle-left"></i> Nazad na šifrarnik </button>
-                <h4>Naziv šifrarnika</h4>
+                <button style="float:right;" onClick="window.location=' {{route('dodaj.sifrarnik', ['type' => $type])}} ';" class="btn btn-light" ><i class="fas fa-chevron-circle-left"></i> {{__('Nazad na šifrarnik')}} </button>
+                <h4>{{__('Naziv šifrarnika')}}</h4>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                                 <td></td>
                                 <td>
                                     {{ Form::checkbox('check', 'value', ['class' => 'form-control']) }}
-                                    Upisom podataka i spremanjem u bazu podataka potvrđujem da su svi uneseni podaci tačni te ne utiču na stabilnost, konzistentnost i integritet sistema i podataka. Svaka izmjena je zapisana.
+                                    {{__('Upisom podataka i spremanjem u bazu podataka potvrđujem da su svi uneseni podaci tačni te ne utiču na stabilnost, konzistentnost i integritet sistema i podataka. Svaka izmjena je zapisana.')}}
                                 </td>
                             </tr>
                             <tr>

@@ -15,8 +15,8 @@
 
         <div class="card ">
             <div class="card-header ads-darker">
-                <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id ?? '1'}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> Izmijeni</button></a>
-                <h3>Upravljanje učinkom</h3>
+                <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id ?? '1'}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> {{__('Izmijeni')}}</button></a>
+                <h3>{{__('Upravljanje učinkom')}}</h3>
             </div>
             <div class="card-body hr-activity tab">
                 <div class="row">
@@ -24,24 +24,24 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
-                                <td><b>Službenik:</b></td>
+                                <td><b>{{__('Službenik:')}}</b></td>
                                 <td> {{$sluzbenik ?? '/'}} </td>
                             </tr>
                             <tr>
-                                <td><b>Radno mjesto:</b></td>
+                                <td><b>{{__('Radno mjesto:')}}</b></td>
                                 <td> {{$radnoMjesto ?? '/'}} </td>
                             </tr>
                             <tr>
-                                <td><b>Godina:</b></td>
+                                <td><b>{{__('Godina:')}}</b></td>
                                 <td> {{$ucinak -> godina ?? '/'}} </td>
                             </tr>
 
                             <tr>
-                                <td><b>Ocjena:</b></td>
+                                <td><b>{{__('Ocjena:')}}</b></td>
                                 <td> {{$ucinak -> ocjena ?? '/'}} </td>
                             </tr>
                             <tr>
-                                <td><b>Opisna ocjena:</b></td>
+                                <td><b>{{__('Opisna ocjena:')}}</b></td>
                                 <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
                             </tr>
 

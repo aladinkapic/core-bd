@@ -1,12 +1,12 @@
 @extends('template.main')
-@section('title') Pregled tržišta rada @endsection
+@section('title') {{__('Pregled tržišta rada')}} @endsection
 
 @section('content')
     <div class="container">
         <div class="card-header ads-darker" style="height:60px;">
-            <button onClick="window.location='{{ route('unos.strateskogplaniranja') }}';" class="btn btn-light float-right" ><i class="fa fa-plus-circle"></i> Planiranje kadrova</button>
+            <button onClick="window.location='{{ route('unos.strateskogplaniranja') }}';" class="btn btn-light float-right" ><i class="fa fa-plus-circle"></i> {{__('Planiranje kadrova')}}</button>
             <h4 style="padding-top:6px; margin-top:0px;">
-                Strateško planiranje - planiranje kadrova
+                {{__('Strateško planiranje - planiranje kadrova')}}
             </h4>
         </div>
 
@@ -14,12 +14,12 @@
         <table class="table table-bordered">
             <thead >
             <tr >
-                <th scope="col" width="40px;" class="text-center">ID</th>
-                <th scope="col">Naziv</th>
-                <th scope="col">Broj planiranih godina</th>
-                <th scope="col">Ime i prezime</th>
-                <th scope="col">Datum zaključenja</th>
-                <th scope="col" class="text-center">Akcije</th>
+                <th scope="col" width="40px;" class="text-center">{{__('ID')}}</th>
+                <th scope="col">{{__('Naziv')}}</th>
+                <th scope="col">{{__('Broj planiranih godina')}}</th>
+                <th scope="col">{{__('Ime i prezime')}}</th>
+                <th scope="col">{{__('Datum zaključenja')}}</th>
+                <th scope="col" class="text-center">{{__('Akcije')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -28,8 +28,8 @@
                 <tr >
                     <th scope="col" width="40px;" class="text-center">{{$i++ ?? '/'}}</th>
                     <th scope="col">{{$plan->naziv ?? '/'}}</th>
-                    <th scope="col">{{$plan->br_plan_godina ?? '/'}} godina</th>
-                    <th scope="col">Ime i prezime</th>
+                    <th scope="col">{{$plan->br_plan_godina ?? '/'}} {{__('godina')}}</th>
+                    <th scope="col">{{__('Ime i prezime')}}</th>
                     <th scope="col">
                         {{$plan->created_at ?? '/'}}
                     </th>

@@ -22,7 +22,7 @@
 
         <div class="row" style=" margin-left:-4px; width: calc(100% + 0px);">
             <div class="col-md-10" >
-                <h4 style="margin-left:8px;">Lista suspenzija</h4>
+                <h4 style="margin-left:8px;">{{__('Lista suspenzija')}}</h4>
             </div>
             <div class="col-md-2">
                 <button class="btn btn-success" onClick="window.location='/hr/disciplinska_odgovornost/unos_suspenzija';"> <i class="fa fa-plus fa-1x"></i> {{__('Unesite novu suspenziju')}}</button>

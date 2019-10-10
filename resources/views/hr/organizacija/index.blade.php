@@ -37,7 +37,7 @@
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
                 @include('template.snippets.filters_header')
-                <th width="150">Akcije</th>
+                <th width="150">{{__('Akcije')}}</th>
             </thead>
             <tbody>
                 @foreach($organizacija as $org)
@@ -52,7 +52,7 @@
                     </td>
                     <td>
                         <a class="btn btn-primary btn-xs" href="/organizacija/edit/{{ $org->id}}">
-                            <i class="fa fa-pen"></i> Izmjena
+                            <i class="fa fa-pen"></i> {{__('Izmjena')}}
                         </a>
 
                          <form style="display: inline-block;" method="POST" action="/organizacija/destroy/{{ $org->id  }}">

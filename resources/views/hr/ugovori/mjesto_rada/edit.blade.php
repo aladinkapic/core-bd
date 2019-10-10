@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Izmjena ugovora o rasporedu na radno mjesto
+                        {{__('Izmjena ugovora o rasporedu na radno mjesto')}}
                     </div>
                     <div class="card-body">
 
@@ -23,7 +23,7 @@
 
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Službenik
+                                        {{__('Službenik')}}
                                     </div>
                                     <div class="col-md-7">
                                         <select class="form-control" name="sluzbenik">
@@ -36,7 +36,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Adresa
+                                        {{__('Adresa')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input value="{{ $ugovor->adresa ?? '/'}}" required="required" class="form-control" type="text" name="adresa"
@@ -46,7 +46,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Sprat
+                                        {{__('Sprat')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input value="{{ $ugovor->sprat ?? '/'}}" required="required" class="form-control" type="text" name="sprat"
@@ -56,7 +56,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Broj kancelarije
+                                        {{__('Broj kancelarije')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input value="{{ $ugovor->broj_kancelarije ?? '/'}}" class="form-control" type="text" name="broj_kancelarije"
@@ -66,7 +66,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Službeno auto na raspolaganju
+                                        {{__('Službeno auto na raspolaganju')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input @if($ugovor->sluzbeno_auto == 1) checked="checked" @endif type="checkbox" value="1" name="sluzbeno_auto"
@@ -76,7 +76,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        Povjerena stalna sredstva
+                                        {{__('Povjerena stalna sredstva')}}
                                     </div>
                                     <div class="col-md-7">
                                     <textarea class="form-control"  name="povjerena_stalna_sredstva"
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <button class="btn btn-success">
-                                            <i class="fa fa-plus"></i> Dodaj
+                                            <i class="fa fa-plus"></i> {{__('Dodaj')}}
                                         </button>
                                     </div>
                                 </div>

@@ -1,6 +1,6 @@
 <div class="drop_down_option">
     <div class="single_row header">
-        <p>Podaci o prebivalištu</p>
+        <p>{{__('Podaci o prebivalištu')}}</p>
         <i class="fas arrow-icon fa-chevron-down" onclick="prikazi_elemente(0);"></i>
         @if(!isset($pregled))
             <i class="fas fa-plus" title="Dodajte nove podatke o mjestu prebivališta" onclick="prikazi_elemente(0, 'hidden_input_form');"></i>

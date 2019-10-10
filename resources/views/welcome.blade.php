@@ -82,11 +82,11 @@
                         <img width="64" src="{{ asset('images/grb-bih.png') }}" />
                         <br />
                         <br />
-                        <b>Pododjeljenje za ljudske resurse BD</b>
+                        <b>{{__('Pododjeljenje za ljudske resurse BD')}}</b>
                     </div>
 
                     <div class="links">
-                        <a class="btn btn-primary" href="/prijava">Prijavite se</a>
+                        <a class="btn btn-primary" href="/prijava">{{__('Prijavite se')}}</a>
                     </div>
                 </div>
 

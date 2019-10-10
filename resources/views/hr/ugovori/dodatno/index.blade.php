@@ -18,13 +18,13 @@
         <br/>
         <div class="row">
             <div class="col-md-10">
-                <h4>Evidencija o dodatnim djelatnostima </h4>
+                <h4>{{__('Evidencija o dodatnim djelatnostima')}} </h4>
 
             </div>
             <div class="col-md-2">
                 <button class="btn btn-success" style="float:right;"
-                        v-on:click="url('{{ route('ugovor.dodatno.create') }}')"><i class="fa fa-plus fa-1x"></i> Novi
-                    unos
+                        v-on:click="url('{{ route('ugovor.dodatno.create') }}')"><i class="fa fa-plus fa-1x"></i> {{__('Novi
+                    unos')}}
                 </button>
             </div>
         </div>

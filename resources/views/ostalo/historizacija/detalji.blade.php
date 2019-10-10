@@ -70,7 +70,7 @@
                                             <td>
                                                 <?php
                                                 if (gettype($key) === 'object') {
-                                                    echo "<table><thead><th>Naziv</th><th>Vrijednost</th></thead><tbody>";
+                                                    echo "<table><thead><th>{{__('Naziv')}}</th><th>{{__('Vrijednost')}}</th></thead><tbody>";
                                                     foreach ($key as $key2 => $value2) {
                                                         echo "<tr><td>$key2</td><td>$value2</td></tr>";
                                                     }
@@ -125,7 +125,7 @@
                                             <td>
                                                 <?php
                                                 if (gettype($keynew) === 'object') {
-                                                    echo "<table><thead><th>Naziv</th><th>Vrijednost</th></thead><tbody>";
+                                                    echo "<table><thead><th>{{__('Naziv')}}</th><th>{{__('Vrijednost')}}</th></thead><tbody>";
                                                     foreach ($keynew as $key2 => $value2) {
                                                         echo "<tr><td>$key2</td><td>$value2</td></tr>";
                                                     }

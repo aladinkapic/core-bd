@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Prijavite se</title>
+        <title>{{__('Prijavite se')}}</title>
 
         <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
@@ -18,7 +18,7 @@
                         <div class="forma">
                             {{ csrf_field() }}
                             <div class="red_forme">
-                                <h4>PRIJAVITE SE</h4>
+                                <h4>{{__('PRIJAVITE SE')}}</h4>
                             </div>
 
                             <div class="input_okvir @if(isset($username_greska)) @if($username_greska == 'greska') crveni_okvir @endif @endif">
@@ -38,10 +38,10 @@
                                     <i class="fas fa-globe-europe"></i>
                                 </div>
                                 <select class="form-control" name="jezik">
-                                    <option value="bs">Bosanski</option>
-                                    <option value="hr">Hrvatski</option>
-                                    <option value="sr">Srpski</option>
-                                    <option value="src">Srpski (ćirilica)</option>
+                                    <option value="bs">{{__('Bosanski')}}</option>
+                                    <option value="hr">{{__('Hrvatski')}}</option>
+                                    <option value="sr">{{__('Srpski')}}</option>
+                                    <option value="src">{{__('Srpski (ćirilica)')}}</option>
                                 </select>
                             </div>
 
@@ -57,7 +57,7 @@
                         <div class="forma">
                             {{ csrf_field() }}
                             <div class="red_forme">
-                                <h4>UNESITE VAŠ PIN</h4>
+                                <h4>{{__('UNESITE VAŠ PIN')}}</h4>
                             </div>
 
                             <div class="input_okvir {{ isset($greska) ? 'crveni_okvir' : '' }}">

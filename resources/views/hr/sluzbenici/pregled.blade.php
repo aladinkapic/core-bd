@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
             <div class="col-md-10">
-                <h4>Lista državnih službenika</h4>
+                <h4>{{__('Lista državnih službenika')}}</h4>
                 <!---<button v-on:click="fireTable()" class="btn btn-primary btn-xs"><i class="fa fa-filter"
                                                                                    style="font-size: 11px;"></i> Filteri
                 </button>--->
@@ -28,7 +28,7 @@
             @if(!isset($odsustva))
                 <div class="col-md-2">
                     <button class="btn btn-success" v-on:click="url('{{ route('sluzbenik.dodaj') }}')"><i
-                                class="fa fa-plus fa-1x"></i> Dodajte novog službenika
+                                class="fa fa-plus fa-1x"></i> {{__('Dodajte novog službenika')}}
                     </button>
                 </div>
             @endif
@@ -43,7 +43,7 @@
                 <thead>
                 <tr>
                     @include('template.snippets.filters_header')
-                    <th style="text-align:center;" class="akcije">Akcije</th>
+                    <th style="text-align:center;" class="akcije">{{__('Akcije')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -268,8 +268,8 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->prestanak_ro) ? $sluzbenik->prestanak_ro : [] as $prestanak)
                                     <li>
-                                        <b>Datum prestanka</b>: {{ $prestanak->datum_prestanka ?? '/'}}<br/>
-                                        <b>Osnov za prestanak</b>: {{ $prestanak->osnov_za_prestanak ?? '/'}}<br/>
+                                        <b>{{__('Datum prestanka')}}</b>: {{ $prestanak->datum_prestanka ?? '/'}}<br/>
+                                        <b>{{__('Osnov za prestanak')}}</b>: {{ $prestanak->osnov_za_prestanak ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -281,8 +281,8 @@
                             <ul style="list-style: none; margin: 0; padding: 0;">
                                 @foreach(($sluzbenik->clanovi_porodice) ? $sluzbenik->clanovi_porodice : [] as $clanovi )
                                     <li>
-                                        <b>Srodstvo</b>: {{ $clanovi->srodstvo ?? '/'}}<br/>
-                                        <b>Datum rođenja</b>: {{ $clanovi->datum_rodjenja ?? '/'}}<br/>
+                                        <b>{{__('Srodstvo')}}</b>: {{ $clanovi->srodstvo ?? '/'}}<br/>
+                                        <b>{{__('Datum rođenja')}}</b>: {{ $clanovi->datum_rodjenja ?? '/'}}<br/>
                                         <hr/>
                                     </li>
                                 @endforeach
@@ -291,11 +291,11 @@
                         <td style="text-align:center;" class="akcije">
                             @if(isset($odsustva))
                                 <a href="{{ '/hr/odsustva/kalendar/' . $sluzbenik->id ?? '1'}}">
-                                    <i class="fa fa-eye"></i> Odsustva
+                                    <i class="fa fa-eye"></i> {{__('Odsustva')}}
                                 </a>
                             @elseif(isset($uloge))
                                 <a href="{{ '/uloge/dodijeliUlogu/' . $sluzbenik->id ?? '1'}}">
-                                    <i class="fa fa-eye"></i> Uredite uloge
+                                    <i class="fa fa-eye"></i> {{__('Uredite uloge')}}
                                 </a>
                             @else
                                 <a href="{{ '/hr/sluzbenici/uredi_sluzbenika/' . $sluzbenik->id ?? '1'}}">

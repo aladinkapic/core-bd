@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                     <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">
-                        Dodajte medijatora
+                        {{__('Dodajte medijatora')}}
                         <i class="fas fa-save"></i>
                     </button>
                 </div>
