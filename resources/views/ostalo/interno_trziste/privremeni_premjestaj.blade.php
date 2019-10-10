@@ -22,31 +22,45 @@
             <thead>
             <tr>
                 @include('template.snippets.filters_header')
-                <th width="100">{{__('Pregled')}}</th>
+                <th width="120" class="text-center">{{__('Pregled')}}</th>
             </tr>
             </thead>
             <tbody>
+            @php $counter = 1; @endphp
             @if (isset($sluzbenici))
                 @foreach($sluzbenici as $korisnik)
                     <tr>
-                        <td> {{$korisnik->ime_prezime ?? '/'}} </td>
+                        <td>{{$counter++}}</td>
                         <td>
-                            @if($korisnik->radnoMjesto)
+                            <a href="{{route('sluzbenik.dodatno', ['id' => $korisnik->id])}}">
+                                {{$korisnik->ime_prezime ?? '/'}}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{route('radnamjesta.pregledaj', ['id' => $korisnik->radnoMjesto->id ?? '/'])}}">
                                 {{$korisnik->radnoMjesto->naziv_rm ?? '/'}}
-                            @else
-                                -
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{route('radnamjesta.pregledaj', ['id' => $korisnik->privremeniPremjestajRel->privremeno_mjesto->id ?? '/'])}}">
+                                {{$korisnik->privremeniPremjestajRel->privremeno_mjesto->naziv_rm ?? '/'}}
+                            </a>
+                        </td>
+                        <td>{{$korisnik->privremeniPremjestajRel->broj_rjesenja ?? '/'}}</td>
+                        <td>
+                            @if(isset($korisnik->privremeniPremjestajRel))
+                                {{$korisnik->privremeniPremjestajRel->datumRjesenja() }}
                             @endif
                         </td>
+                        <td>@if(isset($korisnik->privremeniPremjestajRel))
+                                {{$korisnik->privremeniPremjestajRel->datumOd() }}
+                            @endif</td>
+                        <td>@if(isset($korisnik->privremeniPremjestajRel))
+                                {{$korisnik->privremeniPremjestajRel->datumDo() }}
+                            @endif</td>
                         <td class="text-center">
-                            @if($korisnik->privremeniPremjestaj)
-                                {{$korisnik->privremeniPremjestaj->naziv_rm ?? '/'}}
-                            @else
-                                -
-                            @endif
-                        </td>
-                        <td class="text-center">
-                            <a href="{{route('ugovor.privremeno.edit', ['id' => App\Models\Privremeno::where('sluzbenik', $korisnik->id)->where('privremeno_radno_mjesto', $korisnik->privremeniPremjestaj->id)->get('id')->first()])}}">
-                                <i class="fa fa-eye" style="margin-right:10px;"></i>
+                            <a href="{{route('ugovor.privremeno.edit', ['id' => $korisnik->privremeni_premjestaj])}}">
+                                <button class="btn my-button">Pregled</button>
                             </a>
                         </td>
                     </tr>

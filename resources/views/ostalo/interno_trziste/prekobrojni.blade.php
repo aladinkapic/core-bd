@@ -15,43 +15,43 @@
         @include('ostalo/interno_trziste/fajlovi/menu')
         @include('ostalo/interno_trziste/fajlovi/forma')
 
+        @include('template.snippets.filters', ['var'  => $radnaMjesta])
 
-        <div class="split_container split_container5" style="padding:0px;">
-            <table class="table table-bordered text-left">
-                <thead >
-                <tr>
-                    <th scope="col" width="40px;" class="text-center">#</th>
-                    <th scope="col">Ime i prezime službenika</th>
-                    <th scope="col">Radno mjesto</th>
-                    <th scope="col" class="text-center" width="140px">Rješenje</th>
-                    <th scope="col" class="text-center" width="140px">Pregled</th>
-                </tr>
-                </thead>
-                <tbody>
-                @php $i=1; @endphp
-                @foreach($sluzbenici as $korisnik)
+
+        <table class="table table-bordered low-padding" id="filtering">
+            <thead>
+            <tr>
+                @include('template.snippets.filters_header')
+                {{--                @if(!isset($prekobrojni))--}}
+                {{--                    <th scope="col" class="text-center">Rješenje</th>--}}
+                {{--                @endif--}}
+                <th width="120px" class="text-center">Akcije</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @php $counter = 1; @endphp
+
+            @foreach($radnaMjesta as $rm)
+                @if($rm->broj_izvrsilaca < $rm->sluzbeniciRel->count())
                     <tr>
-                        <th scope="row" width="40px;" class="text-center">{{$i++}}</th>
-                        <td> {{$korisnik->ime ?? '/'}} {{$korisnik->prezime ?? '/'}} </td>
-                        <td> {{$korisnik->radnoMjesto->naziv_rm ?? '/'}} </td>
+                        <td>{{$counter++}}</td>
+                        <td>{{$rm->naziv_rm}}</td>
+                        <td>{{$rm->orgjed->naziv }}</td>
+                        <td>{{$rm->orgjed->organizacija->organ->naziv}}</td>
+                        <td>{{$rm->sifra_rm ?? '/'}}</td>
+                        <td>{{$rm->broj_izvrsilaca ?? '/'}}</td>
+                        <td>{{$rm->sluzbeniciRel->count()}}</td>
                         <td class="text-center">
-                            <a href="#" title="Dodajte / uredite rješenje" class="rjesenje rjesenje_korisnika" data-id="{{ $korisnik->id ?? '1'}}" data-name="{{ $korisnik->ime ?? '/'}} {{ $korisnik->prezime ?? '/'}}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <a href="{{ route('sluzbenik.dodatnoRjesenje', ['id_sluzbenika' => $korisnik->id, 'what' => true]) }}">
-                                <i class="fa fa-eye" style="margin-right:10px;"></i>
+                            <a href="{{route('radnamjesta.rjesenje', ['id' => $rm->id, 'what' => 'true'])}}"
+                               title="Pregledajte radno mjesto">
+                                <button class="btn my-button">Pregled</button>
                             </a>
                         </td>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-
+                @endif
+            @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection
-
-
-
