@@ -480,7 +480,7 @@ class SluzbenikController extends Controller
             ->with('radnoMjesto.rukovodioc_s');
 
         $sluzbenici = FilterController::filter($sluzbenici);
-       //dd($sluzbenici);
+      // dd($sluzbenici);
 
         $filteri = ['id' => 'ID',
             'ime_prezime' => 'Ime i prezime',
@@ -508,13 +508,20 @@ class SluzbenikController extends Controller
             'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
 
             'zasnivanjeRO.datum_zasnivanja_o' => 'Datum zasnivanja radnog odnosa',
+            'zasnivanjeRO.nacin_zasnivanja_r_o' => 'Način zasnivanja radnog odnosa',
+            'zasnivanjeRO.vrsta_r_o' => 'Vrsta radnog odnosa',
+            'zasnivanjeRO.obracunati_r_staz' => 'Obračunati staž',
+            'zasnivanjeRO.obracunati_r_s_god' => 'Obračunati staž godina',
+            'zasnivanjeRO.obracunati_r_s_mje' => 'Obračunati staž mjeseci',
+            'zasnivanjeRO.obracunati_r_s_dan' => 'Obračunati staž dani',
+            'zasnivanjeRO.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
+            'zasnivanjeRO.minuli_radni_staz' => 'Minuli radni staž',
 
             'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
             'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
             'id3' => 'Položeni ispiti',
             'id4' => 'Kontakt informacije',
             'id5' => 'Dodatne vještine',
-            'id6' => 'Zasnivanje radnog odnosa',
             'id7' => 'Prethodno radno iskustvo',
             'id8' => 'Prestanak radnog odnosa',
             'id9' => 'Članovi porodice',
