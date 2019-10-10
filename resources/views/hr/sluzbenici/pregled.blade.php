@@ -28,11 +28,11 @@
             @if(!isset($odsustva))
                 <div class="col-md-2">
                     <button class="btn btn-success" v-on:click="url('{{ route('sluzbenik.dodaj') }}')"><i
-<<<<<<< HEAD
+
                                 class="fa fa-plus fa-1x"></i> {{__('Dodajte novog službenika')}}
-=======
-                                class="fa fa-plus fa-1x"></i>{{__(' Dodajte novog službenika')}}
->>>>>>> eef30d848374e32202a9150e15193c7c7b9d0e5b
+
+                                {{--class="fa fa-plus fa-1x"></i>{{__(' Dodajte novog službenika')}}--}}
+
                     </button>
                 </div>
             @endif
