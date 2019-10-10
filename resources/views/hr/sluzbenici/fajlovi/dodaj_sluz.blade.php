@@ -27,12 +27,22 @@
                 {!! Form::text('[korisnicko_ime]', isset($sluzbenik) ? $sluzbenik->korisnicko_ime : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'korisnicko_ime', 'readonly']) !!}
             </div>
         </div>
-        <div class="col">
-            {!! Form::label('email', __('Email').' : ', ['class' => 'control-label']) !!}
-            <div class="col-lg-12">
-                {!! Form::text('email', isset($sluzbenik) ? $sluzbenik->email : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'email', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("email", "Uneseni podaci nemaju formu maila. Jeste li zaboravili -@- ?", "email")', 'maxlength' => 50]) !!}
+        @if(isset($unos))
+            <div class="col">
+                {!! Form::label('email', __('Email').' : ', ['class' => 'control-label']) !!}
+                <div class="col-lg-12">
+                    {!! Form::select('email', '0', ['class' => 'form-control', 'rows' => 1, 'id' => 'email', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("email", "Uneseni podaci nemaju formu maila. Jeste li zaboravili -@- ?", "email")', 'maxlength' => 50]) !!}
+                </div>
             </div>
-        </div>
+        @else
+            <div class="col">
+                {!! Form::label('email', __('Email').' : ', ['class' => 'control-label']) !!}
+                <div class="col-lg-12">
+                    {!! Form::text('email', isset($sluzbenik) ? $sluzbenik->email : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'email', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("email", "Uneseni podaci nemaju formu maila. Jeste li zaboravili -@- ?", "email")', 'maxlength' => 50]) !!}
+                </div>
+            </div>
+        @endif
+
     </div>
 
     <div class="notificaiton_area" id="email_not"> <p id="email_not_v"></p> </div> <!-- obavijest za prezime -->

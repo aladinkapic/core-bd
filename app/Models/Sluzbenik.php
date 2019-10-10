@@ -42,11 +42,7 @@ class Sluzbenik extends Model{
 
     protected $ukupan_broj_dana = 0, $godina = 0, $mjeseci = 0, $dana = 0;
 
-    protected $fillable = [
-        'ime', 'prezime', 'korisnicko_ime', 'email', 'jmbg', 'fotografija', 'ime_roditelja', 'djevojacko_prezime', 'pol', 'kategorija', 'drzavljanstvo_1',
-        'drzavljanstvo_2', 'nacionalnost', 'datum_rodjenja', 'mjesto_rodjenja', 'bracni_status', 'licna_karta', 'mjesto_izdavanja_lk',
-        'privremeni_premjestaj', 'PIO', 'radno_mjesto', 'ekonkurs', 'ekonkurs_prijava'
-    ];
+    protected $guarded = ['id'];
 
 
     public function routeNotificationForMail($notification)
