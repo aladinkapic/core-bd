@@ -31,13 +31,16 @@
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
             <tr>
+                <th class="text-center">#</th>
                 @include('template.snippets.filters_header')
-                <th width="170">{{__('Akcije')}}</th>
+                <th width="120">{{__('Akcije')}}</th>
             </tr>
             </thead>
             <tbody>
+            @php $i=1; @endphp
             @foreach($obuke as $obuka)
                 <tr class="org-row">
+                    <td class="text-center">{{$i++}}</td>
                     <td>{{$obuka -> naziv ?? '/'}}</td>
                     <td>{{$obuka -> vrsta ?? '/'}}</td>
                     <td>{{$obuka->organizator ?? '/'}}</td>
