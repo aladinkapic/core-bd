@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Organizacija;
 use Illuminate\Database\Eloquent\Model;
 
 class OrganizacionaJedinica extends Model
@@ -20,5 +21,9 @@ class OrganizacionaJedinica extends Model
 
     public function radnaMjesta(){
         return $this->hasMany('App\Models\RadnoMjesto', 'id_oj');
+    }
+
+    public function childs() {
+        return $this->hasMany(OrganizacionaJedinica::class, 'parent_id', 'id');
     }
 }

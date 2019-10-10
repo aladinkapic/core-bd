@@ -341,15 +341,20 @@ class OrganizacijaController extends Controller
 
     }
 
-    public function shema(Request $request, $id)
-    {
+    public function shema(Request $request, $id){
         $organizacija = Organizacija::where('id', '=', $id)->first();
 
         $radna_mjesta = RadnoMjesto::organizacijska($organizacija->id);
 
+//        $org_jedinice = OrganizacionaJedinica::with('parent')
+//            ->where('org_id', '=', $id)
+//            ->orderBy('id', 'ASC')
+//            ->get();
+
         $org_jedinice = OrganizacionaJedinica::with('parent')
             ->where('org_id', '=', $id)
-            ->orderBy('id', 'ASC')
+            ->orderBy('broj', 'ASC')
+            ->with('radnaMjesta')
             ->get();
 
         return view('hr.organizacija.shema')->with(compact('org_jedinice', 'organizacija', 'radna_mjesta'));

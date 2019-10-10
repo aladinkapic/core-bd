@@ -751,3 +751,35 @@ $(document).ready(function() {
     });
 
 });
+
+
+
+$(document).ready(function(){
+    $( function() {
+        $( ".tf-tree" ).draggable();
+    } );
+
+
+    let treeWrapperW = $(".tree-wrapper").width();
+    console.log(treeWrapperW);
+
+    // Now, lets put it on the left
+
+    let scaleValue = 0.9;
+
+
+    console.log($(".first-div").width());
+
+    $(".box").scroll(function() {
+        $("span").css( "display", "inline" ).fadeOut( "slow" );
+    });
+
+    $(".zoom-in-it").click(function () {
+        scaleValue += 0.1;
+        $('.tf-tree').css('transform', 'scale(' + (scaleValue) +')')
+    });
+    $(".zoom-out-it").click(function () {
+        scaleValue -= 0.1;
+        $('.tf-tree').css('transform', 'scale(' + (scaleValue) +')')
+    });
+});

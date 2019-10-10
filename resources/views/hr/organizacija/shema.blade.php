@@ -11,85 +11,8 @@
     ]) !!}
 
 @stop
-
-@section('other_js_links')
-
-    <script src="{{ asset('js/organizacija.js') }}"></script>
-
-    <script>
-
-        /*
-            Radna mjesta
-
-        var chart = new OrgChart(document.getElementById("orgchart"), {
-            template: "ula",
-            showXScroll: BALKANGraph.scroll.visible,
-            mouseScrool: BALKANGraph.action.xScroll,
-            layout: BALKANGraph.mixed,
-            scaleInitial: 0.5,
-            /*nodeMouseClick: function(){
-                return false;
-            },
-            nodeBinding: {
-                field_0: "Naziv",
-                field_1: "Sluzbenik"
-            },
-            tags: {
-
-            },
-            nodes: [
-
-            ]
-        });
-
-        /*
-            Organizacione jedinice
-         */
-
-        var chart = new OrgChart(document.getElementById("orgchart"), {
-            template: "core",
-            showXScroll: BALKANGraph.scroll.visible,
-            mouseScrool: BALKANGraph.action.xScroll,
-            layout: OrgChart.treeRightOffset,
-            scaleInitial: 0.7,
-
-            nodeBinding: {
-                field_0: "Naziv",
-            },
-
-            menu: {
-                pdf: { text: "Izvoz u PDF" },
-                png: { text: "Izvoz u PNG" },
-            },
-
-            nodes: [
-                @foreach($org_jedinice as $jedinica)
-                     { id: {{ $jedinica->id }}, @if($jedinica->parent_id) pid: {{ $jedinica->parent_id }},@endif Naziv: "{{ $jedinica->broj }} {{ $jedinica->naziv }}" },
-                @endforeach
-            ]
-    });
-
-</script>
-
-@stop
-
+<link href="https://unpkg.com/treeflex/dist/css/treeflex.css" rel="stylesheet">
 @section('content')
-
-    <style>
-        .shape_content {
-            background: whitesmoke;
-            width: 100% !important;
-        }
-        foreignObject {
-            width: 10% !important;
-        }
-        rect {
-            width:10% !important;
-        }
-        svg {
-            width: 100% !important;
-        }
-    </style>
 
     <div class="container">
 
@@ -97,24 +20,73 @@
 
         <br />
 
-        <div class="row">
-            <div class="col-md-9">
-                @include('hr.organizacija.snippets.menu')
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa fa-expand" style="float: right; cursor: pointer;" v-on:click="expand()"></i>
-                        Prikaz organizacione sheme
-                    </div>
-                    <div class="card-body" style="padding: 0px;">
-                        <div style="width:100%; height:700px;" id="orgchart"/>
-                    </div>
+        <div class="tree-wrapper">
+            <div class="zoom-buttons">
+                <div class="single-zoom-button zoom-out-it">
+                    <i class="fas fa-search-minus"></i>
+                </div>
+                <div class="single-zoom-button zoom-in-it">
+                    <i class="fas fa-search-plus"></i>
                 </div>
             </div>
-            </div>
+            <div class="tree-inside-wrapper">
+                <div class="tf-tree tf-gap-lg" title="Klikom miša možete pomjerati shemu">
+                    <ul>
+                        <li>
+                            <span class="tf-nc custom-tf-nc">
+                                <span class="tree-element">
+                                    {{$organizacija->naziv}}
+                                </span>
+                            </span>
 
-            <div class="col-md-3">
+                            <ul>
+                                @foreach($org_jedinice as $jed)
+                                    @if($jed->parent_id == null)
+                                        <li>
+                                            <span class="tf-nc custom-tf-nc">
+                                                <span class="tree-element tree-element-sm">
+                                                    {{ $jed->naziv ?? 'Nema imena' }}
+                                                </span>
+                                            </span>
 
-                @include('hr.organizacija.snippets.sidebar')
+                                            @if(count($jed->childs))
+                                                @include('hr.organizacija.snippets.tree-extended',['childs' => $jed->childs])
+                                            @endif
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+{{--                    <ul class="first-div">--}}
+{{--                        <li>--}}
+{{--                            <span class="tf-nc">1</span>--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    <span class="tf-nc">2</span>--}}
+{{--                                    <ul>--}}
+{{--                                        <li><span class="tf-nc">4</span></li>--}}
+{{--                                        <li>--}}
+{{--                                            <span class="tf-nc">5</span>--}}
+{{--                                            <ul>--}}
+{{--                                                <li><span class="tf-nc">9</span></li>--}}
+{{--                                                <li><span class="tf-nc">10</span></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </li>--}}
+{{--                                        <li><span class="tf-nc">6</span></li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <span class="tf-nc">3</span>--}}
+{{--                                    <ul>--}}
+{{--                                        <li><span class="tf-nc">7</span></li>--}}
+{{--                                        <li><span class="tf-nc">8</span></li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+                </div>
             </div>
         </div>
 

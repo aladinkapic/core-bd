@@ -34,3 +34,60 @@
     padding:0px;
     margin-left:15px;
 }
+
+/************************************************ THREE STRUCTURE *****************************************************/
+
+.tree-wrapper{
+    position:relative;
+    height:800px;
+    width:100%;
+    border:1px solid rgba(0,0,0,0.1);
+    background:#ffF;
+    left:0px;
+    margin-top:20px;
+    overflow:hidden;
+
+    .zoom-buttons{
+        position:absolute;
+        right:15px;
+        top:15px;
+        width:80px;
+        height:30px;
+        border-radius:3px;
+        background:#fff;
+        z-index:200;
+        display:inline-flex;
+        border:1px solid rgba(0,0,0,0.1);
+        .single-zoom-button{
+            width:40px;
+            height:30px;
+            text-align:center;
+            i{
+                padding-top:6px;
+            }
+        }
+        .single-zoom-button:first-child{border-right:1px solid rgba(0,0,0,0.1);}
+        .single-zoom-button:hover{cursor:pointer; background:rgba(0,0,0,0.05);}
+    }
+
+    .tree-inside-wrapper{
+        position: absolute;
+        left:calc(50% - 5000px);
+        top:0px;
+        width:10000px;
+        height:10000px;
+        text-align:center;
+        .tf-tree{
+            margin-top:30px;
+            min-height: min-content;
+            transform:scale(0.8);
+            //width:10000px;
+            //height:10000px;
+
+            .tf-nc{
+                max-width:260px;
+            }
+        }
+        .tf-tree:hover{cursor:pointer;}
+    }
+}
