@@ -464,6 +464,7 @@ class SluzbenikController extends Controller
       // dd($sluzbenici);
 
         $filteri = [
+            'id' => '#',
             'ime_prezime' => 'Ime i prezime',
             'email' => 'E-Mail',
             'jmbg' => 'JMB',
