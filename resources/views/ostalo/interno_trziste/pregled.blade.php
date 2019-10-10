@@ -40,6 +40,18 @@
                         <td>{{$rm->sifra_rm ?? '/'}}</td>
                         <td>{{$rm->broj_izvrsilaca ?? '/'}}</td>
                         <td>{{$rm->sluzbeniciRel->count()}}</td>
+                        <td>
+
+                            @if(isset($rm->sluzbeniciRel))
+                                <ul class="custom-list">
+                                    @foreach($rm->sluzbeniciRel as $sl)
+                                        <a href="{{route('sluzbenik.dodatno', ['id' => $sl->sluzbenik->id])}}">
+                                            <li>{{$sl->sluzbenik->ime_prezime}}</li>
+                                        </a>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
                         <td class="text-center">
                             <a href="#" title="Dodajte / uredite rješenje" class="rjesenje" data-id="{{ $rm->id ?? '1'}}" data-name="{{ $rm->naziv_rm ?? '/'}}">
                                 <i class="fas fa-edit"></i>

@@ -37,6 +37,7 @@ class InternoTrzisteController extends Controller{
         })->with('sluzbeniciRel.sluzbenik')
         ->with('orgjed.organizacija.organ');
 
+
         $radnaMjesta = FilterController::filter($radnaMjesta);
 
         $filteri = [
@@ -47,6 +48,7 @@ class InternoTrzisteController extends Controller{
             'sifra_rm'=>'Šifra radnog mjesta',
             'broj_izvrsilaca'=>'Ukupan broj izvršilaca',
             ''=>'Broj izvršilaca',
+            'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 
 //        $planovi = Organizacija::where('active', '1');
