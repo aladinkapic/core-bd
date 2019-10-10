@@ -431,6 +431,8 @@ class OdsustvaController extends Controller{
         $odsustva   = Sifrarnik::dajSifrarnik('vrsta_odsustava');
         $limiti = DB::table('limit_odsustva')->where('id', '=', $id)->first();
 
+        dd($limiti);
+
         return view('/hr/odsustva/limit_pojedinca', compact('odsustva', 'limiti', 'ime_sluzbenika', 'sluzbenik_id'));
     }
 
