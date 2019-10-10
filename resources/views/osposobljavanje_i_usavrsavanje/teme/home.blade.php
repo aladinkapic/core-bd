@@ -32,13 +32,16 @@
             <table id="filtering" class="table table-condensed table-bordered">
                 <thead>
                 <tr>
+                    <th class="text-center">#</th>
                     @include('template.snippets.filters_header')
-                    <th style="text-align:center;" class="akcije" style="width: 15%;">{{__('Akcija')}}</th>
+                    <th style="text-align:center;width: 120px;" class="akcije">{{__('Akcija')}}</th>
                 </tr>
                 </thead>
                 <tbody>
+                @php $i=1; @endphp
                 @foreach($teme as $tema)
                     <tr>
+                        <td class="text-center">{{$i++}}</td>
                         <td>{{$tema->naziv ?? '/'}}</td>
                         <td>{{$tema->oblast_s->name ?? '/'}}</td>
                         <td>{{$tema->napomena ?? '/'}}</td>
