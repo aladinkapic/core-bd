@@ -78,7 +78,6 @@ class OrganizacijaController extends Controller
         $organizacija = FilterController::filter($organizacija);
 
         $filteri = [
-            'id' => 'ID',
             'naziv' => 'Naziv',
             'organ.naziv' => 'Organ javne uprave',
             'datum_od' => 'Datum važenja od',

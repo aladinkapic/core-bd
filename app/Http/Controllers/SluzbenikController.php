@@ -463,7 +463,7 @@ class SluzbenikController extends Controller
         $sluzbenici = FilterController::filter($sluzbenici);
       // dd($sluzbenici);
 
-        $filteri = ['id' => 'ID',
+        $filteri = [
             'ime_prezime' => 'Ime i prezime',
             'email' => 'E-Mail',
             'jmbg' => 'JMB',

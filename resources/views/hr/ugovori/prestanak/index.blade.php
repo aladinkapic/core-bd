@@ -33,6 +33,7 @@
         <table id="filtering" class="table table-bordered low-padding">
             <thead>
             <tr>
+                <th class="text-center">#</th>
                 @include('template.snippets.filters_header')
                 <th class="akcije text-center" width="120px">{{__('Akcije')}}</th>
             </tr>
@@ -41,7 +42,7 @@
             @php $counter = 1; @endphp
             @foreach($ugovori as $ugovor)
                 <tr>
-                    <td>{{$counter++}}</td>
+                    <td class="text-center">{{$counter++}}</td>
                     <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
                     <td>{{$ugovor->radno_mj->naziv_rm ?? ''}}</td>
                     <td>{{$ugovor->razlog ?? '/'}}</td>

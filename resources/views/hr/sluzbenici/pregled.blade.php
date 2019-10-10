@@ -85,14 +85,16 @@
             <table class="table table-bordered low-padding" id="filtering">
                 <thead>
                 <tr>
+                    <td class="text-center">#</td>
                     @include('template.snippets.filters_header')
                     <th style="text-align:center;" class="akcije">Akcije</th>
                 </tr>
                 </thead>
                 <tbody>
+                @php $i=1; @endphp
                 @foreach($sluzbenici as $sluzbenik)
                     <tr class="sluzbenik-row">
-                        <td scope="row" width="40px;" style="text-align:center;">{{ $sluzbenik->id ?? '1'}}</td>
+                        <td style="text-align:center;">{{ $i++}}</td>
                         <td>{{ $sluzbenik->ime_prezime ?? '/'}}</td>
                         <td>{{ $sluzbenik->email ?? '/'}}</td>
                         <td>{{ $sluzbenik->jmbg ?? '/'}}</td>

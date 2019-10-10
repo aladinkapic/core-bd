@@ -37,13 +37,16 @@
             <table id="filtering" class="table table-condensed table-bordered">
                 <thead>
                 <tr>
+                    <th class="text-center">#</th>
                     @include('template.snippets.filters_header')
                     <th style="text-align:center;" class="akcije" style="width: 15%;">{{__('Akcija')}}</th>
                 </tr>
                 </thead>
                 <tbody>
+                @php $i=1; @endphp
                 @foreach($zalbe as $zalba)
                     <tr>
+                        <td class="text-center">{{$i++}}</td>
                         <td>{{$zalba->disciplinskaOdgovornost->sluzbenik->ime_prezime ?? ''}}</td>
                         <td>{{$zalba->disciplinskaOdgovornost->sluzbenik->radnoMjesto->naziv_rm ?? ''}}</td>
                         <td>{{$zalba->disciplinskaOdgovornost->opis_disciplinske_mjere ?? ''}}</td>
