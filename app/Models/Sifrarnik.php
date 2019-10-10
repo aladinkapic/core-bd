@@ -47,6 +47,7 @@ class Sifrarnik extends Model{
         array('clanovi_porodice', 'Članovi porodice'),
         array('kategorija_ispita', 'Kategorija ispita'),
         array('rukovodeca_pozicija', 'Rukovodeća pozicija'),
+        array('ekstenzija_domene', 'Domena'),
 
     );
 
