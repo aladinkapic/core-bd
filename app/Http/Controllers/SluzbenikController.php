@@ -477,7 +477,10 @@ class SluzbenikController extends Controller
             ->with('vjestine')
             ->with('zasnivanjeRO')
             ->with('radnoMjesto.orgjed.organizacija.organ')
-            ->with('radnoMjesto.rukovodioc_s');
+            ->with('radnoMjesto.rukovodioc_s')
+            ->with('zasnivanjeRO.nacin_zasnivanja_ro_s')
+            ->with('zasnivanjeRO.vrsta_r_o_s')
+            ->with('zasnivanjeRO.obracunati_r_staz_s');
 
         $sluzbenici = FilterController::filter($sluzbenici);
       // dd($sluzbenici);
@@ -508,12 +511,12 @@ class SluzbenikController extends Controller
             'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
 
             'zasnivanjeRO.datum_zasnivanja_o' => 'Datum zasnivanja radnog odnosa',
-            'zasnivanjeRO.nacin_zasnivanja_r_o' => 'Način zasnivanja radnog odnosa',
-            'zasnivanjeRO.vrsta_r_o' => 'Vrsta radnog odnosa',
-            'zasnivanjeRO.obracunati_r_staz' => 'Obračunati staž',
-            'zasnivanjeRO.obracunati_r_s_god' => 'Obračunati staž godina',
-            'zasnivanjeRO.obracunati_r_s_mje' => 'Obračunati staž mjeseci',
-            'zasnivanjeRO.obracunati_r_s_dan' => 'Obračunati staž dani',
+            'zasnivanjeRO.nacin_zasnivanja_ro_s.name' => 'Način zasnivanja radnog odnosa',
+            'zasnivanjeRO.vrsta_r_o_s.name' => 'Vrsta radnog odnosa',
+            'zasnivanjeRO.obracunati_r_staz_s.name' => 'Obračunati staž',
+            'zasnivanjeRO.obracunati_r_s_god' => ' Staž godina',
+            'zasnivanjeRO.obracunati_r_s_mje' => ' Staž mjeseci',
+            'zasnivanjeRO.obracunati_r_s_dan' => ' Staž dani',
             'zasnivanjeRO.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
             'zasnivanjeRO.minuli_radni_staz' => 'Minuli radni staž',
 
