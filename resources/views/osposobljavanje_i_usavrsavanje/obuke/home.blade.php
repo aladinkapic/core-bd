@@ -33,7 +33,7 @@
             <tr>
                 <th class="text-center">#</th>
                 @include('template.snippets.filters_header')
-                <th width="120">{{__('Akcije')}}</th>
+                <th class="text-center" width="150">{{__('Akcije')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -135,26 +135,29 @@
                         </div>
                     </td>
                     <td>
-                        {{$obuka->brInstanci}}
-                        &nbsp&nbsp
-                        <a href="/osposobljavanje_i_usavrsavanje/obuke/addInstancu/{{$obuka -> id ?? '1'}}">
-                            <button class="btn btn-primary btn-sm">
-                                <i class="fas fa-plus"></i>
-                                {{__('Dodaj')}}
-                            </button>
-                        </a>
-                        &nbsp&nbsp&nbsp
-                        @if ($obuka->brInstanci > 0)
-                            <a href="/osposobljavanje_i_usavrsavanje/obuke/instance/{{$obuka -> id ?? '1'}}">
-                                <button class="btn btn-secondary btn-sm">
-                                    <i class="fas fa-eye"></i>
-                                    {{__('Pregledaj')}}
-                                </button>
-                            </a>
-                        @endif
+                        <ul>
+                            @foreach($obuka->instance as $instanca)
+                                <li>
+                                    <a href="/osposobljavanje_i_usavrsavanje/obuke/prikazInstance/{{$instanca->id}}">
+                                        {{$instanca->odrzavanje_od.' - '.$instanca->odrzavanje_do}}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </td>
                     <td class="text-center">
-                        <a href="/osposobljavanje_i_usavrsavanje/obuke/view/{{$obuka -> id ?? '1'}}">
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/addInstancu/{{$obuka -> id ?? '1'}}"
+                           title="Dodaj instancu obuke">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        @if ($obuka->brInstanci > 0)
+                            <a href="/osposobljavanje_i_usavrsavanje/obuke/instance/{{$obuka -> id ?? '1'}}"
+                               title="Pregledaj sve instance obuke" style="margin-left:10px;">
+                                <i class="fas fa-list-ul"></i>
+                            </a>
+                        @endif
+                        <a href="/osposobljavanje_i_usavrsavanje/obuke/view/{{$obuka -> id ?? '1'}}"
+                           style="margin-left:10px;">
                             <i class="fa fa-eye"></i>
                         </a>
                         <a href="/osposobljavanje_i_usavrsavanje/obuke/edit/{{$obuka -> id ?? '1'}}"

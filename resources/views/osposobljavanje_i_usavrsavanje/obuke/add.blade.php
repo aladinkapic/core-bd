@@ -22,15 +22,19 @@ if (isset($instanca) and ($instanca) === 'new') {
     $formlink = '/osposobljavanje_i_usavrsavanje/obuke/update/' . $obuka->id;
 } else $formlink = "/osposobljavanje_i_usavrsavanje/obuke/add";
 
-if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
-    $naslov = $naslov2;
+if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke')) $naslov = $naslov2;
+
+if (isset($instanca) and $instanca != 'new') {
+    $naslov = 'Pregled instance obuke';
+    $save = false;
+}
+
 ?>
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => 'Početna stranica',
         '/osposobljavanje_i_usavrsavanje/obuke/home' => 'Katalog obuka',
-        '/osposobljavanje_i_usavrsavanje/obuke/add' => $naslov ,
     ]) !!}
 @stop
 
@@ -41,9 +45,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                 <div class="tittle">
                     <h2>
                         <?php
-                        if (isset($naslov2) and ($naslov2 === 'new'))
-                            echo $naslov2;
-                        else
+                        if (isset($naslov2) and ($naslov2 === 'new')) echo $naslov2; else
                             echo $naslov;
                         ?>
                     </h2>
@@ -65,7 +67,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                             </div>
                         </li>
                         @if (isset($instanca) and ($instanca) === 'new')
-                        <li class="">
+                            <li class="">
                                 <div class="list_div">
                                     <div class="back_div"></div>
                                     <div class="icon_circle">
@@ -93,7 +95,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                         @csrf
                         @if (isset($instanca) and ($instanca) === 'new')
                             <input type="hidden" value="{{$obuka->id ?? '1'}}" name="obukaid"/>
-                            @endif
+                        @endif
                         <input type="hidden" name="status" value="0"/>
                         <section class="active">
                             <div class="row">
@@ -250,48 +252,75 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                             </div>
                         </section>
                         @if (isset($instanca))
-
-                            <section >
+                            <section>
                                 <div class="card">
                                     <div class="card-body">
 
                                         <div class="row">
-                                            @if (!empty($nizpredavaca))
-                                            <div class="form-group col-md-6 align-top" id="predavacidiv" style="vertical-align: top !important;padding-left:15px; ">
-                                                <h4 class="col-12">{{__('Predavači')}}</h4>
-                                                <select class="js-example-basic-single" style="width: 100%;" name="predavaci[]"  multiple="multiple">
-                                                    @foreach($nizpredavaca as $id => $imeprezime)
-                                                        <option value="{{$id}}">{{$imeprezime}}</option>
+                                            @if(isset($instanca->sviPredavaci))
+                                                <div class="col-6">
+                                                    <h4 class="col-12">{{__('Predavači')}}</h4>
+                                                    @foreach($instanca->sviPredavaci as $predavac)
+                                                        <h6>{{$predavac->imePredavaca->ime.' '.$predavac->imePredavaca->prezime}}</h6>
                                                     @endforeach
-                                                </select>
-                                                <br>
-                                                @if ($errors ->has('predavacidiv'))
-                                                    <div class="notificaiton_area alert-danger">
-                                                        <p> {{ $errors->first('predavacidiv')}}</p></div>@endif
-                                            </div>
-                                            @endif
+                                                </div>
+                                            @else
+                                                @if (!empty($nizpredavaca))
+                                                    <div class="form-group col-md-6 align-top" id="predavacidiv"
+                                                         style="vertical-align: top !important;padding-left:15px; ">
+                                                        <h4 class="col-12">{{__('Predavači')}}</h4>
+
+                                                        <select class="js-example-basic-single" style="width: 100%;"
+                                                                name="predavaci[]" multiple="multiple">
+                                                            @foreach($nizpredavaca as $id => $imeprezime)
+                                                                <option value="{{$id}}">{{$imeprezime}}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                        <br>
+                                                        @if ($errors ->has('predavacidiv'))
+                                                            <div class="notificaiton_area alert-danger">
+                                                                <p> {{ $errors->first('predavacidiv')}}</p></div>@endif
+                                                    </div>
+                                                @endif
+
                                                 @if (empty($nizpredavaca))
                                                     <div class="col-6">
                                                         {{__('Nema predavača sa selektovanom oblasti')}}
-                                                        <br />
+                                                        <br/>
                                                         <a href="/osposobljavanje_i_usavrsavanje/predavaci/add">
                                                             {{__('Klikite ovdje kako biste dodali predavača')}}
                                                         </a>
                                                     </div>
                                                 @endif
-                                                <div class="col-md-6">
-                                                <h4 class="col-12">{{__('Službenici')}}</h4>
-                                                <select class="js-example-basic-multiple" style="width: 100%;" name="sluzbenici[]"  multiple="multiple">
-                                                @foreach($nizsluzbenika as $id => $imeprezime)
+                                            @endif
 
-                                                        <option value="{{$id}}">{{$imeprezime}}</option>
+
+
+
+                                            @if(isset($instanca->sviSluzbenici))
+                                                <div class="col-6">
+                                                    <h4 class="col-12">{{__('Službenici')}}</h4>
+                                                    @foreach($instanca->sviSluzbenici as $predavac)
+                                                        <h6>{{$predavac->imeSluzbenika->ime_prezime}}</h6>
                                                     @endforeach
-                                                </select>
-                                                <br>
-                                                @if ($errors ->has('sluzbenici'))
-                                                    <div class="notificaiton_area alert-danger">
-                                                        <p> {{ $errors->first('sluzbenici')}}</p></div>@endif
-                                            </div>
+                                                </div>
+                                            @else
+                                                <div class="col-md-6">
+                                                    <h4 class="col-12">{{__('Službenici')}}</h4>
+                                                    <select class="js-example-basic-multiple" style="width: 100%;"
+                                                            name="sluzbenici[]" multiple="multiple">
+                                                        @foreach($nizsluzbenika as $id => $imeprezime)
+
+                                                            <option value="{{$id}}">{{$imeprezime}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <br>
+                                                    @if ($errors ->has('sluzbenici'))
+                                                        <div class="notificaiton_area alert-danger">
+                                                            <p> {{ $errors->first('sluzbenici')}}</p></div>@endif
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="row vertical-align">
 
@@ -313,7 +342,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                                             <label for="staticEmail"
                                                    class="col-sm-3 col-form-label">{{ __('Početak obuke')}}  </label>
                                             <div class="col-lg-9">
-                                                {!! Form::text('pocetak', isset($obuka) ? $obuka->pocetak : '' , ['class' => 'form-control datepicker required', 'id' => 'pocetak', 'autocomplete' => 'off']) !!}
+                                                {!! Form::text('pocetak',  $instanca->odrzavanje_od ?? '' , ['class' => 'form-control datepicker required', 'id' => 'pocetak', 'autocomplete' => 'off', $instanca != 'new' ? 'disabled' : '']) !!}
                                             </div>
                                         </div>
                                         @if ($errors ->has('pocetak'))
@@ -324,7 +353,7 @@ if (isset($naslov2) and ($naslov2 === 'Dodavanje instance obuke'))
                                             <label for="staticEmail"
                                                    class="col-sm-3 col-form-label">{{ __('Kraj obuke')}}  </label>
                                             <div class="col-lg-9">
-                                                {!! Form::text('kraj', isset($obuka) ? $obuka->kraj : '' , ['class' => 'form-control datepicker required', 'id' => 'kraj', 'autocomplete' => 'off']) !!}
+                                                {!! Form::text('kraj',  $instanca->odrzavanje_do ?? '' , ['class' => 'form-control datepicker required', 'id' => 'kraj', 'autocomplete' => 'off', $instanca != 'new' ? 'disabled' : '']) !!}
                                             </div>
                                         </div>
                                         @if ($errors ->has('kraj'))

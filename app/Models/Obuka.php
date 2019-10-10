@@ -11,4 +11,8 @@ class Obuka extends Model
     protected $fillable = [
        'naziv', 'vrsta', 'opis', 'oblast', 'podtema', 'organizator', 'sjediste', 'zemlja_organizatora', 'pocetak', 'kraj', 'potvrda', 'datum_certifikata', 'broj_certifikata', 'finansiranje_obuke', 'stecena_znanja','broj_polaznika','predavac_id','status'
     ];
+
+    public function instance(){
+        return $this->hasMany(ObukaInstanca::class,'obuka_id','id');
+    }
 }
