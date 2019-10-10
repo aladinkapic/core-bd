@@ -500,12 +500,12 @@ class SluzbenikController extends Controller
 
             'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
             'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
-            'id3' => 'Položeni ispiti',
-            'id4' => 'Kontakt informacije',
-            'id5' => 'Dodatne vještine',
-            'id7' => 'Prethodno radno iskustvo',
-            'id8' => 'Prestanak radnog odnosa',
-            'id9' => 'Članovi porodice',
+//            'id3' => 'Položeni ispiti',
+//            'id4' => 'Kontakt informacije',
+//            'id5' => 'Dodatne vještine',
+//            'id7' => 'Prethodno radno iskustvo',
+//            'id8' => 'Prestanak radnog odnosa',
+//            'id9' => 'Članovi porodice',
         ];
 
 
