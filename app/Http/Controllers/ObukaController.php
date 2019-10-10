@@ -40,7 +40,7 @@ class ObukaController extends Controller
      */
     public function index()
     {
-        $obuke = Obuka::with('instance');
+        $obuke = Obuka::with('instance.sviSluzbenici');
         $obuke = FilterController::filter($obuke);
         //dd($obuke);
         $filteri = ["naziv" => "Naziv obuke", "vrsta" => "Vrsta obuke", "organizator" => "Organizator obuke", "broj_polaznika" => 'Maksimalan broj polaznika', "" => 'Srednja ocjena / broj ocjena', "instance.odrzavanje_od + instance.odrzavanje_od" => 'Instance obuke',];

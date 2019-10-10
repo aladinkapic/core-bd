@@ -46,93 +46,22 @@
                     <td>{{$obuka->organizator ?? '/'}}</td>
                     <td> {{$obuka->broj_polaznika ?? '/'}}</td>
                     <td>
-                        <div class="row">
-                            <div class="col-3">
-                                @if(isset($obuka->ocjena['ocjena'])) {{$obuka->ocjena['ocjena'].__(' / ').$obuka->ocjena['br_ocjena']}} @endif
-                            </div>
-                            <div class="col-9">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal" data-whatever="{{$obuka->id ?? '/'}}">
-                                    <i class="fas fa-check-square"></i>
-                                    {{__('Ocjeni')}}
-                                </button>
+                        <ul>
+                            @foreach($obuka->instance as $instanca)
+                                <li>
+                                    @php $prosjek = 0;$i=0; @endphp
+                                    @foreach($instanca->sviSluzbenici as $ocjena)
+                                        @php $prosjek = $prosjek + $ocjena->ocjena; $i++; @endphp
+                                    @endforeach
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title"
-                                                    id="exampleModalLabel">{{__('Ocjenjivanje obuke')}}</h4>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h5> {{__('Molimo vas da unesete ocjenu za ovu obuku:')}} </h5>
-                                                <form method="post"
-                                                      action="/osposobljavanje_i_usavrsavanje/obuke/ocjeni"
-                                                      id="ocjena">
-                                                    @csrf
-                                                    <input id="modaldata" type="hidden" name="obuka_id"/>
-                                                    {!!  Form::select('ocjena',$ocjene,  '' ,['class' => 'form-control',  'id' => 'ocjena']) !!}
-
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">{{__('Zatvori')}}</button>
-                                                <button type="submit" value="Submit" class="btn btn-primary"
-                                                        form="ocjena">{{__('Spasi!')}}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @if($obuka->ocjena['br_ocjena']>0)
-                                <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
-                                            data-target="#exampleModal2"
-                                            data-whatever="{{json_encode($obuka->ocjena['detalji'])}}">
-                                        <i class="fas fa-eye"></i>
-                                        {{__('Detalji')}}
-                                    </button>
-                                @endif
-                                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title"
-                                                    id="exampleModalLabel">{{__('Detalji ocjenjivanja obuke')}}</h4>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <table class="table">
-                                                    <thead>
-                                                    <td>{{__('Ime i prezime')}}</td>
-                                                    <td>{{__('Datum')}}</td>
-                                                    <td>{{__('Ocjena')}}</td>
-                                                    </thead>
-                                                    <tbody id="tbody">
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">{{__('Zatvori')}}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    @if($i!=0)
+                                        {{$prosjek/$i}}
+                                    @else
+                                        {{'Nema ocjena'}}
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
                     </td>
                     <td>
                         <ul>
