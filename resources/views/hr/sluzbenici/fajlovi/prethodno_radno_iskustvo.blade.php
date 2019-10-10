@@ -152,22 +152,31 @@
                         <div class="single_row">
                             {!! Form::label('radni_staz_godina', __('Radni staž - godina').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
-                                {!!  Form::text('radni_staz_godina', $prethod_r_i_s->radniStazGodina() ,['class' => 'form-control read_stuffs', 'id' => 'napomena', 'maxlength' => '500', 'readonly', 'autocomplete' => 'off']) !!}
+                                {!!  Form::text('radni_staz_godina', $prethod_r_i_s->radni_staz_godina ,['class' => 'form-control read_stuffs', 'id' => 'napomena', 'maxlength' => '500', 'readonly', 'autocomplete' => 'off']) !!}
                             </div>
                         </div>
                         <div class="single_row">
                             {!! Form::label('radni_staz_mjeseci', __('Radni staž - mjeseci').' : ', ['class' => ' control-label'] )  !!}
                             <div class="col-lg-12">
-                                {!!  Form::text('radni_staz_mjeseci', $prethod_r_i_s->radniStazMjeseci() ,['class' => 'form-control read_stuffs', 'id' => 'napomena', 'maxlength' => '500', 'readonly', 'autocomplete' => 'off']) !!}
+                                {!!  Form::text('radni_staz_mjeseci', $prethod_r_i_s->radni_staz_mjeseci ,['class' => 'form-control read_stuffs', 'id' => 'napomena', 'maxlength' => '500', 'readonly', 'autocomplete' => 'off']) !!}
                             </div>
                         </div>
                     </div>
-                    <div class="single_row">
-                        {!! Form::label('radni_staz_dana', __('Radni staž - dana').' : ', ['class' => ' control-label'] )  !!}
-                        <div class="col-lg-12">
-                            {!!  Form::text('radni_staz_dana', $prethod_r_i_s->radniStazDana() ,['class' => 'form-control read_stuffs', 'id' => 'napomena', 'maxlength' => '500', 'readonly', 'autocomplete' => 'off']) !!}
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('radni_staz_dana', __('Radni staž - dana').' : ', ['class' => ' control-label'] )  !!}
+                            <div class="col-lg-12">
+                                {!!  Form::text('radni_staz_dana', $prethod_r_i_s->radni_staz_dana ,['class' => 'form-control read_stuffs', 'id' => 'napomena', 'maxlength' => '500', 'readonly', 'autocomplete' => 'off']) !!}
+                            </div>
+                        </div>
+                        <div class="single_row">
+                            {!! Form::label('koeficijent', __('Koeficijent').' : ', ['class' => ' control-label'] )  !!}
+                            <div class="col-lg-12">
+                                {!!  Form::number('koeficijent', $prethod_r_i_s->koeficijent ,['class' => 'form-control read_stuffs', 'id' => 'koeficijent', 'maxlength' => '500', 'min' => '0', 'max' => '100', 'readonly', 'autocomplete' => 'off', 'number']) !!}
+                            </div>
                         </div>
                     </div>
+
 
                     <div class="single_row">
                         <div class="col-lg-12">
@@ -286,6 +295,15 @@
                         {!! Form::label('napomena', __('Napomena').' : ', ['class' => ' control-label'] )  !!}
                         <div class="col-lg-12">
                             {!!  Form::text('napomena', '' ,['class' => 'form-control', 'maxlength' => '500', 'id' => 'napomena', 'autocomplete' => 'off']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('koeficijent', __('Koeficijent').' : ', ['class' => ' control-label'] )  !!}
+                        <div class="col-lg-12">
+                            {!!  Form::number('koeficijent', '' ,['class' => 'form-control read_stuffs', 'id' => 'koeficijent', 'maxlength' => '500', 'min' => '0', 'max' => '100', 'autocomplete' => 'off', 'number']) !!}
                         </div>
                     </div>
                 </div>
