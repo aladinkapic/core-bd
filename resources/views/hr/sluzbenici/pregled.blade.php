@@ -110,10 +110,10 @@
                         <td>{{ $sluzbenik->PIO ?? '/'}}</td>
 
                         <!-- Radno mjesto službenika -->
-                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->naziv_rm : '' }}</td>
-                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->orgjed ? $sluzbenik->radnoMjesto->orgjed->naziv : '' : ''}}</td>
-                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->orgjed ? $sluzbenik->radnoMjesto->orgjed->organizacija ? $sluzbenik->radnoMjesto->orgjed->organizacija->organ ? $sluzbenik->radnoMjesto->orgjed->organizacija->organ->naziv : '' : '' : '' : ''}}</td>
-                        <td>{{ $sluzbenik->radnoMjesto ? $sluzbenik->radnoMjesto->rukovodioc_s->name : '' }}</td>
+                        <td>{{ $sluzbenik->radnoMjesto->naziv_rm ?? '/' }}</td>
+                        <td>{{ $sluzbenik->radnoMjesto->orgjed->naziv ?? '/'}}</td>
+                        <td>{{ $sluzbenik->radnoMjesto->orgjed->organizacija->organ->naziv ?? '/'}}</td>
+                        <td>{{ $sluzbenik->radnoMjesto->rukovodioc_s->name ?? '/' }}</td>
 
                         <!---- Previbalište službenika ---->
                         <td>
