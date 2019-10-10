@@ -17,22 +17,23 @@
                 <th width="160px" class="text-center">{{__('Broj instanci u tabeli')}}</th>
                 <th width="120px" class="text-center">{{__('Akcije')}}</th>
             </tr>
+            @php $i = 1; @endphp
+            @foreach($kljucne_rijec as $rijec)
+                <tr>
+                    <td class="text-center">{{$i++ ?? '/'}}</td>
+                    <td>{{$rijec[1] ?? '/'}}</td>
+                    <td class="text-center">{{$rijec[2] ?? '/'}}</td>
+                    <td width="120px" class="text-center">
+                        <a href="{{route('dodaj.sifrarnik', ['type' => $rijec[0]])}}">
+                            {{__('Pregled')}}
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </thead>
             <tbody>
-                @php $i = 1; @endphp
-                @foreach($kljucne_rijec as $rijec)
-                    <tr>
-                        <td class="text-center">{{$i++ ?? '/'}}</td>
-                        <td>{{$rijec[1] ?? '/'}}</td>
-                        <td class="text-center">{{$rijec[2] ?? '/'}}</td>
-                        <td width="120px" class="text-center">
-                            <a href="{{route('dodaj.sifrarnik', ['type' => $rijec[0]])}}">
-                                {{__('Pregled')}}
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
+
             </tbody>
         </table>
     </div>

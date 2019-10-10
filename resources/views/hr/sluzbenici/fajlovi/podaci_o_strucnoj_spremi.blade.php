@@ -117,6 +117,15 @@
                         </div>
                     </div>
 
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('datum_povratka_sa_provjere', __('Datum dostavljanja diplome').' : ', ['class' => ' control-label'] )  !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('datum_dostavljanja_diplome', $strucna_sprema_s->datum_dostavljanja_diplome ? \App\Http\Controllers\HelpController::obrniDatum($strucna_sprema_s->datum_dostavljanja_diplome) : '' , ['class' => 'form-control read_stuffs datepicker',  'id' => 'datum_dostavljaanja_diplome'.$index_counter++, 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="single_row">
                         <div class="col-lg-12">
@@ -204,6 +213,15 @@
                         {!! Form::label('datum_povratka_sa_provjere', __('Datum zaprimanja diplome nazad').' : ', ['class' => ' control-label'] )  !!}
                         <div class="col-lg-12">
                             {!! Form::text('datum_povratka_sa_provjere', $value = null, ['class' => 'form-control datepicker', 'maxlength' => '150', 'rows' => 1, 'id' => 'datum_povratka_sa_provjere', 'autocomplete' => 'off']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('broj_obavijestenja_provjere', __('Datum dostavljanja diplome').' : ', ['class' => ' control-label'] )  !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('datum_dostavljanja_diplome', '', ['class' => 'form-control datepicker', 'maxlength' => '150', 'rows' => 1, 'id' => 'skkskssk', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
                 </div>

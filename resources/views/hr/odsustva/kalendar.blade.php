@@ -77,13 +77,13 @@
                             <div class="col">
                                 {!! Form::label('datum_od', __('Datum od').' : ', ['class' => 'control-label', 'id' => 'datum_od_label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::text('datum_od', '' , ['class' => 'form-control datepicker', 'id' => 'datum_od']) !!}
+                                    {!! Form::text('datum_od', '' , ['class' => 'form-control datepicker', 'id' => 'datum_od', 'autocomplete' => 'off']) !!}
                                 </div>
                             </div>
                             <div class="col" id="datum_do_w">
                                 {!! Form::label('datum_do', __('Datum do').' : ', ['class' => 'control-label', 'id' => 'datum_od_label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::text('datum_do', '' , ['class' => 'form-control datepicker', 'id' => 'datum_do']) !!}
+                                    {!! Form::text('datum_do', '' , ['class' => 'form-control datepicker', 'id' => 'datum_do', 'autocomplete' => 'off']) !!}
                                 </div>
                             </div>
                         </div>
