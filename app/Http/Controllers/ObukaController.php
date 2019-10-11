@@ -305,7 +305,20 @@ class ObukaController extends Controller
     {
         // $instance = DB::table('obuka_instance')->where('obuka_id', $id)->get();
 
-        $instance = ObukaInstanca::where('obuka_id', '=', $id)->get();
+        $instance = ObukaInstanca::where('obuka_id', '=', $id)
+            ->with('sviPredavaci.imePredavaca')
+            ->with('sviSluzbenici.imeSluzbenika');
+
+        $instance = FilterController::filter($instance);
+        //dd($obuke);
+        $filteri = [
+               'odrzavanje_od + odrzavanje_do' =>'Trajanje obuke',
+            ''=>'Status',
+            'sviPredavaci.imePredavaca' =>'Predavači',
+            'sviSluzbenici.imeSluzbenika' =>'Službenici',
+            'postavke' =>'Postavke',
+        ];
+
 
         foreach ($instance as $ins) {
             $predavaci = json_decode($ins->predavaci);
@@ -343,7 +356,7 @@ class ObukaController extends Controller
 
 
         $postavke = HelpController::format_table_columns($postavke2);
-        return view('/osposobljavanje_i_usavrsavanje/obuke/instance', compact('instance', 'postavke'));
+        return view('/osposobljavanje_i_usavrsavanje/obuke/instance', compact('instance', 'postavke', 'filteri'));
 
     }
 

@@ -12,21 +12,20 @@
     <div class="container">
         <div class="col-md-10">
             <h3 >{{__('Katalog obuka')}}</h3>
-            <button v-on:click="fireTable()" class="btn btn-primary btn-xs"> <i class="fa fa-filter" style="font-size: 11px;"></i> {{__('Filteri')}}</button>
-            @include('snippets.buttons')
         </div>
-        <br>
+        <br />
+        <br />
+        @include('template.snippets.filters', ['var'  => $instance])
 
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
-            <th width="10%">{{__('Trajanje obuke')}}	</th>
-            <th width="5%">{{__('Status')}}</th>
-            <th width="10%">{{__('Predavači	')}}</th>
-            <th width="30%">{{__('Službenici')}}</th>
-            <th width="35%">{{__('Postavke')}}</th>
+            <th class="text-center">#</th>
+            @include('template.snippets.filters_header')
+
             <th class="text-center" width="10%">{{__('Akcije')}}</th>
             </thead>
             <tbody>
+            @php $i=1; @endphp
             @foreach($instance as $instanca)
                 <?php
                 if($instanca->status ==='Između') $color="#3dc582";
@@ -34,6 +33,7 @@
                 if($instanca->status ==='Nakon') $color="#6c757d";
                 ?>
                 <tr style="border-left: solid 5px {{$color}} ;">
+                    <td class="text-center">{{$i++}}</td>
                     <td>
                         Od: {{$instanca->odrzavanje_od ?? '/'}}
                         <br>
