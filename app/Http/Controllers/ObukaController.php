@@ -43,7 +43,7 @@ class ObukaController extends Controller
         $obuke = Obuka::with('instance.sviSluzbenici');
         $obuke = FilterController::filter($obuke);
         //dd($obuke);
-        $filteri = ["naziv" => "Naziv obuke", "vrsta" => "Vrsta obuke", "organizator" => "Organizator obuke", "broj_polaznika" => 'Maksimalan broj polaznika', "" => 'Srednja ocjena / broj ocjena', "instance.odrzavanje_od + instance.odrzavanje_od" => 'Instance obuke',];
+        $filteri = ["naziv" => "Naziv obuke", "vrsta" => "Vrsta obuke", "organizator" => "Organizator obuke", "broj_polaznika" => 'Maksimalan broj polaznika', "" => 'Srednja ocjena', "instance.odrzavanje_od + instance.odrzavanje_od" => 'Instance obuke',];
 
 
         foreach ($obuke as $obuka) {
