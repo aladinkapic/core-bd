@@ -736,3 +736,12 @@ Route::get('/obavijesti/pregled', 'ObavijestController@index');
 Route::post('/obavijesti/ajaxpregled', 'ObavijestController@ajaxRead');
 
 Route::get('/import', 'ImportController@handle');
+
+/*************************************************** Ugovori  *****************************************************/
+
+Route::get('/uvjerenje_rm', 'UgovoriController@uvjerenje_rm')->name('uvjerenje_rm');
+Route::get('/placeno_odsustvo', 'UgovoriController@placeno_odsustvo')->name('placeno_odsustvo');
+Route::get('/go', 'UgovoriController@go')->name('go');
+Route::get('/rjesenje_plata', 'UgovoriController@rjesenje_plata')->name('rjesenje_plata');
+Route::get('/prestanak_ro', 'UgovoriController@prestanak_ro')->name('prestanak_ro');
+
