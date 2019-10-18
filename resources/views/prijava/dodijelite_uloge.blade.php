@@ -422,32 +422,78 @@
                 </div>
 
             </div>
-            {{--{!! Form::label('sluzbenik_id', __('Ime službenika').' : ', ['class' => '']) !!}--}}
-            {{--{!! Form::select('sluzbenik_id', '', 0,  ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off']) !!}--}}
-            {{--{!! Form::hidden('sifra', '', ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off']) !!}--}}
-            {{--{!! Form::hidden('pin', '', ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off']) !!}--}}
-            <div class="row ml-5">
-                {{--<form method="POST" action="/uloge/validiraj-sifru" id="promijeni-sifru">--}}
-                    {{--@csrf--}}
-                <div>
-                    <!-- Dodijeljivanje sifre -->
 
-                    <div>
-                        <div>
-                            <h4>{{__('Dodijeljivanje sifre za')}} {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime  ?? '/'}}</h4>
-                        </div>
-
-                        <div>
-                            <div>
-                                {!! Form::hidden('sifra', $sifra, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sifra']) !!}
-                                {!! Form::hidden('pin', $pin, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'pin']) !!}
-                                {!! Form::hidden('sluzbenik_id', $sluzbenik->id, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sluzbenik_id']) !!}
-                                <button type="submit" id="buton-to-change-code" class="btn btn-primary">Spremite promijene</button>
-                            </div>
-                        </div>
+            <div class="col md-6">
+                <div class="generated-access-data">
+                    <div class="card-header">
+                        Kredincijali
                     </div>
+
+                    <p>
+                        Za pristup sistemu, svakom od korisnika je potrebno dodijeliti korisničko ime, šifru i PIN kod.
+                        Ovakav pristup predstavlja dvoslojnu zaštitu, te kao takav čini sistem sigurnijim.
+                    </p>
+                    <p>
+                        Pristupni podaci za <b>{{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime  ?? '/'}}</b> su:
+                    </p>
+                    <br>
+                    <div class="user-daataaaa">
+                        <table class="mine-table-hehehe">
+                            <tr>
+                                <td>Korisničko ime : </td>
+                                <td>
+                                    <b>
+                                        {{$sluzbenik->korisnicko_ime}}
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Šifra : </td>
+                                <td>
+                                    <b>
+                                        {{$sluzbenik->sifra}}
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PIN kod : </td>
+                                <td>
+                                    <b>
+                                        ****
+                                    </b>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p>
+                        NAPOMENA: Prilikom generisanja kredincijala korisničko ime, šifra i PIN su generisani i poslani
+                        putem emaila koji je definisan kod unosa Državnog službenika. <br>
+                        Radi sprečavanja zloupotrabe korisničkih računa, PIN kod kod nije vidljiv administratorima.
+                    </p>
+
+                    <p>
+                        U slučaju zaboravljenih pristupnih podataka, iste možete
+                        <a href="{{route('izvjestaji.generisi-sifru', ['id' => $sluzbenik->id])}}">ponovo generisati ovdje</a>.
+                        Također, možete generisati i samo PIN kod
+                        <a href="">ovdje</a> .
+                    </p>
+
+{{--                    <div>--}}
+{{--                        <div>--}}
+{{--                            <h4>{{__('Dodijeljivanje sifre za')}} {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime  ?? '/'}}</h4>--}}
+{{--                        </div>--}}
+
+{{--                        <div>--}}
+{{--                            <div>--}}
+{{--                                {!! Form::hidden('sifra', $sifra, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sifra']) !!}--}}
+{{--                                {!! Form::hidden('pin', $pin, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'pin']) !!}--}}
+{{--                                {!! Form::hidden('sluzbenik_id', $sluzbenik->id, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sluzbenik_id']) !!}--}}
+{{--                                <button type="submit" id="buton-to-change-code" class="btn btn-primary">Spremite promijene</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
-                {{--</form>--}}
             </div>
 
         </div>

@@ -218,3 +218,59 @@ li.dropdown:hover > .dropdown-menu {
 }
 
 
+
+
+
+/**************************************************** ULOOOGEEE *******************************************************/
+
+
+
+.well-dude{
+    margin-left:15px;
+    width:calc(100% - 30px);
+}
+
+.well-dude .table-my-header p{
+    margin-left:15px;
+    font-weight:bold;
+    padding-top:7px;
+    margin-top:0px;
+    margin-bottom:7px;
+    font-size:15px;
+}
+
+.well-dude .table-my-body a{
+    margin-left:15px;
+    color:#333;
+}
+.my-extra-button{
+    background:#333;
+    color:#fff;
+    border:none;
+    border-radius:3px;
+    font-size:12px;
+    padding:3px 10px;
+    margin:5px;
+}
+.my-extra-button-2{margin:0px; padding:0px 10px;}
+
+.generated-access-data{
+    position:relative;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:400px;
+    border:1px solid rgba(0,0,0,0.1);
+}
+
+.generated-access-data p{
+    margin:15px;
+}
+
+.generated-access-data .user-daataaaa{
+    margin-left:30px;
+}
+
+.mine-table-hehehe td:nth-child(2){
+    padding-left:30px;
+}

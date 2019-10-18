@@ -171,7 +171,7 @@ Route::prefix('hr/sluzbenici')->group(function () {
     Route::post('/provjeri_sluzbenika', 'SluzbenikController@provjeriSluzbenika');                                               // Ovdje provjeravamo da li ima korisnik sa istim JMBG ili LK - u stvarnom vremenu
     Route::put('/spremi_sluzbenika', 'SluzbenikController@spremiSluzbenika');                                                    // Unosimo osnovne detalje o služeniku u bazu
     Route::put('/azurirajSluzbenika', 'SluzbenikController@azurirajSluzbenika');                                                 // Ažuriranje osnovnih informacija o službeniku
-    Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}', 'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatno');  // Unesite ostale informacije o službeniku --
+    Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}',        'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatno');  // Unesite ostale informacije o službeniku --
     Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}/{what}', 'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatnoRjesenje');
 
     Route::get('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
@@ -329,6 +329,7 @@ Route::get('/odjavi_me', 'Auth@odjavi_me');
 Route::prefix('uloge')->middleware('role:postavke')->group(function () {
     Route::get('/pregled_uloga',              'Auth@pregledUloga')->name('izvjestaji.pregled.uloga');
     Route::get('/dodijeliUlogu/{id}',         'Auth@dodijeliUlogu')->name("izvjestaji.dodijeli.ulogu");
+    Route::get('/generisi-sifru/{id}',        'Auth@generisiSifru')->name("izvjestaji.generisi-sifru");
     Route::post('/azuriraj_uloge',            'Auth@azurirajUloge')->name('izvjestaji.azuriraj.uloge');
     Route::post('/validiraj-sifru',           'Auth@validirajSifru')->name('validiranje-sifre');
 });
@@ -739,9 +740,9 @@ Route::get('/import', 'ImportController@handle');
 
 /*************************************************** Ugovori  *****************************************************/
 
-Route::get('/uvjerenje_rm', 'UgovoriController@uvjerenje_rm')->name('uvjerenje_rm');
-Route::get('/placeno_odsustvo', 'UgovoriController@placeno_odsustvo')->name('placeno_odsustvo');
-Route::get('/go', 'UgovoriController@go')->name('go');
-Route::get('/rjesenje_plata', 'UgovoriController@rjesenje_plata')->name('rjesenje_plata');
-Route::get('/prestanak_ro', 'UgovoriController@prestanak_ro')->name('prestanak_ro');
+Route::get('/uvjerenje_rm',                  'UgovoriController@uvjerenje_rm')->name('uvjerenje_rm');
+Route::get('/placeno_odsustvo',              'UgovoriController@placeno_odsustvo')->name('placeno_odsustvo');
+Route::get('/go',                            'UgovoriController@go')->name('godisnji_odmor');
+Route::get('/rjesenje_plata',                'UgovoriController@rjesenje_plata')->name('rjesenje_plata');
+Route::get('/prestanak_ro',                  'UgovoriController@prestanak_ro')->name('prestanak_ro');
 
