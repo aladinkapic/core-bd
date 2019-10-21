@@ -234,6 +234,7 @@ class DisciplinskaOdgovornostController extends Controller{
             }
         }
 
+
         return redirect('/hr/disciplinska_odgovornost/home')->with('success', __('Uspješno ste kreirali disciplinsku odgovornost!'));
     }
 
