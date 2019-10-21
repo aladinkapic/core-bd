@@ -475,8 +475,8 @@
                     <p>
                         U slučaju zaboravljenih pristupnih podataka, iste možete
                         <a href="{{route('izvjestaji.generisi-sifru', ['id' => $sluzbenik->id])}}">ponovo generisati ovdje</a>.
-                        Također, možete generisati i samo PIN kod
-                        <a href="">ovdje</a> .
+{{--                        Također, možete generisati i samo PIN kod--}}
+{{--                        <a href="">ovdje</a> .--}}
                     </p>
 
 {{--                    <div>--}}
