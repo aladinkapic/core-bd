@@ -147,6 +147,7 @@ class DisciplinskaOdgovornostController extends Controller{
         ];
 
 
+
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
         $request = HelpController::formatirajRequest($request);
@@ -209,7 +210,7 @@ class DisciplinskaOdgovornostController extends Controller{
 
         for($i=1; $i<count($request->sluzbenik_id_med); $i++){
 
-            if($request->komisija_id[$i] == 'empty'){
+            if($request->medijatori_id[$i] == 'empty'){
                 // Unosimo novog člana komisije
 
                 $medijatori = DB::table('medijatori')->insert([
@@ -223,7 +224,7 @@ class DisciplinskaOdgovornostController extends Controller{
                     'updated_at'         => Carbon::now(),
                 ]);
             }else{
-                $medijatori = Medijatori::where('id', '=', $request->komisija_id[$i])->update([
+                $medijatori = Medijatori::where('id', '=', $request->medijatori_id[$i])->update([
                     'sluzbenik_id_med'   => $request->sluzbenik_id_med[$i],
                     'sluzbenik_id_med_e' => $request->sluzbenik_id_med_e[$i],
                     'oju_med'            => $request->oju_med[$i],
@@ -232,7 +233,6 @@ class DisciplinskaOdgovornostController extends Controller{
                 ]);
             }
         }
-
 
         return redirect('/hr/disciplinska_odgovornost/home')->with('success', __('Uspješno ste kreirali disciplinsku odgovornost!'));
     }

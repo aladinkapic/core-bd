@@ -17,7 +17,7 @@
             @include('hr.disciplinska_odgovornost.fajlovi.top_menu')
 
             <!-- UNOSO DISCIPLINSKE ODGOVORNOSTI -->
-            <section class="">
+            <section class="active">
                 <div class="container_block">
                     <div class="split_container">
 

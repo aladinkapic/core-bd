@@ -5,35 +5,38 @@
                 <div class="split_container split_container5">
                     <div class="copied_form" id="nekaamo">
 
-                        <div class="form-group row">
-                            <div class="col">
-                                {!! Form::label('sluzbenik_id_med', 'Ime i prezime medijatora : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!!  Form::text('sluzbenik_id_med_e[]', $med->sluzbenik->ime.' '.$med->sluzbenik->prezime ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', 'readonly']) !!}
+                        @if(isset($med->sluzbenik->ime_prezime))
+                            <div class="form-group row">
+                                <div class="col">
+                                    {!! Form::label('sluzbenik_id_med', 'Ime i prezime medijatora : ', ['class' => 'control-label']) !!}
+                                    <div class="col-lg-12">
+                                        {!!  Form::text('sluzbenik_id_med[]', $med->sluzbenik->ime_prezime ?? '' ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', 'readonly']) !!}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    {!! Form::label('oju_med', 'Organ Javne uprave : ', ['class' => 'control-label']) !!}
+                                    <div class="col-lg-12">
+                                        {!!  Form::select('oju_med[]', $organi, $med->oju_med ,['class' => 'form-control', 'id' => 'oju_med', 'disabled' => true]) !!}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                {!! Form::label('sluzbenik_id_med_e[]', 'Ime i prezime medijatora : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!!  Form::text('sluzbenik_id_med_e[]', $med->sluzbenik_id_med_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', 'readonly']) !!}
+                        @elseif(isset($med->sluzbenik_id_med_e))
+                            <div class="form-group row">
+                                <div class="col">
+                                    {!! Form::label('sluzbenik_id_med_e[]', 'Ime i prezime medijatora : ', ['class' => 'control-label']) !!}
+                                    <div class="col-lg-12">
+                                        {!!  Form::text('sluzbenik_id_med_e[]', $med->sluzbenik_id_med_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', 'readonly']) !!}
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col">
-                                {!! Form::label('oju_med', 'Organ Javne uprave : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!!  Form::select('oju_med[]', $organi, $med->oju_med ,['class' => 'form-control', 'id' => 'oju_med', 'disabled' => true]) !!}
-                                </div>
-                            </div>
 
-                            <div class="col">
-                                {!! Form::label('oju_med_e', 'Institucija  : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!!  Form::text('oju_med_e[]', $med->oju_med_e ,['class' => 'form-control', 'id' => 'oju_med_e', 'readonly']) !!}
+                                <div class="col">
+                                    {!! Form::label('oju_med_e', 'Institucija  : ', ['class' => 'control-label']) !!}
+                                    <div class="col-lg-12">
+                                        {!!  Form::text('oju_med_e[]', $med->oju_med_e ,['class' => 'form-control', 'id' => 'oju_med_e', 'readonly']) !!}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -103,13 +106,17 @@
                                     <div class="col">
                                         {!! Form::label('sluzbenik_id_med', 'Ime i prezime medijatora : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
-                                            {!!  Form::text('sluzbenik_id_med_e[]', $med->sluzbenik->ime.' '.$med->sluzbenik->prezime ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', 'readonly']) !!}
+                                            {!! Form::select('sluzbenik_id_med[]', $nizsluzbenika, $med->sluzbenik->id ?? '0', ['class' => 'js-example-basic-single form-control', 'style' => 'width:100%;']) !!}
                                         </div>
+
+{{--                                        <div class="col-lg-12">--}}
+{{--                                            {!!  Form::text('sluzbenik_id_med_e[]', $med->sluzbenik->ime_prezime ?? '' ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', 'readonly']) !!}--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="col">
                                         {!! Form::label('sluzbenik_id_med_e[]', 'Ime i prezime medijatora : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
-                                            {!!  Form::text('sluzbenik_id_med_e[]', $med->sluzbenik_id_med_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', 'readonly']) !!}
+                                            {!!  Form::text('sluzbenik_id_med_e[]', $med->sluzbenik_id_med_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_med_e', '']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -117,14 +124,14 @@
                                     <div class="col">
                                         {!! Form::label('oju_med', 'Organ Javne uprave : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
-                                            {!!  Form::select('oju_med[]', $organi, $med->oju_med ,['class' => 'form-control', 'id' => 'oju_med', 'disabled' => true]) !!}
+                                            {!!  Form::select('oju_med[]', $organi, $med->oju_med ,['class' => 'form-control', 'id' => 'oju_med']) !!}
                                         </div>
                                     </div>
 
                                     <div class="col">
                                         {!! Form::label('oju_med_e', 'Institucija  : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
-                                            {!!  Form::text('oju_med_e[]', $med->oju_med_e ,['class' => 'form-control', 'id' => 'oju_med_e', 'readonly']) !!}
+                                            {!!  Form::text('oju_med_e[]', $med->oju_med_e ,['class' => 'form-control', 'id' => 'oju_med_e', '']) !!}
                                         </div>
                                     </div>
                                 </div>

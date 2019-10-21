@@ -1,17 +1,9 @@
-<section class="active">
+<section class="">
     <div class="container_block" >
         @if(isset($preview))
             @foreach($komisije as $clan_kom)
                 <div class="split_container split_container5">
                     <div class="copied_form" id="form_for_copy">
-                        {{--<div class="form-group row">--}}
-                            {{--<div class="col">--}}
-                                {{--{!! Form::label('discp_odg_____', 'Opis povrede : ', ['class' => 'control-label']) !!}--}}
-                                {{--<div class="col-lg-12">--}}
-                                    {{--{!! Form::text('discp_odg_____[]', $disciplinska->opis_povrede, ['class' => 'form-control readmeebaby', 'rows' => 1, 'id' => 'disc_odg__', 'readonly']) !!}--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
                         <div class="form-group row">
                             <div class="col">
                                 {!! Form::label('sluzbenik_id_kom', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
@@ -53,9 +45,16 @@
                         <div class="col">
                             {!! Form::label('sluzbenik_id_kom', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
-                                {!! Form::select('sluzbenik_id_kom[]', $nizsluzbenika, '0', ['class' => 'js-example-basic-single form-control']) !!}
+                                {!! Form::select('sluzbenik_id_kom[]', $nizsluzbenika, '0', ['class' => 'js-example-basic-single form-control', 'style' => 'width:100%;']) !!}
                             </div>
                         </div>
+
+{{--                        <div class="col">--}}
+{{--                            {!! Form::label('sluzbenik_id_kom', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}--}}
+{{--                            <div class="col-lg-12">--}}
+{{--                                {!! Form::select('sluzbenik_id_kom[]', $nizsluzbenika, '0', ['class' => 'js-example-basic-single form-control', 'width' => '100%;']) !!}--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="col">
                             {!! Form::label('sluzbenik_id_kom_e[]', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
@@ -110,11 +109,12 @@
 
                                 <div class="form-group row">
                                     <div class="col">
-                                        {!! Form::label('sluzbenik_id_kom', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('sluzbenik_id_kom', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
-                                            {!! Form::select('sluzbenik_id_kom[]', $nizsluzbenika, $clan_kom->sluzbenik->id, ['class' => 'js-example-basic-single form-control']) !!}
+                                            {!! Form::select('sluzbenik_id_kom[]', $nizsluzbenika, $clan_kom->sluzbenik->id ?? '0', ['class' => 'js-example-basic-single form-control', 'style' => 'width:100%;']) !!}
                                         </div>
                                     </div>
+
                                     <div class="col">
                                         {!! Form::label('sluzbenik_id_kom_e[]', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
