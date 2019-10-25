@@ -23,14 +23,17 @@
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
             <tr>
+                <th class="text-center">#</th>
                 @include('template.snippets.filters_header')
                 <th width="100">{{__('Akcije')}}</th>
             </tr>
             </thead>
             <tbody>
+            @php $i=1; @endphp
             @if (isset($logs))
                 @foreach($logs as $log)
                     <tr class="org-row">
+                        <td class="text-center">{{$i++}}</td>
                         <td>{{$log -> sluzbenik->ime_prezime ?? '/'}}</td>
                         <td>{{$log -> modul ?? '/'}}</td>
                         <td>{{$log-> operation ?? '/'}}</td>

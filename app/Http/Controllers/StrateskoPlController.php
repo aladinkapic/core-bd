@@ -18,7 +18,25 @@ class StrateskoPlController extends Controller{
 //        $plan = StrateskoPlaniranje::find(9)->organJU->naziv;
 
 
-        $strat_plan = StrateskoPlaniranje::all();
+        $strat_plan = StrateskoPlaniranje::query();
+        //dd($strat_plan);
+        $strat_plan = FilterController::filter($strat_plan);
+
+        $filteri = [
+            "id_rm" => "Radno mjesto",
+        "id_oju" => "Organizaciona jedinica",
+        "datum_broj" => "Datum i broj akta",
+        "pb_neodredjeno" => "Postojeći broj na neodređeno",
+        "Postojeći broj na određeno" => "12",
+        "pb_prekobrojnih" => "12",
+        "pb_godina" => "12",
+        "pot_b_neodredjeno" => "12",
+        "pot_b_odredjeno" => "12",
+        "pot_b_godina" => "123",
+        "naziv" => "Naziv",
+        "br_plan_godina" => "46",
+        "id_sluzbenika" => "SluŽbenik",
+            ];
 
         $radna_mjesta = RadnoMjesto::select('naziv_rm', 'id')->orderBy('naziv_rm')->get()->pluck('naziv_rm', 'id');
         $organ_ju     = Uprava::select('naziv', 'id')->orderBy('naziv')->get()->pluck('naziv', 'id' );

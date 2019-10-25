@@ -31,6 +31,7 @@
             <thead>
             {{--<th>{{__('Naziv organa javne uprave')}}</th>--}}
             {{--<th>{{__('Tip organa javne uprave')}}</th>--}}
+            <th class="text-center">#</th>
             @include('template.snippets.filters_header')
 
             <th width="150" class="text-center">{{__('Akcije')}}</th>
@@ -40,7 +41,7 @@
                 @php $counter = 1; @endphp
             @foreach($uprave as $uprava)
             <tr class="org-row">
-                <td>{{$counter++}}</td>
+                <td class="text-center">{{$counter++}}</td>
                 <td>{{$uprava -> naziv ?? '/'}}</td>
                 <td>{{$uprava->tip_javne_uprave->name ?? '/'}}</td>
                 <td>{{$uprava->ulica ?? '/'}}</td>

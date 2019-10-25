@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InstancePredavaci;
+use App\Models\InstanceSluzbenici;
 use App\Models\Obuka;
 use App\Models\OcjenaObuke;
 use App\Models\Tema;
@@ -38,17 +40,10 @@ class ObukaController extends Controller
      */
     public function index()
     {
-        $obuke = Obuka::query();
+        $obuke = Obuka::with('instance.sviSluzbenici');
         $obuke = FilterController::filter($obuke);
-//dd($obuke);
-        $filteri = [
-            "naziv" => "Naziv obuke",
-            "vrsta" => "Vrsta obuke",
-            "organizator" => "Organizator obuke",
-            "broj_polaznika" => 'Maksimalan broj polaznika',
-            "" => 'Srednja ocjena / broj ocjena',
-            "d" => 'Instance obuke',
-        ];
+        //dd($obuke);
+        $filteri = ["naziv" => "Naziv obuke", "vrsta" => "Vrsta obuke", "organizator" => "Organizator obuke", "broj_polaznika" => 'Maksimalan broj polaznika', "" => 'Srednja ocjena', "instance.odrzavanje_od + instance.odrzavanje_od" => 'Instance obuke',];
 
 
         foreach ($obuke as $obuka) {
@@ -60,13 +55,13 @@ class ObukaController extends Controller
                 $ocjena['ocjena'] = round(OcjenaObuke::where('obuka_id', $obuka->id)->sum('ocjena') / $n, 2);
                 $ocjena['br_ocjena'] = $n;
                 foreach ($sveocjene as $one) {
-                    $sluzbenik = Sluzbenik::where ('id','=', $one->sluzbenici_id)->first();
-                    $ocjena['detalji'][$one->id]['operater'] = $sluzbenik['ime'].' '.$sluzbenik['prezime'];
-                    $ocjena['detalji'][$one->id]['datum'] = date_format($one->created_at,"d.m.Y H:i:s");
+                    $sluzbenik = Sluzbenik::where('id', '=', $one->sluzbenici_id)->first();
+                    $ocjena['detalji'][$one->id]['operater'] = $sluzbenik['ime'] . ' ' . $sluzbenik['prezime'];
+                    $ocjena['detalji'][$one->id]['datum'] = date_format($one->created_at, "d.m.Y H:i:s");
                     $ocjena['detalji'][$one->id]['vrijednostocjene'] = $one->ocjena;
                 }
 
-                $obuka->ocjena=$ocjena;
+                $obuka->ocjena = $ocjena;
             }
         }
         for ($i = 0; $i <= 10; $i++) {
@@ -107,19 +102,7 @@ class ObukaController extends Controller
     {
         $request = HelpController::formatirajRequest($request);
 
-        $pravila = [
-            'naziv' => 'required|max:50',
-            'vrsta' => 'required|max:50',
-            'opis' => 'max:1000',
-            'oblast' => 'max:50',
-            'podtema' => 'max:50',
-            'organizator' => 'max:50',
-            'sjediste' => 'max:50',
-            'broj_certifikata' => 'max:50',
-            'finansiranje_obuke' => 'max:50',
-            'stecena_znanja' => 'max:1000',
-            'broj_polaznika' => 'required|min:1|max:100',
-        ];
+        $pravila = ['naziv' => 'required|max:50', 'vrsta' => 'required|max:50', 'opis' => 'max:1000', 'oblast' => 'max:50', 'podtema' => 'max:50', 'organizator' => 'max:50', 'sjediste' => 'max:50', 'broj_certifikata' => 'max:50', 'finansiranje_obuke' => 'max:50', 'stecena_znanja' => 'max:1000', 'broj_polaznika' => 'required|min:1|max:100',];
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
@@ -190,19 +173,7 @@ class ObukaController extends Controller
     {
         $request = HelpController::formatirajRequest($request);
 
-        $pravila = [
-            'naziv' => 'required|max:50',
-            'vrsta' => 'required|max:50',
-            'opis' => 'max:1000',
-            'oblast' => 'max:50',
-            'podtema' => 'max:50',
-            'organizator' => 'max:50',
-            'sjediste' => 'max:50',
-            'broj_certifikata' => 'max:50',
-            'finansiranje_obuke' => 'max:50',
-            'stecena_znanja' => 'max:1000',
-            'broj_polaznika' => 'required|min:1|max:100',
-        ];
+        $pravila = ['naziv' => 'required|max:50', 'vrsta' => 'required|max:50', 'opis' => 'max:1000', 'oblast' => 'max:50', 'podtema' => 'max:50', 'organizator' => 'max:50', 'sjediste' => 'max:50', 'broj_certifikata' => 'max:50', 'finansiranje_obuke' => 'max:50', 'stecena_znanja' => 'max:1000', 'broj_polaznika' => 'required|min:1|max:100',];
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
@@ -247,9 +218,30 @@ class ObukaController extends Controller
         $predavaci = Predavac::all();
         $nizpredavaca = array();
         foreach ($predavaci as $predavac) {
-            if (in_array($obuka->oblast, json_decode($predavac->oblasti_id)))
-                $nizpredavaca[$predavac['id']] = $predavac['ime'] . ' ' . $predavac['prezime'];
+            if (in_array($obuka->oblast, json_decode($predavac->oblasti_id))) $nizpredavaca[$predavac['id']] = $predavac['ime'] . ' ' . $predavac['prezime'];
         }
+
+
+        $nizsluzbenika = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id');
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/add', compact('obuka', 'readonly', 'pregled', 'instanca', 'drzava', 'nizpredavaca', 'niztema', 'oblasti', 'nizsluzbenika'));
+    }
+
+    public function pregledInstance($id)
+    {
+        $instanca = ObukaInstanca::where('id', $id)->with('sviPredavaci')->with('sviSluzbenici')->first();
+        $readonly = 'readonly';
+        $obuka = Obuka::findOrFail($instanca->obuka_id);
+        $pregled = true;
+        $drzava = Sifrarnik::dajSifrarnik('drzava');
+        $oblasti = Sifrarnik::dajSifrarnik('oblasti');
+        $teme = Tema::all();
+        $niztema = array();
+        foreach ($teme as $tema) {
+            $niztema[$tema['id']] = $tema['naziv'];
+        }
+
+        $nizpredavaca = [];
 
 
         $nizsluzbenika = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id');
@@ -259,12 +251,7 @@ class ObukaController extends Controller
 
     public function storeInstancu(Request $request)
     {
-        $pravila = [
-            'pocetak' => 'required',
-            'kraj' => 'required',
-            'predavaci' => 'required',
-            'sluzbenici' => 'required',
-        ];
+        $pravila = ['pocetak' => 'required', 'kraj' => 'required', 'predavaci' => 'required', 'sluzbenici' => 'required',];
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
 
@@ -289,11 +276,26 @@ class ObukaController extends Controller
         $postavkeniz['stecena_znanja'] = $request->stecena_znanja;
         $instanca->postavke = json_encode($postavkeniz);
 
+
         $instanca->predavaci = json_encode($request->predavaci);
         $instanca->sluzbenici = json_encode($request->sluzbenici);
+
         $instanca->odrzavanje_od = $request->pocetak;
         $instanca->odrzavanje_do = $request->kraj;
         $instanca->save();
+
+        foreach ($request->predavaci as $key => $value) {
+            $predavac = new InstancePredavaci();
+            $predavac->predavac_id = $value;
+            $predavac->instanca_id = $instanca->id;
+            $predavac->save();
+        }
+        foreach ($request->sluzbenici as $key => $value) {
+            $sl = new InstanceSluzbenici();
+            $sl->sluzbenik_id = $value;
+            $sl->instanca_id = $instanca->id;
+            $sl->save();
+        }
 
         return redirect('/osposobljavanje_i_usavrsavanje/obuke/home')->with('success', __('Uspješno ste dodali instancu obuke!'));
 
@@ -303,7 +305,20 @@ class ObukaController extends Controller
     {
         // $instance = DB::table('obuka_instance')->where('obuka_id', $id)->get();
 
-        $instance = ObukaInstanca::where('obuka_id', '=', $id)->get();
+        $instance = ObukaInstanca::where('obuka_id', '=', $id)
+            ->with('sviPredavaci.imePredavaca')
+            ->with('sviSluzbenici.imeSluzbenika');
+
+        $instance = FilterController::filter($instance);
+        //dd($obuke);
+        $filteri = [
+               'odrzavanje_od + odrzavanje_do' =>'Trajanje obuke',
+            ''=>'Status',
+            'sviPredavaci.imePredavaca' =>'Predavači',
+            'sviSluzbenici.imeSluzbenika' =>'Službenici',
+            'postavke' =>'Postavke',
+        ];
+
 
         foreach ($instance as $ins) {
             $predavaci = json_decode($ins->predavaci);
@@ -331,18 +346,17 @@ class ObukaController extends Controller
         $postavke2 = json_decode(($instance[0]->postavke));
 
         $postavke2->oblast = ($postavke2->oblast = Sifrarnik::dajInstancu('oblasti', $postavke2->oblast));
-        if (gettype( Tema::where('id', $postavke2->podtema)->first('naziv')) == "NULL"){
+        if (gettype(Tema::where('id', $postavke2->podtema)->first('naziv')) == "NULL") {
             $postavke2->oblast = 'Nepoznato ili izbrisano';
         } else {
             $postavke2->podtema = ($postavke2->podtema = Tema::where('id', $postavke2->podtema)->first('naziv'))->naziv;
         }
         $postavke2->zemlja_organizatora = ($postavke2->zemlja_organizatora = Sifrarnik::dajInstancu('drzava', $postavke2->zemlja_organizatora));
-        if ($postavke2->potvrda == 0) $postavke2->potvrda = 'NE';
-        else $postavke2->potvrda = 'DA';
+        if ($postavke2->potvrda == 0) $postavke2->potvrda = 'NE'; else $postavke2->potvrda = 'DA';
 
 
         $postavke = HelpController::format_table_columns($postavke2);
-        return view('/osposobljavanje_i_usavrsavanje/obuke/instance', compact('instance', 'postavke'));
+        return view('/osposobljavanje_i_usavrsavanje/obuke/instance', compact('instance', 'postavke', 'filteri'));
 
     }
 
@@ -362,11 +376,7 @@ class ObukaController extends Controller
         $pocetak = strtotime($pocetak);
         $kraj = strtotime($kraj);
 
-        if ((time() >= $pocetak) and (time() <= $kraj))
-            return 'Između';
-        else if (time() < $pocetak)
-            return 'Prije';
-        else return 'Nakon';
+        if ((time() >= $pocetak) and (time() <= $kraj)) return 'Između'; else if (time() < $pocetak) return 'Prije'; else return 'Nakon';
     }
 
     public function ajaxrequest()
@@ -387,24 +397,50 @@ class ObukaController extends Controller
 
         $request->request->add(['sluzbenici_id' => Crypt::decryptString(Session::get('ID'))]);
 
-        $imaliocjenu = OcjenaObuke::where('sluzbenici_id',$request->sluzbenici_id)->where('obuka_id',$request->obuka_id)->get();
+        $imaliocjenu = OcjenaObuke::where('sluzbenici_id', $request->sluzbenici_id)->where('obuka_id', $request->obuka_id)->get();
 
-        if($imaliocjenu->first()){
+        if ($imaliocjenu->first()) {
 
-            $u = OcjenaObuke::where('sluzbenici_id',$request->sluzbenici_id)->where('obuka_id',$request->obuka_id)->first();
+            $u = OcjenaObuke::where('sluzbenici_id', $request->sluzbenici_id)->where('obuka_id', $request->obuka_id)->first();
 
             $u->update($request->all());
-        }
-        else
-        if($request)
+        } else if ($request)
 
-        try {
-            $ocjena = OcjenaObuke::create($request->except(['_method']));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+            try {
+                $ocjena = OcjenaObuke::create($request->except(['_method']));
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
 
         return redirect('/osposobljavanje_i_usavrsavanje/obuke/home')->with('success', __('Uspješno ste ocjenili obuku!'));
 
+    }
+
+    public function ocjenaInstance($id, Request $request,$sl = null)
+    {
+
+
+        if (isset($sl)) {
+            $ocjena = InstanceSluzbenici::where('instanca_id', $id)->where('sluzbenik_id', $sl)->first();
+            $ocjena->update([$ocjena->ocjena = NULL]);
+        }
+
+        if (isset($request->ocjena) and isset($request->sluzbenik_id)) {
+            $ocjena = InstanceSluzbenici::where('instanca_id', $id)->where('sluzbenik_id', $request->sluzbenik_id)->first();
+            $ocjena->update([$ocjena->ocjena = $request->ocjena]);
+        }
+
+
+        $instanca = InstanceSluzbenici::where('instanca_id', $id)->with('imeSluzbenika');
+
+        $instanca = FilterController::filter($instanca);
+
+        $filteri = ['imeSluzbenika.ime_prezime' => 'Službenik', 'ocjena' => 'Ocjena', 'updated_at' => 'Izvršeno'];
+
+
+
+
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/ocjenjivanjeInstance', compact('instanca', 'filteri'));
     }
 }

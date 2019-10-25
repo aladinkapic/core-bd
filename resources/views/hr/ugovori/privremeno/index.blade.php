@@ -34,6 +34,7 @@
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
             <tr>
+                <th class="text-center">#</th>
                 @include('template.snippets.filters_header')
                 <th class="akcije text-center" width="120px">{{__('Akcije')}}</th>
             </tr>
@@ -42,9 +43,9 @@
             @php $counter = 1; @endphp
             @foreach($ugovori as $ugovor)
                 <tr>
-                    <td>{{$counter++}}</td>
+                    <td class="text-center">{{$counter++}}</td>
                     <td><a href="{{route('sluzbenik.dodatno', ['id_sluzbenika'=>$ugovor->sluzbenik])}}">{{$ugovor->usluzbenik->ime_prezime ?? ''}}</a></td>
-                    <td><a href="{{route('radnamjesta.pregledaj', ['id'=>$ugovor->mjesto->id])}}">{{$ugovor->mjesto->naziv_rm ?? ''}}</a></td>
+                    <td><a href="{{route('radnamjesta.pregledaj', ['id'=>$ugovor->mjesto->id ?? '1'])}}">{{$ugovor->mjesto->naziv_rm ?? ''}}</a></td>
                     <td>{{$ugovor->privremeno_mjesto->naziv_rm ?? ''}}</td>
                     <td>{{$ugovor->broj_rjesenja ?? '/'}}</td>
                     <td>{{$ugovor->datumRjesenja() ?? '/'}}</td>

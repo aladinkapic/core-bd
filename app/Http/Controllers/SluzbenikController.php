@@ -404,6 +404,7 @@ class SluzbenikController extends Controller
         $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
         $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
 
+
         Session::put('aditional_counter', 0); $pregled = true;
 
         return view('/hr/sluzbenici/dodatno_o_sluzbeniku', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'organizaciona_jed', 'organ_ju', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita'));
@@ -463,7 +464,8 @@ class SluzbenikController extends Controller
         $sluzbenici = FilterController::filter($sluzbenici);
       // dd($sluzbenici);
 
-        $filteri = ['id' => 'ID',
+        $filteri = [
+            'id' => '#',
             'ime_prezime' => 'Ime i prezime',
             'email' => 'E-Mail',
             'jmbg' => 'JMB',

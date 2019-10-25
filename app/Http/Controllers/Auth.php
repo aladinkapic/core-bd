@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\Uloge;
+use App\Notifications\createPin;
 use Illuminate\Support\Facades\Crypt;         /** za enkripciju sesija **/
 use Illuminate\Support\Facades\Session;       /** za kreiranje sesija **/
 
 use Illuminate\Http\Request;
 use App\Models\Sluzbenik;
+use Illuminate\Support\Str;
 
 class Auth extends Controller{
 
@@ -134,21 +136,7 @@ class Auth extends Controller{
     /********************************************** Rad sa ulogama ****************************************************/
     public function pregledUloga(){
 		
-        $sluzbenici = Sluzbenik::with('clanoviPorodice')
-            ->with('spol_sl')
-            ->with('bracni_status_sl')
-            ->with('nacionalnost_sl')
-            ->with('kategorija_sl')
-            ->with('ispiti')
-            ->with('kontaktDetalji')
-            ->with('obrazovanje')
-            ->with('prebivaliste')
-            ->with('prestanakRO')
-            ->with('prethodnoRI')
-            ->with('strucnaSprema')
-            ->with('vjestine')
-            ->with('zasnivanjeRO')
-            ->with('radnoMjesto.orgjed.organizacija.organ');
+        $sluzbenici = Sluzbenik::with('radnoMjesto.orgjed.organizacija.organ');
 
 		$sluzbenici = FilterController::filter($sluzbenici);
 
@@ -158,27 +146,9 @@ class Auth extends Controller{
             'jmbg' => 'JMB',
             'ime_roditelja' => 'Ime roditelja',
 
-            'spol_sl.name' => 'Spol',
-            'kategorija_sl.name' => 'Kategorija',
-            'drzavljanstvo_1' => 'Državljanstvo',
-            'nacionalnost_sl.name' => 'Nacionalnost',
-            'bracni_status_sl.name' => 'Bračni status',
-
-            'mjesto_rodjenja' => 'Mjesto rođenja',
-            'datum_rodjenja' => 'Datum rođenja',
-            'licna_karta' => 'Broj lične karte',
-            'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
-            'PIO' => 'PIO',
             'radnoMjesto.naziv_rm' => 'Radno mjesto',
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
             'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
-            'radnoMjesto.rukovodioc_s.name' => 'Rukovodioc',
-            'prebivaliste.adresa_prebivalista' => 'Adresa boravita',
-            'prebivaliste.mjesto_prebivalista' => 'Mjesto prebivališta',
-            'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
-
-            'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
-            'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
         ];
 		
 		
@@ -186,18 +156,74 @@ class Auth extends Controller{
 			
         $uloge = true;
 
-        return view('hr.sluzbenici.pregled', compact('sluzbenici', 'uloge', 'filteri'));
+        return view('hr.sluzbenici.pregled-uloga', compact('sluzbenici', 'uloge', 'filteri'));
     }
 
     public function dodijeliUlogu($id){
-        $sluzbenik = Sluzbenik::where('id', $id)->first();
+        try{
+            $sluzbenik = Sluzbenik::where('id', '=', $id)->firstOrFail();
+        }catch (\Exception $e){}
 
-        $sifra = substr(md5(time()), '0', '10');
-
-        $pin = mt_rand(4000, 9999);
-
-        return view('prijava.dodijelite_uloge', ['id' => $id], compact('sluzbenik', 'sifra', 'pin'));
+        return view('prijava.dodijelite_uloge', ['id' => $id], compact('sluzbenik'));
     }
+
+    public function generisiSifru($id){
+        $sifra = Str::random(12);
+        $pin = rand(1000, 9999);
+
+        try{
+            $sluzbenik = Sluzbenik::where('id', '=', $id)->firstOrFail();
+            $username  = strtolower(
+                str_replace(
+                    ['ć', 'Ć', 'š', 'Š', 'č', 'Č', 'ž', 'Ž', 'đ', 'Đ'],
+                    ['c', 'C', 's', 'S', 'c', 'C', 'z', 'Z', 'd', 'D'],
+                    $sluzbenik->ime.'.'.$sluzbenik->prezime)
+            );
+
+            try{
+                $sluzbenikSearch = Sluzbenik::where('korisnicko_ime', '=', $username)->firstOrFail();
+                if($sluzbenik->id == $sluzbenikSearch->id){
+                    try{
+                        $sluzbenik->update([
+                            'sifra' => $sifra,
+                            'pin' => $pin
+                        ]);
+                    }catch (\Exception $e){dd($e);}
+                }else{
+                    $counter = 1;
+                    while(true){
+                        $newUsername = $username.$counter++;
+                        try{
+                            $sluzbenikSearch = Sluzbenik::where('korisnicko_ime', '=', $newUsername)->firstOrFail();
+                        }catch (\Exception $e){
+                            try{
+                                $sluzbenik->update([
+                                    'korisnicko_ime' => $newUsername,
+                                    'sifra' => $sifra,
+                                    'pin' => $pin
+                                ]);
+
+                                $username = $newUsername;
+                                break;
+                            }catch (\Exception $e){}
+                        }
+                    }
+
+                }
+            }catch (\Exception $e){
+
+            }
+
+        }catch (\Exception $e){}
+
+        try{
+            $sluzbenik->notify(new createPin(array(' subject' => 'Pristupni podaci', 'from_address' => 'bot@core.bd', 'link' => '', 'message' => 'ovom prilikom Vam dostavljamo korisničko ime i šifru, koje služe kao prvi stepen autentifikacije prilikom pristupanja HRMIS sistemu, koji su dati:', 'username' => $username, 'password' => $sifra, 'pin' => $pin, 'send_email' => true, 'button' => 'Prijavite se')));
+        }catch (\Exception $e){}
+
+        return redirect()->route('izvjestaji.dodijeli.ulogu', ['id' => $id]);
+    }
+
+
 
     public function validirajSifru(Request $request){
         try {

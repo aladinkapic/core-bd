@@ -22,14 +22,16 @@
             <table class="table table-bordered" id="filtering">
                 <thead>
                 <tr>
+                    <th scope="col" style="text-align:center;">#</th>
                     @include('template.snippets.filters_header')
                     <th scope="col" style="text-align:center;" class="akcije">{{__('Akcije')}}</th>
                 </tr>
                 </thead>
                 <tbody>
+                @php $i=1; @endphp
                 @foreach($radna_mjesta as $radnoMjesto)
                     <tr class="radnoMjesto-row">
-                        <td scope="col" width="40px;" class="text-center">{{ $radnoMjesto->id ?? '1'}}</td>
+                        <td class="text-center">{{ $i++}}</td>
                         <td>
                             {{ $radnoMjesto->naziv_rm ?? '/'}}
                         </td>

@@ -36,13 +36,15 @@
 
         <table id="filtering" class="table table-condensed table-bordered">
             <thead>
+            <th class="text-center">#</th>
                 @include('template.snippets.filters_header')
                 <th width="150">{{__('Akcije')}}</th>
             </thead>
             <tbody>
-                @foreach($organizacija as $org)
+            @php $i=1; @endphp
+            @foreach($organizacija as $org)
                 <tr class="org-row">
-                    <td>{{ $org->id }}</td>
+                    <td class="text-center">{{ $i++ }}</td>
                     <td>{{ $org->naziv }}</td>
                     <td>{{ $org->organ->naziv ?? 'NE POSTOJI!' }}</td>
                     <td>{{ \App\Http\Controllers\HelpController::obrniDatum($org->datum_od) }}</td>

@@ -369,7 +369,7 @@ class OdsustvaController extends Controller{
     public function limitOdsustavaZaSve(){
         $odsustva = Sifrarnik::dajSifrarnik('vrsta_odsustva');
 
-        $svi_limiti = DB::table('limit_odsustva')->get();
+        $svi_limiti = DB::table('limit_odsustva')->where('sluzbenik_id', 0)->get();
 
         return view('hr/odsustva/limiti', compact('odsustva', 'svi_limiti'));
     }
@@ -419,7 +419,7 @@ class OdsustvaController extends Controller{
 
     public function limitOdsustava($sluzbenik_id, $godina){ // pregled svih limita za određenog pojedinca
         $ime_sluzbenika = Sluzbenik::find($sluzbenik_id)->first()->toArray()['ime'];
-        $odsustva   = Sifrarnik::dajSifrarnik('vrsta_odsustava');
+        $odsustva   = Sifrarnik::dajSifrarnik('vrsta_odsustva');
         $svi_limiti = $this->limitiZaKorisnika($sluzbenik_id, $godina);
 
         return view('hr/odsustva/limiti_pojedinca', compact('ime_sluzbenika', 'sluzbenik_id', 'odsustva', 'svi_limiti', 'godina'));
@@ -428,8 +428,8 @@ class OdsustvaController extends Controller{
 
     public function urediLimitSluzbenika($id, $sluzbenik_id){
         $ime_sluzbenika = Sluzbenik::find($sluzbenik_id)->first()->toArray()['ime'];
-        $odsustva   = Sifrarnik::dajSifrarnik('vrsta_odsustava');
-        $limiti = DB::table('limit_odsustva')->where('id', '=', $id)->first();
+        $odsustva       = Sifrarnik::dajSifrarnik('vrsta_odsustva');
+        $limiti         = DB::table('limit_odsustva')->where('id', '=', $id)->first();
 
         return view('/hr/odsustva/limit_pojedinca', compact('odsustva', 'limiti', 'ime_sluzbenika', 'sluzbenik_id'));
     }

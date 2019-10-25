@@ -26,7 +26,6 @@ class RadnaMjestaController extends Controller{
         $radna_mjesta = FilterController::filter($radna_mjesta);
 
         $filteri = [
-            'id' => 'ID',
             'naziv_rm' => 'Naziv radnog mjesta',
             'sifra_rm' => 'Šifra radnog mjesta',
             'broj_izvrsilaca' => 'Broj izvršilaca',
