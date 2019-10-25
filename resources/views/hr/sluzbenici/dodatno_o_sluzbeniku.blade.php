@@ -31,6 +31,9 @@
         </div>
         @include('/hr/sluzbenici/fajlovi/osnovne_info')
         <div class="split_container split_container3" style="height:360px;">
+            <a href="{{ route('ispis.sluzbenika') }}">
+                <i style="color:saddlebrown; margin-bottom: 1rem; margin-left: 1rem;"  class="fas fa-print fa-2x" title="Ispis kartona službenika"></i>
+            </a>
             <div class="slika_sluzbenika">
                 <img src="{{ asset('slike/slike_sluzbenika/'.$sluzbenik->fotografija ?? '/') }}" id="slika_sluz" alt="">
                 <input type="hidden" name="fotografija" id="fotografija">
