@@ -12,7 +12,7 @@ class UpravljanjeUcinkomController extends Controller
 {
     public function index()
     {
-        $ucinci = UpravljanjeUcinkom::with('usluzbenik')->with('mjesto')->with('kategorija_ocjene');
+        $ucinci = UpravljanjeUcinkom::with('usluzbenik')->with('mjesto.rm')->with('kategorija_ocjene');
         $ucinci = FilterController::filter($ucinci);
 
         $filteri = [
@@ -23,29 +23,6 @@ class UpravljanjeUcinkomController extends Controller
             'ocjena'=>'Ocjena',
             'opisna_ocjena'=>'Opisna ocjena'
         ];
-
-//        {{--<th>{{__("Službenik")}}</th>--}}
-//        {{--<th>{{__("Radno mjesto")}}</th>--}}
-//        {{--<th>{{__("Kategorija")}}</th>--}}
-//        {{--<th>{{__("Godina")}}</th>--}}
-//        {{--<th>{{__("Ocjena")}}</th>--}}
-//        foreach ($ucinci as $ucinak) {
-//            $ucinak->radnoMjesto = 'Nema radnog mjesta';
-//            $sluzbnik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
-//
-//            if (isset ($sluzbnik)) {
-//                if ($sluzbnik->radnoMjesto) {
-//                    $ucinak->radnoMjesto = $sluzbnik->radnoMjesto->naziv_rm;
-//                }
-//            }
-//
-//            $sluzbenik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
-//
-//            $ucinak->sluzbenikime = $sluzbenik['ime'] . ' ' . $sluzbenik['prezime'];
-//
-//            $ucinak->kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene')[$ucinak->kategorija];
-//
-//        }
 
 
         return view('/hr/upravljanje_ucinkom/home', compact('ucinci', 'filteri'));

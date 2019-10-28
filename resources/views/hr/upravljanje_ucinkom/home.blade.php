@@ -41,7 +41,7 @@
                 <tr>
                     <td class="text-center">{{$i++}}</td>
                     <td>{{$ucinak -> usluzbenik->ime_prezime ?? ''}}</td>
-                    <td>{{$ucinak -> mjesto->naziv_rm ?? ''}}</td>
+                    <td>{{$ucinak -> mjesto->rm->naziv_rm ?? '/'}}</td>
                     <td>{{$ucinak -> kategorija_ocjene->name ?? '/'}}</td>
                     <td>{{$ucinak -> godina ?? '/'}}</td>
                     <td>{{$ucinak -> ocjena ?? '/'}}</td>

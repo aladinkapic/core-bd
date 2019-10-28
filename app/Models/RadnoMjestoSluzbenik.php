@@ -13,6 +13,6 @@ class RadnoMjestoSluzbenik extends Model{
         return $this->hasOne(Sluzbenik::class, 'id', 'sluzbenik_id');
     }
     public function rm(){
-        return $this->hasOne(Sluzbenik::class, 'id', 'radno_mjesto_id');
+        return $this->hasOne(RadnoMjesto::class, 'id', 'radno_mjesto_id');
     }
 }

@@ -16,7 +16,7 @@ class UpravljanjeUcinkom extends Model{
     }
 
     public function mjesto(){
-        return $this->hasOne(RadnoMjesto::class,'id', 'radno_mjesto');
+        return $this->hasOne(RadnoMjestoSluzbenik::class,'sluzbenik_id', 'sluzbenik');
     }
     public function kategorija_ocjene()
     {
