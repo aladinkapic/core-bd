@@ -25,12 +25,6 @@ class InternoTrzisteController extends Controller{
      ******************************************************************************************************************/
 
     public function pregled(){
-//        $oragani = Organ::whereHas('prijava', function ($query) use ($konkurs) {
-//            $query->where('vrsta', '=', 'kandidat')->where('konkurs', '=', $konkurs->id);
-//        })->get();;
-//        $organi = Organ::with('organizacija.organizacioneJedinice.radnaMjesta.sluzbeniciRel.sluzbenik')->get();
-//        dd($organi[24]->organizacija->organizacioneJedinice[7]);
-
 
         $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
             $query->where('active', '=', 1);
