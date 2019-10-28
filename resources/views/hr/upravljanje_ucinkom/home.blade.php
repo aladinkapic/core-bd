@@ -4,7 +4,7 @@
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => 'Početna stranica',
-        '/hr/upravljanje_ucinkom/home' => 'Upravljanje učinkom',
+        route('upravljanje-ucinkom-pregled') => 'Upravljanje učinkom',
     ]) !!}
 @stop
 

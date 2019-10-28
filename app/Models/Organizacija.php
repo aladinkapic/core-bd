@@ -16,11 +16,7 @@ class Organizacija extends Model{
     }
 
     public static function copy($id, $new_id){
-
         $nova_org = Organizacija::find($new_id);
-
-
-
 
         $org_jedinice = OrganizacionaJedinica::where('org_id', '=', $id)->orderBy('broj')->get();
 

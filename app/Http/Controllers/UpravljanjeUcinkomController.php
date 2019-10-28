@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organizacija;
+use App\Models\OrganizacionaJedinica;
 use App\Models\RadnoMjesto;
 use App\Models\Sluzbenik;
 use App\Models\UpravljanjeUcinkom;
@@ -129,7 +131,29 @@ class UpravljanjeUcinkomController extends Controller{
     /************************************************ IZVJEŠTAJI ******************************************************/
 
     public function pregledIzvjestaja(){
+        $jedinice = OrganizacionaJedinica::whereHas('organizacija', function ($query){
+            $query->where('active', '=', 1);
+        })->with('organizacija.organ')
+            ->with('radnaMjesta.sluzbeniciRel.sluzbenik');
 
-        return view('hr.upravljanje_ucinkom.zbirni-izvjestaji');
+
+//        $organizacija = Organizacija::where('active', 1)
+//            ->with('organ')
+//            ->with('organizacioneJedinice.radnaMjesta.sluzbeniciRel.sluzbenik')
+//            ->get();
+
+        $jedinice = FilterController::filter($jedinice);
+
+        $filteri = [
+            'organizacija.organ.naziv'  => 'Organ javne uprave',
+            'naziv'                     => 'Organizaciona jedinica',
+            'godina'                    => 'Godina',
+            'ne_zadovoljava_ocekivanja' => 'Ne zadovoljava očekivanja',
+            'zadovoljava_ocekivanja'    => 'Zadovoljava očekivanja',
+            'nadmasuje_ocekivanja'      => 'Nadmašuje očekivanja',
+            'ukupno_ocjenjenih'         => 'Ukupno ocjenjenih'
+        ];
+
+        return view('hr.upravljanje_ucinkom.zbirni-izvjestaji', compact('jedinice', 'filteri'));
     }
 }
