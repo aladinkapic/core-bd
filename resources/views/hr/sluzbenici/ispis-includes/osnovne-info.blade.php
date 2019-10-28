@@ -120,7 +120,7 @@
                 <p>Datum rođenja :</p>
             </div>
             <div class="element-input">
-{{--                <p>{{$sluzbenik->datumRodjenja() ?? '-'}}</p>--}}
+                <p>{{$sluzbenik->datumRodjenja() ?? '-'}}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -162,7 +162,7 @@
                 <p>Organ javne uprave :</p>
             </div>
             <div class="element-input">
-{{--                <p>{{ $organ_ju }}</p>--}}
+                <p>{{ $organ_ju }}</p>
             </div>
         </div>
 

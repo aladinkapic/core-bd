@@ -441,25 +441,25 @@ class SluzbenikController extends Controller
     {
         $odsustva = $request->odsustva;
 
-        $sluzbenici = Sluzbenik::with('clanoviPorodice')
+        $sluzbenici = Sluzbenik::with('clanoviPorodiceRel')
             ->with('spol_sl')
             ->with('bracni_status_sl')
             ->with('nacionalnost_sl')
             ->with('kategorija_sl')
-            ->with('ispiti')
+            ->with('ispitiRel')
             ->with('kontaktDetalji')
-            ->with('obrazovanje')
+            ->with('obrazovanjeRel')
             ->with('prebivaliste')
-            ->with('prestanakRO')
-            ->with('prethodnoRI')
+            ->with('prestanakRORel')
+            ->with('prethodnoRIRel')
             ->with('strucnaSprema')
-            ->with('vjestine')
-            ->with('zasnivanjeRO')
+            ->with('vjestineRel')
+            ->with('zasnivanjeRORel')
             ->with('sluzbenikRel.rm.orgjed.organizacija.organ')
             ->with('sluzbenikRel.rm.rukovodioc_s')
-            ->with('zasnivanjeRO.nacin_zasnivanja_ro_s')
-            ->with('zasnivanjeRO.vrsta_r_o_s')
-            ->with('zasnivanjeRO.obracunati_r_staz_s');
+            ->with('zasnivanjeRORel.nacin_zasnivanja_ro_s')
+            ->with('zasnivanjeRORel.vrsta_r_o_s')
+            ->with('zasnivanjeRORel.obracunati_r_staz_s');
 
         $sluzbenici = FilterController::filter($sluzbenici);
       // dd($sluzbenici);
@@ -490,15 +490,15 @@ class SluzbenikController extends Controller
             'prebivaliste.mjesto_prebivalista' => 'Mjesto prebivališta',
             'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
 
-            'zasnivanjeRO.datum_zasnivanja_o' => 'Datum zasnivanja radnog odnosa',
-            'zasnivanjeRO.nacin_zasnivanja_ro_s.name' => 'Način zasnivanja radnog odnosa',
-            'zasnivanjeRO.vrsta_r_o_s.name' => 'Vrsta radnog odnosa',
-            'zasnivanjeRO.obracunati_r_staz_s.name' => 'Obračunati staž',
-            'zasnivanjeRO.obracunati_r_s_god' => ' Staž godina',
-            'zasnivanjeRO.obracunati_r_s_mje' => ' Staž mjeseci',
-            'zasnivanjeRO.obracunati_r_s_dan' => ' Staž dani',
-            'zasnivanjeRO.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
-            'zasnivanjeRO.minuli_radni_staz' => 'Minuli radni staž',
+            'zasnivanjeRORel.datum_zasnivanja_o' => 'Datum zasnivanja radnog odnosa',
+            'zasnivanjeRORel.nacin_zasnivanja_ro_s.name' => 'Način zasnivanja radnog odnosa',
+            'zasnivanjeRORel.vrsta_r_o_s.name' => 'Vrsta radnog odnosa',
+            'zasnivanjeRORel.obracunati_r_staz_s.name' => 'Obračunati staž',
+            'zasnivanjeRORel.obracunati_r_s_god' => ' Staž godina',
+            'zasnivanjeRORel.obracunati_r_s_mje' => ' Staž mjeseci',
+            'zasnivanjeRORel.obracunati_r_s_dan' => ' Staž dani',
+            'zasnivanjeRORel.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
+            'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž',
 
             'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
             'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
@@ -520,6 +520,12 @@ class SluzbenikController extends Controller
         $sluzbenik = Sluzbenik::where('id', '=', $id_sluzbenika)
             ->with('prebivaliste')
             ->with('ispitiRel')
+            ->with('vjestineRel')
+            ->with('zasnivanjeRORel')
+            ->with('obrazovanjeRel')
+            ->with('prethodnoRIRel')
+            ->with('prestanakRORel')
+            ->with('clanoviPorodiceRel')
             ->first();
 
 
@@ -556,6 +562,22 @@ class SluzbenikController extends Controller
         $mjeseci = (int)(($ukupno_dana / 30) - ($godina * 12));
         $dana = ($ukupno_dana % 30);
 
+        if ($sluzbenik->radno_mjesto != null) {
+            $rm_model = RadnoMjesto::where('id', $sluzbenik->radno_mjesto)->first();
+            $radno_mjesto = $rm_model->naziv_rm;
+
+            // Ako je službenik vezan za određeno radno mjesto , pri tom mora biti vezan i za određennu
+            // organizacionu jedinicu i organ javne uprave
+
+            $organizaciona_jed = OrganizacionaJedinica::where('id', $rm_model->id_oj)->first();
+            $organ_ju = Uprava::find(Sluzbenik::organJavneUprave($sluzbenik->id)->first()->id)->naziv;
+
+        } else {
+            $radno_mjesto = 'Nema radnog mjesta';
+            $organizaciona_jed = "-";
+            $organ_ju = "-";
+        }
+
 
         $spol                   = Sifrarnik::dajSifrarnik('spolovi');
         $kategorija             = Sifrarnik::dajSifrarnik('kategorija');
@@ -574,7 +596,7 @@ class SluzbenikController extends Controller
 
         Session::put('aditional_counter', 0); $pregled = true;
 
-        return view('/hr/sluzbenici/ispis-sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita'));
+        return view('/hr/sluzbenici/ispis-sluzbenika', compact('id_sluzbenika', 'radno_mjesto', 'organ_ju', 'organizaciona_jed', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita'));
     }
 
 

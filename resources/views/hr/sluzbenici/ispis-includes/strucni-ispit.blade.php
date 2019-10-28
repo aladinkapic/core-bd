@@ -34,7 +34,7 @@
                 <p>Datum završetka :</p>
             </div>
             <div class="element-input">
-{{--                <p>{{ $strucna->datumZavršetka() ?? '-'}}</p>--}}
+                <p>{{ $strucna->datumZavrsetka() ?? '-'}}</p>
             </div>
         </div>
         <div class="element-inside">
@@ -94,7 +94,7 @@
                 <p>Datum zaprimanja diplome nazad :</p>
             </div>
             <div class="element-input">
-{{--                <p>{{ $strucna->datumZaprimanja() ?? '-'}}</p>--}}
+                <p>{{ $strucna->datumZaprimanja() ?? '-'}}</p>
             </div>
         </div>
         <div class="element-inside">
@@ -102,7 +102,7 @@
                 <p>Datum dostavljanja diplome :</p>
             </div>
             <div class="element-input">
-{{--                <p>{{ $strucna->datumDostavljanja() ?? '-'}}</p>--}}
+                <p>{{ $strucna->datumDostavljanja() ?? '-'}}</p>
             </div>
         </div>
     </div>

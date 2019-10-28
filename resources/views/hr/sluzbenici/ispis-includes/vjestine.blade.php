@@ -3,14 +3,14 @@
         <h4>Dodatne vještine službenika</h4>
     </div>
 
-    @foreach($vjestine as $vjestina)
+    @foreach($sluzbenik->vjestineRel as $vjestina)
     <div class="all-elements">
         <div class="element-inside">
             <div class="element-label">
                 <p>Vrsta vještine :</p>
             </div>
             <div class="element-input">
-                <p>{{ $vrsta_vjestine }}</p>
+                <p>{{ $vjestina->vrsta_vjestine_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -18,7 +18,7 @@
                 <p>Nivo vještine :</p>
             </div>
             <div class="element-input">
-                <p>{{ $nivo_vjestine }}</p>
+                <p>{{ $vjestina->nivo_vjestine_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside">
@@ -42,7 +42,7 @@
                 <p>Datum uvjerenja:</p>
             </div>
             <div class="element-input">
-                <p>{{ $vjestina->datum_uvjerenja ?? '-' }}</p>
+                <p>{{ $vjestina->datumUvjerenja() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">

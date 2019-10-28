@@ -21,7 +21,8 @@
         "laravelcollective/html": "^5.8",
         "marcj/topsort": "^1.1",
         "phpoffice/phpexcel": "dev-master",
-        "phpoffice/phpword": "dev-master"
+        "phpoffice/phpword": "dev-master",
+        "ext-json": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

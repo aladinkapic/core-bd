@@ -159,7 +159,7 @@
 
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->datum_zasnivanja_o}}</li>
                                 @endforeach
                             </ul>
@@ -167,14 +167,14 @@
 
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->nacin_zasnivanja_ro_s->name ?? ''}}</li>
                                 @endforeach
                             </ul>
                         </td>
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->vrsta_r_o_s->name ?? ''}}</li>
                                 @endforeach
                             </ul>
@@ -182,8 +182,8 @@
 
                         <td>
                             <ul>
-                                @if(isset($sluzbenik->zasnivanjeRO) and count($sluzbenik->zasnivanjeRO))
-                                    @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
+                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                         <li>{{$zasnivanje->obracunati_r_staz_s->name ?? ''}}</li>
                                     @endforeach
                                 @endif
@@ -193,35 +193,35 @@
                         <!-- Ispiti službenika -->
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->obracunati_r_s_god}}</li>
                                 @endforeach
                             </ul>
                         </td>
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->obracunati_r_s_mje}}</li>
                                 @endforeach
                             </ul>
                         </td>
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->obracunati_r_s_dan}}</li>
                                 @endforeach
                             </ul>
                         </td>
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->datum_donosenja_dokumentacije}}</li>
                                 @endforeach
                             </ul>
                         </td>
                         <td>
                             <ul>
-                                @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
+                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
                                     <li>{{$zasnivanje->minuli_radni_staz}}</li>
                                 @endforeach
                             </ul>

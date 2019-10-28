@@ -3,14 +3,14 @@
         <h4>Članovi porodice</h4>
     </div>
 
-    @foreach($clanovi_porodice as $porodica)
+    @foreach($sluzbenik->clanoviPorodiceRel as $porodica)
     <div class="all-elements">
         <div class="element-inside">
             <div class="element-label">
                 <p>Datum rođenja :</p>
             </div>
             <div class="element-input">
-                <p>{{ $porodica->datum_rodjenja ?? '-'}}</p>
+                <p>{{ $porodica->datumRodjenja() ?? '-'}}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -18,7 +18,7 @@
                 <p>Srodstvo :</p>
             </div>
             <div class="element-input">
-                <p>{{ $srodstvo }}</p>
+                <p>{{ $porodica->srodstvo_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside">
