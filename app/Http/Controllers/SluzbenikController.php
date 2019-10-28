@@ -514,9 +514,15 @@ class SluzbenikController extends Controller
         return view('hr.sluzbenici.pregled', compact('sluzbenici', 'filteri', 'odsustva'));
     }
 
-    public function ispisSluzbenika($id_sluzbenika, $what = null)
+    public function ispisSluzbenika($id_sluzbenika)
     {
-        $sluzbenik = Sluzbenik::where('id', '=', $id_sluzbenika)->get()->first();
+        $what = null;
+        $sluzbenik = Sluzbenik::where('id', '=', $id_sluzbenika)
+            ->with('prebivaliste')
+            ->with('ispitiRel')
+            ->first();
+
+
 
         $podaci_o_prebivalistu = DB::table('sluzbenik_podaci_o_prebivalistu')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
         $strucna_sprema = DB::table('sluzbenik_strucna_sprema')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
@@ -528,7 +534,6 @@ class SluzbenikController extends Controller
         $prethodno_r_iskustvo = App\Models\DummyModels\PrethodnoRI::where('id_sluzbenika', '=', $id_sluzbenika)->get();
         $prestanak_r_o = DB::table('sluzbenik_prestanak_radnog_odnosa')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
         $clanovi_porodice = DB::table('sluzbenik_clanovi_porodice')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
-
         $ukupno_dana = 0;
 
 
@@ -550,23 +555,6 @@ class SluzbenikController extends Controller
         $godina = (int)(($ukupno_dana / 30 / 12));
         $mjeseci = (int)(($ukupno_dana / 30) - ($godina * 12));
         $dana = ($ukupno_dana % 30);
-
-
-//        if ($sluzbenik->radno_mjesto != null) {
-//            $rm_model = RadnoMjesto::where('id', $sluzbenik->radno_mjesto)->first();
-//            $radno_mjesto = $rm_model->naziv_rm;
-
-            // Ako je službenik vezan za određeno radno mjesto , pri tom mora biti vezan i za određennu
-            // organizacionu jedinicu i organ javne uprave
-
-//            $organizaciona_jed = OrganizacionaJedinica::where('id', $rm_model->id_oj)->first();
-//            $organ_ju = Uprava::find(Sluzbenik::organJavneUprave($sluzbenik->id)->first()->id)->naziv;
-//
-//        } else {
-//            $radno_mjesto = 'Nema radnog mjesta';
-//            $organizaciona_jed = "-";
-//            $organ_ju = "-";
-//        }
 
 
         $spol                   = Sifrarnik::dajSifrarnik('spolovi');

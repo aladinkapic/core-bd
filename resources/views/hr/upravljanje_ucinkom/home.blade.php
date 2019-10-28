@@ -27,6 +27,14 @@
                         <p>{{__('Izvršite ocjenjivanje')}}</p>
                     </div>
                 </a>
+                <a href="{{route('upravljanje-ucinkom.pregled-izvjestaja')}}">
+                    <div class="small-button small-button-border">
+                        <div class="small-button">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <p>{{__('Izvještaji')}}</p>
+                    </div>
+                </a>
             </div>
         </div>
 

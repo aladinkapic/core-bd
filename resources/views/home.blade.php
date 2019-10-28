@@ -103,7 +103,7 @@
                             @endif
 
                             @if(\App\Models\Sluzbenik::hasRole('upravljanje_ucin', $me))
-                                <a href="/hr/upravljanje_ucinkom/home" class="stat-card stat-card-light col-md-3">
+                                <a href="{{route('upravljanje-ucinkom-pregled')}}" class="stat-card stat-card-light col-md-3">
 
                                     <div class="stat-card-body">
                                         <i class="fas fa-tasks"></i>

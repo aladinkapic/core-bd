@@ -173,7 +173,7 @@ Route::prefix('hr/sluzbenici')->group(function () {
     Route::put('/azurirajSluzbenika',                                'SluzbenikController@azurirajSluzbenika');                                                 // Ažuriranje osnovnih informacija o službeniku
     Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}',              'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatno');  // Unesite ostale informacije o službeniku --
     Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}/{what}',       'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatnoRjesenje');
-    Route::get('/ispis_sluzbenika',                                  'SluzbenikController@ispisSluzbenika')->name('ispis.sluzbenika');
+    Route::get('/ispis_sluzbenika/{id}',                              'SluzbenikController@ispisSluzbenika')->name('ispis.sluzbenika');
 
     Route::get('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
     Route::post('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
@@ -658,22 +658,18 @@ Route::group(['prefix'=>'hr/odsustva','as'=>'odsustva'], function() {
 
 //UPRAVLJANJE UČINKOM
 
+Route::prefix('/hr/upravljanje_ucinkom/')->group(function() {
+    Route::get('home',                       'UpravljanjeUcinkomController@index')->name('upravljanje-ucinkom-pregled');
+    Route::get('add',                        'UpravljanjeUcinkomController@create')->name('upravljanje-ucinkom-dodaj');
+    Route::get('viewUcinak/{id}',            'UpravljanjeUcinkomController@show')->name('upravljanje-ucinkom-pregledaj');
 
-Route::get('/hr/upravljanje_ucinkom/home', function () {
-    return view('hr/upravljanje_ucinkom/home');
+    Route::get('pregled-izvjestaja',         'UpravljanjeUcinkomController@pregledIzvjestaja')->name('upravljanje-ucinkom.pregled-izvjestaja');
 });
 
-Route::get('/hr/upravljanje_ucinkom/view', function () {
-    return view('hr/upravljanje_ucinkom/view');
-});
 
-Route::get('/hr/upravljanje_ucinkom/add', function () {
-    return view('hr/upravljanje_ucinkom/add');
-});
-
-Route::resource('/hr/upravljanje_ucinkom/home', 'UpravljanjeUcinkomController');
+//Route::resource('/hr/upravljanje_ucinkom/home', 'UpravljanjeUcinkomController');
 Route::post('/hr/upravljanje_ucinkom/store', 'UpravljanjeUcinkomController@storeUcinci')->name('ucinak.store');
-Route::get('/hr/upravljanje_ucinkom/viewUcinak/{id}', 'UpravljanjeUcinkomController@show');
+//Route::get('/hr/upravljanje_ucinkom/viewUcinak/{id}', 'UpravljanjeUcinkomController@show');
 Route::get('/hr/upravljanje_ucinkom/editUcinak/{id}', 'UpravljanjeUcinkomController@edit');
 Route::post('/hr/upravljanje_ucinkom/updateUcinak/{id}', 'UpravljanjeUcinkomController@update');
 Route::get('/hr/upravljanje_ucinkom/delete/{id}', 'UpravljanjeUcinkomController@destroy');

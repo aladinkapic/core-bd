@@ -8,16 +8,14 @@ use App\Models\UpravljanjeUcinkom;
 use Illuminate\Http\Request;
 use App\Models\Sifrarnik;
 
-class UpravljanjeUcinkomController extends Controller
-{
-    public function index()
-    {
+class UpravljanjeUcinkomController extends Controller{
+    public function index(){
         $ucinci = UpravljanjeUcinkom::with('usluzbenik')->with('mjesto.rm')->with('kategorija_ocjene');
         $ucinci = FilterController::filter($ucinci);
 
         $filteri = [
             'usluzbenik.ime_prezime'=>'Službenik',
-            'mjesto.naziv_rm'=>'Radno mjesto',
+            'mjesto.rm.naziv_rm'=>'Radno mjesto',
             'kategorija_ocjene.name'=>'Kategorija',
             'godina'=>'Godina ocjenjivanja',
             'ocjena'=>'Ocjena',
@@ -28,8 +26,7 @@ class UpravljanjeUcinkomController extends Controller
         return view('/hr/upravljanje_ucinkom/home', compact('ucinci', 'filteri'));
     }
 
-    public function create()
-    {
+    public function create(){
         $sluzbenici = Sluzbenik::all('id', 'ime', 'prezime');
         $niz_sluzbenika = array();
         foreach ($sluzbenici as $sluzbenik) {
@@ -44,8 +41,7 @@ class UpravljanjeUcinkomController extends Controller
         return view('hr/upravljanje_ucinkom/add', compact('niz_sluzbenika', 'radna_mjesta', 'kategorija'));
     }
 
-    public function storeUcinci(Request $request)
-    {
+    public function storeUcinci(Request $request){
         $pravila = [
             'sluzbenik' => 'required',
             'godina' => 'required|min:4|max:4',
@@ -71,8 +67,7 @@ class UpravljanjeUcinkomController extends Controller
         }
     }
 
-    public function show($id)
-    {
+    public function show($id){
         $ucinak = UpravljanjeUcinkom::where('id', '=', $id)->first();
 
         $radnoMjesto = 'Nema radnog mjesta';
@@ -89,8 +84,7 @@ class UpravljanjeUcinkomController extends Controller
         return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik'));
     }
 
-    public function edit($id)
-    {
+    public function edit($id){
         $sluzbenici = Sluzbenik::all('id', 'ime', 'prezime');
         $niz_sluzbenika = array();
         foreach ($sluzbenici as $sluzbenik) {
@@ -103,8 +97,7 @@ class UpravljanjeUcinkomController extends Controller
         return view('/hr/upravljanje_ucinkom/add', compact('niz_sluzbenika', 'radna_mjesta', 'kategorija', 'ucinak'));
     }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $pravila = [
             'sluzbenik' => 'required',
             'godina' => 'required|min:4|max:4',
@@ -115,9 +108,7 @@ class UpravljanjeUcinkomController extends Controller
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
-
         $u = UpravljanjeUcinkom::findOrFail($id);
-
         $u->update($request->all());
 
         return redirect()
@@ -126,11 +117,19 @@ class UpravljanjeUcinkomController extends Controller
 
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         $ucinak = UpravljanjeUcinkom::findOrFail($id);
         $ucinak->delete();
 
         return redirect('/hr/upravljanje_ucinkom/home')->with('success', __('Uspješno ste izvršili brisanje!'));
+    }
+
+
+
+    /************************************************ IZVJEŠTAJI ******************************************************/
+
+    public function pregledIzvjestaja(){
+
+        return view('hr.upravljanje_ucinkom.zbirni-izvjestaji');
     }
 }

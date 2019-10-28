@@ -93,7 +93,7 @@ class Sluzbenik extends Model{
     public function clanoviPorodice(){
         return $this->hasMany('App\Models\DummyModels\ClanoviPorodice', 'id_sluzbenika');
     }
-    public function ispiti(){
+    public function ispitiRel(){
         return $this->hasMany('App\Models\DummyModels\Ispiti', 'id_sluzbenika');
     }
     public function kontaktDetalji(){
