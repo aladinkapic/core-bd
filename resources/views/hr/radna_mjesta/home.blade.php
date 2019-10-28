@@ -11,14 +11,28 @@
 
 @section('content')
     <div class="container">
+        <div class="fine-header">
+            <h4>{{__('Lista radnih mjesta')}}</h4>
+
+            <div class="buttons">
+                <a href="{{route('home')}}">
+                    <div class="small-button small-button-border">
+                        <div class="small-button">
+                            <i class="fas fa-angle-left"></i>
+                        </div>
+                        <p>{{__('Nazad')}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
         <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
             <div class="col-md-10">
-                <h4>{{__('Lista radnih mjesta')}}</h4>
+                <h4>{{__('')}}</h4>
 
             </div>
         </div>
-        @include('template.snippets.filters', ['var' => $radna_mjesta])
         <div class="card-body hr-activity tab full_container">
+            @include('template.snippets.filters', ['var' => $radna_mjesta])
             <table class="table table-bordered" id="filtering">
                 <thead>
                 <tr>
@@ -51,7 +65,7 @@
                             {{ $radnoMjesto->rukovodeca_pozicija->name ?? ''}}
                         </td>
                         <td>
-                            <ul>
+                            <ul class="custom-one-to-many">
                                 @foreach($radnoMjesto->sluzbenici as $sluzbenik)
                                     <li > {{ $sluzbenik->ime_prezime }} </li>
                                 @endforeach

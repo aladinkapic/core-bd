@@ -83,6 +83,10 @@ li.dropdown:hover > .dropdown-menu {
     }
 }
 
+.steps-wizard{
+    margin-left:25px;
+    width:calc(100% - 50px);
+}
 .steps-wizard li {
     font-size: 17px;
 }

@@ -31,7 +31,7 @@
             <div class="col">
                 {!! Form::label('email', __('Email').' : ', ['class' => 'control-label']) !!}
                 <div class="col-lg-12">
-                    {!! Form::select('email', '0', ['class' => 'form-control', 'rows' => 1, 'id' => 'email', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("email", "Uneseni podaci nemaju formu maila. Jeste li zaboravili -@- ?", "email")', 'maxlength' => 50]) !!}
+                    {!! Form::select('email', $domena, '0', ['class' => 'form-control', 'rows' => 1, 'id' => 'email', 'autocomplete' => 'off', 'maxlength' => 50]) !!}
                 </div>
             </div>
         @else

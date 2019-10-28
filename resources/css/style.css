@@ -23091,15 +23091,17 @@ a:hover {
 .steps-wizard ul {
   list-style: none;
   padding:0;
+  display:inline-flex;
+  width:100%;
 }
 .steps-wizard ul.three li {
-  width: 33%;
+  width:100%;
 }
 .steps-wizard ul.four li {
-  width: 24%;
+  width:100%;
 }
 .steps-wizard ul.five li {
-  width: 19%;
+  width: 100%;
   font-size: 12px;
 }
 .steps-wizard ul li {
@@ -23108,7 +23110,7 @@ a:hover {
   color: white;
   padding: 15px;
   border-top: solid 5px #4577b3;
-
+  text-align:center;
 }
 .steps-wizard ul li a {
   color: white;

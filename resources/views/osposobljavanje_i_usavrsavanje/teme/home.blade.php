@@ -10,25 +10,28 @@
 
 @section('content')
     <div class="container">
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{session()->get('success')}}
-            </div>
-        @endif
-            <div class="row">
-                <div class="col-md-10">
-                    <h4 >{{__('Teme za obuku')}}</h4>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn  btn-success" v-on:click="url('/osposobljavanje_i_usavrsavanje/teme/add')"> <i class="fa fa-plus fa-1x"></i> {{__('Nova tema za obuku')}}</button>
-                </div>
-            </div>
+        <div class="fine-header">
+            <h4>{{__('Teme za obuku')}}</h4>
 
-            <br />
-            <br />
+            <div class="buttons">
+                <a href="{{route('home')}}" title="Nazad">
+                    <div class="small-button small-button-border small-button-edit">
+                        <i class="fas fa-angle-left"></i>
+                    </div>
+                </a>
+                <a href="/osposobljavanje_i_usavrsavanje/teme/add">
+                    <div class="small-button small-button-border">
+                        <div class="small-button">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                        <p>{{__('Nova tema za obuku')}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
 
+        <div class="card-body hr-activity tab full_container">
             @include('template.snippets.filters', ['var'  => $teme])
-
             <table id="filtering" class="table table-condensed table-bordered">
                 <thead>
                 <tr>
@@ -60,5 +63,6 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
     </div>
 @stop

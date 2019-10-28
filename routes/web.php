@@ -163,17 +163,17 @@ Route::prefix('hr/sluzbenici')->group(function () {
 
     /******************************************** Službenik kontroller ************************************************/
 
-    Route::get('/dodaj_sluzbenika', 'SluzbenikController@dodajSluzbenika')->name('sluzbenik.dodaj');                            // Ovdje unosimo osnovne informacije o službeniku
-    Route::get('/uredi_sluzbenika/{id_sluzbenika}', 'SluzbenikController@urediSluzbenika')->name('sluzbenik.uredi');            // Ovdje možemo urediti osnovne informacije vezane za službenika
+    Route::get('/dodaj_sluzbenika',                    'SluzbenikController@dodajSluzbenika')->name('sluzbenik.dodaj');                            // Ovdje unosimo osnovne informacije o službeniku
+    Route::get('/uredi_sluzbenika/{id_sluzbenika}',    'SluzbenikController@urediSluzbenika')->name('sluzbenik.uredi');            // Ovdje možemo urediti osnovne informacije vezane za službenika
 
 
-    Route::post('/unesi_sliku', 'SluzbenikController@unesiSliku');                                                               // Unosimo sliku na server slike/slike_sluzbenika
-    Route::post('/provjeri_sluzbenika', 'SluzbenikController@provjeriSluzbenika');                                               // Ovdje provjeravamo da li ima korisnik sa istim JMBG ili LK - u stvarnom vremenu
-    Route::put('/spremi_sluzbenika', 'SluzbenikController@spremiSluzbenika');                                                    // Unosimo osnovne detalje o služeniku u bazu
-    Route::put('/azurirajSluzbenika', 'SluzbenikController@azurirajSluzbenika');                                                 // Ažuriranje osnovnih informacija o službeniku
-    Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}',        'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatno');  // Unesite ostale informacije o službeniku --
-    Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}/{what}', 'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatnoRjesenje');
-    Route::get('/ispis_sluzbenika',             'SluzbenikController@ispisSluzbenika')->name('ispis.sluzbenika');
+    Route::post('/unesi_sliku',                                      'SluzbenikController@unesiSliku');                                                               // Unosimo sliku na server slike/slike_sluzbenika
+    Route::post('/provjeri_sluzbenika',                              'SluzbenikController@provjeriSluzbenika');                                               // Ovdje provjeravamo da li ima korisnik sa istim JMBG ili LK - u stvarnom vremenu
+    Route::put('/spremi_sluzbenika',                                 'SluzbenikController@spremiSluzbenika');                                                    // Unosimo osnovne detalje o služeniku u bazu
+    Route::put('/azurirajSluzbenika',                                'SluzbenikController@azurirajSluzbenika');                                                 // Ažuriranje osnovnih informacija o službeniku
+    Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}',              'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatno');  // Unesite ostale informacije o službeniku --
+    Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}/{what}',       'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatnoRjesenje');
+    Route::get('/ispis_sluzbenika',                                  'SluzbenikController@ispisSluzbenika')->name('ispis.sluzbenika');
 
     Route::get('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
     Route::post('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
@@ -517,12 +517,12 @@ Route::get('/hr/organ_javne_uprave/view', function () {
 
 Route::resource('hr/organ_javne_uprave/home', 'UpravaController');
 
-Route::post('/hr/uprava/store', 'UpravaController@storeUprava')->name('uprava.store');
-Route::get('/hr/uprava/viewUprava/{id}', 'UpravaController@show');
-Route::get('/hr/uprava/editUprava/{id}', 'UpravaController@edit');
-Route::post('/hr/uprava/updateUprava/{id}', 'UpravaController@update');
-Route::get('/hr/uprava/delete/{id}', 'UpravaController@destroy');
-Route::get('/hr/organ_javne_uprave/add', 'UpravaController@create');
+Route::post('/hr/uprava/store',                 'UpravaController@storeUprava')->name('uprava.store');
+Route::get('/hr/uprava/viewUprava/{id}',        'UpravaController@show');
+Route::get('/hr/uprava/editUprava/{id}',        'UpravaController@edit');
+Route::post('/hr/uprava/updateUprava/{id}',     'UpravaController@update');
+Route::get('/hr/uprava/delete/{id}',            'UpravaController@destroy');
+Route::get('/hr/organ_javne_uprave/add',        'UpravaController@create')->name('novi-organ-javne-uprave');
 
 
 

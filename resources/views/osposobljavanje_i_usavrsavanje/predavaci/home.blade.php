@@ -10,30 +10,34 @@
 
 @section('content')
     <div class="container">
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div><br />
-        @endif
-        <div class="row">
-            <div class="col-md-10">
-                <h4 >{{__('Predavači')}}</h4>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-success" onClick="window.location='/osposobljavanje_i_usavrsavanje/predavaci/add';"> <i class="fa fa-plus fa-1x"></i> {{__('Novi predavač')}}</button>
+        <div class="fine-header">
+            <h4>{{__('Predavači')}}</h4>
+
+            <div class="buttons">
+                <a href="{{route('home')}}" title="Nazad">
+                    <div class="small-button small-button-border small-button-edit">
+                        <i class="fas fa-angle-left"></i>
+                    </div>
+                </a>
+                <a href="/osposobljavanje_i_usavrsavanje/predavaci/add">
+                    <div class="small-button small-button-border">
+                        <div class="small-button">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                        <p>{{__('Novi predavač')}}</p>
+                    </div>
+                </a>
             </div>
         </div>
-        <br />
-        <br />
+
+        <div class="card-body hr-activity tab full_container">
             @include('template.snippets.filters', ['var'  => $predavaci])
-
-
-            <table id="filtering" class="table table-condensed table-bordered">
+            <table class="table table-bordered low-padding" id="filtering">
                 <thead>
                 <tr>
                     <th class="text-center">#</th>
                     @include('template.snippets.filters_header')
-                    <th style="text-align:center;" class="akcije" style="width: 120px;">{{__('Akcija')}}</th>
+                    <th style="text-align:center;" class="akcije" width="120px">{{__('Akcija')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,5 +63,6 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
     </div>
 @stop

@@ -455,8 +455,8 @@ class SluzbenikController extends Controller
             ->with('strucnaSprema')
             ->with('vjestine')
             ->with('zasnivanjeRO')
-            ->with('radnoMjesto.orgjed.organizacija.organ')
-            ->with('radnoMjesto.rukovodioc_s')
+            ->with('sluzbenikRel.rm.orgjed.organizacija.organ')
+            ->with('sluzbenikRel.rm.rukovodioc_s')
             ->with('zasnivanjeRO.nacin_zasnivanja_ro_s')
             ->with('zasnivanjeRO.vrsta_r_o_s')
             ->with('zasnivanjeRO.obracunati_r_staz_s');

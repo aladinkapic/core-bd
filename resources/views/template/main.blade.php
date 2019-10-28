@@ -8,6 +8,8 @@
 
         <title>@yield('title', 'Upravljanje ljudskim resursima - ' . env('APP_NAME'))</title>
         <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="{{ asset('css/all.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 {{--        <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">--}}

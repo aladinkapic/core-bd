@@ -1,0 +1,70 @@
+.fine-header{
+    position:relative;
+    left:25px;
+    top:0px;
+    width:calc(100% - 50px);
+    height:74px;
+    border:1px solid rgba(0,0,0,0.1);
+
+    padding:10px 5px 15px 5px;
+
+    h4{
+        margin-left:20px;
+        margin-top:15px;
+        font-weight:bold;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .buttons{
+        position:absolute;
+        right:20px;
+        height:36px;
+        background:#38C172;
+        top:18px;
+        border-radius:3px;
+        display:inline-flex;
+        overflow:hidden;
+
+        a:hover{text-decoration: none;}
+        .small-button{
+            position:relative;
+            min-width:36px;
+            height:36px;
+            text-align:center;
+            display:inline-flex;
+            justify-content: center;
+            transition:all 0.2s;
+            i{
+                font-size:14px;
+                color:#fff;
+                margin-top:11px;
+                text-decoration:none;
+            }
+            .fa-angle-left{
+                color:#fff;
+                font-size:20px;
+                margin-top:8px;
+                top:0px;
+            }
+
+            p{
+                color:#fff;
+                margin-right:14px;
+                margin-top:8px;
+            }
+        }
+        .small-button-border{
+            border-right:1px solid rgba(255,255,255,0.3);
+        }
+
+        .small-button:hover{cursor:pointer; background:#1d68a7;}
+        .small-button-edit:hover{background:#857b26;}
+        .small-button-delete:hover{background:#ae1c17;}
+    }
+}
+
+.custom-one-to-many{
+    margin:0px;
+    padding:0px;
+    padding-left:20px;
+}

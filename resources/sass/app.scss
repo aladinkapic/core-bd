@@ -14,6 +14,13 @@
 // Interno tržite rada
 @import 'interno_tr_rada';
 
+// Header for tables
+@import "includes/header";
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

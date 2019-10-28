@@ -9,100 +9,60 @@
 
 @stop
 @section('content')
-
-
     <div class="container">
-
         @include('hr.ugovori.snippets.menu')
-        <hr/>
-        <br/>
-        <div class="row">
-            <div class="col-md-10">
-                <h4>{{__('Evidencija o dodatnim djelatnostima')}} </h4>
+        <div class="fine-header">
+            <h4>{{__('Evidencija o dodatnim djelatnostima')}}</h4>
 
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-success" style="float:right;"
-                        v-on:click="url('{{ route('ugovor.dodatno.create') }}')"><i class="fa fa-plus fa-1x"></i> {{__('Novi
-                    unos')}}
-                </button>
+            <div class="buttons">
+                <a href="{{route('home')}}" title="Nazad">
+                    <div class="small-button small-button-border small-button-edit">
+                        <i class="fas fa-angle-left"></i>
+                    </div>
+                </a>
+                <a href="{{route('ugovor.dodatno.create')}}">
+                    <div class="small-button small-button-border">
+                        <div class="small-button">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                        <p>{{__('Novi ugovor / odluka')}}</p>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <br/>
-        <br/>
-
-        @include('template.snippets.filters', ['var'  => $ugovori])
-
-
-        @if(isset($success))
-            <div class="alert alert-success">{{ $success }}</div>
-        @endif
-
-        <table id="filtering" class="table table-condensed table-bordered">
-            <thead>
-            <tr>
-                <th class="text-center">#</th>
-                @include('template.snippets.filters_header')
-                <th class="akcije text-center" width="120px">{{__('Akcije')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            @php $counter = 1; @endphp
-            @foreach($ugovori as $ugovor)
+        <div class="card-body hr-activity tab full_container">
+            @include('template.snippets.filters', ['var'  => $ugovori])
+            <table id="filtering" class="table table-condensed table-bordered">
+                <thead>
                 <tr>
-                    <td class="text-center">{{$counter++}}</td>
-                    <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
-                    <td>{{$ugovor->razlog ?? '/'}}</td>
-                    <td>{{$ugovor->rjesenje ?? '/'}}</td>
-                    <td>{{$ugovor->datumRješenja() ?? '/'}}</td>
-                    <td style="text-align:center;" class="akcije">
-                        <a href="{{ '/ugovori/dodatno/edit/' . $ugovor->id ?? '1'}}">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                        <a href="{{ '/ugovori/dodatno/destroy/' . $ugovor->id ?? '1'}}"
-                           style="margin-left:10px;">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </td>
+                    <th class="text-center">#</th>
+                    @include('template.snippets.filters_header')
+                    <th class="akcije text-center" width="120px">{{__('Akcije')}}</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @php $counter = 1; @endphp
+                @foreach($ugovori as $ugovor)
+                    <tr>
+                        <td class="text-center">{{$counter++}}</td>
+                        <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
+                        <td>{{$ugovor->razlog ?? '/'}}</td>
+                        <td>{{$ugovor->rjesenje ?? '/'}}</td>
+                        <td>{{$ugovor->datumRješenja() ?? '/'}}</td>
+                        <td style="text-align:center;" class="akcije">
+                            <a href="{{ '/ugovori/dodatno/edit/' . $ugovor->id ?? '1'}}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="{{ '/ugovori/dodatno/destroy/' . $ugovor->id ?? '1'}}"
+                               style="margin-left:10px;">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @stop
-{{--<table id="filtering" class="table table-condensed table-bordered">--}}
-{{--<thead>--}}
-{{--@include('template.snippets.filters_header')--}}
-{{--<th class="akcije" style="width: 15%;">Akcija</th>--}}
-{{--</thead>--}}
-{{--<tbody>--}}
-{{--<tr class="org-row" v-if="ugovor.usluzbenik" v-for="(ugovor, index) in items"--}}
-{{--v-bind:style=" index > 10 ? 'display: none;' : 'display: table-row;'">--}}
-{{--<td>@{{ ugovor.usluzbenik.ime }} @{{ ugovor.usluzbenik.prezime }}</td>--}}
-{{--<td>@{{ ugovor.saglasnost }}</td>--}}
-{{--<td>@{{ ugovor.broj_rjesenja }}</td>--}}
-{{--<td>@{{ ugovor.datum_rjesenja | formatDate }}</td>--}}
-{{--<td>@{{ ugovor.opis }}</td>--}}
-{{--<td>@{{ ugovor.napomena }}</td>--}}
-
-{{--<td class="akcije">--}}
-{{--<a class="btn btn-primary btn-xs" v-bind:href="'/ugovori/dodatno/edit/'+ ugovor.id">--}}
-{{--<i class="fa fa-pen"></i> Izmjena--}}
-{{--</a>--}}
-
-{{--<form style="display: inline-block;" method="POST"--}}
-{{--v-bind:action="'/ugovori/dodatno/destroy/'+ ugovor.id">--}}
-{{--{{ method_field('DELETE') }}--}}
-{{--@csrf--}}
-{{--<button style="display: none;" class="btn btn-danger btn-xs remove-org">--}}
-{{--<i class="fa fa-times"></i>--}}
-{{--</button>--}}
-{{--</form>--}}
-
-{{--</td>--}}
-{{--</tr>--}}
-{{--</tbody>--}}
-{{--</table>--}}
-{{--</div>--}}
-{{--@stop--}}
