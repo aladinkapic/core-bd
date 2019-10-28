@@ -13,8 +13,8 @@
     <div class="container container_block">
         <div class="card" style="width:100%;">
             <div class="card-header ads-darker">
-                <button style="float:right;" onClick="window.location='/hr/odsustva/postavi_limit_svima';" class="btn btn-light" ><i class="fas fa-plus"></i> Postavite novi limit</button>
-                <h4>Opšti limiti odsustva - svi službenici</h4>
+                <button style="float:right;" onClick="window.location='/hr/odsustva/postavi_limit_svima';" class="btn btn-light" ><i class="fas fa-plus"></i> {{__('Postavite novi limit')}}</button>
+                <h4>{{__('Opšti limiti odsustva - svi službenici')}}</h4>
             </div>
         </div>
 

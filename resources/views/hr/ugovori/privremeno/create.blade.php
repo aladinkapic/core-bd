@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Privremeni premještaj državnog službenika
+                        {{__('Privremeni premještaj državnog službenika')}}
                     </div>
                     <div class="card-body">
 
@@ -22,7 +22,7 @@
 
                             <div class="row">
                                 <div class="col-md-5">
-                                    Službenik
+                                    {{__('Službenik')}}
                                 </div>
 
                                 <!-- pozivat ćemo funkciju privremeniPremjestaj iz all_functions.js -->
@@ -39,18 +39,18 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Privremeno radno mjesto
+                                    {{__('Privremeno radno mjesto')}}
                                 </div>
                                 <div class="col-md-7">
                                     <select class="form-control" name="privremeno_radno_mjesto" id="privremeno_radno_mjesto">
-                                        <option value="1">Aktivna radna mjesta iz organa javne uprave</option>
+                                        <option value="1">{{__('Aktivna radna mjesta iz organa javne uprave')}}</option>
                                     </select>
                                 </div>
                             </div>
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Redovno radno mjesto
+                                    {{__('Redovno radno mjesto')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input required="required" class="form-control" type="text" name="radno_mjesto"
@@ -60,7 +60,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Broj rješenja
+                                    {{__('Broj rješenja')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input class="form-control" type="text" name="broj_rjesenja" placeholder="Broj rješenja..."/>
@@ -69,7 +69,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum rješenja
+                                    {{__('Datum rješenja')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input type="text" id="datum_rjesenja" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." >
@@ -78,7 +78,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum od
+                                    {{__('Datum od')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input type="text" id="datum_od" class="form-control datepicker" name="datum_od" placeholder="Datum od..." >
@@ -87,7 +87,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum do
+                                    {{__('Datum do')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input type="text" id="datum_do" class="form-control datepicker" name="datum_do" placeholder="Datum do..." >
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <button class="btn btn-success">
-                                        <i class="fa fa-plus"></i> Dodaj
+                                        <i class="fa fa-plus"></i> {{__('Dodaj')}}
                                     </button>
                                 </div>
                             </div>

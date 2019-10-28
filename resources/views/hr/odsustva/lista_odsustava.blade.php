@@ -19,15 +19,15 @@
                     <ul class="four">
                         <li class="{{ Request::path() == 'hr/odsustva/kalendar/'.$sluzbenik_id ? 'active' : '' }} single_bar">
                             <i class="far fa-calendar-alt"></i>
-                            <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id)}}">Pregled kalendara državnog službenika</a>
+                            <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id)}}">{{__('Pregled kalendara državnog službenika')}}</a>
                         </li>
                         <li class="{{ Request::path() == 'hr/odsustva/lista_odsustava/'.$od.'/'.$do.'/'.$sluzbenik_id ? 'active' : '' }} single_bar">
                             <i class="fa fa-list-ul"></i>
-                            <a href="/hr/odsustva/lista_odsustava/01-{{date('m')}}-{{date('Y')}}/{{cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'))}}-{{date('m')}}-{{date('Y')}}/{{$sluzbenik_id}}">Lista odsustava</a>
+                            <a href="/hr/odsustva/lista_odsustava/01-{{date('m')}}-{{date('Y')}}/{{cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'))}}-{{date('m')}}-{{date('Y')}}/{{$sluzbenik_id}}">{{__('Lista odsustava')}}</a>
                         </li>
                         <li class="{{ Request::path() == 'hr/absence/pretraga' ? 'active' : '' }} single_bar">
                             <i class="far fa-calendar-times"></i>
-                            <a href="/hr/odsustva/limiti_pojedinca/{{$sluzbenik_id}}/{{date('Y')}}">Limit odsustava</a>
+                            <a href="/hr/odsustva/limiti_pojedinca/{{$sluzbenik_id}}/{{date('Y')}}">{{__('Limit odsustava')}}</a>
                         </li>
                     </ul>
                 </div>
@@ -56,9 +56,9 @@
                 <thead>
                     <tr >
                         <th scope="col" width="40px;" style="text-align:center;">#</th>
-                        <th scope="col">Period </th>
-                        <th scope="col">Vrsta odsustva</th>
-                        <th scope="col" width="120px;" style="text-align:center;">Broj dana</th>
+                        <th scope="col">{{__('Period')}} </th>
+                        <th scope="col">{{__('Vrsta odsustva')}}</th>
+                        <th scope="col" width="120px;" style="text-align:center;">{{__('Broj dana')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,12 +85,12 @@
                 <h3>{{$sluzbenik->ime.' '.$sluzbenik->prezime}}</h3>
             </div>
             <div class="basic_info">
-                <h5>Rukovodilac poslova</h5>
+                <h5>{{__('Rukovodilac poslova')}}</h5>
             </div>
 
             <div class="basic_info">
                 <a href="{{asset('/hr/sluzbenici/uredi_sluzbenika/'.$sluzbenik->id)}}">
-                    <p>Karton radnika</p>
+                    <p>{{__('Karton radnika')}}</p>
                 </a>
             </div>
         </div>

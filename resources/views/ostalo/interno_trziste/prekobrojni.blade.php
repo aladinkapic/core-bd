@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') Upražnjena radna mjesta @endsection
+@section('title') {{__('Upražnjena radna mjesta')}} @endsection
 
 @section('breadcrumbs')
 
@@ -18,6 +18,23 @@
         @include('template.snippets.filters', ['var'  => $radnaMjesta])
 
 
+        <div class="split_container split_container5" style="padding:0px;">
+            <table class="table table-bordered text-left">
+                <thead >
+                <tr>
+                    <th scope="col" width="40px;" class="text-center">#</th>
+                    <th scope="col">{{__('Ime i prezime službenika')}}</th>
+                    <th scope="col">{{__('Radno mjesto')}}</th>
+                    <th scope="col" class="text-center" width="140px">{{__('Rješenje')}}</th>
+                    <th scope="col" class="text-center" width="140px">{{__('Pregled')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                @php $i=1; @endphp
+                @foreach($sluzbenici as $korisnik)
+                @endforeach
+
+
         <table class="table table-bordered low-padding" id="filtering">
             <thead>
             <tr>
@@ -34,6 +51,7 @@
 
             @foreach($radnaMjesta as $rm)
                 @if($rm->broj_izvrsilaca < $rm->sluzbeniciRel->count())
+
                     <tr>
                         <td>{{$counter++}}</td>
                         <td>{{$rm->naziv_rm}}</td>

@@ -37,19 +37,19 @@
                                 <li class="active">
                                     <div class="tab_div">
                                         <i class="fas fa-briefcase"></i>
-                                        <p>Radno mjesto</p>
+                                        <p>{{__('Radno mjesto')}}</p>
                                     </div>
                                 </li>
                                 <li class="">
                                     <div class="tab_div">
                                         <i class="fas fa-network-wired"></i>
-                                        <p>Uslovi za radno mjesto</p>
+                                        <p>{{__('Uslovi za radno mjesto')}}</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="tab_div">
                                         <i class="fas fa-users"></i>
-                                        <p>Uposleni na radnom mjestu</p>
+                                        <p>{{__('Uposleni na radnom mjestu')}}</p>
                                     </div>
                                 </li>
                             </ul>
@@ -201,7 +201,7 @@
 
                                         <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                                             <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('uslovi_za_radno_mjesto', 'form_for_copy');">
-                                                Dodajte uslov
+                                                {{__('Dodajte uslov')}}
                                                 <i class="fas fa-save"></i>
                                             </button>
                                         </div>
@@ -286,7 +286,7 @@
 
                                         <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                                             <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">
-                                                Dodajte službenika
+                                                {{__('Dodajte službenika')}}
                                                 <i class="fas fa-save"></i>
                                             </button>
                                         </div>
@@ -328,15 +328,15 @@
                             <div class="buttons" style="text-align:center;">
                                 <button type="button" class="btn btn-dark" >
                                     <i class="fas fa-chevron-left"></i>
-                                    Nazad
+                                    {{__('Nazad')}}
                                 </button>
                                 <button type="button" class="btn btn-blue" >
-                                    Dalje
+                                    {{__('Dalje')}}
                                     <i class="fas fa-chevron-right"></i>
                                 </button>
                                 <button type="submit" class="btn btn-success">
                                     <i class="fab fa-telegram"></i>
-                                    Spremite
+                                    {{__('Spremite')}}
                                 </button>
                             </div>
 

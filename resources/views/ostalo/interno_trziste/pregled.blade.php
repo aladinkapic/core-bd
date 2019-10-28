@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') Upražnjena radna mjesta @endsection
+@section('title') {{__('Upražnjena radna mjesta')}} @endsection
 
 @section('breadcrumbs')
 
@@ -22,11 +22,50 @@
             <thead>
             <tr>
                 @include('template.snippets.filters_header')
+
+                @if(!isset($prekobrojni))
+                    <th scope="col" class="text-center">{{__('Rješenje')}}</th>
+                @endif
+                <th scope="col" class="text-center">{{__('Pregled')}}</th>
+
                 <th>Rješenje</th>
                 <th width="120px" class="text-center">Akcije</th>
+
             </tr>
             </thead>
             <tbody>
+
+
+            @foreach($planovi as $plan)
+                @foreach($plan->organizacioneJedinice as $orgJedinica)
+                    @foreach($orgJedinica->radnaMjesta as $radnoMjesto)
+                        @if(isset($prekobrojni))
+                            @if($radnoMjesto->broj_izvrsilaca < $radnoMjesto->sluzbenici->count())
+                                <tr>
+                                    <td>
+                                        {{$radnoMjesto->naziv_rm ?? '/'}}
+                                    </td>
+                                    <td>
+                                        {{$orgJedinica->naziv ?? '/'}}
+                                    </td>
+                                    <td>
+                                        {{$radnoMjesto->sifra_rm ?? '/'}}
+                                    </td>
+                                    <td>
+                                        {{$radnoMjesto->broj_izvrsilaca ?? '/'}}
+                                    </td>
+                                    <td>
+                                        {{$radnoMjesto->sluzbenici->count() ?? '/'}}
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{route('internotrziste.sviprekobrojniljudi', ['id' => $radnoMjesto->id])}}"
+                                           title="Pregled svih službenika na radnom mjestu">
+                                            <i class="fa fa-eye" style="margin-left:10px;"></i> {{__('Pregled')}}
+                                @endif
+                            @endif
+                        @endforeach
+                    @endforeach
+                @endforeach
 
             @php $counter = 1; @endphp
 
@@ -47,6 +86,7 @@
                                     @foreach($rm->sluzbeniciRel as $sl)
                                         <a href="{{route('sluzbenik.dodatno', ['id' => $sl->sluzbenik->id])}}">
                                             <li>{{$sl->sluzbenik->ime_prezime}}</li>
+
                                         </a>
                                     @endforeach
                                 </ul>

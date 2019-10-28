@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') Unos žalbe @endsection
+@section('title') {{__('Unos žalbe')}} @endsection
 @section('breadcrumbs')
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
             route('home') => __('Početna stranica'),

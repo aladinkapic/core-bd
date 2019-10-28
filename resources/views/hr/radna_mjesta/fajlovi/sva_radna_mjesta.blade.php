@@ -3,12 +3,12 @@
     <table class="table table-bordered"  id="filtering">
         <thead >
         <tr >
-            <th scope="col" width="40px;" class="text-center">ID</th>
-            <th scope="col">Naziv radnog mjesta</th>
-            <th scope="col">Šifra radnog mjesta</th>
-            <th scope="col">Broj izvršilaca</th>
-            <th scope="col">Organizacijska jedinica</th>
-            <th scope="col" class="text-center">Akcije</th>
+            <th scope="col" width="40px;" class="text-center">{{__('ID')}}</th>
+            <th scope="col">{{__('Naziv radnog mjesta')}}</th>
+            <th scope="col">{{__('Šifra radnog mjesta')}}</th>
+            <th scope="col">{{__('Broj izvršilaca')}}</th>
+            <th scope="col">{{__('Organizacijska jedinica')}}</th>
+            <th scope="col" class="text-center">{{__('Akcije')}}</th>
         </tr>
         </thead>
         <tbody>

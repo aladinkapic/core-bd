@@ -4,8 +4,8 @@
         @csrf
         @if(!isset($disciplinska))
             <div class="tittle">
-                <h2>Unos disciplinske odgovornosti</h2>
-                <p>Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.</p>
+                <h2>{{__('Unos disciplinske odgovornosti')}}</h2>
+                <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
             </div>
         @else
             {!! Form::hidden('disciplinska_id', $disciplinska->id, ['class' => 'form-control', 'readonly']) !!}
@@ -101,15 +101,15 @@
             <div class="buttons" style="text-align:center;">
                 <button type="button" class="btn btn-dark" >
                     <i class="fas fa-chevron-left"></i>
-                    Nazad
+                    {{__('Nazad')}}
                 </button>
                 <button type="button" class="btn btn-blue" >
-                    Dalje
+                    {{__('Dalje')}}
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 <button type="submit" class="btn btn-success">
                     <i class="fab fa-telegram"></i>
-                    Spremite
+                    {{__('Spremite')}}
                 </button>
             </div>
         </div>

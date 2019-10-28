@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Naziv</label>
+                                <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Naziv')}}</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="naziv" value="{{ $org_jedinica->naziv }}" class="form-control" placeholder="Unesite naziv organizacione jedinice...">
                                 </div>
@@ -51,10 +51,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Nadređena organizaciona jedinica</label>
+                                <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Nadređena organizaciona jedinica')}}</label>
                                 <div class="col-sm-9">
                                     <select name="parent" class="form-control" id="parent" v-on:change="setNoviBroj">
-                                        <option value="">Glavna organizaciona jedinica</option>
+                                        <option value="">{{__('Glavna organizaciona jedinica')}}</option>
                                         @foreach($org_jedinice as $jedinica)
                                             <option @if($org_jedinica->parent_id == $jedinica->id) selected="selected" @endif value="{{ $jedinica->id }}">{{ $jedinica->naziv }}</option>
                                         @endforeach
@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Opis</label>
+                                <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Opis')}}</label>
                                 <div class="col-sm-9">
                                     <textarea name="opis" class="form-control">{{ $jedinica->opis }}</textarea>
                                 </div>
@@ -71,7 +71,7 @@
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-3 col-form-label"></label>
                                 <div class="col-sm-9">
-                                    <button class="btn btn-success">Spasi</button>
+                                    <button class="btn btn-success">{{__('Spasi')}}</button>
                                 </div>
                             </div>
 

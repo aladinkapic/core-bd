@@ -16,9 +16,11 @@
 
     <div class="container">
 
-        <h4>Organizaciona shema</h4>
+        <h4>{{__('Organizaciona shema')}}</h4>
 
         <br />
+
+        @include('hr.organizacija.snippets.menu')
 
         <div class="tree-wrapper">
             <div class="zoom-buttons">
@@ -27,6 +29,7 @@
                 </div>
                 <div class="single-zoom-button zoom-in-it">
                     <i class="fas fa-search-plus"></i>
+
                 </div>
             </div>
             <div class="tree-inside-wrapper">

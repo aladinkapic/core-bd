@@ -6,9 +6,9 @@
 
     <div class="card ">
         <div class="card-header ads-darker">
-            <button class="btn btn-light float-right" ><i class="fa fa-save"></i> Sačuvaj</button>
-            <button class="btn btn-light float-right mr-3" ><i class="fa fa-pen"></i> Izmijeni</button>
-            Registar ugovora - Radni status i raspored na radno mjesto
+            <button class="btn btn-light float-right" ><i class="fa fa-save"></i> {{__('Sačuvaj')}}</button>
+            <button class="btn btn-light float-right mr-3" ><i class="fa fa-pen"></i> {{__('Izmijeni')}}</button>
+            {{__('Registar ugovora - Radni status i raspored na radno mjesto')}}
         </div>
         <div class="card-body hr-activity tab">
             <div class="row">
@@ -16,35 +16,35 @@
                     <table class="table table-sm">
                         <tbody>
                         <tr>
-                            <td><b>Broj ugovora/odluke:</b></td>
+                            <td><b>{{__('Broj ugovora/odluke:')}}</b></td>
                             <td>PC-1234</td>
                         </tr>
                         <tr>
-                            <td><b>Službenik:</b></td>
+                            <td><b>{{__('Službenik:')}}</b></td>
                             <td>Amina Spahić</td>
                         </tr>
                         <tr>
-                            <td><b>Datum ugovora/odluke:</b></td>
+                            <td><b>{{__('Datum ugovora/odluke:')}}</b></td>
                             <td>09.09.2010.</td>
                         </tr>
                         <tr>
-                            <td><b>Datum isteka ugovora/odluke:</b></td>
+                            <td><b>{{__('Datum isteka ugovora/odluke:')}}</b></td>
                             <td>09.07.2019.</td>
                         </tr>
                         <tr>
-                            <td><b>Datum isteka probnog perioda:</b></td>
+                            <td><b>{{__('Datum isteka probnog perioda:')}}</b></td>
                             <td>10.10.2011.</td>
                         </tr>
                         <tr>
-                            <td><b>Broj sati:</b></td>
+                            <td><b>{{__('Broj sati:')}}</b></td>
                             <td>8</td>
                         </tr>
                         <tr>
-                            <td><b>Službeni telefonski broj:</b></td>
+                            <td><b>{{__('Službeni telefonski broj:')}}</b></td>
                             <td>+387 33 233 331</td>
                         </tr>
                         <tr>
-                            <td><b>E-mail adresa:</b></td>
+                            <td><b>{{__('E-mail adresa:')}}</b></td>
                             <td>amina.spahic@teneo.ba</td>
                         </tr>
                             </td>
@@ -61,9 +61,9 @@
                         </div>
                         <div class="card-body">
 
-                            <h5 class="card-title">Amina Spahić</h5>
-                            <p class="card-text">Viši stručni saradnik za upravljanje poslovnim procesom</p>
-                            <button class="btn btn-info" ></i> Karton radnika</button>
+                            <h5 class="card-title">{{__('Amina Spahić')}}</h5>
+                            <p class="card-text">{{__('Viši stručni saradnik za upravljanje poslovnim procesom')}}</p>
+                            <button class="btn btn-info" ></i> {{__('Karton radnika')}}</button>
                         </div>
                     </div>
                 </div>
@@ -71,11 +71,11 @@
                 <br />
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Prethodno</a></li>
+                        <li class="page-item"><a class="page-link" href="#">{{__('Prethodno')}}</a></li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Sljedeće</a></li>
+                        <li class="page-item"><a class="page-link" href="#">{{__('Sljedeće')}}</a></li>
                     </ul>
                 </nav>
             </div>

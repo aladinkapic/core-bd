@@ -23,6 +23,8 @@ class UgovorController extends Controller{
 
     public function index(Request $request){
         $ugovori = RadniStatus::with('usluzbenik');
+
+
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [

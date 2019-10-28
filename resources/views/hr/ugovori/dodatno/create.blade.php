@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Evidencija o dodatnim djelatnostima
+                        {{__('Evidencija o dodatnim djelatnostima')}}
                     </div>
                     <div class="card-body">
 
@@ -23,7 +23,7 @@
 
                             <div class="row">
                                 <div class="col-md-5">
-                                    Službenik
+                                    {{__('Službenik')}}
                                 </div>
                                 <div class="col-md-7">
                                     <select class="form-control" name="sluzbenik">
@@ -36,7 +36,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Razlog
+                                    {{__('Razlog')}}
                                 </div>
                                 <div class="col-md-7">
                                     <textarea class="form-control"  name="razlog" autocomplete="off"></textarea>
@@ -46,7 +46,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Broj rješenja
+                                    {{__('Broj rješenja')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input class="form-control" type="text" name="rjesenje" placeholder="Broj rješenja..." autocomplete="off">
@@ -55,7 +55,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum rješenja
+                                    {{__('Datum rješenja')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input type="text" id=nekiid" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." autocomplete="off">
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <button class="btn btn-success">
-                                        <i class="fa fa-plus"></i> Dodaj
+                                        <i class="fa fa-plus"></i> {{__('Dodaj')}}
                                     </button>
                                 </div>
                             </div>

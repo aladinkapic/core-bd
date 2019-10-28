@@ -52,9 +52,9 @@
                     <td class="text-center">{{$counter++}}</td>
                     <td>{{$ugovor->broj ?? '/'}}</td>
                     <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
-                    <td>{{$ugovor->datum ?? '/'}}</td>
-                    <td>{{$ugovor->datum_isteka ?? '/'}}</td>
-                    <td>{{$ugovor->datum_isteka_probni ?? '/'}}</td>
+                    <td>{{$ugovor->datumUgovora() ?? '/'}}</td>
+                    <td>{{$ugovor->datumIsteka() ?? '/'}}</td>
+                    <td>{{$ugovor->datumIstekaProbni() ?? '/'}}</td>
                     <td>{{$ugovor->broj_sati ?? '/'}}</td>
                     <td style="text-align:center;" class="akcije">
                         <a href="{{ '/ugovori/radni-status/edit/' . $ugovor->id ?? '1'}}">

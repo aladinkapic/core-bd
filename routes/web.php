@@ -173,6 +173,7 @@ Route::prefix('hr/sluzbenici')->group(function () {
     Route::put('/azurirajSluzbenika', 'SluzbenikController@azurirajSluzbenika');                                                 // Ažuriranje osnovnih informacija o službeniku
     Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}',        'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatno');  // Unesite ostale informacije o službeniku --
     Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}/{what}', 'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatnoRjesenje');
+    Route::get('/ispis_sluzbenika',             'SluzbenikController@ispisSluzbenika')->name('ispis.sluzbenika');
 
     Route::get('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
     Route::post('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');

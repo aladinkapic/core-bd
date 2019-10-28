@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') E-Konkurs @endsection
+@section('title'){{__(' E-Konkurs ')}}@endsection
 
 @section('content')
     <div class="container">
@@ -8,11 +8,11 @@
                 <ul class="four">
                     <li class="{{ Request::path() == 'ekonkurs/request' ? 'active' : '' }} single_bar2">
                         <i class="fas fa-plus"></i>
-                        <a href="{{route('ekonkurs.request')}}">Unos službenika</a>
+                        <a href="{{route('ekonkurs.request')}}">{{__('Unos službenika')}}</a>
                     </li>
                     <li class="{{ Request::path() == 'ekonkurs/historija' ? 'active' : '' }} single_bar2">
                         <i class="fas fa-search"></i>
-                        <a href="{{route('ekonkurs.historija')}}">Historija zahtjeva</a>
+                        <a href="{{route('ekonkurs.historija')}}">{{__('Historija zahtjeva')}}</a>
                     </li>
                 </ul>
             </div>

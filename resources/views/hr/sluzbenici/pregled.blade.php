@@ -28,7 +28,9 @@
             @if(!isset($odsustva))
                 <div class="col-md-2">
                     <button class="btn btn-success" v-on:click="url('{{ route('sluzbenik.dodaj') }}')"><i
-                                class="fa fa-plus fa-1x"></i>{{__(' Dodajte novog službenika')}}
+
+                                class="fa fa-plus fa-1x"></i> {{__('Dodajte novog službenika')}}
+
                     </button>
                 </div>
             @endif
@@ -86,7 +88,7 @@
                 <thead>
                 <tr>
                     @include('template.snippets.filters_header')
-                    <th style="text-align:center;" class="akcije">Akcije</th>
+                    <th style="text-align:center;" class="akcije">{{__('Akcije')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -104,7 +106,7 @@
                         <td>{{ $sluzbenik->nacionalnost_sl ? $sluzbenik->nacionalnost_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->bracni_status_sl ? $sluzbenik->bracni_status_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->mjesto_rodjenja ?? '/' }}</td>
-                        <td>{{ $sluzbenik->datum_rodjenja ?? '/'}}</td>
+                        <td>{{ $sluzbenik->datumRodjenja() ?? '/'}}</td>
                         <td>{{ $sluzbenik->licna_karta ?? '/'}}</td>
                         <td>{{ $sluzbenik->mjesto_idavanja_lk ?? '/'}}</td>
                         <td>{{ $sluzbenik->PIO ?? '/'}}</td>
@@ -150,12 +152,9 @@
                             @endif
                         </td>
 
-                        <!---- Zasnivanje radnog odnosa ---->
-
                         <td>
                             <ul>
                                 @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
-
                                     <li>{{$zasnivanje->datum_zasnivanja_o}}</li>
                                 @endforeach
                             </ul>
@@ -185,6 +184,35 @@
                                 @endif
                             </ul>
                         </td>
+                    {{--<td>--}}
+                    {{--<ul style="list-style: none; margin: 0; padding: 0;">--}}
+                    {{--@foreach(($sluzbenik->strucna_sprema ? $sluzbenik->strucna_sprema : []) as $ss)--}}
+                    {{--<li>--}}
+                    {{--<b>Stepen stručne spreme</b>: {{ $ss->stepen_s_s }}<br/>--}}
+                    {{--<b>Obrazovna institucija</b>: {{ $ss->obrazovna_institucija }}<br/>--}}
+
+                    {{--<!-- Diploma poslana na provjeru ; Ovdje ćemo hard coding uraditi za DA ili JE -->--}}
+                    {{--<!-- TODO: -->--}}
+
+                    {{--@if($ss->diploma_poslana_na_provjeru)--}}
+                    {{--<b>Diploma poslana na provjeru</b>: DA<br/>--}}
+                    {{--@else--}}
+                    {{--<b>Diploma poslana na provjeru</b>: NE<br/>--}}
+                    {{--@endif--}}
+
+                    {{--<!-- ------------------------------------------------------------------------- -->--}}
+                    {{--<b>Nostrifikacija</b>: {{ $ss->nostrifikacija }}<br/>--}}
+                    {{--<b>Datum zavšetka</b>: {{ $ss->datum_zavrsetka }}<br/>--}}
+
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                    {{--</td>--}}
+
+
+
+
+                    <!-- Ispiti službenika -->
                         <td>
                             <ul>
                                 @foreach($sluzbenik->zasnivanjeRO as $zasnivanje)
@@ -403,11 +431,11 @@
                         <td style="text-align:center;" class="akcije">
                             @if(isset($odsustva))
                                 <a href="{{ '/hr/odsustva/kalendar/' . $sluzbenik->id ?? '1'}}">
-                                    <i class="fa fa-eye"></i> Odsustva
+                                    <i class="fa fa-eye"></i> {{__('Odsustva')}}
                                 </a>
                             @elseif(isset($uloge))
                                 <a href="{{ '/uloge/dodijeliUlogu/' . $sluzbenik->id ?? '1'}}">
-                                    <i class="fa fa-eye"></i> Uredite uloge
+                                    <i class="fa fa-eye"></i> {{__('Uredite uloge')}}
                                 </a>
                             @else
                                 <a href="{{ '/hr/sluzbenici/uredi_sluzbenika/' . $sluzbenik->id ?? '1'}}">

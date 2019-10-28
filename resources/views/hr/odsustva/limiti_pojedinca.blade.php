@@ -17,15 +17,15 @@
                     <ul class="four">
                         <li class="{{ Request::path() == 'hr/odsustva/kalendar/'.$sluzbenik_id ? 'active' : '' }} single_bar">
                             <i class="far fa-calendar-alt"></i>
-                            <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id)}}">Pregled kalendara državnog službenika</a>
+                            <a href="{{asset('/hr/odsustva/kalendar/'.$sluzbenik_id)}}">{{__('Pregled kalendara državnog službenika')}}</a>
                         </li>
                         <li class="single_bar">
                             <i class="fa fa-list-ul"></i>
-                            <a href="/hr/odsustva/lista_odsustava/01-{{date('m')}}-{{date('Y')}}/{{cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'))}}-{{date('m')}}-{{date('Y')}}/{{$sluzbenik_id}}">Lista odsustava</a>
+                            <a href="/hr/odsustva/lista_odsustava/01-{{date('m')}}-{{date('Y')}}/{{cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'))}}-{{date('m')}}-{{date('Y')}}/{{$sluzbenik_id}}">{{__('Lista odsustava')}}</a>
                         </li>
                         <li class="{{ Request::path() == 'hr/odsustva/limiti_pojedinca/'.$sluzbenik_id.'/'.$godina ? 'active' : '' }} single_bar">
                             <i class="far fa-calendar-times"></i>
-                            <a href="/hr/odsustva/limiti_pojedinca/{{$sluzbenik_id}}/{{date('Y')}}">Limit odsustava</a>
+                            <a href="/hr/odsustva/limiti_pojedinca/{{$sluzbenik_id}}/{{date('Y')}}">{{__('Limit odsustava')}}</a>
                         </li>
                     </ul>
                 </div>

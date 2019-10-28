@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Prestanak extends Model
 {
-    //
+    //d
 
     protected $guarded = ['id'];
 
@@ -18,5 +19,10 @@ class Prestanak extends Model
 
     public function radno_mj(){
         return $this->hasOne(RadnoMjesto::class, 'id', 'radno_mjesto');
+    }
+
+    public function datumRješenja(){
+        if(!$this->datum_rjesenja) return '';
+        return Carbon::parse($this->datum_rjesenja)->format('d.m.Y');
     }
 }

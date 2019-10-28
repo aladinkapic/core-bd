@@ -3,7 +3,7 @@
         @if(isset($disciplinska))
             <div class="tab_div">
                 <i class="fas fa-briefcase"></i>
-                <p>Disciplinska odgovornost</p>
+                <p>{{__('Disciplinska odgovornost')}}</p>
             </div>
 
         @else
@@ -13,7 +13,7 @@
                     <i class="fas fa-briefcase"></i>
                 </div>
                 <p>
-                    Disciplinska odgovornost
+                    {{__('Disciplinska odgovornost')}}
                 </p>
             </div>
         @endif
@@ -22,7 +22,7 @@
         @if(isset($disciplinska))
             <div class="tab_div">
                 <i class="fas fa-users"></i>
-                <p>Disciplinska komisija</p>
+                <p>{{__('Disciplinska komisija')}}</p>
             </div>
         @else
             <div class="list_div">
@@ -31,7 +31,7 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <p>
-                    Disciplinska komisija
+                    {{__('Disciplinska komisija')}}
                 </p>
             </div>
         @endif
@@ -40,7 +40,7 @@
         @if(isset($disciplinska))
             <div class="tab_div">
                 <i class="fas fa-users"></i>
-                <p>Medijatori</p>
+                <p>{{__('Medijatori')}}</p>
             </div>
         @else
             <div class="list_div">
@@ -49,7 +49,7 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <p>
-                    Medijatori
+                    {{__('Medijatori')}}
                 </p>
             </div>
         @endif

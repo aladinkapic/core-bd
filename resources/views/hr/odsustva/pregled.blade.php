@@ -5,22 +5,22 @@
     <div style="text-align: center;">
         <ul class="inline-ul">
             <li><i class="fa fa-arrow-left"></i></li>
-            <li>Januar</li>
+            <li>{{__('Januar')}}</li>
             <li><i class="fa fa-arrow-right"></i></li>
         </ul>
     </div>
 
-    <button class="btn btn-facebook pull-right"><i class="fa fa-plus-circle"></i> Dodaj odsustvo</button>
+    <button class="btn btn-facebook pull-right"><i class="fa fa-plus-circle"></i> {{__('Dodaj odsustvo')}}</button>
     <hr />
     <table class="table table-bordered vacation-table">
         <tr>
-            <td>Ponedjeljak</td>
-            <td>Utorak</td>
-            <td>Srijeda</td>
-            <td>Četvrtak</td>
-            <td>Petak</td>
-            <td>Subota</td>
-            <td>Nedjelja</td>
+            <td>{{__('Ponedjeljak')}}</td>
+            <td>{{__('Utorak')}}</td>
+            <td>{{__('Srijeda')}}</td>
+            <td>{{__('Četvrtak')}}</td>
+            <td>{{__('Petak')}}</td>
+            <td>{{__('Subota')}}</td>
+            <td>{{__('Nedjelja')}}</td>
         </tr>
         <tr>
             <td>1</td>
@@ -34,13 +34,13 @@
         <tr>
             <td>8</td>
             <td style="background-color: rgb(26, 147, 208); color: white;">9<br />
-                Godišnji odmor
+                {{__('Godišnji odmor')}}
             </td>
             <td style="background-color: rgb(26, 147, 208); color: white;">10<br />
-                Godišnji odmor
+                {{__('Godišnji odmor')}}
             </td>
             <td style="background-color: rgb(26, 147, 208); color: white;">11<br />
-                Godišnji odmor
+                {{__('Godišnji odmor')}}
             </td>
             <td>12</td>
             <td>13</td>
@@ -84,8 +84,8 @@
         </div>
         <div class="col-sm-10">
             <br />
-            <h4>Amina Spahić</h4>
-            Viši stručni saradnik za upravljanje<br />
+            <h4>{{__('Amina Spahić')}}</h4>
+            {{__('Viši stručni saradnik za upravljanje')}}<br />
 
         </div>
     </div>

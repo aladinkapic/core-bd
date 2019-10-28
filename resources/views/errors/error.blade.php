@@ -17,14 +17,14 @@
                 <div class="right_part">
                     <div class="top_header">
                         {!! Html::image('/images/grb-bih.png', '', ['width' => '64px']) !!}
-                        <h2>Vlada Brčko Distrikta</h2>
-                        <h3>Pododjeljenje za ljudske resurse</h3>
+                        <h2>{{__('Vlada Brčko Distrikta')}}</h2>
+                        <h3>{{__('Pododjeljenje za ljudske resurse')}}</h3>
                     </div>
 
                     <div class="error_header">
-                        <p>Oooops.  {{$error_msg}}</p>
+                        <p>{{__('Oooops.  ')}}{{$error_msg}}</p>
                         <p>
-                            <span>Greška koda :</span>
+                            <span>{{__('Greška koda :')}}</span>
                         </p>
 
                         <h1>
@@ -33,7 +33,7 @@
 
                         <a href="/home">
                             <div class="button">
-                                <p>NAZAD NA NASLOVNU</p>
+                                <p>{{__('NAZAD NA NASLOVNU')}}</p>
                             </div>
                         </a>
                     </div>

@@ -9,7 +9,7 @@
                     @if(isset($suspenzija))
                     <div class="tab_div">
                         <i class="fas fa-ban"></i>
-                        <p>Pregled suspenzije - {{$suspenzija->broj_rjesenja}}</p>
+                        <p>{{__('Pregled suspenzije - ')}}{{$suspenzija->broj_rjesenja}}</p>
                     </div>
 
                     @else
@@ -18,7 +18,7 @@
                         <div class="icon_circle">
                             <i class="fas fa-ban"></i>
                         </div>
-                        <p>Kreirajte novu suspenziju</p>
+                        <p>{{__('Kreirajte novu suspenziju')}}</p>
                     </div>
                     @endif
                 </li>

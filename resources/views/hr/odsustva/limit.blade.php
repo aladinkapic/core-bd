@@ -14,7 +14,7 @@
     <div class="container">
         <div class="card ">
             <div class="card-header ads-darker">
-                Opšti limit odsustva za {{date('Y')}} godinu
+                {{__('Opšti limit odsustva za')}} {{date('Y')}} {{__('godinu')}}
             </div>
             <div class="card-body hr-activity tab">
                 <div class="row">
@@ -45,17 +45,17 @@
                                 {{ Form::hidden('sluzbenik_id', isset($sluzbenik_id) ? $sluzbenik_id : '0', ['class' => 'form-control']) }}
 
                                 <tr>
-                                    <td style="width:140px;"><b>Vrsta odsustva :</b></td>
+                                    <td style="width:140px;"><b>{{__('Vrsta odsustva :')}}</b></td>
                                     <td>
                                         {!!  Form::select('odsustvo', $odsustva, isset($limit->odsustvo) ? $limit->odsustvo : '' ,['class' => 'form-control',  'id' => 'odsustvo']) !!}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Ukupno radnih dana :</b></td>
+                                    <td><b>{{__('Ukupno radnih dana :')}}</b></td>
                                     <td>{{ Form::number('ukupno', isset($limit->ukupno) ? $limit->ukupno : '', ['class' => 'form-control', 'min' => 10]) }}</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Kalendarska godina :</b></td>
+                                    <td><b>{{__('Kalendarska godina :')}}</b></td>
                                     <td>
                                         {!!  Form::select('godina', [(date('Y') - 1) => (date('Y') - 1), date('Y') => date('Y'), (date('Y') + 1) => (date('Y') + 1), (date('Y') + 2     ) => (date('Y') + 2) ], isset($limit->godina) ? $limit->godina : date('Y') ,['class' => 'form-control',  'id' => 'godina']) !!}
                                     </td>
@@ -64,7 +64,7 @@
                                     <td></td>
                                     <td>
                                         {{ Form::checkbox('name', 'value', ['class' => 'form-control']) }}
-                                        Upisom podataka i spremanjem u bazu podataka potvrđujem da su svi uneseni podaci tačni te ne utiču na stabilnost, konzistentnost i integritet sistema i podataka. Svaka izmjena je zapisana.
+                                        {{__('Upisom podataka i spremanjem u bazu podataka potvrđujem da su svi uneseni podaci tačni te ne utiču na stabilnost, konzistentnost i integritet sistema i podataka. Svaka izmjena je zapisana.')}}
                                     </td>
                                 </tr>
                                 <tr>

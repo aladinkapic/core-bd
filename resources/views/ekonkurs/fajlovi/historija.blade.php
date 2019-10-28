@@ -2,10 +2,10 @@
     <thead>
     <tr>
         <th width="40px" class="text-center">#</th>
-        <th>Ime i prezime službenika</th>
-        <th>Datum </th>
-        <th class="text-center">Odgovorna osoba</th>
-        <th width="120px" class="text-center">Akcije</th>
+        <th>{{__('Ime i prezime službenika')}}</th>
+        <th>{{__('Datum ')}}</th>
+        <th class="text-center">{{__('Odgovorna osoba')}}</th>
+        <th width="120px" class="text-center">{{__('Akcije')}}</th>
     </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
             <th class="text-center"><a href="{{ route('sluzbenik.dodatno', ['id' => $root->id]) }}">{{ $root->ime }} {{ $root->prezime }}</a></th>
             <th width="120px" class="text-center">
                 <a href="{{route('dodaj.sifrarnik', ['type' => ''])}}">
-                    Pregled
+                    {{__('Pregled')}}
                     <i class="fas fa-angle-right"></i>
                 </a>
             </th>

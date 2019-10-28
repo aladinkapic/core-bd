@@ -5,8 +5,8 @@
     @csrf
         @if(!isset($radno_mjesto))
             <div class="tittle">
-                <h2>Unos radnog mjesta</h2>
-                <p>Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.</p>
+                <h2>{{__('Unos radnog mjesta')}}</h2>
+                <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
             </div>
         @endif
 
@@ -17,7 +17,7 @@
                     @if(isset($radno_mjesto))
                         <div class="tab_div">
                             <i class="fas fa-briefcase"></i>
-                            <p>Radno mjesto</p>
+                            <p>{{__('Radno mjesto')}}</p>
                         </div>
 
                     @else
@@ -27,7 +27,7 @@
                                 <i class="fas fa-briefcase"></i>
                             </div>
                             <p>
-                                Radno mjesto
+                                {{__('Radno mjesto')}}
                             </p>
                         </div>
                     @endif
@@ -36,7 +36,7 @@
                     @if(isset($radno_mjesto))
                         <div class="tab_div">
                             <i class="fas fa-network-wired"></i>
-                            <p>Uslovi za radno mjesto</p>
+                            <p>{{__('Uslovi za radno mjesto')}}</p>
                         </div>
                     @else
                         <div class="list_div">
@@ -45,7 +45,7 @@
                                 <i class="fas fa-network-wired"></i>
                             </div>
                             <p>
-                                Uslovi za radno mjesto
+                                {{__('Uslovi za radno mjesto')}}
                             </p>
                         </div>
                     @endif
@@ -54,7 +54,7 @@
                     @if(isset($radno_mjesto))
                         <div class="tab_div">
                             <i class="fas fa-users"></i>
-                            <p>Uposleni na radnom mjestu</p>
+                            <p>{{__('Uposleni na radnom mjestu')}}</p>
                         </div>
                     @else
                         <div class="list_div">
@@ -63,7 +63,7 @@
                                 <i class="fas fa-users"></i>
                             </div>
                             <p>
-                                Uposleni na radnom mjestu
+                                {{__('Uposleni na radnom mjestu')}}
                             </p>
                         </div>
                     @endif
@@ -222,7 +222,7 @@
 
                             <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                                 <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('uslovi_za_radno_mjesto', 'form_for_copy');">
-                                    Dodajte uslov
+                                    {{__('Dodajte uslov')}}
                                     <i class="fas fa-save"></i>
                                 </button>
                             </div>
@@ -300,7 +300,7 @@
 
                             <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                                 <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">
-                                    Dodajte službenika
+                                    {{__('Dodajte službenika')}}
                                     <i class="fas fa-save"></i>
                                 </button>
                             </div>
@@ -318,9 +318,9 @@
                                 <thead >
                                 <tr>
                                     <th scope="col" width="40px;" class="text-center">#</th>
-                                    <th scope="col">Ime i prezime službenika</th>
-                                    <th scope="col">Organizaciona jedinica</th>
-                                    <th scope="col" class="text-center" width="140px">Akcije</th>
+                                    <th scope="col">{{__('Ime i prezime službenika')}}</th>
+                                    <th scope="col">{{__('Organizaciona jedinica')}}</th>
+                                    <th scope="col" class="text-center" width="140px">{{__('Akcije')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -331,7 +331,7 @@
                                         <td> {{$org_jedinice[$radno_mjesto->id_oj]}} </td>
                                         <td class="text-center">
                                             <a href="{{ route('sluzbenik.dodatno', ['id_sluzbenika' => $korisnik->id]) }}">
-                                                <i class="fa fa-eye" style="margin-right:10px;"></i> Pregled
+                                                <i class="fa fa-eye" style="margin-right:10px;"></i> {{__('Pregled')}}
                                             </a>
 
                                         </td>
@@ -349,15 +349,15 @@
             <div class="buttons" style="text-align:center;">
                 <button type="button" class="btn btn-dark" >
                     <i class="fas fa-chevron-left"></i>
-                    Nazad
+                    {{__('Nazad')}}
                 </button>
                 <button type="button" class="btn btn-blue" >
-                    Dalje
+                    {{__('Dalje')}}
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 <button type="submit" class="btn btn-success">
                     <i class="fab fa-telegram"></i>
-                    Spremite
+                    {{__('Spremite')}}
                 </button>
             </div>
 

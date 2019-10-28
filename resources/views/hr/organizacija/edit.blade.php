@@ -28,7 +28,7 @@
 
                 @if($errors->any())
                     <div class="alert alert-danger">
-                        Molimo Vas da popunite sva polja kako bi uspješno spasili organizacionu jedinicu!
+                        {{__('Molimo Vas da popunite sva polja kako bi uspješno spasili organizacionu jedinicu!')}}
                     </div>
                 @endif
 
@@ -37,10 +37,10 @@
                 <table  class="table table-condensed">
                     <thead>
                         <th>#</th>
-                        <th>Naziv</th>
-                        <th>Tip</th>
-                        <th>Nadređena organizaciona jedinica</th>
-                        <th>Akcije</th>
+                        <th>{{__('Naziv')}}</th>
+                        <th>{{__('Tip')}}</th>
+                        <th>{{__('Nadređena organizaciona jedinica')}}</th>
+                        <th>{{__('Akcije')}}</th>
                     </thead>
                     <tbody>
                         @foreach($org_jedinice as $jedinica)
@@ -88,7 +88,7 @@
 
                 <br />
 
-                <button class="btn btn-success" v-on:click="alert('#nova-org-jed')"> <i class="fa fa-plus"></i> Nova organizaciona jedinica</button>
+                <button class="btn btn-success" v-on:click="alert('#nova-org-jed')"> <i class="fa fa-plus"></i> {{__('Nova organizaciona jedinica')}}</button>
 
             </div>
             <div class="col-md-3">

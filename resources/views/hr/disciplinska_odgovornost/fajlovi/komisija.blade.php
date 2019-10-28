@@ -79,7 +79,7 @@
                 </div>
                 <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
                     <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('uslovi_za_radno_mjesto', 'form_for_copy');">
-                        Dodajte člana komisije
+                        {{__('Dodajte člana komisije')}}
                         <i style="margin-left:15px;" class="fas fa-save"></i>
                     </button>
                 </div>

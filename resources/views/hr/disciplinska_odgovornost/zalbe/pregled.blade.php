@@ -22,7 +22,7 @@
 
         <div class="row" style=" margin-left:-4px; width: calc(100% + 0px);">
             <div class="col-md-10" >
-                <h4 style="margin-left:8px;">Lista žalbi</h4>
+                <h4 style="margin-left:8px;">{{__('Lista žalbi')}}</h4>
             </div>
             <div class="col-md-2">
                 <button class="btn btn-success" onClick="window.location='/hr/disciplinska_odgovornost/unos_zalbe';"> <i class="fa fa-plus fa-1x"></i> {{__('Unesite novu žalbu')}}</button>
@@ -51,9 +51,9 @@
                         <td>{{$zalba->disciplinskaOdgovornost->sluzbenik->radnoMjesto->naziv_rm ?? ''}}</td>
                         <td>{{$zalba->disciplinskaOdgovornost->opis_disciplinske_mjere ?? ''}}</td>
                         <td>{{$zalba->broj_ulozene_zalbe ?? '/'}}</td>
-                        <td>{{$zalba->datum_ulozene_zalbe ?? '/'}}</td>
+                        <td>{{$zalba->datumUlozene() ?? '/'}}</td>
                         <td>{{$zalba->broj_odluke_zalbe ?? '/'}}</td>
-                        <td>{{$zalba->datum_odluke_zalbe ?? '/'}}</td>
+                        <td>{{$zalba->datumOdluke() ?? '/'}}</td>
                         <td style="text-align:center;" class="akcije">
                             <a href="{{ '/hr/disciplinska_odgovornost/pregledajte_zalbu/' . $zalba->id ?? '1'}}" style="margin-left:10px;">
                                 <i class="fa fa-eye"></i>

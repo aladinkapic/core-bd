@@ -68,4 +68,5 @@ mix.
 .sass('resources/css/emails/email.scss', 'public/css/emails/email.css')
 .sass('resources/sass/app.scss', 'public/css')
 .sass('resources/sass/fbih/steps.scss', 'public/fbih/steps.css')
-.sass('resources/sass/error.scss', 'public/css/errors.css');
+.sass('resources/sass/error.scss', 'public/css/errors.css')
+.sass('resources/sass/ispis-sluzbenika.scss', 'public/css/ispis-sluzbenika.css');

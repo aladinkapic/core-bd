@@ -19,12 +19,12 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Dodjeljivanje uloga za  {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime  ?? '/'}}
+                        {{__('Dodjeljivanje uloga za')}}  {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime  ?? '/'}}
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-10">
-                                Pristup sistemu
+                                {{__('Pristup sistemu')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -45,7 +45,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Radna mjesta
+                                {{__('Radna mjesta')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -67,7 +67,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Unutrašnja organizacija
+                                {{__('Unutrašnja organizacija')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -89,7 +89,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Organ javne uprave
+                                {{__('Organ javne uprave')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -111,7 +111,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Službenici
+                                {{__('Službenici')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -133,7 +133,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Registar ugovora
+                                {{__('Registar ugovora')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -155,7 +155,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Odsustva
+                                {{__('Odsustva')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -177,7 +177,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Upravljanje učinkom
+                                {{__('Upravljanje učinkom')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -199,7 +199,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Disciplinska odgovornost
+                                {{__('Disciplinska odgovornost')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -221,7 +221,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                eKonkurs
+                                {{__('eKonkurs')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -243,7 +243,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Obuke
+                                {{__('Obuke')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -265,7 +265,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Predavači
+                                {{__('Predavači')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -287,7 +287,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Teme za obuku
+                                {{__('Teme za obuku')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -309,7 +309,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Interno tržište
+                                {{__('Interno tržište')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -331,7 +331,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Strateško planiranje
+                                {{__('Strateško planiranje')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -353,7 +353,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Izvještaji
+                                {{__('Izvještaji')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -375,7 +375,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Historizacija
+                                {{__('Historizacija')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -397,7 +397,7 @@
 
                         <div class="row">
                             <div class="col-md-10">
-                                Postavke
+                                {{__('Postavke')}}
                             </div>
                             <div class="col-md-2 text-center">
                                 @php $found = false @endphp
@@ -423,10 +423,21 @@
 
             </div>
 
+<<<<<<< HEAD
+                        <div>
+                            <div>
+                                {!! Form::hidden('sifra', $sifra, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sifra']) !!}
+                                {!! Form::hidden('pin', $pin, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'pin']) !!}
+                                {!! Form::hidden('sluzbenik_id', $sluzbenik->id, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sluzbenik_id']) !!}
+                                <button type="submit" id="buton-to-change-code" class="btn btn-primary">{{__('Spremite promijene')}}</button>
+                            </div>
+                        </div>
+=======
             <div class="col md-6">
                 <div class="generated-access-data">
                     <div class="card-header">
                         Kredincijali
+>>>>>>> 2ae968b90de625a102e204988b7aa8d78656efbd
                     </div>
 
                     <p>

@@ -1,6 +1,6 @@
 <div class="drop_down_option">
     <div class="single_row header">
-        <p>Žalba</p>
+        <p>{{__('Žalba')}}</p>
         <i class="fas arrow-icon fa-chevron-down" onclick="prikazi_elemente(0);"></i>
         @if(!isset($pregled))
             <i class="fas fa-plus" title="Dodajte nove podatke o žalbi" onclick="prikazi_elemente(0, 'hidden_input_form');"></i>

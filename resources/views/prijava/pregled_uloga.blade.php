@@ -16,8 +16,8 @@
     <div class="container">
         <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
             <div class="col-md-10" >
-                <h4>Pregled korisnika sa ulogama</h4>
-                <button v-on:click="fireTable()" class="btn btn-primary btn-xs"> <i class="fa fa-filter" style="font-size: 11px;"></i> Filteri</button>
+                <h4>{{__('Pregled korisnika sa ulogama')}}</h4>
+                <button v-on:click="fireTable()" class="btn btn-primary btn-xs"> <i class="fa fa-filter" style="font-size: 11px;"></i> {{__('Filteri')}}</button>
             </div>
         </div>
 
@@ -25,11 +25,11 @@
             <table class="table table-bordered low-padding" id="filtering">
                 <thead >
                 <tr >
-                    <th scope="col" width="40px;" style="text-align:center;">ID</th>
-                    <th scope="col">Ime i prezime</th>
-                    <th scope="col">Stručno zvanje</th>
-                    <th scope="col">Radno mjesto</th>
-                    <th scope="col" style="text-align:center;" width="220px;">Dodijelite uloge</th>
+                    <th scope="col" width="40px;" style="text-align:center;">{{__('ID')}}</th>
+                    <th scope="col">{{__('Ime i prezime')}}</th>
+                    <th scope="col">{{__('Stručno zvanje')}}</th>
+                    <th scope="col">{{__('Radno mjesto')}}</th>
+                    <th scope="col" style="text-align:center;" width="220px;">{{__('Dodijelite uloge')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                     <td style="text-align:center;">
                         <div class="inside_cells">
                             <span class="custom_span" v-bind:custom_id="sluzbenik.id" v-bind:title="'Pogledajte uloge -' + ' ' + sluzbenik.ime + ' ' + sluzbenik.prezime">
-                                Uredite <i style="margin-left:10px;" class="fas fa-angle-right"></i>
+                                {{__('Uredite')}} <i style="margin-left:10px;" class="fas fa-angle-right"></i>
                             </span>
                             <div class="select_roles" v-bind:id="'show_roles' + sluzbenik.id">
 

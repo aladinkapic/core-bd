@@ -54,12 +54,12 @@
                     <td class="text-center">{{$i++}}</td>
                     <td>{{$odgovornost->sluzbenik->ime_prezime ?? ''}}</td>
                     <td>{{$odgovornost->sluzbenik->radnoMjesto->naziv_rm ?? ''}}</td>
-                    <td>{{$odgovornost->datum_povrede ?? '/'}}</td>
+                    <td>{{$odgovornost->datumPovrede() ?? '/'}}</td>
                     <td>{{$odgovornost->opis_povrede ?? '/'}}</td>
                     <td>{{$odgovornost->opis_disciplinske_mjere ?? '/'}}</td>
                     <td>{{$odgovornost->broj_rjesenja_zabrane ?? '/'}}</td>
-                    <td>{{$odgovornost->datum_rjesenja_zabrane ?? '/'}}</td>
-                    <td>{{$odgovornost->datum_zavrsetka_zabrane ?? '/'}}</td>
+                    <td>{{$odgovornost->datumZabrane() ?? '/'}}</td>
+                    <td>{{$odgovornost->datumZavrsetka() ?? '/'}}</td>
 
                     <td class="text-center">
                         <a href="{{Route('disciplinska.pregledaj', ['id' => $odgovornost->id ?? '1'])}}"

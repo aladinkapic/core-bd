@@ -8,7 +8,7 @@
                     @if(isset($zalba))
                         <div class="tab_div">
                             <i class="fas fa-volume-up"></i>
-                            <p>Pregled žalbe - {{$zalba->broj_ulozene_zalbe}}</p>
+                            <p>{{__('Pregled žalbe - ')}}{{$zalba->broj_ulozene_zalbe}}</p>
                         </div>
 
                     @else
@@ -17,7 +17,7 @@
                             <div class="icon_circle">
                                 <i class="fas fa-volume-up"></i>
                             </div>
-                            <p>Kreirajte novu žalbu</p>
+                            <p>{{__('Kreirajte novu žalbu')}}</p>
                         </div>
                     @endif
                 </li>

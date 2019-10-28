@@ -514,6 +514,81 @@ class SluzbenikController extends Controller
         return view('hr.sluzbenici.pregled', compact('sluzbenici', 'filteri', 'odsustva'));
     }
 
+    public function ispisSluzbenika($id_sluzbenika, $what = null)
+    {
+        $sluzbenik = Sluzbenik::where('id', '=', $id_sluzbenika)->get()->first();
+
+        $podaci_o_prebivalistu = DB::table('sluzbenik_podaci_o_prebivalistu')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $strucna_sprema = DB::table('sluzbenik_strucna_sprema')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $ispiti = DB::table('sluzbenik_ispiti')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $kontakt_detalji = DB::table('sluzbenik_kontakt_detalji_osobe')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $obrazovanje_sluzbenika = DB::table('sluzbenik_obrazovanje_sluzbenika')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $vjestine = DB::table('sluzbenik_vjestine_sluzbenika')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $zasnivanje_r_odnosa = DB::table('sluzbenik_zasnivanje_radnog_odnosa')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $prethodno_r_iskustvo = App\Models\DummyModels\PrethodnoRI::where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $prestanak_r_o = DB::table('sluzbenik_prestanak_radnog_odnosa')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+        $clanovi_porodice = DB::table('sluzbenik_clanovi_porodice')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
+
+        $ukupno_dana = 0;
+
+
+        foreach ($prethodno_r_iskustvo as $prethodno) {
+            $ukupno_dana += ($this->broj_dana_izmedju($prethodno->period_zaposlenja_od, $prethodno->period_zaposlenja_do) * $prethodno->koeficijent / 100);
+        }
+
+        foreach ($zasnivanje_r_odnosa as $zasnivanje) {
+            $ukupno_dana += $this->broj_dana_izmedju($zasnivanje->datum_zasnivanja_o, Carbon::now());
+        }
+
+        /*** Ako je službenik na neplaćenom odsustvu, to treba oduzeti .. ***/
+        $neplacenoDana = Odsustva::where('sluzbenik_id', '=', $id_sluzbenika)->where('vrsta_odsustva', '=', 1)->count();
+        $ukupno_dana -= $neplacenoDana;
+
+
+        /*** Ovdje ćemo dobijati ukupni službenika ***/
+
+        $godina = (int)(($ukupno_dana / 30 / 12));
+        $mjeseci = (int)(($ukupno_dana / 30) - ($godina * 12));
+        $dana = ($ukupno_dana % 30);
+
+
+//        if ($sluzbenik->radno_mjesto != null) {
+//            $rm_model = RadnoMjesto::where('id', $sluzbenik->radno_mjesto)->first();
+//            $radno_mjesto = $rm_model->naziv_rm;
+
+            // Ako je službenik vezan za određeno radno mjesto , pri tom mora biti vezan i za određennu
+            // organizacionu jedinicu i organ javne uprave
+
+//            $organizaciona_jed = OrganizacionaJedinica::where('id', $rm_model->id_oj)->first();
+//            $organ_ju = Uprava::find(Sluzbenik::organJavneUprave($sluzbenik->id)->first()->id)->naziv;
+//
+//        } else {
+//            $radno_mjesto = 'Nema radnog mjesta';
+//            $organizaciona_jed = "-";
+//            $organ_ju = "-";
+//        }
+
+
+        $spol                   = Sifrarnik::dajSifrarnik('spolovi');
+        $kategorija             = Sifrarnik::dajSifrarnik('kategorija');
+        $nacionalnost           = Sifrarnik::dajSifrarnik('nacionalnost');
+        $bracni_status          = Sifrarnik::dajSifrarnik('bracni_status');
+        $vrsta_vjestine         = Sifrarnik::dajSifrarnik('vrsta_vještine');
+        $nivo_vjestine          = Sifrarnik::dajSifrarnik('nivo_vjestine');
+        $osnov_za_prestanak_rd  = Sifrarnik::dajSifrarnik('osnov_za_prestanak_ro');
+        $radno_vrijeme          = Sifrarnik::dajSifrarnik('radno_vrijeme');
+        $nacin_zasnivanja       = Sifrarnik::dajSifrarnik('nacin_zasnivanja_ro');
+        $vrsta_ro               = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
+        $obracunati_staz        = Sifrarnik::dajSifrarnik('obracunati_staz');
+        $srodstvo               = Sifrarnik::dajSifrarnik('srodstvo');
+        $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
+        $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
+
+        Session::put('aditional_counter', 0); $pregled = true;
+
+        return view('/hr/sluzbenici/ispis-sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita'));
+    }
+
 
     /***************************************************************************************************************** /
      *

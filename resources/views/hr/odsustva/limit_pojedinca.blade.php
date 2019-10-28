@@ -5,7 +5,7 @@
     <div class="container">
         <div class="card ">
             <div class="card-header ads-darker">
-                Limit odsustva - {{$odsustva[$limiti->odsustvo]}} - za {{$ime_sluzbenika}}
+                {{__('Limit odsustva -')}} {{$odsustva[$limiti->odsustvo]}} {{__('- za')}} {{$ime_sluzbenika}}
             </div>
             <div class="card-body hr-activity tab">
                 <div class="row">
@@ -25,7 +25,7 @@
                                 <tbody>
                                 @if(isset($ime_sluzbenika))
                                     <tr>
-                                        <td><b>Ime i prezime :</b></td>
+                                        <td><b>{{__('Ime i prezime :')}}</b></td>
                                         <td>{{ Form::text('imeiprezime', isset($ime_sluzbenika) ? $ime_sluzbenika : '', ['class' => 'form-control', 'readonly']) }}</td>
                                     </tr>
                                 @endif
@@ -41,11 +41,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Ukupno radnih dana :</b></td>
+                                    <td><b>{{__('Ukupno radnih dana :')}}</b></td>
                                     <td>{{ Form::number('ukupno', isset($limiti->ukupno) ? $limiti->ukupno : '', ['class' => 'form-control', 'min' => 1 ]) }}</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Kalendarska godina :</b></td>
+                                    <td><b>{{__('Kalendarska godina :')}}</b></td>
                                     <td>
                                         {!! Form::text('godina', $limiti->godina, ['class' => 'form-control', 'readonly']) !!}
                                     </td>
@@ -54,7 +54,7 @@
                                     <td></td>
                                     <td>
                                         {{ Form::checkbox('name', 'value', ['class' => 'form-control']) }}
-                                        Upisom podataka i spremanjem u bazu podataka potvrđujem da su svi uneseni podaci tačni te ne utiču na stabilnost, konzistentnost i integritet sistema i podataka. Svaka izmjena je zapisana.
+                                        {{__('Upisom podataka i spremanjem u bazu podataka potvrđujem da su svi uneseni podaci tačni te ne utiču na stabilnost, konzistentnost i integritet sistema i podataka. Svaka izmjena je zapisana.')}}
                                     </td>
                                 </tr>
                                 <tr>

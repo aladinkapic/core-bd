@@ -240,7 +240,7 @@
                 @foreach($notifications as $notification)
                     <div class="alert alert-danger my-custom-alert" role="alert"
                          id="notification-id-{{$notification->sluzbenik->id ?? '1'}}">
-                        Obavijest : Službenik
+                        {{__('Obavijest : Službenik')}}
                         <a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime ?? '/'}} {{$notification->sluzbenik->prezime ?? '/'}}</a>
                         {{json_decode($notification->data, true)['poruka']}}
 
@@ -256,7 +256,7 @@
 
                         <div class="oznaci_kao_procitano"
                              onclick="sakrijNotifikacije('{{$notification->sluzbenik->id ?? '1'}}', '{{$notification->id ?? '1'}}');">
-                            <p>OZNAČI KAO PROČITANO</p>
+                            <p>{{__('OZNAČI KAO PROČITANO')}}</p>
                         </div>
                     </div>
                 @endforeach
@@ -307,19 +307,19 @@
 
                 <div class="card bg-light">
                     <div class="card-header ads-darker">
-                        Statistika
+                        {{__('Statistika')}}
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Službenici koji stiču pravo na penzionisanje
+                            {{__('Službenici koji stiču pravo na penzionisanje')}}
                             <span class="badge badge-primary badge-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Ukupno upražnjenih radni mjesta
+                            {{__('Ukupno upražnjenih radni mjesta')}}
                             <span class="badge badge-primary badge-pill">2</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Privremeno premještenih službenika
+                            {{__('Privremeno premještenih službenika')}}
                             <span class="badge badge-primary badge-pill">1</span>
                         </li>
                     </ul>
@@ -330,17 +330,17 @@
 
                 <div class="card bg-light">
                     <div class="card-header ads-darker">
-                        Brzi linkovi
+                        {{__('Brzi linkovi')}}
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a target="_blank" href="http://www.vlada.bdcentral.net/">
-                                Vlada Brčko Distrikta Web Stranica
+                                {{__('Vlada Brčko Distrikta Web Stranica')}}
                             </a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a target="_blank" href="#">
-                                eKonkurs Sistem
+                                {{__('eKonkurs Sistem')}}
                             </a>
                         </li>
                     </ul>

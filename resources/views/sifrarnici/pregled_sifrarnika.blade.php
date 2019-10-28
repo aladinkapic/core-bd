@@ -1,11 +1,11 @@
 @extends('template.main')
-@section('title') Naziv šifrarnika @endsection
+@section('title') {{__('Naziv šifrarnika')}} @endsection
 
 @section('content')
     <div class="container">
         <div class="card" style="width:100%;">
             <div class="card-header ads-darker">
-                <button style="float:right;" onClick="window.location='{{route('unos.sifrarnika', ['type' => $type])}}';" class="btn btn-light" ><i class="fas fa-plus"></i> Nova instanca </button>
+                <button style="float:right;" onClick="window.location='{{route('unos.sifrarnika', ['type' => $type])}}';" class="btn btn-light" ><i class="fas fa-plus"></i> {{__('Nova instanca')}} </button>
                 <h4>{{$naziv_sifrarnika ?? '/'}}</h4>
             </div>
         </div>
@@ -15,9 +15,9 @@
             <thead>
             <tr>
                 <th width="40px" class="text-center">#</th>
-                <th>Stavka</th>
-                <th width="160px" class="text-center">Vrijednost</th>
-                <th width="120px" class="text-center">Akcije</th>
+                <th>{{__('Stavka')}}</th>
+                <th width="160px" class="text-center">{{__('Vrijednost')}}</th>
+                <th width="120px" class="text-center">{{__('Akcije')}}</th>
             </tr>
             </thead>
             <tbody>

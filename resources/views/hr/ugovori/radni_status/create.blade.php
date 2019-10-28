@@ -17,7 +17,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Dodavanje novog ugovora o rasporedu na radno mjesto
+                        {{__('Dodavanje novog ugovora o rasporedu na radno mjesto')}}
                     </div>
                     <div class="card-body">
 
@@ -30,7 +30,7 @@
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-5">
-                                    Broj ugovora/odluke
+                                    {{__('Broj ugovora/odluke')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input required="required" class="form-control" type="text" name="broj"
@@ -40,7 +40,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Službenik
+                                    {{__('Službenik')}}
                                 </div>
                                 <div class="col-md-7">
                                     <select class="form-control" name="sluzbenik">
@@ -53,7 +53,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum ugovora/odluke
+                                    {{__('Datum ugovora/odluke')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input required="required" class="form-control datepicker" id="datum1" type="text" name="datum"
@@ -63,7 +63,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum isteka ugovora/odluke
+                                    {{__('Datum isteka ugovora/odluke')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input class="form-control datepicker" type="text" id="datum2" name="datum_isteka"
@@ -73,7 +73,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Datum isteka probnog perioda
+                                    {{__('Datum isteka probnog perioda')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input class="form-control datepicker" type="text" id="datum3" name="datum_isteka_probni"
@@ -83,7 +83,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    Broj sati
+                                    {{__('Broj sati')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input required="required" class="form-control" type="text" name="broj_sati"
@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <button class="btn btn-success">
-                                        <i class="fa fa-plus"></i> Dodaj
+                                        <i class="fa fa-plus"></i> {{__('Dodaj')}}
                                     </button>
                                 </div>
                             </div>
