@@ -446,7 +446,7 @@ class SluzbenikController extends Controller
             ->with('bracni_status_sl')
             ->with('nacionalnost_sl')
             ->with('kategorija_sl')
-            ->with('ispiti')
+            ->with('ispitiRel')
             ->with('kontaktDetalji')
             ->with('obrazovanje')
             ->with('prebivaliste')

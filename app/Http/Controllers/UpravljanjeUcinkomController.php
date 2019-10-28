@@ -145,10 +145,13 @@ class UpravljanjeUcinkomController extends Controller{
         $jedinice = FilterController::filter($jedinice);
 
         $filteri = [
-            'organizacija.organ'=>'Organ javne uprave',
-            'mjesto.rm.naziv_rm'=>'Organizaciona jedinica',
-            'radnaMjesta.naziv_rm'=>'Radno mjesto',
-            'radnaMjesta.sluzbeniciRel.sluzbenik.ime_prezime'=>'Službenici',
+            'organizacija.organ.naziv'  => 'Organ javne uprave',
+            'naziv'                     => 'Organizaciona jedinica',
+            'godina'                    => 'Godina',
+            'ne_zadovoljava_ocekivanja' => 'Ne zadovoljava očekivanja',
+            'zadovoljava_ocekivanja'    => 'Zadovoljava očekivanja',
+            'nadmasuje_ocekivanja'      => 'Nadmašuje očekivanja',
+            'ukupno_ocjenjenih'         => 'Ukupno ocjenjenih'
         ];
 
         return view('hr.upravljanje_ucinkom.zbirni-izvjestaji', compact('jedinice', 'filteri'));
