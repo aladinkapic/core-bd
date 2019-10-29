@@ -56,10 +56,10 @@
                             {{ $radnoMjesto->broj_izvrsilaca ?? '/'}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->orgjed->organizacija->organ->naziv ?? '' }}
+                            {{ $radnoMjesto->orgjed->naziv ?? ''}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->orgjed->naziv ?? ''}}
+                            {{ $radnoMjesto->orgjed->organizacija->organ->naziv ?? '' }}
                         </td>
                         <td>
                             {{ $radnoMjesto->rukovodeca_pozicija->name ?? ''}}

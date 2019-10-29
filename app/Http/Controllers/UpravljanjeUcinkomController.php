@@ -129,6 +129,25 @@ class UpravljanjeUcinkomController extends Controller{
 
 
     /************************************************ IZVJEŠTAJI ******************************************************/
+    public function updejtujIzvjestaj(){
+        $jedinice = OrganizacionaJedinica::whereHas('organizacija', function ($query){
+            $query->where('active', '=', 1);
+        })->with('radnaMjesta.sluzbeniciRel.sluzbenik')->get();
+
+        foreach($jedinice as $jedinica){
+            if(isset($jedinica->radnaMjesta)){
+                foreach($jedinica->radnaMjesta as $radnoMjesto){
+                    if(isset($radnoMjesto->sluzbeniciRel)){
+                        foreach($radnoMjesto->sluzbeniciRel as $sluzbenik){
+
+                        }
+                    }
+                }
+            }
+        }
+        //dd($jedinice);
+    }
+
 
     public function pregledIzvjestaja(){
         $jedinice = OrganizacionaJedinica::whereHas('organizacija', function ($query){
@@ -136,6 +155,8 @@ class UpravljanjeUcinkomController extends Controller{
         })->with('organizacija.organ')
             ->with('radnaMjesta.sluzbeniciRel.sluzbenik');
 
+
+        $this->updejtujIzvjestaj();
 
 //        $organizacija = Organizacija::where('active', 1)
 //            ->with('organ')
