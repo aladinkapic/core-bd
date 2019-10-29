@@ -241,4 +241,7 @@ class Sluzbenik extends Model{
     public function privremeniPremjestajRel(){
         return $this->hasOne(Privremeno::class, 'id', 'privremeni_premjestaj');
     }
+    public function upravljanjeUcinkom(){
+        return $this->hasOne(UpravljanjeUcinkom::class, 'sluzbenik', 'id')->where('godina', date('Y'));
+    }
 }

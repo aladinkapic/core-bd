@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Organizacija;
+use App\Models\Updates\OrgJedinicaIzvjestaj;
 use Illuminate\Database\Eloquent\Model;
 
 class OrganizacionaJedinica extends Model
@@ -25,5 +26,8 @@ class OrganizacionaJedinica extends Model
 
     public function childs() {
         return $this->hasMany(OrganizacionaJedinica::class, 'parent_id', 'id');
+    }
+    public function izvjestaj(){
+        return $this->hasMany(OrgJedinicaIzvjestaj::class, 'org_jed', 'id');
     }
 }

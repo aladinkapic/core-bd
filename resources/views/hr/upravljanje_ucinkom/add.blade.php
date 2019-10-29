@@ -54,7 +54,7 @@
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Godina')}}</label>
                                                 <div class="col-sm-9">
-                                                    {!! Form::number('godina', isset($ucinak) ? $ucinak->godina : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'godina', 'autocomplete' => 'off']) !!}
+                                                    {!! Form::number('godina', isset($ucinak) ? $ucinak->godina : date('Y'), ['class' => 'form-control', 'rows' => 1, 'id' => 'godina', 'autocomplete' => 'off', 'readonly']) !!}
                                                 </div>
                                             </div>
                                             @if ($errors ->has('godina'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('godina')}}</p></div>@endif

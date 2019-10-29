@@ -6,6 +6,7 @@ use App\Models\Organizacija;
 use App\Models\OrganizacionaJedinica;
 use App\Models\RadnoMjesto;
 use App\Models\Sluzbenik;
+use App\Models\Updates\OrgJedinicaIzvjestaj;
 use App\Models\UpravljanjeUcinkom;
 use Illuminate\Http\Request;
 use App\Models\Sifrarnik;
@@ -132,47 +133,69 @@ class UpravljanjeUcinkomController extends Controller{
     public function updejtujIzvjestaj(){
         $jedinice = OrganizacionaJedinica::whereHas('organizacija', function ($query){
             $query->where('active', '=', 1);
-        })->with('radnaMjesta.sluzbeniciRel.sluzbenik')->get();
+        })->with('radnaMjesta.sluzbeniciRel.sluzbenik.upravljanjeUcinkom')->get();
+
+        $sluzbenici = [];
+
+        // TODO - Pošto će biti problem vjerovatno sa starim sistematizacijama, čekat ćemo da prijave problem :D
 
         foreach($jedinice as $jedinica){
+            $nadmasuje = 0; $zadovoljava = 0; $ne_zadovoljava = 0;
+
             if(isset($jedinica->radnaMjesta)){
                 foreach($jedinica->radnaMjesta as $radnoMjesto){
                     if(isset($radnoMjesto->sluzbeniciRel)){
                         foreach($radnoMjesto->sluzbeniciRel as $sluzbenik){
-
+                            if(isset($sluzbenik->sluzbenik->upravljanjeUcinkom)){
+                                if($sluzbenik->sluzbenik->upravljanjeUcinkom->opisna_ocjena == 'Nadmašuje očekivanja') $nadmasuje ++;
+                                else if($sluzbenik->sluzbenik->upravljanjeUcinkom->opisna_ocjena == 'Zadovoljava očekivanja') $zadovoljava ++;
+                                else $ne_zadovoljava ++;
+                                array_push($sluzbenici, $sluzbenik->sluzbenik);
+                            }
                         }
                     }
                 }
             }
+
+
+            try{
+                // Ako pronađemo rel sa željenim rezultatima, updejtujemo, ako ne, unosimo novu
+                $rel = OrgJedinicaIzvjestaj::where('org_jed', $jedinica->id)->where('godina', date('Y'))->firstOrFail();
+                $rel->update([
+                    'ne_zadovoljava' => $ne_zadovoljava,
+                    'zadovoljava'    => $zadovoljava,
+                    'nadmasuje'      => $nadmasuje,
+                    'ukupno'         => $ne_zadovoljava + $zadovoljava + $nadmasuje
+                ]);
+            }catch (\Exception $e){
+                try{
+                    OrgJedinicaIzvjestaj::create([
+                        'org_jed'        => $jedinica->id,
+                        'godina'         => date('Y'),
+                        'ne_zadovoljava' => $ne_zadovoljava,
+                        'zadovoljava'    => $zadovoljava,
+                        'nadmasuje'      => $nadmasuje,
+                        'ukupno'         => $ne_zadovoljava + $zadovoljava + $nadmasuje
+                    ]);
+                }catch (\Exception $e){}
+            }
+
         }
-        //dd($jedinice);
     }
 
 
     public function pregledIzvjestaja(){
-        $jedinice = OrganizacionaJedinica::whereHas('organizacija', function ($query){
-            $query->where('active', '=', 1);
-        })->with('organizacija.organ')
-            ->with('radnaMjesta.sluzbeniciRel.sluzbenik');
-
-
-        $this->updejtujIzvjestaj();
-
-//        $organizacija = Organizacija::where('active', 1)
-//            ->with('organ')
-//            ->with('organizacioneJedinice.radnaMjesta.sluzbeniciRel.sluzbenik')
-//            ->get();
-
+        $jedinice = OrgJedinicaIzvjestaj::with('orgJedinica.organizacija.organ');
         $jedinice = FilterController::filter($jedinice);
 
         $filteri = [
-            'organizacija.organ.naziv'  => 'Organ javne uprave',
-            'naziv'                     => 'Organizaciona jedinica',
-            'godina'                    => 'Godina',
-            'ne_zadovoljava_ocekivanja' => 'Ne zadovoljava očekivanja',
-            'zadovoljava_ocekivanja'    => 'Zadovoljava očekivanja',
-            'nadmasuje_ocekivanja'      => 'Nadmašuje očekivanja',
-            'ukupno_ocjenjenih'         => 'Ukupno ocjenjenih'
+            'orgJedinica.organizacija.organ.naziv'  => 'Organ javne uprave',
+            'orgJedinica.naziv'  => 'Organizaciona jedinica',
+            'godina'         => 'Godina',
+            'ne_zadovoljava' => 'Ne zadovoljava očekivanja',
+            'zadovoljava'    => 'Zadovoljava očekivanja',
+            'nadmasuje'      => 'Nadmašuje očekivanja',
+            'ukupno'         => 'Ukupno ocjenjenih'
         ];
 
         return view('hr.upravljanje_ucinkom.zbirni-izvjestaji', compact('jedinice', 'filteri'));

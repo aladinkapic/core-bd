@@ -37,9 +37,16 @@
             <table id="filtering" class="table table-condensed table-bordered">
                 <thead>
                 <tr>
-                    <th class="text-center">#</th>
-                    @include('template.snippets.filters_header')
-                    <th class="akcije text-center" width="120px">{{__('Akcija')}}</th>
+                    <th class="text-center align-middle">#</th>
+                    <th class="align-middle">Organ javne uprave</th>
+                    <th class="align-middle">Organizaciona jedinica</th>
+                    <th width="100px" class="align-middle text-center">Godina</th>
+                    <th width="150px" class="text-center">Ne zadovoljava očekivanja</th>
+                    <th width="150px" class="text-center">Zadovoljava očekivanja</th>
+                    <th width="150px" class="text-center">Nadmašuje očekivanja</th>
+                    <th width="150px" class="text-center">UKUPNO OCJENJENIH</th>
+{{--                    @include('template.snippets.filters_header')--}}
+                    <th class="akcije text-center align-middle" width="120px">{{__('Akcija')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,14 +55,14 @@
                     <tr>
                         <td>{{$counter++}}</td>
                         <td>
-                            {{$jedinica->organizacija->organ->naziv ?? '/'}}
+                            {{$jedinica->orgJedinica->organizacija->organ->naziv ?? '/'}}
                         </td>
-                        <td>{{$jedinica->naziv}}</td>
-                        <td>2019</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$jedinica->orgJedinica->naziv ?? '/'}}</td>
+                        <td class="text-center">{{$jedinica->godina}}</td>
+                        <td class="text-center">{{$jedinica->ne_zadovoljava}}</td>
+                        <td class="text-center">{{$jedinica->zadovoljava}}</td>
+                        <td class="text-center">{{$jedinica->nadmasuje}}</td>
+                        <td class="text-center">{{$jedinica->ukupno}}</td>
                         <td class="text-center">
                             <a href="#">
                                 <i class="fa fa-eye"></i>
