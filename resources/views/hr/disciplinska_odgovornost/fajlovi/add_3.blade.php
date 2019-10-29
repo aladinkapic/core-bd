@@ -1,5 +1,6 @@
 <section class="multi_step_form">
-    <form id="msform" class=""  method="post" action="{{isset($preview) ?  Route('disciplinska.spremi') : Route('disciplinska.azuriraj') }}">
+    <form id="msform" class="" method="post"
+          action="{{isset($preview) ?  Route('disciplinska.spremi') : Route('disciplinska.azuriraj') }}">
 
         @csrf
         @if(!isset($disciplinska))
@@ -14,9 +15,9 @@
 
         <div id="steps-window">
 
-            @include('hr.disciplinska_odgovornost.fajlovi.top_menu')
+        @include('hr.disciplinska_odgovornost.fajlovi.top_menu')
 
-            <!-- UNOSO DISCIPLINSKE ODGOVORNOSTI -->
+        <!-- UNOSO DISCIPLINSKE ODGOVORNOSTI -->
             <section class="active">
                 <div class="container_block">
                     <div class="split_container">
@@ -38,7 +39,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>
+                        <div class="notificaiton_area" id="naziv_rm_not"><p id="naziv_rm_not_v"></p></div>
                     </div>
                     <div class="split_container">
                         <div class="form-group row steppsss">
@@ -88,29 +89,30 @@
             </section>
 
 
-
             <!-- Disciplinksa komisija -->
-            @include('hr.disciplinska_odgovornost.fajlovi.komisija')
+        @include('hr.disciplinska_odgovornost.fajlovi.komisija')
 
 
 
-            <!-- Medijatori -->
+        <!-- Medijatori -->
             @include('hr.disciplinska_odgovornost.fajlovi.medijatori')
 
 
             <div class="buttons" style="text-align:center;">
-                <button type="button" class="btn btn-dark" >
+                <button type="button" class="btn btn-dark">
                     <i class="fas fa-chevron-left"></i>
                     {{__('Nazad')}}
                 </button>
-                <button type="button" class="btn btn-blue" >
+                <button type="button" class="btn btn-blue">
                     {{__('Dalje')}}
                     <i class="fas fa-chevron-right"></i>
                 </button>
-                <button type="submit" class="btn btn-success">
-                    <i class="fab fa-telegram"></i>
-                    {{__('Spremite')}}
-                </button>
+                @if(!isset($preview))
+                    <button type="submit" class="btn btn-success">
+                        <i class="fab fa-telegram"></i>
+                        {{__('Spremite')}}
+                    </button>
+                @endif
             </div>
         </div>
     </form>
