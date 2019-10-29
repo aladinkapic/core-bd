@@ -3,14 +3,14 @@
         <h4>Zasnivanje radnog odnosa</h4>
     </div>
 
-    @foreach($zasnivanje_r_odnosa as $zasnivanje)
+    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
     <div class="all-elements">
         <div class="element-inside">
             <div class="element-label">
                 <p>Datum zasnivanja radnog odnosa :</p>
             </div>
             <div class="element-input">
-                <p>{{ $zasnivanje->datum_zasnivanja_o ?? '-' }}</p>
+                <p>{{ $zasnivanje->datumZasnivanjaRO() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -18,7 +18,7 @@
                 <p>Način zasnivanja:</p>
             </div>
             <div class="element-input">
-                <p>{{ $zasnivanje->nacin_zasnivanja_r_o ?? '-' }}</p>
+                <p>{{ $zasnivanje->nacin_zasnivanja_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside">
@@ -26,7 +26,7 @@
                 <p>Vrsta radnog odnosa :</p>
             </div>
             <div class="element-input">
-                <p>{{ $zasnivanje->vrsta_r_o ?? '-' }}</p>
+                <p>{{ $zasnivanje->vrsta_radnog_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -34,7 +34,7 @@
                 <p>Obračunati staž :</p>
             </div>
             <div class="element-input">
-                <p>{{ $zasnivanje->obracunati_r_staz ?? '-' }}</p>
+                <p>{{ $zasnivanje->obracunati_staz_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside">
@@ -74,7 +74,7 @@
                 <p>Datum donošenja sve potrebne dokumentacije :</p>
             </div>
             <div class="element-input">
-                <p>{{ $zasnivanje->datum_donosenja_dokumentacije ?? '-' }}</p>
+                <p>{{ $zasnivanje->datumDonosenjaDokumentacije() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">

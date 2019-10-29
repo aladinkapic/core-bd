@@ -10,7 +10,7 @@
                 <p>Kategorija ispita :</p>
             </div>
             <div class="element-input">
-                <p>{{ $kategorija_ispita ?? '-' }}</p>
+                <p>{{ $ispit->kategorija_ispita_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -19,6 +19,7 @@
             </div>
             <div class="element-input">
                 <p>{{ $ispit->naziv_ovog_ispita ?? '-'}}</p>
+
             </div>
         </div>
         <div class="element-inside">
@@ -58,7 +59,7 @@
                 <p>Datum završetka :</p>
             </div>
             <div class="element-input">
-                <p>{{ $ispit->datum_zavrsetka ?? '-'}}</p>
+                <p>{{ $ispit->datumZavrsetka() ?? '-'}}</p>
             </div>
         </div>
     </div>

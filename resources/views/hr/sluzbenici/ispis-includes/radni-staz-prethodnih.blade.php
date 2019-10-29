@@ -3,7 +3,7 @@
         <h4>Radni staž kod prethodnih poslodavaca</h4>
     </div>
 
-    @foreach($prethodno_r_iskustvo as $iskustvo)
+    @foreach($sluzbenik->prethodnoRIRel as $iskustvo)
     <div class="all-elements">
         <div class="element-inside">
             <div class="element-label">
@@ -26,7 +26,7 @@
                 <p>Datum početka :</p>
             </div>
             <div class="element-input">
-                <p>{{ $iskustvo->period_zaposlenja_od ?? '-' }}</p>
+                <p>{{ $iskustvo->datumPocetka() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -34,7 +34,7 @@
                 <p>Datum završetka :</p>
             </div>
             <div class="element-input">
-                <p>{{ $iskustvo->period_zaposlenja_do ?? '-' }}</p>
+                <p>{{ $iskustvo->datumZavrsetka() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside">
@@ -42,7 +42,7 @@
                 <p>Radno vrijeme :</p>
             </div>
             <div class="element-input">
-                <p>{{ $iskustvo->radno_vrijeme ?? '-' }}</p>
+                <p>{{ $iskustvo->radno_vrijeme_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">

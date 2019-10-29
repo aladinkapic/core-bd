@@ -12,4 +12,15 @@ class PrestanakRO extends Model{
         if(!$this->datum_rjesenja) return '';
         return Carbon::parse($this->datum_rjesenja)->format('d.m.Y');
     }
+
+    public function datumPrestanka(){
+        if(!$this->datum_prestanka) return '';
+        return Carbon::parse($this->datum_prestanka)->format('d.m.Y');
+    }
+
+    public function osnov_za_prestanak_sl()
+    {
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'osnov_za_prestanak')
+            ->where('type', '=', 'osnov_za_prestanak_ro');
+    }
 }

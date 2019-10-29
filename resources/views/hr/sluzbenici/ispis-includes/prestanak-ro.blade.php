@@ -3,14 +3,14 @@
         <h4>Prestanak radnog odnosa</h4>
     </div>
 
-    @foreach($prestanak_r_o as $prestanak)
+    @foreach($sluzbenik->prestanakRORel as $prestanak)
     <div class="all-elements">
         <div class="element-inside">
             <div class="element-label">
                 <p>Datum prestanka :</p>
             </div>
             <div class="element-input">
-                <p>{{ $prestanak->datum_prestanka ?? '-' }}</p>
+                <p>{{ $prestanak->datumPrestanka() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -18,7 +18,7 @@
                 <p>Osnov za prestanak :</p>
             </div>
             <div class="element-input">
-                <p>{{ $osnov_za_prestanak_rd ?? '-' }}</p>
+                <p>{{ $prestanak->osnov_za_prestanak_sl->name ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside">

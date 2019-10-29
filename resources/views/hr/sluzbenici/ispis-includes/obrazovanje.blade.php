@@ -3,7 +3,7 @@
         <h4>Obrazovanje službenika</h4>
     </div>
 
-    @foreach($obrazovanje_sluzbenika as $obraz)
+    @foreach($sluzbenik->obrazovanjeRel as $obraz)
     <div class="all-elements">
         <div class="element-inside">
             <div class="element-label">
@@ -42,7 +42,7 @@
                 <p>Datum početka :</p>
             </div>
             <div class="element-input">
-                <p>{{ $obraz->datum_izdavanja_dipl ?? '-' }}</p>
+                <p>{{ $obraz->datumIzdavanjaDiplome() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">
@@ -50,7 +50,7 @@
                 <p>Datum završetka :</p>
             </div>
             <div class="element-input">
-                <p>{{ $obraz->datum_diplomiranja ?? '-' }}</p>
+                <p>{{ $obraz->datumDiplomiranja() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside">
@@ -90,7 +90,7 @@
                 <p>Datum završetka :</p>
             </div>
             <div class="element-input">
-                <p>{{ $obraz->datum_nostrifikacije ?? '-' }}</p>
+                <p>{{ $obraz->datumNostrifikacije() ?? '-' }}</p>
             </div>
         </div>
         <div class="element-inside element-inside-2">

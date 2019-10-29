@@ -90,7 +90,7 @@ class Sluzbenik extends Model{
 //        $this->clanovi_porodice      = DB::table('sluzbenik_clanovi_porodice')->where('id_sluzbenika', $this->id)->get();
 //    }
 
-    public function clanoviPorodice(){
+    public function clanoviPorodiceRel(){
         return $this->hasMany('App\Models\DummyModels\ClanoviPorodice', 'id_sluzbenika');
     }
     public function ispitiRel(){
@@ -99,25 +99,25 @@ class Sluzbenik extends Model{
     public function kontaktDetalji(){
         return $this->hasMany('App\Models\DummyModels\KontaktDetalji', 'id_sluzbenika');
     }
-    public function obrazovanje(){
+    public function obrazovanjeRel(){
         return $this->hasMany('App\Models\DummyModels\Obrazovanje', 'id_sluzbenika');
     }
     public function prebivaliste(){
         return $this->hasMany('App\Models\DummyModels\Prebivaliste', 'id_sluzbenika');
     }
-    public function prestanakRO(){
+    public function prestanakRORel(){
         return $this->hasMany('App\Models\DummyModels\PrestanakRO', 'id_sluzbenika');
     }
-    public function prethodnoRI(){
+    public function prethodnoRIRel(){
         return $this->hasMany('App\Models\DummyModels\PrethodnoRI', 'id_sluzbenika');
     }
     public function strucnaSprema(){
         return $this->hasMany('App\Models\DummyModels\StrucnaSprema', 'id_sluzbenika');
     }
-    public function vjestine(){
+    public function vjestineRel(){
         return $this->hasMany('App\Models\DummyModels\Vjestine', 'id_sluzbenika');
     }
-    public function zasnivanjeRO(){
+    public function zasnivanjeRORel(){
         return $this->hasMany('App\Models\DummyModels\zasnivanjeRO', 'id_sluzbenika');
     }
     public function uloge(){
@@ -146,6 +146,11 @@ class Sluzbenik extends Model{
     public function nacionalnost_sl(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'nacionalnost')
             ->where('type', '=', 'nacionalnost');
+    }
+
+    public function trenutno_zaposlen_sl(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'trenutno_radi')
+            ->where('type', '=', 'trenutno_radi');
     }
 
     public function datumRodjenja(){
