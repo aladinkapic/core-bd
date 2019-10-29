@@ -93,3 +93,17 @@ control [readonly] {
 .readmeebaby:read-only{
     background:none;
 }
+
+
+/******************************************** TOP BOTTOM LAYERS IN TD *************************************************/
+.layer-td{
+    padding:0px;
+    margin:0px;
+}
+td .top-layer{
+    position:relative;
+    left:0px;
+    top:0px;
+    margin:0px;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+}

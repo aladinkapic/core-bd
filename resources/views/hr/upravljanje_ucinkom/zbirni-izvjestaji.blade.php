@@ -45,8 +45,6 @@
                     <th width="150px" class="text-center">Zadovoljava očekivanja</th>
                     <th width="150px" class="text-center">Nadmašuje očekivanja</th>
                     <th width="150px" class="text-center">UKUPNO OCJENJENIH</th>
-{{--                    @include('template.snippets.filters_header')--}}
-                    <th class="akcije text-center align-middle" width="120px">{{__('Akcija')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,14 +57,37 @@
                         </td>
                         <td>{{$jedinica->orgJedinica->naziv ?? '/'}}</td>
                         <td class="text-center">{{$jedinica->godina}}</td>
-                        <td class="text-center">{{$jedinica->ne_zadovoljava}}</td>
-                        <td class="text-center">{{$jedinica->zadovoljava}}</td>
-                        <td class="text-center">{{$jedinica->nadmasuje}}</td>
-                        <td class="text-center">{{$jedinica->ukupno}}</td>
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fa fa-eye"></i>
-                            </a>
+                        <td class="text-center layer-td" style="padding:0px;">
+                            <div class="top-layer">
+                                {{$jedinica->ne_zadovoljava}}
+                            </div>
+                            <div class="bottom-layer">
+                                {{$jedinica->postotakNeZadovoljava()}}%
+                            </div>
+                        </td>
+                        <td class="text-center layer-td" style="padding:0px;">
+                            <div class="top-layer">
+                                {{$jedinica->zadovoljava}}
+                            </div>
+                            <div class="bottom-layer">
+                                {{$jedinica->postotakZadovoljava()}}%
+                            </div>
+                        </td>
+                        <td class="text-center layer-td" style="padding:0px;">
+                            <div class="top-layer">
+                                {{$jedinica->nadmasuje}}
+                            </div>
+                            <div class="bottom-layer">
+                                {{$jedinica->postotakNadmasuje()}}%
+                            </div>
+                        </td>
+                        <td class="text-center layer-td" style="padding:0px;">
+                            <div class="top-layer">
+                                {{$jedinica->ukupno}}
+                            </div>
+                            <div class="bottom-layer">
+                                100%
+                            </div>
                         </td>
                     </tr>
                 @endforeach

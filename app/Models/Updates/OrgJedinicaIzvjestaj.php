@@ -12,4 +12,17 @@ class OrgJedinicaIzvjestaj extends Model{
     public function orgJedinica(){
         return $this->hasOne(OrganizacionaJedinica::class, 'id', 'org_jed');
     }
+
+    public function postotakNeZadovoljava(){
+        if($this->ukupno != 0) return ($this->ne_zadovoljava / $this->ukupno) * 100;
+        else return "0";
+    }
+    public function postotakZadovoljava(){
+        if($this->ukupno != 0) return ($this->zadovoljava / $this->ukupno) * 100;
+        else return "0";
+    }
+    public function postotakNadmasuje(){
+        if($this->ukupno != 0) return ($this->nadmasuje / $this->ukupno) * 100;
+        else return "0";
+    }
 }
