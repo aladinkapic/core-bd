@@ -93,10 +93,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                @php $i=1; @endphp
+                @php
+                    if(isset($_GET['page'])){
+                        if(isset($_GET['limit'])){
+                            $counter = ($_GET['page'] - 1) * $_GET['limit'] + 1;
+                        }else $counter = ($_GET['page'] - 1) * 10 + 1;
+                    }else $counter = 1;
+                @endphp
                 @foreach($sluzbenici as $sluzbenik)
                     <tr class="sluzbenik-row">
-                        <td style="text-align:center;">{{ $i++}}</td>
+                        <td style="text-align:center;">{{ $counter++}}</td>
                         <td>{{ $sluzbenik->ime_prezime ?? '/'}}</td>
                         <td>{{ $sluzbenik->email ?? '/'}}</td>
                         <td>{{ $sluzbenik->jmbg ?? '/'}}</td>
