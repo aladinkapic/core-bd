@@ -25,12 +25,8 @@
                 </a>
             </div>
         </div>
-        <div class="row" style=" margin-left:6px; width: calc(100% - 40px);">
-            <div class="col-md-10">
-                <h4>{{__('')}}</h4>
 
-            </div>
-        </div>
+
         <div class="card-body hr-activity tab full_container">
             @include('template.snippets.filters', ['var' => $radna_mjesta])
             <table class="table table-bordered" id="filtering">
@@ -38,7 +34,7 @@
                 <tr>
                     <th scope="col" style="text-align:center;">#</th>
                     @include('template.snippets.filters_header')
-                    <th scope="col" style="text-align:center;" class="akcije">{{__('Akcije')}}</th>
+                    <th width="120p" class="akcije text-center">{{__('Akcije')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,13 +72,13 @@
                         <td class="text-center akcije">
                             <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"
                                title="Pregledajte radno mjesto">
-                                <i class="fa fa-eye" style="margin-right:10px;"></i>
+                                <button class="btn my-button">Pregled</button>
                             </a>
 
-                            <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"
-                               title="Uredite radno mjesto">
-                                <i class="fas fa-edit"></i>
-                            </a>
+{{--                            <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"--}}
+{{--                               title="Uredite radno mjesto">--}}
+{{--                                <i class="fas fa-edit"></i>--}}
+{{--                            </a>--}}
                         </td>
                     </tr>
                 @endforeach

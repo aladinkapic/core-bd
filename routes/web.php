@@ -537,8 +537,8 @@ Route::get('/napomenaDelete/{id}', 'NapomenaController@delete');
 
 
 //HISTORIZACIJA
-Route::get('/ostalo/historizacija/home', 'ActivityLogController@index');
-Route::get('/ostalo/historizacija/detalji/{id}', 'ActivityLogController@show');
+Route::get('/ostalo/historizacija/home',          'ActivityLogController@index');
+Route::get('/ostalo/historizacija/detalji/{id}',  'ActivityLogController@show');
 
 
 

@@ -19,14 +19,14 @@
         @yield('other_css_links')
     </head>
     <body>
-        @if(!isset($withoutMenu))
-            <div class="alert alert-fill-success mb-0" style="background: #e9681c; border-radius: 0px;">
-                <div class="container">
-                    <i class="fa fa-exclamation-triangle"></i> Poštovani korisnici. Sistem je u fazi finalizacije te je moguće da primijetite funkcionalnosti koje nisu potpune ili se ne ponašaju shodno pretpostavljenom. Molimo Vas da <a href="{{ route('feedback.index') }}" class="text-white font-weight-bold">ovdje</a> prijavite Vaše komentare.
-                </div>
+{{--        @if(!isset($withoutMenu))--}}
+{{--            <div class="alert alert-fill-success mb-0" style="background: #e9681c; border-radius: 0px;">--}}
+{{--                <div class="container">--}}
+{{--                    <i class="fa fa-exclamation-triangle"></i> Poštovani korisnici. Sistem je u fazi finalizacije te je moguće da primijetite funkcionalnosti koje nisu potpune ili se ne ponašaju shodno pretpostavljenom. Molimo Vas da <a href="{{ route('feedback.index') }}" class="text-white font-weight-bold">ovdje</a> prijavite Vaše komentare.--}}
+{{--                </div>--}}
 
-            </div>
-        @endif
+{{--            </div>--}}
+{{--        @endif--}}
         <div class="unload">
             <div class="unload-img">
                 <img src="{{ asset('images/grb-bih.png') }}" />
