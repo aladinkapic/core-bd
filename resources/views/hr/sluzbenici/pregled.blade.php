@@ -89,7 +89,7 @@
                 <thead>
                 <tr>
                     @include('template.snippets.filters_header')
-                    <th style="text-align:center;" class="akcije">{{__('Akcije')}}</th>
+                    <th width="120px" class="akcije text-center">{{__('Akcije')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -266,12 +266,8 @@
                                     <i class="fa fa-eye"></i> {{__('Uredite uloge')}}
                                 </a>
                             @else
-                                <a href="{{ '/hr/sluzbenici/uredi_sluzbenika/' . $sluzbenik->id ?? '1'}}">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="{{ '/hr/sluzbenici/dodatno_o_sluzbeniku/' . $sluzbenik->id ?? '1'}}"
-                                   style="margin-left:10px;">
-                                    <i class="fa fa-eye"></i>
+                                <a href="{{ '/hr/sluzbenici/dodatno_o_sluzbeniku/' . $sluzbenik->id ?? '1'}}">
+                                    <button class="btn my-button">Pregled</button>
                                 </a>
                             @endif
                         </td>
