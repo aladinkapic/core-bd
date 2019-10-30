@@ -35,7 +35,6 @@
             <div class="registruj_odsustvo_values">
                 <div class="registruj_odsustvo_header">
                     <h4>{{__('Registrujte odsustvo')}}</h4>
-                    <i class="fas fa-times" title="Zatvorite" onclick="openDialbox();"></i>
                 </div>
 
                 <div class="registruj_odustvo_body"  id="inset_new_leav">

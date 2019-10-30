@@ -14,15 +14,15 @@ class OrgJedinicaIzvjestaj extends Model{
     }
 
     public function postotakNeZadovoljava(){
-        if($this->ukupno != 0) return ($this->ne_zadovoljava / $this->ukupno) * 100;
-        else return "0";
+        if($this->ukupno != 0) return number_format((float)($this->ne_zadovoljava / $this->ukupno) * 100, 2, '.', '');
+        else return "0.00";
     }
     public function postotakZadovoljava(){
-        if($this->ukupno != 0) return ($this->zadovoljava / $this->ukupno) * 100;
-        else return "0";
+        if($this->ukupno != 0) return number_format((float)($this->zadovoljava / $this->ukupno) * 100, 2, '.', '');
+        else return "0.00";
     }
     public function postotakNadmasuje(){
-        if($this->ukupno != 0) return ($this->nadmasuje / $this->ukupno) * 100;
-        else return "0";
+        if($this->ukupno != 0) return number_format((float)($this->nadmasuje / $this->ukupno) * 100, 2, '.', '');
+        else return "0.00";
     }
 }
