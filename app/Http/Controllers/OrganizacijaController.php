@@ -183,7 +183,6 @@ class OrganizacijaController extends Controller
 
         $organizacija = Organizacija::where('id', '=', $org_jedinica->org_id)->first();
 
-
         $org_jedinice = OrganizacionaJedinica::with('parent')
             ->where('org_id', '=', $org_jedinica->org_id)
             ->orderBy('id', 'ASC')

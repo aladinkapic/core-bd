@@ -6,7 +6,20 @@
 
 @section('content')
     <div class="container">
-        @include('hr.organizacija.snippets.menu')
+        <div class="fine-header">
+            <h4>{{ $organizacija->naziv }}</h4>
+
+            <div class="buttons">
+                <a href="{{route('organizacija.edit', ['id' => $organizacija->id])}}">
+                    <div class="small-button small-button-border">
+                        <div class="small-button">
+                            <i class="fas fa-angle-left"></i>
+                        </div>
+                        <p>{{__('Nazad na organizacioni plan')}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
 
         <div class="card-body hr-activity tab full_container" >
             <div class="row">
