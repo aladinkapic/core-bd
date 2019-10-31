@@ -52,15 +52,32 @@ class OrganizacionaJedinicaController extends Controller
             return redirect(route('organizaciona.jedinica.edit', ['id' => $request->get('id')]))->withErrors($validator);
         }
 
-        $jedinica = OrganizacionaJedinica::findOrFail($request->get('id'));
+        try{
+            $jedinica = OrganizacionaJedinica::where('id', $request->id)->firstOrFail()->update([
+                'broj'       => $request->broj,
+                'naziv'      => $request->naziv,
+                'opis'       => $request->opis,
+                'tip'        => $request->tip,
+                'parent_id'  => $request->parent
+            ]);
 
-        $jedinica->broj = $request->get('broj');
-        $jedinica->naziv = $request->get('naziv');
-        $jedinica->opis = $request->get('opis');
-        $jedinica->tip = $request->get('tip');
-        $jedinica->parent_id = $request->get('parent');
+            $jedinica = OrganizacionaJedinica::where('id', $request->id)->firstOrFail();
+        }catch (\Exception $e){
+            dd($e);
+        }
+        //$jedinica = OrganizacionaJedinica::findOrFail($request->get('id'));
 
-        $jedinica->update();
+
+
+//        dd($jedinica);
+//
+//        $jedinica->broj = $request->get('broj');
+//        $jedinica->naziv = $request->get('naziv');
+//        $jedinica->opis = $request->get('opis');
+//        $jedinica->tip = $request->get('tip');
+//        $jedinica->parent_id = $request->get('parent');
+//
+//        $jedinica->update();
 
         $request->session()->flash('message', 'Izmjene su uspješno spašene!');
 

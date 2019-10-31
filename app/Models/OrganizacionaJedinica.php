@@ -10,6 +10,7 @@ class OrganizacionaJedinica extends Model
 {
     //
     protected $table = 'org_jedinica';
+    protected $guarded = ['id'];
 
 
     public function parent() {

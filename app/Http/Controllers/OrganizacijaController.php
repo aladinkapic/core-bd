@@ -151,19 +151,7 @@ class OrganizacijaController extends Controller
             'agree' => 'required'
         ], $poruke);
 
-//        if ($validacija->fails()) {
-//            return redirect(route('organizacija.create'))
-//                ->withErrors($validacija)
-//                ->withInput();
-//        }
-
         $select = Organizacija::where('oju_id', '=', $request->get('oju_id'))->orderBy('id', 'DESC')->first();
-
-//        if (isset($select) && $select->active == 0) {
-//            return redirect(route('organizacija.create'))->withErrors(['status' => 'Za ovaj organ javne uprave već postoji neaktivna unutrašnja organizacija!']);
-//        }
-
-//        $path = $request->dokument->store('docs');
 
         try{
             $organizacija = Organizacija::create([
@@ -178,32 +166,16 @@ class OrganizacijaController extends Controller
         }catch (\Exception $e){
             dd($e);
         }
-//        $organizacija = new Organizacija();
-//
-//        $organizacija->naziv = $request->get('naziv');
-//        $organizacija->opis = $request->get('opis');
-//        $organizacija->datum_od = HelpController::format($request->get('datum_od'));
-//        $organizacija->datum_do = HelpController::format($request->get('datum_do'));
-//        $organizacija->oju_id = $request->get('oju_id');
-//        $organizacija->active = 0;
-//        $organizacija->pravilnik = $name;
-//        $organizacija->save();
-
 
 
         if ($request->get('org_plan')) {
             Organizacija::copy($request->get('org_plan'), $organizacija->id);
         }
 
-
         return redirect(route('organizacija.edit', ['id' => $organizacija->id]))->with('success', 'Organizacioni plan je dodan!');
-
     }
 
-    public function editJedinica(Request $request)
-    {
-
-
+    public function editJedinica(Request $request){
         $org_jedinica = OrganizacionaJedinica::with('parent')
             ->where('id', '=', $request->route('id'))
             ->orderBy('parent_id', 'ASC')
@@ -223,8 +195,7 @@ class OrganizacijaController extends Controller
         return view('hr.organizacija.jedinica-edit')->with(compact('org_jedinica', 'organizacija', 'org_jedinice', 'tipovi'));
     }
 
-    public function radnaMjesta(Request $request, $id)
-    {
+    public function radnaMjesta(Request $request, $id){
         $sluzbenici = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id');
         $radna_mjesta = RadnoMjesto::organizacijska($id);
 
@@ -262,8 +233,7 @@ class OrganizacijaController extends Controller
 
     }
 
-    public function api(Request $request)
-    {
+    public function api(Request $request){
 
         if ($request->get('action') == 'getOrganizacija') {
 
@@ -276,13 +246,9 @@ class OrganizacijaController extends Controller
 
     }
 
-    public function active(Request $request, $id)
-    {
-
+    public function active(Request $request, $id){
         $object = Organizacija::findOrFail($id);
-
         $check = Organizacija::select('active')->where('oju_id', '=', $object->oju_id)->where('id', '>', $id)->get();
-
         $aktivna = Organizacija::where('oju_id', '=', $object->oju_id)->where('active', '=', 1)->first();
 
         if ($aktivna) {
@@ -290,19 +256,15 @@ class OrganizacijaController extends Controller
             $aktivna->save();
         }
 
-
         foreach ($check as $org) {
             // Ne može prethodne sistematizacije aktivirat
             if ($org->active == 1) return redirect(route('organizacija.edit', ['id' => $id]))->with('danger', 'Organizacioni plan ne može biti postavljen kao aktivan!');
         }
 
-
         // Dohvatamo sve službenike unutar organa javne uprave za koji se aktivira sistematizacija
-
         $sluzbenici = Sluzbenik::whereOrgan($object->oju_id);
 
         // Ukoliko je radno_mjesto_temp NULL -> prebacivamo id radno_mjesto na novi iz organizacionog plana
-
         foreach ($sluzbenici as $sluzbenik) {
 
             $temp_radno = RadnoMjesto::where('before_id', '=', $sluzbenik->radno_mjesto)->orderBy('id', 'DESC')->first();
@@ -342,13 +304,7 @@ class OrganizacijaController extends Controller
 
     public function shema(Request $request, $id){
         $organizacija = Organizacija::where('id', '=', $id)->first();
-
         $radna_mjesta = RadnoMjesto::organizacijska($organizacija->id);
-
-//        $org_jedinice = OrganizacionaJedinica::with('parent')
-//            ->where('org_id', '=', $id)
-//            ->orderBy('id', 'ASC')
-//            ->get();
 
         $org_jedinice = OrganizacionaJedinica::with('parent')
             ->where('org_id', '=', $id)
