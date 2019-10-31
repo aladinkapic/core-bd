@@ -77,95 +77,6 @@ function get_first_day(){
     return just_date.getDay();
 }
 
-
-
-// class myDate{
-//     // if constructor parameters are null, we are facing this current month
-//     constructor(y, m, d){
-//         if(y){
-//             this.date = new Date(y,m,d);
-//         }else this.date   = new Date();
-//
-//
-//         if(y){
-//             console.log("Postojano !!");
-//         }else console.log("Nema nikakvih parametara ... ");
-//
-//         this.year   = this.date.getFullYear();
-//         this.month  = this.date.getMonth();
-//         this.day    = this.date.getDate();
-//         this.day_w  = this.date.getDay();
-//
-//
-//         this.months   =
-//         this.days_w   =
-//         this.days_w_s =
-//         this.months_d =
-//         if(this.year % 4 == 0) this.months_d[1] = 29; // leap year
-//
-//         this.last_month_day = new Array();
-//
-//         /** working with month table **/
-//         this.calendar = document.getElementsByClassName("calender_body")[0];
-//     }
-//
-//     /** simple getters **/
-//     get_year(){return this.year; } // get current year instance
-//     get_month(){return this.month; } // get current month instance
-//     get_day(){return this.day; } // get current day instance
-//
-//     // returns number of days for this month
-//     month_duration(){
-//         return this.months_d[this.month];
-//     }
-//
-//
-//     // returns last 7 days of previous month - or less than 7 days, depends on day current month starts
-//     last_month_days(){
-//         if(this.month == 0){
-//             // go back one day - we have 31 day
-//             return (31 - this.get_first_day() + 1);
-//         }else{
-//             return (this.months_d[this.month - 1] - this.get_first_day() + 1);
-//         }
-//     }
-//
-//     // function for returning Month Name
-//     get_monthName(month = null){
-//         return this.months[this.month];
-//     }
-//     get_previous_month_name(){
-//         if(this.month == 0) return this.months[11];
-//         else return this.months[this.month - 1];
-//     }
-//     get_next_month_name(){
-//         if(this.month == 11) return this.months[0];
-//         else return this.months[this.month + 1];
-//     }
-//
-//
-//     // function for returnin Day Name
-//     get_dayName(day = null){
-//         if(day != null){
-//             return this.days_w[day];
-//         }else{
-//             return this.days_w[this.day_w];
-//         }
-//     }
-//
-//     get_shortDayName(index){
-//         return this.days_w_s[index];
-//     }
-//
-//
-//     // get first day of specific month - initial this month
-//     get_first_day(){
-//         this.date.setDate(1);
-//         return this.date.getDay();
-//     }
-// }
-
-
 /******************************** **********************************/
 
 var main_date = new Date();
@@ -195,17 +106,17 @@ function makeItHappenDelegate(y, m, d, month_name) { //make a function that retu
 }
 
 function delagate_clickable(what){
-    if(what == 0) return function(){previous_month();}
+    if(what === 0) return function(){previous_month();}
 }
 
 function delegateDeleteDay(id){                            // Ovdje odlažemo pozivanje funkcije dinamički kreirane
-    console.log("Delegate delete : " + id);
+    // console.log("Delegate delete : " + id);
     return function(){
         kreiraj_request('POST', '/hr/odsustva/obrisi_odsustvo', "id=" + id, true, odzivKalendara);
     }
 }
 function delegateEdit(id){                              // Ovdje odlažemo pozivanje funkcije dinamički kreirane
-    console.log("Delegate update : " + id);
+    // console.log("Delegate update : " + id);
     return function(){
         kreiraj_request('POST', '/hr/odsustva/odsustvo_json', "id=" + id, true, odzivKalendaraUredi);
     }
@@ -264,7 +175,7 @@ function init_calendar(set_days, holidays) { // ** Update calendar ** //
 
     var calender = document.getElementsByClassName("calendar");
 
-
+    c_day = this_months_d[c_month];
     create(c_year,c_month,c_day);                 // Sistematske varijable
 
 
@@ -312,7 +223,6 @@ function pregledPraznika(response){
 
 
     create(c_year,c_month,c_day);
-
 
     for(var i=0; i<6; i++){
         for(var j=0; j<7; j++){
@@ -484,22 +394,22 @@ function this_month_ext(){ /** go to this month **/
 
 
 function next_month(){ /** go to next month **/
-    if(c_month == 11){
+    if(c_month === 11){
         c_month = 0; c_year += 1;
     }else c_month ++;
+
     init_calendar(1, holidays_mark);
 }
 
 
 function previous_month(){ /** go to previous month **/
-    if(c_month == 0){
+    if(c_month === 0){
         c_month = 11; c_year -= 1;
     }else c_month --;
     init_calendar(1, holidays_mark);
 }
 
 function currentMonth(){
-    console.log("Initializin new instance of calender .. ");
     init_calendar(1, holidays_mark);
 }
 
