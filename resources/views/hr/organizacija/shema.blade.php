@@ -47,7 +47,7 @@
                         <ul>
                             <li>
                                 <span class="tf-nc custom-tf-nc">
-                                    <span class="tree-element">
+                                    <span class="tree-element tree-element-sm">
                                         {{$organizacija->naziv}}
                                     </span>
                                 </span>
