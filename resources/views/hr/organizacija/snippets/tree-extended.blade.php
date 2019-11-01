@@ -37,7 +37,7 @@
             @endif
 
             @if(count($child->childs))
-                @include('hr-registar.organizacija.snippets.tree-extended',['childs' => $child->childs])
+                @include('hr.organizacija.snippets.tree-extended',['childs' => $child->childs])
             @endif
         </li>
     @endforeach
