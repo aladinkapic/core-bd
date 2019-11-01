@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RadnoMjestoSluzbenik;
 use App\Models\Sluzbenik;
 use App\Models\Sifrarnik;
 use App\Models\RadnoMjesto;
@@ -144,13 +145,13 @@ class RadnaMjestaController extends Controller{
     public function azurirajRadnoMjesto(Request $request){
         $active = OrganizacionaJedinica::where('id', $request->id_oj)->first()->organizacija->active;
 
-        $validatedData = $request->validate([
-            'naziv_rm' => 'required',
-            'sifra_rm' => 'required',
-            'opis_rm' => 'required',
-            'broj_izvrsilaca' => 'required',
-            'platni_razred' => 'required',
-        ]);
+//        $validatedData = $request->validate([
+//            'naziv_rm' => 'required',
+//            'sifra_rm' => 'required',
+//            'opis_rm' => 'required',
+//            'broj_izvrsilaca' => 'required',
+//            'platni_razred' => 'required',
+//        ]);
 
         if($request->rukovodioc == 'on'){
             $request['rukovodioc'] = 1;
@@ -185,16 +186,33 @@ class RadnaMjestaController extends Controller{
                 }
             }
 
+
             for($i=1; $i<count($request->sluzbenik_id); $i++){
                 if($request->id_sluzben[$i] == 'empty'){
+                    // Ako je novi službenik na radnom mjestu, onda ga unosimo.
+                    try{
+                        $rel = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->sluzbenik_id[$i])->where('radno_mjesto_id', $request->id_rm)->firstOrFail();
+                    }catch (\Exception $e){
+                        try{
+                            $rel = RadnoMjestoSluzbenik::create([
+                                'sluzbenik_id'    => $request->sluzbenik_id[$i],
+                                'radno_mjesto_id' => $request->id_rm
+                            ]);
+                        }catch (\Exception $e){}
+                    }
+
                     $sluz = Sluzbenik::find($request->sluzbenik_id[$i]);
                     if($active){
+                        // Ako je sistematizacija aktivna, onda provjeravamo da li ima uzorak prvo, ako nema
+                        // unesemo ga, a ako ima onda ga ažuriramo
                         $sluz->radno_mjesto = $request->id_rm;
                     }
                     else{
                         $sluz->radno_mjesto_temp  = $request->id_rm;
                     }
                     $sluz->save();
+                }else{
+                    // Ovdje ne radimo ništa ! Nije moguće
                 }
             }
 
@@ -212,7 +230,9 @@ class RadnaMjestaController extends Controller{
         if($active) $odabrani_sluzbenici = Sluzbenik::where('radno_mjesto', '=', $radno_mjesto->id)->get();
         else $odabrani_sluzbenici = Sluzbenik::where('radno_mjesto_temp', '=', $radno_mjesto->id)->get();
 
-        
+        $uposleni = RadnoMjesto::where('id', $id)->with('sluzbeniciRel.sluzbenik')->get();
+
+
         $uslovi              = DB::table('radno_mjesto_uslovi')->where('id_rm', '=', $radno_mjesto->id)->get();
         $kateogrija_radnog   = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
         $tip_premjestaja     = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
@@ -222,15 +242,12 @@ class RadnaMjestaController extends Controller{
 
         $organizacija        = Organizacija::find(OrganizacionaJedinica::findOrFail($radno_mjesto->id_oj)->org_id);
 
-//        $nadlezni = RadnoMjesto::orderBy('naziv_rm')->where('id', '!=', $id)->get(['id', 'naziv_rm'])->pluck('naziv_rm', 'id' );
-//        $nadlezni->put('', 'Nema nadležnog');
-
         $org_jedinice = OrganizacionaJedinica::with('parent') // Organizaciona jedinica
         ->where('org_id', '=', $organizacija->id)
             ->orderBy('broj', 'ASC')
             ->get()->pluck('naziv','id');
 
 
-        return view('/hr/radna_mjesta/uredi_rm', compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'radno_mjesto', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta'));
+        return view('/hr/radna_mjesta/uredi_rm', compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'radno_mjesto', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta', 'uposleni'));
     }
 }

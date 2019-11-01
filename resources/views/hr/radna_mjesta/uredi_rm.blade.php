@@ -296,28 +296,30 @@
                                     <div class="split_container" style="padding:0px;">
                                         <div id="korisnici">
                                             @php $i=0; @endphp
-                                            @foreach($odabrani_sluzbenici as $sluzbenik)
+                                            @foreach($uposleni as $uposlen)
+                                                @foreach($uposlen->sluzbeniciRel as $sluzbenik)
 
-                                                <div class="copied_form sluzbenici*{{$sluzbenik->id ?? '1'}}" id="nekaamo" style="padding-top:20px;">
+                                                    <div class="copied_form sluzbenici*{{$sluzbenik->sluzbenik->id ?? '1'}}" id="nekaamo" style="padding-top:20px;">
 
-                                                    {!! Form::hidden('id_sluzben[]', $sluzbenik->id, ['class' => 'form-control']) !!}
+                                                        {!! Form::hidden('id_sluzben[]', $sluzbenik->sluzbenik->id, ['class' => 'form-control']) !!}
 
-                                                    <div class="shadow_delete">
-                                                        <div class="delete_item" onclick="obrisiDomElement('korisnici', '{{$i}}'); obrisiIzBaze('{{$sluzbenik->id}}'); ">
-                                                            <i class="fas fa-times"></i>
+                                                        <div class="shadow_delete">
+                                                            <div class="delete_item" onclick="obrisiDomElement('korisnici', '{{$i}}'); obrisiIzBaze('{{$sluzbenik->sluzbenik->id}}'); ">
+                                                                <i class="fas fa-times"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="form-group row">
-                                                        <div class="col">
-                                                            {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
-                                                            <div class="col-lg-12">
-                                                                {!!  Form::select('sluzbenik_id[]', $sluzbenici, $sluzbenik->id ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
+                                                        <div class="form-group row">
+                                                            <div class="col">
+                                                                {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                                                                <div class="col-lg-12">
+                                                                    {!!  Form::select('sluzbenik_id[]', $sluzbenici, $sluzbenik->sluzbenik->id ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
+                                                @endforeach
                                             @endforeach
                                         </div>
                                     </div>

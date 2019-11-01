@@ -53,7 +53,7 @@ class Sluzbenik extends Model{
 
     // Laravel accessors - https://laravel.com/docs/5.4/eloquent-mutators#defining-an-accessor
     public function getFullNameAttribute($value){
-        return ucfirst($this->id).' - '.ucfirst($this->ime) . ' ' . ucfirst($this->prezime);
+        return ucfirst($this->ime) . ' ' . ucfirst($this->prezime).' - '.ucfirst($this->id);
     }
 
     public function radnoMjesto(){
