@@ -588,7 +588,7 @@ Route::get('/osposobljavanje_i_usavrsavanje/predavaci/add', function () {
 Route::resource('osposobljavanje_i_usavrsavanje/predavaci/home', 'PredavaciController');
 Route::post('/osposobljavanje_i_usavrsavanje/predavaci/store', 'PredavaciController@storePredavaci')->name('predavac.store');
 Route::get('/osposobljavanje_i_usavrsavanje/predavaci/viewPredavac/{id}', 'PredavaciController@show');
-Route::get('/osposobljavanje_i_usavrsavanje/predavaci/editPredavac/{id}', 'PredavaciController@edit');
+Route::get('/osposobljavanje_i_usavrsavanje/predavaci/editPredavac/{id}', 'PredavaciController@edit')->name('uredi-predavaca');
 Route::post('/osposobljavanje_i_usavrsavanje/predavaci/updatePredavac/{id}', 'PredavaciController@update');
 Route::get('/osposobljavanje_i_usavrsavanje/predavaci/delete/{id}', 'PredavaciController@destroy');
 Route::get('/osposobljavanje_i_usavrsavanje/predavaci/add', 'PredavaciController@create');

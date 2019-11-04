@@ -51,7 +51,7 @@
                         <td>{{$predavac->mail ?? '/'}}</td>
                         <td>{{$predavac->napomena ?? '/'}}</td>
                         <td style="text-align:center;" class="akcije">
-                            <a href="{{ '/ugovori/mjesto-rada/edit/' . $predavac->id ?? '1'}}">
+                            <a href="{{route('uredi-predavaca', ['id' => $predavac->id])}}">
                                 <i class="fa fa-edit"></i>
                             </a>
                             <a href="{{ '/ugovori/mjesto-rada/destroy/' . $predavac->id ?? '1'}}"
