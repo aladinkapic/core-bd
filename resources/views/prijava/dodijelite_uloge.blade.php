@@ -420,26 +420,13 @@
 
                     </div>
                 </div>
-
             </div>
 
-<<<<<<< HEAD
-                        <div>
-                            <div>
-                                {!! Form::hidden('sifra', $sifra, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sifra']) !!}
-                                {!! Form::hidden('pin', $pin, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'pin']) !!}
-                                {!! Form::hidden('sluzbenik_id', $sluzbenik->id, ['class' => 'form-control', 'validate' => 'required', 'autocomplete' => 'off', 'id' => 'sluzbenik_id']) !!}
-                                <button type="submit" id="buton-to-change-code" class="btn btn-primary">{{__('Spremite promijene')}}</button>
-                            </div>
-                        </div>
-=======
             <div class="col md-6">
                 <div class="generated-access-data">
                     <div class="card-header">
                         Kredincijali
->>>>>>> 2ae968b90de625a102e204988b7aa8d78656efbd
                     </div>
-
                     <p>
                         Za pristup sistemu, svakom od korisnika je potrebno dodijeliti korisničko ime, šifru i PIN kod.
                         Ovakav pristup predstavlja dvoslojnu zaštitu, te kao takav čini sistem sigurnijim.
@@ -486,8 +473,8 @@
                     <p>
                         U slučaju zaboravljenih pristupnih podataka, iste možete
                         <a href="{{route('izvjestaji.generisi-sifru', ['id' => $sluzbenik->id])}}">ponovo generisati ovdje</a>.
-{{--                        Također, možete generisati i samo PIN kod--}}
-{{--                        <a href="">ovdje</a> .--}}
+                        Također, možete generisati i samo PIN kod
+                        <a href="">ovdje</a> .
                     </p>
 
 {{--                    <div>--}}

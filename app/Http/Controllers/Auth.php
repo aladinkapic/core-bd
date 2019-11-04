@@ -217,7 +217,7 @@ class Auth extends Controller{
         }catch (\Exception $e){}
 
         try{
-            $sluzbenik->notify(new createPin(array(' subject' => 'Pristupni podaci', 'from_address' => 'bot@core.bd', 'link' => '', 'message' => 'ovom prilikom Vam dostavljamo korisničko ime i šifru, koje služe kao prvi stepen autentifikacije prilikom pristupanja HRMIS sistemu, koji su dati:', 'username' => $username, 'password' => $sifra, 'pin' => $pin, 'send_email' => true, 'button' => 'Prijavite se')));
+            $sluzbenik->notify(new createPin(array(' subject' => 'Pristupni podaci', 'from_address' => 'bot@core.bd', 'link' => '', 'message' => 'ovom prilikom Vam dostavljamo korisničko ime i šifru, koje služe kao prvi stepen autentifikacije prilikom pristupanja HRMIS sistemu, koji su dati kao:', 'username' => $username, 'password' => $sifra, 'pin' => $pin, 'send_email' => true, 'button' => 'Prijavite se')));
         }catch (\Exception $e){}
 
         return redirect()->route('izvjestaji.dodijeli.ulogu', ['id' => $id]);
