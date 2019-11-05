@@ -50,29 +50,11 @@
                         <td>{{$obuka->organizator ?? '/'}}</td>
                         <td> {{$obuka->broj_polaznika ?? '/'}}</td>
                         <td>
-                            <ul>
-                                @foreach($obuka->instance as $instanca)
-                                    <li>
-                                        @php $prosjek = 0;$i=0; @endphp
-                                        @foreach($instanca->sviSluzbenici as $ocjena)
-                                            @php $prosjek = $prosjek + $ocjena->ocjena; $i++; @endphp
-                                        @endforeach
-
-                                        @if($i!=0)
-                                            {{$prosjek/$i}}
-                                        @else
-                                            {{'Nema ocjena'}}
-                                        @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </td>
-                        <td>
-                            <ul>
+                            <ul class="custom-one-to-many">
                                 @foreach($obuka->instance as $instanca)
                                     <li>
                                         <a href="/osposobljavanje_i_usavrsavanje/obuke/prikazInstance/{{$instanca->id}}">
-                                            {{$instanca->odrzavanje_od.' - '.$instanca->odrzavanje_do}}
+                                            {{$instanca->pocetak_obuke.' - '.$instanca->kraj_obuke}}
                                         </a>
                                     </li>
                                 @endforeach
@@ -83,17 +65,16 @@
                                title="Dodaj instancu obuke">
                                 <i class="fas fa-plus"></i>
                             </a>
-                            @if ($obuka->brInstanci > 0)
-                                <a href="/osposobljavanje_i_usavrsavanje/obuke/instance/{{$obuka -> id ?? '1'}}"
-                                   title="Pregledaj sve instance obuke" style="margin-left:10px;">
+                            @if (count($obuka->instance))
+                                <a href="{{route('pregled-instanci-obuke', ['id' => $obuka->id])}}" title="Pregledaj sve instance obuke" style="margin-left:10px;">
                                     <i class="fas fa-list-ul"></i>
                                 </a>
                             @endif
-                            <a href="/osposobljavanje_i_usavrsavanje/obuke/view/{{$obuka -> id ?? '1'}}"
+                            <a href="{{route('pregled-obuke', ['id' => $obuka->id ?? '1'])}}"
                                style="margin-left:10px;">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="/osposobljavanje_i_usavrsavanje/obuke/edit/{{$obuka -> id ?? '1'}}"
+                            <a href="{{route('uredi-obuku', ['id' => $obuka->id])}}"
                                style="margin-left:10px;">
                                 <i class="fas fa-edit"></i>
                             </a>

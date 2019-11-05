@@ -13,6 +13,6 @@ class Obuka extends Model
     ];
 
     public function instance(){
-        return $this->hasMany(ObukaInstanca::class,'obuka_id','id');
+        return $this->hasMany(InstanceObuke::class,'obuka_id','id');
     }
 }

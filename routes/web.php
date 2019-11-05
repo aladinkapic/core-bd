@@ -545,17 +545,38 @@ Route::get('/ostalo/historizacija/detalji/{id}',  'ActivityLogController@show');
 
 //OSPOSOBLJAVANJE I USAVRŠAVANJE
 
+
+Route::prefix('/osposobljavanje_i_usavrsavanje')->group(function(){
+    Route::get('/obuke/add',                       'ObukaController@novaObuka');
+    Route::get('/obuke/addInstancu/{id}',          'ObukaController@dodajInstancuObuke')->name('dodaj-instancu-obuke');
+    Route::post('/spremi-instancu-obuke',          'ObukaController@spremiInstancuObuke')->name('spremi-instancu-obuke');
+    Route::post('/spremi-obuke',                   'ObukaController@spremiObuku')->name('spremi-obuke');
+
+    Route::get('pregled-obuke/{id}',               'ObukaController@pregledObuke')->name('pregled-obuke');
+    Route::get('uredite-obuke/{id}',               'ObukaController@urediObuku')->name('uredi-obuku');
+    Route::post('azurirajte-obuke',                'ObukaController@azurirajObuku')->name('azuriraj-obuku');
+
+    Route::get('pregled-instanci-obuke/{id}',      'ObukaController@pregledInstanciObuke')->name('pregled-instanci-obuke');
+    Route::get('pregleda-instancu/{id}',           'ObukaController@pregledajInstancuObuke')->name('pregledaj-instancu-obuke');
+    Route::post('ocijenu-predavaca',               'ObukaController@ocijeniPredavaca')->name('ocijeni-predavaca');
+    Route::get('pregleda-ocjena-predavaca/{id}',   'ObukaController@ocjenePredavaca')->name('ocjene-predavaca');
+});
+
 //OBUKE
 
-Route::get('/osposobljavanje_i_usavrsavanje/obuke/home', 'ObukaController@index');
-Route::get('/osposobljavanje_i_usavrsavanje/obuke/view/{id}', 'ObukaController@show');
-Route::get('/osposobljavanje_i_usavrsavanje/obuke/add', 'ObukaController@create');
-Route::post('/osposobljavanje_i_usavrsavanje/obuke/add', 'ObukaController@store');
-Route::get('/osposobljavanje_i_usavrsavanje/obuke/delete/{id}', 'ObukaController@destroy');
-Route::get('/osposobljavanje_i_usavrsavanje/obuke/edit/{id}', 'ObukaController@edit');
-Route::post('/osposobljavanje_i_usavrsavanje/obuke/update/{id}', 'ObukaController@update');
+Route::get('/osposobljavanje_i_usavrsavanje/obuke/home',          'ObukaController@index')->name('sve-obuke');
+Route::get('/osposobljavanje_i_usavrsavanje/obuke/view/{id}',     'ObukaController@show');
+//Route::get('/osposobljavanje_i_usavrsavanje/obuke/add',           'ObukaController@create');
+Route::post('/osposobljavanje_i_usavrsavanje/obuke/add',          'ObukaController@store');
+Route::get('/osposobljavanje_i_usavrsavanje/obuke/delete/{id}',   'ObukaController@destroy');
+Route::get('/osposobljavanje_i_usavrsavanje/obuke/edit/{id}',     'ObukaController@edit');
+Route::post('/osposobljavanje_i_usavrsavanje/obuke/update/{id}',  'ObukaController@update');
 
-Route::get('/osposobljavanje_i_usavrsavanje/obuke/addInstancu/{id}',          'ObukaController@addInstancu');
+//Route::get('/osposobljavanje_i_usavrsavanje/obuke/addInstancu/{id}',          'ObukaController@addInstancu');
+
+
+
+
 Route::get('/osposobljavanje_i_usavrsavanje/obuke/prikazocjenaInstance/{id}', 'ObukaController@pregledInstance');
 Route::get('/osposobljavanje_i_usavrsavanje/obuke/ocjenaInstance/{id}',       'ObukaController@ocjenaInstance');
 Route::get('/osposobljavanje_i_usavrsavanje/obuke/ocjenaInstance/{id}/{sl}',  'ObukaController@ocjenaInstance');

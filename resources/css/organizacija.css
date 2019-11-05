@@ -17,3 +17,17 @@
     background: white;
     padding:5px;
 }
+
+
+
+input[readonly], textarea[readonly], select[disabled] {
+    background-color: #fff !important;
+}
+
+input:-moz-read-only { /* For Firefox */
+    background-color: yellow;
+}
+
+input:read-only {
+    background-color: yellow;
+}

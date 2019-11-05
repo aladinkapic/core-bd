@@ -115,7 +115,7 @@ if (isset($instanca) and $instanca != 'new') {
 
                                             <div class="form-group row">
                                                 <label for="staticEmail"
-                                                       class="col-sm-3 col-form-label">{{ __('Vrsta obuke')}}</label>
+                                                         class="col-sm-3 col-form-label">{{ __('Vrsta obuke')}}</label>
                                                 <div class="col-sm-9">
                                                     {!! Form::text('vrsta', isset($obuka) ? $obuka->vrsta : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'vrsta', 'autocomplete' => 'off', $readonly]) !!}
                                                 </div>

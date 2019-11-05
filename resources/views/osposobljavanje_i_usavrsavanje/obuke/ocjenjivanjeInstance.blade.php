@@ -31,45 +31,7 @@
         </div>
 
 
-        <div class="row">
 
-            <!-- POP UP Za ocjenjivanje obuke -->
-
-            <div class="col-3">
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title"
-                                    id="exampleModalLabel">{{__('Ocjenjivanje instance')}}</h4>
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="get" id="ocjena">
-                                    @csrf
-                                    <h6> {{__('Molimo vas da izaberete službenika:')}} </h6>
-                                    {!!  Form::select('sluzbenik_id',$instanca->pluck('imeSluzbenika.ime_prezime','sluzbenik_id'),  '' ,['class' => 'form-control',  'id' => 'sluzbenik']) !!}
-                                    <br>
-                                    <h6> {{__('Molimo vas da izaberete ocjenu za ovu obuku:')}} </h6>
-                                    {!!  Form::select('ocjena',[0,1,2,3,4,5,6,7,8,9,10],  '' ,['class' => 'form-control',  'id' => 'ocjena']) !!}
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">{{__('Zatvori')}}</button>
-                                <button type="submit" value="Submit" class="btn btn-primary"
-                                        form="ocjena">{{__('Spasi!')}}</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <div class="card-body hr-activity tab full_container">

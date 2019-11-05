@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InstanceObuke;
 use App\Models\InstancePredavaci;
 use App\Models\InstanceSluzbenici;
 use App\Models\Obuka;
 use App\Models\OcjenaObuke;
 use App\Models\Tema;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Sifrarnik;
 use App\Models\Predavac;
@@ -40,35 +42,13 @@ class ObukaController extends Controller
      */
     public function index()
     {
-        $obuke = Obuka::with('instance.sviSluzbenici');
+        $obuke = Obuka::with('instance');
         $obuke = FilterController::filter($obuke);
         //dd($obuke);
-        $filteri = ["naziv" => "Naziv obuke", "vrsta" => "Vrsta obuke", "organizator" => "Organizator obuke", "broj_polaznika" => 'Maksimalan broj polaznika', "" => 'Srednja ocjena', "instance.odrzavanje_od + instance.odrzavanje_od" => 'Instance obuke',];
+        $filteri = ["naziv" => "Naziv obuke", "vrsta" => "Vrsta obuke", "organizator" => "Organizator obuke", "broj_polaznika" => 'Maksimalan broj polaznika', "instance.odrzavanje_od + instance.odrzavanje_od" => 'Instance obuke',];
 
 
-        foreach ($obuke as $obuka) {
-            $n = OcjenaObuke::where('obuka_id', $obuka->id)->count('ocjena');
-            $sveocjene = OcjenaObuke::where('obuka_id', $obuka->id)->get();
-
-            $obuka->brInstanci = DB::table('obuka_instance')->where('obuka_id', $obuka->id)->count();
-            if ($n > 0) {
-                $ocjena['ocjena'] = round(OcjenaObuke::where('obuka_id', $obuka->id)->sum('ocjena') / $n, 2);
-                $ocjena['br_ocjena'] = $n;
-                foreach ($sveocjene as $one) {
-                    $sluzbenik = Sluzbenik::where('id', '=', $one->sluzbenici_id)->first();
-                    $ocjena['detalji'][$one->id]['operater'] = $sluzbenik['ime'] . ' ' . $sluzbenik['prezime'];
-                    $ocjena['detalji'][$one->id]['datum'] = date_format($one->created_at, "d.m.Y H:i:s");
-                    $ocjena['detalji'][$one->id]['vrijednostocjene'] = $one->ocjena;
-                }
-
-                $obuka->ocjena = $ocjena;
-            }
-        }
-        for ($i = 0; $i <= 10; $i++) {
-            $ocjene[$i] = $i;
-        }
-
-        return view('/osposobljavanje_i_usavrsavanje/obuke/home', compact('obuke', 'ocjene', 'filteri'));
+        return view('/osposobljavanje_i_usavrsavanje/obuke/home', compact('obuke', 'filteri'));
     }
 
     /**
@@ -162,13 +142,6 @@ class ObukaController extends Controller
         return view('/osposobljavanje_i_usavrsavanje/obuke/add', compact('obuka', 'readonly', 'pregled', 'drzava', 'oblasti', 'niztema'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $request = HelpController::formatirajRequest($request);
@@ -185,12 +158,6 @@ class ObukaController extends Controller
         return redirect('/osposobljavanje_i_usavrsavanje/obuke/home')->with('success', 'Uspješno ste izmjenili obuku!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $obuka = Obuka::findOrFail($id);
@@ -226,6 +193,142 @@ class ObukaController extends Controller
 
         return view('/osposobljavanje_i_usavrsavanje/obuke/add', compact('obuka', 'readonly', 'pregled', 'instanca', 'drzava', 'nizpredavaca', 'niztema', 'oblasti', 'nizsluzbenika'));
     }
+
+
+    /*********************************************** OBUKE NANOVO *****************************************************/
+    public function novaObuka(){
+        $drzava = Sifrarnik::dajSifrarnik('drzava');
+        $oblasti = Sifrarnik::dajSifrarnik('oblasti');
+
+        $niztema = Tema::pluck('naziv', 'id');
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/nova-obuka', compact('drzava', 'niztema', 'oblasti'));
+    }
+
+    public function spremiObuku(Request $request){
+        try{
+            $obuka = Obuka::create(
+                $request->except(['_token'])
+            );
+
+        }catch (\Exception $e){}
+
+        return redirect()->route('pregled-obuke', ['id' => $obuka->id]);
+    }
+
+    public function pregledObuke($id){
+        $obuka = Obuka::where('id', $id)->first();
+        $drzava = Sifrarnik::dajSifrarnik('drzava');
+        $oblasti = Sifrarnik::dajSifrarnik('oblasti');
+        $preview = true;
+
+        $niztema = Tema::pluck('naziv', 'id');
+        return view('/osposobljavanje_i_usavrsavanje/obuke/nova-obuka', compact('drzava', 'niztema', 'oblasti', 'obuka', 'preview'));
+    }
+    public function urediObuku($id){
+        $obuka = Obuka::where('id', $id)->first();
+        $drzava = Sifrarnik::dajSifrarnik('drzava');
+        $oblasti = Sifrarnik::dajSifrarnik('oblasti');
+        $edit = true;
+
+        $niztema = Tema::pluck('naziv', 'id');
+        return view('/osposobljavanje_i_usavrsavanje/obuke/nova-obuka', compact('drzava', 'niztema', 'oblasti', 'obuka', 'edit'));
+    }
+    public function azurirajObuku(Request $request){
+        try{
+            $obuka = Obuka::where('id', $request->id_obuke)->update(
+                $request->except(['_token', 'id_obuke'])
+            );
+        }catch (\Exception $e){}
+        return redirect()->route('pregled-obuke', ['id' => $request->id_obuke]);
+    }
+
+
+    public function dodajInstancuObuke($id){
+        $obuka = Obuka::where('id', $id)->first();
+        $predavaci = Predavac::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id' );
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/instance/dodaj-instancu', compact('obuka', 'predavaci'));
+    }
+    public function spremiInstancuObuke(Request $request){
+        $request = HelpController::formatirajRequest($request);
+
+        $future   = Carbon::parse($request->pocetak_obuke)->isFuture();
+        $going    = Carbon::now()->between($request->pocetak_obuke, $request->kraj_obuke);
+        $past     = Carbon::parse($request->kraj_obuke)->isPast();
+
+        if($future) $status = 'U budućnosti';
+        else if($going) $status = 'U toku';
+        else if($past)  $status = 'Završena';
+
+        try{
+            $instanca = InstanceObuke::create([
+                'obuka_id'         => $request->obuka_id,
+                'pocetak_obuke'    => $request->pocetak_obuke,
+                'kraj_obuke'       => $request->kraj_obuke,
+                'datum_zatvaranja' => $request->datum_zatvaranja,
+                'status'           => $status
+            ]);
+            try{
+                for($i=1; $i<count($request->predavac_id); $i++){
+                    $predavac = InstancePredavaci::create([
+                        'predavac_id' => $request->predavac_id[$i],
+                        'instanca_id' => $instanca->id
+                    ]);
+                }
+            }catch (\Exception $e){}
+        }catch (\Exception $e){}
+
+        return redirect()->route('sve-obuke');
+    }
+    public function pregledInstanciObuke($id){
+        $instance = InstanceObuke::where('obuka_id', $id)->with('predavaci.imePredavaca')->orderBy('pocetak_obuke');
+
+//        dd($instance->get());
+        $instance = FilterController::filter($instance);
+
+        $filteri = [
+            'trajanje' => 'Trajanje obuke',
+            'status'   => 'Status',
+            'datum_zatvaranja' => 'Datum zatvaranja za prijave',
+            'predavaci.ime + predavaci.prezime' => 'Predavači',
+            'sluzbenici' => 'Službenici'
+        ];
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/instance/pregled-instanci', compact('instance', 'filteri', 'id'));
+    }
+    public function pregledajInstancuObuke($id){
+        $instanca = InstanceObuke::where('id', $id)->with('predavaci.imePredavaca', 'obuka')->first();
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/instance/pregled-instance', compact('instanca'));
+    }
+    public function ocijeniPredavaca(Request $request){
+        try{
+            $predavacInstanca = InstancePredavaci::where('instanca_id', $request->instanca_id)->where('predavac_id', $request->predavac_id)->update([
+                'ocjena' => $request->ocjena
+            ]);
+        }catch (\Exception $e){}
+
+        return redirect()->route('pregledaj-instancu-obuke', ['id' => $request->instanca_id]);
+    }
+    public function ocjenePredavaca($id){
+        $predavac = Predavac::where('id', $id)->first();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function pregledInstance($id)
     {
