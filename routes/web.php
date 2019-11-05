@@ -569,6 +569,7 @@ Route::post('/osposobljavanje_i_usavrsavanje/obuke/ocjeni', 'ObukaController@ocj
 
 //AJAX
 Route::get('/osposobljavanje_i_usavrsavanje/obuke/ajax', 'ObukaController@ajaxrequest');
+Route::post('/osposobljavanje_i_usavrsavanje/obuke/ajax2', 'ObukaController@loadPodteme')->name('loadPodteme');
 
 
 //predavači

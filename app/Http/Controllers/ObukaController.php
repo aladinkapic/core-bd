@@ -305,19 +305,11 @@ class ObukaController extends Controller
     {
         // $instance = DB::table('obuka_instance')->where('obuka_id', $id)->get();
 
-        $instance = ObukaInstanca::where('obuka_id', '=', $id)
-            ->with('sviPredavaci.imePredavaca')
-            ->with('sviSluzbenici.imeSluzbenika');
+        $instance = ObukaInstanca::where('obuka_id', '=', $id)->with('sviPredavaci.imePredavaca')->with('sviSluzbenici.imeSluzbenika');
 
         $instance = FilterController::filter($instance);
         //dd($obuke);
-        $filteri = [
-               'odrzavanje_od + odrzavanje_do' =>'Trajanje obuke',
-            ''=>'Status',
-            'sviPredavaci.imePredavaca' =>'Predavači',
-            'sviSluzbenici.imeSluzbenika' =>'Službenici',
-            'postavke' =>'Postavke',
-        ];
+        $filteri = ['odrzavanje_od + odrzavanje_do' => 'Trajanje obuke', '' => 'Status', 'sviPredavaci.imePredavaca' => 'Predavači', 'sviSluzbenici.imeSluzbenika' => 'Službenici', 'postavke' => 'Postavke',];
 
 
         foreach ($instance as $ins) {
@@ -416,7 +408,7 @@ class ObukaController extends Controller
 
     }
 
-    public function ocjenaInstance($id, Request $request,$sl = null)
+    public function ocjenaInstance($id, Request $request, $sl = null)
     {
 
 
@@ -438,9 +430,17 @@ class ObukaController extends Controller
         $filteri = ['imeSluzbenika.ime_prezime' => 'Službenik', 'ocjena' => 'Ocjena', 'updated_at' => 'Izvršeno'];
 
 
-
-
-
         return view('/osposobljavanje_i_usavrsavanje/obuke/ocjenjivanjeInstance', compact('instanca', 'filteri'));
+    }
+
+    function loadPodteme(Request $request)
+    {
+        $teme = Tema::with('oblast_s')->where('oblast' , $request->id)->get();
+
+        $temeniz=[];
+        foreach ($teme as $tema){
+            $temeniz[$tema->id]=$tema->naziv;
+        }
+        return $temeniz;
     }
 }
