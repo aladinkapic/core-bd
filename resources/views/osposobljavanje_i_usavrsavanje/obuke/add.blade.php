@@ -147,7 +147,7 @@ if (isset($instanca) and $instanca != 'new') {
                                                 <label for="staticEmail"
                                                        class="col-sm-3 col-form-label">{{ __('Tema obuke')}}</label>
                                                 <div class="col-sm-9">
-                                                    {!! Form::select('podtema', $niztema, isset($obuka) ? $obuka->podtema : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'podtema', 'autocomplete' => 'off', $readonly]) !!}
+                                                    {!! Form::select('podtema', [], isset($obuka) ? $obuka->podtema : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'podtema', 'autocomplete' => 'off', $readonly]) !!}
                                                 </div>
                                             </div>
                                             @if ($errors ->has('podtema'))
@@ -391,3 +391,33 @@ if (isset($instanca) and $instanca != 'new') {
     @endif
 
 @stop
+@section('js')
+    <script>
+        $('#oblast').change(function(){
+            $("#podtema option").remove();
+            let id =  $('#oblast').val();
+            $.ajax({
+                url : '{{ route( 'loadPodteme' ) }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function( result )
+                {
+                    $.each( result, function(k, v) {
+                        $('#podtema').append($('<option>', {value:k, text:v}));
+                    });
+                },
+                error: function()
+                {
+                    //handle errors
+                    alert('error...');
+                }
+            });
+        });
+
+
+        </script>
+@endsection
