@@ -55,6 +55,11 @@ class Sluzbenik extends Model{
     public function getFullNameAttribute($value){
         return ucfirst($this->ime) . ' ' . ucfirst($this->prezime).' - '.ucfirst($this->id);
     }
+    public function getNameWorkPlaceAttribute($value){
+        isset($this->sluzbenikRel->rm->naziv_rm) ? $rm = $this->sluzbenikRel->rm->naziv_rm : $rm = '';
+
+        return ucfirst($this->ime) . ' ' . ucfirst($this->prezime).$rm;
+    }
 
     public function radnoMjesto(){
         return $this->belongsTo('App\Models\RadnoMjesto', 'radno_mjesto');

@@ -47,19 +47,13 @@
                     <tr class="org-row">
                         <td class="text-center">{{$i++}}</td>
                         <td>
-                            <ul class="custom-one-to-many">
-                                <li>
-                                    Od : {{$instanca -> pocetak_obuke ?? '/'}}
-                                </li>
-                                <li>
-                                    Do : {{$instanca -> kraj_obuke ?? '/'}}
-                                </li>
-                            </ul>
+                            {{$instanca -> pocetakObuke() ?? '/'}}
                         </td>
+                        <td>{{$instanca -> krajObuke() ?? '/'}}</td>
+                        <td>{{$instanca -> datumZatvaranja() ?? '/'}}</td>
                         <td>
                             {{$instanca -> status ?? '/'}}
                         </td>
-                        <td>{{$instanca -> datum_zatvaranja ?? '/'}}</td>
                         <td>
                             <ul class="custom-one-to-many">
                                 @foreach($instanca->predavaci as $predavac)
@@ -67,7 +61,13 @@
                                 @endforeach
                             </ul>
                         </td>
-                        <td></td>
+                        <td>
+                            <ul class="custom-one-to-many">
+                                @foreach($instanca->sluzbenici as $sluzbenik)
+                                    <li>{{$sluzbenik->sluzbenik->ime_prezime ?? '/'}}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                         <td class="text-center">
                             <a href="{{route('pregledaj-instancu-obuke', ['id' => $instanca->id])}}">
                                 <button class="btn my-button">Pregled</button>

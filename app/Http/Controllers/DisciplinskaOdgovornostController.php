@@ -375,7 +375,7 @@ class DisciplinskaOdgovornostController extends Controller{
 
     public function unosSuspenzija(){
         $disciplinska = DisciplinskaOdgovornost::all()->pluck('opis_povrede', 'id');
-        $disciplinska->prepend('Izaberite disciplinsku odgovornost', '0');
+        $disciplinska->prepend('Rješenje o udaljenju iz službe', '0');
 
         return view('hr.disciplinska_odgovornost.suspenzije.unos', compact('disciplinska'));
     }

@@ -261,6 +261,28 @@
                     </div>
                 @endforeach
 
+                    <div class="alert alert-danger my-custom-alert" role="alert"
+                         id="notification-id-">
+                        {{__('Obavijest : Službenik')}}
+                        <a href="">Aladin Kapić</a>
+                        Ovdje ide tekst notifikacije !
+
+                        {{--@if(json_decode($notification->data, true)['what'] == 'zasnivanjeRO')--}}
+                        {{----}}
+                        {{--@elseif(json_decode($notification->data, true)['what'] == 'penzionisanje')--}}
+                        {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
+                        {{--stiče pravo na penzionisanje za manje od 8 mjeseci.--}}
+                        {{--@elseif(json_decode($notification->data, true)['what'] == 'starosna_dob')--}}
+                        {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
+                        {{--je upravo napunio 64 godine života. Molimo vas poduzmite određene akcije.--}}
+                        {{--@endif--}}
+
+                        <div class="oznaci_kao_procitano"
+                             onclick="sakrijNotifikacije('', '');">
+                            <p>{{__('OZNAČI KAO PROČITANO')}}</p>
+                        </div>
+                    </div>
+
                 <example-component></example-component>
 
                 <br/>

@@ -8,6 +8,7 @@ use App\Models\InstanceSluzbenici;
 use App\Models\Obuka;
 use App\Models\OcjenaObuke;
 use App\Models\Tema;
+use App\Models\Updates\ObukeSluzbenik;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Sifrarnik;
@@ -247,8 +248,10 @@ class ObukaController extends Controller
     public function dodajInstancuObuke($id){
         $obuka = Obuka::where('id', $id)->first();
         $predavaci = Predavac::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id' );
+        // $sluzbenici = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('NameWorkPlace', 'id' );
+        $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
 
-        return view('/osposobljavanje_i_usavrsavanje/obuke/instance/dodaj-instancu', compact('obuka', 'predavaci'));
+        return view('/osposobljavanje_i_usavrsavanje/obuke/instance/dodaj-instancu', compact('obuka', 'predavaci', 'sluzbenici'));
     }
     public function spremiInstancuObuke(Request $request){
         $request = HelpController::formatirajRequest($request);
@@ -277,20 +280,30 @@ class ObukaController extends Controller
                     ]);
                 }
             }catch (\Exception $e){}
+
+            for($i=1; $i<count($request->sluzbenik); $i++){
+                try{
+                    $slu = ObukeSluzbenik::create([
+                        'obuka_id' => $instanca->id,
+                        'sluzbenik_id' => $request->sluzbenik[$i]
+                    ]);
+                }catch (\Exception $e){}
+            }
         }catch (\Exception $e){}
 
         return redirect()->route('sve-obuke');
     }
     public function pregledInstanciObuke($id){
-        $instance = InstanceObuke::where('obuka_id', $id)->with('predavaci.imePredavaca')->orderBy('pocetak_obuke');
+        $instance = InstanceObuke::where('obuka_id', $id)->with('predavaci.imePredavaca', 'sluzbenici.sluzbenik')->orderBy('pocetak_obuke');
 
 //        dd($instance->get());
         $instance = FilterController::filter($instance);
 
         $filteri = [
-            'trajanje' => 'Trajanje obuke',
-            'status'   => 'Status',
+            'pocetak_obuke' => 'Početak obuke',
+            'kraj_obuke' => 'Kraj obuke',
             'datum_zatvaranja' => 'Datum zatvaranja za prijave',
+            'status'   => 'Status',
             'predavaci.ime + predavaci.prezime' => 'Predavači',
             'sluzbenici' => 'Službenici'
         ];
@@ -298,8 +311,9 @@ class ObukaController extends Controller
         return view('/osposobljavanje_i_usavrsavanje/obuke/instance/pregled-instanci', compact('instance', 'filteri', 'id'));
     }
     public function pregledajInstancuObuke($id){
-        $instanca = InstanceObuke::where('id', $id)->with('predavaci.imePredavaca', 'obuka')->first();
+        $instanca = InstanceObuke::where('id', $id)->with('predavaci.imePredavaca', 'obuka', 'sluzbenici.sluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ')->first();
 
+//        dd($instanca->sluzbenici[0]);
         return view('/osposobljavanje_i_usavrsavanje/obuke/instance/pregled-instance', compact('instanca'));
     }
     public function ocijeniPredavaca(Request $request){
@@ -312,8 +326,18 @@ class ObukaController extends Controller
         return redirect()->route('pregledaj-instancu-obuke', ['id' => $request->instanca_id]);
     }
     public function ocjenePredavaca($id){
-        $predavac = Predavac::where('id', $id)->first();
+        $instance = InstancePredavaci::where('predavac_id', $id)->with('imePredavaca', 'instance.obuka');
+//        $predavac = Predavac::where('id', $id)->with('instanca.imePredavaca', 'instanca.instance.obuka');
+        $instance = FilterController::filter($instance);
 
+        $filteri = [
+            'instance.obuka.naziv' => 'Naziv obuke',
+            'instance.pocetak_obuke' => 'Pocetak obuke',
+            'instance.kraj_obuke' => 'Kraj obuke',
+            'ocjena'   => 'Ocjena'
+        ];
+
+        return view('/osposobljavanje_i_usavrsavanje/obuke/predavaci/ocjene-predavaca', compact('instance', 'filteri'));
     }
 
 

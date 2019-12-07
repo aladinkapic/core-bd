@@ -69,4 +69,5 @@ mix.
 .sass('resources/sass/app.scss', 'public/css')
 .sass('resources/sass/fbih/steps.scss', 'public/fbih/steps.css')
 .sass('resources/sass/error.scss', 'public/css/errors.css')
-.sass('resources/sass/ispis-sluzbenika.scss', 'public/css/ispis-sluzbenika.css');
+.sass('resources/sass/ispis-sluzbenika.scss', 'public/css/ispis-sluzbenika.css')
+.sass('resources/sass/includes/select2.scss', 'public/css/select2.css');

@@ -7,6 +7,8 @@
     ]) !!}
 @stop
 
+@section('other_css_links') <link href="{{ asset('css/select2.css') }}" rel="stylesheet"> @endsection
+
 @section('content')
     <div class="container" style="min-height:600px">
         <section class="multi_step_form">
@@ -61,7 +63,7 @@
                                         {!! Form::hidden('predavac_id_inp[]', 'empty', ['class' => 'form-control']) !!}
                                         <div class="form-group row">
                                             <div class="col">
-                                                {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                                                {!! Form::label('ime_sluzbenika', 'Ime i prezime predavača : ', ['class' => 'control-label']) !!}
                                                 <div class="col-lg-12">
                                                     {!!  Form::select('predavac_id[]', $predavaci, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
                                                 </div>
@@ -79,6 +81,44 @@
 
                                 <div class="split_container" style="padding:0px;">
                                     <div id="korisnici">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="">
+                            <div class="container_block" >
+                                <div class="split_container">
+                                    <div class="copied_form" id="ono_tamo">
+                                        {!! Form::hidden('sluzbenik_id_inp[]', 'empty', ['class' => 'form-control']) !!}
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                {!! Form::label('sluzbenik_id', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                                                <div class="col-lg-12">
+{{--                                                    {!!  Form::select('sluzbenik_id[]', $sluzbenici, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <select class="form-control" name="sluzbenik[]" style="width:100%;">
+                                                @foreach($sluzbenici as $sluzbenik)
+                                                    <option value="{{ $sluzbenik->id ?? '1'}}">{{ $sluzbenik->ime ?? '/'}} {{ $sluzbenik->prezime ?? '/'}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
+                                        <button type="button" class="btn btn-dark btn-sm" id="custom_button" onclick="createNewDomElements('sluzbenici', 'ono_tamo');">
+                                            {{__('Dodajte službenika')}}
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                                <div class="split_container" style="padding:0px;">
+                                    <div id="sluzbenici">
 
                                     </div>
                                 </div>

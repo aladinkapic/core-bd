@@ -75,13 +75,13 @@
                                         <div class="col text-left">
                                             {!! Form::label('pocetak_obuke', 'Početak obuke : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
-                                                {!! Form::text('pocetak_obuke', isset($instanca) ? $instanca->pocetak_obuke : '', ['class' => 'form-control datepicker', 'rows' => 1, 'id' => 'pocetak_obuke', 'autocomplete' => 'off']) !!}
+                                                {!! Form::text('pocetak_obuke', isset($instanca) ? $instanca->pocetakObuke() : '', ['class' => 'form-control ', 'rows' => 1, 'id' => 'pocetak_obuke', 'autocomplete' => 'off', 'readonly']) !!}
                                             </div>
                                         </div>
                                         <div class="col">
                                             {!! Form::label('kraj_obuke', 'Kraj obuke : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
-                                                {!!  Form::text('kraj_obuke', isset($instanca) ? $instanca->kraj_obuke : '' ,['class' => 'form-control datepicker', 'id' => 'kraj_obuke', 'autocomplete' => 'off']) !!}
+                                                {!!  Form::text('kraj_obuke', isset($instanca) ? $instanca->krajObuke() : '' ,['class' => 'form-control ', 'id' => 'kraj_obuke', 'autocomplete' => 'off', 'readonly']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                         <div class="col">
                                             {!! Form::label('datum_zatvaranja', 'Datum zatvaranja za prijave : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
-                                                {!!  Form::text('datum_zatvaranja', isset($instanca) ? $instanca->datum_zatvaranja : '' ,['class' => 'form-control datepicker', 'id' => 'datum_zatvaranja', 'autocomplete' => 'off']) !!}
+                                                {!!  Form::text('datum_zatvaranja', isset($instanca) ? $instanca->datumZatvaranja() : '' ,['class' => 'form-control ', 'id' => 'datum_zatvaranja', 'autocomplete' => 'off', 'readonly']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -111,23 +111,59 @@
                                     </thead>
                                     <tbody>
                                     @php $i=1; @endphp
-                                        @foreach($instanca->predavaci as $predavac)
-                                            <tr style="text-align:left;">
-                                                <td class="text-center">{{$i++}}</td>
-                                                <td>
-                                                    <a href="{{route('ocjene-predavaca', ['id' => $predavac->predavac_id ?? ''])}}">
-                                                        {{$predavac->imePredavaca->ime ?? ''}} {{$predavac->imePredavaca->prezime ?? ''}}
-                                                    </a>
-                                                </td>
-                                                <td>{{$predavac->imePredavaca->mail}}</td>
-                                                <td class="text-center">{{$predavac->ocjena ?? 'Nije ocijenjen/a !'}}</td>
-                                                <td class="text-center">
-                                                    <a href="###" class="btn my-button" data-toggle="modal" data-target="#exampleModal" data-whatever="{{$predavac->imePredavaca->id ?? '/'}}" id="1">
-                                                        Ocijenite
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach($instanca->predavaci as $predavac)
+                                        <tr style="text-align:left;">
+                                            <td class="text-center">{{$i++}}</td>
+                                            <td>
+                                                <a href="{{route('ocjene-predavaca', ['id' => $predavac->predavac_id ?? ''])}}">
+                                                    {{$predavac->imePredavaca->ime ?? ''}} {{$predavac->imePredavaca->prezime ?? ''}}
+                                                </a>
+                                            </td>
+                                            <td>{{$predavac->imePredavaca->mail}}</td>
+                                            <td class="text-center">{{$predavac->ocjena ?? 'Nije ocijenjen/a !'}}</td>
+                                            <td class="text-center">
+                                                <a href="###" class="btn my-button" data-toggle="modal" data-target="#exampleModal" data-whatever="{{$predavac->imePredavaca->id ?? '/'}}" id="1">
+                                                    Ocijenite
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="">
+                            <div class="container_block" >
+                                <table class="table table-condensed table-bordered">
+                                    <thead>
+                                    <tr style="text-align:left;">
+                                        <th class="text-center"width="80px">#</th>
+                                        <th>Ime i prezime</th>
+                                        <th>Organ uprave</th>
+                                        <th>Radno mjesto</th>
+                                        <th class="text-center" width="150px">{{__('Akcije')}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @php $i=1; @endphp
+                                    @foreach($instanca->sluzbenici as $sluzbenik)
+                                        <tr>
+                                            <td class="text-center">{{$i++}}</td>
+                                            <td class="text-left">{{$sluzbenik->sluzbenik->ime_prezime ?? '/'}}</td>
+                                            <td class="text-left">
+                                                {{$sluzbenik->sluzbenik->sluzbenikRel->rm->orgjed->organizacija->organ->naziv ?? '/'}}
+                                            </td>
+                                            <td class="text-left">
+                                                {{$sluzbenik->sluzbenik->sluzbenikRel->rm->naziv_rm ?? '/'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{route('sluzbenik.dodatno', ['id' => $sluzbenik->sluzbenik->id ?? '/'])}}" class="btn my-button">
+                                                    Pregled
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

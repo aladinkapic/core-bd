@@ -12,4 +12,7 @@ class Predavac extends Model{
     public function getFullNameAttribute($value){
         return ucfirst($this->ime) . ' ' . ucfirst($this->prezime);
     }
+    public function instanca(){
+        return $this->hasMany(InstancePredavaci::class, 'predavac_id', 'id');
+    }
 }

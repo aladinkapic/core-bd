@@ -12,4 +12,7 @@ class InstancePredavaci extends Model
     public function imePredavaca(){
         return $this->hasOne(Predavac::class,'id', 'predavac_id');
     }
+    public function instance(){
+        return $this->hasOne(InstanceObuke::class, 'id', 'instanca_id');
+    }
 }
