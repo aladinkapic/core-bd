@@ -14,8 +14,55 @@
 
 
         <div id="steps-window">
+            <div id="msform">
+                <div id="steps-window">
+                    <ul>
+                        <li class="active">
+                            <div class="list_div">
+                                <div class="back_div"></div>
+                                <div class="icon_circle">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <p>{{__('Disciplinska odgovornost')}}</p>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="list_div">
+                                <div class="back_div"></div>
+                                <div class="icon_circle">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <p>{{__('Disciplinska komisija')}}</p>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="list_div">
+                                <div class="back_div"></div>
+                                <div class="icon_circle">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <p>
+                                    {{__('Disciplinska komisija')}}
+                                </p>
 
-        @include('hr.disciplinska_odgovornost.fajlovi.top_menu')
+                                <div class="iconsss">
+                                    <div class="single-icon steps-going-to" goto="{{Route('disciplinska.uredite', ['id' => $disciplinska->id ?? '1'])}}">
+                                        <i class="fas fa-edit"></i>
+                                        <p>Uredite</p>
+                                    </div>
+                                    <div class="single-icon">
+                                        <a href="">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+{{--        @include('hr.disciplinska_odgovornost.fajlovi.top_menu')--}}
 
         <!-- UNOSO DISCIPLINSKE ODGOVORNOSTI -->
             <section class="active">

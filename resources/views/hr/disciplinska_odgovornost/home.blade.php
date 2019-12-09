@@ -62,16 +62,16 @@
                         <td class="text-center">
                             <a href="{{Route('disciplinska.pregledaj', ['id' => $odgovornost->id ?? '1'])}}"
                                title="Pregledajte disciplinsku odgovornost">
-                                <i class="fas fa-eye"></i>
+                                <button class="btn my-button">Pregled</button>
                             </a>
-                            <a href="{{Route('disciplinska.uredite', ['id' => $odgovornost->id ?? '1'])}}" style="margin-left:10px;"
-                               title="Uredite  disciplinsku odgovornost">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="{{ '/hr/disciplinska_odgovornost/obrisi/' . $odgovornost->id ?? '1'}}"
-                               style="margin-left:10px;">
-                                <i class="fa fa-times"></i>
-                            </a>
+{{--                            <a href="{{Route('disciplinska.uredite', ['id' => $odgovornost->id ?? '1'])}}" style="margin-left:10px;"--}}
+{{--                               title="Uredite  disciplinsku odgovornost">--}}
+{{--                                <i class="fas fa-edit"></i>--}}
+{{--                            </a>--}}
+{{--                            <a href="{{ '/hr/disciplinska_odgovornost/obrisi/' . $odgovornost->id ?? '1'}}"--}}
+{{--                               style="margin-left:10px;">--}}
+{{--                                <i class="fa fa-times"></i>--}}
+{{--                            </a>--}}
                         </td>
                     </tr>
                 @endforeach
