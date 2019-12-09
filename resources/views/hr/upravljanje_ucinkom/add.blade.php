@@ -37,7 +37,7 @@
                                                     <select class="js-example-basic-single form-control" name="sluzbenik">
                                                         @foreach($niz_sluzbenika as $key => $value)
                                                             <option value="{{$key}}" @if(isset($ucinak)) @if ($ucinak->sluzbenik == $key) selected @endif  @endif>{{$value}}</option>
-                                                            @endforeach
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -81,8 +81,6 @@
         <div class="buttons" style="text-align:center;">
             <input class="btn btn-primary" form="form123" type="submit" value="Spremite">
         </div>
-
     </div>
-
 @endsection
 
