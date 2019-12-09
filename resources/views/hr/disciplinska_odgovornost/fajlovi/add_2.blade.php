@@ -31,12 +31,21 @@
                             <div class="col">
                                 {!! Form::label('opis_disciplinske_mjere', 'Opis disciplinske mjere : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::textarea('opis_disciplinske_mjere', '', ['class' => 'form-control', 'id' => 'opis_disciplinske_mjere', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'rows' => 4]) !!}
+                                    {!! Form::textarea('opis_disciplinske_mjere', '', ['class' => 'form-control', 'id' => 'opis_disciplinske_mjere', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'style' => 'height:190px;']) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="split_container">
+                        <div class="form-group row">
+                            <div class="col">
+                                {!! Form::label('vrsta_disciplinske', 'Vrsta : ', ['class' => 'control-label']) !!}
+                                <div class="col-lg-12">
+                                    {!! Form::select('vrsta_disciplinske', ['Nije definisano' => 'Odaberite', 'Teža' => 'Teža', 'Lakša' => 'Lakša'], '', ['class' => 'form-control', 'id' => 'vrsta_disciplinske', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'rows' => 4]) !!}
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row steppsss">
                             <div class="col">
                                 {!! Form::label('datum_povrede', 'Datum povrede : ', ['class' => 'control-label']) !!}

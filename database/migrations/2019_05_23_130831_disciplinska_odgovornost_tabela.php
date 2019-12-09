@@ -23,6 +23,7 @@ class DisciplinskaOdgovornostTabela extends Migration
             $table->date('datum_rjesenja_zabrane')->nullable();
             $table->string('broj_rjesenja_zabrane')->nullable();
             $table->date('datum_zavrsetka_zabrane')->nullable();
+            $table->string('vrsta_disciplinske')->nullable();
         });
     }
 

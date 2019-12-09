@@ -10,6 +10,8 @@
 
 @section('content')
     <div class="container">
-        @include('hr.disciplinska_odgovornost.fajlovi.add_2')
+        <div class="card-body hr-activity tab full_container">
+            @include('hr.disciplinska_odgovornost.fajlovi.add_2')
+        </div>
     </div>
 @endsection

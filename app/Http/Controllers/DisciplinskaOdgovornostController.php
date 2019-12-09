@@ -24,6 +24,7 @@ class DisciplinskaOdgovornostController extends Controller{
             'sluzbenik.radnoMjesto.naziv_rm'=>'Radno mjesto',
             'datum_povrede'=>'Datum povrede',
             'opis_povrede'=>'Opis povrede',
+            'vrsta_disciplinske'=>'Vrsta povrede',
             'opis_disciplinske_mjere'=>'Opis disciplinske mjere',
             'broj_rjesenja_zabrane'=>'Broj rješenja zabrane',
             'datum_rjesenja_zabrane'=>'Datum rješenja zabrane',
@@ -50,12 +51,22 @@ class DisciplinskaOdgovornostController extends Controller{
             "broj_rjesenja_zabrane" => 'required',
         ];
 
-
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
         $request = HelpController::formatirajRequest($request);
 
-        $id_disciplinske = DisciplinskaOdgovornost::create($request->except(['_method']))->id;
+        $id_disciplinske = DisciplinskaOdgovornost::create([
+            'sluzbenik_id'  => $request->sluzbenik_id,
+            'datum_povrede' => $request->datum_povrede,
+            'opis_povrede'  => $request->opis_povrede,
+            'opis_disciplinske_mjere' => $request->opis_disciplinske_mjere,
+            'datum_rjesenja_zabrane'  => $request->datum_rjesenja_zabrane,
+            'broj_rjesenja_zabrane'   => $request->broj_rjesenja_zabrane,
+            'datum_zavrsetka_zabrane' => $request->datum_zavrsetka_zabrane,
+            'vrsta_disciplinske'      => $request->vrsta_disciplinske,
+
+        ])->id;
+
 
         /***************************************************************************************************************
          *

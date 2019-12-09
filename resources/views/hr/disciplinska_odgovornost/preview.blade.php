@@ -10,6 +10,8 @@ route('home') => __('Početna stranica'),
 
 @section('content')
 <div class="container">
-    @include('hr.disciplinska_odgovornost.fajlovi.add_3')
+    <div class="card-body hr-activity tab full_container">
+        @include('hr.disciplinska_odgovornost.fajlovi.add_3')
+    </div>
 </div>
 @endsection

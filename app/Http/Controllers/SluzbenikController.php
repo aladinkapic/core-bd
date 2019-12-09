@@ -42,16 +42,17 @@ class SluzbenikController extends Controller
 
     public function dodajSluzbenika()
     {
-        $kategorija = Sifrarnik::dajSifrarnik('kategorija');
-        $nacionalnost = Sifrarnik::dajSifrarnik('nacionalnost');
-        $bracni_status = Sifrarnik::dajSifrarnik('bracni_status');
-        $spol          = Sifrarnik::dajSifrarnik('spolovi');
-        $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
-        $spol = Sifrarnik::dajSifrarnik('spolovi');
-        $domena                 = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
+        $kategorija     = Sifrarnik::dajSifrarnik('kategorija');
+        $nacionalnost   = Sifrarnik::dajSifrarnik('nacionalnost');
+        $bracni_status  = Sifrarnik::dajSifrarnik('bracni_status');
+        $trenutno_radi  = Sifrarnik::dajSifrarnik('trenutno_radi');
+        $spol           = Sifrarnik::dajSifrarnik('spolovi')->prepend('Odaberite pol');
+        $pio            = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
+        $domena         = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
+
         $unos = true;
 
-        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('kategorija', 'nacionalnost', 'bracni_status', 'spol', 'trenutno_radi', 'domena', 'unos'));
+        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('kategorija', 'nacionalnost', 'bracni_status', 'spol', 'trenutno_radi', 'domena', 'unos', 'pio'));
     }
 
     public function urediSluzbenika($id_sluzbenika)
@@ -92,7 +93,7 @@ class SluzbenikController extends Controller
         $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
         $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
         $domena                 = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
-
+        $pio                    = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
         /*
          * eKonkurs popunjavanje dodatnih informacija
          */
@@ -183,7 +184,7 @@ class SluzbenikController extends Controller
         }
 
 
-        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'domena'));
+        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'domena', 'pio'));
     }
 
     public function redirektajNaDodatno($id)

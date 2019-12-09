@@ -53,6 +53,7 @@
                         <td>{{$odgovornost->sluzbenik->radnoMjesto->naziv_rm ?? ''}}</td>
                         <td>{{$odgovornost->datumPovrede() ?? '/'}}</td>
                         <td>{{$odgovornost->opis_povrede ?? '/'}}</td>
+                        <td>{{$odgovornost->vrsta_disciplinske ?? '/'}}</td>
                         <td>{{$odgovornost->opis_disciplinske_mjere ?? '/'}}</td>
                         <td>{{$odgovornost->broj_rjesenja_zabrane ?? '/'}}</td>
                         <td>{{$odgovornost->datumZabrane() ?? '/'}}</td>

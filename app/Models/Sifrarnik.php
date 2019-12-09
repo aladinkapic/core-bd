@@ -50,7 +50,7 @@ class Sifrarnik extends Model{
         array('ekstenzija_domene', 'Domena'),
         array('opisna_probni', 'Opisna ocjena - probni rad'),
         array('opisna_ocjenaaa', 'Opisna ocjena'),
-
+        array('pio', 'Poreska uprava'),
     );
 
     public static function dajKljucneRijeci(){

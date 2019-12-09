@@ -67,15 +67,15 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        @if(!isset($preview))
-                        <div class="form-group row text-left">
+                    @if(!isset($preview))
+                        <div class="form-group row text-center" class="col-12" style=" width:100%; margin-left:0px; margin-top:25px;">
                             <div class="col-lg-12" >
                                 {!! Form::submit(__(isset($suspenzija) ? 'Ažurirajte žalbu' : 'Završite sa unosom'), ['class' => 'btn btn-success', 'style' => 'margin-left:16px;']) !!}
                             </div>
                         </div>
-                        @endif
-                    </div>
+                    @endif
                 </div>
             </section>
         </div>
