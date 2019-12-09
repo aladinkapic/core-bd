@@ -70,7 +70,7 @@
                         </td>
 
                         <td class="text-center akcije">
-                            <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"
+                            <a href="{{route('radnamjesta.pregledaj-mjestooo', ['id' => $radnoMjesto->id ?? '/'])}}"
                                title="Pregledajte radno mjesto">
                                 <button class="btn my-button">Pregled</button>
                             </a>

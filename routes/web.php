@@ -211,6 +211,8 @@ Route::prefix('hr/radna_mjesta')->group(function () {
     Route::post('/spremi_mjesto',                    'RadnaMjestaController@spremiRadnoMjesto');
     Route::get('/pregledaj_radno_mjesto/{id}',       'RadnaMjestaController@pregledajRadnoMjesto')->name('radnamjesta.pregledaj');
     Route::get('/pregledaj_radno_mjesto/{id}/{what}','RadnaMjestaController@pregledajRadnoMjesto')->name('radnamjesta.rjesenje');
+    Route::get('/pregledaj_radno_mjestooo/{id}',     'RadnaMjestaController@pregledajRadnoMjestoooo')->name('radnamjesta.pregledaj-mjestooo');
+
     Route::get('/uredi_radno_mjesto/{id}',           'RadnaMjestaController@urediRadnoMjesto');
     Route::post('/azuriraj_rm',                      'RadnaMjestaController@azurirajRadnoMjesto');
 });

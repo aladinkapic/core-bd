@@ -142,6 +142,31 @@ class RadnaMjestaController extends Controller{
         return view('/hr/radna_mjesta/dodaj_rm', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'what', 'strucna_sprema', 'tip_radnog_mjesta'));
     }
 
+    public function pregledajRadnoMjestoooo($id){
+        $radno_mjesto = RadnoMjesto::where('id', '=', $id)->first();
+        $active = OrganizacionaJedinica::where('id', $radno_mjesto->id_oj)->first()->organizacija->active;
+
+        $sluzbenici = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id' );
+        if($active) $odabrani_sluzbenici = Sluzbenik::where('radno_mjesto', '=', $radno_mjesto->id)->get();
+        else $odabrani_sluzbenici = Sluzbenik::where('radno_mjesto_temp', '=', $radno_mjesto->id)->get();
+
+        $uslovi              = DB::table('radno_mjesto_uslovi')->where('id_rm', '=', $radno_mjesto->id)->get();
+        $organizacija        = Organizacija::find(OrganizacionaJedinica::findOrFail($radno_mjesto->id_oj)->org_id);
+        $kateogrija_radnog   = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
+        $tip_premjestaja     = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
+        $tip_uslova          = Sifrarnik::dajSifrarnik('tip_uslova');
+        $strucna_sprema = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $tip_radnog_mjesta = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+
+
+        $org_jedinice = OrganizacionaJedinica::with('parent') // Organizaciona jedinica
+        ->where('org_id', '=', $organizacija->id)
+            ->orderBy('broj', 'ASC')
+            ->get()->pluck('naziv','id');
+
+        return view('/hr/radna_mjesta/samo-pregled', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta'));
+    }
+
     public function azurirajRadnoMjesto(Request $request){
         $active = OrganizacionaJedinica::where('id', $request->id_oj)->first()->organizacija->active;
 
