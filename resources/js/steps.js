@@ -143,3 +143,11 @@ $("section input, section select, section textarea").keyup(function () {
 $("section select").change(function () {
     $(this).css('border', '1px solid #b4b0b0');
 });
+
+
+$( document ).ready(function() {
+    $(".steps-going-to").click(function(){
+        window.location.href = $(this).attr('goto');
+        console.log();
+    });
+});

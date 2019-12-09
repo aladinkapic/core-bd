@@ -23,4 +23,9 @@ class UpravljanjeUcinkom extends Model{
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'kategorija')
             ->where('type', '=', 'kategorija_ocjene');
     }
+
+    public function opisnaOcjena(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'opisna_ocjena')
+            ->where('type', '=', 'opisna_ocjenaaa');
+    }
 }

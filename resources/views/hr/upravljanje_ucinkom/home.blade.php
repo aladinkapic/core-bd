@@ -35,6 +35,14 @@
                         <p>{{__('Izvještaji')}}</p>
                     </div>
                 </a>
+                <a href="{{route('probni-rad.pregled')}}">
+                    <div class="small-button small-button-border">
+                        <div class="small-button">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <p>{{__('Probni rad')}}</p>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -66,17 +74,17 @@
                         <td>{{$ucinak -> kategorija_ocjene->name ?? '/'}}</td>
                         <td>{{$ucinak -> godina ?? '/'}}</td>
                         <td>{{$ucinak -> ocjena ?? '/'}}</td>
-                        <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
+                        <td>{{$ucinak -> opisnaOcjena -> name ?? '/'}}</td>
                         <td class="text-center">
                             <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id ?? '1'}}">
-                                <i class="fa fa-eye"></i>
+                                <button class="btn my-button">Pregled</button>
                             </a>
-                            <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="/hr/upravljanje_ucinkom/delete/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">
-                                <i class="fas fa-times"></i>
-                            </a>
+{{--                            <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">--}}
+{{--                                <i class="fas fa-edit"></i>--}}
+{{--                            </a>--}}
+{{--                            <a href="/hr/upravljanje_ucinkom/delete/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">--}}
+{{--                                <i class="fas fa-times"></i>--}}
+{{--                            </a>--}}
                         </td>
                     </tr>
                 @endforeach

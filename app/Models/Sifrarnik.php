@@ -48,6 +48,8 @@ class Sifrarnik extends Model{
         array('kategorija_ispita', 'Kategorija ispita'),
         array('rukovodeca_pozicija', 'Rukovodeća pozicija'),
         array('ekstenzija_domene', 'Domena'),
+        array('opisna_probni', 'Opisna ocjena - probni rad'),
+        array('opisna_ocjenaaa', 'Opisna ocjena'),
 
     );
 

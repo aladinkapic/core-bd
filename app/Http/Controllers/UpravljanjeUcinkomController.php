@@ -8,12 +8,15 @@ use App\Models\RadnoMjesto;
 use App\Models\Sluzbenik;
 use App\Models\Updates\OrgJedinicaIzvjestaj;
 use App\Models\UpravljanjeUcinkom;
+use App\Models\UpravljanjeUcinkomProbni;
 use Illuminate\Http\Request;
 use App\Models\Sifrarnik;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Session;
 
 class UpravljanjeUcinkomController extends Controller{
     public function index(){
-        $ucinci = UpravljanjeUcinkom::with('usluzbenik')->with('mjesto.rm')->with('kategorija_ocjene');
+        $ucinci = UpravljanjeUcinkom::with('usluzbenik')->with('mjesto.rm')->with('opisnaOcjena')->with('kategorija_ocjene');
         $ucinci = FilterController::filter($ucinci);
 
         $filteri = [
@@ -38,7 +41,7 @@ class UpravljanjeUcinkomController extends Controller{
 
 
         $radna_mjesta = RadnoMjesto::select(['id', 'naziv_rm'])->get();
-        $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene');
+        $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene')->prepend('Odaberite kategoriju', '0');
 
 
         return view('hr/upravljanje_ucinkom/add', compact('niz_sluzbenika', 'radna_mjesta', 'kategorija'));
@@ -48,10 +51,15 @@ class UpravljanjeUcinkomController extends Controller{
         $pravila = [
             'sluzbenik' => 'required',
             'godina' => 'required|min:4|max:4',
-            'ocjena' => 'required',
-            'opisna_ocjena' => 'required|max:255',
-            'kategorija' => 'required'
+            'ocjena' => 'required'
         ];
+
+        if($request->ocjena < 1.5){
+            $request->request->add(['opisna_ocjena' => '1']);
+        }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
+            $request->request->add(['opisna_ocjena' => '2']);
+        }else             $request->request->add(['opisna_ocjena' => '3']);
+
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
 
@@ -71,7 +79,7 @@ class UpravljanjeUcinkomController extends Controller{
     }
 
     public function show($id){
-        $ucinak = UpravljanjeUcinkom::where('id', '=', $id)->first();
+        $ucinak = UpravljanjeUcinkom::where('id', '=', $id)->with('opisnaOcjena')->first();
 
         $radnoMjesto = 'Nema radnog mjesta';
         $sluzbnik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
@@ -199,5 +207,86 @@ class UpravljanjeUcinkomController extends Controller{
         ];
 
         return view('hr.upravljanje_ucinkom.zbirni-izvjestaji', compact('jedinice', 'filteri'));
+    }
+
+
+
+    public function pregledProbnih(){
+        $sviProbni = UpravljanjeUcinkomProbni::with('usluzbenik');
+        $sviProbni = FilterController::filter($sviProbni);
+
+        $filteri = [
+            'usluzbenik.ime_prezime'  => 'Ime i prezime',
+            'godina'  => 'Godina',
+            'prviClan.ime_prezime'    => 'Prvi član',
+            'ocjena_prvi'             => 'Ocjena prvog člana',
+            'drugiClan.ime_prezime'   => 'Drugi član',
+            'ocjena_drugi'            => 'Ocjena drugog člana',
+            'treciClan.ime_prezime'   => 'Treći član',
+            'ocjena_treci'            => 'Ocjena trećeg člana',
+            'opisna_ocjen'            => 'Opisna ocjena',
+        ];
+
+        return view('/hr/upravljanje_ucinkom/probni-rad/home', compact('sviProbni', 'filteri'));
+    }
+    public function dodajProbni(){
+        $sluzbenici = Sluzbenik::get()->sortBy('ime_prezime')->pluck('ime_prezime', 'id')->prepend('Odaberite službenika', '0');
+
+        $radna_mjesta = RadnoMjesto::select(['id', 'naziv_rm'])->get();
+        $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene')->prepend('Odaberite kategoriju', '0');
+
+        return view('/hr/upravljanje_ucinkom/probni-rad/add-new', compact('sluzbenici', 'kategorija'));
+    }
+
+    public function spremiProbni(Request $request){
+
+        $opisna = (round(($request->ocjena_prvi + $request->ocjena_drugi + $request->ocjena_treci) / 3, 2));
+
+        if($opisna > 1.5) $request->request->add(['opisna_ocjena' => '2']);
+        else $request->request->add(['opisna_ocjena' => '1']);
+
+
+        try{
+            $probni = UpravljanjeUcinkomProbni::create(
+                $request->except(['id'])
+            );
+        }catch (\Exception $e){dd($e);}
+
+        return redirect()->route('probni-rad.pregled');
+    }
+
+    public function pregledajProbni($id){
+        $probni = UpravljanjeUcinkomProbni::where('id', $id)->firstOrFail();
+        $preview = true;
+        $sluzbenici = Sluzbenik::get()->sortBy('ime_prezime')->pluck('ime_prezime', 'id')->prepend('Odaberite službenika', '0');
+
+        $radna_mjesta = RadnoMjesto::select(['id', 'naziv_rm'])->get();
+        $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene')->prepend('Odaberite kategoriju', '0');
+
+        return view('/hr/upravljanje_ucinkom/probni-rad/add-new', compact('sluzbenici', 'kategorija', 'probni', 'preview'));
+    }
+    public function urediProbni($id){
+        $probni = UpravljanjeUcinkomProbni::where('id', $id)->firstOrFail();
+        $edit = true;
+        $sluzbenici = Sluzbenik::get()->sortBy('ime_prezime')->pluck('ime_prezime', 'id')->prepend('Odaberite službenika', '0');
+
+        $radna_mjesta = RadnoMjesto::select(['id', 'naziv_rm'])->get();
+        $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene')->prepend('Odaberite kategoriju', '0');
+
+        return view('/hr/upravljanje_ucinkom/probni-rad/add-new', compact('sluzbenici', 'kategorija', 'probni', 'edit'));
+    }
+    public function azurirajProbni(Request $request){
+        $opisna = (round(($request->ocjena_prvi + $request->ocjena_drugi + $request->ocjena_treci) / 3, 2));
+
+        if($opisna > 1.5) $request->request->add(['opisna_ocjena' => '2']);
+        else $request->request->add(['opisna_ocjena' => '1']);
+
+        try{
+            $probni = UpravljanjeUcinkomProbni::where('id', $request->id)->first()->update(
+                $request->except(['_token', 'id'])
+            );
+        }catch (\Exception $e){}
+
+        return redirect()->route('probni-rad.pregled');
     }
 }

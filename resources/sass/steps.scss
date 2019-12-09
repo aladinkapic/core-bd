@@ -64,6 +64,49 @@
                         }
 
                         p{font-weight:bold;}
+
+                        .iconsss{
+                            position:absolute;
+                            right:0px;
+                            bottom:-26px;
+                            width:300px;
+                            height:36px;
+                            display: inline-flex;
+                            justify-content: flex-end;
+                            .single-icon{
+                                position:relative;
+                                height:30px;
+                                background:#4dc7a0;
+                                display: inline-flex;
+                                padding-left:10px;
+                                padding-right:10px;
+                                border-left:1px solid #fff;
+                                i{
+                                    color:#fff;
+                                    font-size:14px;
+                                    margin-top:8px;
+                                }
+                                p{
+                                    margin-left:10px;
+                                    color:#fff;
+                                    padding-top:4px;
+                                }
+                                a{
+                                    display: inline-flex;
+
+                                }
+                            }
+                            .single-icon:hover{cursor:pointer;}
+                            .single-icon:first-child{
+                                border-top-left-radius: 3px;
+                                border-bottom-left-radius: 3px;
+                                border-left:none;
+                            }
+                            .single-icon:last-child{
+                                border-top-right-radius: 3px;
+                                border-bottom-right-radius: 3px;
+                            }
+                        }
                     }
 
                     .tab_div{
@@ -164,4 +207,3 @@
         }
     }
 }
-

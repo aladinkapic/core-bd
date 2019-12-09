@@ -4,7 +4,8 @@
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => 'Početna stranica',
-        '/hr/upravljanje_ucinkom/home' => 'Upravljanje učinkom detaljno',
+        route('upravljanje-ucinkom-pregled') => 'Upravljanje učinkom',
+        route('upravljanje-ucinkom-pregledaj', ['id' => $ucinak->id]) => $sluzbenik ?? '/'
     ]) !!}
 @stop
 
@@ -12,48 +13,99 @@
 @section('content')
 
     <div class="container">
+        <section class="multi_step_form">
+            <div id="msform">
+                <div id="steps-window">
+                    <ul>
+                        <li class="active">
+                            <div class="list_div">
+                                <div class="back_div"></div>
+                                <div class="icon_circle">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <p>
+                                    {{__('Upravljanje učinkom')}}
+                                </p>
 
-        <div class="card ">
-            <div class="card-header ads-darker">
-                <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id ?? '1'}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> {{__('Izmijeni')}}</button></a>
-                <h3>{{__('Upravljanje učinkom')}}</h3>
-            </div>
-            <div class="card-body hr-activity tab">
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-hover">
-                            <tbody>
-                            <tr>
-                                <td><b>{{__('Službenik:')}}</b></td>
-                                <td> {{$sluzbenik ?? '/'}} </td>
-                            </tr>
-                            <tr>
-                                <td><b>{{__('Radno mjesto:')}}</b></td>
-                                <td> {{$radnoMjesto ?? '/'}} </td>
-                            </tr>
-                            <tr>
-                                <td><b>{{__('Godina:')}}</b></td>
-                                <td> {{$ucinak -> godina ?? '/'}} </td>
-                            </tr>
-
-                            <tr>
-                                <td><b>{{__('Ocjena:')}}</b></td>
-                                <td> {{$ucinak -> ocjena ?? '/'}} </td>
-                            </tr>
-                            <tr>
-                                <td><b>{{__('Opisna ocjena:')}}</b></td>
-                                <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><b>{{__('Kategorija:')}}</b></td>
-                                <td>{{$ucinak-> kategorija ?? '/'}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                <div class="iconsss">
+                                    <div class="single-icon steps-going-to" goto="{{route('ucinak.uredite', ['id' => $ucinak->id ?? '/'])}}">
+                                        <i class="fas fa-edit"></i>
+                                        <p>Uredite</p>
+                                    </div>
+                                    <div class="single-icon">
+                                        <a href="{{route('ucinak.obrisi', ['id' => $ucinak -> id ?? '/'])}}">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
+
+
+            <form method="POST" id="formaaa" action="@if(isset($probni)) {{route('probni-rad.azuriraj')}} @else {{route('probni-rad.spremi') }} @endif">
+                @csrf
+
+                @if(isset($probni))
+                    {!! Form::hidden('id', $probni->id) !!}
+                @endif
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Službenik')}}</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('godina', $sluzbenik ?? '/', ['class' => 'form-control', 'rows' => 1, 'id' => 'godina','autocomplete' => 'off',  isset($preview) ? 'readonly' : '']) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Radno mjesto')}}</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('godina', $radnoMjesto ?? '/', ['class' => 'form-control', 'rows' => 1, 'id' => 'godina','autocomplete' => 'off',  isset($preview) ? 'readonly' : '']) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Godina')}}</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('godina', $ucinak -> godina ?? '/', ['class' => 'form-control', 'rows' => 1, 'id' => 'godina','autocomplete' => 'off',  isset($preview) ? 'readonly' : '']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('ocjena_prvi', $ucinak -> ocjena ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_prvi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Opisna ocjena')}}</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('ocjena_drugi', $ucinak -> opisnaOcjena->name ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_drugi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Kategorija')}}</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('ocjena_treci', $ucinak-> kategorija ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_treci', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </section>
     </div>
 @endsection

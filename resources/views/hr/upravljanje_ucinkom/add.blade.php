@@ -10,16 +10,6 @@
 
 @section('content')
     <div class="container">
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div><br />
-        @endif
-            @if(session()->get('error'))
-                <div class="alert alert-danger">
-                    {{ session()->get('error') }}
-                </div><br />
-            @endif
         <section class="multi_step_form">
             <div id="msform">
                 <!-- Tittle -->
@@ -41,7 +31,7 @@
                                     <div class="card">
                                         <div class="card-body">
 
-                                            <div class="form-group row">
+                                            <div class="form-group row" style="height: 38px;">
                                                 <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Službenik')}}</label>
                                                 <div class="col-sm-9">
                                                     <select class="js-example-basic-single form-control" name="sluzbenik">
@@ -58,13 +48,6 @@
                                                 </div>
                                             </div>
                                             @if ($errors ->has('godina'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('godina')}}</p></div>@endif
-                                            <div class="form-group row">
-                                                <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
-                                                <div class="col-sm-9">
-                                                    {!! Form::number('ocjena', isset($ucinak) ? round($ucinak->ocjena) : '', ['class' => 'form-control','step'=>'any','min'=>1,'max'=>3, 'rows' => 1, 'id' => 'ocjena', 'autocomplete' => 'off']) !!}
-                                                </div>
-                                            </div>
-                                            @if ($errors ->has('ocjena'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('ocjena')}}</p></div>@endif
                                         </div>
                                     </div>
 
@@ -73,17 +56,12 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-group row">
-                                                <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Opisna ocjena')}}</label>
+                                                <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
                                                 <div class="col-sm-9">
-                                                    {!! Form::select('opisna_ocjena',[
-                                                    "Ne zadovoljava očekivanja"=>"Ne zadovoljava očekivanja",
-                                                    "Zadovoljava očekivanja"  => "Zadovoljava očekivanja",
-                                                      "Nadmašuje očekivanja" => "Nadmašuje očekivanja"],
-                                                       isset($ucinak) ? $ucinak->opisna_ocjena : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'opisna_ocjena', 'autocomplete' => 'off']) !!}
+                                                    {!! Form::number('ocjena', isset($ucinak) ? round($ucinak->ocjena) : '', ['class' => 'form-control','step'=>'any','min'=>1,'max'=>3, 'rows' => 1, 'id' => 'ocjena', 'autocomplete' => 'off']) !!}
                                                 </div>
                                             </div>
-                                            @if ($errors ->has('opisna_ocjena'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('opisna_ocjena')}}</p></div>@endif
-
+                                            @if ($errors ->has('ocjena'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('ocjena')}}</p></div>@endif
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Kategorija')}}</label>
                                                 <div class="col-sm-9">
@@ -101,7 +79,7 @@
         </section>
         <br>
         <div class="buttons" style="text-align:center;">
-            <input class="btn btn-primary" form="form123" type="submit" value="Spasi">
+            <input class="btn btn-primary" form="form123" type="submit" value="Spremite">
         </div>
 
     </div>

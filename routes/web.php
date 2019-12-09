@@ -689,14 +689,20 @@ Route::prefix('/hr/upravljanje_ucinkom/')->group(function() {
 });
 
 
-//Route::resource('/hr/upravljanje_ucinkom/home', 'UpravljanjeUcinkomController');
-Route::post('/hr/upravljanje_ucinkom/store', 'UpravljanjeUcinkomController@storeUcinci')->name('ucinak.store');
-//Route::get('/hr/upravljanje_ucinkom/viewUcinak/{id}', 'UpravljanjeUcinkomController@show');
-Route::get('/hr/upravljanje_ucinkom/editUcinak/{id}', 'UpravljanjeUcinkomController@edit');
+
+Route::post('/hr/upravljanje_ucinkom/store',             'UpravljanjeUcinkomController@storeUcinci')->name('ucinak.store');
+Route::get('/hr/upravljanje_ucinkom/editUcinak/{id}',    'UpravljanjeUcinkomController@edit')->name('ucinak.uredite');
 Route::post('/hr/upravljanje_ucinkom/updateUcinak/{id}', 'UpravljanjeUcinkomController@update');
-Route::get('/hr/upravljanje_ucinkom/delete/{id}', 'UpravljanjeUcinkomController@destroy');
-Route::get('/hr/upravljanje_ucinkom/add', 'UpravljanjeUcinkomController@create');
-Route::get('/hr/upravljanje_ucinkom/index', 'UpravljanjeUcinkomController@index');
+Route::get('/hr/upravljanje_ucinkom/delete/{id}',        'UpravljanjeUcinkomController@destroy')->name('ucinak.obrisi');
+Route::get('/hr/upravljanje_ucinkom/add',                'UpravljanjeUcinkomController@create');
+Route::get('/hr/upravljanje_ucinkom/index',              'UpravljanjeUcinkomController@index');
+
+Route::get('/hr/upravljanje_ucinkom/pregled-probnih',           'UpravljanjeUcinkomController@pregledProbnih')->name("probni-rad.pregled");
+Route::get('/hr/upravljanje_ucinkom/dodaj-probni',              'UpravljanjeUcinkomController@dodajProbni')->name('probni-rad.dodaj');
+Route::post('/hr/upravljanje_ucinkom/spremi-probni',            'UpravljanjeUcinkomController@spremiProbni')->name('probni-rad.spremi');
+Route::get('/hr/upravljanje_ucinkom/pregledaj-probni/{id}',     'UpravljanjeUcinkomController@pregledajProbni')->name('probni-rad.pregledaaj');
+Route::get('/hr/upravljanje_ucinkom/uredi-probni/{id}',         'UpravljanjeUcinkomController@urediProbni')->name('probni-rad.uredii');
+Route::post('/hr/upravljanje_ucinkom/azuriraj-probni',          'UpravljanjeUcinkomController@azurirajProbni')->name('probni-rad.azuriraj');
 
 
 //Disciplinska odgovornost
