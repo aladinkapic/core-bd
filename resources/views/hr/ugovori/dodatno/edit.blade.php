@@ -4,9 +4,9 @@
 
     <div class="container ">
         @include('hr.ugovori.snippets.menu')
-
-        <div class="row">
-            <div class="col-md-6">
+        <div class="" style="margin-left:20px; width:calc(100% - 46px); padding-left:4px;">
+            <div class="row">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         {{__('Izmjena evidencije o prestanku radnog odnosa')}}
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <button class="btn btn-success">
-                                            <i class="fa fa-plus"></i> {{__('Dodaj')}}
+                                            {{__('Spremite')}}
                                         </button>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
     </div>
 
 

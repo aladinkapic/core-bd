@@ -1,16 +1,33 @@
 @extends('template.main')
+@section('breadcrumbs')
 
+    {!! \App\Http\Controllers\HelpController::breadcrumbs([
+        route('home') => 'Početna stranica',
+        route('ugovor.prestanak.index') => 'Prestanak radnog odnosa',
+    ]) !!}
+
+@stop
 @section('content')
-
     <div class="container ">
-        @include('hr.ugovori.snippets.menu')
+        <div class="" style="margin-left:20px; width:calc(100% - 46px); padding-left:4px;">
+            <section class="multi_step_form">
+                <div id="msform">
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        {{__('Evidencija o dodatnim djelatnostima')}}
+                    <div class="tittle">
+                        <h2>
+                            {{__('Evidencija o dodatnim djelatnostima')}}
+                        </h2>
+                        <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
+                            zabilježene.')}}</p>
+                        <br />
                     </div>
+
+                </div>
+            </section>
+
+            <div class="row">
+            <div class="col-md-12">
+                <div class="card">
                     <div class="card-body">
 
                         @foreach($errors->all() as $error)
@@ -67,8 +84,8 @@
 
                                 </div>
                                 <div class="col-md-7">
-                                    <button class="btn btn-success">
-                                        <i class="fa fa-plus"></i> {{__('Dodaj')}}
+                                    <button class="btn btn-primary">
+                                        {{__('Spremite')}}
                                     </button>
                                 </div>
                             </div>
@@ -76,6 +93,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </div>
