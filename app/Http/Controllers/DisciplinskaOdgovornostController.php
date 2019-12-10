@@ -55,6 +55,14 @@ class DisciplinskaOdgovornostController extends Controller{
         $this->validate($request, $pravila, $poruke);
         $request = HelpController::formatirajRequest($request);
 
+        $date = Carbon::createFromDate($request->datum_rjesenja_zabrane);
+
+        // Ako je teža, završi je nakon 2 godine ;; Ako je lakša onda za  godinu !
+        if($request->vrsta_disciplinske == 'Teža') $what = 2;
+        else $what = 1;
+        $date = ($date->format('Y') + $what).'-'.$date->format('m-d');
+        $request->request->add(['datum_zavrsetka_zabrane' => $date]);
+
         $id_disciplinske = DisciplinskaOdgovornost::create([
             'sluzbenik_id'  => $request->sluzbenik_id,
             'datum_povrede' => $request->datum_povrede,
@@ -163,6 +171,15 @@ class DisciplinskaOdgovornostController extends Controller{
         $this->validate($request, $pravila, $poruke);
         $request = HelpController::formatirajRequest($request);
 //        dd($request->all());
+
+        $date = Carbon::createFromDate($request->datum_rjesenja_zabrane);
+
+        // Ako je teža, završi je nakon 2 godine ;; Ako je lakša onda za  godinu !
+        if($request->vrsta_disciplinske == 'Teža') $what = 2;
+        else $what = 1;
+        $date = ($date->format('Y') + $what).'-'.$date->format('m-d');
+        $request['datum_zavrsetka_zabrane'] = $date;
+
 
         DisciplinskaOdgovornost::where('id', '=', $request->disciplinska_id)->update($request->except([
             '_token',

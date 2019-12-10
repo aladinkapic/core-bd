@@ -36,6 +36,8 @@ Route::prefix('/')->group(function () {
     Route::get('generic_mail',                'HelpController@genericEmails')->name("email.generic");
 
     ROUTE::post('/notifikacije/oznaci_kao_procitano', 'HelpController@oznaciKaoProcitano');
+    Route::get('obavijesti',                          'HelpController@obavijesti')->name('obavijesti');
+
 
     Route::get('feedback', 'FeedbackController@index')->name('feedback.index');
     Route::post('feedback/create', 'FeedbackController@create')->name('feedback.create');

@@ -11,26 +11,25 @@
                         </div>
                         <div class="card-body hr-activity">
                             <div class="row">
-                                <div class="stat-card info-border col-md-3">
+                                <div class="stat-card info-border col-md-3 text-left">
                                     <div class="stat-card-body">
                                         {{$sluzbenika}}
                                     </div>
                                     <span>{{__('Državnih službenika')}}</span>
                                 </div>
-                                <div class="stat-card grey-border col-md-3">
+                                <div class="stat-card grey-border col-md-3 text-left">
                                     <div class="stat-card-body">
                                         {{$broj_obuka}}
                                     </div>
                                     <span>{{__('Otvorenih obuka')}}</span>
                                 </div>
-                                <div class="stat-card success-border col-md-3">
+                                <div class="stat-card success-border col-md-3 text-left">
                                     <div class="stat-card-body">
                                         {{$interno_trzis}}
                                     </div>
                                     <span>{{__('Upražnjenih radnih mjesta')}}</span>
                                 </div>
-                                <div class="stat-card danger-border col-md-3"
-                                     onclick="window.location='/obavijesti/pregled';">
+                                <div class="stat-card danger-border col-md-3 text-left" onclick="window.location='/obavijesti';">
                                     <div class="stat-card-body">
                                         69
                                     </div>
@@ -239,22 +238,9 @@
                 </div>
                 <div class="col-md-4">
                     @foreach($notifications as $notification)
-                        <div class="alert alert-danger my-custom-alert" role="alert"
-                             id="notification-id-{{$notification->sluzbenik->id ?? '1'}}">
-                            {{__('Obavijest : Službenik')}}
-                            <a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime ?? '/'}} {{$notification->sluzbenik->prezime ?? '/'}}</a>
-                            {{json_decode($notification->data, true)['poruka']}}
-
-                            {{--@if(json_decode($notification->data, true)['what'] == 'zasnivanjeRO')--}}
-                            {{----}}
-                            {{--@elseif(json_decode($notification->data, true)['what'] == 'penzionisanje')--}}
-                            {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
-                            {{--stiče pravo na penzionisanje za manje od 8 mjeseci.--}}
-                            {{--@elseif(json_decode($notification->data, true)['what'] == 'starosna_dob')--}}
-                            {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
-                            {{--je upravo napunio 64 godine života. Molimo vas poduzmite određene akcije.--}}
-                            {{--@endif--}}
-
+                        <div class="alert alert-danger my-custom-alert" role="alert" id="notification-id-{{$notification->sluzbenik->id ?? '1'}}">
+                            Službenik <a href="{{route('sluzbenik.dodatno', ['id' => $notification->toWho->id ?? '/'])}}">{{$notification->toWho->ime ?? '/'}} {{$notification->toWho->prezime ?? '/'}}</a>
+                            {{$notification->message ?? '/'}}
                             <div class="oznaci_kao_procitano"
                                  onclick="sakrijNotifikacije('{{$notification->sluzbenik->id ?? '1'}}', '{{$notification->id ?? '1'}}');">
                                 <p>{{__('OZNAČI KAO PROČITANO')}}</p>
@@ -262,27 +248,27 @@
                         </div>
                     @endforeach
 
-                    <div class="alert alert-danger my-custom-alert" role="alert"
-                         id="notification-id-">
-                        {{__('Obavijest : Službenik')}}
-                        <a href="">Aladin Kapić</a>
-                        Ovdje ide tekst notifikacije !
+{{--                    <div class="alert alert-danger my-custom-alert" role="alert"--}}
+{{--                         id="notification-id-">--}}
+{{--                        {{__('Obavijest : Službenik')}}--}}
+{{--                        <a href="">Aladin Kapić</a>--}}
+{{--                        Ovdje ide tekst notifikacije !--}}
 
-                        {{--@if(json_decode($notification->data, true)['what'] == 'zasnivanjeRO')--}}
-                        {{----}}
-                        {{--@elseif(json_decode($notification->data, true)['what'] == 'penzionisanje')--}}
-                        {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
-                        {{--stiče pravo na penzionisanje za manje od 8 mjeseci.--}}
-                        {{--@elseif(json_decode($notification->data, true)['what'] == 'starosna_dob')--}}
-                        {{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
-                        {{--je upravo napunio 64 godine života. Molimo vas poduzmite određene akcije.--}}
-                        {{--@endif--}}
+{{--                        --}}{{--@if(json_decode($notification->data, true)['what'] == 'zasnivanjeRO')--}}
+{{--                        --}}{{----}}
+{{--                        --}}{{--@elseif(json_decode($notification->data, true)['what'] == 'penzionisanje')--}}
+{{--                        --}}{{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
+{{--                        --}}{{--stiče pravo na penzionisanje za manje od 8 mjeseci.--}}
+{{--                        --}}{{--@elseif(json_decode($notification->data, true)['what'] == 'starosna_dob')--}}
+{{--                        --}}{{--<a href="{{Route('sluzbenik.dodatno', ['id' => $notification->sluzbenik->id])}}">{{$notification->sluzbenik->ime}} {{$notification->sluzbenik->prezime}}</a>--}}
+{{--                        --}}{{--je upravo napunio 64 godine života. Molimo vas poduzmite određene akcije.--}}
+{{--                        --}}{{--@endif--}}
 
-                        <div class="oznaci_kao_procitano"
-                             onclick="sakrijNotifikacije('', '');">
-                            <p>{{__('OZNAČI KAO PROČITANO')}}</p>
-                        </div>
-                    </div>
+{{--                        <div class="oznaci_kao_procitano"--}}
+{{--                             onclick="sakrijNotifikacije('', '');">--}}
+{{--                            <p>{{__('OZNAČI KAO PROČITANO')}}</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <example-component></example-component>
 

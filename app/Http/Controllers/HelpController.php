@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Penzionisanje;
+use App\Models\Updates\Notifikacija;
 use Carbon\Carbon;
 use Faker\Provider\Uuid;
 use Illuminate\Http\Request;
@@ -168,8 +169,14 @@ class HelpController extends Controller
 //            ->where('notifications.read_at', '=', null)
 //            ->get();
 
-        $notifications = App\myNotifications::where('notifiable_type', '=', 'App\Models\Sluzbenik')->where('read_at', '=', null)->with('sluzbenik')->get();
+        $user = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
+//        $notifications = App\myNotifications::where('notifiable_id', '=', $user->id)->where('read_at', '=', null)->with('sluzbenik')->get();
 
+        $notifications = Notifikacija::where('sluzbenik_id', $user->id)->where('read_at', null)->with('toWho')->get();
+
+//        dd($notifications);
+
+//        dd($notifications);
 //        foreach ($sluzbeniciRaw as $sluzbenik) {
 //            array_push($sluzbenici, Sluzbenik::where('id', '=', $sluzbenik->id)->first());
 //        }
@@ -237,14 +244,28 @@ class HelpController extends Controller
      *
      ******************************************************************************************************************/
 
+    public function obavijesti(){
+        $user = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
+
+        $obavijesti = Notifikacija::where('sluzbenik_id', $user->id)->with('toWho');
+        $obavijesti = FilterController::filter($obavijesti);
+
+        $filteri = [
+            'toWho.ime_prezime'=>'Ime i prezime',
+            'message' => 'Sadržaj',
+            'read_at' => 'Status'
+        ];
+
+        return view('ostalo.obavijesti.pregled-obavijesti', compact('obavijesti', 'filteri'));
+    }
 
     public function oznaciKaoProcitano(Request $request)
     {
-        $obavijest = Obavijesti::where('id', '=', $request->id);
+        $obavijest = Notifikacija::where('id', '=', $request->id);
         $obavijest->read_at = Carbon::now();
 
         try {
-            Obavijesti::where('id', '=', $request->id)->update(['read_at' => Carbon::now()]);
+            Notifikacija::where('id', '=', $request->id)->update(['read_at' => Carbon::now()]);
 
             return Code::generateCode(App::make('App\Models\Check')->getErrorCode('0000', 'special_message', $request->id));
         } catch (\Exception $e) {

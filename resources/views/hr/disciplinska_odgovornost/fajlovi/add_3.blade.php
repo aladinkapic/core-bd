@@ -101,7 +101,7 @@
                             <div class="col">
                                 {!! Form::label('datum_povrede', 'Datum povrede : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::text('datum_povrede', $disciplinska->datum_povrede, ['class' => 'form-control datepicker', 'id' => 'datum_povrede', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '']) !!}
+                                    {!! Form::text('datum_povrede', $disciplinska->datumPovrede(), ['class' => 'form-control datepicker', 'id' => 'datum_povrede', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '']) !!}
                                 </div>
                             </div>
                             <div class="col">
@@ -129,13 +129,13 @@
                             <div class="col">
                                 {!! Form::label('datum_rjesenja_zabrane', __('Datum rješenja zabrane').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::text('datum_rjesenja_zabrane', $disciplinska->datum_rjesenja_zabrane , ['class' => 'form-control datepicker', 'id' => 'datum_rjesenja_zabrane', isset($preview) ? 'readonly' : '']) !!}
+                                    {!! Form::text('datum_rjesenja_zabrane', $disciplinska->datumZabrane() , ['class' => 'form-control datepicker', 'id' => 'datum_rjesenja_zabrane', isset($preview) ? 'readonly' : '']) !!}
                                 </div>
                             </div>
                             <div class="col">
                                 {!! Form::label('datum_zavrsetka_zabrane', __('Datum završetka zabrane').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::text('datum_zavrsetka_zabrane', $disciplinska->datum_zavrsetka_zabrane , ['class' => 'form-control datepicker', 'id' => 'datum_zavrsetka_zabrane', isset($preview) ? 'readonly' : '']) !!}
+                                    {!! Form::text('datum_zavrsetka_zabrane', $disciplinska->datumZavrsetka() , ['class' => 'form-control datepicker', 'id' => 'datum_zavrsetka_zabrane', isset($preview) ? 'readonly' : '']) !!}
                                 </div>
                             </div>
                         </div>
@@ -145,11 +145,11 @@
 
 
             <!-- Disciplinksa komisija -->
-        @include('hr.disciplinska_odgovornost.fajlovi.komisija')
+            @include('hr.disciplinska_odgovornost.fajlovi.komisija')
 
 
 
-        <!-- Medijatori -->
+            <!-- Medijatori -->
             @include('hr.disciplinska_odgovornost.fajlovi.medijatori')
 
 

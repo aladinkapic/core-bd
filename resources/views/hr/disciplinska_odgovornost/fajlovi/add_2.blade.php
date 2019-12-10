@@ -82,12 +82,12 @@
                                     {!! Form::text('datum_rjesenja_zabrane', '' , ['class' => 'form-control datepicker', 'id' => 'datum_rjesenja_zabrane']) !!}
                                 </div>
                             </div>
-                            <div class="col">
-                                {!! Form::label('datum_zavrsetka_zabrane', __('Datum završetka zabrane').' : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!! Form::text('datum_zavrsetka_zabrane', '' , ['class' => 'form-control datepicker', 'id' => 'datum_zavrsetka_zabrane']) !!}
-                                </div>
-                            </div>
+{{--                            <div class="col">--}}
+{{--                                {!! Form::label('datum_zavrsetka_zabrane', __('Datum završetka zabrane').' : ', ['class' => 'control-label']) !!}--}}
+{{--                                <div class="col-lg-12">--}}
+{{--                                    {!! Form::text('datum_zavrsetka_zabrane', '' , ['class' => 'form-control datepicker', 'id' => 'datum_zavrsetka_zabrane']) !!}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

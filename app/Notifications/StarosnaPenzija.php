@@ -33,13 +33,10 @@ class StarosnaPenzija extends Notification{
     }
 
     public function toArray($notifiable){
-        if($notifiable->getTable() == 'sluzbenici'){
-            return [
-                'what'   => 'starosna_dob',
-                'property_id' => $notifiable->id,
-                'poruka' => 'Službenik '.$notifiable->ime.' '.$notifiable->prezime.' je napunio 64. godine života.',
-            ];
-        }else return [];
-
+        return [
+            'what'   => 'starosna_dob',
+            'property_id' => $notifiable->notifable_id,
+            'poruka' => 'Službenik '.$notifiable->ime_i_prezime.' je napunio 64. godine života.',
+        ];
     }
 }

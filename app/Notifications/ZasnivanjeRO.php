@@ -36,7 +36,7 @@ class ZasnivanjeRO extends Notification{
         if($notifiable->getTable() == 'sluzbenici'){
             return [
                 'what'   => 'zasnivanjeRO',
-                'property_id' => $notifiable->zasnivanjeRO[0]->id,
+                'property_id' => $notifiable->zasnivanjeRORel[0]->id,
                 'poruka' => 'Službenik '.$notifiable->ime.' '.$notifiable->prezime.' je zasnovao radni odnos prije 6 mjeseci.',
             ];
         }else return [];

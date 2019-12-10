@@ -64,9 +64,9 @@ control [readonly] {
 
 /************************************************ My Custom alert options *********************************************/
 .alert-danger{position:relative;}
-.my-custom-alert .oznaci_kao_procitano{position:absolute; left:0px; top:0px; width:100%; height:100%; background:#38c172; opacity:0; transition:all 0.3s;}
-.my-custom-alert:hover .oznaci_kao_procitano{opacity:0.9; cursor:pointer;}
-.my-custom-alert .oznaci_kao_procitano p{position:absolute; right:20px; top:14px; color:#fff; margin:0px; font-weight:bold;}
+.my-custom-alert .oznaci_kao_procitano{position:absolute; right:-1px; bottom:-1px; width:200px; height:30px; background:#38c172; width:0px; overflow:hidden; transition:all 0.3s; border-bottom-right-radius: 4px;}
+.my-custom-alert:hover .oznaci_kao_procitano{width:200px; cursor:pointer;}
+.my-custom-alert .oznaci_kao_procitano p{position:absolute; right:20px; top:6px; color:#fff; margin:0px; font-weight:bold;}
 
 
 /*********************************************** My Custom error handling *********************************************/

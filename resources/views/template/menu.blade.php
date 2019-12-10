@@ -143,6 +143,7 @@
                         @if(\App\Models\Sluzbenik::hasRole('historizacija', $me))
                             <a class="dropdown-item" href="/ostalo/historizacija/home">{{__('Historizacija')}}</a>
                         @endif
+                            <a class="dropdown-item" href="/obavijesti">{{__('Obavijesti')}}</a>
                     </div>
                 </li>
                 <li class="nav-item">

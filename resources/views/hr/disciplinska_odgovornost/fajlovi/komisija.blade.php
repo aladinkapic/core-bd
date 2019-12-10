@@ -11,12 +11,14 @@
                                     {!!  Form::text('sluzbenik_id_kom[]', $clan_kom->sluzbenik->ime.' '.$clan_kom->sluzbenik->prezime ,['class' => 'form-control', 'id' => 'sluzbenik_id_kom', 'readonly']) !!}
                                 </div>
                             </div>
-                            <div class="col">
-                                {!! Form::label('sluzbenik_id_kom_e[]', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!!  Form::text('sluzbenik_id_kom_e[]', $clan_kom->sluzbenik_id_kom_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_kom_e', 'readonly']) !!}
+                            @if(isset($clan_kom->sluzbenik_id_kom_e))
+                                <div class="col">
+                                    {!! Form::label('sluzbenik_id_kom_e[]', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
+                                    <div class="col-lg-12">
+                                        {!!  Form::text('sluzbenik_id_kom_e[]', $clan_kom->sluzbenik_id_kom_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_kom_e', 'readonly']) !!}
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="form-group row">
                             <div class="col">
@@ -25,12 +27,14 @@
                                     {!!  Form::select('oju_kom[]', $organi, $clan_kom->oju_kom ,['class' => 'form-control', 'id' => 'oju_kom', 'disabled' => true]) !!}
                                 </div>
                             </div>
-                            <div class="col">
-                                {!! Form::label('oju_kom_e', 'Institucija : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!!  Form::text('oju_kom_e[]', $clan_kom->oju_kom_e ,['class' => 'form-control', 'id' => 'oju_kom_e', 'readonly']) !!}
+                            @if(isset($clan_kom->oju_kom_e))
+                                <div class="col">
+                                    {!! Form::label('oju_kom_e', 'Institucija : ', ['class' => 'control-label']) !!}
+                                    <div class="col-lg-12">
+                                        {!!  Form::text('oju_kom_e[]', $clan_kom->oju_kom_e ,['class' => 'form-control', 'id' => 'oju_kom_e', 'readonly']) !!}
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
