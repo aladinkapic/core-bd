@@ -29,29 +29,37 @@
         <div class="card-body hr-activity tab full_container">
             <section class="multi_step_form">
                 <form id="msform">
-
                     <div id="steps-window">
                         <ul>
                             <li class="active">
-                                <div class="tab_div">
-                                    <i class="fas fa-briefcase"></i>
+                                <div class="list_div">
+                                    <div class="back_div"></div>
+                                    <div class="icon_circle">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
                                     <p>{{__('Radno mjesto')}}</p>
                                 </div>
                             </li>
                             <li class="">
-                                <div class="tab_div">
-                                    <i class="fas fa-network-wired"></i>
+                                <div class="list_div">
+                                    <div class="back_div"></div>
+                                    <div class="icon_circle">
+                                        <i class="fas fa-network-wired"></i>
+                                    </div>
                                     <p>{{__('Uslovi za radno mjesto')}}</p>
                                 </div>
                             </li>
-                            <li>
-                                <div class="tab_div">
-                                    <i class="fas fa-users"></i>
+                            <li class="">
+                                <div class="list_div">
+                                    <div class="back_div"></div>
+                                    <div class="icon_circle">
+                                        <i class="fas fa-users"></i>
+                                    </div>
                                     <p>{{__('Uposleni na radnom mjestu')}}</p>
                                 </div>
                             </li>
-                        </ul>
 
+                        </ul>
 
                         <section class="active">
                             <div class="container_block">
@@ -169,12 +177,6 @@
                                             <div class="copied_form copied_form2" id="form_for_copy">
                                                 <div class="form-group row">
                                                     <div class="col">
-                                                        {!! Form::label('naziv_rm_inp', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}
-                                                        <div class="col-lg-12">
-                                                            {!! Form::text('', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm_inp', 'readonly']) !!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
                                                         {!! Form::label('tip_inp', 'Tip : ', ['class' => 'control-label']) !!}
                                                         <div class="col-lg-12">
                                                             {!!  Form::select('', $tip_uslova, $uslov->tip ,['class' => 'form-control', 'id' => 'tip_inp', 'disabled' => 'true']) !!}
@@ -209,33 +211,32 @@
 
                         <section class="">
                             <div class="container_block" >
-                                <div class="split_container split_container5" style="padding:0px;">
-                                    <table class="table table-bordered text-left">
-                                        <thead >
+                                <table class="table table-bordered text-left">
+                                    <thead >
+                                    <tr>
+                                        <th scope="col" width="40px;" class="text-center">#</th>
+                                        <th scope="col">{{__('Ime i prezime službenika')}}</th>
+                                        <th scope="col">{{__('Organizaciona jedinica')}}</th>
+                                        <th scope="col" class="text-center" width="140px">{{__('Akcije')}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @php $counter = 1; @endphp
+                                    @foreach($odabrani_sluzbenici as $korisnik)
                                         <tr>
-                                            <th scope="col" width="40px;" class="text-center">#</th>
-                                            <th scope="col">{{__('Ime i prezime službenika')}}</th>
-                                            <th scope="col">{{__('Organizaciona jedinica')}}</th>
-                                            <th scope="col" class="text-center" width="140px">{{__('Akcije')}}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($odabrani_sluzbenici as $korisnik)
-                                            <tr>
-                                                <th scope="row" width="40px;" class="text-center"></th>
-                                                <td> {{$korisnik->ime}} {{$korisnik->prezime}} </td>
-                                                <td> {{$org_jedinice[$radno_mjesto->id_oj]}} </td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('sluzbenik.dodatno', ['id_sluzbenika' => $korisnik->id]) }}">
-                                                        <i class="fa fa-eye" style="margin-right:10px;"></i> {{__('Pregled')}}
-                                                    </a>
+                                            <th scope="row" width="40px;" class="text-center">{{$counter++}}</th>
+                                            <td> {{$korisnik->ime}} {{$korisnik->prezime}} </td>
+                                            <td> {{$org_jedinice[$radno_mjesto->id_oj]}} </td>
+                                            <td class="text-center">
+                                                <a href="{{ route('sluzbenik.dodatno', ['id_sluzbenika' => $korisnik->id]) }}">
+                                                    <i class="fa fa-eye" style="margin-right:10px;"></i> {{__('Pregled')}}
+                                                </a>
 
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
 
                             </div>
                         </section>
@@ -249,10 +250,6 @@
                             <button type="button" class="btn btn-blue" >
                                 {{__('Dalje')}}
                                 <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <button type="submit" class="btn btn-success">
-                                <i class="fab fa-telegram"></i>
-                                {{__('Spremite')}}
                             </button>
                         </div>
 
