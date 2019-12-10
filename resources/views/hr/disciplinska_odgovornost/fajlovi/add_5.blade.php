@@ -52,18 +52,33 @@
                             <div class="col steppsss">
                                 {!! Form::label('datum_udaljenja', __('Datum udaljenja').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::text('datum_udaljenja', isset($suspenzija) ? $suspenzija->datum_udaljenja : '' , ['class' => 'form-control datepicker', 'id' => 'datum_udaljenja', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '',]) !!}
+                                    {!! Form::text('datum_udaljenja', isset($suspenzija) ? $suspenzija->datumUdaljenjaa() : '' , ['class' => 'form-control datepicker', 'id' => 'datum_udaljenja', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '',]) !!}
                                 </div>
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <div class="col">
+                                {!! Form::label('broj_rjesenja_o_povratku', 'Broj rješenja o povratku : ', ['class' => 'control-label']) !!}
+                                <div class="col-lg-12">
+                                    {!! Form::text('broj_rjesenja_o_povratku', isset($suspenzija) ? $suspenzija->broj_rjesenja_o_povratku : '', ['class' => 'form-control', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '', 'rows' => 1, 'maxlength' => 50]) !!}
+                                </div>
+                            </div>
+
+                            <div class="col steppsss">
+                                {!! Form::label('datum_rjesenja_o_povratku', __('Datum rješenja o povratku').' : ', ['class' => 'control-label']) !!}
+                                <div class="col-lg-12">
+                                    {!! Form::text('datum_rjesenja_o_povratku', isset($suspenzija) ? $suspenzija->datumPovratka() : '' , ['class' => 'form-control datepicker', 'id' => 'datum_rjesenja_o_povratku', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '',]) !!}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="split_container">
                         <div class="form-group row">
                             <div class="col">
                                 {!! Form::label('razlog_udaljenja', 'Razlog udaljenja : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::textarea('razlog_udaljenja', isset($suspenzija) ? $suspenzija->razlog_udaljenja : '', ['class' => 'form-control', 'id' => 'razlog_udaljenja', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '', 'rows' => 4, 'maxlength' => 50]) !!}
+                                    {!! Form::textarea('razlog_udaljenja', isset($suspenzija) ? $suspenzija->razlog_udaljenja : '', ['class' => 'form-control', 'id' => 'razlog_udaljenja', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '', 'style' => 'height:196px;', 'maxlength' => 50]) !!}
                                 </div>
                             </div>
                         </div>

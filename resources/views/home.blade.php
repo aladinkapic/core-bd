@@ -239,7 +239,7 @@
                 <div class="col-md-4">
                     @foreach($notifications as $notification)
                         <div class="alert alert-danger my-custom-alert" role="alert" id="notification-id-{{$notification->sluzbenik->id ?? '1'}}">
-                            Službenik <a href="{{route('sluzbenik.dodatno', ['id' => $notification->toWho->id ?? '/'])}}">{{$notification->toWho->ime ?? '/'}} {{$notification->toWho->prezime ?? '/'}}</a>
+                            <a href="{{route('sluzbenik.dodatno', ['id' => $notification->toWho->id ?? '/'])}}">{{$notification->toWho->ime ?? '/'}} {{$notification->toWho->prezime ?? '/'}}</a>
                             {{$notification->message ?? '/'}}
                             <div class="oznaci_kao_procitano"
                                  onclick="sakrijNotifikacije('{{$notification->sluzbenik->id ?? '1'}}', '{{$notification->id ?? '1'}}');">

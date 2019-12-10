@@ -48,7 +48,7 @@
 
                         <div class="form-group row steppsss">
                             <div class="col">
-                                {!! Form::label('datum_povrede', 'Datum povrede : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('datum_povrede', 'Datum konačnog rješenja : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('datum_povrede', '', ['class' => 'form-control datepicker', 'id' => 'datum_povrede', 'autocomplete' => 'off']) !!}
                                 </div>

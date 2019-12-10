@@ -59,12 +59,32 @@
 
                     <div class="notificaiton_area" id="mjesto_prebivalista_not"> <p id="mjesto_prebivalista_not_v"></p> </div> <!-- obavijest za mjesto_prebivalista -->
 
-                    <div class="single_row">
-                        {!! Form::label('adresa_boravista', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}
-                        <div class="col-lg-12">
-                            {!! Form::text('adresa_boravista', $podatak_o_prebivalistu->adresa_boravista, ['class' => 'form-control read_stuffs', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'readonly', 'autocomplete' => 'off',]) !!}
+
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('adresa_boravista', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('adresa_boravista', $podatak_o_prebivalistu->adresa_boravista, ['class' => 'form-control read_stuffs', 'maxlength' => '100', 'rows' => 1, 'readonly', 'autocomplete' => 'off', 'id' => 'adresa_boravista', 'onkeyup' => 'verifikuj_string("mjesto_prebivalista", "Adresa boravišta ne smije sadržavati brojeve !", "ima_li_brojeva")']) !!}
+                            </div>
+                        </div>
+                        @if(isset($podatak_o_prebivalistu->datum_do))
+
+                        @endif
+                        <div class="single_row">
+                            {!! Form::label('datum_do', __('Datum do').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('datum_do', \App\Http\Controllers\HelpController::obrniDatum($podatak_o_prebivalistu->datum_do), ['class' => 'form-control read_stuffs datepicker', 'maxlength' => '100', 'rows' => 1, 'id' => 'datum_do'.$index_counter++, 'readonly', 'autocomplete' => 'off']) !!}
+                            </div>
                         </div>
                     </div>
+
+
+{{--                    <div class="single_row">--}}
+{{--                        {!! Form::label('', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}--}}
+{{--                        <div class="col-lg-12">--}}
+{{--                            {!! Form::text('adresa_boravista', $podatak_o_prebivalistu->adresa_boravista, ['class' => 'form-control read_stuffs', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'readonly', 'autocomplete' => 'off',]) !!}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <div class="single_row">
                         <div class="col-lg-12">
@@ -99,12 +119,28 @@
 
                 <div class="notificaiton_area" id="mjesto_prebivalista_in_not"> <p id="mjesto_prebivalista_in_not_v"></p> </div> <!-- obavijest za mjesto_prebivalista -->
 
-                <div class="single_row">
-                    {!! Form::label('adresa_boravista', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}
-                    <div class="col-lg-12">
-                        {!! Form::text('adresa_boravista', $value = null, ['class' => 'form-control', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'autocomplete' => 'off']) !!}
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('adresa_boravista', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('adresa_boravista', '', ['class' => 'form-control read_stuffs', 'maxlength' => '100', 'rows' => 1, '', 'autocomplete' => 'off', 'id' => 'adresa_boravista', 'onkeyup' => 'verifikuj_string("mjesto_prebivalista", "Adresa boravišta ne smije sadržavati brojeve !", "ima_li_brojeva")']) !!}
+                        </div>
+                    </div>
+                    <div class="single_row">
+                        {!! Form::label('datum_do', __('Datum do').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('datum_do','', ['class' => 'form-control read_stuffs datepicker', 'maxlength' => '100', 'rows' => 1, 'id' => 'datum_doeeee', 'readonly', 'autocomplete' => 'off']) !!}
+                        </div>
                     </div>
                 </div>
+
+
+{{--                <div class="single_row">--}}
+{{--                    {!! Form::label('adresa_boravista', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}--}}
+{{--                    <div class="col-lg-12">--}}
+{{--                        {!! Form::text('adresa_boravista', $value = null, ['class' => 'form-control', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'autocomplete' => 'off']) !!}--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="single_row">
                     <div class="col-lg-12">

@@ -172,7 +172,7 @@ class HelpController extends Controller
         $user = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
 //        $notifications = App\myNotifications::where('notifiable_id', '=', $user->id)->where('read_at', '=', null)->with('sluzbenik')->get();
 
-        $notifications = Notifikacija::where('sluzbenik_id', $user->id)->where('read_at', null)->with('toWho')->get();
+        $notifications = Notifikacija::where('sluzbenik_id', $user->id)->where('read_at', null)->with('toWho')->orderBy('created_at', 'desc')->get()->take(5);
 
 //        dd($notifications);
 
@@ -247,7 +247,7 @@ class HelpController extends Controller
     public function obavijesti(){
         $user = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
 
-        $obavijesti = Notifikacija::where('sluzbenik_id', $user->id)->with('toWho');
+        $obavijesti = Notifikacija::where('sluzbenik_id', $user->id)->with('toWho')->orderBy('read_at');
         $obavijesti = FilterController::filter($obavijesti);
 
         $filteri = [

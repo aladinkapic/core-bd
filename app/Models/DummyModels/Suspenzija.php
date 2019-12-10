@@ -8,10 +8,7 @@ use Carbon\Carbon;
 class Suspenzija extends Model{
     protected $table = 'suspenzija';
 
-    protected $fillable = [
-        'disciplinska_odgovornost_id', 'broj_rjesenja', 'razlog_udaljenja', 'datum_udaljenja'
-    ];
-
+    protected $guarded = ['id'];
     public function disciplinskaOdgovornost(){
         return $this->belongsTo('App\Models\DisciplinskaOdgovornost', 'disciplinska_odgovornost_id');
     }
@@ -19,5 +16,9 @@ class Suspenzija extends Model{
     public function datumUdaljenjaa(){
         if(!$this->datum_udaljenja) return '';
         return Carbon::parse($this->datum_udaljenja)->format('d.m.Y');
+    }
+    public function datumPovratka(){
+        if(!$this->datum_rjesenja_o_povratku) return '';
+        return Carbon::parse($this->datum_rjesenja_o_povratku)->format('d.m.Y');
     }
 }

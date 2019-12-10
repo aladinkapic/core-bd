@@ -410,22 +410,27 @@ class DisciplinskaOdgovornostController extends Controller{
 
     public function spremiSuspenziju(Request $request){
         try{
+//            dd($request->broj_rjesenja_o_povratku);
             $request = HelpController::formatirajRequest($request);
-            $suspenzija = Suspenzija::create(
-                $request->except('_token')
-            );
+            $suspenzija = Suspenzija::create([
+                'disciplinska_odgovornost_id' => $request->disciplinska_odgovornost_id,
+                'broj_rjesenja' => $request->broj_rjesenja,
+                'razlog_udaljenja' => $request->razlog_udaljenja,
+                'datum_udaljenja' => $request->datum_udaljenja,
+                'broj_rjesenja_o_povratku' => $request->broj_rjesenja_o_povratku,
+                'datum_rjesenja_o_povratku' => $request->datum_rjesenja_o_povratku,
+            ]);
 
             return redirect(Route('suspenzije.pregled'));
-
         }catch(\Exception $e){
-
+            //dd($e);
         }
     }
 
 
     public function pregledajSuspenziju($id){
         $suspenzija = Suspenzija::where('id', '=', $id)->first();
-        $suspenzija['datum_udaljenja'] = HelpController::obrniDatum($suspenzija->datum_ulozene_zalbe);
+//        $suspenzija['datum_udaljenja'] = HelpController::obrniDatum($suspenzija->datum_ulozene_zalbe);
 
 
         $disciplinska = DisciplinskaOdgovornost::all()->pluck('opis_povrede', 'id');

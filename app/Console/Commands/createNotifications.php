@@ -68,8 +68,15 @@ class createNotifications extends Command{
              *
              **********************************************************************************************************/
 
-            $date = new Carbon( $sluzbenik->datum_rodjenja );
-            if((date('Y') - $date->year) >= 64){
+            $date = Carbon::createFromDate( $sluzbenik->datum_rodjenja );
+            $now  = Carbon::now();
+
+            $months = $date->diffInMonths($now);
+            $years_from_month = (int)($months / 12);
+            $months = $months - ($years_from_month * 12);
+            $years  = $date->diffInYears($now);
+
+            if($years >= 64 and $months >= 6){
                 $starosna_dob = false;
 
                 foreach($sluzbenik->notifications as $notification){
@@ -97,7 +104,7 @@ class createNotifications extends Command{
                             'sluzbenik_id' => $user->id,
                             'what' => 'starosna_dob',
                             'to_who' => $sluzbenik->id,
-                            'message' => $sluzbenik->ime.' '.$sluzbenik->prezime.' je napunio 64 godine života !'
+                            'message' => $sluzbenik->ime.' '.$sluzbenik->prezime.' stiče uslove za penzionisanje za menje od 6 mjeseci !'
                         ]);
                     }
                     // $message = 'Obaviještavamo Vas da je službenik '.$sluzbenik->ime.' '.$sluzbenik->prezime.' napunio 64 godine života !';
@@ -111,9 +118,6 @@ class createNotifications extends Command{
 //
 //                    $sluzbenik->notify(new StarosnaPenzija(array(' subject' => 'Obavijest o navršavanju 65 godina života.', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
                 }
-
-
-                dd();
             }
 
             /***********************************************************************************************************
@@ -192,18 +196,37 @@ class createNotifications extends Command{
             ->where('datum_zavrsetka_zabrane', '=', $za15)
             ->get();
 
-        foreach ($odgovornosti as $odgovornost) {
-            $message = "Poštovani ".$odgovornost->sluzbenik->ime.' '.$odgovornost->sluzbenik->prezime."<br><br>";
-            $message .= "Obaviještavamo Vas da vaša disciplinska mjera ističe za 15 dana.<br><br>";
-            $message .= "Za sva ostala pitanja obratite se Vladi Brčko Distrikta koja je zaposlila ove ljude. P.S. Jesam slatki, right ? Vaš email";
+        $sluzbeniciZaNotifikacije = Uloge::where('keyword', 'disciplinska_odg')->get(['sluzbenik_id'])->toArray();
+        $users = Sluzbenik::whereIn('id', $sluzbeniciZaNotifikacije)->get();
 
-            $odgovornost->sluzbenik->notify(new DisciplinskaOdg(array(' subject' => 'Obavijest sa portala', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
+        foreach ($odgovornosti as $odgovornost) {
+            foreach($users as $user){
+                try{
+                    $not = Notifikacija::where('sluzbenik_id', $user->id)
+                        ->where('what', 'disciplinske_odgovornosti')
+                        ->where('to_who', $odgovornost->sluzbenik->id)->firstOrFail();
+                }catch (\Exception $e){
+                    $notifikacija = Notifikacija::create([
+                        'sluzbenik_id' => $user->id,
+                        'what' => 'disciplinske_odgovornosti',
+                        'to_who' => $odgovornost->sluzbenik->id,
+                        'message' => ':: Zabrana za službenika / cu '.$odgovornost->sluzbenik->ime.' '.$odgovornost->sluzbenik->prezime.' na osnovu disciplinskih odgovornosti ističe za 15 dana !'
+                    ]);
+                }
+            }
+
+//            dd($odgovornost);
+//            $message = "Poštovani ".$odgovornost->sluzbenik->ime.' '.$odgovornost->sluzbenik->prezime."<br><br>";
+//            $message .= "Obaviještavamo Vas da vaša disciplinska mjera ističe za 15 dana.<br><br>";
+//            $message .= "Za sva ostala pitanja obratite se Vladi Brčko Distrikta koja je zaposlila ove ljude. P.S. Jesam slatki, right ? Vaš email";
+//
+//            $odgovornost->sluzbenik->notify(new DisciplinskaOdg(array(' subject' => 'Obavijest sa portala', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
         }
     }
 
     public function handle(){
-        $this->penzionisanje();
-        // $this->disciplinskaOdgovornost();
+        //$this->penzionisanje();
+        $this->disciplinskaOdgovornost();
 
     }
 }
