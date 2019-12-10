@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="single_row">
-                            {!! Form::label('naziv_ovog_ispita', __('Naziv ispita').' : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('naziv_ovog_ispita', __('Broj uvjerenja').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!! Form::text('naziv_ovog_ispita', $ispit->naziv_ovog_ispita, ['class' => 'form-control read_stuffs', 'rows' => 1, 'id' => 'PIO', 'autocomplete' => 'off', 'readonly']) !!}
                             </div>
@@ -58,38 +58,24 @@
                     </div>
                     <div class="double_row">
                         <div class="single_row">
-                            {!! Form::label('ispit_za_rad', __('-	Ispit za rad u organima javne uprave ').' : ', ['class' => 'control-label']) !!}
-                            <div class="col-lg-12">
-                                {!! Form::text('ispit_za_rad', $ispit->ispit_za_rad, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'ispit_za_rad', 'autocomplete' => 'off', 'readonly']) !!}
-                            </div>
-                        </div>
-                        <div class="single_row">
-                            {!! Form::label('pravosudni_isp', __('Pravosudni ispit').' : ', ['class' => 'control-label']) !!}
-                            <div class="col-lg-12">
-                                {!! Form::text('pravosudni_isp', $ispit->pravosudni_isp, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'pravosudni_isp', 'autocomplete' => 'off', 'readonly']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="double_row">
-                        <div class="single_row">
-                            {!! Form::label('strucni_isp', __('Stručni ispit').' : ', ['class' => 'control-label']) !!}
-                            <div class="col-lg-12">
-                                {!! Form::text('strucni_isp', $ispit->strucni_isp, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'strucni_isp', 'autocomplete' => 'off', 'readonly']) !!}
-                            </div>
-                        </div>
-                        <div class="single_row">
                             {!! Form::label('nostrifikacija', __('Nostrifikacija').' : ', ['class' => ' control-label'] )  !!}
                             <div class="col-lg-12">
                                 {!!  Form::text('nostrifikacija', $ispit->nostrifikacija,['class' => 'form-control read_stuffs', 'maxlength' => '150', 'id' => 'nostrifikacija', 'readonly', 'autocomplete' => 'off']) !!}
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col">
-                            {!! Form::label('datum_zavrsetka', __('Datum završetka').' : ', ['class' => 'control-label']) !!}
+                        <div class="single_row">
+                            {!! Form::label('datum_zavrsetka', __('Datum polaganja').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!! Form::text('datum_zavrsetka', \App\Http\Controllers\HelpController::obrniDatum($ispit->datum_zavrsetka) , ['class' => 'form-control read_stuffs datepicker', 'id' => 'datum_zavrsetka'.$index_counter++, 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('strucni_isp', __('Napomena').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('strucni_isp', $ispit->strucni_isp , ['class' => 'form-control read_stuffs', 'id' => 'datum_zavrsetka'.$index_counter++, 'autocomplete' => 'off', '', 'rows' => '3', 'style' => '', 'maxlength' => 256]) !!}
                             </div>
                         </div>
                     </div>
@@ -118,46 +104,52 @@
                         </div>
                     </div>
                     <div class="single_row">
-                        {!! Form::label('naziv_ovog_ispita', __('Naziv ispita').' : ', ['class' => 'control-label']) !!}
+                        {!! Form::label('naziv_ovog_ispita', __('Broj uvjerenja').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
                             {!! Form::text('naziv_ovog_ispita', '', ['class' => 'form-control', 'rows' => 1, 'id' => 'PIO', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
                 </div>
+{{--                <div class="double_row">--}}
+{{--                    <div class="single_row">--}}
+{{--                        {!! Form::label('ispit_za_rad', __('Ispit za rad u organima javne uprave ').' : ', ['class' => 'control-label']) !!}--}}
+{{--                        <div class="col-lg-12">--}}
+{{--                            {!! Form::text('ispit_za_rad', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'ispit_za_rad', 'autocomplete' => 'off']) !!}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="single_row">--}}
+{{--                        {!! Form::label('pravosudni_isp', __('Pravosudni ispit').' : ', ['class' => 'control-label']) !!}--}}
+{{--                        <div class="col-lg-12">--}}
+{{--                            {!! Form::text('pravosudni_isp', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'pravosudni_isp', 'autocomplete' => 'off']) !!}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="double_row">
-                    <div class="single_row">
-                        {!! Form::label('ispit_za_rad', __('Ispit za rad u organima javne uprave ').' : ', ['class' => 'control-label']) !!}
-                        <div class="col-lg-12">
-                            {!! Form::text('ispit_za_rad', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'ispit_za_rad', 'autocomplete' => 'off']) !!}
-                        </div>
-                    </div>
-                    <div class="single_row">
-                        {!! Form::label('pravosudni_isp', __('Pravosudni ispit').' : ', ['class' => 'control-label']) !!}
-                        <div class="col-lg-12">
-                            {!! Form::text('pravosudni_isp', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'pravosudni_isp', 'autocomplete' => 'off']) !!}
-                        </div>
-                    </div>
-                </div>
-                <div class="double_row">
-                    <div class="single_row">
-                        {!! Form::label('strucni_isp', __('Stručni ispit').' : ', ['class' => 'control-label']) !!}
-                        <div class="col-lg-12">
-                            {!! Form::text('strucni_isp', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'strucni_isp', 'autocomplete' => 'off']) !!}
-                        </div>
-                    </div>
+{{--                    <div class="single_row">--}}
+{{--                        {!! Form::label('strucni_isp', __('Stručni ispit').' : ', ['class' => 'control-label']) !!}--}}
+{{--                        <div class="col-lg-12">--}}
+{{--                            {!! Form::text('strucni_isp', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'strucni_isp', 'autocomplete' => 'off']) !!}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="single_row">
                         {!! Form::label('nostrifikacija', __('Nostrifikacija').' : ', ['class' => ' control-label'] )  !!}
                         <div class="col-lg-12">
                             {!!  Form::text('nostrifikacija', '' ,['class' => 'form-control', 'maxlength' => '150', 'id' => 'nostrifikacija', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col">
+                    <div class="single_row">
                         {!! Form::label('datum_zavrsetka', __('Datum završetka').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
                             {!! Form::text('datum_zavrsetka', '' , ['class' => 'form-control datepicker', 'id' => 'datum_zavrsetka_neki', 'autocomplete' => 'off']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('strucni_isp', __('Napomena').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('strucni_isp', '', ['class' => 'form-control read_stuffs', 'id' => 'datum_zavrsetka'.$index_counter++, 'autocomplete' => 'off', '', 'rows' => '3', 'style' => '', 'maxlength' => 256]) !!}
                         </div>
                     </div>
                 </div>

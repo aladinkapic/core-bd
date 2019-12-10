@@ -52,6 +52,7 @@ class Sifrarnik extends Model{
         array('opisna_ocjenaaa', 'Opisna ocjena'),
         array('pio', 'Poreska uprava'),
         array('obrazovna_institucija', 'Obrazovna institucija'),
+        array('poslodavac', 'Poslodavac'),
     );
 
     public static function dajKljucneRijeci(){

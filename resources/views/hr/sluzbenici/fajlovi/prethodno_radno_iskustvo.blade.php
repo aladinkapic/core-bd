@@ -47,7 +47,7 @@
                         <div class="single_row">
                             {!! Form::label('poslodavac', __('Poslodavac').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
-                                {!! Form::text('poslodavac', $prethod_r_i_s->poslodavac, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'poslodavac', 'autocomplete' => 'off', 'readonly']) !!}
+                                {!!  Form::select('poslodavac', $poslodavac, $prethod_r_i_s->poslodavac ,['class' => 'form-control', 'id' => 'trenutno_radi']) !!}
                             </div>
                         </div>
                         <div class="single_row">
@@ -198,7 +198,8 @@
                     <div class="single_row">
                         {!! Form::label('poslodavac', __('Poslodavac').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
-                            {!! Form::text('poslodavac', '', ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'poslodavac', 'autocomplete' => 'off']) !!}
+                            {!!  Form::select('poslodavac', $poslodavac, '' ,['class' => 'form-control', 'id' => 'trenutno_radi']) !!}
+{{--                            {!! Form::select('poslodavac', $poslodavac, '', ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'poslodavac', 'autocomplete' => 'off']) !!}--}}
                         </div>
                     </div>
                     <div class="single_row">
