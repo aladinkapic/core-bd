@@ -210,14 +210,14 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col">
-                                        {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}
-                                        <div class="col-lg-12">
-                                            {!! Form::textarea('vrijednost_inp[]', '', ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <div class="col">--}}
+{{--                                        {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
+{{--                                        <div class="col-lg-12">--}}
+{{--                                            {!! Form::textarea('vrijednost_inp[]', '', ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
 
                             <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">

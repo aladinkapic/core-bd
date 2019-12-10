@@ -189,14 +189,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-                                                <div class="col">
-                                                    {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}
-                                                    <div class="col-lg-12">
-                                                        {!! Form::textarea('vrijednost_inp[]', '', ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}
-                                                    </div>
-                                                </div>
-                                            </div>
+{{--                                            <div class="form-group row">--}}
+{{--                                                <div class="col">--}}
+{{--                                                    {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
+{{--                                                    <div class="col-lg-12">--}}
+{{--                                                        {!! Form::textarea('vrijednost_inp[]', '', ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         </div>
 
                                         <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
@@ -235,7 +235,7 @@
                                                         <div class="col">
                                                             {!! Form::label('tip_inp', 'Tip : ', ['class' => 'control-label']) !!}
                                                             <div class="col-lg-12">
-                                                                {!!  Form::select('tip_inp[]', ['1' => 'Prvi tip !?', '2' => 'Drugi tip !?'], $uslov->tip ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
+                                                                {!!  Form::select('tip_inp[]', $tip_uslova, $uslov->tip ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -251,14 +251,14 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group row">
-                                                        <div class="col">
-                                                            {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}
-                                                            <div class="col-lg-12">
-                                                                {!! Form::textarea('vrijednost_inp[]', $uslov->vrijednost, ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}
-                                                            </div>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="form-group row">--}}
+{{--                                                        <div class="col">--}}
+{{--                                                            {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
+{{--                                                            <div class="col-lg-12">--}}
+{{--                                                                {!! Form::textarea('vrijednost_inp[]', $uslov->vrijednost, ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             @endforeach
                                         </div>
