@@ -49,16 +49,14 @@ class SluzbenikController extends Controller
         $spol           = Sifrarnik::dajSifrarnik('spolovi')->prepend('Odaberite pol');
         $pio            = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
         $domena         = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
+        $drzava                 = Sifrarnik::dajSifrarnik('drzava')->prepend('Odaberite državljanstvo');
 
         $unos = true;
 
-        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('kategorija', 'nacionalnost', 'bracni_status', 'spol', 'trenutno_radi', 'domena', 'unos', 'pio'));
+        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('kategorija', 'nacionalnost', 'bracni_status', 'spol', 'trenutno_radi', 'domena', 'unos', 'pio', 'drzava'));
     }
 
-    public function urediSluzbenika($id_sluzbenika)
-    {
-
-
+    public function urediSluzbenika($id_sluzbenika){
         $sluzbenik = Sluzbenik::where('id', '=', $id_sluzbenika)->get()->first();
 
 
@@ -73,7 +71,6 @@ class SluzbenikController extends Controller
         $prethodno_r_iskustvo = App\Models\DummyModels\PrethodnoRI::where('id_sluzbenika', '=', $id_sluzbenika)->get();
         $prestanak_r_o = DB::table('sluzbenik_prestanak_radnog_odnosa')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
         $clanovi_porodice = DB::table('sluzbenik_clanovi_porodice')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
-
 
         if ($sluzbenik->radno_mjesto != null) $radno_mjesto = RadnoMjesto::find($sluzbenik->radno_mjesto)->first()->naziv_rm;
         else $radno_mjesto = 'Nema radnog mjesta';
@@ -94,6 +91,8 @@ class SluzbenikController extends Controller
         $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
         $domena                 = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
         $pio                    = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
+        $drzava                 = Sifrarnik::dajSifrarnik('drzava')->prepend('Odaberite državljanstvo');
+        $obrazovnaInstitucija   = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite obrazovnu instituciju');
         /*
          * eKonkurs popunjavanje dodatnih informacija
          */
@@ -183,8 +182,7 @@ class SluzbenikController extends Controller
 
         }
 
-
-        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'domena', 'pio'));
+        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'domena', 'pio', 'drzava', 'obrazovnaInstitucija'));
     }
 
     public function redirektajNaDodatno($id)
@@ -197,8 +195,7 @@ class SluzbenikController extends Controller
         return redirect('/hr/sluzbenici/uredi_sluzbenika/' . $id);
     }
 
-    public function unesiSliku(Request $request)
-    {
+    public function unesiSliku(Request $request){
         /** Unosimo sliku i spašavamo je u slike/slike_sluzbenika **/
         if ($request->has('sluzbenik_slika')) {
             $file = $request->file('sluzbenik_slika');
@@ -250,15 +247,13 @@ class SluzbenikController extends Controller
      *
      * /******************************************************************************************************************/
 
-    function imaLiIstihUsernameova($username)
-    {
+    function imaLiIstihUsernameova($username){
         if (Sluzbenik::where('korisnicko_ime', '=', $username)->first()) return true;
         return false;
     }
 
 
-    public function spremiUtabelu(Request $request)
-    {
+    public function spremiUtabelu(Request $request){
         $request = HelpController::formatirajRequest($request);
 
         $jmbg = Sluzbenik::where('jmbg', '=', $request->jmbg)->first();
@@ -290,8 +285,7 @@ class SluzbenikController extends Controller
     }
 
 
-    public function azurirajTabelu(Request $request)
-    {
+    public function azurirajTabelu(Request $request){
         $request = HelpController::formatirajRequest($request);
 
         try {
@@ -304,8 +298,7 @@ class SluzbenikController extends Controller
     }
 
 
-    public function spremiSluzbenika(Request $request)
-    {
+    public function spremiSluzbenika(Request $request){
 
         /************************************************************************************************************* /
          *
@@ -324,8 +317,7 @@ class SluzbenikController extends Controller
         }
     }
 
-    public function azurirajSluzbenika(Request $request)
-    {
+    public function azurirajSluzbenika(Request $request){
         if ($response = $this->azurirajTabelu($request)) {
             return Code::generateCode(App::make('App\Models\Check')->getErrorCode('0000', 'special_message', $response));
         } else {
@@ -335,8 +327,7 @@ class SluzbenikController extends Controller
     }
 
 
-    public function dodatno_o_sluzbeniku($id_sluzbenika, $what = null)
-    {
+    public function dodatno_o_sluzbeniku($id_sluzbenika, $what = null){
         $sluzbenik = Sluzbenik::where('id', '=', $id_sluzbenika)->get()->first();
 
         $podaci_o_prebivalistu = DB::table('sluzbenik_podaci_o_prebivalistu')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
@@ -404,30 +395,12 @@ class SluzbenikController extends Controller
         $srodstvo               = Sifrarnik::dajSifrarnik('srodstvo');
         $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
         $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
-
+        $drzava                 = Sifrarnik::dajSifrarnik('drzava')->prepend('Odaberite državljanstvo');
+        $pio                    = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
 
         Session::put('aditional_counter', 0); $pregled = true;
 
-        return view('/hr/sluzbenici/dodatno_o_sluzbeniku', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'organizaciona_jed', 'organ_ju', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita'));
-
-//        $spol = Sifrarnik::dajSifrarnik('spolovi');
-//        $kategorija = Sifrarnik::dajSifrarnik('kategorija');
-//        $nacionalnost = Sifrarnik::dajSifrarnik('nacionalnost');
-//        $bracni_status = Sifrarnik::dajSifrarnik('bracni_status');
-//        $vrsta_vjestine = Sifrarnik::dajSifrarnik('vrsta_vještine');
-//        $nivo_vjestine = Sifrarnik::dajSifrarnik('nivo_vjestine');
-//        $osnov_za_prestanak_rd = Sifrarnik::dajSifrarnik('osnov_za_prestanak_ro');
-//        $radno_vrijeme = Sifrarnik::dajSifrarnik('radno_vrijeme');
-//        $nacin_zasnivanja = Sifrarnik::dajSifrarnik('nacin_zasnivanja_ro');
-//        $vrsta_ro = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
-//        $obracunati_staz = Sifrarnik::dajSifrarnik('obracunati_staz');
-//        $srodstvo = Sifrarnik::dajSifrarnik('srodstvo');
-//
-//        Session::put('aditional_counter', 0);
-//        $pregled = true;
-//
-//        return view('/hr/sluzbenici/dodatno_o_sluzbeniku', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'organizaciona_jed', 'organ_ju', 'godina', 'mjeseci', 'dana', 'srodstvo'));
-
+        return view('/hr/sluzbenici/dodatno_o_sluzbeniku', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'organizaciona_jed', 'organ_ju', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'drzava', 'pio'));
     }
 
 
@@ -438,8 +411,7 @@ class SluzbenikController extends Controller
      *
      * /******************************************************************************************************************/
 
-    public function pregledSluzbenika(Request $request)
-    {
+    public function pregledSluzbenika(Request $request){
         $odsustva = $request->odsustva;
 
         $sluzbenici = Sluzbenik::with('clanoviPorodiceRel')
@@ -515,8 +487,7 @@ class SluzbenikController extends Controller
         return view('hr.sluzbenici.pregled', compact('sluzbenici', 'filteri', 'odsustva'));
     }
 
-    public function ispisSluzbenika($id_sluzbenika)
-    {
+    public function ispisSluzbenika($id_sluzbenika){
         $what = null;
         $sluzbenik = Sluzbenik::where('id', '=', $id_sluzbenika)
             ->with('prebivaliste')
@@ -612,8 +583,7 @@ class SluzbenikController extends Controller
      *
      * /******************************************************************************************************************/
 
-    public function spremiSadrzaj(Request $request)
-    {
+    public function spremiSadrzaj(Request $request){
         $request = HelpController::formatirajRequest($request);
 
         if ($request->tabela == 'sluzbenik_podaci_o_prebivalistu') {

@@ -51,6 +51,7 @@ class Sifrarnik extends Model{
         array('opisna_probni', 'Opisna ocjena - probni rad'),
         array('opisna_ocjenaaa', 'Opisna ocjena'),
         array('pio', 'Poreska uprava'),
+        array('obrazovna_institucija', 'Obrazovna institucija'),
     );
 
     public static function dajKljucneRijeci(){

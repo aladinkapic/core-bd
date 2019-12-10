@@ -68,13 +68,13 @@
         <div class="col">
             {!! Form::label('drzavljanstvo_1', __('Državljanstvo 1').' : ', ['class' => ' control-label'] )  !!}
             <div class="col-lg-12">
-                {!! Form::text('drzavljanstvo_1', isset($sluzbenik) ? $sluzbenik->drzavljanstvo_1 : '', ['class' => 'form-control', 'id' => 'drzavljanstvo_1', 'autocomplete' => 'off', 'readonly']) !!}
+                {!! Form::select('drzavljanstvo_1', $drzava, isset($sluzbenik) ? $sluzbenik->drzavljanstvo_1 : '', ['class' => 'form-control', 'id' => 'drzavljanstvo_1', 'autocomplete' => 'off', 'disabled => true']) !!}
             </div>
         </div>
         <div class="col">
             {!! Form::label('drzavljanstvo_2', __('Državljanstvo 2').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('drzavljanstvo_2', isset($sluzbenik) ? $sluzbenik->drzavljanstvo_2 : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'drzavljanstvo_2', 'autocomplete' => 'off' , 'readonly']) !!}
+                {!! Form::select('drzavljanstvo_2', $drzava, isset($sluzbenik) ? $sluzbenik->drzavljanstvo_2 : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'drzavljanstvo_2', 'autocomplete' => 'off' , 'disabled => true']) !!}
             </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
         <div class="col">
             {!! Form::label('PIO', __('PIO').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('PIO', isset($sluzbenik) ? $sluzbenik->PIO : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'PIO', 'autocomplete' => 'off', 'readonly']) !!}
+                {!! Form::select('PIO', $pio, isset($sluzbenik) ? $sluzbenik->PIO : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'PIO', 'autocomplete' => 'off', 'disabled => true']) !!}
             </div>
         </div>
         <div class="col">

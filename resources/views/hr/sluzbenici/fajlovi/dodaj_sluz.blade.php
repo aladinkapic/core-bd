@@ -97,13 +97,13 @@
         <div class="col">
             {!! Form::label('drzavljanstvo_1', __('Državljanstvo 1').' : ', ['class' => ' control-label'] )  !!}
             <div class="col-lg-12">
-                {!! Form::text('drzavljanstvo_1', isset($sluzbenik) ? $sluzbenik->drzavljanstvo_1 : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'drzavljanstvo_1', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("drzavljanstvo_1", "Državljanstvo ne smije sadržavati brojeve !", "ima_li_brojeva")', 'maxlength' => 100]) !!}
+                {!! Form::select('drzavljanstvo_1', $drzava, isset($sluzbenik) ? $sluzbenik->drzavljanstvo_1 : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'drzavljanstvo_1', 'autocomplete' => 'off']) !!}
             </div>
         </div>
         <div class="col">
             {!! Form::label('drzavljanstvo_2', __('Državljanstvo 2').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('drzavljanstvo_2', isset($sluzbenik) ? $sluzbenik->drzavljanstvo_2 : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'drzavljanstvo_2', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("drzavljanstvo_2", "Državljanstvo ne smije sadržavati brojeve !", "ima_li_brojeva")', 'maxlength' => 100]) !!}
+                {!! Form::select('drzavljanstvo_2', $drzava, isset($sluzbenik) ? $sluzbenik->drzavljanstvo_2 : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'drzavljanstvo_2', 'autocomplete' => 'off']) !!}
             </div>
         </div>
     </div>
