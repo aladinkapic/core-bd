@@ -135,10 +135,10 @@ class Auth extends Controller{
 
     /********************************************** Rad sa ulogama ****************************************************/
     public function pregledUloga(){
-		
+
         $sluzbenici = Sluzbenik::with('radnoMjesto.orgjed.organizacija.organ');
 
-		$sluzbenici = FilterController::filter($sluzbenici);
+        $sluzbenici = FilterController::filter($sluzbenici);
 
         $filteri = ['id' => 'ID',
             'ime_prezime' => 'Ime i prezime',
@@ -150,10 +150,10 @@ class Auth extends Controller{
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
             'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
         ];
-		
-		
-		
-			
+
+
+
+
         $uloge = true;
 
         return view('hr.sluzbenici.pregled-uloga', compact('sluzbenici', 'uloge', 'filteri'));
@@ -217,8 +217,11 @@ class Auth extends Controller{
         }catch (\Exception $e){}
 
         try{
-            $sluzbenik->notify(new createPin(array(' subject' => 'Pristupni podaci', 'from_address' => 'bot@core.bd', 'link' => '', 'message' => 'ovom prilikom Vam dostavljamo korisničko ime i šifru, koje služe kao prvi stepen autentifikacije prilikom pristupanja HRMIS sistemu, koji su dati kao:', 'username' => $username, 'password' => $sifra, 'pin' => $pin, 'send_email' => true, 'button' => 'Prijavite se')));
-        }catch (\Exception $e){}
+            $sluzbenik->notify(new createPin(array(' subject' => 'Pristupni podaci', 'from_address' => 'e-servis@bdcentral.net', 'link' => '', 'message' => 'ovom prilikom Vam dostavljamo korisničko ime i šifru, koje služe kao prvi stepen autentifikacije prilikom pristupanja HRMIS sistemu, koji su dati kao:', 'username' => $username, 'password' => $sifra, 'pin' => $pin, 'send_email' => true, 'button' => 'Prijavite se')));
+        }catch (\Exception $e){
+
+        }
+
 
         return redirect()->route('izvjestaji.dodijeli.ulogu', ['id' => $id]);
     }
