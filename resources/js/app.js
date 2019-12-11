@@ -322,7 +322,7 @@ window.app = new Vue({
                         // loading();
 
                         // console.log(globalData);
-                        loading();
+                        //loading();
 
                         $.ajax({
                             url: link,
@@ -338,16 +338,16 @@ window.app = new Vue({
 
                                 download = response;
 
-                                loading();
+                                //loading();
 
-                                $.notify({
-                                    title: "Da li želite da preuzmete izvještaj?",
-                                    button: 'Confirm'
-                                }, {
-                                    style: 'buttons_style',
-                                    autoHide: 10000,
-                                    clickToHide: false
-                                });
+                                // $.notify({
+                                //     title: "Da li želite da preuzmete izvještaj?",
+                                //     button: 'Confirm'
+                                // }, {
+                                //     style: 'buttons_style',
+                                //     autoHide: 10000,
+                                //     clickToHide: false
+                                // });
                             }
                         });
                     }

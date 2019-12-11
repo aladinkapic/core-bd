@@ -114,7 +114,59 @@
                         </div>
                     </div>
 
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('radno_vrijeme',__('Radno vrijeme').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!!  Form::select('radno_vrijeme', $radno_vrijeme, $zas_r_o_s->radno_vrijeme ,['class' => 'form-control', 'id' => 'radno_vrijeme']) !!}
+                            </div>
+                        </div>
+                        <div class="single_row">
+                            {!! Form::label('opis_poslova', __('Opis poslova').' : ', ['class' => ' control-label'] )  !!}
+                            <div class="col-lg-12">
+                                {!!  Form::text('opis_poslova', $zas_r_o_s->opis_poslova ,['class' => 'form-control read_stuffs', 'id' => 'opis_poslova', 'maxlength' => '100', 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('steceno_radno_iskustvo',__('Stečeno radno iskustvo').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('steceno_radno_iskustvo', $zas_r_o_s->steceno_radno_iskustvo, ['class' => 'form-control read_stuffs', 'id' => 'steceno_radno_iskustvo', 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                        <div class="single_row">
+                            {!! Form::label('staz_osiguranja', __('Staž osiguranja').' : ', ['class' => ' control-label'] )  !!}
+                            <div class="col-lg-12">
+                                {!!  Form::text('staz_osiguranja', $zas_r_o_s->staz_osiguranja ,['class' => 'form-control read_stuffs', 'id' => 'staz_osiguranja', 'maxlength' => '100', 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('dobrovoljno_osiguranje',__('Dobrovoljno osiguranje').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('dobrovoljno_osiguranje', $zas_r_o_s->dobrovoljno_osiguranje, ['class' => 'form-control read_stuffs', 'id' => 'dobrovoljno_osiguranje', 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                        <div class="single_row">
+                            {!! Form::label('penzioni_staz', __('Penzioni staž').' : ', ['class' => ' control-label'] )  !!}
+                            <div class="col-lg-12">
+                                {!!  Form::text('penzioni_staz', $zas_r_o_s->penzioni_staz ,['class' => 'form-control read_stuffs', 'id' => 'penzioni_staz', 'maxlength' => '100', 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="double_row">
+                        <div class="single_row">
+                            {!! Form::label('koeficijent',__('Koeficijent').' : ', ['class' => 'control-label']) !!}
+                            <div class="col-lg-12">
+                                {!! Form::text('koeficijent', $zas_r_o_s->koeficijent, ['class' => 'form-control read_stuffs', 'id' => 'koeficijent', 'autocomplete' => 'off', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="single_row">
                         <div class="col-lg-12">
@@ -202,6 +254,60 @@
                         {!! Form::label('napomena', __('Minuli radni staž').' : ', ['class' => ' control-label'] )  !!}
                         <div class="col-lg-12">
                             {!!  Form::text('minuli_radni_staz', '' ,['class' => 'form-control', 'id' => 'staz', 'maxlength' => '100', 'autocomplete' => 'off']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('radno_vrijeme',__('Radno vrijeme').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!!  Form::select('radno_vrijeme', $radno_vrijeme, ''    ,['class' => 'form-control', 'id' => 'radno_vrijeme']) !!}
+                        </div>
+                    </div>
+                    <div class="single_row">
+                        {!! Form::label('opis_poslova', __('Opis poslova').' : ', ['class' => ' control-label'] )  !!}
+                        <div class="col-lg-12">
+                            {!!  Form::text('opis_poslova', '' ,['class' => 'form-control read_stuffs', 'id' => 'opis_poslova', 'maxlength' => '100', 'autocomplete' => 'off', '']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('steceno_radno_iskustvo',__('Stečeno radno iskustvo').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('steceno_radno_iskustvo', '', ['class' => 'form-control read_stuffs', 'id' => 'steceno_radno_iskustvo', 'autocomplete' => 'off', '']) !!}
+                        </div>
+                    </div>
+                    <div class="single_row">
+                        {!! Form::label('staz_osiguranja', __('Staž osiguranja').' : ', ['class' => ' control-label'] )  !!}
+                        <div class="col-lg-12">
+                            {!!  Form::text('staz_osiguranja', '' ,['class' => 'form-control read_stuffs', 'id' => 'staz_osiguranja', 'maxlength' => '100', 'autocomplete' => 'off', '']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('dobrovoljno_osiguranje',__('Dobrovoljno osiguranje').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('dobrovoljno_osiguranje', '', ['class' => 'form-control read_stuffs', 'id' => 'dobrovoljno_osiguranje', 'autocomplete' => 'off', '']) !!}
+                        </div>
+                    </div>
+                    <div class="single_row">
+                        {!! Form::label('penzioni_staz', __('Penzioni staž').' : ', ['class' => ' control-label'] )  !!}
+                        <div class="col-lg-12">
+                            {!!  Form::text('penzioni_staz', '' ,['class' => 'form-control read_stuffs', 'id' => 'penzioni_staz', 'maxlength' => '100', 'autocomplete' => 'off', '']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double_row">
+                    <div class="single_row">
+                        {!! Form::label('koeficijent',__('Koeficijent').' : ', ['class' => 'control-label']) !!}
+                        <div class="col-lg-12">
+                            {!! Form::text('koeficijent', '', ['class' => 'form-control read_stuffs', 'id' => 'koeficijent', 'autocomplete' => 'off', '']) !!}
                         </div>
                     </div>
                 </div>

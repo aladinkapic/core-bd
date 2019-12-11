@@ -193,6 +193,7 @@ Route::prefix('hr/sluzbenici')->group(function () {
     Route::post('obrisi_sadrzaj',   'SluzbenikController@obrisiSadrzaj');
 
 
+    Route::get('/seedaj',    'SluzbenikController@seedaj')->name('sluzbenik.seedaj');
 
     Route::get('/pick', function () {
         return view('/hr/sluzbenici/datepicker');
@@ -314,6 +315,7 @@ Route::prefix('export')->group(function () {
     Route::post('pdf',                  'ExportController@pdf')      ->name('export.pdf');
     Route::post('word',                 'ExportController@word')     ->name('export.word');
 
+    Route::get('read-pdf/{name}',       'ExportController@readPdf')->name('export.read-pdf');
     Route::post('download',             'ExportController@download') ->name('export.download');
 });
 
@@ -751,7 +753,6 @@ Route::prefix('hr/disciplinska_odgovornost/')->group(function (){
     Route::get('/uredite_suspenzija/{id}',        'DisciplinskaOdgovornostController@urediSuspenziju')    ->name('suspenzije.uredi');
     Route::post('/azuriraj_suspenzija',           'DisciplinskaOdgovornostController@azurirajSuspenziju') ->name('suspenzije.azuriraj');
     Route::get('/obrisite_suspenziju/{id}',       'DisciplinskaOdgovornostController@obrisiSuspenziju')   ->name('suspenzije.obrisi');
-
 
 });
 

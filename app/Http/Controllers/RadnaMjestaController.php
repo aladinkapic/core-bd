@@ -84,6 +84,7 @@ class RadnaMjestaController extends Controller{
             $request['rukovodioc'] = 0;
         }
 
+//        dd($request->all());
 
         try{
             $id = DB::table('radna_mjesta')->insertGetId(
@@ -92,12 +93,11 @@ class RadnaMjestaController extends Controller{
 
             $request->request->add(['id_rm' => $id]);
 
-            for($i=1; $i<count($request->vrijednost_inp); $i++){
+            for($i=1; $i<count($request->tekst_uslova_inp); $i++){
                 DB::table('radno_mjesto_uslovi')->insert([
                     'id_rm' => $request->id_rm,
                     'tip' => $request->tip_inp[$i],
                     'tekst_uslova' => $request->tekst_uslova_inp[$i],
-                    'vrijednost' => $request->vrijednost_inp[$i],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]);
@@ -130,16 +130,16 @@ class RadnaMjestaController extends Controller{
         $kateogrija_radnog   = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
         $tip_premjestaja     = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
         $tip_uslova          = Sifrarnik::dajSifrarnik('tip_uslova');
-        $strucna_sprema = Sifrarnik::dajSifrarnik('strucna_sprema');
-        $tip_radnog_mjesta = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
-
+        $strucna_sprema      = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $benificirani        = Sifrarnik::dajSifrarnik('benificirani')->prepend('Odaberite', '0');
 
         $org_jedinice = OrganizacionaJedinica::with('parent') // Organizaciona jedinica
         ->where('org_id', '=', $organizacija->id)
             ->orderBy('broj', 'ASC')
             ->get()->pluck('naziv','id');
 
-        return view('/hr/radna_mjesta/dodaj_rm', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'what', 'strucna_sprema', 'tip_radnog_mjesta'));
+        return view('/hr/radna_mjesta/dodaj_rm', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'what', 'strucna_sprema', 'tip_radnog_mjesta', 'benificirani'));
     }
 
     public function pregledajRadnoMjestoooo($id){
@@ -262,8 +262,11 @@ class RadnaMjestaController extends Controller{
         $kateogrija_radnog   = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
         $tip_premjestaja     = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
         $tip_uslova          = Sifrarnik::dajSifrarnik('tip_uslova');
-        $strucna_sprema = Sifrarnik::dajSifrarnik('strucna_sprema');
-        $tip_radnog_mjesta = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $strucna_sprema      = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $benificirani        = Sifrarnik::dajSifrarnik('benificirani')->prepend('Odaberite', '0');
+
+
 
         $organizacija        = Organizacija::find(OrganizacionaJedinica::findOrFail($radno_mjesto->id_oj)->org_id);
 
@@ -273,6 +276,6 @@ class RadnaMjestaController extends Controller{
             ->get()->pluck('naziv','id');
 
 
-        return view('/hr/radna_mjesta/uredi_rm', compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'radno_mjesto', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta', 'uposleni'));
+        return view('/hr/radna_mjesta/uredi_rm', compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'radno_mjesto', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta', 'uposleni', 'benificirani'));
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Sluzbenik;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\IOFactory;
 use Illuminate\Support\Facades\Session;
@@ -52,7 +54,7 @@ class ExportController extends Controller{
         }
     }
 
-    public function word(Request $request, $createPDF = null){
+    public function word(Request $request){
         $PHPWord = new \PhpOffice\PhpWord\PhpWord();
         // Every element you want to append to the word document is placed in a section. So you need a section:
         $section = $PHPWord->createSection();
@@ -65,11 +67,15 @@ class ExportController extends Controller{
          *      Kreirajmo header sa određenim stajlom.
          *
          *************************************************************************************************************/
+
         $text = "Pododjeljenje za ljudske resurse Brčko Distrikta.";
         $PHPWord->addFontStyle('headerFont', array('bold'=>true, 'italic'=>false, 'size'=>14));
         $PHPWord->addParagraphStyle('headerParagraph', array('align'=>'center'));
         $section->addText($text, 'headerFont', 'headerParagraph');
         $section->addTextBreak(1);
+
+
+
 
         // You can also putthe appended element to local object an call functions like this:
         //$myTextElement->setBold();
@@ -89,15 +95,20 @@ class ExportController extends Controller{
             'width' => 5000
         );
 
-//        $styleTable = new \PhpOffice\PhpWord\Style\Table;
-//        $styleTable->setBorderColor('333333');
-//        $styleTable->setBorderSize(1);
-////        $styleTable->setUnit(\PhpOffice\PhpWord\Style\Table::WIDTH_PERCENT);
-//        $styleTable->setWidth(100 * 50);
-
 
         $PHPWord->addTableStyle('myTable', $styleTable);
         $table = $section->addTable('myTable');
+        $header=$request->header;
+
+//        dd($header, $request->all());
+
+        $table->addRow();
+        for($z=0; $z<count($header)-1; $z++){
+            if($z == 0) $cellWidth = 400;
+            else $cellWidth = 2000;
+            $cell = $table->addCell();
+            $cell->addText($header[$z]);
+        }
 
         for($i=0; $i<count($data['data']); $i++){
             $table->addRow();
@@ -110,14 +121,6 @@ class ExportController extends Controller{
             }
         }
 
-
-        // Add image elements
-//        $section->addImage(APPPATH . '/images/side/jqxs-l.JPG');
-//        $section->addTextBreak(1);
-        //$section->addImage(APPPATH.'/images/side/jqxs-l.JPG', array('width'=>210, 'height'=>210, 'align'=>'center'));
-        //$section->addTextBreak(1);
-        //$section->addImage(APPPATH.'/images/side/jqxs-l.jpg', array('width'=>100, 'height'=>100, 'align'=>'right'));
-        // At least write the document to webspace:
 
         /**************************************************************************************************************
          *
@@ -147,6 +150,24 @@ class ExportController extends Controller{
 
 
     public function pdf(Request $request){
+        $data = $request->all();
+        $fileName = md5(time());
+        $result   = $request->all()['result'];
+
+//        dd($data);
+
+        $pdf = PDF::loadView('template.dodatni_fajlovi.pdf', compact('data'));
+
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        try{
+
+            \Storage::put('/public/izvjestaji/pdf/'.$fileName.'.pdf', $pdf->output());
+        }catch (\Exception $e){dd($e);}
+
+        return $this->saveToTable($fileName, $result, 'pdf');
+
+        dd($request->all());
+
         $this->pdf_active = true;
         $fileName = $this->word($request);
         $result   = $request->all()['result'];
@@ -162,10 +183,10 @@ class ExportController extends Controller{
         $this->saveToTable($fileName, $result, 'word');
         return $this->saveToTable($fileName, $result, 'pdf');
     }
-
-
-
-
+    public function readPdf($name){
+        $path = storage_path('app/public/izvjestaji/pdf/'.$name);
+        return response()->file($path);
+    }
 
 
     public function excel(Request $request){
@@ -215,7 +236,7 @@ class ExportController extends Controller{
         $this->fontSize('A1', 14);
         $this->excelFile->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
         $this->excelFile->getActiveSheet()->getStyle('A1')->getAlignment()->setWrapText(true);
-        $this->excelFile->getActiveSheet()->mergeCells('A1:'.$this->letters[count($data['header']) - 1].'1');
+        $this->excelFile->getActiveSheet()->mergeCells('A1:'.$this->letters[count($data['header']) - 2].'1');
 
 
         /**************************************************************************************************************
@@ -226,7 +247,7 @@ class ExportController extends Controller{
 
         $this->excelFile->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
 
-        foreach(range('A',$this->letters[count($data['header']) - 1]) as $columnID) {
+        foreach(range('A',$this->letters[count($data['header']) - 2]) as $columnID) {
             $this->excelFile->getActiveSheet()->getColumnDimension($columnID)
                 ->setAutoSize(true);
             $this->excelFile->getActiveSheet()->getStyle($columnID)->getAlignment()->setWrapText(true);
@@ -254,11 +275,6 @@ class ExportController extends Controller{
         return $this->saveToTable($fileName, $result, 'excel');
     }
 
-
-
-
-
-
     public function boldCell($cellName){$this->excelFile->getActiveSheet()->getStyle( $cellName )->getFont()->setBold( true );}
     public function fontSize($cellName, $size){$this->excelFile->getActiveSheet()->getStyle( $cellName )->getFont()->setSize( $size );}
     public function setImage($x_of, $y_of, $width, $height, $url, $cell, $name = null, $description = null){
@@ -285,6 +301,8 @@ class ExportController extends Controller{
 
 
     public function download(Request $request){
+        dd($request->all());
+
         $data     = Izvjestaji::where('id', $request->id)->first();
         $response = array();
         array_push($response, $data->naziv_korisnicki);

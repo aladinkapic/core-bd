@@ -751,9 +751,12 @@ class SluzbenikController extends Controller
      * /******************************************************************************************************************/
 
 
-    public function obrisiSadrzaj(Request $request)
-    {
-        DB::table($request->tabela)->delete($request->id);
+    public function obrisiSadrzaj(Request $request){
+        try{
+            $val = DB::table($request->tabela)->delete($request->id);
+        }catch (\Exception $e){dd($e);}
+
+//        dd($request->all());
         return back()->withInput(['brisanje_dijela' => 'Izbrisali smo nešto :D ']);
     }
 

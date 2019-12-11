@@ -93,7 +93,7 @@
                             <div class="col">
                                 {!! Form::label('opis_rm', 'Opis radnog mjesta : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
-                                    {!! Form::textarea('opis_rm', isset($radno_mjesto) ? $radno_mjesto->opis_rm : '', ['class' => 'form-control', 'rows' => 4, 'id' => 'opis_rm', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '5000']) !!}
+                                    {!! Form::textarea('opis_rm', isset($radno_mjesto) ? $radno_mjesto->opis_rm : '', ['class' => 'form-control', 'style' => 'height:152px; ', 'id' => 'opis_rm', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '5000']) !!}
                                 </div>
                             </div>
                         </div>
@@ -158,6 +158,14 @@
                                 {!! Form::label('tip_pm', 'Tip privremenog premještaja : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::select('tip_pm', $tip_premjestaja, isset($radno_mjesto) ? $radno_mjesto->tip_pm : '' ,['class' => 'form-control', 'id' => 'id_oj', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                {!! Form::label('benificirani_staz', 'Benificirani radni staž : ', ['class' => 'control-label']) !!}
+                                <div class="col-lg-12">
+                                    {!!  Form::select('benificirani_staz', $benificirani, isset($radno_mjesto) ? $radno_mjesto->benificirani_staz : '' ,['class' => 'form-control', 'id' => 'strucna_sprema']) !!}
                                 </div>
                             </div>
                         </div>

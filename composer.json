@@ -9,8 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "ext-json": "*",
         "barryvdh/laravel-debugbar": "^3.2",
-        "barryvdh/laravel-dompdf": "^0.8.4",
+        "barryvdh/laravel-dompdf": "^0.8.5",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "filp/whoops": "^2.3",
@@ -21,8 +22,7 @@
         "laravelcollective/html": "^5.8",
         "marcj/topsort": "^1.1",
         "phpoffice/phpexcel": "dev-master",
-        "phpoffice/phpword": "dev-master",
-        "ext-json": "*"
+        "phpoffice/phpword": "dev-master"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

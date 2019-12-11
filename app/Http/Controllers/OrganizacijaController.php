@@ -214,12 +214,14 @@ class OrganizacijaController extends Controller
 
 
 
-        $organizacija = Organizacija::with('organ')->findOrFail($id);
-        $kateogrija_radnog = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
-        $tip_premjestaja = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
-        $tip_uslova = Sifrarnik::dajSifrarnik('tip_uslova');
-        $strucna_sprema = Sifrarnik::dajSifrarnik('strucna_sprema');
-        $tip_radnog_mjesta = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $organizacija         = Organizacija::with('organ')->findOrFail($id);
+
+        $kateogrija_radnog    = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
+        $tip_premjestaja      = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
+        $tip_uslova           = Sifrarnik::dajSifrarnik('tip_uslova');
+        $strucna_sprema       = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $tip_radnog_mjesta    = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $benificirani         = Sifrarnik::dajSifrarnik('benificirani')->prepend('Odaberite', '0');
 
         $org_jedinice = OrganizacionaJedinica::select(['id', DB::raw('concat(broj, \' \', naziv) as full_name')])
             ->with('parent')
@@ -227,8 +229,7 @@ class OrganizacijaController extends Controller
             ->orderBy('broj', 'ASC')
             ->get()->pluck('full_name', 'id');
 
-        return view('hr.organizacija.radna-mjesta')->with(compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'organizacija', 'org_jedinice', 'radna_mjesta', 'id', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta', 'filteri'));
-
+        return view('hr.organizacija.radna-mjesta')->with(compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'organizacija', 'org_jedinice', 'radna_mjesta', 'id', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta', 'filteri', 'benificirani'));
     }
 
     public function api(Request $request){
