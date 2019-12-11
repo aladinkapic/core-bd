@@ -35,7 +35,7 @@
                         <p>{{__('Dodajte službenika')}}</p>
                     </div>
                 </a>
-                <a href="{{route('sluzbenik.dodaj')}}">
+                <a href="{{route('sluzbenik.zbirni-izvjestaj')}}">
                     <div class="small-button small-button-border">
                         <div class="small-button">
                             <i class="fas fa-chart-area"></i>

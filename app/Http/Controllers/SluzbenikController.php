@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Odsustva;
+use App\Models\Organ;
 use DB;
 
 use function GuzzleHttp\Promise\queue;
@@ -758,6 +759,22 @@ class SluzbenikController extends Controller
 
 //        dd($request->all());
         return back()->withInput(['brisanje_dijela' => 'Izbrisali smo nešto :D ']);
+    }
+
+
+    public function zbirniIZvjestaj(){
+        $organi = Organ::with('organizacija.organizacioneJedinice.radnaMjesta.sluzbeniciRel.sluzbenik');
+
+        $organi = FilterController::filter($organi);
+        // dd($sluzbenici);
+
+        $filteri = [
+            'id' => '#',
+            'naziv' => 'Organ javne uprave',
+            'organizacija.organizacioneJedinice.naziv' => 'Organizaciona jedinica',
+        ];
+
+        return view('hr.sluzbenici.izvjestaji.zbirni');
     }
 
 }

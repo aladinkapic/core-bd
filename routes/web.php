@@ -193,7 +193,7 @@ Route::prefix('hr/sluzbenici')->group(function () {
     Route::post('obrisi_sadrzaj',   'SluzbenikController@obrisiSadrzaj');
 
 
-    Route::get('/seedaj',    'SluzbenikController@seedaj')->name('sluzbenik.seedaj');
+    Route::get('/zbirni-izvjestaj',    'SluzbenikController@zbirniIZvjestaj')->name('sluzbenik.zbirni-izvjestaj');
 
     Route::get('/pick', function () {
         return view('/hr/sluzbenici/datepicker');
