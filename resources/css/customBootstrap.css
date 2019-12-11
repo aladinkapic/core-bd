@@ -108,3 +108,25 @@ td .top-layer{
     border-bottom:1px solid rgba(0,0,0,0.1);
 }
 
+
+.single-form{
+    position:relative;
+    left:0px;
+    with:100%;
+}
+.single-form p{margin-left:20px; padding-top:14px; margin-bottom:14px;}
+
+.izmijenite-sistematizaciju{
+    position:absolute;
+    right:-1px;
+    bottom:0px;
+    height:30px;
+    width:0px;
+    background:#0c85d0;
+    text-align:center;
+    color:#fff;
+    transition:all 0.2s;
+    overflow:hidden;
+    padding-top:5px;
+}
+.single-form:hover .izmijenite-sistematizaciju{width:200px; cursor:pointer;}

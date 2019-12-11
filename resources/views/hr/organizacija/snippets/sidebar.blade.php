@@ -18,6 +18,39 @@
     </ul>
 </div>
 <br />
+
+<div class="card">
+    <div class="card-header">
+        {{__('Izmjene Unutrašnje organizacije')}}
+    </div>
+    <ul class="list-group list-group-flush">
+        @if(!isset($organizacija->brojIzmjena))
+            <div class="single-form">
+                <p>Nije bilo izmjena do sad !</p>
+
+                <a href="{{route('organizacija.izmjena', ['id' => $organizacija->id ?? '/'])}}">
+                    <div class="izmijenite-sistematizaciju">
+                        Zabilježite izmjenu
+                    </div>
+                </a>
+            </div>
+        @else
+            <div class="single-form">
+                <p>Broj izmjena organizacije : {{ $organizacija->brojIzmjena ?? '0' }} !</p>
+
+                @if($organizacija->brojIzmjena < 5)
+                    <a href="{{route('organizacija.izmjena', ['id' => $organizacija->id ?? '/'])}}">
+                        <div class="izmijenite-sistematizaciju">
+                            Zabilježite izmjenu
+                        </div>
+                    </a>
+                @endif
+            </div>
+        @endif
+    </ul>
+</div>
+<br />
+
 <div class="card">
     <div class="card-header">
         {{__('Organ javne uprave')}}

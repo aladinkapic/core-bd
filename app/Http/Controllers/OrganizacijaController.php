@@ -11,9 +11,13 @@ use App\Models\OrganizacionaJedinica;
 use App\Models\Sluzbenik;
 use App\Models\Sifrarnik;
 use App\Models\RadnoMjesto;
+use App\Models\Uloge;
+use App\Models\Updates\Notifikacija;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use PHPUnit\Util\Filter;
 use Validator;
 
@@ -312,5 +316,42 @@ class OrganizacijaController extends Controller
             ->get();
 
         return view('hr.organizacija.shema')->with(compact('org_jedinice', 'organizacija', 'radna_mjesta'));
+    }
+
+
+    public function izmjena($id){
+        $organizacija = Organizacija::where('id', $id)->first();
+
+        if(!$organizacija->brojIzmjena){
+            $broj = 1;
+        }else if($organizacija->brojIzmjena < 5){
+            $broj = ($organizacija->brojIzmjena + 1);
+        }else $broj = 'overflow';
+
+        if($broj != 'overflow'){
+            $organizacija->update([
+                'brojIzmjena' => $broj
+            ]);
+
+
+            $korisnik = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
+
+            $organ = Organ::where('id', $organizacija->oju_id)->first();
+
+            if($broj == 5){
+                $sluzbeniciZaNotifikacije = Uloge::where('keyword', 'unutrasnja_org')->get(['sluzbenik_id'])->toArray();
+                $users = Sluzbenik::whereIn('id', $sluzbeniciZaNotifikacije)->get();
+
+                foreach($users as $user){
+                    $notifikacija = Notifikacija::create([
+                        'sluzbenik_id' => $user->id,
+                        'what' => 'unutrasnja_organizacija',
+                        'to_who' => $korisnik->id,
+                        'message' => ':: Službenik '.$korisnik->ime.' '.$korisnik->prezime.' je izvršio 5-i put izmjenu sistematizacije "'.$organizacija->naziv.'" ( '.$organ->naziv.' )'
+                    ]);
+                }
+            }
+        }
+        return back();
     }
 }
