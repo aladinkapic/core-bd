@@ -771,10 +771,30 @@ class SluzbenikController extends Controller
         $filteri = [
             'id' => '#',
             'naziv' => 'Organ javne uprave',
-            'organizacija.organizacioneJedinice.naziv' => 'Organizaciona jedinica',
+            'pregleeed' => ':: PREGLED ::',
+
+            'muskarci'  => 'Muškaraca',
+            'zene'      => 'Žena',
+
+            'bosnjo'    => 'Bošnjak',
+            'rvat'      => 'Hrvat',
+            'srbin'     => 'Srbin',
+            'ostalii'   => 'Ostali',
+
+            'manje_od_20' => 'manje od 20',
+            'od21do25' => '21 - 25',
+            'od25do30' => '26 - 30',
+            'od30do35' => '31 - 35',
+            'od36do40' => '36 - 40',
+            'od41do45' => '41 - 45',
+            'od46do50' => '46 - 50',
+            'od51do56' => '51 - 55',
+            'od56do60' => '56 - 60',
+            'od61do65' => '61 - 65',
+            'viseod60' => 'više od 60',
         ];
 
-        return view('hr.sluzbenici.izvjestaji.zbirni');
+        return view('hr.sluzbenici.izvjestaji.zbirni', compact('organi', 'filteri'));
     }
 
 }

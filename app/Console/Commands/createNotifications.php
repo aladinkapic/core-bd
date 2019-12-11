@@ -187,6 +187,11 @@ class createNotifications extends Command{
         }
     }
 
+    /*******************************************************************************************************************
+     *
+     *      Obavijesti o disciplinskim odgovornostima
+     *
+     ******************************************************************************************************************/
     public function disciplinskaOdgovornost(){
         $danas = mktime(0,0,0, date('m'), date('d') + 15, date('Y'));
         $za15 = (date('Y-m-d', $danas));
@@ -224,9 +229,33 @@ class createNotifications extends Command{
         }
     }
 
-    public function handle(){
-        //$this->penzionisanje();
-        $this->disciplinskaOdgovornost();
+    /*******************************************************************************************************************
+     *
+     *      Računanje starosti i radnog staža službenika
+     *
+     ******************************************************************************************************************/
 
+    public function starost(){
+        Session::put('_token', 'TxVramwuKWsHgYG6dpRhFUGWrNcndmCpkJPKcXRy');
+
+        $sluzbenici = Sluzbenik::with('prethodnoRIRel')->with('zasnivanjeRORel')->get();
+
+        foreach($sluzbenici as $sluzbenik){
+            try{
+                $rodjenje = Carbon::createFromDate($sluzbenik->datum_rodjenja)->format('Y');
+                $now = Carbon::now()->format('Y');
+
+                $sluzbenik->update([
+                    'godina' => $now-$rodjenje
+                ]);
+
+            }catch (\Exception $e){}
+        }
+    }
+
+    public function handle(){
+//        $this->penzionisanje();
+//        $this->disciplinskaOdgovornost();
+        $this->starost();
     }
 }
