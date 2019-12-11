@@ -254,8 +254,8 @@ class createNotifications extends Command{
     }
 
     public function handle(){
-//        $this->penzionisanje();
-//        $this->disciplinskaOdgovornost();
+        $this->penzionisanje();
+        $this->disciplinskaOdgovornost();
         $this->starost();
     }
 }
