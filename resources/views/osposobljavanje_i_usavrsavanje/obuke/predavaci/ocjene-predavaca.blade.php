@@ -38,21 +38,21 @@
                 <tbody>
                 @php $i=1;  $ocjena = 0; @endphp
                 @foreach($instance as $instanca)
-                    @php $ocjena += ($instanca->ocjena ?? '0'); @endphp
-                    <tr>
-                        <td>{{$i++}}</td>
-                        <td>{{$instanca->instance->obuka->naziv ?? '/'}}</td>
-                        <td>{{$instanca->instance->pocetakObuke() ?? '/'}}</td>
-                        <td>{{$instanca->instance->krajObuke() ?? '/'}}</td>
-                        <td>{{$instanca->ocjena ?? 'Nije ocijenjen'}}</td>
-                        <td class="text-center" title="Pregled predavača">
-                            <a href="">
-                                <button class="btn my-button">Pregled</button>
-                            </a>
-                        </td>
-
-                    </tr>
-
+                    @if(isset($instanca->instance))
+                        @php $ocjena += ($instanca->ocjena ?? '0'); @endphp
+                        <tr>
+                            <td>{{$i++}}</td>
+                            <td>{{$instanca->instance->obuka->naziv ?? '/'}}</td>
+                            <td>{{$instanca->instance->pocetakObuke() ?? '/'}}</td>
+                            <td>{{$instanca->instance->krajObuke() ?? '/'}}</td>
+                            <td>{{$instanca->ocjena ?? 'Nije ocijenjen'}}</td>
+                            <td class="text-center" title="Pregled predavača">
+                                <a href="">
+                                    <button class="btn my-button">Pregled</button>
+                                </a>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
 
                 <tr>
