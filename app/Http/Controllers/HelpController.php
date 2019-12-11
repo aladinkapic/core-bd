@@ -173,6 +173,8 @@ class HelpController extends Controller
 //        $notifications = App\myNotifications::where('notifiable_id', '=', $user->id)->where('read_at', '=', null)->with('sluzbenik')->get();
 
         $notifications = Notifikacija::where('sluzbenik_id', $user->id)->where('read_at', null)->with('toWho')->orderBy('created_at', 'desc')->get()->take(5);
+        $brojNotifikacija = Notifikacija::where('sluzbenik_id', $user->id)->where('read_at', null)->count();
+
 
 //        dd($notifications);
 
@@ -226,7 +228,7 @@ class HelpController extends Controller
         /** Ovo izvršavati u sklopu nekog job-a **/
         //$this->kreirajNotifikacije();
 
-        return view('home', compact('radnih_mjesta', 'sluzbenika', 'obukeNotifikacija', 'broj_obuka', 'interno_trzis', 'notifications'));
+        return view('home', compact('radnih_mjesta', 'sluzbenika', 'obukeNotifikacija', 'broj_obuka', 'interno_trzis', 'notifications', 'brojNotifikacija'));
     }
 
     public function unistiSesije($naziv_sesije)

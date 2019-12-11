@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="stat-card danger-border col-md-3 text-left" onclick="window.location='/obavijesti';">
                                     <div class="stat-card-body">
-                                        69
+                                        {{$brojNotifikacija}}
                                     </div>
                                     <span>{{__('Obavjesti')}}</span>
                                 </div>
