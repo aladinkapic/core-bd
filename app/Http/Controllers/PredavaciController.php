@@ -88,9 +88,7 @@ class PredavaciController extends Controller
 
         return view('/osposobljavanje_i_usavrsavanje/predavaci/add', compact('predavac', 'oblasti', 'selected'));
     }
-    public function update(Request $request, $id)
-    {
-
+    public function update(Request $request, $id){
         $pravila = [
             'ime' => 'required|max:100',
             'prezime' => 'required|max:100',
@@ -102,12 +100,18 @@ class PredavaciController extends Controller
         ];
 
         $poruke = HelpController::getValidationMessages();
-        $this->validate($request, $pravila, $poruke);
+//        $this->validate($request, $pravila, $poruke);
 
-        $u = Predavac::findOrFail($id);
-
-        $u->update($request->all());
-        $predavac = Predavac::findOrFail($id);
+        try{
+            $predavac = Predavac::where('id', $id)->first()->update([
+                'ime' => $request->ime,
+                'prezime' => $request->prezime,
+                'telefon' => $request->telefon,
+                'mail' => $request->mail,
+                'napomena' => $request->napomena,
+                'oblasti_id' => json_encode($request->teme)
+            ]);
+        }catch (\Exception $e){dd($e);}
 
         return redirect()
             ->back()
