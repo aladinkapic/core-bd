@@ -21,7 +21,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{__('Izmjene Unutrašnje organizacije')}}
+        {{__('Broj izmjena ')}}
     </div>
     <ul class="list-group list-group-flush">
         @if(!isset($organizacija->brojIzmjena))
@@ -62,7 +62,7 @@
 <br />
 <div class="card">
     <div class="card-header">
-        {{__('Pravilnik')}}
+        {{__('Preuzmite dokument')}}
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -75,7 +75,7 @@
 <br />
 <div class="card">
     <div class="card-header">
-        {{__('Naziv organizacionog plana')}}
+        {{__('Naziv organizacionog plana / Pravilnika')}}
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">{{ $organizacija->naziv }}</li>

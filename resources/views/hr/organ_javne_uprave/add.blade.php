@@ -10,12 +10,13 @@
 
 @section('content')
     <div class="container">
-        @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div><br />
-        @endif
-                    <section class="multi_step_form">
+        <div class="card-body hr-activity tab full_container">
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div><br />
+            @endif
+            <section class="multi_step_form">
                 <div id="msform">
                     <!-- Tittle -->
                     <div class="tittle">
@@ -27,15 +28,13 @@
                             @endif
                         </h2>
                         <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
-                            zabilježene.')}}</p>
+                        zabilježene.')}}</p>
                         <br />
                     </div>
 
                     <form method="POST" id="form123" action=" {{isset($uprava) ?  '/hr/uprava/updateUprava/'.$uprava->id : route('uprava.store') }}">
                         @csrf
-
                         <div id="steps-window">
-
                             <section class="active">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -71,7 +70,6 @@
                                                 @if ($errors ->has('broj'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('broj')}}</p></div>@endif
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="col-md-6">
                                         <div class="card">
@@ -95,7 +93,7 @@
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Web')}}  </label>
                                                     <div class="col-sm-9">
-                                                            {!!  Form::text('web',  isset($uprava) ? $uprava->web : '' ,['class' => 'form-control',  'id' => 'web','autocomplete' => 'off']) !!}
+                                                        {!!  Form::text('web',  isset($uprava) ? $uprava->web : '' ,['class' => 'form-control',  'id' => 'web','autocomplete' => 'off']) !!}
                                                     </div>
                                                 </div>
                                                 @if ($errors ->has('web'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('web')}}</p></div>@endif
@@ -103,27 +101,26 @@
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Email')}} </label>
                                                     <div class="col-sm-9">
-                                                            {!! Form::text('email', isset($uprava) ? $uprava->email : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'email', 'autocomplete' => 'off']) !!}
+                                                        {!! Form::text('email', isset($uprava) ? $uprava->email : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'email', 'autocomplete' => 'off']) !!}
                                                     </div>
                                                 </div>
                                                 @if ($errors ->has('email'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('email')}}</p></div>@endif
 
                                             </div>
-                                            </div>
                                         </div>
                                     </div>
+                                </div>
                             </section>
                         </div>
                     </form>
                 </div>
-
-                    </section>
+            </section>
             <br>
-                            <div class="buttons" style="text-align:center;">
-                                <input class="btn btn-primary" form="form123" type="submit" value="Spasite upravu">
-                            </div>
 
-                        </div>
-
+            <div class="buttons" style="text-align:center;">
+                <input class="btn btn-primary" form="form123" type="submit" value="Spasite upravu">
+            </div>
+        </div>
+    </div>
 @endsection
 
