@@ -19,17 +19,29 @@
 
 @section('content')
     <div class="container ">
-        <div class="card-body hr-activity tab full_container container_block">
-            <div class="full_container">
-                <div class="card-header ads-darker" style="height:60px;">
-                    @if(!isset($odsustva))
-                        <button onClick="window.location='{{route('sluzbenik.pregled')}}';" class="btn btn-light float-right" ><i class="fa fa-chevron-circle-left"></i> {{__('Nazad na pregled službenika')}} </button>
-                    @endif
-                    <h4 style="position:absolute; margin-top:-6px;">
-                        {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
-                    </h4>
+        <div class="card-body hr-activity tab full_container" style="padding-top:0px; padding-bottom:0px;">
+            <section class="multi_step_form">
+                <div id="msform">
+                    <div id="steps-window">
+                        <ul>
+                            <li class="active">
+                                <div class="list_div">
+                                    <div class="back_div"></div>
+                                    <div class="icon_circle" >
+                                        <i class="fas fa-user" style="padding-top:0px;"></i>
+                                    </div>
+                                    <p>
+                                        {{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </section>
+        </div>
+
+        <div class="card-body hr-activity tab full_container container_block">
             @include('/hr/sluzbenici/fajlovi/osnovne_info')
             <div class="split_container split_container3" style="height:360px;">
                 <a href="{{ route('ispis.sluzbenika', ['id' => $sluzbenik->id]) }}">
