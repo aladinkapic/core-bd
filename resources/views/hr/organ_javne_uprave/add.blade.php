@@ -4,7 +4,7 @@
 {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => __('Početna stranica'),
         '/hr/organ_javne_uprave/home' => __('Organi javne uprave'),
-        '/hr/organ_javne_uprave/add' => __('Novi Organ Javne Uprave'),
+        '/hr/organ_javne_uprave/add' => __('Dodajte - uredite Organ javne uprave'),
     ]) !!}
     @endsection
 
@@ -19,7 +19,13 @@
                 <div id="msform">
                     <!-- Tittle -->
                     <div class="tittle">
-                        <h2>{{__('Novi Organ Javne Uprave')}}</h2>
+                        <h2>
+                            @if(isset($uprava))
+                                {{$uprava->naziv ?? '/'}}
+                            @else
+                                {{__('Novi Organ Javne Uprave')}}
+                            @endif
+                        </h2>
                         <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
                             zabilježene.')}}</p>
                         <br />
