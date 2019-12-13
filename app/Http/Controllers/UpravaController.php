@@ -76,8 +76,9 @@ class UpravaController extends Controller{
      */
     public function show($id)
     {
+        $tipovi = Sifrarnik::dajSifrarnik('tip_javne_uprave');
         $uprava = Uprava::findOrFail($id);
-        return view('/hr/organ_javne_uprave/view', compact('uprava'));
+        return view('/hr/organ_javne_uprave/view', compact('uprava', 'tipovi'));
     }
 
     /**

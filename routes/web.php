@@ -527,9 +527,9 @@ Route::resource('hr/organ_javne_uprave/home', 'UpravaController');
 
 Route::post('/hr/uprava/store',                 'UpravaController@storeUprava')->name('uprava.store');
 Route::get('/hr/uprava/viewUprava/{id}',        'UpravaController@show');
-Route::get('/hr/uprava/editUprava/{id}',        'UpravaController@edit');
+Route::get('/hr/uprava/editUprava/{id}',        'UpravaController@edit')->name('uredite-organe');
 Route::post('/hr/uprava/updateUprava/{id}',     'UpravaController@update');
-Route::get('/hr/uprava/delete/{id}',            'UpravaController@destroy');
+Route::get('/hr/uprava/delete/{id}',            'UpravaController@destroy')->name('obrisite-organe');
 Route::get('/hr/organ_javne_uprave/add',        'UpravaController@create')->name('novi-organ-javne-uprave');
 
 

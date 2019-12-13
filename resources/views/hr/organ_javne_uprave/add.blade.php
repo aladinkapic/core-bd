@@ -107,11 +107,11 @@
                                         </div>
                                     </div>
                             </section>
-                                </div>
-
+                        </div>
                     </form>
                 </div>
-                            </section>
+
+                    </section>
             <br>
                             <div class="buttons" style="text-align:center;">
                                 <input class="btn btn-primary" form="form123" type="submit" value="Spasite upravu">

@@ -54,14 +54,14 @@
                         <td>{{$uprava->web ?? '/'}}</td>
                         <td class="text-center">
                             <a href="/hr/uprava/viewUprava/{{$uprava -> id ?? '1'}}">
-                                <i class="fa fa-eye"></i>
+                                <button class="btn my-button">Pregled</button>
                             </a>
-                            <a href="/hr/uprava/editUprava/{{$uprava -> id ?? '1'}}" style="margin-left:10px;">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="/hr/uprava/delete/{{$uprava -> id ?? '1'}}" style="margin-left:10px;">
-                                <i class="fas fa-times"></i>
-                            </a>
+{{--                            <a href="/hr/uprava/editUprava/{{$uprava -> id ?? '1'}}" style="margin-left:10px;">--}}
+{{--                                <i class="fas fa-edit"></i>--}}
+{{--                            </a>--}}
+{{--                            <a href="/hr/uprava/delete/{{$uprava -> id ?? '1'}}" style="margin-left:10px;">--}}
+{{--                                <i class="fas fa-times"></i>--}}
+{{--                            </a>--}}
                         </td>
                     </tr>
                 @endforeach
