@@ -111,16 +111,27 @@ class UpravljanjeUcinkomController extends Controller{
     public function update(Request $request, $id){
         $pravila = [
             'sluzbenik' => 'required',
-            'godina' => 'required|min:4|max:4',
             'ocjena' => 'required',
-            'opisna_ocjena' => 'required|max:255',
             'kategorija' => 'required'
         ];
 
+//        dd($request->all());
+
         $poruke = HelpController::getValidationMessages();
-        $this->validate($request, $pravila, $poruke);
-        $u = UpravljanjeUcinkom::findOrFail($id);
-        $u->update($request->all());
+//        $this->validate($request, $pravila, $poruke);
+
+        try{
+            $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([
+                'sluzbenik' => $request->sluzbenik,
+                'godina'    => $request->godina,
+                'ocjena'    => $request->ocjena,
+                'kategorija' => $request->kategorija
+            ]);
+//            dd($ucinak);
+        }catch (\Exception $e){dd($e);}
+
+//        $u = UpravljanjeUcinkom::findOrFail($id);
+//        $u->update($request->all());
 
         return redirect()
             ->back()
