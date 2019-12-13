@@ -58,7 +58,7 @@ class UpravljanjeUcinkomController extends Controller{
             $request->request->add(['opisna_ocjena' => '1']);
         }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
             $request->request->add(['opisna_ocjena' => '2']);
-        }else             $request->request->add(['opisna_ocjena' => '3']);
+        }else $request->request->add(['opisna_ocjena' => '3']);
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
@@ -88,11 +88,13 @@ class UpravljanjeUcinkomController extends Controller{
             $radnoMjesto = $sluzbnik->radnoMjesto->naziv_rm;
         }
 
+        $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene');
         $sluzbenik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
         $sluzbenik = $sluzbenik['ime'] . ' ' . $sluzbenik['prezime'];
+        $preview = true;
 
 
-        return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik'));
+        return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik', 'kategorija', 'preview'));
     }
 
     public function edit($id){
@@ -120,12 +122,19 @@ class UpravljanjeUcinkomController extends Controller{
         $poruke = HelpController::getValidationMessages();
 //        $this->validate($request, $pravila, $poruke);
 
+        if($request->ocjena < 1.5){
+            $request->request->add(['opisna_ocjena' => '1']);
+        }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
+            $request->request->add(['opisna_ocjena' => '2']);
+        }else $request->request->add(['opisna_ocjena' => '3']);
+
         try{
             $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([
                 'sluzbenik' => $request->sluzbenik,
                 'godina'    => $request->godina,
                 'ocjena'    => $request->ocjena,
-                'kategorija' => $request->kategorija
+                'kategorija' => $request->kategorija,
+                'opisna_ocjena' => $request->opisna_ocjena
             ]);
 //            dd($ucinak);
         }catch (\Exception $e){dd($e);}

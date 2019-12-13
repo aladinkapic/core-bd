@@ -85,19 +85,19 @@
                                     <div class="form-group row">
                                         <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
                                         <div class="col-sm-9">
-                                            {!! Form::text('ocjena_prvi', $ucinak -> ocjena ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_prvi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                            {!! Form::text('ocjena', $ucinak -> ocjena ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_prvi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Opisna ocjena')}}</label>
                                         <div class="col-sm-9">
-                                            {!! Form::text('ocjena_drugi', $ucinak -> opisnaOcjena->name ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_drugi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                            {!! Form::text('opisnaOcjena', $ucinak -> opisnaOcjena->name ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_drugi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Kategorija')}}</label>
                                         <div class="col-sm-9">
-                                            {!! Form::text('ocjena_treci', $ucinak-> kategorija ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_treci', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                            {!! Form::select('kategorija', $kategorija, $ucinak-> kategorija ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_treci', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'disabled => true' : '', 'step' => '0.01']) !!}
                                         </div>
                                     </div>
 
