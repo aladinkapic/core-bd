@@ -1,5 +1,16 @@
 @extends('template.main')
 
+@section('breadcrumbs')
+
+    {!! \App\Http\Controllers\HelpController::breadcrumbs([
+        route('home') => 'Početna stranica',
+        route('organizacija.index') => 'Organizacioni planovi / Pravilnici',
+        route('organizacija.edit', ['id' => $organizacija->id]) => $organizacija->naziv,
+        route('organizacija.jedinica.edit', ['id' => $org_jedinica->id]) => 'Organizacione jedinice',
+    ]) !!}
+
+@stop
+
 @section('other_js_links')
     <script src="{{ asset('js/organizacija.js') }}"></script>
 @stop

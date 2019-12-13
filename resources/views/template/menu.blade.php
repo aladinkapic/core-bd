@@ -71,8 +71,7 @@
                             <a class="dropdown-item" href="/hr/radna_mjesta/home">{{__('Radna mjesta')}}</a>
                         @endif
                         @if(\App\Models\Sluzbenik::hasRole('unutrasnja_org', $me))
-                            <a class="dropdown-item" href="{{ route('organizacija.index') }}">{{__('Unutrašnja
-                                organizacija')}}</a>
+                            <a class="dropdown-item" href="{{ route('organizacija.index') }}">{{__('Organizacioni planovi / Pravilnici')}}</a>
                         @endif
                         @if(\App\Models\Sluzbenik::hasRole('organ_ju', $me))
                             <a class="dropdown-item" href="/hr/organ_javne_uprave/home">{{__('Organ javne uprave')}}</a>

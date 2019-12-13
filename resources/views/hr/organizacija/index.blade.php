@@ -9,7 +9,7 @@
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => 'Početna stranica',
-        route('organizacija.index') => 'Unutrašnja organizacija',
+        route('organizacija.index') => 'Organizacioni planovi / Pravilnici',
     ]) !!}
 
 @stop
@@ -18,7 +18,7 @@
 
     <div class="container">
         <div class="fine-header">
-            <h4>{{__('Unutrašnja organizacija')}}</h4>
+            <h4>{{__('Organizacioni planovi / Pravilnici')}}</h4>
 
             <div class="buttons">
                 <a href="{{route('home')}}" title="Nazad">
@@ -31,7 +31,7 @@
                         <div class="small-button">
                             <i class="fas fa-plus-square"></i>
                         </div>
-                        <p>{{__('Novi organizacioni plan')}}</p>
+                        <p>{{__('Dodajte')}}</p>
                     </div>
                 </a>
             </div>

@@ -61,7 +61,7 @@
                                         <div class="stat-card-body">
                                             <i class="fas fa-sitemap"></i>
                                         </div>
-                                        <span>{{__('Unutrašnja organizacija')}}</span>
+                                        <span>{{__('Organizacioni planovi / Pravilnici')}}</span>
                                     </a>
                                 @endif
 

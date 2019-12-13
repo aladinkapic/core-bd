@@ -8,7 +8,7 @@
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => 'Početna stranica',
-        route('organizacija.index') => 'Unutrašnja organizacija',
+        route('organizacija.index') => 'Organizacioni planovi / Pravilnici',
         route('organizacija.edit', ['id' => $organizacija->id]) => $organizacija->naziv,
     ]) !!}
 
