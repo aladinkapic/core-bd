@@ -267,7 +267,6 @@ class RadnaMjestaController extends Controller{
         $benificirani        = Sifrarnik::dajSifrarnik('benificirani')->prepend('Odaberite', '0');
 
 
-
         $organizacija        = Organizacija::find(OrganizacionaJedinica::findOrFail($radno_mjesto->id_oj)->org_id);
 
         $org_jedinice = OrganizacionaJedinica::with('parent') // Organizaciona jedinica

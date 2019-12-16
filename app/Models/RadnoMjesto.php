@@ -107,19 +107,33 @@ class RadnoMjesto extends Model
         return $this->hasMany(RadnoMjestoSluzbenik::class, 'radno_mjesto_id', 'id');
     }
 
-    public static function parent($org_jed)
-    {
+    public static function parent($org_jed){
         return RadnoMjesto::where('id_oj', '=', $org_jed)->where('rukovodioc', '=', 1)->first();
     }
 
-    public function rukovodeca_pozicija()
-    {
+    public function rukovodeca_pozicija(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'rukovodioc')->where('type', 'rukovodeca_pozicija');
     }
-
-    public function rukovodioc_s()
-    {
+    public function rukovodioc_s(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'rukovodioc')
             ->where('type', '=', 'rukovodeca_pozicija');
     }
+    public function katgorijaa(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'kategorija_rm')
+            ->where('type', '=', 'kategorija_radnog_mjesta');
+    }
+    public function strucnaSprema(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'strucna_sprema')
+            ->where('type', '=', 'strucna_sprema');
+    }
+    public function tipRadnogMjesta(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'tip_rm')
+            ->where('type', '=', 'tip_radnog_mjesta');
+    }
+    public function tipPrivremenogPremjestaja(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'ip_pm')
+            ->where('type', '=', 'tip_privremenog_premjestaja');
+    }
+
+
 }

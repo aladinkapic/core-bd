@@ -54,12 +54,17 @@
                         <tr>
                             <td scope="row" width="40px;" class="text-center">{{$i++}}</td>
                             <td>{{$rm->orgjed->naziv}}</td>
-                            <td>
-                                {{$rm->naziv_rm ?? '/'}}
-                            </td>
-                            <td>
-                                {{$rm->sifra_rm ?? '/'}}
-                            </td>
+                            <td>{{$rm->naziv_rm ?? '/'}}</td>
+                            <td>{{$rm->sifra_rm ?? '/'}}</td>
+                            <td>{{$rm->katgorijaa->name ?? '/'}}</td>
+                            <td>{{$rm->tipRadnogMjesta->name ?? '/'}}</td>
+                            <td>{{$rm->opis_rm ?? '/'}}</td>
+                            <td>{{$rm->broj_izvrsilaca ?? '/'}}</td>
+                            <td>{{$rm->platni_razred ?? '/'}}</td>
+                            <td>{{$rm->strucnaSprema->name ?? '/'}}</td>
+                            <td>{{$rm->tipPrivremenogPremjestaja->name ?? '/'}}</td>
+
+
                             <td>
                                 <ul>
                                     @foreach($rm->sluzbeniciRel as $sl)

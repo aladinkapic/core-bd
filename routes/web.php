@@ -379,7 +379,8 @@ Route::prefix('organizacija')->group(function () {
     Route::delete('destroy/{id}',   'OrganizacijaController@destroy')->name('organizacija.destroy');
     Route::post('active/{id}',      'OrganizacijaController@active')->name('organizacija.active');
 
-    Route::get('izmjena/{id}',      'OrganizacijaController@izmjena')->name('organizacija.izmjena');
+    Route::get('izmjena/{id}',             'OrganizacijaController@izmjena')->name('organizacija.izmjena');
+    Route::get('izmijenite-org/{id}',      'OrganizacijaController@izmijeniteOrganizaciju')->name('organizacija.izmjene-sistematizacije');
 
 
     /*

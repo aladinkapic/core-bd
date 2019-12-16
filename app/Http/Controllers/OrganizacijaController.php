@@ -26,15 +26,11 @@ use Validator;
 class OrganizacijaController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('role:unutrasnja_org');
     }
 
-    public function sort($data)
-    {
-
-
+    public function sort($data){
         $edges = [];
         $sorted = [];
 
@@ -75,8 +71,7 @@ class OrganizacijaController extends Controller
         return $sorted;
     }
 
-    public function index(Request $request)
-    {
+    public function index(Request $request){
 
         $organizacija = Organizacija::with('organ')->with('aktivan')->orderBy('id', 'DESC');
         $organizacija = FilterController::filter($organizacija);
@@ -93,8 +88,7 @@ class OrganizacijaController extends Controller
 
     }
 
-    public function edit(Request $request, $id)
-    {
+    public function edit(Request $request, $id){
 
         $organizacija = Organizacija::with('organ')->findOrFail($id);
 
@@ -115,11 +109,16 @@ class OrganizacijaController extends Controller
 
     }
 
-    public function create(Request $request)
-    {
-
+    public function create(Request $request){
         return view('hr.organizacija.create');
     }
+    public function izmijeniteOrganizaciju($id){
+        $organizacija = Organizacija::where('id', $id)->first();
+
+        return view('hr.organizacija.create', compact('organizacija'));
+    }
+
+
     public function nova(){
         return view('hr.organizacija.nova');
     }
@@ -204,7 +203,12 @@ class OrganizacijaController extends Controller
 
         $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query) use ($id) {
             $query->where('id', '=', $id);
-        })->with('sluzbeniciRel.sluzbenik')->with('orgjed');
+        })
+            ->with('sluzbeniciRel.sluzbenik')
+            ->with('strucnaSprema')
+            ->with('tipRadnogMjesta')
+            ->with('tipPrivremenogPremjestaja')
+            ->with('orgjed');
 
         $radna_mjesta = FilterController::filter($radnaMjesta);
 
@@ -213,6 +217,13 @@ class OrganizacijaController extends Controller
             'orgjed.naziv' => 'Organizaciona jedinica',
             'naziv_rm' => 'Naziv radnog mjesta',
             'sifra' => 'Šifra',
+            'katgorijaa.name' => 'Kategorija',
+            'tipRadnogMjesta.name' => 'Tip radnog mjesta',
+            'opis_rm' => 'Opis radnog mjesta',
+            'broj_izvrsilaca' => 'Broj izvršilaca',
+            'platni_razred' => 'Platni razred',
+            'strucnaSprema.name' => 'Stručna sprema',
+            'tipPrivremenogPremjestaja.name' => 'Tip privremenog premještaja',
             'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 

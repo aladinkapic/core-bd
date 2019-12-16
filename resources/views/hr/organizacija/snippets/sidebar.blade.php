@@ -5,12 +5,12 @@
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
             @if($organizacija->active == 1)
-                <button class="btn btn-success"> {{__('Unutrašnja organizacija je aktivna!')}}</button>
+                <button class="btn btn-success" style="width: 100%;"> {{__('Unutrašnja organizacija je aktivna!')}}</button>
             @else
 
                 <form method="POST" id="set-active" action="{{ route('organizacija.active', ['id' => $organizacija->id]) }}" v-on:submit.prevent="confirmText('Jeste li sigurni da želite ovu unutrašnju organizaciju za organ javne uprave {{ $organizacija->organ->naziv }} postaviti kao aktivnu? Izmjene će biti izmijenjene trenutno!', '#set-active')" >
                     @csrf
-                    <button class="btn btn-success" > <i class="fa fa-check-circle"></i>  {{__('Postavi kao aktivnu')}}</button>
+                    <button class="btn btn-success"  style="width: 100%;"> <i class="fa fa-check-circle"></i>  {{__('Postavi kao aktivnu')}}</button>
                 </form>
             @endif
 
@@ -107,10 +107,24 @@
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
-                            <span class="badge {{ $organizacija->active == 1 ? "badge-success" : "badge-danger" }}">
-                                {{ $organizacija->active == 1 ? "Aktivno" : "Neaktivno" }}
-                            </span>
+            <span class="badge {{ $organizacija->active == 1 ? "badge-success" : "badge-danger" }}">
+                {{ $organizacija->active == 1 ? "Aktivno" : "Neaktivno" }}
+            </span>
         </li>
+    </ul>
+</div>
+<br />
+
+<div class="card">
+    <div class="card-header">
+        {{__('Akcije')}}
+    </div>
+    <ul class="list-group list-group-flush">
+        <a href="{{route('organizacija.izmjene-sistematizacije', ['id' => $organizacija->id ?? '/'])}}">
+            <li class="list-group-item" style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;"> {{__('Pregled ')}}</button>
+            </li>
+        </a>
     </ul>
 </div>
 <br />
