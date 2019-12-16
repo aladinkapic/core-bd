@@ -65,11 +65,13 @@
         {{__('Preuzmite dokument')}}
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <a target="_blank" href="/pravilnici/{{$organizacija->pravilnik}}">
-                <i class="fa fa-file"></i> {{__('Preuzmi pravilnik')}}
-            </a>
-        </li>
+        @foreach($organizacija->fajlovi as $fajl)
+            <li class="list-group-item">
+                <a target="_blank" href="/pravilnici/{{$fajl->hash ?? '/'}}">
+                    <i class="fa fa-file"></i> {{$fajl->naziv_dokumenta ?? '/'}}
+                </a>
+            </li>
+        @endforeach
     </ul>
 </div>
 <br />

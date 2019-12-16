@@ -382,6 +382,7 @@ Route::prefix('organizacija')->group(function () {
     Route::get('izmjena/{id}',             'OrganizacijaController@izmjena')->name('organizacija.izmjena');
     Route::get('izmijenite-org/{id}',      'OrganizacijaController@izmijeniteOrganizaciju')->name('organizacija.izmjene-sistematizacije');
 
+    Route::post('update-files',            'OrganizacijaController@updateFiles')->name('organizacija.update-files');
 
     /*
      * Organizacija API

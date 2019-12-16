@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Updates\OrganizacijaFajlovi;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Organ;
 use Illuminate\Support\Facades\DB;
@@ -106,5 +107,9 @@ class Organizacija extends Model{
 
     public function aktivan(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'active')->where('type', 'aktivan');
+    }
+
+    public function fajlovi(){
+        return $this->hasMany(OrganizacijaFajlovi::class, 'organizacija_id', 'id');
     }
 }
