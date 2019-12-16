@@ -58,7 +58,7 @@ class UpravljanjeUcinkomController extends Controller{
             $request->request->add(['opisna_ocjena' => '1']);
         }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
             $request->request->add(['opisna_ocjena' => '2']);
-        }else             $request->request->add(['opisna_ocjena' => '3']);
+        }else $request->request->add(['opisna_ocjena' => '3']);
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
@@ -88,11 +88,13 @@ class UpravljanjeUcinkomController extends Controller{
             $radnoMjesto = $sluzbnik->radnoMjesto->naziv_rm;
         }
 
+        $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene');
         $sluzbenik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
         $sluzbenik = $sluzbenik['ime'] . ' ' . $sluzbenik['prezime'];
+        $preview = true;
 
 
-        return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik'));
+        return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik', 'kategorija', 'preview'));
     }
 
     public function edit($id){
@@ -111,16 +113,34 @@ class UpravljanjeUcinkomController extends Controller{
     public function update(Request $request, $id){
         $pravila = [
             'sluzbenik' => 'required',
-            'godina' => 'required|min:4|max:4',
             'ocjena' => 'required',
-            'opisna_ocjena' => 'required|max:255',
             'kategorija' => 'required'
         ];
 
+//        dd($request->all());
+
         $poruke = HelpController::getValidationMessages();
-        $this->validate($request, $pravila, $poruke);
-        $u = UpravljanjeUcinkom::findOrFail($id);
-        $u->update($request->all());
+//        $this->validate($request, $pravila, $poruke);
+
+        if($request->ocjena < 1.5){
+            $request->request->add(['opisna_ocjena' => '1']);
+        }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
+            $request->request->add(['opisna_ocjena' => '2']);
+        }else $request->request->add(['opisna_ocjena' => '3']);
+
+        try{
+            $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([
+                'sluzbenik' => $request->sluzbenik,
+                'godina'    => $request->godina,
+                'ocjena'    => $request->ocjena,
+                'kategorija' => $request->kategorija,
+                'opisna_ocjena' => $request->opisna_ocjena
+            ]);
+//            dd($ucinak);
+        }catch (\Exception $e){dd($e);}
+
+//        $u = UpravljanjeUcinkom::findOrFail($id);
+//        $u->update($request->all());
 
         return redirect()
             ->back()
