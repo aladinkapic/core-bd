@@ -18,6 +18,7 @@ class UpravaController extends Controller{
 
         $filteri = [
             'naziv' => 'Naziv',
+            'kod' => 'Kod',
             'tip_javne_uprave.name' => 'Tip',
             'ulica' => 'Ulica',
             'broj' => 'Broj',
