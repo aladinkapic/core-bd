@@ -62,7 +62,7 @@
 <br />
 <div class="card">
     <div class="card-header">
-        {{__('Preuzmite dokument')}}
+        {{__('Preuzmite dokumente')}}
     </div>
     <ul class="list-group list-group-flush">
         @foreach($organizacija->fajlovi as $fajl)
