@@ -85,7 +85,7 @@
     </div>
 
     <div class="hidden_input_form">
-        <form action="/hr/sluzbenici/spremi_sadrzaj/" method="post">
+        <form action="{{route('spremite_sadrzaj')}}" method="POST">
         {!! Form::hidden('id_sluzbenika', $id_sluzbenika, ['class' => 'form-control']) !!}
         {!! Form::hidden('tabela', 'sluzbenik_kontakt_detalji_osobe', ['class' => 'form-control']) !!}
         @csrf <!-- {{ csrf_field() }} -->

@@ -78,14 +78,6 @@
                         </div>
                     </div>
 
-
-{{--                    <div class="single_row">--}}
-{{--                        {!! Form::label('', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}--}}
-{{--                        <div class="col-lg-12">--}}
-{{--                            {!! Form::text('adresa_boravista', $podatak_o_prebivalistu->adresa_boravista, ['class' => 'form-control read_stuffs', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'readonly', 'autocomplete' => 'off',]) !!}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
                     <div class="single_row">
                         <div class="col-lg-12">
                             {!! Form::submit(__('Spasite izmjene'), ['class' => 'btn btn-primary']) !!}
@@ -97,10 +89,10 @@
     </div>
 
     <div class="hidden_input_form">
-        <form action="/hr/sluzbenici/spremi_sadrzaj/" method="post">
+        <form action="{{route('spremite_sadrzaj')}}" method="POST">
         {!! Form::hidden('id_sluzbenika', $id_sluzbenika, ['class' => 'form-control']) !!}
         {!! Form::hidden('tabela', 'sluzbenik_podaci_o_prebivalistu', ['class' => 'form-control']) !!}
-        @csrf <!-- {{ csrf_field() }} -->
+        @csrf
             <div class="add_new_elements">
                 <div class="double_row">
                     <div class="single_row">
@@ -133,14 +125,6 @@
                         </div>
                     </div>
                 </div>
-
-
-{{--                <div class="single_row">--}}
-{{--                    {!! Form::label('adresa_boravista', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}--}}
-{{--                    <div class="col-lg-12">--}}
-{{--                        {!! Form::text('adresa_boravista', $value = null, ['class' => 'form-control', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'autocomplete' => 'off']) !!}--}}
-{{--                    </div>--}}
-{{--                </div>--}}
 
                 <div class="single_row">
                     <div class="col-lg-12">

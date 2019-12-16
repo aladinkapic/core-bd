@@ -184,10 +184,13 @@ Route::prefix('hr/sluzbenici')->group(function () {
 
 
     /************************************************ Spremi sadržaj **************************************************/
-    Route::post('spremi_sadrzaj',   'SluzbenikController@spremiSadrzaj');
+    Route::post('spremi_sadrzaj',     'SluzbenikController@spremiSadrzaj');
+
+    Route::post('spremite_sadrzaj',   'SluzbenikController@spremiSadrzaj')->name("spremite_sadrzaj");
 
     /*********************************************** Izmijeni sadržaj *************************************************/
-    Route::post('izmijeni_sadrzaj',   'SluzbenikController@izmijeniSadrzaj');
+    Route::post('izmijeni_sadrzaj',     'SluzbenikController@izmijeniSadrzaj');
+    Route::post('izmijenite_sadrzaj',   'SluzbenikController@izmijeniSadrzaj')->name("izmijenite_sadrzaj");
 
     /************************************************ Obriši sadržaj **************************************************/
     Route::post('obrisi_sadrzaj',   'SluzbenikController@obrisiSadrzaj');
