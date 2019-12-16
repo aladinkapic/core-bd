@@ -36,7 +36,7 @@
             </div>
         @else
             <div class="single-form">
-                <p>Broj izmjena organizacije : {{ $organizacija->brojIzmjena ?? '0' }} !</p>
+                <p>Organizacioni plan / Pravilnik je do sad izmijenjen {{ $organizacija->brojIzmjena ?? '0' }} puta!</p>
 
                 @if($organizacija->brojIzmjena < 5)
                     <a href="{{route('organizacija.izmjena', ['id' => $organizacija->id ?? '/'])}}">
