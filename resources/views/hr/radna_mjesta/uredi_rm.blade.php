@@ -242,7 +242,7 @@
 
                                                         <div class="shadow_delete">
                                                             <div class="delete_item" onclick="obrisiDomElement('uslovi_za_radno_mjesto', '{{$i}}'); obrisiIzBaze('{{$uslov->id}}'); ">
-                                                                <i class="fas fa-times"></i>
+                                                                <i class="fas fa-trash"></i>
                                                             </div>
 
                                                             <div class="delete_item edit_item" onclick="urediDomElement('uslovi_za_radno_mjesto', '{{$i++}}');">

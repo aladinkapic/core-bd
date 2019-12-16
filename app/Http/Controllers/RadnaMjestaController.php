@@ -169,6 +169,9 @@ class RadnaMjestaController extends Controller{
 
     public function azurirajRadnoMjesto(Request $request){
         $active = OrganizacionaJedinica::where('id', $request->id_oj)->first()->organizacija->active;
+//
+//
+//        dd($request->all());
 
 //        $validatedData = $request->validate([
 //            'naziv_rm' => 'required',
@@ -186,18 +189,20 @@ class RadnaMjestaController extends Controller{
 
         try{
 
+//            dd($request->all());
+
             $id = RadnoMjesto::where('id', '=', $request->id_rm)->update(
                 $request->except(['_token', 'naziv_rm_inp', 'tip_inp', 'tekst_uslova_inp', 'xx', 'vrijednost_inp', 'sluzbenik_id', 'id_rm', 'id_uslova', 'id_sluzben'])
             );
 
-            for($i=1; $i<count($request->vrijednost_inp); $i++){
+            for($i=1; $i<count($request->id_uslova); $i++){
 
                 if($request->id_uslova[$i] == 'empty'){
                     DB::table('radno_mjesto_uslovi')->insert([
                         'id_rm' => $request->id_rm,
                         'tip' => $request->tip_inp[$i],
                         'tekst_uslova' => $request->tekst_uslova_inp[$i],
-                        'vrijednost' => $request->vrijednost_inp[$i],
+//                        'vrijednost' => $request->vrijednost_inp[$i],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now()
                     ]);
@@ -243,7 +248,7 @@ class RadnaMjestaController extends Controller{
 
             return redirect(route('organizacija.radna-mjesta', ['id' => OrganizacionaJedinica::findOrFail($request->id_oj)->org_id ]));
         }catch(\Exception $e){
-            return $e;
+            dd ($e);
         }
     }
 

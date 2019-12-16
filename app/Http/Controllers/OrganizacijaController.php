@@ -213,6 +213,7 @@ class OrganizacijaController extends Controller
             ->with('strucnaSprema')
             ->with('tipRadnogMjesta')
             ->with('tipPrivremenogPremjestaja')
+            ->with('usloviRM')
             ->with('orgjed');
 
         $radna_mjesta = FilterController::filter($radnaMjesta);
@@ -229,6 +230,7 @@ class OrganizacijaController extends Controller
             'platni_razred' => 'Platni razred',
             'strucnaSprema.name' => 'Stručna sprema',
             'tipPrivremenogPremjestaja.name' => 'Tip privremenog premještaja',
+            'usloviRM.tekst_uslova' => 'Uslovi',
             'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 
