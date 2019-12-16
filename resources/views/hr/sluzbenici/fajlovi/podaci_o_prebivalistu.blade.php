@@ -71,7 +71,7 @@
 
                         @endif
                         <div class="single_row">
-                            {!! Form::label('datum_do', __('Datum do').' : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('datum_do', __('Datum od').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!! Form::text('datum_do', \App\Http\Controllers\HelpController::obrniDatum($podatak_o_prebivalistu->datum_do), ['class' => 'form-control read_stuffs datepicker', 'maxlength' => '100', 'rows' => 1, 'id' => 'datum_do'.$index_counter++, 'readonly', 'autocomplete' => 'off']) !!}
                             </div>
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="single_row">
-                        {!! Form::label('datum_do', __('Datum do').' : ', ['class' => 'control-label']) !!}
+                        {!! Form::label('datum_do', __('Datum od').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
                             {!! Form::text('datum_do','', ['class' => 'form-control read_stuffs datepicker', 'maxlength' => '100', 'rows' => 1, 'id' => 'datum_doeeee', 'readonly', 'autocomplete' => 'off']) !!}
                         </div>
