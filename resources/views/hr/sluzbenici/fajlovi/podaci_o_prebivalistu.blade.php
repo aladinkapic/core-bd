@@ -37,7 +37,7 @@
                 @endif
 
 
-                <form action="/hr/sluzbenici/izmijeni_sadrzaj/" method="post">
+                <form action="{{route('izmijenite_sadrzaj')}}" method="POST">
                 {!! Form::hidden('id_sluzbenika', $id_sluzbenika, ['class' => 'form-control']) !!}
                 {!! Form::hidden('id', $podatak_o_prebivalistu->id, []) !!}
                 {!! Form::hidden('tabela', 'sluzbenik_podaci_o_prebivalistu', ['class' => 'form-control']) !!}
