@@ -95,21 +95,13 @@ class UpravaController extends Controller{
         return view('/hr/organ_javne_uprave/add', compact('uprava','tipovi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+
+    public function update(Request $request, $id){
 
         $pravila = [
             'naziv' => 'required|max:255',
             'tip' => 'required|max:50',
             'ulica' => 'max:20',
-
         ];
 
         $poruke = HelpController::getValidationMessages();
@@ -117,7 +109,9 @@ class UpravaController extends Controller{
 
         $u = Uprava::findOrFail($id);
 
+
         $u->update($request->all());
+
         $uprava = Uprava::findOrFail($id);
         $tipovi = Sifrarnik::dajSifrarnik('tip_javne_uprave');
 
