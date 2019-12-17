@@ -62,7 +62,7 @@
                             <td>{{$rm->broj_izvrsilaca ?? '/'}}</td>
                             <td>{{$rm->platni_razred ?? '/'}}</td>
                             <td>{{$rm->strucnaSprema->name ?? '/'}}</td>
-                            <td>{{$rm->tipPrivremenogPremjestaja->name ?? '/'}}</td>
+{{--                            <td>{{$rm->tipPrivremenogPremjestaja->name ?? '/'}}</td>--}}
 
                             <td>
 

@@ -213,7 +213,7 @@
                                     <div class="col">
                                         {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
-                                            {!! Form::textarea('tekst_uslova_inp[]', '', ['class' => 'form-control', 'rows' => 2, 'id' => 'tekst_uslova_inp', 'maxlength' => '100']) !!}
+                                            {!! Form::textarea('tekst_uslova_inp[]', '', ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -265,7 +265,7 @@
                                             <div class="col">
                                                 {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}
                                                 <div class="col-lg-12">
-                                                    {!! Form::textarea('', $uslov->tekst_uslova, ['class' => 'form-control', 'rows' => 2, 'id' => 'tekst_uslova_inp', 'maxlength' => '100', 'readonly']) !!}
+                                                    {!! Form::textarea('', $uslov->tekst_uslova, ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100', 'readonly']) !!}
                                                 </div>
                                             </div>
                                         </div>

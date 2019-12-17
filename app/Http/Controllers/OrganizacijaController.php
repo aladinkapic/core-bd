@@ -224,12 +224,11 @@ class OrganizacijaController extends Controller
             'naziv_rm' => 'Naziv radnog mjesta',
             'sifra' => 'Šifra',
             'katgorijaa.name' => 'Kategorija',
-            'tipRadnogMjesta.name' => 'Tip radnog mjesta',
+            'tipRadnogMjesta.name' => 'Stepen',
             'opis_rm' => 'Opis radnog mjesta',
             'broj_izvrsilaca' => 'Broj izvršilaca',
             'platni_razred' => 'Platni razred',
-            'strucnaSprema.name' => 'Stručna sprema',
-            'tipPrivremenogPremjestaja.name' => 'Tip privremenog premještaja',
+            'strucnaSprema.name' => 'Kompetencije',
             'usloviRM.tekst_uslova' => 'Uslovi',
             'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
