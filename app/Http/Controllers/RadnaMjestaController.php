@@ -96,7 +96,7 @@ class RadnaMjestaController extends Controller{
             for($i=1; $i<count($request->tekst_uslova_inp); $i++){
                 DB::table('radno_mjesto_uslovi')->insert([
                     'id_rm' => $request->id_rm,
-                    'tip' => $request->tip_inp[$i],
+//                    'tip' => $request->tip_inp[$i],
                     'tekst_uslova' => $request->tekst_uslova_inp[$i],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
@@ -195,12 +195,12 @@ class RadnaMjestaController extends Controller{
                 $request->except(['_token', 'naziv_rm_inp', 'tip_inp', 'tekst_uslova_inp', 'xx', 'vrijednost_inp', 'sluzbenik_id', 'id_rm', 'id_uslova', 'id_sluzben'])
             );
 
-            for($i=1; $i<count($request->id_uslova); $i++){
+            for($i=1; $i<count($request->tekst_uslova_inp); $i++){
 
                 if($request->id_uslova[$i] == 'empty'){
                     DB::table('radno_mjesto_uslovi')->insert([
                         'id_rm' => $request->id_rm,
-                        'tip' => $request->tip_inp[$i],
+//                        'tip' => $request->tip_inp[$i],
                         'tekst_uslova' => $request->tekst_uslova_inp[$i],
 //                        'vrijednost' => $request->vrijednost_inp[$i],
                         'created_at' => Carbon::now(),
@@ -208,7 +208,7 @@ class RadnaMjestaController extends Controller{
                     ]);
                 }else{
                     DB::table('radno_mjesto_uslovi')->where('id', '=', $request->id_uslova[$i])->update([
-                        'tip' => $request->tip_inp[$i],
+//                        'tip' => $request->tip_inp[$i],
                         'tekst_uslova' => $request->tekst_uslova_inp[$i],
                         'vrijednost' => $request->vrijednost_inp[$i],
                         'updated_at' => Carbon::now()

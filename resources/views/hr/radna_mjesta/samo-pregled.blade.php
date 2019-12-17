@@ -81,7 +81,7 @@
                                     <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>
                                     <div class="form-group row">
                                         <div class="col">
-                                            {!! Form::label('opis_rm', 'Opis radnog mjesta : ', ['class' => 'control-label']) !!}
+                                            {!! Form::label('opis_rm', 'Opis poslova radnog mjesta i odgovornosti : ', ['class' => 'control-label']) !!}
                                             <div class="col-lg-12">
                                                 {!! Form::textarea('opis_rm', isset($radno_mjesto) ? $radno_mjesto->opis_rm : '', ['class' => 'form-control', 'rows' => 4, 'id' => 'opis_rm', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '5000']) !!}
                                             </div>
@@ -106,7 +106,7 @@
                                 <div class="split_container">
                                     <div class="form-group row">
                                         <div class="col">
-                                            {!! Form::label('tip_rm', 'Tip radnog mjesta : ', ['class' => 'control-label']) !!}
+                                            {!! Form::label('tip_rm', 'Stepen : ', ['class' => 'control-label']) !!}
                                             <div class="col-lg-12">
                                                 {!!  Form::select('tip_rm', $tip_radnog_mjesta, isset($radno_mjesto) ? $radno_mjesto->tip_rm : '' ,['class' => 'form-control', 'id' => 'tip_rm', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
                                             </div>
@@ -128,28 +128,28 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <div class="col">
-                                            {!! Form::label('rukovodioc', 'Rukovodioc: ', ['class' => 'control-label']) !!}
-                                            <div class="col-lg-12">
-                                                {{ Form::checkbox('rukovodioc',null, isset($radno_mjesto) ? $radno_mjesto->rukovodioc : null, array('id'=>'asap', isset($radno_mjesto) ? '' : '' )) }}
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="form-group row">--}}
+{{--                                        <div class="col">--}}
+{{--                                            {!! Form::label('rukovodioc', 'Rukovodioc: ', ['class' => 'control-label']) !!}--}}
+{{--                                            <div class="col-lg-12">--}}
+{{--                                                {{ Form::checkbox('rukovodioc',null, isset($radno_mjesto) ? $radno_mjesto->rukovodioc : null, array('id'=>'asap', isset($radno_mjesto) ? '' : '' )) }}--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     <div class="form-group row">
                                         <div class="col">
-                                            {!! Form::label('strucna_sprema', 'Stručna sprema : ', ['class' => 'control-label']) !!}
+                                            {!! Form::label('strucna_sprema', 'Kompetencije : ', ['class' => 'control-label']) !!}
                                             <div class="col-lg-12">
                                                 {!!  Form::select('strucna_sprema', $strucna_sprema, isset($radno_mjesto) ? $radno_mjesto->strucna_sprema : '' ,['class' => 'form-control', 'id' => 'strucna_sprema', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            {!! Form::label('tip_pm', 'Tip privremenog premještaja : ', ['class' => 'control-label']) !!}
-                                            <div class="col-lg-12">
-                                                {!!  Form::select('tip_pm', $tip_premjestaja, isset($radno_mjesto) ? $radno_mjesto->tip_pm : '' ,['class' => 'form-control', 'id' => 'id_oj', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
-                                            </div>
-                                        </div>
+{{--                                        <div class="col">--}}
+{{--                                            {!! Form::label('tip_pm', 'Tip privremenog premještaja : ', ['class' => 'control-label']) !!}--}}
+{{--                                            <div class="col-lg-12">--}}
+{{--                                                {!!  Form::select('tip_pm', $tip_premjestaja, isset($radno_mjesto) ? $radno_mjesto->tip_pm : '' ,['class' => 'form-control', 'id' => 'id_oj', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                                 @if(isset($what))
@@ -176,12 +176,12 @@
                                         <div id="uslovi_za_radno_mjesto">
                                             <div class="copied_form copied_form2" id="form_for_copy">
                                                 <div class="form-group row">
-                                                    <div class="col">
-                                                        {!! Form::label('tip_inp', 'Tip : ', ['class' => 'control-label']) !!}
-                                                        <div class="col-lg-12">
-                                                            {!!  Form::select('', $tip_uslova, $uslov->tip ,['class' => 'form-control', 'id' => 'tip_inp', 'disabled' => 'true']) !!}
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="col">--}}
+{{--                                                        {!! Form::label('tip_inp', 'Tip : ', ['class' => 'control-label']) !!}--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            {!!  Form::select('', $tip_uslova, $uslov->tip ,['class' => 'form-control', 'id' => 'tip_inp', 'disabled' => 'true']) !!}--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </div>
 
                                                 <div class="form-group row">
