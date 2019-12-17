@@ -182,7 +182,7 @@
                                         <input class="form-check-input" name="agree" type="checkbox" value="1" id="defaultCheck1">
 
                                         <label class="form-check-label" for="defaultCheck1">
-                                            <br {{__('/>Odabirom kvačice potvrđujem da su unesene informacije tačne i u skladu sa priloženim pravilnikom.')}}
+                                            <br> {{__('Odabirom kvačice potvrđujem da su unesene informacije tačne i u skladu sa priloženim pravilnikom.')}}
                                         </label>
                                     </div>
                                 </div>
@@ -210,8 +210,6 @@
 
                 </div>
                 </form>
-
-
             </div>
         </section>
     </div>

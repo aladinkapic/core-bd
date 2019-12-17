@@ -64,6 +64,14 @@
                             <td>{{$rm->strucnaSprema->name ?? '/'}}</td>
                             <td>{{$rm->tipPrivremenogPremjestaja->name ?? '/'}}</td>
 
+                            <td>
+
+                                <ul>
+                                    @foreach($rm->usloviRM as $uslov)
+                                        <li>{{$uslov->tekst_uslova ?? '/'}}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
 
                             <td>
                                 <ul>

@@ -46,6 +46,7 @@
                     <tr class="org-row">
                         <td class="text-center">{{$counter++}}</td>
                         <td>{{$uprava -> naziv ?? '/'}}</td>
+                        <td>{{$uprava -> kod ?? '/'}}</td>
                         <td>{{$uprava->tip_javne_uprave->name ?? '/'}}</td>
                         <td>{{$uprava->ulica ?? '/'}}</td>
                         <td>{{$uprava->broj ?? '/'}}</td>

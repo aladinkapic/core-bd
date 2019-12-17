@@ -22,7 +22,7 @@ class DisciplinskaOdgovornostController extends Controller{
         $filteri = [
             'sluzbenik.ime_prezime'=>'Službenik',
             'sluzbenik.radnoMjesto.naziv_rm'=>'Radno mjesto',
-            'datum_povrede'=>'Datum povrede',
+            'datum_povrede'=>'Datum konačnosti rješenja',
             'opis_povrede'=>'Opis povrede',
             'vrsta_disciplinske'=>'Vrsta povrede',
             'opis_disciplinske_mjere'=>'Opis disciplinske mjere',

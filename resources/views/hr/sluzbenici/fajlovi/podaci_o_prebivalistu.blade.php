@@ -37,7 +37,7 @@
                 @endif
 
 
-                <form action="/hr/sluzbenici/izmijeni_sadrzaj/" method="post">
+                <form action="{{route('izmijenite_sadrzaj')}}" method="POST">
                 {!! Form::hidden('id_sluzbenika', $id_sluzbenika, ['class' => 'form-control']) !!}
                 {!! Form::hidden('id', $podatak_o_prebivalistu->id, []) !!}
                 {!! Form::hidden('tabela', 'sluzbenik_podaci_o_prebivalistu', ['class' => 'form-control']) !!}
@@ -71,20 +71,12 @@
 
                         @endif
                         <div class="single_row">
-                            {!! Form::label('datum_do', __('Datum do').' : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('datum_do', __('Datum od').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!! Form::text('datum_do', \App\Http\Controllers\HelpController::obrniDatum($podatak_o_prebivalistu->datum_do), ['class' => 'form-control read_stuffs datepicker', 'maxlength' => '100', 'rows' => 1, 'id' => 'datum_do'.$index_counter++, 'readonly', 'autocomplete' => 'off']) !!}
                             </div>
                         </div>
                     </div>
-
-
-{{--                    <div class="single_row">--}}
-{{--                        {!! Form::label('', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}--}}
-{{--                        <div class="col-lg-12">--}}
-{{--                            {!! Form::text('adresa_boravista', $podatak_o_prebivalistu->adresa_boravista, ['class' => 'form-control read_stuffs', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'readonly', 'autocomplete' => 'off',]) !!}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
 
                     <div class="single_row">
                         <div class="col-lg-12">
@@ -97,10 +89,10 @@
     </div>
 
     <div class="hidden_input_form">
-        <form action="/hr/sluzbenici/spremi_sadrzaj/" method="post">
+        <form action="{{route('spremite_sadrzaj')}}" method="POST">
         {!! Form::hidden('id_sluzbenika', $id_sluzbenika, ['class' => 'form-control']) !!}
         {!! Form::hidden('tabela', 'sluzbenik_podaci_o_prebivalistu', ['class' => 'form-control']) !!}
-        @csrf <!-- {{ csrf_field() }} -->
+        @csrf
             <div class="add_new_elements">
                 <div class="double_row">
                     <div class="single_row">
@@ -127,20 +119,12 @@
                         </div>
                     </div>
                     <div class="single_row">
-                        {!! Form::label('datum_do', __('Datum do').' : ', ['class' => 'control-label']) !!}
+                        {!! Form::label('datum_do', __('Datum od').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
                             {!! Form::text('datum_do','', ['class' => 'form-control read_stuffs datepicker', 'maxlength' => '100', 'rows' => 1, 'id' => 'datum_doeeee', 'readonly', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
                 </div>
-
-
-{{--                <div class="single_row">--}}
-{{--                    {!! Form::label('adresa_boravista', __('Adresa boravišta').' : ', ['class' => 'control-label']) !!}--}}
-{{--                    <div class="col-lg-12">--}}
-{{--                        {!! Form::text('adresa_boravista', $value = null, ['class' => 'form-control', 'maxlength' => '100', 'rows' => 1, 'id' => 'adresa_boravista', 'autocomplete' => 'off']) !!}--}}
-{{--                    </div>--}}
-{{--                </div>--}}
 
                 <div class="single_row">
                     <div class="col-lg-12">

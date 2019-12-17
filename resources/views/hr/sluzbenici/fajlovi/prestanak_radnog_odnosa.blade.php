@@ -37,7 +37,7 @@
                 @endif
 
 
-                <form action="/hr/sluzbenici/izmijeni_sadrzaj/" method="post">
+                <form action="{{route('izmijenite_sadrzaj')}}" method="POST">
                 {!! Form::hidden('id_sluzbenika', $id_sluzbenika, ['class' => 'form-control']) !!}
                 {!! Form::hidden('id', $prestanak_r_o_s->id, []) !!}
                 {!! Form::hidden('tabela', 'sluzbenik_prestanak_radnog_odnosa', ['class' => 'form-control']) !!}
@@ -75,7 +75,7 @@
     </div>
 
     <div class="hidden_input_form">
-        <form action="/hr/sluzbenici/spremi_sadrzaj/" method="post">
+        <form action="{{route('spremite_sadrzaj')}}" method="POST">
         {!! Form::hidden('id_sluzbenika', $id_sluzbenika, ['class' => 'form-control']) !!}
         {!! Form::hidden('tabela', 'sluzbenik_prestanak_radnog_odnosa', ['class' => 'form-control']) !!}
         @csrf <!-- {{ csrf_field() }} -->

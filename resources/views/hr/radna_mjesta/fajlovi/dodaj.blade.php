@@ -270,14 +270,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <div class="col">
-                                                {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}
-                                                <div class="col-lg-12">
-                                                    {!! Form::textarea('', $uslov->vrijednost, ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100', 'readonly']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <div class="col">--}}
+{{--                                                {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
+{{--                                                <div class="col-lg-12">--}}
+{{--                                                    {!! Form::textarea('', $uslov->vrijednost, ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100', 'readonly']) !!}--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>

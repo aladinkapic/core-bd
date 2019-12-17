@@ -49,10 +49,18 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Naziv organa javne uprave')}}</label>
                                             <div class="col-sm-9">
-                                                {!! Form::text('naziv', isset($uprava) ? $uprava->naziv : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv', 'autocomplete' => 'off']) !!}
+                                                {!! Form::text('naziv', isset($uprava) ? $uprava->naziv : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv', 'autocomplete' => 'off', 'style' => 'height:90px;']) !!}
                                             </div>
                                         </div>
                                         @if ($errors ->has('naziv'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('naziv')}}</p></div>@endif
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Kod')}}</label>
+                                            <div class="col-sm-9">
+                                                {!! Form::text('kod', isset($uprava) ? $uprava->kod : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'kod', 'autocomplete' => 'off']) !!}
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Tip organa javne uprave')}}</label>
                                             <div class="col-sm-9">
@@ -66,13 +74,7 @@
                                             </div>
                                         </div>
                                         @if ($errors ->has('ulica'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('ulica')}}</p></div>@endif
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Broj')}}</label>
-                                            <div class="col-sm-9">
-                                                {!! Form::text('broj', isset($uprava) ? $uprava->broj : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'broj', 'autocomplete' => 'off']) !!}
-                                            </div>
-                                        </div>
-                                        @if ($errors ->has('broj'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('broj')}}</p></div>@endif
+
                                     </div>
                                 </div>
 
@@ -80,6 +82,14 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Broj')}}</label>
+                                            <div class="col-sm-9">
+                                                {!! Form::text('broj', isset($uprava) ? $uprava->broj : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'broj', 'autocomplete' => 'off']) !!}
+                                            </div>
+                                        </div>
+                                        @if ($errors ->has('broj'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('broj')}}</p></div>@endif
+
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Telefon')}}</label>
                                             <div class="col-sm-9">

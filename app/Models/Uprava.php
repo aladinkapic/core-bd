@@ -8,7 +8,7 @@ class Uprava extends Model{
     protected $table = "organ_ju";
 
     protected $fillable = [
-        'tin', 'naziv', 'tip', 'ulica', 'broj', 'telefon', 'fax', 'web', 'email', 'check'
+        'tin', 'naziv', 'tip', 'ulica', 'broj', 'telefon', 'fax', 'web', 'email', 'check', 'kod'
     ];
 
     public function tip_javne_uprave(){

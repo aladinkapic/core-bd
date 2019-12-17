@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Updates\RadnaMjestaUslovi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
@@ -135,5 +136,8 @@ class RadnoMjesto extends Model
             ->where('type', '=', 'tip_privremenog_premjestaja');
     }
 
+    public function usloviRM(){
+        return $this->hasMany(RadnaMjestaUslovi::class, 'id_rm', 'id');
+    }
 
 }

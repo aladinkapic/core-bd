@@ -435,6 +435,7 @@ class SluzbenikController extends Controller
             ->with('strucnaSprema')
             ->with('vjestineRel')
             ->with('zasnivanjeRORel')
+//            ->with('poreskaUprava') // TODO 
             ->with('sluzbenikRel.rm.orgjed.organizacija.organ')
             ->with('sluzbenikRel.rm.rukovodioc_s')
             ->with('zasnivanjeRORel.nacin_zasnivanja_ro_s')
@@ -461,7 +462,7 @@ class SluzbenikController extends Controller
             'datum_rodjenja' => 'Datum rođenja',
             'licna_karta' => 'Broj lične karte',
             'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
-            'PIO' => 'PIO',
+            'poreskaUprava.name' => 'Poreska uprava',
             'radnoMjesto.naziv_rm' => 'Radno mjesto',
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
             'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',

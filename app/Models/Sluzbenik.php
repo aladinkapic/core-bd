@@ -140,6 +140,10 @@ class Sluzbenik extends Model{
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'pol')
             ->where('type', '=', 'spolovi');
     }
+    public function poreskaUprava(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'PIO')
+            ->where('type', '=', 'pio');
+    }
     public function kategorija_sl(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'kategorija')
             ->where('type', '=', 'kategorija');

@@ -120,7 +120,7 @@
     </div>
     <div class="form-group row">
         <div class="col">
-            {!! Form::label('PIO', __('PIO').' : ', ['class' => 'control-label']) !!}
+            {!! Form::label('PIO', __('Poreska uprava').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
                 {!! Form::select('PIO', $pio, isset($sluzbenik) ? $sluzbenik->PIO : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'PIO', 'autocomplete' => 'off', 'disabled => true']) !!}
             </div>

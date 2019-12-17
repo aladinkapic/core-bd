@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\HelpController;
-
 use App\Models\Kretanje;
 use App\Models\Organ;
 use App\Models\Organizacija;
@@ -13,6 +12,7 @@ use App\Models\Sifrarnik;
 use App\Models\RadnoMjesto;
 use App\Models\Uloge;
 use App\Models\Updates\Notifikacija;
+use App\Models\Updates\OrganizacijaFajlovi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -89,8 +89,7 @@ class OrganizacijaController extends Controller
     }
 
     public function edit(Request $request, $id){
-
-        $organizacija = Organizacija::with('organ')->findOrFail($id);
+        $organizacija = Organizacija::with('organ', 'fajlovi')->findOrFail($id);
 
         $org_jedinice = OrganizacionaJedinica::with('parent')
             ->where('org_id', '=', $organizacija->id)
@@ -138,7 +137,6 @@ class OrganizacijaController extends Controller
 
     public function store(Request $request){
         $file = $request->file('dokument');
-
         $ext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         $name = md5($file->getClientOriginalName() . time()) . '.' . $ext;
 
@@ -154,6 +152,8 @@ class OrganizacijaController extends Controller
             'agree' => 'required'
         ], $poruke);
 
+
+
         $select = Organizacija::where('oju_id', '=', $request->get('oju_id'))->orderBy('id', 'DESC')->first();
 
         try{
@@ -164,12 +164,17 @@ class OrganizacijaController extends Controller
                 'datum_do' => HelpController::format($request->get('datum_do')),
                 'oju_id' => $request->get('oju_id'),
                 'active' => 0,
-                'pravilnik' => $name
+                'pravilnik' => '1'
+            ]);
+
+            $file = OrganizacijaFajlovi::create([
+                'organizacija_id' => $organizacija->id,
+                'naziv_dokumenta' => $file->getClientOriginalName(),
+                'hash' => $name
             ]);
         }catch (\Exception $e){
             dd($e);
         }
-
 
         if ($request->get('org_plan')) {
             Organizacija::copy($request->get('org_plan'), $organizacija->id);
@@ -208,6 +213,7 @@ class OrganizacijaController extends Controller
             ->with('strucnaSprema')
             ->with('tipRadnogMjesta')
             ->with('tipPrivremenogPremjestaja')
+            ->with('usloviRM')
             ->with('orgjed');
 
         $radna_mjesta = FilterController::filter($radnaMjesta);
@@ -224,6 +230,7 @@ class OrganizacijaController extends Controller
             'platni_razred' => 'Platni razred',
             'strucnaSprema.name' => 'Stručna sprema',
             'tipPrivremenogPremjestaja.name' => 'Tip privremenog premještaja',
+            'usloviRM.tekst_uslova' => 'Uslovi',
             'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 
@@ -329,11 +336,13 @@ class OrganizacijaController extends Controller
         return view('hr.organizacija.shema')->with(compact('org_jedinice', 'organizacija', 'radna_mjesta'));
     }
 
-
     public function izmjena($id){
         $organizacija = Organizacija::where('id', $id)->first();
 
-        
+
+        return view('hr.organizacija.snippets.izmjena-sistematizacije', compact('organizacija'));
+
+        dd();
 
         if(!$organizacija->brojIzmjena){
             $broj = 1;
@@ -346,9 +355,7 @@ class OrganizacijaController extends Controller
                 'brojIzmjena' => $broj
             ]);
 
-
             $korisnik = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
-
             $organ = Organ::where('id', $organizacija->oju_id)->first();
 
             if($broj == 5){
@@ -366,5 +373,56 @@ class OrganizacijaController extends Controller
             }
         }
         return back();
+    }
+
+    public function updateFiles(Request $request){
+        $file = $request->file('dokument');
+        $ext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $name = md5($file->getClientOriginalName() . time()) . '.' . $ext;
+
+        $file->move("pravilnici/", $name);
+
+        try{
+            $file = OrganizacijaFajlovi::create([
+                'organizacija_id' => $request->id,
+                'naziv_dokumenta' => $file->getClientOriginalName(),
+                'hash' => $name
+            ]);
+        }catch (\Exception $e){
+            dd($e);
+        }
+
+
+        $organizacija = Organizacija::where('id', $request->id)->first();
+
+        if(!$organizacija->brojIzmjena){
+            $broj = 1;
+        }else if($organizacija->brojIzmjena < 5){
+            $broj = ($organizacija->brojIzmjena + 1);
+        }else $broj = 'overflow';
+
+        if($broj != 'overflow'){
+            $organizacija->update([
+                'brojIzmjena' => $broj
+            ]);
+
+            $korisnik = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
+            $organ = Organ::where('id', $organizacija->oju_id)->first();
+
+            $sluzbeniciZaNotifikacije = Uloge::where('keyword', 'unutrasnja_org')->get(['sluzbenik_id'])->toArray();
+            $users = Sluzbenik::whereIn('id', $sluzbeniciZaNotifikacije)->get();
+
+            foreach($users as $user){
+                $notifikacija = Notifikacija::create([
+                    'sluzbenik_id' => $user->id,
+                    'what' => 'unutrasnja_organizacija',
+                    'to_who' => $korisnik->id,
+                    'message' => ':: Službenik '.$korisnik->ime.' '.$korisnik->prezime.' je izvršio '.$broj.'-i put izmjenu sistematizacije "'.$organizacija->naziv.'" ( '.$organ->naziv.' )'
+                ]);
+            }
+        }
+
+
+        return redirect()->route('organizacija.edit', $request->id);
     }
 }
