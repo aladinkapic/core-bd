@@ -333,6 +333,8 @@ class OrganizacijaController extends Controller
     public function izmjena($id){
         $organizacija = Organizacija::where('id', $id)->first();
 
+        
+
         if(!$organizacija->brojIzmjena){
             $broj = 1;
         }else if($organizacija->brojIzmjena < 5){
