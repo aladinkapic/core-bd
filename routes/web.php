@@ -783,3 +783,9 @@ Route::get('/go',                            'UgovoriController@go')->name('godi
 Route::get('/rjesenje_plata',                'UgovoriController@rjesenje_plata')->name('rjesenje_plata');
 Route::get('/prestanak_ro',                  'UgovoriController@prestanak_ro')->name('prestanak_ro');
 
+
+// PODRSKA
+Route::prefix('podrska/')->group(function () {
+    Route::get('/korisnicka_uputstva',                  'PodrskaController@korisnicka_uputstva')->name('korisnicka_uputstva');
+    Route::get('/administratorska_uputstva',                  'PodrskaController@administratorska_uputstva')->name('administratorska_uputstva');
+});

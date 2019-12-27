@@ -145,8 +145,13 @@
                             <a class="dropdown-item" href="/obavijesti">{{__('Obavijesti')}}</a>
                     </div>
                 </li>
-                <li class="nav-item">
+
+                <li class="nav-item dropdown">
                     <a class="nav-link" href="#"> <i class="fa fa-headset"></i> {{__('Podrška')}}</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{route('korisnicka_uputstva')}}">{{__('Korisnička uputstva')}}</a>
+                        <a class="dropdown-item" href="{{route('administratorska_uputstva')}}">{{__('Administratorska uputstva')}}</a>
+                    </div>
                 </li>
                 @if(\App\Models\Sluzbenik::hasRole('postavke', $me))
                     <li class="nav-item dropdown">
