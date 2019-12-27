@@ -6,13 +6,13 @@
         <div class="col">
             {!! Form::label('ime', __('Ime').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('ime', isset($sluzbenik) ? $sluzbenik->ime : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'ime', 'onkeyup' => 'kreirajKorisnickoIme(), verifikuj_string("ime", "Ime službenika ne smije sadržavati brojeve !", "ima_li_brojeva")', 'autocomplete' => 'off', 'maxlength' => 50]) !!}
+                {!! Form::text('ime', isset($sluzbenik) ? $sluzbenik->ime : '', ['class' => 'form-control required','placeholder'=>'Obavezno polje', 'rows' => 1, 'id' => 'ime', 'onkeyup' => 'kreirajKorisnickoIme(), verifikuj_string("ime", "Ime službenika ne smije sadržavati brojeve !", "ima_li_brojeva")', 'autocomplete' => 'off', 'maxlength' => 50]) !!}
             </div>
         </div>
         <div class="col">
             {!! Form::label('prezime', __('Prezime').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('prezime', isset($sluzbenik) ? $sluzbenik->prezime : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'prezime', 'onkeyup' => 'kreirajKorisnickoIme(), verifikuj_string("prezime", "Prezime službenika ne smije sadržavati brojeve !", "ima_li_brojeva")', 'autocomplete' => 'off', 'maxlength' => 100]) !!}
+                {!! Form::text('prezime', isset($sluzbenik) ? $sluzbenik->prezime : '', ['class' => 'form-control required','placeholder'=>'Obavezno polje', 'rows' => 1, 'id' => 'prezime', 'onkeyup' => 'kreirajKorisnickoIme(), verifikuj_string("prezime", "Prezime službenika ne smije sadržavati brojeve !", "ima_li_brojeva")', 'autocomplete' => 'off', 'maxlength' => 100]) !!}
             </div>
         </div>
     </div>
@@ -51,13 +51,13 @@
         <div class="col">
             {!! Form::label('jmbg', __('JMBG').' : ', ['class' => ' control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::number('jmbg', isset($sluzbenik) ? $sluzbenik->jmbg : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'jmbg', 'onkeyup' => 'provjeriPodatke(this, "jmbg", "jmbg"), verifikuj_string("jmbg", "JMBG treba da sadržava tačno 13 karaktera (brojeva).", "jmbg")', 'autocomplete' => 'off', 'min' => 0, 'maxlength' => 13]) !!}
+                {!! Form::number('jmbg', isset($sluzbenik) ? $sluzbenik->jmbg : '', ['class' => 'form-control required','placeholder'=>'Obavezno polje', 'rows' => 1, 'id' => 'jmbg', 'onkeyup' => 'provjeriPodatke(this, "jmbg", "jmbg"), verifikuj_string("jmbg", "JMBG treba da sadržava tačno 13 karaktera (brojeva).", "jmbg")', 'autocomplete' => 'off', 'min' => 0, 'maxlength' => 13]) !!}
             </div>
         </div>
         <div class="col">
             {!! Form::label('ime_roditelja', __('Ime roditelja').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('ime_roditelja', isset($sluzbenik) ? $sluzbenik->ime_roditelja : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'ime_roditelja', 'autocomplete' => 'off', 'maxlength' => 50]) !!}
+                {!! Form::text('ime_roditelja', isset($sluzbenik) ? $sluzbenik->ime_roditelja : '', ['class' => 'form-control required','placeholder'=>'Obavezno polje', 'rows' => 1, 'id' => 'ime_roditelja', 'autocomplete' => 'off', 'maxlength' => 50]) !!}
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
         <div class="col">
             {!! Form::label('drzavljanstvo_1', __('Državljanstvo 1').' : ', ['class' => ' control-label'] )  !!}
             <div class="col-lg-12">
-                {!! Form::select('drzavljanstvo_1', $drzava, isset($sluzbenik) ? $sluzbenik->drzavljanstvo_1 : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'drzavljanstvo_1', 'autocomplete' => 'off']) !!}
+                {!! Form::select('drzavljanstvo_1', $drzava, isset($sluzbenik) ? $sluzbenik->drzavljanstvo_1 : '', ['class' => 'form-control required','placeholder'=>'Obavezno polje', 'rows' => 1, 'id' => 'drzavljanstvo_1', 'autocomplete' => 'off']) !!}
             </div>
         </div>
         <div class="col">
@@ -130,7 +130,7 @@
         <div class="col">
             {!! Form::label('mjesto_rodjenja', __('Mjesto rođenja').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('mjesto_rodjenja', isset($sluzbenik) ? $sluzbenik->mjesto_rodjenja : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'mjesto_rodjenja', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("mjesto_rodjenja", "Mjesto rođenja ne smije sadržavati brojeve !", "ima_li_brojeva")', 'maxlength' => 100]) !!}
+                {!! Form::text('mjesto_rodjenja', isset($sluzbenik) ? $sluzbenik->mjesto_rodjenja : '', ['class' => 'form-control required','placeholder'=>'Obavezno polje', 'rows' => 1, 'id' => 'mjesto_rodjenja', 'autocomplete' => 'off', 'onkeyup' => 'verifikuj_string("mjesto_rodjenja", "Mjesto rođenja ne smije sadržavati brojeve !", "ima_li_brojeva")', 'maxlength' => 100]) !!}
             </div>
         </div>
     </div>
@@ -141,7 +141,7 @@
         <div class="col">
             {!! Form::label('usrl', __('Datum rođenja').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::text('datum_rođenja', isset($sluzbenik) ? \App\Http\Controllers\HelpController::obrniDatum($sluzbenik->datum_rodjenja) : '' , ['class' => 'form-control datepicker required', 'id' => 'usr1']) !!}
+                {!! Form::text('datum_rođenja', isset($sluzbenik) ? \App\Http\Controllers\HelpController::obrniDatum($sluzbenik->datum_rodjenja) : '' , ['class' => 'form-control datepicker required','placeholder'=>'Obavezno polje', 'id' => 'usr1']) !!}
             </div>
         </div>
     </div>
@@ -186,13 +186,13 @@
         <div class="col">
             {!! Form::label('PIO', __('Poreska uprava').' : ', ['class' => 'control-label']) !!}
             <div class="col-lg-12">
-                {!! Form::select('PIO', $pio, isset($sluzbenik) ? $sluzbenik->PIO : '', ['class' => 'form-control required', 'rows' => 1, 'id' => 'PIO', 'autocomplete' => 'off', 'maxlength' => 50]) !!}
+                {!! Form::select('PIO', $pio, isset($sluzbenik) ? $sluzbenik->PIO : '', ['class' => 'form-control required','placeholder'=>'Obavezno polje', 'rows' => 1, 'id' => 'PIO', 'autocomplete' => 'off', 'maxlength' => 50]) !!}
             </div>
         </div>
         <div class="col">
             {!! Form::label('trenutno_radi', __('Trenutno zaposlen').' : ', ['class' => ' control-label'] )  !!}
             <div class="col-lg-12">
-                {!!  Form::select('trenutno_radi', $trenutno_radi, isset($sluzbenik) ? $sluzbenik->trenutno_radi : '' ,['class' => 'form-control required', 'id' => 'trenutno_radi']) !!}
+                {!!  Form::select('trenutno_radi', $trenutno_radi, isset($sluzbenik) ? $sluzbenik->trenutno_radi : '' ,['class' => 'form-control required','placeholder'=>'Obavezno polje', 'id' => 'trenutno_radi']) !!}
             </div>
         </div>
     </div>
