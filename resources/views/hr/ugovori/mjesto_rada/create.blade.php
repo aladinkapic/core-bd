@@ -3,8 +3,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('ugovor.index') => 'Radni status i raspored na radno mjesto',
+        route('home') => __('Početna stranica'),
+        route('ugovor.index') => __('Radni status i raspored na radno mjesto'),
     ]) !!}
 
 @stop
@@ -21,8 +21,7 @@
                         <h2>
                             {{__('Dodavanje novog ugovora o mjestu rada')}}
                         </h2>
-                        <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
-                            zabilježene.')}}</p>
+                        <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
                         <br />
                     </div>
 

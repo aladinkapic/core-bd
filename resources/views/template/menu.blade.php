@@ -20,8 +20,8 @@
                             {{ $me->ime ?? '/'}} {{ $me->prezime ?? '/'}}
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('sluzbenik.dodatno', ['id' => $me->id]) }}">Moj
-                                {{__('karton')}}</a>
+                            <a class="dropdown-item" href="{{ route('sluzbenik.dodatno', ['id' => $me->id]) }}">
+                                {{__('Moj karton')}}</a>
                             {{--<a class="dropdown-item" href="{{ route('svi.sifrarnici') }}">Notifikacije</a>--}}
                             {{--<a class="dropdown-item" href="{{ route('svi.sifrarnici') }}">Podešavanja</a>--}}
                             <div class="dropdown-divider"></div>
@@ -90,15 +90,13 @@
                             <a class="dropdown-item" href="/hr/upravljanje_ucinkom/home">{{__('Upravljanje učinkom')}}</a>
                         @endif
                         @if(\App\Models\Sluzbenik::hasRole('disciplinska_odg', $me))
-                            <a class="dropdown-item" href="/hr/disciplinska_odgovornost/home">{{__('Disciplinska
-                                odgovornost')}}</a>
+                            <a class="dropdown-item" href="/hr/disciplinska_odgovornost/home">{{__('Disciplinska odgovornost')}}</a>
                         @endif
                     </div>
                 </li>
                 <li class="nav-item">
                     @if(\App\Models\Sluzbenik::hasRole('ekonkurs', $me))
-                        <a class="nav-link" href="{{route('ekonkurs.request')}}"> <i class="fa fa-link"></i> {{__('eKonkurs
-                            Prijava')}} </a>
+                        <a class="nav-link" href="{{route('ekonkurs.request')}}"> <i class="fa fa-link"></i> {{__('eKonkurs Prijava')}} </a>
                     @endif
                 </li>
                 <li class="nav-item dropdown">
@@ -133,8 +131,7 @@
                             <a class="dropdown-item" href="{{route('internotrziste.pregled')}}">{{__('Interno tržište rada')}}</a>
                         @endif
                         @if(\App\Models\Sluzbenik::hasRole('stratesko_pl', $me))
-                            <a class="dropdown-item" href="{{route('pregled.strateskogplaniranja')}}">{{__('Strateško
-                                planiranje')}}</a>
+                            <a class="dropdown-item" href="{{route('pregled.strateskogplaniranja')}}">{{__('Strateško planiranje')}}</a>
                         @endif
                         @if(\App\Models\Sluzbenik::hasRole('izvjestaji', $me))
                             <a class="dropdown-item" href="{{route('izvjestaji.pregled')}}">{{__('Izvještaji')}}</a>

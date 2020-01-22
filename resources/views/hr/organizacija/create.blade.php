@@ -27,8 +27,7 @@
                 <!-- Tittle -->
                 <div class="tittle">
                     <h2>{{__('Novi organizacioni plan')}}</h2>
-                    <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
-                        zabilježene.')}}</p>
+                    <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
 
                     <br />
 
@@ -135,7 +134,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Kopiranje organizacionog plana:')}} </label>
+                                            <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Kopiranje organizacionog plana')}} </label>
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="org_plan" >
                                                     <option value="">{{__('Novi organizacioni plan')}}</option>
@@ -154,7 +153,7 @@
 
                         <div class="card">
                             <div class="card-body">
-                                {{__('Molimo Vas da priložite dokument - Pravilnik o unutrašnjoj organizaciji sa sistematizacijom radnih mjesta kako bi nastavili sa procesom dodavanja organizacionog plana.')}}
+                                {{__('Molimo Vas da priložite dokument - Pravilnik o unutrašnjoj organizaciji sa sistematizacijom radnih mjesta kako bi nastavili sa procesom dodavanja organizacionog plana')}}
 
                                 <br />
                                 <br />

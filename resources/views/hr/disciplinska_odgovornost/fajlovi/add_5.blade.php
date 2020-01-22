@@ -34,7 +34,7 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('disciplinska_odgovornost_id', 'Disciplinska odgovornost : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('disciplinska_odgovornost_id', __('Disciplinska odgovornost').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::select('disciplinska_odgovornost_id', $disciplinska, isset($suspenzija) ? $suspenzija->disciplinska_odgovornost_id : '', ['class' => 'form-control', 'rows' => 1, 'autocomplete' => 'off', isset($preview) ? 'disabled' : '']) !!}
                                 </div>
@@ -43,7 +43,7 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('broj_rjesenja', 'Broj rješenja : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('broj_rjesenja', __('Broj rješenja').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('broj_rjesenja', isset($suspenzija) ? $suspenzija->broj_rjesenja : '', ['class' => 'form-control', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '', 'rows' => 1, 'maxlength' => 50]) !!}
                                 </div>
@@ -59,7 +59,7 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('broj_rjesenja_o_povratku', 'Broj rješenja o povratku : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('broj_rjesenja_o_povratku', __('Broj rješenja o povratku').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('broj_rjesenja_o_povratku', isset($suspenzija) ? $suspenzija->broj_rjesenja_o_povratku : '', ['class' => 'form-control', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '', 'rows' => 1, 'maxlength' => 50]) !!}
                                 </div>
@@ -76,7 +76,7 @@
                     <div class="split_container">
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('razlog_udaljenja', 'Razlog udaljenja : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('razlog_udaljenja', __('Razlog udaljenja ').': ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::textarea('razlog_udaljenja', isset($suspenzija) ? $suspenzija->razlog_udaljenja : '', ['class' => 'form-control', 'id' => 'razlog_udaljenja', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '', 'style' => 'height:196px;', 'maxlength' => 50]) !!}
                                 </div>

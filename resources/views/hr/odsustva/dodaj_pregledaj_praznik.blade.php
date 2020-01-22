@@ -4,9 +4,9 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '#' => 'Postavke',
-        route('odsustva.dodajpraznik') => 'Dodajte - uredite praznik',
+        route('home') => __('Početna stranica'),
+        '#' => __('Postavke'),
+        route('odsustva.dodajpraznik') => __('Dodajte - uredite praznik'),
     ]) !!}
 
 @stop

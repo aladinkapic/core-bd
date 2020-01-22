@@ -4,7 +4,7 @@
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => __('Početna stranica'),
-        '/hr/organ_javne_uprave/home' => __('Organi javne uprave'),
+        '/hr/organ_javne_uprave/home' => __('Organ javne uprave'),
     ]) !!}
 @stop
 

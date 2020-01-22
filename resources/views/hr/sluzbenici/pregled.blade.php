@@ -9,8 +9,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('sluzbenik.pregled') => 'Lista državnih službenika',
+        route('home') => __('Početna stranica'),
+        route('sluzbenik.pregled') => __('Lista državnih službenika'),
     ]) !!}
 
 @stop

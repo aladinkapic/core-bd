@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="card bg-light">
                         <div class="card-header ads-darker">
-                            {{__(' HR Aktivnosti')}}
+                            {{__('HR Aktivnosti')}}
                         </div>
                         <div class="card-body hr-activity">
                             <div class="row">
@@ -33,7 +33,7 @@
                                     <div class="stat-card-body">
                                         {{$brojNotifikacija}}
                                     </div>
-                                    <span>{{__('Obavjesti')}}</span>
+                                    <span>{{__('Obavijesti')}}</span>
                                 </div>
                             </div>
                         </div>

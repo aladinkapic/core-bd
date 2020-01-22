@@ -4,9 +4,9 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('sluzbenik.pregled') => 'Lista državnih službenika',
-        route('odsustva.kalendar', ['id_sluzbenika' => $sluzbenik_id]) => 'Pregled kalendara državnog službenika',
+        route('home') => __('Početna stranica'),
+        route('sluzbenik.pregled') => __('Lista državnih službenika'),
+        route('odsustva.kalendar', ['id_sluzbenika' => $sluzbenik_id]) => __('Pregled kalendara državnog službenika'),
     ]) !!}
 
 @stop

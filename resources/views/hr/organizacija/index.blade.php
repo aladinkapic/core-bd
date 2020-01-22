@@ -8,8 +8,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('organizacija.index') => 'Organizacioni planovi / Pravilnici',
+        route('home') => __('Početna stranica'),
+        route('organizacija.index') => __('Organizacioni planovi / Pravilnici'),
     ]) !!}
 
 @stop
