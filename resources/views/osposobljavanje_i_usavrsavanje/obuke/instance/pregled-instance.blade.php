@@ -2,10 +2,10 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/obuke/home' => 'Katalog obuka',
-        route('pregled-instanci-obuke', ['id' => $instanca->obuka->id ?? '1']) => 'Pregled instanci obuke',
-        route('pregledaj-instancu-obuke', ['id' => $instanca->id]) => 'Instanca sa predavačima'
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/obuke/home' => __('Katalog obuka'),
+        route('pregled-instanci-obuke', ['id' => $instanca->obuka->id ?? '1']) => __('Pregled instanci obuke'),
+        route('pregledaj-instancu-obuke', ['id' => $instanca->id]) => __('Instanca sa predavačima')
     ]) !!}
 @stop
 
@@ -73,13 +73,13 @@
                                 <div class="split_container" style="width: 100%;">
                                     <div class="row">
                                         <div class="col text-left">
-                                            {!! Form::label('pocetak_obuke', 'Početak obuke : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
+                                            {!! Form::label('pocetak_obuke', __('Početak obuke').' : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
                                                 {!! Form::text('pocetak_obuke', isset($instanca) ? $instanca->pocetakObuke() : '', ['class' => 'form-control ', 'rows' => 1, 'id' => 'pocetak_obuke', 'autocomplete' => 'off', 'readonly']) !!}
                                             </div>
                                         </div>
                                         <div class="col">
-                                            {!! Form::label('kraj_obuke', 'Kraj obuke : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
+                                            {!! Form::label('kraj_obuke', __('Kraj obuke').' : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
                                                 {!!  Form::text('kraj_obuke', isset($instanca) ? $instanca->krajObuke() : '' ,['class' => 'form-control ', 'id' => 'kraj_obuke', 'autocomplete' => 'off', 'readonly']) !!}
                                             </div>
@@ -88,7 +88,7 @@
 
                                     <div class="row" style="margin-top:15px;">
                                         <div class="col">
-                                            {!! Form::label('datum_zatvaranja', 'Datum zatvaranja za prijave : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
+                                            {!! Form::label('datum_zatvaranja', __('Datum zatvaranja za prijave').' : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
                                                 {!!  Form::text('datum_zatvaranja', isset($instanca) ? $instanca->datumZatvaranja() : '' ,['class' => 'form-control ', 'id' => 'datum_zatvaranja', 'autocomplete' => 'off', 'readonly']) !!}
                                             </div>
@@ -103,9 +103,9 @@
                                     <thead>
                                     <tr style="text-align:left;">
                                         <th class="text-center"width="80px">#</th>
-                                        <th>Ime i prezime</th>
-                                        <th>Email</th>
-                                        <th width="150px" class="text-center">Ocjena instance</th>
+                                        <th>{{__('Ime i prezime')}}</th>
+                                        <th>{{__('Email')}}</th>
+                                        <th width="150px" class="text-center">{{__('Ocjena instance')}}</th>
                                         <th class="text-center" width="150px">{{__('Akcije')}}</th>
                                     </tr>
                                     </thead>
@@ -123,7 +123,7 @@
                                             <td class="text-center">{{$predavac->ocjena ?? 'Nije ocijenjen/a !'}}</td>
                                             <td class="text-center">
                                                 <a href="###" class="btn my-button" data-toggle="modal" data-target="#exampleModal" data-whatever="{{$predavac->imePredavaca->id ?? '/'}}" id="1">
-                                                    Ocijenite
+                                                    {{__('Ocijenite')}}
                                                 </a>
                                             </td>
                                         </tr>
@@ -139,9 +139,9 @@
                                     <thead>
                                     <tr style="text-align:left;">
                                         <th class="text-center"width="80px">#</th>
-                                        <th>Ime i prezime</th>
-                                        <th>Organ uprave</th>
-                                        <th>Radno mjesto</th>
+                                        <th>{{__('Ime i prezime')}}</th>
+                                        <th>{{__('Organ javne uprave')}}</th>
+                                        <th>{{__('Radno mjesto')}}</th>
                                         <th class="text-center" width="150px">{{__('Akcije')}}</th>
                                     </tr>
                                     </thead>
@@ -159,7 +159,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{route('sluzbenik.dodatno', ['id' => $sluzbenik->sluzbenik->id ?? '/'])}}" class="btn my-button">
-                                                    Pregled
+                                                    {{__('Pregled')}}
                                                 </a>
                                             </td>
                                         </tr>

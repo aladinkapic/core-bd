@@ -5,8 +5,8 @@ if(isset($tema)) $naslov = 'Uređivanje teme za obuku'; else $naslov = 'Nova tem
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/teme/home' => 'Lista tema',
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/teme/home' => __('Lista tema'),
         '/osposobljavanje_i_usavrsavanje/teme/add' => '',
     ]) !!}
 @stop
@@ -22,9 +22,8 @@ if(isset($tema)) $naslov = 'Uređivanje teme za obuku'; else $naslov = 'Nova tem
             <div id="msform">
                 <!-- Tittle -->
                 <div class="tittle">
-                    <h2>{{$naslov ?? '/'}}</h2>
-                    <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
-                            zabilježene.')}}</p>
+                    <h2>{{__($naslov) ?? '/'}}</h2>
+                    <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
                     <br />
                 </div>
 
@@ -74,7 +73,7 @@ if(isset($tema)) $naslov = 'Uređivanje teme za obuku'; else $naslov = 'Nova tem
     </section>
     <br>
     <div class="buttons" style="text-align:center;">
-        <input class="btn btn-primary" form="form123" type="submit" value="Spasite temu za obuku">
+        <input class="btn btn-primary" form="form123" type="submit" value="{{__('Spremite')}}">
     </div>
 
     </div>

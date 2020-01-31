@@ -6,9 +6,9 @@ if (isset($predavac)) $naslov = 'Uređivanje Predavača'; else $naslov = 'Novi P
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/predavaci/home' => 'Lista predavača',
-        '/osposobljavanje_i_usavrsavanje/predavaci/add' => $naslov ,
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/predavaci/home' => __('Lista predavača'),
+        '/osposobljavanje_i_usavrsavanje/predavaci/add' => __($naslov) ,
     ]) !!}
 @stop
 
@@ -24,9 +24,8 @@ if (isset($predavac)) $naslov = 'Uređivanje Predavača'; else $naslov = 'Novi P
                 <div id="msform">
                     <!-- Tittle -->
                     <div class="tittle">
-                        <h2>{{$naslov ?? '/'}}</h2>
-                        <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
-                            zabilježene.')}}</p>
+                        <h2>{{__($naslov ?? '/')}}</h2>
+                        <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
                         <br/>
                     </div>
 
@@ -124,6 +123,7 @@ if (isset($predavac)) $naslov = 'Uređivanje Predavača'; else $naslov = 'Novi P
                 </div>
             </section>
 
+                <br>
             <div class="buttons" style="text-align:center;">
                 <input class="btn btn-primary" form="form123" type="submit"
                        value="{{isset($predavac) ?  __('Uređivanje Predavača') : __('Dodajte predavača') }}">

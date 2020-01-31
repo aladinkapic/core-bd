@@ -2,8 +2,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/obuke/home' => 'Katalog obuka',
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/obuke/home' => __('Katalog obuka'),
     ]) !!}
 @stop
 
@@ -17,8 +17,7 @@
                     <h2>
                         {{$obuka->naziv ?? 'Naziv nije unesen !'}}
                     </h2>
-                    <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
-                        zabilježene.')}}</p>
+                    <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
                     <br/>
                 </div>
                 @include('osposobljavanje_i_usavrsavanje.obuke.instance.instanca-header')
@@ -32,13 +31,13 @@
                                 <div class="split_container" style="width: 100%;">
                                     <div class="row">
                                         <div class="col text-left">
-                                            {!! Form::label('pocetak_obuke', 'Početak obuke : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
+                                            {!! Form::label('pocetak_obuke', __('Početak obuke').' : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
                                                 {!! Form::text('pocetak_obuke', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control datepicker', 'rows' => 1, 'id' => 'pocetak_obuke', 'autocomplete' => 'off']) !!}
                                             </div>
                                         </div>
                                         <div class="col">
-                                            {!! Form::label('kraj_obuke', 'Kraj obuke : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
+                                            {!! Form::label('kraj_obuke', __('Kraj obuke').' : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
                                                 {!!  Form::text('kraj_obuke', '' ,['class' => 'form-control datepicker', 'id' => 'kraj_obuke', 'autocomplete' => 'off']) !!}
                                             </div>
@@ -47,7 +46,7 @@
 
                                     <div class="row" style="margin-top:15px;">
                                         <div class="col">
-                                            {!! Form::label('datum_zatvaranja', 'Datum zatvaranja za prijave : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
+                                            {!! Form::label('datum_zatvaranja', __('Datum zatvaranja za prijave').' : ', ['class' => 'control-label', 'style' => 'margin-left:15px']) !!}
                                             <div class="col-lg-12">
                                                 {!!  Form::text('datum_zatvaranja', '' ,['class' => 'form-control datepicker', 'id' => 'datum_zatvaranja', 'autocomplete' => 'off']) !!}
                                             </div>
@@ -63,7 +62,7 @@
                                         {!! Form::hidden('predavac_id_inp[]', 'empty', ['class' => 'form-control']) !!}
                                         <div class="form-group row">
                                             <div class="col">
-                                                {!! Form::label('ime_sluzbenika', 'Ime i prezime predavača : ', ['class' => 'control-label']) !!}
+                                                {!! Form::label('ime_sluzbenika', __('Ime i prezime predavača').' : ', ['class' => 'control-label']) !!}
                                                 <div class="col-lg-12">
                                                     {!!  Form::select('predavac_id[]', $predavaci, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
                                                 </div>
@@ -94,7 +93,7 @@
                                         {!! Form::hidden('sluzbenik_id_inp[]', 'empty', ['class' => 'form-control']) !!}
                                         <div class="form-group row">
                                             <div class="col">
-                                                {!! Form::label('sluzbenik_id', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                                                {!! Form::label('sluzbenik_id', __('Ime i prezime službenika').' : ', ['class' => 'control-label']) !!}
                                                 <div class="col-lg-12">
 {{--                                                    {!!  Form::select('sluzbenik_id[]', $sluzbenici, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}--}}
                                                 </div>

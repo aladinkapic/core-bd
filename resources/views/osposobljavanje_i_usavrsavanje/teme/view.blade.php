@@ -3,9 +3,9 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/teme/home' => 'Lista tema',
-        '/osposobljavanje_i_usavrsavanje/teme/view' => 'Pregled teme',
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/teme/home' => __('Lista tema'),
+        '/osposobljavanje_i_usavrsavanje/teme/view' => __('Pregled teme'),
     ]) !!}
 @stop
 
@@ -15,7 +15,7 @@
 
         <div class="card ">
             <div class="card-header ads-darker">
-                <a href="/osposobljavanje_i_usavrsavanje/teme/editTema/{{$tema -> id ?? '1'}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> Izmijeni</button></a>
+                <a href="/osposobljavanje_i_usavrsavanje/teme/editTema/{{$tema -> id ?? '1'}}"><button style="float:right;margin-right:5px;" class="btn btn-light"><i class="fa fa-pen"></i> {{__('Izmijeni')}}</button></a>
                 <h3>{{__('Tema za obuku')}}</h3>
             </div>
             <div class="card-body hr-activity tab">

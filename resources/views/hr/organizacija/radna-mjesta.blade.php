@@ -43,7 +43,7 @@
                     <thead >
                     <tr >
                         @include('template.snippets.filters_header')
-                        <th scope="col" class="text-center" width="120px">Akcije</th>
+                        <th scope="col" class="text-center" width="120px">{{__('Akcije')}}</th>
                     </tr>
                     </thead>
                     <tbody>

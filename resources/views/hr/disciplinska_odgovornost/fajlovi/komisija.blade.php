@@ -6,14 +6,14 @@
                     <div class="copied_form" id="form_for_copy">
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('sluzbenik_id_kom', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('sluzbenik_id_kom', __('Ime i prezime člana komisije').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::text('sluzbenik_id_kom[]', $clan_kom->sluzbenik->ime.' '.$clan_kom->sluzbenik->prezime ,['class' => 'form-control', 'id' => 'sluzbenik_id_kom', 'readonly']) !!}
                                 </div>
                             </div>
                             @if(isset($clan_kom->sluzbenik_id_kom_e))
                                 <div class="col">
-                                    {!! Form::label('sluzbenik_id_kom_e[]', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
+                                    {!! Form::label('sluzbenik_id_kom_e[]', __('Ime i prezime člana komisije').' : ', ['class' => 'control-label']) !!}
                                     <div class="col-lg-12">
                                         {!!  Form::text('sluzbenik_id_kom_e[]', $clan_kom->sluzbenik_id_kom_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_kom_e', 'readonly']) !!}
                                     </div>
@@ -22,14 +22,14 @@
                         </div>
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('oju_kom', 'Organ Javne uprave : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('oju_kom', __('Organ javne uprave').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::select('oju_kom[]', $organi, $clan_kom->oju_kom ,['class' => 'form-control', 'id' => 'oju_kom', 'disabled' => true]) !!}
                                 </div>
                             </div>
                             @if(isset($clan_kom->oju_kom_e))
                                 <div class="col">
-                                    {!! Form::label('oju_kom_e', 'Institucija : ', ['class' => 'control-label']) !!}
+                                    {!! Form::label('oju_kom_e', __('Institucija').' : ', ['class' => 'control-label']) !!}
                                     <div class="col-lg-12">
                                         {!!  Form::text('oju_kom_e[]', $clan_kom->oju_kom_e ,['class' => 'form-control', 'id' => 'oju_kom_e', 'readonly']) !!}
                                     </div>
@@ -47,7 +47,7 @@
 
                     <div class="form-group row">
                         <div class="col">
-                            {!! Form::label('sluzbenik_id_kom', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('sluzbenik_id_kom', __('Ime i prezime službenika').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!! Form::select('sluzbenik_id_kom[]', $nizsluzbenika, '0', ['class' => 'js-example-basic-single form-control', 'style' => 'width:100%;']) !!}
                             </div>
@@ -60,7 +60,7 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
                         <div class="col">
-                            {!! Form::label('sluzbenik_id_kom_e[]', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('sluzbenik_id_kom_e[]', __('Ime i prezime službenika').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!!  Form::text('sluzbenik_id_kom_e[]', '' ,['class' => 'form-control', 'id' => 'sluzbenik_id_kom_e']) !!}
                             </div>
@@ -68,13 +68,13 @@
                     </div>
                     <div class="form-group row">
                         <div class="col">
-                            {!! Form::label('oju_kom', 'Organ Javne uprave : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('oju_kom', __('Organ javne uprave').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!!  Form::select('oju_kom[]', $organi, '' ,['class' => 'form-control', 'id' => 'oju_kom']) !!}
                             </div>
                         </div>
                         <div class="col">
-                            {!! Form::label('oju_kom_e', 'Institucija : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('oju_kom_e', __('Institucija').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!!  Form::text('oju_kom_e[]', '' ,['class' => 'form-control', 'id' => 'oju_kom_e']) !!}
                             </div>
@@ -113,14 +113,14 @@
 
                                 <div class="form-group row">
                                     <div class="col">
-                                        {!! Form::label('sluzbenik_id_kom', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('sluzbenik_id_kom', __('Ime i prezime službenika').' : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
                                             {!! Form::select('sluzbenik_id_kom[]', $nizsluzbenika, $clan_kom->sluzbenik->id ?? '0', ['class' => 'js-example-basic-single form-control', 'style' => 'width:100%;']) !!}
                                         </div>
                                     </div>
 
                                     <div class="col">
-                                        {!! Form::label('sluzbenik_id_kom_e[]', 'Ime i prezime člana komisije : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('sluzbenik_id_kom_e[]', __('Ime i prezime člana komisije').' : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
                                             {!!  Form::text('sluzbenik_id_kom_e[]', $clan_kom->sluzbenik_id_kom_e ,['class' => 'form-control', 'id' => 'sluzbenik_id_kom_e']) !!}
                                         </div>
@@ -128,13 +128,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col">
-                                        {!! Form::label('oju_kom', 'Organ Javne uprave : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('oju_kom', __('Organ javne uprave').' : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
                                             {!!  Form::select('oju_kom[]', $organi, $clan_kom->oju_kom ,['class' => 'form-control', 'id' => 'oju_kom']) !!}
                                         </div>
                                     </div>
                                     <div class="col">
-                                        {!! Form::label('oju_kom_e', 'Institucija : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('oju_kom_e', __('Institucija').' : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
                                             {!!  Form::text('oju_kom_e[]', $clan_kom->oju_kom_e ,['class' => 'form-control', 'id' => 'oju_kom_e']) !!}
                                         </div>

@@ -3,8 +3,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/predavaci/home' => 'Lista predavača',
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/predavaci/home' => __('Lista predavača'),
     ]) !!}
 @stop
 

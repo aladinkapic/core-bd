@@ -2,9 +2,9 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '#' => 'Postavke',
-        route('limiti.pregledlimita') => 'Pregled svih limita',
+        route('home') => __('Početna stranica'),
+        '#' => __('Postavke'),
+        route('limiti.pregledlimita') => __('Pregled svih limita'),
     ]) !!}
 
 @stop

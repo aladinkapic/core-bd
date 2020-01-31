@@ -44,7 +44,7 @@
                         {!! Form::hidden('sluzbenik_id', $sluzbenik_id, ['id' => 'sluzbenik_id']) !!}
                     </div>
                     <div class="single_row">
-                        {!! Form::label('period_do', __('Period od').' : ', ['class' => 'control-label']) !!}
+                        {!! Form::label('period_do', __('Period do').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
                             {!! Form::text('period_do', isset($do) ? $do : '' , ['class' => 'form-control datepicker', 'id' => 'period_do', 'onInput' => 'blur("period_od", "period_do")']) !!}
                         </div>
@@ -84,10 +84,6 @@
             <div class="basic_info">
                 <h3>{{$sluzbenik->ime.' '.$sluzbenik->prezime}}</h3>
             </div>
-            <div class="basic_info">
-                <h5>{{__('Rukovodilac poslova')}}</h5>
-            </div>
-
             <div class="basic_info">
                 <a href="{{asset('/hr/sluzbenici/uredi_sluzbenika/'.$sluzbenik->id)}}">
                     <p>{{__('Karton radnika')}}</p>

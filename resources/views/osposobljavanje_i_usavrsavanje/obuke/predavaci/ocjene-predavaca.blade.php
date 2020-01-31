@@ -3,15 +3,15 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/obuke/home' => 'Katalog obuka',
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/obuke/home' => __('Katalog obuka'),
     ]) !!}
 @stop
 
 @section('content')
     <div class="container">
         <div class="fine-header">
-            <h4>Predavač : {{$instance[0]->imePredavaca->ime ?? '/'}} {{$instance[0]->imePredavaca->prezime ?? '/'}}</h4>
+            <h4>{{__('Predavač')}} : {{$instance[0]->imePredavaca->ime ?? '/'}} {{$instance[0]->imePredavaca->prezime ?? '/'}}</h4>
 
             <div class="buttons">
                 <a href="">
@@ -48,7 +48,7 @@
                             <td>{{$instanca->ocjena ?? 'Nije ocijenjen'}}</td>
                             <td class="text-center" title="Pregled predavača">
                                 <a href="">
-                                    <button class="btn my-button">Pregled</button>
+                                    <button class="btn my-button">{{__('Pregled')}}</button>
                                 </a>
                             </td>
                         </tr>

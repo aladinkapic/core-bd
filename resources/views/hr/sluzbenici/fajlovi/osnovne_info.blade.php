@@ -200,8 +200,8 @@
             <thead class="table-my-header">
                 <tr>
                     <th class="text-center" width="80px">#</th>
-                    <th><p>VRSTA UGOVORA / RJEŠENJA</p></th>
-                    <th class="text-center" width="120px">AKCIJE</th>
+                    <th><p>{{__('VRSTA UGOVORA / RJEŠENJA')}}</p></th>
+                    <th class="text-center" width="120px">{{__('AKCIJE')}}</th>
                 </tr>
             </thead>
             <tbody class="table-my-body">
@@ -209,12 +209,12 @@
                 <td class="text-center">1.</td>
                 <td>
                     <a href="">
-                        Uvjerenje
+                        {{__('Uvjerenje')}}
                     </a>
                 </td>
                 <td class="text-center">
                     <a href="{{route('uvjerenje_rm')}}">
-                        <button class="my-extra-button">Pregled</button>
+                        <button class="my-extra-button">{{__('Pregled')}}</button>
                     </a>
                 </td>
             </tr>
@@ -222,12 +222,12 @@
                 <td class="text-center">2.</td>
                 <td>
                     <a href="">
-                        Rješenje o plaćenom odsustvu
+                        {{__('Rješenje o plaćenom odsustvu')}}
                     </a>
                 </td>
                 <td class="text-center">
                     <a href="{{route('placeno_odsustvo')}}">
-                        <button class="my-extra-button">Pregled</button>
+                        <button class="my-extra-button">{{__('Pregled')}}</button>
                     </a>
                 </td>
             </tr>
@@ -235,12 +235,12 @@
                 <td class="text-center">3.</td>
                 <td>
                     <a href="">
-                        Rješenje o korištenju godišnjeg odmora
+                        {{__('Rješenje o korištenju godišnjeg odmora')}}
                     </a>
                 </td>
                 <td class="text-center">
                     <a href="{{route('godisnji_odmor')}}">
-                        <button class="my-extra-button">Pregled</button>
+                        <button class="my-extra-button">{{__('Pregled')}}</button>
                     </a>
                 </td>
             </tr>
@@ -248,12 +248,12 @@
                 <td class="text-center">4.</td>
                 <td>
                     <a href="{{route('rjesenje_plata')}}">
-                        Rješenje vezano za platu !?
+                        {{__('Rješenje vezano za platu')}}
                     </a>
                 </td>
                 <td class="text-center">
                     <a href="">
-                        <button class="my-extra-button">Pregled</button>
+                        <button class="my-extra-button">{{__('Pregled')}}</button>
                     </a>
                 </td>
             </tr>
@@ -261,12 +261,12 @@
                 <td class="text-center">5.</td>
                 <td>
                     <a href="">
-                        Rješenje o prestanku radnog odnosa
+                        {{__('Rješenje o prestanku radnog odnosa')}}
                     </a>
                 </td>
                 <td class="text-center">
                     <a href="{{route('prestanak_ro')}}">
-                        <button class="my-extra-button">Pregled</button>
+                        <button class="my-extra-button">{{__('Pregled')}}</button>
                     </a>
                 </td>
             </tr>
