@@ -7,7 +7,7 @@
                     <i class="fas fa-clock"></i>
                 </div>
                 <p>
-                    Termin obuke
+                    {{__('Termin obuke')}}
                 </p>
             </div>
         </li>
@@ -18,7 +18,7 @@
                     <i class="fas fa-chalkboard-teacher"></i>
                 </div>
                 <p>
-                    Predavači
+                    {{__('Predavači')}}
                 </p>
             </div>
         </li>
@@ -29,7 +29,7 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <p>
-                    Službenici
+                    {{__('Službenici')}}
                 </p>
             </div>
         </li>

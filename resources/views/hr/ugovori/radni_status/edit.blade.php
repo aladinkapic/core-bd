@@ -3,8 +3,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('ugovor.index') => 'Radni status i raspored na radno mjesto',
+        route('home') => __('Početna stranica'),
+        route('ugovor.index') => __('Radni status i raspored na radno mjesto'),
         route('ugovor.radni_status.edit', ['id' => $ugovor->id]) => 'Izmjena ugovora',
     ]) !!}
 

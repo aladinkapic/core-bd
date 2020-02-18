@@ -3,8 +3,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/ostalo/historizacija/home' => 'Historija izmjena',
+        route('home') => __('Početna stranica'),
+        '/ostalo/historizacija/home' => __('Historija izmjena'),
     ]) !!}
 @stop
 
@@ -47,7 +47,7 @@
                         <br>
                         <div class="row">
                             <div class="col-6">
-                                <h4>{{__('Stare Vrijednosti')}}</h4>
+                                <h4>{{__('Stare vrijednosti')}}</h4>
                                 <br>
                                 <table class="table table-hover">
                                     <thead>
@@ -87,7 +87,7 @@
                             <?php
                             if ($log->operation != 'Brisanje'){  ?>
                             <div class="col-6">
-                                <h4>{{__('Nove Vrijednosti')}}</h4>
+                                <h4>{{__('Nove vrijednosti')}}</h4>
                                 <br>
                                 <table class="table table-hover">
                                     <thead>

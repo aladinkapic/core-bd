@@ -33,8 +33,8 @@ if (isset($instanca) and $instanca != 'new') {
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/obuke/home' => 'Katalog obuka',
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/obuke/home' => __('Katalog obuka'),
     ]) !!}
 @stop
 
@@ -54,7 +54,7 @@ if (isset($instanca) and $instanca != 'new') {
                                     @if(isset($obuka))
                                         {{$obuka->naziv}}
                                     @else
-                                        Nova obuka
+                                        {{__('Nova obuka')}}
                                     @endif
                                 </p>
                             </div>
@@ -163,7 +163,7 @@ if (isset($instanca) and $instanca != 'new') {
                         <div class="buttons" style="text-align:center;">
                             <button class="btn btn-success" onclick="document.querySelector('#kreiranje').submit();">
                                 <i class="fab fa-telegram"></i>
-                                {{__('Spremi')}}
+                                {{__('Spremite')}}
                             </button>
                         </div>
                     @endif

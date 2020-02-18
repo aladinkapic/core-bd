@@ -4,9 +4,9 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('sluzbenik.pregled') => 'Lista državnih službenika',
-        route('odsustva.kalendar', ['id_sluzbenika' => $sluzbenik_id]) => 'Pregled kalendara državnog službenika',
+        route('home') => __('Početna stranica'),
+        route('sluzbenik.pregled') => __('Lista državnih službenika'),
+        route('odsustva.kalendar', ['id_sluzbenika' => $sluzbenik_id]) => __('Pregled kalendara državnog službenika'),
     ]) !!}
 
 @stop
@@ -45,13 +45,13 @@
                             {!! Form::hidden('id_odsustva', 0, ['class' => 'control-label', 'id' => 'id_odsustva']) !!}
                             <!-- Ime -->
                                 <div class="col">
-                                    {!! Form::label('vrsta_odsustva', 'Vrsta odsustva : ', ['class' => 'control-label']) !!}
+                                    {!! Form::label('vrsta_odsustva', __('Vrsta odsustva').' : ', ['class' => 'control-label']) !!}
                                     <div class="col-lg-12">
                                         {!!  Form::select('vrsta_odsustva', $odsustva, '0' ,['class' => 'form-control',  'id' => 'vrsta_odsustva']) !!}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    {!! Form::label('putni_nalog', 'Putni nalog : ', ['class' => 'control-label']) !!}
+                                    {!! Form::label('putni_nalog', __('Putni nalog').' : ', ['class' => 'control-label']) !!}
                                     <div class="col-lg-12">
                                         {!! Form::text('putni_nalog', $value = null, ['class' => 'form-control', 'rows' => 1, 'id' => 'putni_nalog']) !!}
                                     </div>
@@ -60,13 +60,13 @@
 
                             <div class="form-group row">
                                 <div class="col">
-                                    {!! Form::label('naknade', 'Naknade : ', ['class' => 'control-label']) !!}
+                                    {!! Form::label('naknade', __('Naknade').' : ', ['class' => 'control-label']) !!}
                                     <div class="col-lg-12">
                                         {!! Form::text('naknade', $value = null, ['class' => 'form-control', 'rows' => 1, 'id' => 'naknade']) !!}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    {!! Form::label('troskovi', 'Troškovi : ', ['class' => 'control-label']) !!}
+                                    {!! Form::label('troskovi', __('Troškovi').' : ', ['class' => 'control-label']) !!}
                                     <div class="col-lg-12">
                                         {!! Form::text('troskovi', $value = null, ['class' => 'form-control', 'rows' => 1, 'id' => 'troskovi']) !!}
                                     </div>
@@ -75,7 +75,7 @@
 
                             <div class="form-group row">
                                 <div class="col">
-                                    {!! Form::label('datum_od', __('Datum od').' : ', ['class' => 'control-label', 'id' => 'datum_od_label']) !!}
+                                    {!! Form::label('datum_do', __('Datum od').' : ', ['class' => 'control-label', 'id' => 'datum_od_label']) !!}
                                     <div class="col-lg-12">
                                         {!! Form::text('datum_od', '' , ['class' => 'form-control datepicker', 'id' => 'datum_od', 'autocomplete' => 'off']) !!}
                                     </div>
@@ -89,7 +89,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="napomena" class="col-form-label">{{__('Napomena :')}}</label>
+                                <label for="napomena" class="col-form-label">{{__('Napomena').' :'}}</label>
                                 <textarea class="form-control" id="napomena"></textarea>
                             </div>
 

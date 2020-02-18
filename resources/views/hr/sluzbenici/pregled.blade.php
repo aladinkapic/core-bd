@@ -9,8 +9,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('sluzbenik.pregled') => 'Lista državnih službenika',
+        route('home') => __('Početna stranica'),
+        route('sluzbenik.pregled') => __('Lista državnih službenika'),
     ]) !!}
 
 @stop
@@ -275,7 +275,7 @@
                                 </a>
                             @else
                                 <a href="{{ '/hr/sluzbenici/dodatno_o_sluzbeniku/' . $sluzbenik->id ?? '1'}}">
-                                    <button class="btn my-button">Pregled</button>
+                                    <button class="btn my-button">{{__('Pregled')}}</button>
                                 </a>
                             @endif
                         </td>

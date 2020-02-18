@@ -4,8 +4,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('internotrziste.privremeni.premjestaj') => 'Privremeni premještaj',
+        route('home') => __('Početna stranica'),
+        route('internotrziste.privremeni.premjestaj') => __('Privremeni premještaj'),
     ]) !!}
 @stop
 
@@ -57,7 +57,7 @@
                             @endif</td>
                         <td class="text-center">
                             <a href="{{route('ugovor.privremeno.edit', ['id' => $korisnik->privremeni_premjestaj])}}">
-                                <button class="btn my-button">Pregled</button>
+                                <button class="btn my-button">{{__('Pregled')}}</button>
                             </a>
                         </td>
                     </tr>

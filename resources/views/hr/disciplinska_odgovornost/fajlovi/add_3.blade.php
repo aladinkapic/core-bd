@@ -48,7 +48,7 @@
                                 <div class="iconsss">
                                     <div class="single-icon steps-going-to" goto="{{Route('disciplinska.uredite', ['id' => $disciplinska->id ?? '1'])}}">
                                         <i class="fas fa-edit"></i>
-                                        <p>Uredite</p>
+                                        <p>{{__('Uredite')}}</p>
                                     </div>
                                     <div class="single-icon">
                                         <a href="">
@@ -71,7 +71,7 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('opis_povrede', 'Opis povrede : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('opis_povrede', __('Opis povrede').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('opis_povrede', $disciplinska->opis_povrede, ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm', 'onkeyup' => 'verifikuj_string("naziv_rm", "Naziv radnog ne smije sadržavati brojeve !", "ima_li_brojeva"), copy_content(this, ["disc_odg__"]), copy_content(this, ["disc_odg__c"])', 'autocomplete' => 'off', 'maxlength' => '100', isset($preview) ? 'readonly' : '']) !!}
                                 </div>
@@ -80,7 +80,7 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('opis_disciplinske_mjere', 'Opis disciplinske mjere : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('opis_disciplinske_mjere', __('Opis disciplinske mjere').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::textarea('opis_disciplinske_mjere', $disciplinska->opis_disciplinske_mjere, ['class' => 'form-control', 'id' => 'opis_disciplinske_mjere', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '', 'style' => 'height:190px;']) !!}
                                 </div>
@@ -91,7 +91,7 @@
                     <div class="split_container">
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('vrsta_disciplinske', 'Vrsta : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('vrsta_disciplinske', __('Vrsta').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::select('vrsta_disciplinske', ['Nije definisano' => 'Odaberite', 'Teža' => 'Teža', 'Lakša' => 'Lakša'], $disciplinska->vrsta_disciplinske, ['class' => 'form-control', 'id' => 'vrsta_disciplinske', 'autocomplete' => 'off', isset($preview) ? 'disabled => true' : '']) !!}
                                 </div>
@@ -99,13 +99,13 @@
                         </div>
                         <div class="form-group row steppsss">
                             <div class="col">
-                                {!! Form::label('datum_povrede', 'Datum konačnosti rješenja : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('datum_povrede', __('Datum konačnosti rješenja').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('datum_povrede', $disciplinska->datumPovrede(), ['class' => 'form-control datepicker', 'id' => 'datum_povrede', 'autocomplete' => 'off', isset($preview) ? 'readonly' : '']) !!}
                                 </div>
                             </div>
                             <div class="col">
-                                {!! Form::label('sluzbenik_id', 'Službenik : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('sluzbenik_id', __('Službenik').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     @if(isset($preview))
                                         {!! Form::text('sluzbenik_id', $disciplinska->sluzbenik->ime.' '.$disciplinska->sluzbenik->prezime, ['class' => 'form-control', 'readonly']) !!}

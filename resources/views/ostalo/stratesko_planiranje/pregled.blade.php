@@ -6,7 +6,7 @@
         <div class="card-header ads-darker" style="height:60px;">
             <button onClick="window.location='{{ route('unos.strateskogplaniranja') }}';" class="btn btn-light float-right" ><i class="fa fa-plus-circle"></i> {{__('Planiranje kadrova')}}</button>
             <h4 style="padding-top:6px; margin-top:0px;">
-                {{__('Strateško planiranje - planiranje kadrova')}}
+                {{__('Strateško planiranje')}}
             </h4>
         </div>
 

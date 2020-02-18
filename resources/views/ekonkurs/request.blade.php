@@ -1,6 +1,15 @@
 @extends('template.main')
 @section('title'){{__(' E-Konkurs ')}}@endsection
 
+@section('breadcrumbs')
+
+    {!! \App\Http\Controllers\HelpController::breadcrumbs([
+        route('home') => __('Početna stranica'),
+        "#" => __('eKonkurs')
+    ]) !!}
+
+@stop
+
 @section('content')
     <div class="container">
         <div class="row">

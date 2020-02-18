@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
             route('home') => __('Početna stranica'),
-            '/hr/organ_javne_uprave/home' => __('Organi javne uprave'),
+            '/hr/organ_javne_uprave/home' => __('Organ javne uprave'),
             '/hr/uprava/viewUprava/{id}' => $uprava -> naziv ?? 'Nije unesen naziv !'
         ]) !!}
 @endsection
@@ -27,7 +27,7 @@
                                     <div class="iconsss">
                                         <div class="single-icon steps-going-to" goto="{{Route('uredite-organe', ['id' => $uprava->id ?? '1'])}}">
                                             <i class="fas fa-edit"></i>
-                                            <p>Uredite</p>
+                                            <p>{{__('Uredite')}}</p>
                                         </div>
                                         <div class="single-icon">
                                             <a href="{{route('obrisite-organe', ['id' => $uprava->id ?? '1'])}}">

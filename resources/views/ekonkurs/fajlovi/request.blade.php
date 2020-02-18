@@ -8,7 +8,7 @@
         <form method="POST" action="">
             @csrf
         {!! Form::number('request', (request()->has('request')) ? request('request') : '', ['class' => 'custom_form', 'id' => 'id_prijave', 'placeholder' => 'ID prijave ..']) !!}
-        <input type="submit" value="Unesite službenika" id="save_itt" >
+        <input type="submit" value="{{__('Unesite službenika')}}" id="save_itt" >
         </form>
     </div>
 </div>

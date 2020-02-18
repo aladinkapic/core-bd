@@ -3,8 +3,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/hr/disciplinska_odgovornost/home' => 'Lista disciplinskih odgovornosti',
+        route('home') => __('Početna stranica'),
+        '/hr/disciplinska_odgovornost/home' => __('Lista disciplinskih odgovornosti'),
     ]) !!}
 
 @stop
@@ -62,7 +62,7 @@
                         <td class="text-center">
                             <a href="{{Route('disciplinska.pregledaj', ['id' => $odgovornost->id ?? '1'])}}"
                                title="Pregledajte disciplinsku odgovornost">
-                                <button class="btn my-button">Pregled</button>
+                                <button class="btn my-button">{{__('Pregled')}}</button>
                             </a>
 {{--                            <a href="{{Route('disciplinska.uredite', ['id' => $odgovornost->id ?? '1'])}}" style="margin-left:10px;"--}}
 {{--                               title="Uredite  disciplinsku odgovornost">--}}

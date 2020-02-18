@@ -132,8 +132,7 @@ class HelpController extends Controller
      ******************************************************************************************************************/
 
 
-    public function pocetak()
-    {
+    public function pocetak(){
         return view('welcome');
     }
 

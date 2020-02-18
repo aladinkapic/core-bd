@@ -3,8 +3,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('radna.mjesta.sve') => 'Pregled svih radnih mjesta',
+        route('home') => __('Početna stranica'),
+        route('radna.mjesta.sve') => __('Pregled svih radnih mjesta'),
     ]) !!}
 
 @stop
@@ -72,7 +72,7 @@
                         <td class="text-center akcije">
                             <a href="{{route('radnamjesta.pregledaj-mjestooo', ['id' => $radnoMjesto->id ?? '/'])}}"
                                title="Pregledajte radno mjesto">
-                                <button class="btn my-button">Pregled</button>
+                                <button class="btn my-button">{{__('Pregled')}}</button>
                             </a>
 
 {{--                            <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"--}}

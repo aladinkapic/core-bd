@@ -3,8 +3,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/ostalo/historizacija/home' => 'Historija izmjena',
+        route('home') => __('Početna stranica'),
+        '/ostalo/historizacija/home' => __('Historija izmjena'),
     ]) !!}
 @stop
 
@@ -46,7 +46,7 @@
                         <td>{{$log->created_at ?? '/'}}</td>
                         <td class="text-center">
                             <a href="/ostalo/historizacija/detalji/{{$log -> id ?? '1'}}">
-                                <button class="btn my-button">Pregled</button>
+                                <button class="btn my-button">{{__('Pregled')}}</button>
                             </a>
                         </td>
                     </tr>

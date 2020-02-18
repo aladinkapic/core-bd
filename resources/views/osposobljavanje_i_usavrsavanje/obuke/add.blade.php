@@ -33,7 +33,7 @@ if (isset($instanca) and $instanca != 'new') {
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
+        route('home') => __('Početna stranica'),
         '/osposobljavanje_i_usavrsavanje/obuke/home' => 'Katalog obuka',
     ]) !!}
 @stop

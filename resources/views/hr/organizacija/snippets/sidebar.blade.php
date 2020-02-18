@@ -21,7 +21,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{__('Broj izmjena ')}}
+        {{__('Broj izmjena')}}
     </div>
     <ul class="list-group list-group-flush">
         @if(!isset($organizacija->brojIzmjena))
@@ -62,7 +62,7 @@
 <br />
 <div class="card">
     <div class="card-header">
-        {{__('Preuzmite dokumente')}}
+        {{__('Naziv organizacionog plana / Pravilnika')}}
     </div>
     <ul class="list-group list-group-flush">
         @foreach($organizacija->fajlovi as $fajl)
@@ -124,7 +124,7 @@
     <ul class="list-group list-group-flush">
         <a href="{{route('organizacija.izmjene-sistematizacije', ['id' => $organizacija->id ?? '/'])}}">
             <li class="list-group-item" style="width: 100%;">
-                <button class="btn btn-success" style="width: 100%;"> {{__('Pregled ')}}</button>
+                <button class="btn btn-success" style="width: 100%;"> {{__('Pregled')}}</button>
             </li>
         </a>
     </ul>

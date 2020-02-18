@@ -4,8 +4,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('internotrziste.pregled') => 'Upražnjena radna mjesta',
+        route('home') => __('Početna stranica'),
+        route('internotrziste.pregled') => __('Upražnjena radna mjesta'),
     ]) !!}
 
 @stop
@@ -20,7 +20,7 @@
                 <thead>
                 <tr>
                     @include('template.snippets.filters_header')
-                    <th width="120px" class="text-center">Akcije</th>
+                    <th width="120px" class="text-center">{{__('Akcije')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                             <td class="text-center">
                                 <a href="{{route('radnamjesta.rjesenje', ['id' => $rm->id, 'what' => 'true'])}}"
                                    title="Pregledajte radno mjesto">
-                                    <button class="btn my-button">Pregled</button>
+                                    <button class="btn my-button">{{__('Pregled')}}</button>
                                 </a>
                             </td>
                         </tr>

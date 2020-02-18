@@ -147,7 +147,7 @@
                             <td>{{$veceOd65}}</td>
 
                             <td class="akcije" style="text-align:center;">
-                                <button class="btn my-button">Pregled</button>
+                                <button class="btn my-button">{{__('Pregled')}}</button>
                             </td>
                         </tr>
                     @endforeach

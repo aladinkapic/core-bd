@@ -2,9 +2,9 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('sluzbenik.pregled') => 'Lista državnih službenika',
-        '#' => 'Limiti odsustava po službeniku',
+        route('home') => __('Početna stranica'),
+        route('sluzbenik.pregled') => __('Lista državnih službenika'),
+        '#' => __('Limiti odsustava po službeniku'),
     ]) !!}
 
 @stop

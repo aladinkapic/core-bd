@@ -76,13 +76,13 @@
                     <div class="split_container">
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('naziv_rm', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('naziv_rm', __('Naziv radnog mjesta').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('naziv_rm', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm', 'onkeyup' => 'verifikuj_string("naziv_rm", "Naziv radnog ne smije sadržavati brojeve !", "ima_li_brojeva"), copy_content(this, ["naziv_rm_inp"])', 'autocomplete' => 'off', 'maxlength' => '100', isset($radno_mjesto) ? 'readonly' : '']) !!}
                                 </div>
                             </div>
                             <div class="col">
-                                {!! Form::label('sifra_rm', 'Šifra radnog mjesta : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('sifra_rm', __('Šifra radnog mjesta').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('sifra_rm', isset($radno_mjesto) ? $radno_mjesto->sifra_rm : '' , ['class' => 'form-control', 'rows' => 1, 'id' => 'sifra_rm', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '50']) !!}
                                 </div>
@@ -91,7 +91,7 @@
                         <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('opis_rm', 'Opis poslova radnog mjesta i odgovornosti : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('opis_rm', __('Opis poslova radnog mjesta i odgovornosti').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::textarea('opis_rm', isset($radno_mjesto) ? $radno_mjesto->opis_rm : '', ['class' => 'form-control', 'style' => 'height:152px; ', 'id' => 'opis_rm', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '5000']) !!}
                                 </div>
@@ -100,13 +100,13 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('broj_izvrsilaca', 'Broj izvršilaca : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('broj_izvrsilaca', __('Broj izvršilaca').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::number('broj_izvrsilaca', isset($radno_mjesto) ? $radno_mjesto->broj_izvrsilaca : '', ['class' => 'form-control', 'id' => 'broj_izvrsilaca', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'min' => 1]) !!}
                                 </div>
                             </div>
                             <div class="col">
-                                {!! Form::label('platni_razred', 'Platni razred : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('platni_razred', __('Platni razred').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!! Form::text('platni_razred', isset($radno_mjesto) ? $radno_mjesto->platni_razred : '', ['class' => 'form-control', 'id' => 'platni_razred', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '50']) !!}
                                 </div>
@@ -116,13 +116,13 @@
                     <div class="split_container">
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('tip_rm', 'Stepen : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('tip_rm', __('Stepen').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::select('tip_rm', $tip_radnog_mjesta, isset($radno_mjesto) ? $radno_mjesto->tip_rm : '' ,['class' => 'form-control', 'id' => 'tip_rm', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
                                 </div>
                             </div>
                             <div class="col">
-                                {!! Form::label('kategorija_rm', 'Kategorija radnog mjesta : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('kategorija_rm', __('Kategorija radnog mjesta').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::select('kategorija_rm', $kateogrija_radnog, isset($radno_mjesto) ? $radno_mjesto->kategorija_rm : '' ,['class' => 'form-control', 'id' => 'kategorija_rm', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
                                 </div>
@@ -131,7 +131,7 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('id_oj', 'Organizaciona jedinica : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('id_oj', __('Organizaciona jedinica').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::select('id_oj', $org_jedinice, isset($radno_mjesto) ? $radno_mjesto->id_oj : '' ,['class' => 'form-control', 'id' => 'id_oj', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
                                 </div>
@@ -149,7 +149,7 @@
 
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('strucna_sprema', 'Kompetencije : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('strucna_sprema', __('Kompetencije').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::select('strucna_sprema', $strucna_sprema, isset($radno_mjesto) ? $radno_mjesto->strucna_sprema : '' ,['class' => 'form-control', 'id' => 'strucna_sprema', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
                                 </div>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col">
-                                {!! Form::label('benificirani_staz', 'Benificirani radni staž : ', ['class' => 'control-label']) !!}
+                                {!! Form::label('benificirani_staz', __('Benificirani radni staž').' : ', ['class' => 'control-label']) !!}
                                 <div class="col-lg-12">
                                     {!!  Form::select('benificirani_staz', $benificirani, isset($radno_mjesto) ? $radno_mjesto->benificirani_staz : '' ,['class' => 'form-control', 'id' => 'strucna_sprema']) !!}
                                 </div>
@@ -174,7 +174,7 @@
                         <div class="full_container full_container_b">
                             <div class="form-group row">
                                 <div class="col">
-                                    {!! Form::label('rjesenje', 'Rješenje : ', ['class' => 'control-label']) !!}
+                                    {!! Form::label('rjesenje', __('Rješenje').' : ', ['class' => 'control-label']) !!}
                                     <div class="col-lg-12">
                                         {!!  Form::textarea('rjesenje', isset($radno_mjesto) ? $radno_mjesto->rjesenje : '' ,['class' => 'form-control', 'id' => 'rjesenje', 'readonly']) !!}
                                     </div>
@@ -194,7 +194,7 @@
                             <div class="copied_form" id="form_for_copy">
                                 <div class="form-group row">
                                     <div class="col">
-                                        {!! Form::label('naziv_rm_inp', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('naziv_rm_inp', __('Naziv radnog mjesta').' : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
                                             {!! Form::text('naziv_rm_inp[]', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm_inp', 'readonly']) !!}
                                         </div>
@@ -211,7 +211,7 @@
 
                                 <div class="form-group row">
                                     <div class="col">
-                                        {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('tekst_uslova_inp', __('Tekst uslova').' : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
                                             {!! Form::textarea('tekst_uslova_inp[]', '', ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100']) !!}
                                         </div>
@@ -248,7 +248,7 @@
                                     <div class="copied_form copied_form2" id="form_for_copy">
                                         <div class="form-group row">
                                             <div class="col">
-                                                {!! Form::label('naziv_rm_inp', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}
+                                                {!! Form::label('naziv_rm_inp', __('Naziv radnog mjesta').' : ', ['class' => 'control-label']) !!}
                                                 <div class="col-lg-12">
                                                     {!! Form::text('', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm_inp', 'readonly']) !!}
                                                 </div>
@@ -263,7 +263,7 @@
 
                                         <div class="form-group row">
                                             <div class="col">
-                                                {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}
+                                                {!! Form::label('tekst_uslova_inp', __('Tekst uslova').' : ', ['class' => 'control-label']) !!}
                                                 <div class="col-lg-12">
                                                     {!! Form::textarea('', $uslov->tekst_uslova, ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100', 'readonly']) !!}
                                                 </div>
@@ -296,7 +296,7 @@
 
                                 <div class="form-group row">
                                     <div class="col">
-                                        {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
+                                        {!! Form::label('ime_sluzbenika', __('Ime i prezime službenika').' : ', ['class' => 'control-label']) !!}
                                         <div class="col-lg-12">
                                             {!!  Form::select('sluzbenik_id[]', $sluzbenici, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
                                         </div>

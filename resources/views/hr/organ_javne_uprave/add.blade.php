@@ -3,7 +3,7 @@
 @section('breadcrumbs')
 {!! \App\Http\Controllers\HelpController::breadcrumbs([
         route('home') => __('Početna stranica'),
-        '/hr/organ_javne_uprave/home' => __('Organi javne uprave'),
+        '/hr/organ_javne_uprave/home' => __('Organ javne uprave'),
         '/hr/organ_javne_uprave/add' => __('Dodajte - uredite Organ javne uprave'),
     ]) !!}
     @endsection
@@ -24,11 +24,10 @@
                             @if(isset($uprava))
                                 {{$uprava->naziv ?? '/'}}
                             @else
-                                {{__('Novi Organ Javne Uprave')}}
+                                {{__('Novi organ javne uprave')}}
                             @endif
                         </h2>
-                        <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti
-                        zabilježene.')}}</p>
+                        <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
                         <br />
                     </div>
 
@@ -127,7 +126,7 @@
             <br>
 
             <div class="buttons" style="text-align:center;">
-                <input class="btn btn-primary" form="form123" type="submit" value="Spasite upravu">
+                <input class="btn btn-primary" form="form123" type="submit" value="{{__("Spasite")}}">
             </div>
         </div>
     </div>

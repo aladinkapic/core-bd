@@ -3,9 +3,9 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        '/osposobljavanje_i_usavrsavanje/obuke/home' => 'Katalog obuka',
-        route('pregled-instanci-obuke', ['id' => $id ?? '1']) => 'Pregled instanci obuke'
+        route('home') => __('Početna stranica'),
+        '/osposobljavanje_i_usavrsavanje/obuke/home' => __('Katalog obuka'),
+        route('pregled-instanci-obuke', ['id' => $id ?? '1']) => __('Pregled instanci obuke')
     ]) !!}
 @stop
 
@@ -70,7 +70,7 @@
                         </td>
                         <td class="text-center">
                             <a href="{{route('pregledaj-instancu-obuke', ['id' => $instanca->id])}}">
-                                <button class="btn my-button">Pregled</button>
+                                <button class="btn my-button">{{__('Pregled')}}</button>
                             </a>
                         </td>
                     </tr>

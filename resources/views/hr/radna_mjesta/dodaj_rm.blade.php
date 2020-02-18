@@ -4,8 +4,8 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('organizacija.index') => 'Organizacioni planovi / Pravilnici',
+        route('home') => __('Početna stranica'),
+        route('organizacija.index') => __('Organizacioni planovi / Pravilnici'),
         route('organizacija.edit', ['id' => $organizacija->id]) => $organizacija->naziv,
         route('organizacija.radna-mjesta', ['id' => $organizacija->id]) => 'Radna mjesta',
         route('radnamjesta.pregledaj', ['id' => $radno_mjesto->id]) => $radno_mjesto->naziv_rm,

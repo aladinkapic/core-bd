@@ -4,10 +4,10 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('organizacija.index') => 'Unutrašnja organizacija',
+        route('home') => __('Početna stranica'),
+        route('organizacija.index') => __('Unutrašnja organizacija'),
         route('organizacija.edit', ['id' => $organizacija->id]) => $organizacija->naziv,
-        route('organizacija.shema', ['id' => $organizacija->id]) => 'Organizaciona shema',
+        route('organizacija.shema', ['id' => $organizacija->id]) => __('Organizaciona shema'),
     ]) !!}
 
 @stop

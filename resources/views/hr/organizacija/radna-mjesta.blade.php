@@ -6,10 +6,10 @@
 @section('breadcrumbs')
 
     {!! \App\Http\Controllers\HelpController::breadcrumbs([
-        route('home') => 'Početna stranica',
-        route('organizacija.index') => 'Organizacioni planovi / Pravilnici',
+        route('home') => __('Početna stranica'),
+        route('organizacija.index') => __('Organizacioni planovi / Pravilnici'),
         route('organizacija.edit', ['id' => $organizacija->id]) => $organizacija->naziv,
-        route('organizacija.radna-mjesta', ['id' => $organizacija->id]) => 'Radna mjesta',
+        route('organizacija.radna-mjesta', ['id' => $organizacija->id]) => __('Radna mjesta'),
     ]) !!}
 
 @stop
@@ -43,7 +43,7 @@
                     <thead >
                     <tr >
                         @include('template.snippets.filters_header')
-                        <th scope="col" class="text-center" width="120px">Akcije</th>
+                        <th scope="col" class="text-center" width="120px">{{__('Akcije')}}</th>
                     </tr>
                     </thead>
                     <tbody>
