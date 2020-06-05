@@ -56,7 +56,7 @@
                         <td>{{ \App\Http\Controllers\HelpController::obrniDatum($org->datum_od) }}</td>
                         <td>{{ \App\Http\Controllers\HelpController::obrniDatum($org->datum_do) }}</td>
                         <td>
-                            <span class="badge badge-{{ ($org->active == 0) ? 'danger':'success' }}">{{$org->aktivan->name}}</span>
+                            <span class="badge badge-{{ ($org->active == 0) ? 'danger':'success' }}">{{$org->aktivan->name ?? ''}}</span>
                         </td>
                         <td class="text-center">
                             <a class="btn btn-primary btn-xs" href="/organizacija/edit/{{ $org->id}}">

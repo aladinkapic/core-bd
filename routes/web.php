@@ -773,8 +773,8 @@ Route::prefix('hr/disciplinska_odgovornost/')->group(function (){
 Route::get('/obavijesti/pregled', 'ObavijestController@index');
 Route::post('/obavijesti/ajaxpregled', 'ObavijestController@ajaxRead');
 
-Route::get('/import', 'ImportController@handle');
-
+// Route::get('/import', 'ImportController@handle');
+Route::get('/import', 'ImportController@newImport');
 /*************************************************** Ugovori  *****************************************************/
 
 Route::get('/uvjerenje_rm',                  'UgovoriController@uvjerenje_rm')->name('uvjerenje_rm');
