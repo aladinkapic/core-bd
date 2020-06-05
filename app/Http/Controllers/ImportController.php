@@ -14,10 +14,12 @@ use App\Models\OrganizacionaJedinica;
 use App\Models\RadnoMjesto;
 use App\Models\Sifrarnik;
 use App\Models\Sluzbenik;
+use App\Models\User\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use PHPExcel_Cell;
 use PHPExcel_IOFactory;
 use PhpOffice\PhpWord\IOFactory;
@@ -416,7 +418,7 @@ class ImportController extends Controller{
     // 22 - Organ javne uprave / Institucija
 
     public function insert_organisation($title, $organisation, $type, $number, $parent = null){
-        $number = 1;
+         $number = 1;
         try{
             $pododjeljenje_m = OrganizacionaJedinica::create([
                 'naziv' => $title,
@@ -559,6 +561,8 @@ class ImportController extends Controller{
             }
         }
         */
+
+
 
         for ($row = 2; $row <= $highestRow; ++$row) {
             $found_organ = false;
@@ -875,103 +879,224 @@ class ImportController extends Controller{
         }
 
         foreach ($organi as $organ){
-            $i = 1;
-            try{
-                $organ_m = Organ::create([
-                    'naziv' => $organ['naziv'],
-                ]);
-
-                try{
-                    $sist_id = Organizacija::create([
-                        'naziv' => 'Migrirana sistematizacija',
-                        'active' => 1,
-                        'pravilnik' => 'test.pdf',
-                        'datum_od' => Carbon::now()->format('Y-m-d'),
-                        'datum_do' => Carbon::now()->format('Y-m-d'),
-                        'oju_id' => $organ_m->id // Insert organ id
-                    ]);
-                }catch (\Exception $e){}
-            }catch (\Exception $e){}
-            foreach($organ['pododjeljenje'] as $pododjeljenje){
+            if($organ['naziv'] == 'Direkcija za finansije'){
                 $j = 1;
-                $pododjeljenje_empty = false;
-                if($pododjeljenje['naziv'] == 'empty') $pododjeljenje_empty = true;
-                else{
-                    try{
-                        $pododjeljenje_id = $this->insert_organisation($pododjeljenje['naziv'], $sist_id->id, 1, $m);
-                    }catch (\Exception $e){}
-                }
-                foreach($pododjeljenje['sektor'] as $sektor){
-                    $k = 1;
-                    $sektor_empty = false;
+                try{
+                    $organ_m = Organ::create([
+                        'naziv' => $organ['naziv'],
+                    ]);
 
-                    if($sektor['naziv'] == 'empty'){
-                        $sektor_empty = true;
-                    }else{
-                        if($pododjeljenje_empty){
-                            $sektor_id = $this->insert_organisation($sektor['naziv'], $sist_id->id, 2, $m);
-                        }else{
-                            $sektor_id = $this->insert_organisation($sektor['naziv'], $sist_id->id, 2, $m.'.'.$l, $pododjeljenje_id);
-                        }
+                    try{
+                        $sist_id = Organizacija::create([
+                            'naziv' => 'Migrirana sistematizacija',
+                            'active' => 1,
+                            'pravilnik' => 'test.pdf',
+                            'datum_od' => Carbon::now()->format('Y-m-d'),
+                            'datum_do' => Carbon::now()->format('Y-m-d'),
+                            'oju_id' => $organ_m->id // Insert organ id
+                        ]);
+                    }catch (\Exception $e){}
+                }catch (\Exception $e){}
+                foreach($organ['pododjeljenje'] as $pododjeljenje){
+                    $k = 1;
+                    $pododjeljenje_empty = false;
+                    if($pododjeljenje['naziv'] == 'empty') $pododjeljenje_empty = true;
+                    else{
+                        try{
+                            $pododjeljenje_id = $this->insert_organisation($pododjeljenje['naziv'], $sist_id->id, 1, $j);
+                        }catch (\Exception $e){}
                     }
-                    foreach($sektor['odsjek'] as $odsjek){
+                    foreach($pododjeljenje['sektor'] as $sektor){
                         $l = 1;
-                        $odsjek_empty = false;
-                        if($odsjek['naziv'] == 'empty'){
-                            $odsjek_empty = true;
+                        $sektor_empty = false;
+
+                        if($sektor['naziv'] == 'empty'){
+                            $sektor_empty = true;
                         }else{
-                            if($sektor_empty){
-                                if($pododjeljenje_empty){
-                                    $odsjek_id = $this->insert_organisation($odsjek['naziv'], $sist_id->id, 3, $m);
-                                }else{
-                                    $odsjek_id = $this->insert_organisation($odsjek['naziv'], $sist_id->id, 3,$m.'.'.$l, $pododjeljenje_id);
-                                }
+                            if($pododjeljenje_empty){
+                                $sektor_id = $this->insert_organisation($sektor['naziv'], $sist_id->id, 2, $k);
                             }else{
-                                $odsjek_id = $this->insert_organisation($odsjek['naziv'], $sist_id->id, 3,$m.'.'.$l.'.'.$k, $sektor_id);
+                                $sektor_id = $this->insert_organisation($sektor['naziv'], $sist_id->id, 2, $j.'.'.$k, $pododjeljenje_id);
                             }
                         }
-                        foreach($odsjek['sluzba'] as $sluzba){
-                            $sluzba_empty = false;
+                        foreach($sektor['odsjek'] as $odsjek){
                             $m = 1;
-                            if($sluzba['naziv'] == 'empty'){
-                                $sluzba_empty = true;
+                            $odsjek_empty = false;
+                            if($odsjek['naziv'] == 'empty'){
+                                $odsjek_empty = true;
                             }else{
-                                if($odsjek_empty){
-                                    if($sektor_empty){
-                                        if($pododjeljenje_empty){
-                                            $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4, $m);
+                                if($sektor_empty){
+                                    if($pododjeljenje_empty){
+                                        $odsjek_id = $this->insert_organisation($odsjek['naziv'], $sist_id->id, 3, $l);
+                                    }else{
+                                        $odsjek_id = $this->insert_organisation($odsjek['naziv'], $sist_id->id, 3,$k.'.'.$l, $pododjeljenje_id);
+                                    }
+                                }else{
+                                    $odsjek_id = $this->insert_organisation($odsjek['naziv'], $sist_id->id, 3,$j.'.'.$k.'.'.$l, $sektor_id);
+                                }
+                            }
+                            foreach($odsjek['sluzba'] as $sluzba){
+                                $sluzba_empty = false;
+                                $n = 1;
+                                if($sluzba['naziv'] == 'empty'){
+                                    $sluzba_empty = true;
+                                }else{
+                                    if($odsjek_empty){
+                                        if($sektor_empty){
+                                            if($pododjeljenje_empty){
+                                                $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4, $m);
+                                            }else{
+                                                $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4, $l.'.'.$m, $pododjeljenje_id);
+                                            }
                                         }else{
-                                            $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4, $m.'.'.$l, $pododjeljenje_id);
+                                            $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4,$k.'.'.$l.'.'.$m, $sektor_id);
                                         }
                                     }else{
-                                        $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4,$m.'.'.$l.'.'.$k, $sektor_id);
-                                    }
-                                }else{
-                                    $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4,$m.'.'.$l.'.'.$k.'.'.$j, $odsjek_id);
-                                }
-                            }
-                            foreach($sluzba['radno_mjesto'] as $radno_mjesto){
-                                if($radno_mjesto['naziv'] != 'empty'){
-                                    foreach($radno_mjesto['sluzbenici'] as $sluzbenik){
-                                        // dd($sluzbenik);
+                                        $sluzba_id = $this->insert_organisation($sluzba['naziv'], $sist_id->id,4,$j.'.'.$k.'.'.$l.'.'.$m, $odsjek_id);
                                     }
                                 }
-                                // dd($radno_mjesto);
+                                foreach($sluzba['radno_mjesto'] as $radno_mjesto){
+                                    if($radno_mjesto['naziv'] != 'empty'){
+                                        $id_oj = null;
+                                        if($sluzba_empty){
+                                            if($odsjek_empty){
+                                                if($sektor_empty){
+                                                    if($pododjeljenje_empty){
+                                                        $id_oj = 0;
+                                                    }else{
+                                                        $id_oj = $pododjeljenje_id;
+                                                    }
+                                                }else{
+                                                    $id_oj = $sektor_id;
+                                                }
+                                            }else{
+                                                $id_oj = $odsjek_id;
+                                            }
+                                        }else{
+                                            // Insert work place with id_oj of $sluzba_id
+                                            $id_oj = $sluzba_id;
+                                        }
+
+                                        try{
+                                            $rm = RadnoMjesto::create([
+                                                'naziv_rm' => $radno_mjesto['naziv'],
+                                                'platni_razred' => $radno_mjesto['platni_razred'],
+                                                'id_oj' => $id_oj
+                                            ]);
+
+                                            try{
+                                                if($radno_mjesto['rm_stepen']){
+                                                    $uslov = DB::table('radno_mjesto_uslovi')->insert([
+                                                        'id_rm' => $rm->id,
+                                                        'tekst_uslova' => $radno_mjesto['rm_stepen'],
+                                                        'created_at' => Carbon::now(),
+                                                        'updated_at' => Carbon::now()
+                                                    ]);
+                                                }
+                                                if($radno_mjesto['rm_stepen_dva']){
+                                                    $uslov = DB::table('radno_mjesto_uslovi')->insert([
+                                                        'id_rm' => $rm->id,
+                                                        'tekst_uslova' => $radno_mjesto['rm_stepen_dva'],
+                                                        'created_at' => Carbon::now(),
+                                                        'updated_at' => Carbon::now()
+                                                    ]);
+                                                }
+                                                if($radno_mjesto['kvalifikacija']){
+                                                    $uslov = DB::table('radno_mjesto_uslovi')->insert([
+                                                        'id_rm' => $rm->id,
+                                                        'tekst_uslova' => $radno_mjesto['kvalifikacija'],
+                                                        'created_at' => Carbon::now(),
+                                                        'updated_at' => Carbon::now()
+                                                    ]);
+                                                }
+                                            }catch (\Exception $e){}
+                                        }catch (\Exception $e){}
+
+                                        foreach($radno_mjesto['sluzbenici'] as $sluzbenik){
+
+                                            $firstName = Str::slug($sluzbenik['ime']);
+                                            $lastName  = Str::slug($sluzbenik['prezime']);
+                                            $username = $firstName.'.'.$lastName;
+
+                                            /*
+
+                                            'stepen' => $stepen,
+                                            'zanimanje' => $zanimanje,
+                                            'obrazovna_institucija' => $obrazovnaInstitucija,
+                                            'datum_zavrsetka' => $datum_zavrsetka,
+                                            'nostrifikacija' => $nostrifikacija,
+                                            'ispit_za_rad_u_organima' => $ispit_za_rad_u_organima,
+                                            'pravosudni_ispit' => $pravosudni_ispit,
+                                            'strucni_ispit' => $strucni_ispit,
+                                            'datum_zasnivanja_ro' => $datum_zasnivanja_radnog_odnosa,
+                                            'datum_prestanka_ro' => $datum_prestanka_ro,
+                                            'osnov_prestanka' => $osnov_prestanka,
+                                            'pio' => $pio,
+                                            'privremeni_premjestaj' => $privremeni_premjestaj,
+                                            'godina_staza' => (int)$godina_staza,
+                                            'mjeseci_staza' => (int)$mjeseci_staza,
+                                            'dana_staza' => (int)$dana_staza,
+                                            'odredjeno_neodredjeno' => $odredjeno_neodredjeno
+
+                                             */
+
+                                            if($sluzbenik['nacionalnost'] == 'B') $nacionalnost = 1;
+                                            else if($sluzbenik['nacionalnost'] == 'H') $nacionalnost = 2;
+                                            else if($sluzbenik['nacionalnost'] == 'S') $nacionalnost = 3;
+                                            else $nacionalnost = 4;
+
+                                            if($sluzbenik['pol'] == 'M') $pol = 1;
+                                            else if($sluzbenik['pol'] == 'Ž') $pol = 2;
+                                            else $pol = 3;
+
+                                            try{
+                                                $sl  = Sluzbenik::where('korisnicko_ime', 'like', '%'.$username.'%')->count();
+                                                if($sl){
+                                                    $username =  $username.$sl;
+                                                }
+                                            }catch (\Exception $e){}
+
+                                            dd($username);
+                                            try{
+                                                $sluz = Sluzbenik::create([
+                                                    'ime' => $sluzbenik['ime'],
+                                                    'prezime' => $sluzbenik['prezime'],
+                                                    'korisnicko_ime' => $username,
+                                                    'email' => $username.'@bdcentral.net',
+                                                    'ime_roditelja' => $sluzbenik['jmb'],
+                                                    'jmbg' => $sluzbenik['aaa'],
+                                                    'nacionalnost' => $nacionalnost,
+                                                    'datum_rodjenja' => Carbon::parse($sluzbenik['datum_rodjenja'])->format('Y-m-d'),
+                                                    'pol' => $pol,
+                                                    'mjesto_rodjenja' => $sluzbenik['mjesto_rodjenja']
+                                                ]);
+
+                                                try{
+                                                    $prebivaliste = Prebivaliste::create([
+                                                        'id_sluzbenika' => $sluz->id,
+                                                        'mjesto_prebivalista' => $sluzbenik['mjesto_boravka'],
+                                                        'adresa_prebivalista' => $sluzbenik['adresa']
+                                                    ]);
+                                                }catch (\Exception $e){}
+                                            }catch (\Exception $e){}
+                                        }
+                                    }
+                                    // dd($radno_mjesto);
+                                }
+                                // dd($sluzba);
+                                $m++;
                             }
-                            // dd($sluzba);
-                            $m++;
+                            // dd($odsjek);
+                            $l++;
                         }
-                        // dd($odsjek);
-                        $l++;
+                        // dd($sektor);
+                        $k++;
                     }
-                    // dd($sektor);
-                    $k++;
+                    $j++;
                 }
-                // dd($pododjeljenje);
-                $j++;
+                dd($organ);
             }
-            $i++;
-            dd($organ);
+
         }
 
         dd($organi[0]['pododjeljenje']);
