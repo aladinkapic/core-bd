@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class ZasnivanjeRO extends Model{
     protected $table = 'sluzbenik_zasnivanje_radnog_odnosa';
+    protected $guarded = ['id'];
 
     public function nacin_zasnivanja_ro_s(){
         return $this->hasOne(Sifrarnik::class,'value', 'nacin_zasnivanja_r_o')

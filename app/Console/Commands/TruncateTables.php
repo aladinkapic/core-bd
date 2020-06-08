@@ -218,8 +218,8 @@ class TruncateTables extends Command{
         $model = new RadnoMjestoSluzbenik();
         $model->truncate();
 
-        $model = new Sifrarnik();
-        $model->truncate();
+        // $model = new Sifrarnik();
+        // $model->truncate();
 
         $model = new Sluzbenik();
         $model->truncate();

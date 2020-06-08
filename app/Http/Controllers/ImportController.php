@@ -6,12 +6,14 @@ use App\Models\DummyModels\ClanoviPorodice;
 use App\Models\DummyModels\Ispiti;
 use App\Models\DummyModels\Obrazovanje;
 use App\Models\DummyModels\Prebivaliste;
+use App\Models\DummyModels\PrestanakRO;
 use App\Models\DummyModels\StrucnaSprema;
 use App\Models\DummyModels\ZasnivanjeRO;
 use App\Models\Organ;
 use App\Models\Organizacija;
 use App\Models\OrganizacionaJedinica;
 use App\Models\RadnoMjesto;
+use App\Models\RadnoMjestoSluzbenik;
 use App\Models\Sifrarnik;
 use App\Models\Sluzbenik;
 use App\Models\User\User;
@@ -430,7 +432,7 @@ class ImportController extends Controller{
             ]);
 
             return $pododjeljenje_m->id;
-        }catch (\Exception $e){dd($e);}
+        }catch (\Exception $e){}
     }
 
     public function newImport(){
@@ -563,6 +565,20 @@ class ImportController extends Controller{
         */
 
 
+        $osnivi_prestanka = array();
+        $sluzbenici = array();
+
+
+//        for ($row = 2; $row <= $highestRow; ++$row) {
+//            $found_osnov = false;
+//            foreach($osnivi_prestanka as $osnov){
+//                if($osnov == $objWorksheet->getCellByColumnAndRow(27, $row)->getValue()) $found_osnov = true;
+//            }
+//
+//            if(!$found_osnov) array_push($osnivi_prestanka, $objWorksheet->getCellByColumnAndRow(27, $row)->getValue());
+//        }
+//
+//        dd($osnivi_prestanka);
 
         for ($row = 2; $row <= $highestRow; ++$row) {
             $found_organ = false;
@@ -797,6 +813,7 @@ class ImportController extends Controller{
                                                         if ($organi[$i]['pododjeljenje'][$j]['sektor'][$k]['odsjek'][$l]['sluzba'][$m]['radno_mjesto'][$n]['naziv'] == $rm) {
                                                             $sluzbenik_found = false;
                                                             $ime_prezime = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue().' '.$objWorksheet->getCellByColumnAndRow(0, $row)->getValue();
+
                                                             $ime = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
                                                             $prezime = $objWorksheet->getCellByColumnAndRow(0, $row)->getValue();
                                                             $ime_roditelja = $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
@@ -878,8 +895,12 @@ class ImportController extends Controller{
             }
         }
 
+//        foreach($organi as $organ){
+//            dd($organ['pododjeljenje']);
+//        }
+
         foreach ($organi as $organ){
-            if($organ['naziv'] == 'Direkcija za finansije'){
+            if(1){
                 $j = 1;
                 try{
                     $organ_m = Organ::create([
@@ -978,10 +999,77 @@ class ImportController extends Controller{
                                         }
 
                                         try{
+                                            if($radno_mjesto['rm_stepen'] == 'SSS-IV stepen') $stepen = 4;
+                                            else if($radno_mjesto['rm_stepen'] == 'VSS-240 ECTS') $stepen = 8;
+                                            else if($radno_mjesto['rm_stepen'] == 'VSS-180 ECTS') $stepen = 7;
+                                            else if($radno_mjesto['rm_stepen'] == 'VSS') $stepen = 6;
+                                            else if($radno_mjesto['rm_stepen'] == 'SSS-III stepen ') $stepen = 3;
+                                            else if($radno_mjesto['rm_stepen'] == 'SSS-III stepen') $stepen = 3;
+                                            else if($radno_mjesto['rm_stepen'] == 'KV') $stepen = 2;
+                                            else if($radno_mjesto['rm_stepen'] == 'NK') $stepen = 1;
+                                            else $stepen = 9;
+
+                                            // Kategorija radnog mjesta
+
+                                            if($radno_mjesto['kategorizacija'] == 'stručni referent') $kategorija = 1;
+                                            else if($radno_mjesto['kategorizacija'] == ' stručni referent') $kategorija = 1;
+                                            else if($radno_mjesto['kategorizacija'] == 'stručni referent ') $kategorija = 1;
+                                            else if($radno_mjesto['kategorizacija'] == ' šef odsjeka') $kategorija = 2;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef Odsjeka') $kategorija = 2;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef odsjeka') $kategorija = 2;
+                                            else if($radno_mjesto['kategorizacija'] == 'stručni saradnik ') $kategorija = 3;
+                                            else if($radno_mjesto['kategorizacija'] == 'stručni saradnik') $kategorija = 3;
+                                            else if($radno_mjesto['kategorizacija'] == ' stručni saradnik') $kategorija = 3;
+                                            else if($radno_mjesto['kategorizacija'] == 'viši stručni saradnik') $kategorija = 4;
+                                            else if($radno_mjesto['kategorizacija'] == 'viši stručni saradik') $kategorija = 4;
+                                            else if($radno_mjesto['kategorizacija'] == ' viši stručni saradnik') $kategorija = 4;
+                                            else if($radno_mjesto['kategorizacija'] == 'viši stručni saradnik ') $kategorija = 4;
+                                            else if($radno_mjesto['kategorizacija'] == ' šef pododjeljenja') $kategorija = 5;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef Pododjeljenja') $kategorija = 5;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef pododjeljenja') $kategorija = 5;
+                                            else if($radno_mjesto['kategorizacija'] == ' šef Pododjeljenja') $kategorija = 5;
+                                            else if($radno_mjesto['kategorizacija'] == 'stručni savjetnik') $kategorija = 6;
+                                            else if($radno_mjesto['kategorizacija'] == ' stručni savjetnik') $kategorija = 6;
+                                            else if($radno_mjesto['kategorizacija'] == 'namještenik II kategorije') $kategorija = 7;
+                                            else if($radno_mjesto['kategorizacija'] == 'Namještenik II kategorije') $kategorija = 7;
+                                            else if($radno_mjesto['kategorizacija'] == 'namještenik II. kategorije\n') $kategorija = 7;
+                                            else if($radno_mjesto['kategorizacija'] == 'namještenik II. kategorije') $kategorija = 7;
+                                            else if($radno_mjesto['kategorizacija'] == 'namještenik III kategorije') $kategorija = 8;
+                                            else if($radno_mjesto['kategorizacija'] == 'Namještenik III kategorije') $kategorija = 8;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef službe') $kategorija = 9;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef Službe') $kategorija = 9;
+                                            else if($radno_mjesto['kategorizacija'] == 'inspektor') $kategorija = 10;
+                                            else if($radno_mjesto['kategorizacija'] == ' inspektor') $kategorija = 10;
+                                            else if($radno_mjesto['kategorizacija'] == ' inspektori\n') $kategorija = 10;
+                                            else if($radno_mjesto['kategorizacija'] == 'glavni inspektor') $kategorija = 11;
+                                            else if($radno_mjesto['kategorizacija'] == 'upravni inspektor') $kategorija = 12;
+                                            else if($radno_mjesto['kategorizacija'] == ' član Apelacione komisije') $kategorija = 13;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef kancelarije') $kategorija = 14;
+                                            else if($radno_mjesto['kategorizacija'] == ' šef kancelarije') $kategorija = 14;
+                                            else if($radno_mjesto['kategorizacija'] == 'Šef Kancelarije') $kategorija = 14;
+                                            else if($radno_mjesto['kategorizacija'] == 'namještenik I kategorije') $kategorija = 15;
+                                            else if($radno_mjesto['kategorizacija'] == 'ekspert za vođenje projekata') $kategorija = 16;
+                                            else if($radno_mjesto['kategorizacija'] == ' ekspert za vođenje projekata') $kategorija = 16;
+                                            else if($radno_mjesto['kategorizacija'] == 'direktor') $kategorija = 17;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef sektora') $kategorija = 18;
+                                            else if($radno_mjesto['kategorizacija'] == ' šef sektora') $kategorija = 18;
+                                            else if($radno_mjesto['kategorizacija'] == 'šef sektora\n') $kategorija = 18;
+                                            else if($radno_mjesto['kategorizacija'] == 'pomoćnik koordinatora') $kategorija = 19;
+                                            else if($radno_mjesto['kategorizacija'] == ' predsjednik Apelacione komisije') $kategorija = 20;
+                                            else if($radno_mjesto['kategorizacija'] == null or $radno_mjesto['kategorizacija'] == '-' or $radno_mjesto['kategorizacija'] == '        -' or $radno_mjesto['kategorizacija'] == '     -' or $radno_mjesto['kategorizacija'] == '       __' or $radno_mjesto['kategorizacija'] == '         -') $kategorija = 21;
+                                            else $kategorija = 22;
+
+//                                            try{
+//                                                $kategorija = Sifrarnik::where('type', 'kategorija_radnog_mjesta')
+//                                                    ->where('name', $radno_mjesto['kategorizacija'])->first();
+//                                            }catch (\Exception $e){}
+
                                             $rm = RadnoMjesto::create([
                                                 'naziv_rm' => $radno_mjesto['naziv'],
                                                 'platni_razred' => $radno_mjesto['platni_razred'],
-                                                'id_oj' => $id_oj
+                                                'id_oj' => $id_oj,
+                                                'stepen' => $stepen,
+                                                'kategorija_rm' => $kategorija
                                             ]);
 
                                             try{
@@ -1020,25 +1108,14 @@ class ImportController extends Controller{
 
                                             /*
 
-                                            'stepen' => $stepen,
-                                            'zanimanje' => $zanimanje,
-                                            'obrazovna_institucija' => $obrazovnaInstitucija,
-                                            'datum_zavrsetka' => $datum_zavrsetka,
-                                            'nostrifikacija' => $nostrifikacija,
                                             'ispit_za_rad_u_organima' => $ispit_za_rad_u_organima,
                                             'pravosudni_ispit' => $pravosudni_ispit,
                                             'strucni_ispit' => $strucni_ispit,
-                                            'datum_zasnivanja_ro' => $datum_zasnivanja_radnog_odnosa,
-                                            'datum_prestanka_ro' => $datum_prestanka_ro,
-                                            'osnov_prestanka' => $osnov_prestanka,
-                                            'pio' => $pio,
-                                            'privremeni_premjestaj' => $privremeni_premjestaj,
-                                            'godina_staza' => (int)$godina_staza,
-                                            'mjeseci_staza' => (int)$mjeseci_staza,
-                                            'dana_staza' => (int)$dana_staza,
-                                            'odredjeno_neodredjeno' => $odredjeno_neodredjeno
-
                                              */
+
+                                            if($sluzbenik['odredjeno_neodredjeno'] == 'Neodređeno vrijeme' or $sluzbenik['odredjeno_neodredjeno'] == 'Neodređeno vrijeme;' or $sluzbenik['odredjeno_neodredjeno'] == 'Neodređeno') $odredjeno_neodredjeno = 2;
+                                            else if($sluzbenik['odredjeno_neodredjeno'] == 'Određeno vrijeme' or $sluzbenik['odredjeno_neodredjeno'] == 'Određeno') $odredjeno_neodredjeno = 1;
+                                            else $odredjeno_neodredjeno = 3;
 
                                             if($sluzbenik['nacionalnost'] == 'B') $nacionalnost = 1;
                                             else if($sluzbenik['nacionalnost'] == 'H') $nacionalnost = 2;
@@ -1056,19 +1133,43 @@ class ImportController extends Controller{
                                                 }
                                             }catch (\Exception $e){}
 
-                                            dd($username);
+                                            if($sluzbenik['pio'] == 'FED') $pio = 1;
+                                            else if($sluzbenik['pio'] == 'RS') $pio = 2;
+                                            else $pio = 3;
                                             try{
+                                                try{
+                                                    $date = Carbon::createFromFormat('d.m.Y', $sluzbenik['datum_rodjenja'])->format('Y-m-d');
+                                                }catch (\Exception $e){
+                                                    try{
+                                                        $date = Carbon::createFromFormat('m.d.Y', $sluzbenik['datum_rodjenja'])->format('Y-m-d');
+                                                    }catch (\Exception $e){
+                                                        try{
+                                                            $date = Carbon::createFromFormat('m.d.Y.', $sluzbenik['datum_rodjenja'])->format('Y-m-d');
+                                                        }catch (\Exception $e){
+                                                            $date = null;
+                                                        }
+                                                    }
+                                                }
+
                                                 $sluz = Sluzbenik::create([
                                                     'ime' => $sluzbenik['ime'],
                                                     'prezime' => $sluzbenik['prezime'],
+                                                    'ime_prezime' => $sluzbenik['ime'].' '.$sluzbenik['prezime'],
                                                     'korisnicko_ime' => $username,
                                                     'email' => $username.'@bdcentral.net',
-                                                    'ime_roditelja' => $sluzbenik['jmb'],
-                                                    'jmbg' => $sluzbenik['aaa'],
+                                                    'ime_roditelja' => $sluzbenik['ime_roditelja'],
+                                                    'jmbg' => $sluzbenik['jmb'],
                                                     'nacionalnost' => $nacionalnost,
-                                                    'datum_rodjenja' => Carbon::parse($sluzbenik['datum_rodjenja'])->format('Y-m-d'),
+                                                    'datum_rodjenja' => $date,
                                                     'pol' => $pol,
-                                                    'mjesto_rodjenja' => $sluzbenik['mjesto_rodjenja']
+                                                    'mjesto_rodjenja' => $sluzbenik['mjesto_rodjenja'],
+                                                    'PIO' => $pio,
+                                                    'trenutno_radi' => $odredjeno_neodredjeno,
+                                                    'radno_mjesto' => $rm->id,
+                                                    'drzavljanstvo_1' => 2,
+                                                    'drzavljanstvo_2' => 1,
+                                                    'kategorija' => 9,
+                                                    'bracni_status' => 4
                                                 ]);
 
                                                 try{
@@ -1078,7 +1179,95 @@ class ImportController extends Controller{
                                                         'adresa_prebivalista' => $sluzbenik['adresa']
                                                     ]);
                                                 }catch (\Exception $e){}
+                                                try{
+
+                                                    try{
+                                                        $date_zasnivanje = Carbon::createFromFormat('d.m.Y', $sluzbenik['datum_zasnivanja_ro'])->format('Y-m-d');
+                                                    }catch (\Exception $e){
+                                                        try{
+                                                            $date_zasnivanje = Carbon::createFromFormat('m.d.Y', $sluzbenik['datum_zasnivanja_ro'])->format('Y-m-d');
+                                                        }catch (\Exception $e){
+                                                            try{
+                                                                $date_zasnivanje = Carbon::createFromFormat('m.d.Y.', $sluzbenik['datum_zasnivanja_ro'])->format('Y-m-d');
+                                                            }catch (\Exception $e){
+                                                                $date_zasnivanje = null;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    $zasnivanje = ZasnivanjeRO::create([
+                                                        'id_sluzbenika' => $sluz->id,
+                                                        'datum_zasnivanja_o' => $date_zasnivanje,
+                                                        'vrsta_r_o' => $odredjeno_neodredjeno,
+                                                        'obracunati_r_staz' => 1,
+                                                        'obracunati_r_s_god' => $sluzbenik['godina_staza'],
+                                                        'obracunati_r_s_mje' => $sluzbenik['mjeseci_staza'],
+                                                        'obracunati_r_s_dan' => $sluzbenik['dana_staza'],
+                                                        'nacin_zasnivanja_r_o' => 1,
+                                                        'radno_vrijeme' => 1
+
+                                                    ]);
+                                                }catch (\Exception $e){}
+                                                try{
+                                                    try{
+                                                        $date_obrazovanje = Carbon::createFromFormat('d.m.Y', $sluzbenik['datum_zavrsetka'])->format('Y-m-d');
+                                                    }catch (\Exception $e){
+                                                        try{
+                                                            $date_obrazovanje = Carbon::createFromFormat('m.d.Y', $sluzbenik['datum_zavrsetka'])->format('Y-m-d');
+                                                        }catch (\Exception $e){
+                                                            try{
+                                                                $date_obrazovanje = Carbon::createFromFormat('m.d.Y.', $sluzbenik['datum_zavrsetka'])->format('Y-m-d');
+                                                            }catch (\Exception $e){
+                                                                $date_obrazovanje = null;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    $obr = Obrazovanje::create([
+                                                        'id_sluzbenika' => $sluz->id,
+                                                        'naziv_ustanove' => $sluzbenik['obrazovna_institucija'],
+                                                        'ciklus_obrazovanja' => $sluzbenik['stepen'],
+                                                        'strucno_zvanje' => $sluzbenik['zanimanje'],
+                                                        'datum_diplomiranja' => $date_obrazovanje,
+                                                        'broj_nostrifikacije' => $sluzbenik['nostrifikacija']
+                                                    ]);
+                                                }catch (\Exception $e){}
+                                                try{
+                                                    if($sluzbenik['osnov_prestanka'] == 'istekom vremena na koje je primljena') $osnov_za_prestanak = 2;
+                                                    else if($sluzbenik['osnov_prestanka'] == 'sporazumno') $osnov_za_prestanak = 3;
+                                                    else $osnov_za_prestanak = 1;
+
+                                                    try{
+                                                        $date_prestanak = Carbon::createFromFormat('d.m.Y', $sluzbenik['datum_prestanka_ro'])->format('Y-m-d');
+                                                    }catch (\Exception $e){
+                                                        try{
+                                                            $date_prestanak = Carbon::createFromFormat('m.d.Y', $sluzbenik['datum_prestanka_ro'])->format('Y-m-d');
+                                                        }catch (\Exception $e){
+                                                            try{
+                                                                $date_prestanak = Carbon::createFromFormat('m.d.Y.', $sluzbenik['datum_prestanka_ro'])->format('Y-m-d');
+                                                            }catch (\Exception $e){
+                                                                $date_prestanak = null;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    if($sluzbenik['datum_prestanka_ro'] and $sluzbenik['datum_prestanka_ro'] != '-'){
+                                                        $prestanak = PrestanakRO::create([
+                                                            'id_sluzbenika' => $sluz->id,
+                                                            'datum_prestanka' => $date_prestanak,
+                                                            'osnov_za_prestanak' => $osnov_za_prestanak
+                                                        ]);
+                                                    }
+                                                }catch (\Exception $e){}
+                                                // Radno mjesto službenik
+                                                try{
+                                                    $rs = RadnoMjestoSluzbenik::create([
+                                                        'sluzbenik_id' => $sluz->id,
+                                                        'radno_mjesto_id' => $rm->id
+                                                    ]);
+                                                }catch (\Exception $e){}
                                             }catch (\Exception $e){}
+
                                         }
                                     }
                                     // dd($radno_mjesto);
@@ -1094,7 +1283,7 @@ class ImportController extends Controller{
                     }
                     $j++;
                 }
-                dd($organ);
+                // dd($organ);
             }
 
         }

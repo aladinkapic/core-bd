@@ -109,12 +109,12 @@
                                 {!! Form::text('broj_obavijestenja_provjere', $strucna_sprema_s->broj_obavijestenja_provjere, ['class' => 'form-control read_stuffs', 'rows' => 1,  'maxlength' => '150', 'id' => 'broj_obavijestenja_provjere', 'autocomplete' => 'off', 'readonly']) !!}
                             </div>
                         </div>
-{{--                        <div class="single_row">--}}
-{{--                            {!! Form::label('datum_povratka_sa_provjere', __('Datum zaprimanja diplome nazad').' : ', ['class' => ' control-label'] )  !!}--}}
-{{--                            <div class="col-lg-12">--}}
-{{--                                {!! Form::text('datum_povratka_sa_provjere', \App\Http\Controllers\HelpController::obrniDatum($strucna_sprema_s->datum_povratka_sa_provjere) , ['class' => 'form-control read_stuffs datepicker',  'id' => 'datum_povratka_sa_provjere'.$index_counter++, 'autocomplete' => 'off', 'readonly']) !!}--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="single_row">--}}
+                        {{--                            {!! Form::label('datum_povratka_sa_provjere', __('Datum zaprimanja diplome nazad').' : ', ['class' => ' control-label'] )  !!}--}}
+                        {{--                            <div class="col-lg-12">--}}
+                        {{--                                {!! Form::text('datum_povratka_sa_provjere', \App\Http\Controllers\HelpController::obrniDatum($strucna_sprema_s->datum_povratka_sa_provjere) , ['class' => 'form-control read_stuffs datepicker',  'id' => 'datum_povratka_sa_provjere'.$index_counter++, 'autocomplete' => 'off', 'readonly']) !!}--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
                     </div>
 
                     <div class="double_row">
@@ -176,7 +176,7 @@
                     <div class="single_row">
                         {!! Form::label('obrazovna_institucija', __('Obrazovna institucija').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
-                            {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ,['class' => 'form-control read_stuffs', 'disabled' => 'true']) !!}
+                            {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ?? '0' ,['class' => 'form-control read_stuffs', 'disabled' => 'true']) !!}
                         </div>
                     </div>
                     <div class="single_row">
@@ -209,12 +209,12 @@
                             {!! Form::text('broj_obavijestenja_provjere', $value = null, ['class' => 'form-control', 'maxlength' => '150', 'rows' => 1, 'id' => 'broj_obavijestenja_provjere', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
-{{--                    <div class="single_row">--}}
-{{--                        {!! Form::label('datum_povratka_sa_provjere', __('Datum zaprimanja diplome nazad').' : ', ['class' => ' control-label'] )  !!}--}}
-{{--                        <div class="col-lg-12">--}}
-{{--                            {!! Form::text('datum_povratka_sa_provjere', $value = null, ['class' => 'form-control datepicker', 'maxlength' => '150', 'rows' => 1, 'id' => 'datum_povratka_sa_provjere', 'autocomplete' => 'off']) !!}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="single_row">--}}
+                    {{--                        {!! Form::label('datum_povratka_sa_provjere', __('Datum zaprimanja diplome nazad').' : ', ['class' => ' control-label'] )  !!}--}}
+                    {{--                        <div class="col-lg-12">--}}
+                    {{--                            {!! Form::text('datum_povratka_sa_provjere', $value = null, ['class' => 'form-control datepicker', 'maxlength' => '150', 'rows' => 1, 'id' => 'datum_povratka_sa_provjere', 'autocomplete' => 'off']) !!}--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
 
                 <div class="double_row">

@@ -35,7 +35,7 @@ class Sifrarnik extends Model{
         array('obracunati_staz', 'Obračunati staž'),
         array('tip_privremenog_premjestaja', 'Tip privremenog premještaja'),
         array('tip_uslova', 'Tip uslova za radno mjesto'),
-        array('strucna_sprema', 'Stručna sprema'),
+        array('strucna_sprema', 'Kompetencije'),
         array('tip_radnog_mjesta', 'Tip radnog mjesta'),
         array('tip_organizacione_jedinice', 'Tip organizacione jedinice'),
         array('kategorija_ocjene', 'Kategorija ocjene'),
@@ -54,6 +54,8 @@ class Sifrarnik extends Model{
         array('obrazovna_institucija', 'Obrazovna institucija'),
         array('poslodavac', 'Poslodavac'),
         array('benificirani', 'Benificirani radni staž'),
+        // array('kompetencije', 'Kompetencije'),
+        array('stepen', 'Stepen'),
     );
 
     public static function dajKljucneRijeci(){

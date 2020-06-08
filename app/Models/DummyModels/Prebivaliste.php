@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prebivaliste extends Model{
     protected $table = 'sluzbenik_podaci_o_prebivalistu';
+    protected $guarded = ['id'];
 
     public function datumDo(){
         if(!$this->datum_do) return '';

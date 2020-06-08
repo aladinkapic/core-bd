@@ -13,10 +13,11 @@ class RadnoMjesto extends Model
     protected $table = 'radna_mjesta'; // postavi custom tabelu za ovaj model
     protected $aktivni = null;
 
-    protected $fillable = [
-        'naziv_rm', 'sifra_rm', 'opis_rm', 'broj_izvrsilaca', 'platni_razred', 'tip_rm', 'kategorija_rm', 'id_oju', 'id_oj', 'strucna_sprema', 'tip_pm',
-        'parent_id', 'rukovodioc'
-    ];
+//    protected $fillable = [
+//        'naziv_rm', 'sifra_rm', 'opis_rm', 'broj_izvrsilaca', 'platni_razred', 'tip_rm', 'kategorija_rm', 'id_oju', 'id_oj', 'strucna_sprema', 'tip_pm',
+//        'parent_id', 'rukovodioc'
+//    ];
+    protected $guarded = ['id'];
 
     public function orgjed()
     {
@@ -51,7 +52,7 @@ class RadnoMjesto extends Model
     public static function aktivnaUpraznjena()
     {
         $o = new self();
-        dd(DB::raw('SELECT count(sl.*) as broj_sl from radna_mjesta rm 
+        dd(DB::raw('SELECT count(sl.*) as broj_sl from radna_mjesta rm
                               INNER JOIN org_jedinice oj ON oj.id = rm.id_oj
                               INNER JOIN organizacija o ON oj.org = o.id
                               INNER JOIN sluzbenici sl ON sl.radno_mjesto = rm.id
@@ -134,6 +135,14 @@ class RadnoMjesto extends Model
     public function tipPrivremenogPremjestaja(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'ip_pm')
             ->where('type', '=', 'tip_privremenog_premjestaja');
+    }
+    public function stepenSS(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'stepen')
+            ->where('type', '=', 'stepen');
+    }
+    public function kompetencijeRel(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'kompetencije')
+            ->where('type', '=', 'strucna_sprema');
     }
 
     public function usloviRM(){

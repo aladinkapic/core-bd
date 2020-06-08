@@ -156,6 +156,14 @@ class Sluzbenik extends Model{
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'nacionalnost')
             ->where('type', '=', 'nacionalnost');
     }
+    public function pioRel(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'PIO')
+            ->where('type', '=', 'pio');
+    }
+    public function drzavljanstvoRel(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'drzavljanstvo_1')
+            ->where('type', '=', 'drzava');
+    }
 
     public function trenutno_zaposlen_sl(){
         return $this->hasOne('App\Models\Sifrarnik', 'value', 'trenutno_radi')

@@ -46,7 +46,7 @@ class SluzbenikController extends Controller
         $kategorija     = Sifrarnik::dajSifrarnik('kategorija');
         $nacionalnost   = Sifrarnik::dajSifrarnik('nacionalnost');
         $bracni_status  = Sifrarnik::dajSifrarnik('bracni_status');
-        $trenutno_radi  = Sifrarnik::dajSifrarnik('trenutno_radi');
+        $trenutno_radi  = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
         $spol           = Sifrarnik::dajSifrarnik('spolovi')->prepend('Odaberite pol');
         $pio            = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
         $domena         = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
@@ -73,7 +73,7 @@ class SluzbenikController extends Controller
         $prestanak_r_o = DB::table('sluzbenik_prestanak_radnog_odnosa')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
         $clanovi_porodice = DB::table('sluzbenik_clanovi_porodice')->where('id_sluzbenika', '=', $id_sluzbenika)->get();
 
-        if ($sluzbenik->radno_mjesto != null) $radno_mjesto = RadnoMjesto::find($sluzbenik->radno_mjesto)->first()->naziv_rm;
+        if (isset($sluzbenik->radno_mjesto)) $radno_mjesto = RadnoMjesto::find($sluzbenik->radno_mjesto)->first()->naziv_rm;
         else $radno_mjesto = 'Nema radnog mjesta';
 
         $spol                   = Sifrarnik::dajSifrarnik('spolovi');
@@ -88,7 +88,7 @@ class SluzbenikController extends Controller
         $vrsta_ro               = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
         $obracunati_staz        = Sifrarnik::dajSifrarnik('obracunati_staz');
         $srodstvo               = Sifrarnik::dajSifrarnik('srodstvo');
-        $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
+        $trenutno_radi          = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
         $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
         $domena                 = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
         $pio                    = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
@@ -101,7 +101,7 @@ class SluzbenikController extends Controller
          * eKonkurs popunjavanje dodatnih informacija
          */
 
-        if($sluzbenik->ekonkurs == 1){
+        if(isset($sluzbenik->ekonkurs) and $sluzbenik->ekonkurs == 1){
 
             /*
              * Školovanje
@@ -397,7 +397,7 @@ class SluzbenikController extends Controller
         $vrsta_ro               = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
         $obracunati_staz        = Sifrarnik::dajSifrarnik('obracunati_staz');
         $srodstvo               = Sifrarnik::dajSifrarnik('srodstvo');
-        $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
+        $trenutno_radi          = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
         $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
         $drzava                 = Sifrarnik::dajSifrarnik('drzava')->prepend('Odaberite državljanstvo');
         $pio                    = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
@@ -435,11 +435,12 @@ class SluzbenikController extends Controller
             ->with('strucnaSprema')
             ->with('vjestineRel')
             ->with('zasnivanjeRORel')
-//            ->with('poreskaUprava') // TODO 
+//            ->with('poreskaUprava') // TODO
             ->with('sluzbenikRel.rm.orgjed.organizacija.organ')
             ->with('sluzbenikRel.rm.rukovodioc_s')
             ->with('zasnivanjeRORel.nacin_zasnivanja_ro_s')
             ->with('zasnivanjeRORel.vrsta_r_o_s')
+            ->with('pioRel')
             ->with('zasnivanjeRORel.obracunati_r_staz_s');
 
         $sluzbenici = FilterController::filter($sluzbenici);
@@ -454,7 +455,7 @@ class SluzbenikController extends Controller
 
             'spol_sl.name' => 'Spol',
             'kategorija_sl.name' => 'Kategorija',
-            'drzavljanstvo_1' => 'Državljanstvo',
+            'drzavljanstvoRel.name' => 'Državljanstvo',
             'nacionalnost_sl.name' => 'Nacionalnost',
             'bracni_status_sl.name' => 'Bračni status',
 
@@ -462,12 +463,11 @@ class SluzbenikController extends Controller
             'datum_rodjenja' => 'Datum rođenja',
             'licna_karta' => 'Broj lične karte',
             'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
-            'poreskaUprava.name' => 'Poreska uprava',
+            'pioRel.name' => 'Poreska uprava',
             'radnoMjesto.naziv_rm' => 'Radno mjesto',
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
             'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
-            'radnoMjesto.rukovodioc_s.name' => 'Rukovodioc',
-            'prebivaliste.adresa_prebivalista' => 'Adresa boravita',
+            'prebivaliste.adresa_prebivalista' => 'Adresa boravišta',
             'prebivaliste.mjesto_prebivalista' => 'Mjesto prebivališta',
             'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
 
@@ -571,7 +571,7 @@ class SluzbenikController extends Controller
         $vrsta_ro               = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
         $obracunati_staz        = Sifrarnik::dajSifrarnik('obracunati_staz');
         $srodstvo               = Sifrarnik::dajSifrarnik('srodstvo');
-        $trenutno_radi          = Sifrarnik::dajSifrarnik('trenutno_radi');
+        $trenutno_radi          = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa');
         $kategorija_ispita      = Sifrarnik::dajSifrarnik('kategorija_ispita');
 
         Session::put('aditional_counter', 0); $pregled = true;

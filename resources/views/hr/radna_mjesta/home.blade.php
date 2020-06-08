@@ -52,13 +52,22 @@
                             {{ $radnoMjesto->broj_izvrsilaca ?? '/'}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->orgjed->naziv ?? ''}}
+                            {{ $radnoMjesto->platni_razred ?? '/'}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->orgjed->organizacija->organ->naziv ?? '' }}
+                            {{ $radnoMjesto->stepenSS->name ?? '/'}}
                         </td>
                         <td>
-                            {{ $radnoMjesto->rukovodeca_pozicija->name ?? ''}}
+                            {{ $radnoMjesto->katgorijaa->name ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->orgjed->naziv ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->orgjed->organizacija->organ->naziv ?? '/' }}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->kompetencijeRel->name ?? '/'}}
                         </td>
                         <td>
                             <ul class="custom-one-to-many">

@@ -23,16 +23,19 @@ class RadnaMjestaController extends Controller{
         // Ovdje trebamo samo isfiltrirati radna mjesta u odnosu na organizacionu jedinuc
         //$radna_mjesta = RadnoMjesto::aktivna();
 
-        $radna_mjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija');
+        $radna_mjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel');
         $radna_mjesta = FilterController::filter($radna_mjesta);
 
         $filteri = [
             'naziv_rm' => 'Naziv radnog mjesta',
             'sifra_rm' => 'Šifra radnog mjesta',
             'broj_izvrsilaca' => 'Broj izvršilaca',
+            'platni_razred' => 'Platni razred',
+            'stepenSS.name' => 'Stepen',
+            'katgorijaa.name' => 'Kategorija radnog mjesta',
             'orgjed.naziv' => 'Organizacijska jedinica',
             'orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
-            'rukovodeca_pozicija.name' => 'Rukovodeća pozicija',
+            'kompetencijeRel.name' => 'Kompetencije',
             'sluzbenici.ime_prezime' => 'Službenici',
         ];
 
@@ -52,7 +55,7 @@ class RadnaMjestaController extends Controller{
 
         $nadlezni = RadnoMjesto::orderBy('naziv_rm')->get(['id', 'naziv_rm'])->pluck('naziv_rm', 'id' );
         $nadlezni->put('', 'Nema nadležnog');
-        $strucna_sprema = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $kompetencije = Sifrarnik::dajSifrarnik('strucna_sprema');
 
 
 //        $sluzbenici = Sluzbenik::select('ime', 'id', 'prezime')->orderBy('ime')->get()->pluck('full_name', 'id' );
@@ -64,7 +67,7 @@ class RadnaMjestaController extends Controller{
             ->get()->pluck('naziv','id');
 
 
-        return view('/hr/radna_mjesta/dodaj_rm', compact('sluzbenici', 'nadlezni', 'org_jedinice', 'strucna_sprema'));
+        return view('/hr/radna_mjesta/dodaj_rm', compact('sluzbenici', 'nadlezni', 'org_jedinice', 'kompetencije'));
     }
 
 
@@ -130,8 +133,8 @@ class RadnaMjestaController extends Controller{
         $kateogrija_radnog   = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
         $tip_premjestaja     = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
         $tip_uslova          = Sifrarnik::dajSifrarnik('tip_uslova');
-        $strucna_sprema      = Sifrarnik::dajSifrarnik('strucna_sprema');
-        $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $kompetencije        = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('stepen');
         $benificirani        = Sifrarnik::dajSifrarnik('benificirani')->prepend('Odaberite', '0');
 
         $org_jedinice = OrganizacionaJedinica::with('parent') // Organizaciona jedinica
@@ -139,7 +142,7 @@ class RadnaMjestaController extends Controller{
             ->orderBy('broj', 'ASC')
             ->get()->pluck('naziv','id');
 
-        return view('/hr/radna_mjesta/dodaj_rm', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'what', 'strucna_sprema', 'tip_radnog_mjesta', 'benificirani'));
+        return view('/hr/radna_mjesta/dodaj_rm', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'what', 'kompetencije', 'tip_radnog_mjesta', 'benificirani'));
     }
 
     public function pregledajRadnoMjestoooo($id){
@@ -155,8 +158,8 @@ class RadnaMjestaController extends Controller{
         $kateogrija_radnog   = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
         $tip_premjestaja     = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
         $tip_uslova          = Sifrarnik::dajSifrarnik('tip_uslova');
-        $strucna_sprema = Sifrarnik::dajSifrarnik('strucna_sprema');
-        $tip_radnog_mjesta = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $kompetencije        = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('stepen');
 
 
         $org_jedinice = OrganizacionaJedinica::with('parent') // Organizaciona jedinica
@@ -164,7 +167,7 @@ class RadnaMjestaController extends Controller{
             ->orderBy('broj', 'ASC')
             ->get()->pluck('naziv','id');
 
-        return view('/hr/radna_mjesta/samo-pregled', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta'));
+        return view('/hr/radna_mjesta/samo-pregled', compact('sluzbenici', 'radno_mjesto', 'tip_uslova', 'tip_premjestaja', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'kompetencije', 'tip_radnog_mjesta'));
     }
 
     public function azurirajRadnoMjesto(Request $request){
@@ -267,8 +270,8 @@ class RadnaMjestaController extends Controller{
         $kateogrija_radnog   = Sifrarnik::dajSifrarnik('kategorija_radnog_mjesta');
         $tip_premjestaja     = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
         $tip_uslova          = Sifrarnik::dajSifrarnik('tip_uslova');
-        $strucna_sprema      = Sifrarnik::dajSifrarnik('strucna_sprema');
-        $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $kompetencije        = Sifrarnik::dajSifrarnik('strucna_sprema');
+        $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('stepen');
         $benificirani        = Sifrarnik::dajSifrarnik('benificirani')->prepend('Odaberite', '0');
 
 
@@ -280,6 +283,6 @@ class RadnaMjestaController extends Controller{
             ->get()->pluck('naziv','id');
 
 
-        return view('/hr/radna_mjesta/uredi_rm', compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'radno_mjesto', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'strucna_sprema', 'tip_radnog_mjesta', 'uposleni', 'benificirani'));
+        return view('/hr/radna_mjesta/uredi_rm', compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'radno_mjesto', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'kompetencije', 'tip_radnog_mjesta', 'uposleni', 'benificirani'));
     }
 }

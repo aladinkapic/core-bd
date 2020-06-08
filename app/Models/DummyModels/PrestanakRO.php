@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class PrestanakRO extends Model{
     protected $table = 'sluzbenik_prestanak_radnog_odnosa';
+    protected $guarded = ['id'];
 
     public function datumRješenja(){
         if(!$this->datum_rjesenja) return '';

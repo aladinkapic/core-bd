@@ -117,14 +117,14 @@
                         <td>{{ $sluzbenik->ime_roditelja ?? '/'}}</td>
                         <td>{{ $sluzbenik->spol_sl->name ?? '' }}</td>
                         <td>{{ $sluzbenik->kategorija_sl ? $sluzbenik->kategorija_sl->name : '' }}</td>
-                        <td>{{ $sluzbenik->drzavljanstvo_1 ?? '/' }}</td>
+                        <td>{{ $sluzbenik->drzavljanstvoRel->name ?? '/' }}</td>
                         <td>{{ $sluzbenik->nacionalnost_sl ? $sluzbenik->nacionalnost_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->bracni_status_sl ? $sluzbenik->bracni_status_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->mjesto_rodjenja ?? '/' }}</td>
                         <td>{{ $sluzbenik->datumRodjenja() ?? '/'}}</td>
                         <td>{{ $sluzbenik->licna_karta ?? '/'}}</td>
                         <td>{{ $sluzbenik->mjesto_idavanja_lk ?? '/'}}</td>
-                        <td>{{ $sluzbenik->PIO ?? '/'}}</td>
+                        <td>{{ $sluzbenik->pioRel->name ?? '/'}}</td>
 
                         <!-- Radno mjesto službenika -->
                         <td>
@@ -134,7 +134,6 @@
                         </td>
                         <td>{{ $sluzbenik->sluzbenikRel->rm->orgjed->naziv ?? '/'}}</td>
                         <td>{{ $sluzbenik->sluzbenikRel->rm->orgjed->organizacija->organ->naziv ?? '/'}}</td>
-                        <td>{{ $sluzbenik->sluzbenikRel->rm->rukovodioc_s->name ?? '/' }}</td>
 
                         <!---- Previbalište službenika ---->
                         <td>
@@ -174,7 +173,7 @@
                         <td>
                             <ul>
                                 @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                    <li>{{$zasnivanje->datum_zasnivanja_o}}</li>
+                                    <li>{{$zasnivanje->datumZasnivanjaRO() ?? ''}}</li>
                                 @endforeach
                             </ul>
                         </td>

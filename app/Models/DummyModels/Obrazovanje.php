@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class Obrazovanje extends Model{
     protected $table = 'sluzbenik_obrazovanje_sluzbenika';
+    protected $guarded = ['id'];
 
     public function datumIzdavanjaDiplome(){
         if(!$this->datum_izdavanja_dipl) return '';
