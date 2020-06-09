@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class Ispiti extends Model{
     protected $table = 'sluzbenik_ispiti';
+    protected $guarded = ['id'];
 
     public function kategorija_ispita_sl()
     {

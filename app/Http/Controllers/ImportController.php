@@ -564,6 +564,15 @@ class ImportController extends Controller{
         }
         */
 
+//        $sluzbenici = Sluzbenik::get();
+//        foreach($sluzbenici as $sluzbenik){
+//            // if($sluzbenik['ime'] == 'Đojo') dd($sluzbenik);
+//            if(strpos($sluzbenik['ime'], 'Đ') or strpos($sluzbenik['ime'], 'đ')){
+//
+//            }
+//        }
+//
+//        dd("END !");
 
         $osnivi_prestanka = array();
         $sluzbenici = array();
@@ -1258,6 +1267,34 @@ class ImportController extends Controller{
                                                             'osnov_za_prestanak' => $osnov_za_prestanak
                                                         ]);
                                                     }
+
+//                                                    'ispit_za_rad_u_organima' => $ispit_za_rad_u_organima,
+//                                                    'pravosudni_ispit' => $pravosudni_ispit,
+//                                                    'strucni_ispit' => $strucni_ispit,
+
+                                                    try{
+                                                        if($sluzbenik['ispit_za_rad_u_organima'] != '-' or $sluzbenik['ispit_za_rad_u_organima'] != null){
+                                                            $ispit = Ispiti::create([
+                                                                'podkategorija' => 1,
+                                                                'id_sluzbenika' => $sluz->id
+                                                            ]);
+                                                        }
+
+                                                        if($sluzbenik['pravosudni_ispit'] != '-' or $sluzbenik['pravosudni_ispit'] != null){
+                                                            $ispit = Ispiti::create([
+                                                                'podkategorija' => 2,
+                                                                'id_sluzbenika' => $sluz->id
+                                                            ]);
+                                                        }
+
+                                                        if($sluzbenik['strucni_ispit'] != '-' or $sluzbenik['strucni_ispit'] != null){
+                                                            $ispit = Ispiti::create([
+                                                                'podkategorija' => 3,
+                                                                'id_sluzbenika' => $sluz->id
+                                                            ]);
+                                                        }
+                                                    }catch (\Exception $e){}
+
                                                 }catch (\Exception $e){}
                                                 // Radno mjesto službenik
                                                 try{
@@ -1285,9 +1322,6 @@ class ImportController extends Controller{
                 }
                 // dd($organ);
             }
-
         }
-
-        dd($organi[0]['pododjeljenje']);
     }
 }
