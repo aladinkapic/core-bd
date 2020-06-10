@@ -176,7 +176,7 @@
                     <div class="single_row">
                         {!! Form::label('obrazovna_institucija', __('Obrazovna institucija').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
-                            {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ?? '0' ,['class' => 'form-control read_stuffs', 'disabled' => 'true']) !!}
+                            {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ?? '0' ,['class' => 'form-control read_stuffs']) !!}
                         </div>
                     </div>
                     <div class="single_row">

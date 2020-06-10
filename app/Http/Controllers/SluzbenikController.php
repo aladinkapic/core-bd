@@ -295,7 +295,7 @@ class SluzbenikController extends Controller
         }catch (\Exception $e){
             return $e->getMessage();
         }
-        
+
 
         try {
             $sluzbenik = Sluzbenik::create($request->except(['_method']));
