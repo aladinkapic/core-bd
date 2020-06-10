@@ -6,6 +6,7 @@ use App\Models\Odsustva;
 use App\Models\Organ;
 use DB;
 
+use Illuminate\Support\Str;
 use function GuzzleHttp\Promise\queue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -257,26 +258,44 @@ class SluzbenikController extends Controller
     }
 
 
+    protected function getUsername($firstName, $lastName) {
+        $firstName = Str::slug($firstName);
+        $lastName  = Str::slug($lastName);
+        $username = $firstName.'.'.$lastName;
+
+        try{
+            $user = Sluzbenik::where('korisnicko_ime', 'like', '%'.$username.'%')->count();
+            if($user){
+                return $username.$user;
+            }
+        }catch (\Exception $e){}
+
+        return $username;
+    }
+
     public function spremiUtabelu(Request $request){
         $request = HelpController::formatirajRequest($request);
 
         $jmbg = Sluzbenik::where('jmbg', '=', $request->jmbg)->first();
-        $username = Sluzbenik::where('korisnicko_ime', '=', $request->korisnicko_ime)->first();
+        // $username = Sluzbenik::where('korisnicko_ime', '=', $request->korisnicko_ime)->first();
 
+        $request['korisnicko_ime'] = $this->getUsername($request->ime, $request->prezime);
         if ($jmbg) return false;
 
-        $counter = 1;
+        /* $counter = 1;
         while (true) {
             if (Sluzbenik::where('korisnicko_ime', '=', $request->korisnicko_ime)->first()) {
                 $request['korisnicko_ime'] = $request['korisnicko_ime'] . $counter++;
             } else break;
+        } */
+
+        try{
+            $request['email'] = $request->korisnicko_ime.'@'.Sifrarnik::dajSifrarnik('ekstenzija_domene')[$request->email];
+            $request['ime_prezime'] = $request->ime.' '.$request->prezime;
+        }catch (\Exception $e){
+            return $e->getMessage();
         }
-
-
-
-        $request['email'] = $request->korisnicko_ime.'@'.Sifrarnik::dajSifrarnik('ekstenzija_domene')[$request->email];
-        $request['ime_prezime'] = $request->ime.' '.$request->prezime;
-
+        
 
         try {
             $sluzbenik = Sluzbenik::create($request->except(['_method']));
