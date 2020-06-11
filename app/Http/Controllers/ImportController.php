@@ -925,7 +925,7 @@ class ImportController extends Controller{
                             'datum_do' => Carbon::now()->format('Y-m-d'),
                             'oju_id' => $organ_m->id // Insert organ id
                         ]);
-                    }catch (\Exception $e){}
+                    }catch (\Exception $e){dd($e);}
                 }catch (\Exception $e){}
                 foreach($organ['pododjeljenje'] as $pododjeljenje){
                     $k = 1;
@@ -1106,8 +1106,8 @@ class ImportController extends Controller{
                                                         'updated_at' => Carbon::now()
                                                     ]);
                                                 }
-                                            }catch (\Exception $e){}
-                                        }catch (\Exception $e){}
+                                            }catch (\Exception $e){dd($e);}
+                                        }catch (\Exception $e){dd($e);}
 
                                         foreach($radno_mjesto['sluzbenici'] as $sluzbenik){
 
