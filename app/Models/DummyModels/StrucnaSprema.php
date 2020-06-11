@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class StrucnaSprema extends Model{
     protected $table = 'sluzbenik_strucna_sprema';
+    protected $guarded = ['id'];
 
     public function datumZavrsetka(){
         if(!$this->datum_zavrsetka) return '';

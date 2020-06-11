@@ -133,6 +133,7 @@
                             <td>{{$hrvat}}</td>
                             <td>{{$srbin}}</td>
                             <td>{{$ostalo}}</td>
+                            <td>{{$bosnjak + $hrvat + $srbin + $ostalo}}</td>
 
                             <td>{{$manjeOd20}}</td>
                             <td>{{$od21do25}}</td>
