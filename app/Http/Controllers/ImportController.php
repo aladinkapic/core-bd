@@ -589,6 +589,78 @@ class ImportController extends Controller{
 //
 //        dd($osnivi_prestanka);
 
+        $institucijee = array();
+
+        $counter = 1;
+        for ($row = 2; $row <= $highestRow; ++$row) {
+            $ime = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
+            $prezime = $objWorksheet->getCellByColumnAndRow(0, $row)->getValue();
+
+            $stepen = $objWorksheet->getCellByColumnAndRow(10, $row)->getValue();
+            $zanimanje = $objWorksheet->getCellByColumnAndRow(11, $row)->getValue();
+            $obrazovnaInstitucija = $objWorksheet->getCellByColumnAndRow(12, $row)->getValue();
+            $datum_zavrsetka = $objWorksheet->getCellByColumnAndRow(13, $row)->getValue();
+            $nostrifikacija = $objWorksheet->getCellByColumnAndRow(14, $row)->getValue();
+
+            try{
+                $date_obrazovanje = Carbon::createFromFormat('d.m.Y', $datum_zavrsetka)->format('Y-m-d');
+            }catch (\Exception $e){
+                try{
+                    $date_obrazovanje = Carbon::createFromFormat('m.d.Y', $datum_zavrsetka)->format('Y-m-d');
+                }catch (\Exception $e){
+                    try{
+                        $date_obrazovanje = Carbon::createFromFormat('m.d.Y.', $datum_zavrsetka)->format('Y-m-d');
+                    }catch (\Exception $e){
+                        $date_obrazovanje = null;
+                    }
+                }
+            }
+
+            try{
+                $institucija = Sifrarnik::where('name', $obrazovnaInstitucija)->where('type', 'obrazovna_institucija')->firstOrFail();
+            }catch (\Exception $e){
+                try{
+                    $value = $counter;
+                    $institucija = Sifrarnik::create([
+                        'type' => 'obrazovna_institucija',
+                        'name' => $obrazovnaInstitucija,
+                        'value' => $counter++
+                    ]);
+                }catch (\Exception $e){
+                    $institucija = null;
+                }
+            }
+
+            try{
+                $sluz = Sluzbenik::where('ime', $ime)->where('prezime', $prezime)->firstOrFail();
+
+                $ss = StrucnaSprema::create([
+                    'stepen_s_s' => $stepen,
+                    'datum_zavrsetka' => $date_obrazovanje,
+                    'id_sluzbenika' => $sluz->id,
+                    'nostrifikacija' => $nostrifikacija,
+                    'obrazovna_institucija' => ($institucija) ? $institucija->value : null,
+                    'vrsta_s_s' => $zanimanje
+                ]);
+
+            }catch (\Exception $e){}
+
+//            if($ime == 'Vladislav' and $prezime == 'Šekić'){
+//                $institucije = explode('\n', $obrazovnaInstitucija);
+//
+//                dd($institucije);
+//            }
+//
+//            if($obrazovnaInstitucija) $institucije = explode('\n', $obrazovnaInstitucija);
+//
+//            if(count($institucije)){
+//                array_push($institucijee, $institucije);
+//            }
+
+        }
+
+        dd($institucijee);
+
         for ($row = 2; $row <= $highestRow; ++$row) {
             $found_organ = false;
             $organ_naziv = $objWorksheet->getCellByColumnAndRow(22, $row)->getValue();

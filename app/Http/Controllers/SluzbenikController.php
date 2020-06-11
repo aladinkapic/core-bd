@@ -615,9 +615,7 @@ class SluzbenikController extends Controller
 
         if ($request->tabela == 'sluzbenik_podaci_o_prebivalistu') {
             $validatedData = $request->validate([
-                'mjesto_prebivalista' => 'required|max:100',
-                'adresa_prebivalista' => 'required|max:100',
-                'adresa_boravista' => 'required|max:100',
+                'mjesto_prebivalista' => 'required|max:100'
             ]);
         } else if ($request->tabela == 'sluzbenik_strucna_sprema') {
             $validatedData = $request->validate([
@@ -800,6 +798,7 @@ class SluzbenikController extends Controller
             'rvat'      => 'Hrvat',
             'srbin'     => 'Srbin',
             'ostalii'   => 'Ostali',
+            'ukupno_njih' => 'Ukupno',
 
             'manje_od_20' => 'manje od 20',
             'od21do25' => '21 - 25',
