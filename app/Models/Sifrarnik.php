@@ -73,7 +73,7 @@ class Sifrarnik extends Model{
 
     public static function dajSifrarnik($type){
         $instance = new self();
-        return DB::table($instance->table)->where('type', $type)->pluck('name', 'value');
+        return DB::table($instance->table)->where('type', $type)->orderBy('name')->get()->pluck('name', 'value');
     }
 
     public static function dajInstancu($type, $value){
