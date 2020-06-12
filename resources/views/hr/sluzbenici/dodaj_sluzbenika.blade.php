@@ -110,9 +110,12 @@
                 </div>
             @endif
         </div>
-        <div style="background-color: red;">
 
-        </div>
+
     </div>
+@endsection
+
+@section('js')
+
 @endsection
 

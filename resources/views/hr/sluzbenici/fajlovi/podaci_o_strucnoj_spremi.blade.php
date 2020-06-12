@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="single_row">
-                            {!! Form::label('vrsta_s_s', __('Vrsta stručne spreme').' : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('vrsta_s_s', __('Stručno zvanje').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!! Form::text('vrsta_s_s', $strucna_sprema_s->vrsta_s_s , ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'vrsta_s_s', 'autocomplete' => 'off', 'readonly']) !!}
                             </div>
@@ -74,9 +74,9 @@
 
                     <div class="double_row">
                         <div class="single_row">
-                            {!! Form::label('obrazovna_institucija', __('Obrazovna institucija').' : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('obrazovna_institucija', __('Obrazovna institucijaee').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
-                                {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ,['class' => 'form-control read_stuffs', 'disabled' => 'true']) !!}
+                                {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ,['class' => 'form-control read_stuffs select2', 'disabled' => 'true']) !!}
                             </div>
                         </div>
                         <div class="single_row">
@@ -151,7 +151,7 @@
                         </div>
                     </div>
                     <div class="single_row">
-                        {!! Form::label('vrsta_s_s', __('Vrsta stručne spreme').' : ', ['class' => 'control-label']) !!}
+                        {!! Form::label('vrsta_s_s', __('Stručno zvanje').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
                             {!! Form::text('vrsta_s_s', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'vrsta_s_s', 'autocomplete' => 'off']) !!}
                         </div>
@@ -176,7 +176,7 @@
                     <div class="single_row">
                         {!! Form::label('obrazovna_institucija', __('Obrazovna institucija').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
-                            {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ?? '0' ,['class' => 'form-control read_stuffs']) !!}
+                            {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ?? '0' ,['class' => 'form-control read_stuffs select2']) !!}
                         </div>
                     </div>
                     <div class="single_row">
