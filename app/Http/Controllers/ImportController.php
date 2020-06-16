@@ -564,32 +564,40 @@ class ImportController extends Controller{
         }
         */
 
-//        $sluzbenici = Sluzbenik::get();
-//        foreach($sluzbenici as $sluzbenik){
-//            // if($sluzbenik['ime'] == 'Đojo') dd($sluzbenik);
-//            if(strpos($sluzbenik['ime'], 'Đ') or strpos($sluzbenik['ime'], 'đ')){
-//
-//            }
-//        }
-//
-//        dd("END !");
-
-        $osnivi_prestanka = array();
-        $sluzbenici = array();
-
-
-//        for ($row = 2; $row <= $highestRow; ++$row) {
-//            $found_osnov = false;
-//            foreach($osnivi_prestanka as $osnov){
-//                if($osnov == $objWorksheet->getCellByColumnAndRow(27, $row)->getValue()) $found_osnov = true;
-//            }
-//
-//            if(!$found_osnov) array_push($osnivi_prestanka, $objWorksheet->getCellByColumnAndRow(27, $row)->getValue());
-//        }
-//
-//        dd($osnivi_prestanka);
-
         $institucijee = array();
+
+        /*
+        for ($row = 2; $row <= $highestRow; ++$row) {
+            $obrazovnaInstitucija = $objWorksheet->getCellByColumnAndRow(12, $row)->getValue();
+
+            $institucije = explode('|', $obrazovnaInstitucija);
+
+            foreach($institucije as $institucija){
+                $inst_found = false;
+                foreach($institucijee as $inst){
+                    if($inst == $institucija) $inst_found = true;
+                }
+                if(!$inst_found) array_push($institucijee, $institucija);
+            }
+
+        }
+         */
+        $counter = 1;
+        foreach($institucijee as $inst){
+            try{
+                $institucija = Sifrarnik::where('name', $inst)->where('type', 'obrazovna_institucija')->firstOrFail();
+            }catch (\Exception $e){
+                try{
+                    $institucija = Sifrarnik::create([
+                        'type' => 'obrazovna_institucija',
+                        'name' => $inst,
+                        'value' => $counter++
+                    ]);
+                }catch (\Exception $e){
+                    $institucija = null;
+                }
+            }
+        }
 
         $counter = 1;
         for ($row = 2; $row <= $highestRow; ++$row) {
@@ -603,60 +611,68 @@ class ImportController extends Controller{
             $nostrifikacija = $objWorksheet->getCellByColumnAndRow(14, $row)->getValue();
 
             try{
-                $date_obrazovanje = Carbon::createFromFormat('d.m.Y', $datum_zavrsetka)->format('Y-m-d');
-            }catch (\Exception $e){
-                try{
-                    $date_obrazovanje = Carbon::createFromFormat('m.d.Y', $datum_zavrsetka)->format('Y-m-d');
-                }catch (\Exception $e){
-                    try{
-                        $date_obrazovanje = Carbon::createFromFormat('m.d.Y.', $datum_zavrsetka)->format('Y-m-d');
-                    }catch (\Exception $e){
-                        $date_obrazovanje = null;
-                    }
-                }
-            }
-
-            try{
-                $institucija = Sifrarnik::where('name', $obrazovnaInstitucija)->where('type', 'obrazovna_institucija')->firstOrFail();
-            }catch (\Exception $e){
-                try{
-                    $value = $counter;
-                    $institucija = Sifrarnik::create([
-                        'type' => 'obrazovna_institucija',
-                        'name' => $obrazovnaInstitucija,
-                        'value' => $counter++
-                    ]);
-                }catch (\Exception $e){
-                    $institucija = null;
-                }
-            }
-
-            try{
                 $sluz = Sluzbenik::where('ime', $ime)->where('prezime', $prezime)->firstOrFail();
 
-                $ss = StrucnaSprema::create([
-                    'stepen_s_s' => $stepen,
-                    'datum_zavrsetka' => $date_obrazovanje,
-                    'id_sluzbenika' => $sluz->id,
-                    'nostrifikacija' => $nostrifikacija,
-                    'obrazovna_institucija' => ($institucija) ? $institucija->value : null,
-                    'vrsta_s_s' => $zanimanje
-                ]);
+                $stepen = explode('|', $stepen);
+                $zanimanje = explode('|', $zanimanje);
+                $obrazovnaInstitucija = explode('|', $obrazovnaInstitucija);
+                $datum_zavrsetka = explode('|', $datum_zavrsetka);
+
+                for($i=0; $i<count($obrazovnaInstitucija); $i++){
+                    try{
+                        if($stepen[$i] == 'SSS-IV stepen') $stepen = 4;
+                        else if($stepen[$i] == 'VSS-240 ECTS') $stepen = 8;
+                        else if($stepen[$i] == 'VSS-180 ECTS') $stepen = 7;
+                        else if($stepen[$i] == 'VSS') $stepen = 6;
+                        else if($stepen[$i] == 'SSS-III stepen ') $stepen = 3;
+                        else if($stepen[$i] == 'SSS-III stepen') $stepen = 3;
+                        else if($stepen[$i] == 'KV') $stepen = 2;
+                        else if($stepen[$i] == 'NK') $stepen = 1;
+                        else $stepen = 9;
+
+
+                        try{
+                            $date_obrazovanje = Carbon::createFromFormat('d.m.Y', $datum_zavrsetka[$i])->format('Y-m-d');
+                        }catch (\Exception $e){
+                            try{
+                                $date_obrazovanje = Carbon::createFromFormat('m.d.Y', $datum_zavrsetka[$i])->format('Y-m-d');
+                            }catch (\Exception $e){
+                                try{
+                                    $date_obrazovanje = Carbon::createFromFormat('m.d.Y.', $datum_zavrsetka[$i])->format('Y-m-d');
+                                }catch (\Exception $e){
+                                    $date_obrazovanje = null;
+                                }
+                            }
+                        }
+
+                        try{
+                            $institucija = Sifrarnik::where('name', $obrazovnaInstitucija[$i])->where('type', 'obrazovna_institucija')->firstOrFail();
+                        }catch (\Exception $e){
+                            $institucija = null;
+                        }
+
+
+                        $ss = StrucnaSprema::create([
+                            'stepen_s_s' => $stepen,
+                            'datum_zavrsetka' => $date_obrazovanje,
+                            'id_sluzbenika' => $sluz->id,
+                            'nostrifikacija' => $nostrifikacija,
+                            'obrazovna_institucija' => ($institucija) ? $institucija->value : null,
+                            'vrsta_s_s' => $zanimanje[$i]
+                        ]);
+
+                        $obr = Obrazovanje::create([
+                            'id_sluzbenika' => $sluz->id,
+                            'naziv_ustanove' => ($institucija) ? $institucija->name : null,
+                            'ciklus_obrazovanja' => $stepen,
+                            'strucno_zvanje' => $zanimanje[$i],
+                            'datum_diplomiranja' => $date_obrazovanje,
+                            'broj_nostrifikacije' => $nostrifikacija
+                        ]);
+                    }catch (\Exception $e){}
+                }
 
             }catch (\Exception $e){}
-
-//            if($ime == 'Vladislav' and $prezime == 'Šekić'){
-//                $institucije = explode('\n', $obrazovnaInstitucija);
-//
-//                dd($institucije);
-//            }
-//
-//            if($obrazovnaInstitucija) $institucije = explode('\n', $obrazovnaInstitucija);
-//
-//            if(count($institucije)){
-//                array_push($institucijee, $institucije);
-//            }
-
         }
 
         dd($institucijee);

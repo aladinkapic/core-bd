@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title') {{__('Dodajte novog službenika')}} @stop
+@section('title') {{__('Službenik')}} @stop
 
 <!-- css links -->
 @section('breadcrumbs')
