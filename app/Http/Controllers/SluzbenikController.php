@@ -96,7 +96,7 @@ class SluzbenikController extends Controller
         $drzava                 = Sifrarnik::dajSifrarnik('drzava')->prepend('Odaberite državljanstvo');
         $obrazovnaInstitucija   = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite obrazovnu instituciju');
         $poslodavac             = Sifrarnik::dajSifrarnik('poslodavac')->prepend('Odaberite poslodavca');
-
+        $stepen                 = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite');
 
         /*
          * eKonkurs popunjavanje dodatnih informacija
@@ -187,7 +187,7 @@ class SluzbenikController extends Controller
 
         }
 
-        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'domena', 'pio', 'drzava', 'obrazovnaInstitucija', 'poslodavac'));
+        return view('/hr/sluzbenici/dodaj_sluzbenika', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'domena', 'pio', 'drzava', 'obrazovnaInstitucija', 'poslodavac', 'stepen'));
     }
 
     public function redirektajNaDodatno($id)
@@ -422,11 +422,11 @@ class SluzbenikController extends Controller
         $pio                    = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
         $obrazovnaInstitucija   = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite obrazovnu instituciju');
         $poslodavac             = Sifrarnik::dajSifrarnik('poslodavac')->prepend('Odaberite poslodavca');
-
+        $stepen                 = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite');
 
         Session::put('aditional_counter', 0); $pregled = true;
 
-        return view('/hr/sluzbenici/dodatno_o_sluzbeniku', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'organizaciona_jed', 'organ_ju', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'drzava', 'pio', 'obrazovnaInstitucija', 'poslodavac'));
+        return view('/hr/sluzbenici/dodatno_o_sluzbeniku', compact('id_sluzbenika', 'nivo_vjestine', 'vrsta_ro', 'obracunati_staz', 'nacin_zasnivanja', 'sluzbenik', 'prethodno_r_iskustvo', 'podaci_o_prebivalistu', 'strucna_sprema', 'obrazovanje_sluzbenika', 'ispiti', 'kontakt_detalji', 'vjestine', 'zasnivanje_r_odnosa', 'prestanak_r_o', 'clanovi_porodice', 'radno_mjesto', 'spol', 'kategorija', 'nacionalnost', 'bracni_status', 'vrsta_vjestine', 'osnov_za_prestanak_rd', 'radno_vrijeme', 'what', 'pregled', 'organizaciona_jed', 'organ_ju', 'godina', 'mjeseci', 'dana', 'srodstvo', 'trenutno_radi', 'kategorija_ispita', 'drzava', 'pio', 'obrazovnaInstitucija', 'poslodavac', 'stepen'));
     }
 
 
@@ -743,9 +743,7 @@ class SluzbenikController extends Controller
 
         if ($request->tabela == 'sluzbenik_podaci_o_prebivalistu') {
             $validatedData = $request->validate([
-                'mjesto_prebivalista' => 'required|max:100',
-                'adresa_prebivalista' => 'required|max:100',
-                'adresa_boravista' => 'required|max:100',
+                'mjesto_prebivalista' => 'required|max:100'
             ]);
         }
 

@@ -90,7 +90,7 @@
                         <div class="single_row">
                             {!! Form::label('ciklus_obrazovanja', __('Ciklus obrazovanja').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
-                                {!! Form::text('ciklus_obrazovanja', $o_sluz_s->ciklus_obrazovanja, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'ciklus_obrazovanja', 'readonly', 'autocomplete' => 'off']) !!}
+                                {!! Form::select('ciklus_obrazovanja', $stepen, $o_sluz_s->ciklus_obrazovanja, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'ciklus_obrazovanja', 'disabled' => 'true', 'autocomplete' => 'off']) !!}
                             </div>
                         </div>
                         <div class="single_row">
@@ -196,7 +196,7 @@
                     <div class="single_row">
                         {!! Form::label('ciklus_obrazovanja', __('Ciklus obrazovanja').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
-                            {!! Form::text('ciklus_obrazovanja', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'ciklus_obrazovanja', 'autocomplete' => 'off']) !!}
+                            {!! Form::select('ciklus_obrazovanja', $stepen, $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'ciklus_obrazovanja', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
                     <div class="single_row">

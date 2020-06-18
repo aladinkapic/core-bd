@@ -47,7 +47,7 @@
                         <div class="single_row">
                             {!! Form::label('stepen_s_s', __('Stepen stručne spreme').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
-                                {!! Form::text('stepen_s_s', $strucna_sprema_s->stepen_s_s, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'stepen_s_s', 'autocomplete' => 'off', 'readonly']) !!}
+                                {!! Form::select('stepen_s_s', $stepen, $strucna_sprema_s->stepen_s_s, ['class' => 'form-control read_stuffs', 'maxlength' => '50', 'rows' => 1, 'id' => 'stepen_s_s', 'autocomplete' => 'off', 'disabled' => 'true']) !!}
                             </div>
                         </div>
                         <div class="single_row">
@@ -147,7 +147,7 @@
                     <div class="single_row">
                         {!! Form::label('stepen_s_s', __('Stepen stručne spreme').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
-                            {!! Form::text('stepen_s_s', $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'stepen_s_s', 'autocomplete' => 'off']) !!}
+                            {!! Form::select('stepen_s_s', $stepen, $value = null, ['class' => 'form-control', 'maxlength' => '50', 'rows' => 1, 'id' => 'stepen_s_s', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
                     <div class="single_row">
