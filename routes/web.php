@@ -177,9 +177,9 @@ Route::prefix('hr/sluzbenici')->group(function () {
     Route::get('/dodatno_o_sluzbeniku/{id_sluzbenika}/{what}',       'SluzbenikController@dodatno_o_sluzbeniku')->name('sluzbenik.dodatnoRjesenje');
     Route::get('/ispis_sluzbenika/{id}',                              'SluzbenikController@ispisSluzbenika')->name('ispis.sluzbenika');
 
-    Route::get('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
+    Route::get('/pregledaj',  'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
     Route::post('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
-    Route::get('/seedaj',    'SluzbenikController@seedaj')->name('sluzbenik.seedaj');
+    Route::get('/seedaj',     'SluzbenikController@seedaj')->name('sluzbenik.seedaj');
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Models\DummyModels;
 
+use App\Models\Sifrarnik;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
@@ -22,5 +23,12 @@ class StrucnaSprema extends Model{
     public function datumDostavljanja(){
         if(!$this->datum_dostavljanja_diplome) return '';
         return Carbon::parse($this->datum_dostavljanja_diplome)->format('d.m.Y');
+    }
+
+    public function stepenStrucne(){
+        return $this->hasOne(Sifrarnik::class, 'value', 'stepen_s_s')->where('type', 'stepen');
+    }
+    public function obrazovnaInstitucija(){
+        return $this->hasOne(Sifrarnik::class, 'value', 'obrazovna_institucija')->where('type', 'obrazovna_institucija');
     }
 }

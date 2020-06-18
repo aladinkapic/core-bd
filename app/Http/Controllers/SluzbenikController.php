@@ -451,7 +451,8 @@ class SluzbenikController extends Controller
             ->with('prebivaliste')
             ->with('prestanakRORel')
             ->with('prethodnoRIRel')
-            ->with('strucnaSprema')
+            ->with('strucnaSprema.stepenStrucne')
+            ->with('strucnaSprema.obrazovnaInstitucija')
             ->with('vjestineRel')
             ->with('zasnivanjeRORel')
 //            ->with('poreskaUprava') // TODO
@@ -463,7 +464,7 @@ class SluzbenikController extends Controller
             ->with('zasnivanjeRORel.obracunati_r_staz_s');
 
         $sluzbenici = FilterController::filter($sluzbenici);
-      // dd($sluzbenici);
+//      dd($sluzbenici[2]->strucnaSprema);
 
         $filteri = [
             'id' => '#',
@@ -500,8 +501,8 @@ class SluzbenikController extends Controller
             'zasnivanjeRORel.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
             'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž',
 
-            'strucna_sprema.stepen_s_s' => 'Stepen stručne spreme',
-            'strucna_sprema.obrazovna_institucija' => 'Obrazovna institucija',
+            'strucnaSprema.stepenStrucne.name' => 'Stepen stručne spreme',
+            'strucnaSprema.obrazovnaInstitucija.name' => 'Obrazovna institucija',
 //            'id3' => 'Položeni ispiti',
 //            'id4' => 'Kontakt informacije',
 //            'id5' => 'Dodatne vještine',

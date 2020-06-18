@@ -241,22 +241,22 @@
                         </td>
                         <!---- Stručna sprema službenika ---->
                         <td>
-                            @if($sluzbenik->strucna_sprema)
+                            @if($sluzbenik->strucnaSprema)
                                 <ul>
-                                    @foreach($sluzbenik->strucna_sprema as $sprema)
+                                    @foreach($sluzbenik->strucnaSprema as $sprema)
                                         <li>
-                                            {{ $sprema->stepen_s_s ?? '/'}}
+                                            {{ $sprema->stepenStrucne->name ??  '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
                             @endif
                         </td>
                         <td>
-                            @if($sluzbenik->strucna_sprema)
+                            @if($sluzbenik->strucnaSprema)
                                 <ul>
-                                    @foreach($sluzbenik->strucna_sprema as $sprema)
+                                    @foreach($sluzbenik->strucnaSprema as $sprema)
                                         <li>
-                                            {{ $sprema->obrazovna_institucija ?? '/'}}
+                                            {{ $sprema->obrazovnaInstitucija->name ?? '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
