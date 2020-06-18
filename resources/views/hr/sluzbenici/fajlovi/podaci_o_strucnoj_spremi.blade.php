@@ -74,7 +74,7 @@
 
                     <div class="double_row">
                         <div class="single_row">
-                            {!! Form::label('obrazovna_institucija', __('Obrazovna institucijaee').' : ', ['class' => 'control-label']) !!}
+                            {!! Form::label('obrazovna_institucija', __('Obrazovna institucija').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
                                 {!!  Form::select('obrazovna_institucija', $obrazovnaInstitucija, $strucna_sprema_s->obrazovna_institucija ,['class' => 'form-control read_stuffs select2', 'disabled' => 'true']) !!}
                             </div>
