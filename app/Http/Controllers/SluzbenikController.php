@@ -485,6 +485,8 @@ class SluzbenikController extends Controller
             'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
             'pioRel.name' => 'Poreska uprava',
             'radnoMjesto.naziv_rm' => 'Radno mjesto',
+            'radnoMjesto.katgorijaa.name' => 'Kategorija radnog mjesta',
+            'privremeni_premjestaj' => 'Privremeni premještaj',
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
             'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'prebivaliste.adresa_prebivalista' => 'Adresa boravišta',
@@ -502,6 +504,7 @@ class SluzbenikController extends Controller
             'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž',
 
             'strucnaSprema.stepenStrucne.name' => 'Stepen stručne spreme',
+            'strucnaSprema.vrsta_s_s' => 'Zanimanje',
             'strucnaSprema.obrazovnaInstitucija.name' => 'Obrazovna institucija',
 //            'id3' => 'Položeni ispiti',
 //            'id4' => 'Kontakt informacije',

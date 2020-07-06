@@ -132,6 +132,8 @@
                                 {{ $sluzbenik->sluzbenikRel->rm->naziv_rm ?? '/' }}
                             </a>
                         </td>
+                        <td>{{$sluzbenik->radnoMjesto->katgorijaa->name ?? ''}}</td>
+                        <td>{{ $sluzbenik->privremeni_premjestaj ?? '/'}}</td>
                         <td>{{ $sluzbenik->sluzbenikRel->rm->orgjed->naziv ?? '/'}}</td>
                         <td>{{ $sluzbenik->sluzbenikRel->rm->orgjed->organizacija->organ->naziv ?? '/'}}</td>
 
@@ -246,6 +248,17 @@
                                     @foreach($sluzbenik->strucnaSprema as $sprema)
                                         <li>
                                             {{ $sprema->stepenStrucne->name ??  '/'}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                        <td>
+                            @if($sluzbenik->strucnaSprema)
+                                <ul>
+                                    @foreach($sluzbenik->strucnaSprema as $sprema)
+                                        <li>
+                                            {{ $sprema->vrsta_s_s ?? '/'}}
                                         </li>
                                     @endforeach
                                 </ul>
