@@ -148,26 +148,10 @@
                             <td>{{$veceOd65}}</td>
 
                             <td class="akcije" style="text-align:center;">
-                                <button class="btn my-button">{{__('Pregled')}}</button>
+                                <button class="btn my-button delete-this-row">{{__('Obrišite')}}</button>
                             </td>
                         </tr>
                     @endforeach
-{{--                @foreach($sluzbenici as $sluzbenik)--}}
-{{--                    <tr class="sluzbenik-row">--}}
-{{--                        <td style="text-align:center;">{{ $counter++}}</td>--}}
-{{--                        <td>{{ $sluzbenik->ime_prezime ?? '/'}}</td>--}}
-{{--                        <td>{{ $sluzbenik->email ?? '/'}}</td>--}}
-{{--                        <td>{{ $sluzbenik->jmbg ?? '/'}}</td>--}}
-{{--                        <td>{{ $sluzbenik->ime_roditelja ?? '/'}}</td>--}}
-
-{{--                        <td style="text-align:center;" class="akcije">--}}
-{{--                            <a href="{{ '/hr/odsustva/kalendar/' . $sluzbenik->id ?? '1'}}">--}}
-{{--                                <i class="fa fa-eye"></i> {{__('Odsustva')}}--}}
-{{--                            </a>--}}
-{{--                        </td>--}}
-{{--                    </tr>--}}
-
-{{--                @endforeach--}}
                 </tbody>
             </table>
 

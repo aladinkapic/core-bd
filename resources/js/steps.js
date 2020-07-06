@@ -150,4 +150,8 @@ $( document ).ready(function() {
         window.location.href = $(this).attr('goto');
         console.log();
     });
+
+    $(".delete-this-row").click(function () {
+        $(this).parent().parent().remove();
+    });
 });
