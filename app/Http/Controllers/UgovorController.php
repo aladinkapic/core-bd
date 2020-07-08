@@ -140,7 +140,7 @@ class UgovorController extends Controller{
     public function createMjestoRada(Request $request){
 
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
-        
+
         return view('hr.ugovori.mjesto_rada.create')->with(compact('sluzbenici'));
     }
     public function storeMjestoRada(Request $request){
@@ -232,9 +232,8 @@ class UgovorController extends Controller{
         $request = HelpController::formatirajRequest($request);
         $data = $request->all();
 
-
         $sluzbenik = Sluzbenik::where('id', '=', $data['sluzbenik']);
-        
+
 //        foreach($data as $key => $value){
 //            if(strtotime($value)){
 //                $data[$key] = Carbon::parse($value);
@@ -246,7 +245,6 @@ class UgovorController extends Controller{
         $object = new Privremeno();
         $object->fill($request->except(['_token', '_method']));
         $object->save();
-
 
         $sluzbenik->update(['privremeni_premjestaj' => $object->id]);
 
