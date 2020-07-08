@@ -99,6 +99,7 @@ class HelpController extends Controller
 
     public function obrisiIzBaze(Request $request)
     {
+        dd($request->all());
         if ($request->tabela == 'sluzbenici') {
             $sluzbenik = Sluzbenik::where('id', '=', $request->id)->first();
 

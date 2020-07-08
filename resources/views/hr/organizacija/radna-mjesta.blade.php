@@ -88,6 +88,10 @@
                                 <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{$rm->id ?? '1'}}" title="Uredite radno mjesto">
                                     <i class="fas fa-edit"></i>
                                 </a>
+
+                                <a href="/hr/radna_mjesta/obrisi-rm-sa-sluz/{{$rm->id ?? '1'}}" title="Uredite radno mjesto">
+                                    <i class="fas fa-trash text-danger ml-2"></i>
+                                </a>
                             </td>
 
                         </tr>
