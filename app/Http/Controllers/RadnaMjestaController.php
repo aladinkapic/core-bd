@@ -172,17 +172,6 @@ class RadnaMjestaController extends Controller{
 
     public function azurirajRadnoMjesto(Request $request){
         $active = OrganizacionaJedinica::where('id', $request->id_oj)->first()->organizacija->active;
-//
-//
-//        dd($request->all());
-
-//        $validatedData = $request->validate([
-//            'naziv_rm' => 'required',
-//            'sifra_rm' => 'required',
-//            'opis_rm' => 'required',
-//            'broj_izvrsilaca' => 'required',
-//            'platni_razred' => 'required',
-//        ]);
 
         if($request->rukovodioc == 'on'){
             $request['rukovodioc'] = 1;
@@ -190,9 +179,10 @@ class RadnaMjestaController extends Controller{
             $request['rukovodioc'] = 0;
         }
 
-        try{
 
-//            dd($request->all());
+        $id_rm = $request->id_rm;
+
+        try{
 
             $id = RadnoMjesto::where('id', '=', $request->id_rm)->update(
                 $request->except(['_token', 'naziv_rm_inp', 'tip_inp', 'tekst_uslova_inp', 'xx', 'vrijednost_inp', 'sluzbenik_id', 'id_rm', 'id_uslova', 'id_sluzben'])
@@ -219,7 +209,6 @@ class RadnaMjestaController extends Controller{
                 }
             }
 
-
             for($i=1; $i<count($request->sluzbenik_id); $i++){
                 if($request->id_sluzben[$i] == 'empty'){
                     // Ako je novi službenik na radnom mjestu, onda ga unosimo.
@@ -235,10 +224,11 @@ class RadnaMjestaController extends Controller{
                     }
 
                     $sluz = Sluzbenik::find($request->sluzbenik_id[$i]);
+
                     if($active){
                         // Ako je sistematizacija aktivna, onda provjeravamo da li ima uzorak prvo, ako nema
                         // unesemo ga, a ako ima onda ga ažuriramo
-                        $sluz->radno_mjesto = $request->id_rm;
+                        $sluz->radno_mjesto = $id_rm;
                     }
                     else{
                         $sluz->radno_mjesto_temp  = $request->id_rm;
@@ -250,9 +240,7 @@ class RadnaMjestaController extends Controller{
             }
 
             return redirect(route('organizacija.radna-mjesta', ['id' => OrganizacionaJedinica::findOrFail($request->id_oj)->org_id ]));
-        }catch(\Exception $e){
-            dd ($e);
-        }
+        }catch(\Exception $e){}
     }
 
     public function urediRadnoMjesto($id){
@@ -284,5 +272,22 @@ class RadnaMjestaController extends Controller{
 
 
         return view('/hr/radna_mjesta/uredi_rm', compact('sluzbenici', 'tip_premjestaja', 'tip_uslova', 'radno_mjesto', 'odabrani_sluzbenici', 'uslovi', 'org_jedinice', 'organizacija', 'kateogrija_radnog', 'kompetencije', 'tip_radnog_mjesta', 'uposleni', 'benificirani'));
+    }
+
+    public function obrisiSaRadnogMjesta($rm, $sluz){
+        try{
+            $rel = RadnoMjestoSluzbenik::where('sluzbenik_id', $sluz)->where('radno_mjesto_id', $rm)->delete();
+        }catch (\Exception $e){}
+        return back();
+    }
+
+    public function obrisiRMsaSluzbenicima($id){
+        try{
+            $rel = RadnoMjestoSluzbenik::where('radno_mjesto_id', $id)->delete();
+
+            $rm = RadnoMjesto::where('id', $id)->delete();
+        }catch (\Exception $e){}
+
+        return back();
     }
 }

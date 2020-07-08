@@ -221,6 +221,9 @@ Route::prefix('hr/radna_mjesta')->group(function () {
 
     Route::get('/uredi_radno_mjesto/{id}',           'RadnaMjestaController@urediRadnoMjesto');
     Route::post('/azuriraj_rm',                      'RadnaMjestaController@azurirajRadnoMjesto');
+
+    Route::get('/obrisi-sa-rm/{rm}/{sluzbenik}',     'RadnaMjestaController@obrisiSaRadnogMjesta');
+    Route::get('/obrisi-rm-sa-sluz/{id}',            'RadnaMjestaController@obrisiRMsaSluzbenicima');
 });
 
 

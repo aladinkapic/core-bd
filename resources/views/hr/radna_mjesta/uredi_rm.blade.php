@@ -331,8 +331,10 @@
                                                             {!! Form::hidden('id_sluzben[]', $sluzbenik->sluzbenik->id, ['class' => 'form-control']) !!}
 
                                                             <div class="shadow_delete">
-                                                                <div class="delete_item" onclick="obrisiDomElement('korisnici', '{{$i}}'); obrisiIzBaze('{{$sluzbenik->sluzbenik->id}}'); ">
-                                                                    <i class="fas fa-times"></i>
+                                                                <div class="delete_item">
+                                                                    <a href="/hr/radna_mjesta/obrisi-sa-rm/{{$radno_mjesto->id ?? ''}}/{{$sluzbenik->sluzbenik->id ?? ''}}">
+                                                                        <i class="fas fa-times"></i>
+                                                                    </a>
                                                                 </div>
                                                             </div>
 
