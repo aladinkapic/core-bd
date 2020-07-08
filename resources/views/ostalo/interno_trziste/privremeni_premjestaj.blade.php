@@ -15,7 +15,7 @@
         @include('ostalo/interno_trziste/fajlovi/menu')
 
         <div class="card-body hr-activity tab full_container">
-            @include('template.snippets.filters', ['var'  => $sluzbenici])
+            @include('template.snippets.filters', ['var'  => $ugovori])
             <table id="filtering" class="table table-condensed table-bordered">
                 <thead>
                 <tr>
@@ -25,39 +25,23 @@
                 </thead>
                 <tbody>
                 @php $counter = 1; @endphp
-                @foreach($sluzbenici as $korisnik)
+                @foreach($ugovori as $ugovor)
                     <tr>
-                        <td>{{$counter++}}</td>
-                        <td>
-                            <a href="{{route('sluzbenik.dodatno', ['id' => $korisnik->id])}}">
-                                {{$korisnik->ime_prezime ?? '/'}}
+                        <td class="text-center">{{$counter++}}</td>
+                        <td><a href="{{route('sluzbenik.dodatno', ['id_sluzbenika'=>$ugovor->sluzbenik])}}">{{$ugovor->usluzbenik->ime_prezime ?? ''}}</a></td>
+                        <td><a href="{{route('radnamjesta.pregledaj', ['id'=>$ugovor->mjesto->id ?? '1'])}}">{{$ugovor->mjesto->naziv_rm ?? ''}}</a></td>
+                        <td>{{$ugovor->privremeno_mjesto->naziv_rm ?? ''}}</td>
+                        <td>{{$ugovor->broj_rjesenja ?? '/'}}</td>
+                        <td>{{$ugovor->datumRjesenja() ?? '/'}}</td>
+                        <td>{{$ugovor->datumOd() ?? '/'}}</td>
+                        <td>{{$ugovor->datumDo() ?? '/'}}</td>
+                        <td style="text-align:center;" class="akcije">
+                            <a href="{{ '/ugovori/privremeno/edit/' . $ugovor->id ?? '1'}}">
+                                <i class="fa fa-edit"></i>
                             </a>
-                        </td>
-                        <td>
-                            <a href="{{route('radnamjesta.pregledaj', ['id' => $korisnik->radnoMjesto->id ?? '/'])}}">
-                                {{$korisnik->radnoMjesto->naziv_rm ?? '/'}}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{route('radnamjesta.pregledaj', ['id' => $korisnik->privremeniPremjestajRel->privremeno_mjesto->id ?? '/'])}}">
-                                {{$korisnik->privremeniPremjestajRel->privremeno_mjesto->naziv_rm ?? '/'}}
-                            </a>
-                        </td>
-                        <td>{{$korisnik->privremeniPremjestajRel->broj_rjesenja ?? '/'}}</td>
-                        <td>
-                            @if(isset($korisnik->privremeniPremjestajRel))
-                                {{$korisnik->privremeniPremjestajRel->datumRjesenja() }}
-                            @endif
-                        </td>
-                        <td>@if(isset($korisnik->privremeniPremjestajRel))
-                                {{$korisnik->privremeniPremjestajRel->datumOd() }}
-                            @endif</td>
-                        <td>@if(isset($korisnik->privremeniPremjestajRel))
-                                {{$korisnik->privremeniPremjestajRel->datumDo() }}
-                            @endif</td>
-                        <td class="text-center">
-                            <a href="{{route('ugovor.privremeno.edit', ['id' => $korisnik->privremeni_premjestaj])}}">
-                                <button class="btn my-button">{{__('Pregled')}}</button>
+                            <a href="{{ '/ugovori/privremeno/destroy/' . $ugovor->id ?? '1'}}"
+                               style="margin-left:10px;">
+                                <i class="fa fa-times"></i>
                             </a>
                         </td>
                     </tr>
