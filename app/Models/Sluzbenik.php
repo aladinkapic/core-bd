@@ -13,6 +13,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Sluzbenik extends Model{
     use Notifiable;
+    public $_godina, $_mjeseci, $_dana, $_ukupan_broj_dana;
 
     public function getJWTIdentifier(){
         return $this->getKey();
@@ -260,5 +261,68 @@ class Sluzbenik extends Model{
     }
     public function upravljanjeUcinkom(){
         return $this->hasOne(UpravljanjeUcinkom::class, 'sluzbenik', 'id')->where('godina', date('Y'));
+    }
+
+
+
+    // Radni staž
+
+    public function daniStazNew($godina, $mjeseci, $dana){
+        $this->_godina  = $godina;
+        $this->_mjeseci = $mjeseci;
+        $this->_dana    = $dana;
+
+        return $this->_godina.' godina '.$this->_mjeseci.' mjeseci i '.$this->_dana.' dana.';
+    }
+
+    public function godinaStaza(){return $this->_godina;}
+    public function mjeseciIStaza(){return $this->_mjeseci;}
+    public function danaStaza(){return $this->_dana;}
+
+    public function ukupnoDana(){return $this->_ukupno_dana;}
+
+    public function radniStaz(){
+        $number_of_days = 0;
+
+        // Logika računanja radnog staža; U zasnivanju se unosi radni staž u godinama, danima i mjesecima do trenutka
+        // stupanja na dužnost
+        // Radni staž se računa kao zbir tog staža i broja dana proteklih od tog datuma !
+
+        // Prvo pretvorimo godine, mjesece i dane u dane
+        if(count($this->zasnivanjeRORel)){
+            if($this->zasnivanjeRORel->last()->datum_zasnivanja_o == null) return null;
+            $date = explode("-", $this->zasnivanjeRORel->last()->datum_zasnivanja_o);
+
+//            try{
+//                $date = Carbon::createFromDate($this->zasnivanjeRO->last()->datum_stupanja_na_duznost_zasni)->diff(Carbon::now())->format('%y-%m-%d');
+//            }catch (\Exception $e){}
+
+            // Returns years - months - days
+            $time = explode("-", Carbon::createFromDate($date[0], $date[1], $date[2])->diff(Carbon::now())->format('%y-%m-%d'));
+
+            $years  = $time[0];
+            $months = $time[1];
+            $days   = $time[2];
+
+
+            $finalYears = 0; $finalMonths = 0; $finalDays = 0;
+            if(($days + $this->zasnivanjeRORel->last()->obracunati_r_s_dan) > 30){
+                $finalDays = ($days + $this->zasnivanjeRORel->last()->obracunati_r_s_dan - 30);
+                $finalMonths += 1;
+            }else{
+                $finalDays = $days + $this->zasnivanjeRORel->last()->obracunati_r_s_dan;
+            }
+
+            if(($months + $this->zasnivanjeRORel->last()->obracunati_r_s_mje + $finalMonths) > 11){
+                $finalYears += 1;
+                $finalMonths = ($months + $this->zasnivanjeRORel->last()->obracunati_r_s_mje + $finalMonths - 12);
+            }else{
+                $finalMonths = $months + $this->zasnivanjeRORel->last()->obracunati_r_s_mje + $finalMonths;
+            }
+            $finalYears += ($years + $this->zasnivanjeRORel->last()->obracunati_r_s_god);
+
+            return $this->daniStazNew($finalYears, $finalMonths, $finalDays);
+        }
+
     }
 }

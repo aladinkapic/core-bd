@@ -226,8 +226,14 @@ class RadnaMjestaController extends Controller{
                     $sluz = Sluzbenik::find($request->sluzbenik_id[$i]);
 
                     if($active){
+                        // Obrišimo službenika sa stare aktivne sistematizacije
+                        try{
+                            $rms = RadnoMjestoSluzbenik::where('sluzbenik_id', $sluz->id)->where('radno_mjesto_id', $sluz->radno_mjesto)->delete();
+                        }catch (\Exception $e){}
+
                         // Ako je sistematizacija aktivna, onda provjeravamo da li ima uzorak prvo, ako nema
                         // unesemo ga, a ako ima onda ga ažuriramo
+
                         $sluz->radno_mjesto = $id_rm;
                     }
                     else{
