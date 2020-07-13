@@ -49,9 +49,7 @@ class createNotifications extends Command{
 
         foreach ($sluzbenici as $sluzbenik){
             $broj_dana_po_zasnivanju = 0;
-
-            if($sluzbenik->id != 3) continue;
-
+            
             $date = Carbon::createFromDate( $sluzbenik->datum_rodjenja );
             $now  = Carbon::now();
 
