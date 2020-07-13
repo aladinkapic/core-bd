@@ -171,13 +171,13 @@
             <div class="col">
                 {!! Form::label('', __('Radni staž - godina').' : ', ['class' => ' control-label'] )  !!}
                 <div class="col-lg-12">
-                    {!! Form::text('radni_staz_godina', $godina .' godina', ['class' => 'form-control', 'rows' => 1, 'id' => 'radni_staz_godina', 'autocomplete' => 'off', 'readonly']) !!}
+                    {!! Form::text('radni_staz_godina', $sluzbenik->staz_godina ?? '' .' godina', ['class' => 'form-control', 'rows' => 1, 'id' => 'radni_staz_godina', 'autocomplete' => 'off', 'readonly']) !!}
                 </div>
             </div>
             <div class="col">
                 {!! Form::label('radni_staz_mjeseci', __('Radni staž - mjeseci').' : ', ['class' => 'control-label']) !!}
                 <div class="col-lg-12">
-                    {!! Form::text('radni_staz_mjeseci',  $mjeseci. ' mjeseci', ['class' => 'form-control', 'rows' => 1, 'id' => 'radni_staz_mjeseci', 'autocomplete' => 'off', 'readonly']) !!}
+                    {!! Form::text('radni_staz_mjeseci',  $sluzbenik->staz_mjeseci ?? ''. ' mjeseci', ['class' => 'form-control', 'rows' => 1, 'id' => 'radni_staz_mjeseci', 'autocomplete' => 'off', 'readonly']) !!}
                     {{--{!!  Form::select('privremeni_premjestaj', ['1' => 'Premještaj 1', '2' => 'Premještaj 2'], isset($sluzbenik) ? $sluzbenik->privremeni_premjestaj : '' ,['class' => 'form-control', 'id' => 'privremeni_premjestaj', 'disabled' => 'true']) !!}--}}
                 </div>
             </div>
@@ -188,7 +188,7 @@
             <div class="col">
                 {!! Form::label('', __('Radni staž - dana').' : ', ['class' => ' control-label'] )  !!}
                 <div class="col-lg-12">
-                    {!! Form::text('radni_staz_dana', $dana .' dana', ['class' => 'form-control', 'rows' => 1, 'id' => 'radni_staz_godina', 'autocomplete' => 'off', 'readonly']) !!}
+                    {!! Form::text('radni_staz_dana', $sluzbenik->staz_dana ?? '' .' dana', ['class' => 'form-control', 'rows' => 1, 'id' => 'radni_staz_godina', 'autocomplete' => 'off', 'readonly']) !!}
                 </div>
             </div>
         </div>

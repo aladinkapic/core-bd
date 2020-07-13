@@ -497,9 +497,9 @@ class SluzbenikController extends Controller
             'zasnivanjeRORel.nacin_zasnivanja_ro_s.name' => 'Način zasnivanja radnog odnosa',
             'zasnivanjeRORel.vrsta_r_o_s.name' => 'Vrsta radnog odnosa',
             'zasnivanjeRORel.obracunati_r_staz_s.name' => 'Obračunati staž',
-            'zasnivanjeRORel.obracunati_r_s_god' => ' Staž godina',
-            'zasnivanjeRORel.obracunati_r_s_mje' => ' Staž mjeseci',
-            'zasnivanjeRORel.obracunati_r_s_dan' => ' Staž dani',
+            'staz_godina' => ' Staž godina',
+            'staz_mjeseci' => ' Staž mjeseci',
+            'staz_dana' => ' Staž dani',
             'zasnivanjeRORel.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
             'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž',
 

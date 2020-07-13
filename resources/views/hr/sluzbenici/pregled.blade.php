@@ -207,25 +207,13 @@
 
                         <!-- Ispiti službenika -->
                         <td>
-                            <ul>
-                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                    <li>{{$zasnivanje->obracunati_r_s_god}}</li>
-                                @endforeach
-                            </ul>
+                            {{$sluzbenik->staz_godina ?? ''}}
                         </td>
                         <td>
-                            <ul>
-                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                    <li>{{$zasnivanje->obracunati_r_s_mje}}</li>
-                                @endforeach
-                            </ul>
+                            {{$sluzbenik->staz_mjeseci ?? ''}}
                         </td>
                         <td>
-                            <ul>
-                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                    <li>{{$zasnivanje->obracunati_r_s_dan}}</li>
-                                @endforeach
-                            </ul>
+                            {{$sluzbenik->staz_dana ?? ''}}
                         </td>
                         <td>
                             <ul>
