@@ -94,10 +94,12 @@ class SluzbenikController extends Controller
         $domena                 = Sifrarnik::dajSifrarnik('ekstenzija_domene')->prepend('Izaberite domenu', '0');
         $pio                    = Sifrarnik::dajSifrarnik('pio')->prepend('Odaberite PIO');
         $drzava                 = Sifrarnik::dajSifrarnik('drzava')->prepend('Odaberite državljanstvo');
-        $obrazovnaInstitucija   = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite obrazovnu instituciju');
+        // $obrazovnaInstitucija   = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite obrazovnu instituciju');
         $poslodavac             = Sifrarnik::dajSifrarnik('poslodavac')->prepend('Odaberite poslodavca');
         $stepen                 = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite');
 
+
+        $obrazovnaInstitucija =  Sifrarnik::where('type', 'obrazovna_institucija')->orderBy('name')->get()->pluck('name', 'value');
         /*
          * eKonkurs popunjavanje dodatnih informacija
          */

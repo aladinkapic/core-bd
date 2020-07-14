@@ -401,9 +401,10 @@ Route::prefix('organizacija')->group(function () {
         Pregled organizacionog plana
     */
 
-    Route::get('shema/{id}',         'OrganizacijaController@shema')->name('organizacija.shema');
-    Route::get('radna-mjesta/{id}',  'OrganizacijaController@radnaMjesta')->name('organizacija.radna-mjesta');
-    Route::get('jedinica/edit/{id}', 'OrganizacijaController@editJedinica')->name('organizacija.jedinica.edit');
+    Route::get('shema/{id}',                         'OrganizacijaController@shema')->name('organizacija.shema');
+    Route::get('radna-mjesta/{id}',                  'OrganizacijaController@radnaMjesta')->name('organizacija.radna-mjesta');
+    Route::get('jedinica/edit/{id}',                 'OrganizacijaController@editJedinica')->name('organizacija.jedinica.edit');
+    Route::post('jedinica/azuriraj',                 'OrganizacijaController@azurirajJedinica')->name('organizacija.jedinica.azuriraj');
 
 
     /*

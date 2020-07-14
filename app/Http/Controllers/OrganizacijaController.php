@@ -183,9 +183,9 @@ class OrganizacijaController extends Controller
         return redirect(route('organizacija.edit', ['id' => $organizacija->id]))->with('success', 'Organizacioni plan je dodan!');
     }
 
-    public function editJedinica(Request $request){
+    public function editJedinica($id){
         $org_jedinica = OrganizacionaJedinica::with('parent')
-            ->where('id', '=', $request->route('id'))
+            ->where('id', '=', $id)
             ->orderBy('parent_id', 'ASC')
             ->first();
 
@@ -200,6 +200,15 @@ class OrganizacijaController extends Controller
 
 
         return view('hr.organizacija.jedinica-edit')->with(compact('org_jedinica', 'organizacija', 'org_jedinice', 'tipovi'));
+    }
+    public function azurirajJedinica(Request $request){
+        try{
+            $orgJed = OrganizacionaJedinica::where('id', $request->id)->update(
+                $request->except(['_token', 'id'])
+            );
+        }catch (\Exception $e){dd($e);}
+
+        return back();
     }
 
     public function radnaMjesta(Request $request, $id){

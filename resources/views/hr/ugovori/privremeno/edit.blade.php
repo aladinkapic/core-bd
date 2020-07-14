@@ -40,7 +40,7 @@
                                         {{__('Privremeno radno mjesto')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <select class="form-control" name="privremeno_radno_mjesto">
+                                        <select class="form-control select-2" name="privremeno_radno_mjesto">
                                             @foreach($radnaMjesta as $radnoMjesto)
                                                 <option value="{{ $radnoMjesto->id ?? '1'}}">{{ $radnoMjesto->naziv_rm ?? '/'}}</option>
                                             @endforeach

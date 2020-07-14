@@ -49,7 +49,7 @@ class createNotifications extends Command{
 
         foreach ($sluzbenici as $sluzbenik){
             $broj_dana_po_zasnivanju = 0;
-            
+
             $date = Carbon::createFromDate( $sluzbenik->datum_rodjenja );
             $now  = Carbon::now();
 
@@ -119,32 +119,36 @@ class createNotifications extends Command{
                 'staz_dana' => $sluzbenik->danaStaza()
             ]);
 
-            continue;
+
 
             if($brojDana > 14160){
-                // Haman ha pa penzionisan :D
-                Sluzbenik::where('id', $sluzbenik->id)->update(['vakaz_za_penzionisanje' => 1]);
-                $sluzbenik->vakaz_za_penzionisanje = 1;
+                $sluzbeniciZaNotifikacije = Uloge::where('keyword', 'sluzbenici')->get(['sluzbenik_id'])->toArray();
+                $users = Sluzbenik::whereIn('id', $sluzbeniciZaNotifikacije)->get();
+                foreach($users as $user){
+                    $user['ime_i_prezime'] = $sluzbenik->ime.' '.$sluzbenik->prezime;
+                    $user['notifable_id']  = $sluzbenik->id;
 
-                $already_got = false;
-                foreach ($sluzbenik->notifications as $notification){
-                    if($notification->data['what'] == 'penzionisanje') $already_got = true;
-                    // echo $sluzbenik->ime.' '.$notification->type.'<br>';
-                }
+                    // Sad za sad samo kreiramo notifikaciju;; Bez slanja emailvoa : )
 
-                if(!$already_got){
-
-                    $message = "Poštovani ".$sluzbenik->ime.' '.$sluzbenik->prezime."<br><br>";
-                    $message .= "Obaviještavamo vas da je ovo poruka samo testnog karaktera i kao takva ne treb biti shvaćena ozbiljno. U slučaju da vas stvarno zanima svrha ove poruke, obratite se njenom tvorcu koji također veze nema šta ona treba da predstavlja. Cilj pisanja ove poruke je da bi se ustanovio konzistentan template koji će se moći u opštem slučaju koristiti u mnoge svrhe. <br><br>";
-                    $message .= "Za sva ostala pitanja obratite se Vladi Brčko Distrikta koja je zaposlila ove ljude. P.S. Jesam slatki, right ? Vaš email";
 
                     try{
-                        $sluzbenik->notify(new NotifyMe(array(' subject' => 'Obavijest sa portala', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
-                    }catch (\Exception $e){}
+                        $not = Notifikacija::where('sluzbenik_id', $user->id)
+                            ->where('what', 'radni_staz')
+                            ->where('to_who', $sluzbenik->id)->firstOrFail();
+                    }catch (\Exception $e){
+                        $notifikacija = Notifikacija::create([
+                            'sluzbenik_id' => $user->id,
+                            'what' => 'radni_staz',
+                            'to_who' => $sluzbenik->id,
+                            'message' => $sluzbenik->ime.' '.$sluzbenik->prezime.' stiče uslove za penzionisanje za menje od 6 mjeseci !'
+                        ]);
+                    }
+                    // $message = 'Obaviještavamo Vas da je službenik '.$sluzbenik->ime.' '.$sluzbenik->prezime.' napunio 64 godine života !';
+                    // $user->notify(new StarosnaPenzija(array(' subject' => 'Obavijest o navršavanju 65 godina života.', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
                 }
             }
 
-
+            continue;
 
             if($sluzbenik->zasnivanjeRORel){
                 foreach($sluzbenik->zasnivanjeRORel as $trenutno){

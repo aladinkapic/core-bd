@@ -62,9 +62,9 @@
 
         <script>
             // To be written later
-            // $(document).ready(function() {
-            //     $('.select2').select2();
-            // });
+            $(document).ready(function() {
+                $('.select-2').select2();
+            });
         </script>
         @yield('other_js_links')
         @yield('js')
