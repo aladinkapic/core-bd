@@ -63,7 +63,7 @@
                                     {{__('Privremeno radno mjesto')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <select class="form-control" name="privremeno_radno_mjesto" id="privremeno_radno_mjesto">
+                                    <select class="form-control select-2" name="privremeno_radno_mjesto" id="privremeno_radno_mjesto">
                                         <option value="1">{{__('Aktivna radna mjesta iz organa javne uprave')}}</option>
                                     </select>
                                 </div>

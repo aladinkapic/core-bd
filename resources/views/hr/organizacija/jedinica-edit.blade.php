@@ -41,7 +41,7 @@
                         </div>
                         <div class="card-body">
 
-                            <form method="POST" action="{{ route('organizaciona.jedinica.edit') }}" >
+                            <form method="POST" action="{{ route('organizacija.jedinica.azuriraj') }}" >
                                 {{ csrf_field() }}
 
                                 <input type="hidden" name="id" value="{{ $org_jedinica->id }}" />
@@ -67,7 +67,7 @@
                                 <div class="form-group row">
                                     <label for="staticEmail" class="col-sm-3 col-form-label">{{__('Nadređena organizaciona jedinica')}}</label>
                                     <div class="col-sm-9">
-                                        <select name="parent" class="form-control" id="parent" v-on:change="setNoviBroj">
+                                        <select name="parent_id" class="form-control" id="parent" v-on:change="setNoviBroj">
                                             <option value="">{{__('Glavna organizaciona jedinica')}}</option>
                                             @foreach($org_jedinice as $jedinica)
                                                 <option @if($org_jedinica->parent_id == $jedinica->id) selected="selected" @endif value="{{ $jedinica->id }}">{{ $jedinica->naziv }}</option>

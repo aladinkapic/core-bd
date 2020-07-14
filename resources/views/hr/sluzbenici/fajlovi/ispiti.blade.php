@@ -66,7 +66,7 @@
                         <div class="single_row">
                             {!! Form::label('datum_zavrsetka', __('Datum polaganja').' : ', ['class' => 'control-label']) !!}
                             <div class="col-lg-12">
-                                {!! Form::text('datum_zavrsetka', \App\Http\Controllers\HelpController::obrniDatum($ispit->datum_zavrsetka) , ['class' => 'form-control read_stuffs datepicker', 'id' => 'datum_zavrsetka'.$index_counter++, 'autocomplete' => 'off', 'readonly']) !!}
+                                {!! Form::text('datum_zavrsetka', \App\Http\Controllers\HelpController::obrniDatum($ispit->datum_zavrsetka) , ['class' => 'form-control read_stuffs datepicker', 'id' => 'datum_zavrsetka_index'.$index_counter++, 'autocomplete' => 'off']) !!}
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                     <div class="single_row">
-                        {!! Form::label('datum_zavrsetka', __('Datum završetka').' : ', ['class' => 'control-label']) !!}
+                        {!! Form::label('datum_zavrsetka', __('Datum polaganja').' : ', ['class' => 'control-label']) !!}
                         <div class="col-lg-12">
                             {!! Form::text('datum_zavrsetka', '' , ['class' => 'form-control datepicker', 'id' => 'datum_zavrsetka_neki', 'autocomplete' => 'off']) !!}
                         </div>

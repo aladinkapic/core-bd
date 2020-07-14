@@ -11,6 +11,7 @@ USE App\Models\MjestoRada;
 use App\Models\Privremeno;
 use App\Models\Prestanak;
 use App\Models\Dodatno;
+use Illuminate\Support\Facades\DB;
 
 class UgovorController extends Controller{
 
@@ -219,10 +220,18 @@ class UgovorController extends Controller{
     public function radnaMjesta(Request $request){
 
         $radnaMjesta = ''; // Definišimo praznu varijablu radna mjesta
-        $organ_ju = Sluzbenik::organJavneUprave($request->id);
+
+        // Prijašnji princip je biranje radnih mesta u zavisnosti od organa kojem pripada
+        /* $organ_ju = Sluzbenik::organJavneUprave($request->id);
         if(count($organ_ju)){
             $radnaMjesta = Sluzbenik::radnaMjesta($organ_ju[0]->id);
-        }
+        } */
+
+        // Sada žele da se na privremeni premještaj može ubaciti bilo koje radno mjesto -- ovo treba dobro pogledati : )
+
+        $radnaMjesta = DB::table('radna_mjesta')
+            ->select(['radna_mjesta.id', 'radna_mjesta.naziv_rm'])->get();
+        // dd($radnaMjesta);
 
         return array('radnaMjesta' => $radnaMjesta, 'naziv_radnog_mjesta' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->radnoMjesto->naziv_rm : '');
     }
