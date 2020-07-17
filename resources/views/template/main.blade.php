@@ -58,12 +58,19 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
 
         <script>
             // To be written later
             $(document).ready(function() {
                 $('.select-2').select2();
+
+                $( function() {
+                    $( ".datepicker-2" ).datepicker({
+                        dateFormat: 'dd.mm.yy'
+                    });
+                } );
             });
         </script>
         @yield('other_js_links')

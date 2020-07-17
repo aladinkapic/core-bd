@@ -293,7 +293,7 @@ class SluzbenikController extends Controller
 
         try{
             $request['email'] = $request->korisnicko_ime.'@'.Sifrarnik::dajSifrarnik('ekstenzija_domene')[$request->email];
-            $request['ime_prezime'] = $request->ime.' '.$request->prezime;
+            $request['ime_prezime'] = $request->prezime.' '.$request->ime;
         }catch (\Exception $e){
             return $e->getMessage();
         }
@@ -463,7 +463,15 @@ class SluzbenikController extends Controller
             ->with('zasnivanjeRORel.nacin_zasnivanja_ro_s')
             ->with('zasnivanjeRORel.vrsta_r_o_s')
             ->with('pioRel')
-            ->with('zasnivanjeRORel.obracunati_r_staz_s');
+            ->with('zasnivanjeRORel.obracunati_r_staz_s')
+            ->orderBy('prezime');
+
+
+//        $sluz = Sluzbenik::get();
+//        foreach ($sluz as $s){
+//            $s->ime_prezime = $s->prezime.' '.$s->ime;
+//            $s->save();
+//        }
 
         $sluzbenici = FilterController::filter($sluzbenici);
 //      dd($sluzbenici[2]->strucnaSprema);
