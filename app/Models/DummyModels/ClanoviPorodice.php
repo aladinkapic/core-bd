@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class ClanoviPorodice extends Model{
     protected $table = 'sluzbenik_clanovi_porodice';
+    protected $guarded = ['id'];
 
     public function datumRodjenja(){
         if(!$this->datum_rodjenja) return '';

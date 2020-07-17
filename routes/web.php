@@ -198,6 +198,20 @@ Route::prefix('hr/drzavni-sluzbenici')->group(function () {
     Route::get ('/obrazovanje-uredi/{sl_id}',      'UsersController@urediObrazovanje')->name('drzavni-sluzbenici.obrazovanje.uredi');
     Route::post('/obrazovanje-azuriraj',           'UsersController@azurirajObrazovanje')->name('drzavni-sluzbenici.obrazovanje.azuriraj');
     Route::get ('/obrazovanje-obrisi/{id}',        'UsersController@obrisiObrazovanje')->name('drzavni-sluzbenici.obrazovanje.obrisi');
+
+    // Dodatne vještine
+    Route::get ('/vjestine/{sl_id}',            'UsersController@dodajVjestine')->name('drzavni-sluzbenici.vjestine.dodaj');
+    Route::post('/vjestine-spremi',             'UsersController@spremiVjestine')->name('drzavni-sluzbenici.vjestine.spremi');
+    Route::get ('/vjestine-uredi/{sl_id}',      'UsersController@urediVjestine')->name('drzavni-sluzbenici.vjestine.uredi');
+    Route::post('/vjestine-azuriraj',           'UsersController@azurirajVjestine')->name('drzavni-sluzbenici.vjestine.azuriraj');
+    Route::get ('/vjestine-obrisi/{id}',        'UsersController@obrisiVjestine')->name('drzavni-sluzbenici.vjestine.obrisi');
+
+    // Članovi porodice
+    Route::get ('/porodica/{sl_id}',            'UsersController@dodajClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.dodaj');
+    Route::post('/porodica-spremi',             'UsersController@spremiClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.spremi');
+    Route::get ('/porodica-uredi/{sl_id}',      'UsersController@urediClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.uredi');
+    Route::post('/porodica-azuriraj',           'UsersController@azurirajClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.azuriraj');
+    Route::get ('/porodica-obrisi/{id}',        'UsersController@obrisiClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.obrisi');
 });
 
 Route::prefix('hr/sluzbenici')->group(function () {

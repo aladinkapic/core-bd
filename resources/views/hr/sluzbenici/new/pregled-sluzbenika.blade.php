@@ -76,147 +76,231 @@
         </div>
 
         <!-- PREBIVALIŠTE SLUŽBENIKA -->
-        <div class="row p-4">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <h5 class="m-0 p-0">Podaci o prebivalištu</h5>
-                            </div>
-                            <div class="col-md-2 d-flex flex-row-reverse">
-                                <a href="{{route('drzavni-sluzbenici.prebivaliste.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
-                                    <i class="fas fa-plus-square text-success" title="Unesite nove informacije o prebivalištu službenika"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    @foreach($prebivalista as $prebivaliste)
-                        <div class="card-body border-bottom pt-4 pb-3">
-                            <div class="row edit-feature-box">
-                                <div class="col-md-12 d-flex flex-row-reverse">
-                                    <a href="{{route('drzavni-sluzbenici.prebivaliste.uredi', ['sl-id' => $prebivaliste->id ?? ''])}}">
-                                        <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
-                                    </a>
-                                    <a href="{{route('drzavni-sluzbenici.prebivaliste.obrisi', ['id' => $prebivaliste->id ?? ''])}}">
-                                        <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+        @if(count($prebivalista))
+            <div class="row p-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5 class="m-0 p-0">Podaci o prebivalištu</h5>
+                                </div>
+                                <div class="col-md-2 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.prebivaliste.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                        <i class="fas fa-plus-square text-success" title="Unesite nove informacije o prebivalištu službenika"></i>
                                     </a>
                                 </div>
                             </div>
-                            @include('hr.sluzbenici.new.forme.forme-includes.prebivaliste')
                         </div>
-                    @endforeach
+                        @foreach($prebivalista as $prebivaliste)
+                            <div class="card-body border-bottom pt-4 pb-3">
+                                <div class="row edit-feature-box">
+                                    <div class="col-md-12 d-flex flex-row-reverse">
+                                        <a href="{{route('drzavni-sluzbenici.prebivaliste.uredi', ['sl-id' => $prebivaliste->id ?? ''])}}">
+                                            <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
+                                        </a>
+                                        <a href="{{route('drzavni-sluzbenici.prebivaliste.obrisi', ['id' => $prebivaliste->id ?? ''])}}">
+                                            <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                @include('hr.sluzbenici.new.forme.forme-includes.prebivaliste')
+                            </div>
+                        @endforeach
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
 
         <!-- PODACI O STRUČNOJ SPREMI -->
-        <div class="row p-4">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <h5 class="m-0 p-0">Podaci o stručnoj spremi traženoj konkursom</h5>
-                            </div>
-                            <div class="col-md-2 d-flex flex-row-reverse">
-                                <a href="{{route('drzavni-sluzbenici.strucna-sprema.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
-                                    <i class="fas fa-plus-square text-success" title="Unesite nove informacije o stručnoj spremi"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    @foreach($strucne_spreme as $strucna_sprema)
-                        <div class="card-body border-bottom pt-4 pb-3">
-                            <div class="row edit-feature-box">
-                                <div class="col-md-12 d-flex flex-row-reverse">
-                                    <a href="{{route('drzavni-sluzbenici.strucna-sprema.uredi', ['sl-id' => $strucna_sprema->id ?? ''])}}">
-                                        <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
-                                    </a>
-                                    <a href="{{route('drzavni-sluzbenici.strucna-sprema.obrisi', ['id' => $strucna_sprema->id ?? ''])}}">
-                                        <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+        @if(count($strucne_spreme))
+            <div class="row p-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5 class="m-0 p-0">Podaci o stručnoj spremi traženoj konkursom</h5>
+                                </div>
+                                <div class="col-md-2 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.strucna-sprema.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                        <i class="fas fa-plus-square text-success" title="Unesite nove informacije o stručnoj spremi"></i>
                                     </a>
                                 </div>
                             </div>
-                            @include('hr.sluzbenici.new.forme.forme-includes.strucna-sprema')
                         </div>
-                    @endforeach
+                        @foreach($strucne_spreme as $strucna_sprema)
+                            <div class="card-body border-bottom pt-4 pb-3">
+                                <div class="row edit-feature-box">
+                                    <div class="col-md-12 d-flex flex-row-reverse">
+                                        <a href="{{route('drzavni-sluzbenici.strucna-sprema.uredi', ['sl-id' => $strucna_sprema->id ?? ''])}}">
+                                            <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
+                                        </a>
+                                        <a href="{{route('drzavni-sluzbenici.strucna-sprema.obrisi', ['id' => $strucna_sprema->id ?? ''])}}">
+                                            <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                @include('hr.sluzbenici.new.forme.forme-includes.strucna-sprema')
+                            </div>
+                        @endforeach
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
 
         <!-- POLOŽENI ISPITI -->
-        <div class="row p-4">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <h5 class="m-0 p-0">Položeni ispiti</h5>
-                            </div>
-                            <div class="col-md-2 d-flex flex-row-reverse">
-                                <a href="{{route('drzavni-sluzbenici.ispit.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
-                                    <i class="fas fa-plus-square text-success" title="Unesite nove informacije o položenim ispitima"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    @foreach($ispiti as $ispit)
-                        <div class="card-body border-bottom pt-4 pb-3">
-                            <div class="row edit-feature-box">
-                                <div class="col-md-12 d-flex flex-row-reverse">
-                                    <a href="{{route('drzavni-sluzbenici.ispit.uredi', ['sl-id' => $ispit->id ?? ''])}}">
-                                        <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
-                                    </a>
-                                    <a href="{{route('drzavni-sluzbenici.ispit.obrisi', ['id' => $ispit->id ?? ''])}}">
-                                        <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+        @if(count($ispiti))
+            <div class="row p-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5 class="m-0 p-0">Položeni ispiti</h5>
+                                </div>
+                                <div class="col-md-2 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.ispit.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                        <i class="fas fa-plus-square text-success" title="Unesite nove informacije o položenim ispitima"></i>
                                     </a>
                                 </div>
                             </div>
-                            @include('hr.sluzbenici.new.forme.forme-includes.ispiti')
                         </div>
-                    @endforeach
+                        @foreach($ispiti as $ispit)
+                            <div class="card-body border-bottom pt-4 pb-3">
+                                <div class="row edit-feature-box">
+                                    <div class="col-md-12 d-flex flex-row-reverse">
+                                        <a href="{{route('drzavni-sluzbenici.ispit.uredi', ['sl-id' => $ispit->id ?? ''])}}">
+                                            <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
+                                        </a>
+                                        <a href="{{route('drzavni-sluzbenici.ispit.obrisi', ['id' => $ispit->id ?? ''])}}">
+                                            <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                @include('hr.sluzbenici.new.forme.forme-includes.ispiti')
+                            </div>
+                        @endforeach
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
 
         <!-- OBRAZOVANJE SLUŽBENIKA -->
-        <div class="row p-4">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <h5 class="m-0 p-0">Obrazovanje službenika</h5>
-                            </div>
-                            <div class="col-md-2 d-flex flex-row-reverse">
-                                <a href="{{route('drzavni-sluzbenici.obrazovanje.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
-                                    <i class="fas fa-plus-square text-success" title="Unesite nove informacije o obrazovanju službenika"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    @foreach($obrazovanja as $obrazovanje)
-                        <div class="card-body border-bottom pt-4 pb-3">
-                            <div class="row edit-feature-box">
-                                <div class="col-md-12 d-flex flex-row-reverse">
-                                    <a href="{{route('drzavni-sluzbenici.obrazovanje.uredi', ['sl-id' => $obrazovanje->id ?? ''])}}">
-                                        <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
-                                    </a>
-                                    <a href="{{route('drzavni-sluzbenici.obrazovanje.obrisi', ['id' => $obrazovanje->id ?? ''])}}">
-                                        <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+        @if(count($obrazovanja))
+            <div class="row p-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5 class="m-0 p-0">Obrazovanje službenika</h5>
+                                </div>
+                                <div class="col-md-2 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.obrazovanje.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                        <i class="fas fa-plus-square text-success" title="Unesite nove informacije o obrazovanju službenika"></i>
                                     </a>
                                 </div>
                             </div>
-                            @include('hr.sluzbenici.new.forme.forme-includes.obrazovanje')
                         </div>
-                    @endforeach
+                        @foreach($obrazovanja as $obrazovanje)
+                            <div class="card-body border-bottom pt-4 pb-3">
+                                <div class="row edit-feature-box">
+                                    <div class="col-md-12 d-flex flex-row-reverse">
+                                        <a href="{{route('drzavni-sluzbenici.obrazovanje.uredi', ['sl-id' => $obrazovanje->id ?? ''])}}">
+                                            <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
+                                        </a>
+                                        <a href="{{route('drzavni-sluzbenici.obrazovanje.obrisi', ['id' => $obrazovanje->id ?? ''])}}">
+                                            <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                @include('hr.sluzbenici.new.forme.forme-includes.obrazovanje')
+                            </div>
+                        @endforeach
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+
+        <!-- DODATNE VJEŠTINE -->
+        @if(count($vjestine))
+            <div class="row p-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5 class="m-0 p-0">Dodatne vještine</h5>
+                                </div>
+                                <div class="col-md-2 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.vjestine.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                        <i class="fas fa-plus-square text-success" title="Unesite nove informacije o vještinama službenika"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach($vjestine as $vjestina)
+                            <div class="card-body border-bottom pt-4 pb-3">
+                                <div class="row edit-feature-box">
+                                    <div class="col-md-12 d-flex flex-row-reverse">
+                                        <a href="{{route('drzavni-sluzbenici.vjestine.uredi', ['sl-id' => $vjestina->id ?? ''])}}">
+                                            <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
+                                        </a>
+                                        <a href="{{route('drzavni-sluzbenici.vjestine.obrisi', ['id' => $vjestina->id ?? ''])}}">
+                                            <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                @include('hr.sluzbenici.new.forme.forme-includes.vjestine')
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        <!-- ČLANOVI PORODICE -->
+        @if(count($clanovi_por))
+            <div class="row p-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5 class="m-0 p-0">Članovi porodice</h5>
+                                </div>
+                                <div class="col-md-2 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.clanovi-porodice.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                        <i class="fas fa-plus-square text-success" title="Unesite nove informacije o članovima porodice"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach($clanovi_por as $clan_porodice)
+                            <div class="card-body border-bottom pt-4 pb-3">
+                                <div class="row edit-feature-box">
+                                    <div class="col-md-12 d-flex flex-row-reverse">
+                                        <a href="{{route('drzavni-sluzbenici.clanovi-porodice.uredi', ['sl-id' => $clan_porodice->id ?? ''])}}">
+                                            <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
+                                        </a>
+                                        <a href="{{route('drzavni-sluzbenici.clanovi-porodice.obrisi', ['id' => $clan_porodice->id ?? ''])}}">
+                                            <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                @include('hr.sluzbenici.new.forme.forme-includes.clanovi-porodice')
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

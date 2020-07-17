@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DummyModels\ClanoviPorodice;
 use App\Models\DummyModels\Ispiti;
 use App\Models\DummyModels\Obrazovanje;
 use App\Models\DummyModels\Prebivaliste;
 use App\Models\DummyModels\StrucnaSprema;
+use App\Models\DummyModels\Vjestine;
 use App\Models\Sifrarnik;
 use App\Models\Sluzbenik;
 use Illuminate\Http\Request;
@@ -107,6 +109,15 @@ class UsersController extends Controller{
         $ustanova       = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite ustanovu', '');
         $ciklus         = Sifrarnik::dajSifrarnik('ciklus_obrazovanja')->prepend('Odaberite ciklus', '');
 
+        // Dodatne vještine
+        $vjestine       = Vjestine::where('id_sluzbenika', $id)->get();
+        $vrsta_vje      = Sifrarnik::dajSifrarnik('vrsta_vještine')->prepend('Odaberite vrstu vještine', '');
+        $nivo_vje       = Sifrarnik::dajSifrarnik('nivo_vjestine')->prepend('Odaberite nivo vještine', '');
+
+        // Članovi porodice
+        $clanovi_por    = ClanoviPorodice::where('id_sluzbenika', $id)->get();
+        $srodstvo       = Sifrarnik::dajSifrarnik('srodstvo')->prepend('Odaberite srodstvo', '');
+
         return view('hr.sluzbenici.new.pregled-sluzbenika', [
             'kategorija' => $kategorija,
             'nacionalnost' => $nacionalnost,
@@ -127,7 +138,12 @@ class UsersController extends Controller{
             'ispit_k'   => $ispit_k,
             'obrazovanja' => $obrazovanja,
             'ustanova'    => $ustanova,
-            'ciklus'      => $ciklus
+            'ciklus'      => $ciklus,
+            'vjestine'    => $vjestine,
+            'vrsta_vje'   => $vrsta_vje,
+            'nivo_vje'    => $nivo_vje,
+            'clanovi_por' => $clanovi_por,
+            'srodstvo'    => $srodstvo
         ]);
     }
     public function urediteSluzbenika($id){
@@ -384,6 +400,115 @@ class UsersController extends Controller{
 
             $sluzbenik_id   = $obrazovanje->id_sluzbenika;
             $obrazovanje->delete();
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
+    }
+
+    // -------------------------------------------------------------------------------------------------------------- //
+    // ** Dodatne vještine ** //
+    public function dodajVjestine($sl_id){
+        $sluzbenik = Sluzbenik::where('id', $sl_id)->first();
+        $vrsta_vje = Sifrarnik::dajSifrarnik('vrsta_vještine')->prepend('Odaberite vrstu vještine', '');
+        $nivo_vje  = Sifrarnik::dajSifrarnik('nivo_vjestine')->prepend('Odaberite nivo vještine', '');
+
+
+        return view('hr.sluzbenici.new.forme.vjestine', [
+            'sluzbenik' => $sluzbenik,
+            'vrsta_vje' => $vrsta_vje,
+            'nivo_vje'  => $nivo_vje
+        ]);
+    }
+    public function spremiVjestine(Request $request){
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $ispit = Vjestine::create(
+                $request->except(['_token'])
+            );
+        }catch (\Exception $e){}
+
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function urediVjestine($id){
+        $vjestina  = Vjestine::where('id', $id)->first();
+        $sluzbenik = Sluzbenik::where('id', $vjestina->id_sluzbenika)->first();
+        $vrsta_vje = Sifrarnik::dajSifrarnik('vrsta_vještine')->prepend('Odaberite vrstu vještine', '');
+        $nivo_vje  = Sifrarnik::dajSifrarnik('nivo_vjestine')->prepend('Odaberite nivo vještine', '');
+
+        return view('hr.sluzbenici.new.forme.vjestine', [
+            'vjestina'  => $vjestina,
+            'sluzbenik' => $sluzbenik,
+            'vrsta_vje' => $vrsta_vje,
+            'nivo_vje'  => $nivo_vje,
+            'edit'      => true
+        ]);
+    }
+    public function azurirajVjestine(Request $request){
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $vjestine = Vjestine::where('id', $request->id)->update(
+                $request->except(['_token', 'id'])
+            );
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function obrisiVjestine($id){
+        try{
+            $vjestine = Vjestine::where('id', $id)->first();
+
+            $sluzbenik_id   = $vjestine->id_sluzbenika;
+            $vjestine->delete();
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
+    }
+
+    // -------------------------------------------------------------------------------------------------------------- //
+    // ** Članovi porodice ** //
+    public function dodajClanoviPorodice($sl_id){
+        $sluzbenik = Sluzbenik::where('id', $sl_id)->first();
+        $srodstvo = Sifrarnik::dajSifrarnik('srodstvo')->prepend('Odaberite srodstvo', '');
+
+        return view('hr.sluzbenici.new.forme.clanovi-porodice', [
+            'sluzbenik' => $sluzbenik,
+            'srodstvo'  => $srodstvo
+        ]);
+    }
+    public function spremiClanoviPorodice(Request $request){
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $clan = ClanoviPorodice::create(
+                $request->except(['_token'])
+            );
+        }catch (\Exception $e){dd($e);}
+
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function urediClanoviPorodice($id){
+        $clan_porodice = ClanoviPorodice::where('id', $id)->first();
+        $sluzbenik     = Sluzbenik::where('id', $clan_porodice->id_sluzbenika)->first();
+        $srodstvo      = Sifrarnik::dajSifrarnik('srodstvo')->prepend('Odaberite srodstvo', '');
+
+        return view('hr.sluzbenici.new.forme.clanovi-porodice', [
+            'clan_porodice' => $clan_porodice,
+            'sluzbenik' => $sluzbenik,
+            'srodstvo'  => $srodstvo,
+            'edit' => true
+        ]);
+    }
+    public function azurirajClanoviPorodice(Request $request){
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $clanovi = ClanoviPorodice::where('id', $request->id)->update(
+                $request->except(['_token', 'id'])
+            );
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function obrisiClanoviPorodice($id){
+        try{
+            $clan = ClanoviPorodice::where('id', $id)->first();
+
+            $sluzbenik_id   = $clan->id_sluzbenika;
+            $clan->delete();
         }catch (\Exception $e){}
         return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
     }
