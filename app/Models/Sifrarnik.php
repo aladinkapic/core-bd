@@ -57,7 +57,7 @@ class Sifrarnik extends Model{
         // array('kompetencije', 'Kompetencije'),
         array('stepen', 'Stepen'),
         array('da_ne', 'Da / Ne'),
-        array('ciklus_obrazovanja', 'Ciklus obrazovanja'),
+        array('ciklus_obrazovanja', 'Ciklus obrazovanja')
     );
 
     public static function dajKljucneRijeci(){

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PrethodnoRI extends Model{
     protected $table = 'sluzbenik_prethodno_radno_iskustvo';
+    protected $guarded = ['id'];
 
     public function broj_dana_izmedju($prvi_datum, $drugi_datum){
         $prvi_datum = Carbon::parse($prvi_datum);

@@ -6,6 +6,7 @@ use App\Models\DummyModels\ClanoviPorodice;
 use App\Models\DummyModels\Ispiti;
 use App\Models\DummyModels\Obrazovanje;
 use App\Models\DummyModels\Prebivaliste;
+use App\Models\DummyModels\PrethodnoRI;
 use App\Models\DummyModels\StrucnaSprema;
 use App\Models\DummyModels\Vjestine;
 use App\Models\Sifrarnik;
@@ -14,6 +15,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class UsersController extends Controller{
+    protected $vrsta_staza = [
+        ''  => 'Odaberite vrstu radnog staža',
+        '1' => 'Radni staž',
+        '2' => 'Staž osiguranja',
+        '3' => 'Penzioni staž',
+        '4' => 'Dobrovoljno osiguranje',
+        '5' => 'Staž sa uvećanim trajanjem'
+    ];
+    protected $staz_ = [
+        ''  => 'Nema staža sa uvećanim trajanjem',
+        '1' => '12/14',
+        '2' => '12/15',
+        '3' => '12/16'
+    ];
 
     public function dodajSluzbenika(){
         $kategorija     = Sifrarnik::dajSifrarnik('kategorija');
@@ -118,6 +133,13 @@ class UsersController extends Controller{
         $clanovi_por    = ClanoviPorodice::where('id_sluzbenika', $id)->get();
         $srodstvo       = Sifrarnik::dajSifrarnik('srodstvo')->prepend('Odaberite srodstvo', '');
 
+        // Radni staž kod prethodnih poslodavaca
+        $prethodniRS = PrethodnoRI::where('id_sluzbenika', $id)->get();
+        $poslodavac  = Sifrarnik::dajSifrarnik('poslodavac')->prepend('Odaberite poslodavca', '');
+        $radno_vr    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme');
+        $vrsta_staza = $this->vrsta_staza;
+        $staz        = $this->staz_;
+
         return view('hr.sluzbenici.new.pregled-sluzbenika', [
             'kategorija' => $kategorija,
             'nacionalnost' => $nacionalnost,
@@ -143,7 +165,12 @@ class UsersController extends Controller{
             'vrsta_vje'   => $vrsta_vje,
             'nivo_vje'    => $nivo_vje,
             'clanovi_por' => $clanovi_por,
-            'srodstvo'    => $srodstvo
+            'srodstvo'    => $srodstvo,
+            'prethodniRS' => $prethodniRS,
+            'poslodavac'  => $poslodavac,
+            'radno_vr'    => $radno_vr,
+            'vrsta_staza' => $vrsta_staza,
+            'staz'        => $staz
         ]);
     }
     public function urediteSluzbenika($id){
@@ -509,6 +536,72 @@ class UsersController extends Controller{
 
             $sluzbenik_id   = $clan->id_sluzbenika;
             $clan->delete();
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
+    }
+
+    // -------------------------------------------------------------------------------------------------------------- //
+    // ** Radni staž kod prethodnih poslodavaca ** //
+    public function dodajPrethodniRS($sl_id){
+        $sluzbenik   = Sluzbenik::where('id', $sl_id)->first();
+        $poslodavac  = Sifrarnik::dajSifrarnik('poslodavac')->prepend('Odaberite poslodavca', '');
+        $radno_vr    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme');
+        $vrsta_staza = $this->vrsta_staza;
+        $staz        = $this->staz_;
+
+
+        return view('hr.sluzbenici.new.forme.prethodni-rs', [
+            'sluzbenik' => $sluzbenik,
+            'poslodavac' => $poslodavac,
+            'radno_vr' => $radno_vr,
+            'vrsta_staza' => $vrsta_staza,
+            'staz' => $staz
+        ]);
+    }
+    public function spremiPrethodniRS(Request $request){
+        $request = HelpController::formatirajRequest($request);
+
+        try{
+            $prethodniRS = PrethodnoRI::create(
+                $request->except(['_token'])
+            );
+        }catch (\Exception $e){dd($e);}
+
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function urediPrethodniRS($id){
+        $prethodni     = PrethodnoRI::where('id', $id)->first();
+        $sluzbenik     = Sluzbenik::where('id', $prethodni->id_sluzbenika)->first();
+        $poslodavac  = Sifrarnik::dajSifrarnik('poslodavac')->prepend('Odaberite poslodavca', '');
+        $radno_vr    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme');
+        $vrsta_staza = $this->vrsta_staza;
+        $staz        = $this->staz_;
+
+        return view('hr.sluzbenici.new.forme.prethodni-rs', [
+            'prethodni'   => $prethodni,
+            'poslodavac'  => $poslodavac,
+            'radno_vr'    => $radno_vr,
+            'vrsta_staza' => $vrsta_staza,
+            'staz' => $staz,
+            'sluzbenik' => $sluzbenik,
+            'edit' => true
+        ]);
+    }
+    public function azurirajPrethodniRS(Request $request){
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $prethodno_ri = PrethodnoRI::where('id', $request->id)->update(
+                $request->except(['_token', 'id'])
+            );
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function obrisiPrethodniRS($id){
+        try{
+            $prethodni = PrethodnoRI::where('id', $id)->first();
+
+            $sluzbenik_id   = $prethodni->id_sluzbenika;
+            $prethodni->delete();
         }catch (\Exception $e){}
         return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
     }

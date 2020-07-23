@@ -212,6 +212,14 @@ Route::prefix('hr/drzavni-sluzbenici')->group(function () {
     Route::get ('/porodica-uredi/{sl_id}',      'UsersController@urediClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.uredi');
     Route::post('/porodica-azuriraj',           'UsersController@azurirajClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.azuriraj');
     Route::get ('/porodica-obrisi/{id}',        'UsersController@obrisiClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.obrisi');
+
+    // Radni staž kod prethodnih poslodavaca
+    Route::get ('/prethodni-rs/{sl_id}',            'UsersController@dodajPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.dodaj');
+    Route::post('/prethodni-rs-spremi',             'UsersController@spremiPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.spremi');
+    Route::get ('/prethodni-rs-uredi/{sl_id}',      'UsersController@urediPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.uredi');
+    Route::post('/prethodni-rs-azuriraj',           'UsersController@azurirajPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.azuriraj');
+    Route::get ('/prethodni-rs-obrisi/{id}',        'UsersController@obrisiPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.obrisi');
+
 });
 
 Route::prefix('hr/sluzbenici')->group(function () {
