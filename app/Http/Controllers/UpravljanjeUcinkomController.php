@@ -16,13 +16,12 @@ use Illuminate\Support\Facades\Session;
 
 class UpravljanjeUcinkomController extends Controller{
     public function index(){
-        $ucinci = UpravljanjeUcinkom::with('usluzbenik')->with('mjesto.rm')->with('opisnaOcjena')->with('kategorija_ocjene');
+        $ucinci = UpravljanjeUcinkom::with('usluzbenik')->with('mjesto.rm');
         $ucinci = FilterController::filter($ucinci);
 
         $filteri = [
             'usluzbenik.ime_prezime'=>'Službenik',
             'mjesto.rm.naziv_rm'=>'Radno mjesto',
-            'kategorija_ocjene.name'=>'Kategorija',
             'godina'=>'Godina ocjenjivanja',
             'ocjena'=>'Ocjena',
             'opisna_ocjena'=>'Opisna ocjena'
@@ -55,10 +54,10 @@ class UpravljanjeUcinkomController extends Controller{
         ];
 
         if($request->ocjena < 1.5){
-            $request->request->add(['opisna_ocjena' => '1']);
+            $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
         }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
-            $request->request->add(['opisna_ocjena' => '2']);
-        }else $request->request->add(['opisna_ocjena' => '3']);
+            $request->request->add(['opisna_ocjena' => 'Zadovoljava očekivanja']);
+        }else $request->request->add(['opisna_ocjena' => 'Nadmašuje očekivanja']);
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
@@ -79,7 +78,7 @@ class UpravljanjeUcinkomController extends Controller{
     }
 
     public function show($id){
-        $ucinak = UpravljanjeUcinkom::where('id', '=', $id)->with('opisnaOcjena')->first();
+        $ucinak = UpravljanjeUcinkom::where('id', '=', $id)->first();
 
         $radnoMjesto = 'Nema radnog mjesta';
         $sluzbnik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
@@ -123,10 +122,10 @@ class UpravljanjeUcinkomController extends Controller{
 //        $this->validate($request, $pravila, $poruke);
 
         if($request->ocjena < 1.5){
-            $request->request->add(['opisna_ocjena' => '1']);
+            $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
         }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
-            $request->request->add(['opisna_ocjena' => '2']);
-        }else $request->request->add(['opisna_ocjena' => '3']);
+            $request->request->add(['opisna_ocjena' => 'Zadovoljava očekivanja']);
+        }else $request->request->add(['opisna_ocjena' => 'Nadmašuje očekivanja']);
 
         try{
             $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([
@@ -239,12 +238,10 @@ class UpravljanjeUcinkomController extends Controller{
             'usluzbenik.ime_prezime'  => 'Ime i prezime',
             'godina'  => 'Godina',
             'prviClan.ime_prezime'    => 'Prvi član',
-            'ocjena_prvi'             => 'Ocjena prvog člana',
             'drugiClan.ime_prezime'   => 'Drugi član',
-            'ocjena_drugi'            => 'Ocjena drugog člana',
             'treciClan.ime_prezime'   => 'Treći član',
-            'ocjena_treci'            => 'Ocjena trećeg člana',
-            'opisna_ocjen'            => 'Opisna ocjena',
+            'ocjena'                  => 'Ocjena',
+            'opisna_ocjena'           => 'Opisna ocjena',
         ];
 
         return view('/hr/upravljanje_ucinkom/probni-rad/home', compact('sviProbni', 'filteri'));
@@ -259,11 +256,12 @@ class UpravljanjeUcinkomController extends Controller{
     }
 
     public function spremiProbni(Request $request){
+        // $opisna = (round(($request->ocjena_prvi + $request->ocjena_drugi + $request->ocjena_treci) / 3, 2));
 
-        $opisna = (round(($request->ocjena_prvi + $request->ocjena_drugi + $request->ocjena_treci) / 3, 2));
+        $opisna = $request->ocjena;
 
-        if($opisna > 1.5) $request->request->add(['opisna_ocjena' => '2']);
-        else $request->request->add(['opisna_ocjena' => '1']);
+        if($opisna > 1.5) $request->request->add(['opisna_ocjena' => 'Zadovoljio']);
+        else $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
 
 
         try{
@@ -296,10 +294,10 @@ class UpravljanjeUcinkomController extends Controller{
         return view('/hr/upravljanje_ucinkom/probni-rad/add-new', compact('sluzbenici', 'kategorija', 'probni', 'edit'));
     }
     public function azurirajProbni(Request $request){
-        $opisna = (round(($request->ocjena_prvi + $request->ocjena_drugi + $request->ocjena_treci) / 3, 2));
+        $opisna = $request->ocjena;
 
-        if($opisna > 1.5) $request->request->add(['opisna_ocjena' => '2']);
-        else $request->request->add(['opisna_ocjena' => '1']);
+        if($opisna > 1.5) $request->request->add(['opisna_ocjena' => 'Zadovoljio']);
+        else $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
 
         try{
             $probni = UpravljanjeUcinkomProbni::where('id', $request->id)->first()->update(

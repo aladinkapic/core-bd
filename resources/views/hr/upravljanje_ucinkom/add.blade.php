@@ -27,7 +27,7 @@
 
                         <section class="active">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
 
@@ -48,13 +48,7 @@
                                                 </div>
                                             </div>
                                             @if ($errors ->has('godina'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('godina')}}</p></div>@endif
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
                                                 <div class="col-sm-9">
@@ -62,14 +56,9 @@
                                                 </div>
                                             </div>
                                             @if ($errors ->has('ocjena'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('ocjena')}}</p></div>@endif
-                                            <div class="form-group row">
-                                                <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Kategorija')}}</label>
-                                                <div class="col-sm-9">
-                                                    {!! Form::select('kategorija', $kategorija, isset($ucinak) ? $ucinak->kategorija : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'kategorija', 'autocomplete' => 'off']) !!}
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </section>

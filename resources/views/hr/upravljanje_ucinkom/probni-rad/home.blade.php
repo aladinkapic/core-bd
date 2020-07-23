@@ -53,12 +53,10 @@
                         <td>{{$probni->usluzbenik->ime_prezime ?? '/'}}</td>
                         <td>{{$probni->godina ?? '/'}}</td>
                         <td>{{$probni->prviClan->ime_prezime ?? '/'}}</td>
-                        <td>{{$probni->ocjena_prvi ?? '/'}}</td>
                         <td>{{$probni->drugiClan->ime_prezime ?? '/'}}</td>
-                        <td>{{$probni->ocjena_drugi ?? '/'}}</td>
                         <td>{{$probni->treciClan->ime_prezime ?? '/'}}</td>
-                        <td>{{$probni->ocjena_treci ?? '/'}}</td>
-                        <td>{{$probni->opisnaOcjena->name ?? '/'}}</td>
+                        <td>{{$probni->ocjena ?? '/'}}</td>
+                        <td>{{$probni->opisna_ocjena ?? '/'}}</td>
                         <td class="text-center">
                             <a href="{{route('probni-rad.pregledaaj', ['id' => $probni->id])}}">
                                 <button class="btn my-button">Pregled</button>

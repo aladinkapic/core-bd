@@ -86,6 +86,8 @@ control [readonly] {
     height:40px;
     padding-bottom:20px;
 }
+.col-lg-12 .select2-selection__rendered,
+.custom-cool .select2-selection__rendered{ margin-top:-10px !important; width: 100%;}
 
 .split_container .select2-selection__rendered, .full_container .select2-selection__rendered{
     margin-top:0px;
@@ -114,7 +116,7 @@ td .top-layer{
     left:0px;
     with:100%;
 }
-.single-form p{margin-left:20px; padding-top:14px; margin-bottom:14px;}
+.single-form p{margin-left:20px; padding-top:14px; margin-bottom:14px; width: 100%;}
 
 .izmijenite-sistematizaciju{
     position:absolute;
