@@ -220,6 +220,13 @@ Route::prefix('hr/drzavni-sluzbenici')->group(function () {
     Route::post('/prethodni-rs-azuriraj',           'UsersController@azurirajPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.azuriraj');
     Route::get ('/prethodni-rs-obrisi/{id}',        'UsersController@obrisiPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.obrisi');
 
+    // Zasnivanje radnog odnosa
+    Route::get ('/zasnivanje-ro/{sl_id}',            'UsersController@dodajZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.dodaj');
+    Route::post('/zasnivanje-ro-spremi',             'UsersController@spremiZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.spremi');
+    Route::get ('/zasnivanje-ro-uredi/{sl_id}',      'UsersController@urediZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.uredi');
+    Route::post('/zasnivanje-ro-azuriraj',           'UsersController@azurirajZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.azuriraj');
+    Route::get ('/zasnivanje-ro-obrisi/{id}',        'UsersController@obrisiZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.obrisi');
+
 });
 
 Route::prefix('hr/sluzbenici')->group(function () {

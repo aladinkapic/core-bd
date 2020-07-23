@@ -9,6 +9,7 @@ use App\Models\DummyModels\Prebivaliste;
 use App\Models\DummyModels\PrethodnoRI;
 use App\Models\DummyModels\StrucnaSprema;
 use App\Models\DummyModels\Vjestine;
+use App\Models\DummyModels\ZasnivanjeRO;
 use App\Models\Sifrarnik;
 use App\Models\Sluzbenik;
 use Illuminate\Http\Request;
@@ -140,6 +141,12 @@ class UsersController extends Controller{
         $vrsta_staza = $this->vrsta_staza;
         $staz        = $this->staz_;
 
+        // Zasnivanje radnog odnosa
+        $zasnivanjeRO = ZasnivanjeRO::where('id_sluzbenika', $id)->get();
+        $vrsta_ro     = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa')->prepend('Odaberite vrstu radnog odnosa', '');
+        $nacin_zas    = Sifrarnik::dajSifrarnik('nacin_zasnivanja_ro')->prepend('Odaberite način zasnivanja radnog odnosa');
+        $radno_vr     = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme');
+
         return view('hr.sluzbenici.new.pregled-sluzbenika', [
             'kategorija' => $kategorija,
             'nacionalnost' => $nacionalnost,
@@ -170,7 +177,10 @@ class UsersController extends Controller{
             'poslodavac'  => $poslodavac,
             'radno_vr'    => $radno_vr,
             'vrsta_staza' => $vrsta_staza,
-            'staz'        => $staz
+            'staz'        => $staz,
+            'zasnivanjeRO' => $zasnivanjeRO,
+            'vrsta_ro' => $vrsta_ro,
+            'nacin_zas' => $nacin_zas
         ]);
     }
     public function urediteSluzbenika($id){
@@ -602,6 +612,67 @@ class UsersController extends Controller{
 
             $sluzbenik_id   = $prethodni->id_sluzbenika;
             $prethodni->delete();
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
+    }
+
+    // -------------------------------------------------------------------------------------------------------------- //
+    // ** Zasnivanje radnog odnosa ** //
+    public function dodajZasnivanjeRO($sl_id){
+        $sluzbenik   = Sluzbenik::where('id', $sl_id)->first();
+        $vrsta_ro    = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa')->prepend('Odaberite vrstu radnog odnosa', '');
+        $nacin_zas   = Sifrarnik::dajSifrarnik('nacin_zasnivanja_ro')->prepend('Odaberite način zasnivanja radnog odnosa');
+        $radno_vr    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme');
+
+        return view('hr.sluzbenici.new.forme.zasnivanje-ro', [
+            'sluzbenik' => $sluzbenik,
+            'vrsta_ro' => $vrsta_ro,
+            'nacin_zas' => $nacin_zas,
+            'radno_vr'  => $radno_vr
+        ]);
+    }
+    public function spremiZasnivanjeRO(Request $request){
+        $request = HelpController::formatirajRequest($request);
+
+        try{
+            $zasnivanje = ZasnivanjeRO::create(
+                $request->except(['_token'])
+            );
+        }catch (\Exception $e){dd($e);}
+
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function urediZasnivanjeRO($id){
+        $radni_odnos = ZasnivanjeRO::where('id', $id)->first();
+        $sluzbenik   = Sluzbenik::where('id', $radni_odnos->id_sluzbenika)->first();
+        $vrsta_ro    = Sifrarnik::dajSifrarnik('vrsta_radnog_odnosa')->prepend('Odaberite vrstu radnog odnosa', '');
+        $nacin_zas   = Sifrarnik::dajSifrarnik('nacin_zasnivanja_ro')->prepend('Odaberite način zasnivanja radnog odnosa');
+        $radno_vr    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme');
+
+        return view('hr.sluzbenici.new.forme.zasnivanje-ro', [
+            'sluzbenik' => $sluzbenik,
+            'vrsta_ro' => $vrsta_ro,
+            'nacin_zas' => $nacin_zas,
+            'radno_vr'  => $radno_vr,
+            'radni_odnos' => $radni_odnos,
+            'edit' => true
+        ]);
+    }
+    public function azurirajZasnivanjeRO(Request $request){
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $zasnivanje = ZasnivanjeRO::where('id', $request->id)->update(
+                $request->except(['_token', 'id'])
+            );
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function obrisiZasnivanjeRO($id){
+        try{
+            $zasnivanje = ZasnivanjeRO::where('id', $id)->first();
+
+            $sluzbenik_id   = $zasnivanje->id_sluzbenika;
+            $zasnivanje->delete();
         }catch (\Exception $e){}
         return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
     }
