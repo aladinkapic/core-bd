@@ -6,6 +6,7 @@ use App\Models\DummyModels\ClanoviPorodice;
 use App\Models\DummyModels\Ispiti;
 use App\Models\DummyModels\Obrazovanje;
 use App\Models\DummyModels\Prebivaliste;
+use App\Models\DummyModels\PrestanakRO;
 use App\Models\DummyModels\PrethodnoRI;
 use App\Models\DummyModels\StrucnaSprema;
 use App\Models\DummyModels\Vjestine;
@@ -147,6 +148,10 @@ class UsersController extends Controller{
         $nacin_zas    = Sifrarnik::dajSifrarnik('nacin_zasnivanja_ro')->prepend('Odaberite način zasnivanja radnog odnosa');
         $radno_vr     = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme');
 
+        // Prestanak radnog odnosa
+        $prestanci = PrestanakRO::where('id_sluzbenika', $id)->get();
+        $osnov     = Sifrarnik::dajSifrarnik('osnov_za_prestanak_ro')->prepend('Odaberite osnov za prestanak', '');
+
         return view('hr.sluzbenici.new.pregled-sluzbenika', [
             'kategorija' => $kategorija,
             'nacionalnost' => $nacionalnost,
@@ -180,7 +185,9 @@ class UsersController extends Controller{
             'staz'        => $staz,
             'zasnivanjeRO' => $zasnivanjeRO,
             'vrsta_ro' => $vrsta_ro,
-            'nacin_zas' => $nacin_zas
+            'nacin_zas' => $nacin_zas,
+            'prestanci' => $prestanci,
+            'osnov' => $osnov
         ]);
     }
     public function urediteSluzbenika($id){
@@ -673,6 +680,59 @@ class UsersController extends Controller{
 
             $sluzbenik_id   = $zasnivanje->id_sluzbenika;
             $zasnivanje->delete();
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
+    }
+
+    // -------------------------------------------------------------------------------------------------------------- //
+    // ** Prestanak radnog odnosa ** //
+    public function dodajPrestanakRO($sl_id){
+        $sluzbenik = Sluzbenik::where('id', $sl_id)->first();
+        $osnov     = Sifrarnik::dajSifrarnik('osnov_za_prestanak_ro')->prepend('Odaberite osnov za prestanak', '');
+
+        return view('hr.sluzbenici.new.forme.prestanak-ro', [
+            'sluzbenik' => $sluzbenik,
+            'osnov' => $osnov
+        ]);
+    }
+    public function spremiPrestanakRO(Request $request){
+        $request = HelpController::formatirajRequest($request);
+
+        try{
+            $prestanak = PrestanakRO::create(
+                $request->except(['_token'])
+            );
+        }catch (\Exception $e){dd($e);}
+
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function urediPrestanakRO($id){
+        $prestanak = PrestanakRO::where('id', $id)->first();
+        $sluzbenik = Sluzbenik::where('id', $prestanak->id_sluzbenika)->first();
+        $osnov     = Sifrarnik::dajSifrarnik('osnov_za_prestanak_ro')->prepend('Odaberite osnov za prestanak', '');
+
+        return view('hr.sluzbenici.new.forme.prestanak-ro', [
+            'prestanak' => $prestanak,
+            'sluzbenik' => $sluzbenik,
+            'osnov' => $osnov,
+            'edit' => true
+        ]);
+    }
+    public function azurirajPrestanakRO(Request $request){
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $prestanak = PrestanakRO::where('id', $request->id)->update(
+                $request->except(['_token', 'id'])
+            );
+        }catch (\Exception $e){}
+        return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $request->id_sluzbenika]);
+    }
+    public function obrisiPrestanakRO($id){
+        try{
+            $prestanak = PrestanakRO::where('id', $id)->first();
+
+            $sluzbenik_id   = $prestanak->id_sluzbenika;
+            $prestanak->delete();
         }catch (\Exception $e){}
         return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
     }

@@ -327,6 +327,43 @@
             </div>
         </div>
 
+
+        <!-- PRESTANAK RADNOG ODNOSA -->
+        <div class="row p-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h5 class="m-0 p-0">Prestanak radnog odnosa</h5>
+                            </div>
+                            <div class="col-md-2 d-flex flex-row-reverse">
+                                <a href="{{route('drzavni-sluzbenici.prestanak-ro.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                    <i class="fas fa-plus-square text-success" title="Unesite nove informacije o prestanku radnog odnosa"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach($prestanci as $prestanak)
+                        <div class="card-body border-bottom pt-4 pb-3">
+                            <div class="row edit-feature-box">
+                                <div class="col-md-12 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.prestanak-ro.uredi', ['sl-id' => $prestanak->id ?? ''])}}">
+                                        <i class="fas fa-edit text-primary" title="Izmijenite sadržaj"></i>
+                                    </a>
+                                    <a href="{{route('drzavni-sluzbenici.prestanak-ro.obrisi', ['id' => $prestanak->id ?? ''])}}">
+                                        <i class="fas fa-trash text-danger mr-3" title="Obrišite sadržaj"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            @include('hr.sluzbenici.new.forme.forme-includes.prestanak-ro')
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+
         <!-- ČLANOVI PORODICE -->
         <div class="row p-4">
             <div class="col-md-12">
