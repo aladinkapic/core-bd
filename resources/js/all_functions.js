@@ -391,14 +391,54 @@ function privremeniPremjestaj(){
     kreiraj_request('POST', '/ugovori/privremeno/radna_mjesta', "id=" + id, true, privremeniPremjestajDone);
 }
 
+$(document.body).on("change",".radna-mjesta-organa",function(){
+    let value = $(this).val();
 
-function privremeniPremjestajDone(response){
-    let radno_mjesto = document.getElementById("redovno_radno_mjesto");
+    kreiraj_request('POST', '/radna-mjesta-organa', "id=" + value, true, radnaMjestaOrgana);
+});
+
+function radnaMjestaOrgana(response) {
     let radna_mjesta = document.getElementById("privremeno_radno_mjesto");
 
+    $('#privremeno_radno_mjesto')
+        .find('option')
+        .remove();
+
+    // for(let i=0; i<radna_mjesta.length; i++){
+    //     radna_mjesta.remove(radna_mjesta.length-1);
+    //     console.log("wee");
+    // }
+
+    console.log(response['radna_mjesta']);
+
+    for(let i=0; i<response['radna_mjesta'].length; i++){
+        var opt = document.createElement('option');
+        opt.value = response['radna_mjesta'][i]['id'];
+        opt.innerHTML = response['radna_mjesta'][i]['naziv_rm'];
+        radna_mjesta.appendChild(opt);
+    }
+}
+
+function privremeniPremjestajDone(response){
+    let radno_mjesto = document.getElementById("redovno_radno_mjesto_naziv");
+    let rm_id = document.getElementById("redovno_radno_mjesto_id");
+
     radno_mjesto.value = response['naziv_radnog_mjesta'];
+    rm_id.value = response['rm_id'];
 
 
+    // for(let i=0; i<radno_mjesto.length; i++){
+    //     radno_mjesto.remove(radno_mjesto.length-1);
+    // }
+    //
+    // var opt = document.createElement('option');
+    // opt.value =  response['rm_id'];
+    // opt.innerHTML =  response['naziv_radnog_mjesta'];
+    // radno_mjesto.appendChild(opt);
+
+    // radno_mjesto.value = response['naziv_radnog_mjesta'];
+
+    /*
     for(let i=0; i<radna_mjesta.length; i++){
         radna_mjesta.remove(radna_mjesta.length-1);
     }
@@ -408,8 +448,7 @@ function privremeniPremjestajDone(response){
         opt.value = response['radnaMjesta'][i]['id'];
         opt.innerHTML = response['radnaMjesta'][i]['naziv_rm'];
         radna_mjesta.appendChild(opt);
-    }
-
+    } */
 }
 
 

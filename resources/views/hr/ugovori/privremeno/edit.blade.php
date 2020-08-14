@@ -30,21 +30,29 @@
                                         <select class="form-control" name="sluzbenik">
                                             <option selected="selected" value="{{ $sluzbenik->id ?? '1'}}">{{$sluzbenik->ime ?? '/'}} {{$sluzbenik->prezime ?? '/'}}</option>
                                         </select>
-
-                                        {{--<input required="required" readonly value="" class="form-control" type="text" name="sluzbenik"/>--}}
                                     </div>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
+                                        {{__('Organ javne uprave')}}
+                                    </div>
+                                    <div class="col-md-7">
+                                        {!! Form::select('organ', $organi, $ugovor->organ ?? '', ['class' => 'form-control radna-mjesta-organa',]) !!}
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-5">
                                         {{__('Privremeno radno mjesto')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <select class="form-control select-2" name="privremeno_radno_mjesto">
-                                            @foreach($radnaMjesta as $radnoMjesto)
-                                                <option value="{{ $radnoMjesto->id ?? '1'}}">{{ $radnoMjesto->naziv_rm ?? '/'}}</option>
-                                            @endforeach
-                                        </select>
+                                        {!! Form::select('privremeno_radno_mjesto', $radnaMjesta, $ugovor->privremeno_radno_mjesto, ['class' => 'form-control select-2', 'id' => 'privremeno_radno_mjesto']) !!}
+{{--                                        <select class="form-control select-2" name="privremeno_radno_mjesto" id="privremeno_radno_mjesto">--}}
+{{--                                            @foreach($radnaMjesta as $radnoMjesto)--}}
+{{--                                                <option value="{{ $radnoMjesto->id ?? '1'}}">{{ $radnoMjesto->naziv_rm ?? '/'}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
                                     </div>
                                 </div>
                                 <br/>
@@ -90,6 +98,15 @@
                                     </div>
                                     <div class="col-md-7">
                                         <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_do) }}" class="form-control datepicker" id="datum_do" name="datum_do" placeholder="Datum do..." >
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        {{__('Datum do')}}
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" value="{{$ugovor->platni_razred ?? ''}}" class="form-control" id="platni_razred" name="platni_razred" placeholder="Platni razred..." >
                                     </div>
                                 </div>
                                 <br/>

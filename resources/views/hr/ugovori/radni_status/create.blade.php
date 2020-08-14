@@ -60,13 +60,33 @@
                                         </select>
                                     </div>
                                 </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        {{__('Organ javne uprave')}}
+                                    </div>
+                                    <div class="col-md-7">
+                                        {!! Form::select('organ', $organi, '', ['class' => 'form-control radna-mjesta-organa',]) !!}
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        {{__('Radno mjesto')}}
+                                    </div>
+                                    <div class="col-md-7">
+                                        <select class="form-control select-2" name="radno_mjesto" id="privremeno_radno_mjesto">
+                                            <option value="1">{{__('Aktivna radna mjesta iz organa javne uprave')}}</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
                                         {{__('Datum ugovora/odluke')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <input required="required" class="form-control datepicker" id="datum1" type="text" name="datum"
+                                        <input required="required" class="form-control datepicker-2" id="datum1" type="text" name="datum"
                                                placeholder="Datum ugovora/odluke..."/>
                                     </div>
                                 </div>
@@ -76,7 +96,7 @@
                                         {{__('Datum isteka ugovora/odluke')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <input class="form-control datepicker" type="text" id="datum2" name="datum_isteka"
+                                        <input class="form-control datepicker-2" type="text" id="datum2" name="datum_isteka"
                                                placeholder="Datum isteka ugovora/odluke..."/>
                                     </div>
                                 </div>
@@ -86,7 +106,7 @@
                                         {{__('Datum isteka probnog perioda')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <input class="form-control datepicker" type="text" id="datum3" name="datum_isteka_probni"
+                                        <input class="form-control datepicker-2" type="text" id="datum3" name="datum_isteka_probni"
                                                placeholder="Datum isteka probnog perioda..."/>
                                     </div>
                                 </div>
@@ -96,8 +116,17 @@
                                         {{__('Broj sati')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <input required="required" class="form-control" type="text" name="broj_sati"
-                                               placeholder="Broj sati..."/>
+                                        {!! Form::select('broj_sati', $radno_v, '', ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        {{__('Datum početka rada')}}
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input class="form-control datepicker-2" type="text" id="datum3" name="datum_pocetka_rada"
+                                               placeholder="Datum početka rada..."/>
                                     </div>
                                 </div>
                                 <br/>

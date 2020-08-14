@@ -499,6 +499,9 @@ Route::prefix('organizacija')->group(function () {
  * Registar ugovora
  */
 
+
+Route::post('radna-mjesta-organa',        'Controller@radnaMjestaOrgana')->name('main.radna-mjesta-organa');
+
 Route::prefix('ugovori')->group(function () {
 
     /*
@@ -512,6 +515,7 @@ Route::prefix('ugovori')->group(function () {
     Route::put('radni-status/store',        'UgovorController@storeRadniStatus')->name('ugovor.radni_status.store');
     Route::get('radni-status/edit/{id}',    'UgovorController@editRadniStatus')->name('ugovor.radni_status.edit');
     Route::patch('radni-status/edit/{id}',  'UgovorController@updateRadniStatus')->name('ugovor.radni_status.update');
+
 
     Route::get('mjesto-rada/index',         'UgovorController@indexMjestoRada')->name('ugovor.mjesto_rada.index');
     Route::get('mjesto-rada/destroy/{id}',  'UgovorController@destroyMjestoRada')->name('ugovor.mjesto_rada.destroy');

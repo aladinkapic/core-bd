@@ -60,6 +60,25 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
+                                    {{__('Redovno radno mjesto')}}
+                                </div>
+                                <div class="col-md-7">
+                                    {!! Form::text('radno_mjesto_naziv', '', ['class' => 'form-control', 'readonly', 'id' => 'redovno_radno_mjesto_naziv']) !!}
+                                    {!! Form::hidden('radno_mjesto', '', ['class' => 'form-control', 'id' => 'redovno_radno_mjesto_id']) !!}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{__('Organ javne uprave')}}
+                                </div>
+                                <div class="col-md-7">
+                                    {!! Form::select('organ', $organi, '', ['class' => 'form-control radna-mjesta-organa',]) !!}
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
                                     {{__('Privremeno radno mjesto')}}
                                 </div>
                                 <div class="col-md-7">
@@ -68,17 +87,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    {{__('Redovno radno mjesto')}}
-                                </div>
-                                <div class="col-md-7">
-                                    <input required="required" class="form-control" type="text" name="radno_mjesto"
-                                           id="redovno_radno_mjesto" value="" readonly />
-                                </div>
-                            </div>
-                            <br/>
+                           <br/>
                             <div class="row">
                                 <div class="col-md-5">
                                     {{__('Broj rješenja')}}
@@ -112,6 +121,15 @@
                                 </div>
                                 <div class="col-md-7">
                                     <input type="text" id="datum_do" class="form-control datepicker" name="datum_do" placeholder="Datum do..." >
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{__('Platni razred')}}
+                                </div>
+                                <div class="col-md-7">
+                                    {!! Form::text('platni_razred', '', ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <br/>

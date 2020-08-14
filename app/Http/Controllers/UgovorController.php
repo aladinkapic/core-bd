@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organ;
+use App\Models\RadnoMjesto;
+use App\Models\RadnoMjestoSluzbenik;
 use App\Models\registarUgovora\PrestanakRadnogOdnosa;
+use App\Models\Sifrarnik;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\RadniStatus;
@@ -23,7 +27,7 @@ class UgovorController extends Controller{
      */
 
     public function index(Request $request){
-        $ugovori = RadniStatus::with('usluzbenik');
+        $ugovori = RadniStatus::with('usluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ');
 
 
         $ugovori = FilterController::filter($ugovori);
@@ -31,6 +35,9 @@ class UgovorController extends Controller{
         $filteri = [
             'broj'=>'Broj ugovora/odluke',
             'usluzbenik.ime_prezime'=>'Službenik',
+            'usluzbenik.sluzbenikRel.rm.naziv_rm' => 'Trenutno radno mjesto',
+            'usluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ.naziv' => 'Organ',
+            'radnoMjesto.naziv_rm' => 'Radno mjesto na koje je postavljen',
             'datum'=>'Datum ugovora/odluke',
             'datum_isteka'=>'Datum isteka ugovora/odluke',
             'datum_isteka_probni'=>'Datum isteka probnog perioda',
@@ -42,35 +49,61 @@ class UgovorController extends Controller{
     public function createRadniStatus(Request $request){
 
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
+        $organi     = Organ::pluck('naziv', 'id')->prepend('Odaberite organ', '');
+        $radno_v    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme', '');
 
-        return view('hr.ugovori.radni_status.create')->with(compact('sluzbenici'));
+        return view('hr.ugovori.radni_status.create')->with(compact('sluzbenici', 'organi', 'radno_v'));
     }
 
     public function storeRadniStatus(Request $request){
+        $request = HelpController::formatirajRequest($request);
 
-        $data = $request->all();
+//         dd($request->all());
+        try{
+            $rm_s = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->sluzbenik)->get();
+            foreach($rm_s as $rm){
+                $radno_mjesto = RadnoMjesto::where('id', $rm->radno_mjesto_id)->with('orgjed.organizacija')->first();
+                if(isset($radno_mjesto->orgjed->organizacija) and $radno_mjesto->orgjed->organizacija->active == 1){
+                    $rm->delete();
+                }
+            }
 
-        $pravila = [
-            'broj' => 'required|max:255',
-            'sluzbenik' => 'required',
-            'datum' => 'required|date',
-            'broj_sati' => 'required',
-        ];
+            $rs = RadniStatus::create(
+                $request->except(['_token', '_method'])
+            );
 
-        $poruke = HelpController::getValidationMessages();
-        $this->validate($request, $pravila, $poruke);
+            // Postavi na radno mjesto
+            $rm = RadnoMjestoSluzbenik::create([
+                'sluzbenik_id' => $request->sluzbenik,
+                'radno_mjesto_id' => $request->radno_mjesto
+            ]);
 
 
-        $object = new RadniStatus();
-
-        $object->broj = $data['broj'];
-        $object->sluzbenik = $data['sluzbenik'];
-        $object->datum = Carbon::parse($data['datum']);
-        $object->datum_isteka = Carbon::parse($data['datum_isteka']);
-        $object->datum_isteka_probni = Carbon::parse($data['datum_isteka_probni']);
-        $object->broj_sati = $data['broj_sati'];
-
-        $object->save();
+        }catch (\Exception $e){dd($e);}
+//        dd($request->all());
+//        $data = $request->all();
+//
+//        $pravila = [
+//            'broj' => 'required|max:255',
+//            'sluzbenik' => 'required',
+//            'datum' => 'required|date',
+//            'broj_sati' => 'required',
+//        ];
+//
+//        $poruke = HelpController::getValidationMessages();
+//        $this->validate($request, $pravila, $poruke);
+//
+//
+//        $object = new RadniStatus();
+//
+//        $object->broj = $data['broj'];
+//        $object->sluzbenik = $data['sluzbenik'];
+//        $object->datum = Carbon::parse($data['datum']);
+//        $object->datum_isteka = Carbon::parse($data['datum_isteka']);
+//        $object->datum_isteka_probni = Carbon::parse($data['datum_isteka_probni']);
+//        $object->broj_sati = $data['broj_sati'];
+//
+//        $object->save();
 
         return redirect(route('ugovor.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
     }
@@ -79,26 +112,42 @@ class UgovorController extends Controller{
 
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
         $ugovor = RadniStatus::findOrFail($id);
+        $organi     = Organ::pluck('naziv', 'id')->prepend('Odaberite organ', '');
+        $radno_v    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme', '');
 
-        return view('hr.ugovori.radni_status.edit')->with(compact('ugovor', 'sluzbenici'));
+        $organ_id = $ugovor->organ;
+
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija.organ', function ($query) use ($organ_id){
+            $query->where('id', $organ_id);
+        })->whereHas('orgjed.organizacija', function ($query){
+            $query->where('active', 1);
+        })->get()->pluck('naziv_rm', 'id');
+
+        $e_slu = Sluzbenik::where('id', $ugovor->sluzbenik)->first();
+        $e_rm  = RadnoMjesto::where('id', $ugovor->radno_mjesto)->first();
+        $e_org = Organ::where('id', $ugovor->organ)->first();
+
+        return view('hr.ugovori.radni_status.edit')->with(compact('ugovor', 'sluzbenici', 'organi', 'radno_v', 'radnaMjesta', 'e_slu', 'e_rm', 'e_org'));
 
     }
 
     public function updateRadniStatus(Request $request, $id){
 
-        $data = $request->all();
+        $request = HelpController::formatirajRequest($request);
+        try{
+            $rs = RadniStatus::where('id', $id)->update([
+                'broj' => $request->broj,
+                'datum' => $request->datum,
+                'datum_isteka' => $request->datum_isteka,
+                'datum_isteka_probni' => $request->datum_isteka_probni,
+                'broj_sati' => $request->broj_sati,
+                'datum_pocetka_rada' => $request->datum_pocetka_rada
+            ]);
+        }catch (\Exception $e){}
 
-        $pravila = [
-            'broj' => 'required|max:255',
-            'sluzbenik' => 'required',
-            'datum' => 'required|date',
-            'broj_sati' => 'required',
-        ];
+        return back();
 
-        $poruke = HelpController::getValidationMessages();
-        $this->validate($request, $pravila, $poruke);
-
-
+        dd($request->all());
         $object = RadniStatus::find($id);
 
         $object->broj = $data['broj'];
@@ -210,10 +259,10 @@ class UgovorController extends Controller{
     }
 
     public function createPrivremeno(Request $request){
-
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
+        $organi     = Organ::pluck('naziv', 'id');
 
-        return view('hr.ugovori.privremeno.create')->with(compact('sluzbenici'));
+        return view('hr.ugovori.privremeno.create')->with(compact('sluzbenici', 'organi'));
     }
 
 
@@ -231,9 +280,7 @@ class UgovorController extends Controller{
 
         $radnaMjesta = DB::table('radna_mjesta')
             ->select(['radna_mjesta.id', 'radna_mjesta.naziv_rm'])->get();
-        // dd($radnaMjesta);
-
-        return array('radnaMjesta' => $radnaMjesta, 'naziv_radnog_mjesta' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->radnoMjesto->naziv_rm : '');
+        return array('radnaMjesta' => $radnaMjesta, 'naziv_radnog_mjesta' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->radnoMjesto->naziv_rm : '', 'rm_id' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->radnoMjesto->id : '');
     }
 
 
@@ -241,64 +288,48 @@ class UgovorController extends Controller{
         $request = HelpController::formatirajRequest($request);
         $data = $request->all();
 
-        $sluzbenik = Sluzbenik::where('id', '=', $data['sluzbenik']);
+        $sluzbenik = Sluzbenik::where('id', '=', $data['sluzbenik'])->first();
+        try{
+            $privremeno = Privremeno::create(
+                $request->except(['_token', '_method', 'radno_mjesto_naziv'])
+            );
 
-//        foreach($data as $key => $value){
-//            if(strtotime($value)){
-//                $data[$key] = Carbon::parse($value);
-//            }
-//        }
-
-        $request->merge(['radno_mjesto' => $sluzbenik->first()->radnoMjesto->id]);
-
-        $object = new Privremeno();
-        $object->fill($request->except(['_token', '_method']));
-        $object->save();
-
-        $sluzbenik->update(['privremeni_premjestaj' => $object->id]);
+            $sluzbenik->privremeni_premjestaj = $privremeno->id;
+        }catch (\Exception $e){dd($e);}
 
         return redirect(route('ugovor.privremeno.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
 
     }
 
     public function editPrivremeno(Request $request, $id){
-
-//        $sluzbenici = Sluzbenik::with('radnoMjesto.orgjed.organizacija')->where('id', '=', 1)->get();
-
-
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
 
         $ugovor = Privremeno::where('id', $id)->first();
         $sluzbenik  = Sluzbenik::where('id', $ugovor->sluzbenik)->first();
 
-        $radnaMjesta = ''; // Definišimo praznu varijablu radna mjesta
-        $organ_ju = Sluzbenik::organJavneUprave($sluzbenik->id);
-        if(count($organ_ju)){
-            $radnaMjesta = Sluzbenik::radnaMjesta($organ_ju[0]->id);
-        }
+        $organ_id   = $ugovor->organ;
 
-        return view('hr.ugovori.privremeno.edit')->with(compact('sluzbenici', 'ugovor', 'sluzbenik', 'radnaMjesta'));
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija.organ', function ($query) use ($organ_id){
+            $query->where('id', $organ_id);
+        })->whereHas('orgjed.organizacija', function ($query){
+            $query->where('active', 1);
+        })->get()->pluck('naziv_rm', 'id');
+
+        $organi     = Organ::pluck('naziv', 'id');
+
+        return view('hr.ugovori.privremeno.edit')->with(compact('sluzbenici', 'ugovor', 'sluzbenik', 'radnaMjesta', 'organi'));
     }
     public function updatePrivremeno(Request $request, $id){
         $request = HelpController::formatirajRequest($request);
         $data = $request->all();
+        $sluzbenik = Sluzbenik::where('id', '=', $data['sluzbenik'])->first();
 
-        $sluzbenik = Sluzbenik::where('id', '=', $data['sluzbenik']);
-
-//        foreach($data as $key => $value){
-//            if(strtotime($value)){
-//                $data[$key] = Carbon::parse($value);
-//            }
-//        }
-
-        $request->merge(['radno_mjesto' => $sluzbenik->first()->radnoMjesto->id]);
-
-        $object = Privremeno::find($id);
-        $object->fill($request->except(['_token', '_method']));
-        $object->save();
-
-
-        $sluzbenik->update(['privremeni_premjestaj' => $data['privremeno_radno_mjesto']]);
+        try{
+            $privremeno = Privremeno::where('id', $id)->update(
+                $request->except(['_token', '_method', 'radno_mjesto'])
+            );
+            $sluzbenik->privremeni_premjestaj = $privremeno->id;
+        }catch (\Exception $e){}
         return redirect(route('ugovor.privremeno.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
 
     }
@@ -453,9 +484,17 @@ class UgovorController extends Controller{
     }
 
     public function destroyPrivremeno($id){
-        $org_jed = Privremeno::find($id);
+        try{
+            $privremeno = Privremeno::find($id);
 
-        $org_jed->delete();
+            $sluzbenik = Sluzbenik::where('id', $privremeno->sluzbenik)->firstOrFail();
+
+            // TODO - Razmisliti malo o ovome !!!
+            // $sluzbenik->privremeni_premjestaj = null;
+            // $sluzbenik->save();
+
+            $privremeno->delete();
+        }catch (\Exception $e){}
 
         return redirect(route('ugovor.privremeno.index'))->with(['success' => 'Uspješno izbrisano!']);
     }
