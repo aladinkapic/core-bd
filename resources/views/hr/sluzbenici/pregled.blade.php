@@ -27,7 +27,7 @@
                         <i class="fas fa-angle-left"></i>
                     </div>
                 </a>
-                <a href="{{route('sluzbenik.dodaj')}}">
+                <a href="{{route('drzavni-sluzbenici.dodaj-sluzbenika')}}">
                     <div class="small-button small-button-border">
                         <div class="small-button">
                             <i class="fas fa-plus-square"></i>
@@ -274,7 +274,7 @@
                                     <i class="fa fa-eye"></i> {{__('Uredite uloge')}}
                                 </a>
                             @else
-                                <a href="{{ '/hr/sluzbenici/dodatno_o_sluzbeniku/' . $sluzbenik->id ?? '1'}}">
+                                <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik->id ?? ''])}}">
                                     <button class="btn my-button">{{__('Pregled')}}</button>
                                 </a>
                             @endif

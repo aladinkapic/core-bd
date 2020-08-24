@@ -1,4 +1,4 @@
-@extends('template.main')
+    @extends('template.main')
 
 @section('breadcrumbs')
 
@@ -70,18 +70,10 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group row" >
-                                            <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Službenik')}}</label>
-                                            <div class="col-sm-9">
-                                                <div class="col-lg-12">
-                                                    {!!  Form::select('sluzbenik_id', $sluzbenici, isset($probni) ? $probni->sluzbenik_id : '' ,['class' => 'form-control', 'id' => 'sluzbenik_id', isset($preview) ? 'disabled => true' : '']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row" >
                                             <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Prvi član')}}</label>
                                             <div class="col-sm-9">
                                                 <div class="col-lg-12">
-                                                    {!!  Form::select('prvi_ocjenjivac', $sluzbenici, isset($probni) ? $probni->prvi_ocjenjivac : '' ,['class' => 'form-control', 'id' => 'prvi_ocjenjivac', isset($preview) ? 'disabled => true' : '']) !!}
+                                                    {!!  Form::select('prvi_ocjenjivac', $sluzbenici, isset($probni) ? $probni->prvi_ocjenjivac : '' ,['class' => 'form-control select-2', 'id' => 'prvi_ocjenjivac', isset($preview) ? 'disabled => true' : '']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +81,7 @@
                                             <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Drugi član')}}</label>
                                             <div class="col-sm-9">
                                                 <div class="col-lg-12">
-                                                    {!!  Form::select('drugi_ocjenjivac', $sluzbenici, isset($probni) ? $probni->drugi_ocjenjivac : '' ,['class' => 'form-control', 'id' => 'drugi_ocjenjivac', isset($preview) ? 'disabled => true' : '']) !!}
+                                                    {!!  Form::select('drugi_ocjenjivac', $sluzbenici, isset($probni) ? $probni->drugi_ocjenjivac : '' ,['class' => 'form-control select-2', 'id' => 'drugi_ocjenjivac', isset($preview) ? 'disabled => true' : '']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +89,7 @@
                                             <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Treći član')}}</label>
                                             <div class="col-sm-9">
                                                 <div class="col-lg-12">
-                                                    {!!  Form::select('treci_ocjenjivac', $sluzbenici, isset($probni) ? $probni->treci_ocjenjivac : '' ,['class' => 'form-control', 'id' => 'treci_ocjenjivac', isset($preview) ? 'disabled => true' : '']) !!}
+                                                    {!!  Form::select('treci_ocjenjivac', $sluzbenici, isset($probni) ? $probni->treci_ocjenjivac : '' ,['class' => 'form-control select-2', 'id' => 'treci_ocjenjivac', isset($preview) ? 'disabled => true' : '']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -109,6 +101,13 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="form-group row" >
+                                            <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Službenik')}}</label>
+                                            <div class="col-sm-9 custom-cool">
+                                                {!!  Form::select('sluzbenik_id', $sluzbenici, isset($probni) ? $probni->sluzbenik_id : '' ,['class' => 'form-control  select-2', 'id' => 'sluzbenik_id', isset($preview) ? 'disabled => true' : '']) !!}
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Godina')}}</label>
                                             <div class="col-sm-9">
@@ -118,21 +117,10 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
                                             <div class="col-sm-9">
-                                                {!! Form::number('ocjena_prvi', isset($probni) ? $probni->ocjena_prvi : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_prvi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                                {!! Form::number('ocjena', isset($probni) ? $probni->ocjena : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena', 'min'=>1,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
-                                            <div class="col-sm-9">
-                                                {!! Form::number('ocjena_drugi', isset($probni) ? $probni->ocjena_drugi : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_drugi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjena')}}</label>
-                                            <div class="col-sm-9">
-                                                {!! Form::number('ocjena_treci', isset($probni) ? $probni->ocjena_treci : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_treci', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
-                                            </div>
-                                        </div>
+
 
                                     </div>
                                 </div>

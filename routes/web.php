@@ -161,6 +161,82 @@ Route::prefix('hr/odsustva')->group(function () {
 
 /************************************************ DRŽAVNI SLUŽBENICI **************************************************/
 
+Route::prefix('hr/drzavni-sluzbenici')->group(function () {
+    Route::get ('/',                              'UsersController@index')->name('drzavni-sluzbenici');
+    Route::get ('/dodaj-sluzbenika',              'UsersController@dodajSluzbenika')->name('drzavni-sluzbenici.dodaj-sluzbenika');
+    Route::post('/spremite-sluzbenika',           'UsersController@spremiSluzbenika')->name('drzavni-sluzbenici.spremi-sluzbenika');
+
+    Route::get ('/pregled-sluzbenika/{id}',       'UsersController@pregledSluzbenika')->name('drzavni-sluzbenici.pregled-sluzbenika');
+    Route::get ('/uredite-sluzbenika/{id}',       'UsersController@urediteSluzbenika')->name('drzavni-sluzbenici.uredite-sluzbenika');
+    Route::post('/azurirajte-sluzbenika',         'UsersController@azurirajteSluzbenika')->name('drzavni-sluzbenici.azurirajte-sluzbenika');
+
+
+    // Podaci o prebivalištu
+    Route::get ('/prebivaliste/{sl_id}',           'UsersController@dodajPrebivaliste')->name('drzavni-sluzbenici.prebivaliste.dodaj');
+    Route::post('/prebivaliste-spremi',            'UsersController@spremiPrebivaliste')->name('drzavni-sluzbenici.prebivaliste.spremi');
+    Route::get ('/prebivaliste-uredi/{sl_id}',     'UsersController@urediPrebivaliste')->name('drzavni-sluzbenici.prebivaliste.uredi');
+    Route::post('/prebivaliste-azuriraj',          'UsersController@azurirajPrebivaliste')->name('drzavni-sluzbenici.prebivaliste.azuriraj');
+    Route::get ('/prebivaliste-obrisi/{id}',       'UsersController@obrisiPrebivaliste')->name('drzavni-sluzbenici.prebivaliste.obrisi');
+
+    // Podaci o stručnoj spremi
+    Route::get ('/strucna-sprema/{sl_id}',         'UsersController@dodajStrucnuSpremu')->name('drzavni-sluzbenici.strucna-sprema.dodaj');
+    Route::post('/strucna-sprema-spremi',          'UsersController@spremiStrucnuSpremu')->name('drzavni-sluzbenici.strucna-sprema.spremi');
+    Route::get ('/strucna-sprema-uredi/{sl_id}',   'UsersController@urediStrucnuSpremu')->name('drzavni-sluzbenici.strucna-sprema.uredi');
+    Route::post('/strucna-sprema-azuriraj',        'UsersController@azurirajStrucnuSpremu')->name('drzavni-sluzbenici.strucna-sprema.azuriraj');
+    Route::get ('/strucna-sprema-obrisi/{id}',     'UsersController@obrisiStrucnuSpremu')->name('drzavni-sluzbenici.strucna-sprema.obrisi');
+
+    // Položeni ispiti
+    Route::get ('/ispiti/{sl_id}',                 'UsersController@dodajIspit')->name('drzavni-sluzbenici.ispit.dodaj');
+    Route::post('/ispiti-spremi',                  'UsersController@spremiIspit')->name('drzavni-sluzbenici.ispit.spremi');
+    Route::get ('/ispiti-uredi/{sl_id}',           'UsersController@urediIspit')->name('drzavni-sluzbenici.ispit.uredi');
+    Route::post('/ispiti-azuriraj',                'UsersController@azurirajIspit')->name('drzavni-sluzbenici.ispit.azuriraj');
+    Route::get ('/ispiti-obrisi/{id}',             'UsersController@obrisiIspit')->name('drzavni-sluzbenici.ispit.obrisi');
+
+    // Obrazovanje službenika
+    Route::get ('/obrazovanje/{sl_id}',            'UsersController@dodajObrazovanje')->name('drzavni-sluzbenici.obrazovanje.dodaj');
+    Route::post('/obrazovanje-spremi',             'UsersController@spremiObrazovanje')->name('drzavni-sluzbenici.obrazovanje.spremi');
+    Route::get ('/obrazovanje-uredi/{sl_id}',      'UsersController@urediObrazovanje')->name('drzavni-sluzbenici.obrazovanje.uredi');
+    Route::post('/obrazovanje-azuriraj',           'UsersController@azurirajObrazovanje')->name('drzavni-sluzbenici.obrazovanje.azuriraj');
+    Route::get ('/obrazovanje-obrisi/{id}',        'UsersController@obrisiObrazovanje')->name('drzavni-sluzbenici.obrazovanje.obrisi');
+
+    // Dodatne vještine
+    Route::get ('/vjestine/{sl_id}',            'UsersController@dodajVjestine')->name('drzavni-sluzbenici.vjestine.dodaj');
+    Route::post('/vjestine-spremi',             'UsersController@spremiVjestine')->name('drzavni-sluzbenici.vjestine.spremi');
+    Route::get ('/vjestine-uredi/{sl_id}',      'UsersController@urediVjestine')->name('drzavni-sluzbenici.vjestine.uredi');
+    Route::post('/vjestine-azuriraj',           'UsersController@azurirajVjestine')->name('drzavni-sluzbenici.vjestine.azuriraj');
+    Route::get ('/vjestine-obrisi/{id}',        'UsersController@obrisiVjestine')->name('drzavni-sluzbenici.vjestine.obrisi');
+
+    // Članovi porodice
+    Route::get ('/porodica/{sl_id}',            'UsersController@dodajClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.dodaj');
+    Route::post('/porodica-spremi',             'UsersController@spremiClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.spremi');
+    Route::get ('/porodica-uredi/{sl_id}',      'UsersController@urediClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.uredi');
+    Route::post('/porodica-azuriraj',           'UsersController@azurirajClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.azuriraj');
+    Route::get ('/porodica-obrisi/{id}',        'UsersController@obrisiClanoviPorodice')->name('drzavni-sluzbenici.clanovi-porodice.obrisi');
+
+    // Radni staž kod prethodnih poslodavaca
+    Route::get ('/prethodni-rs/{sl_id}',            'UsersController@dodajPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.dodaj');
+    Route::post('/prethodni-rs-spremi',             'UsersController@spremiPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.spremi');
+    Route::get ('/prethodni-rs-uredi/{sl_id}',      'UsersController@urediPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.uredi');
+    Route::post('/prethodni-rs-azuriraj',           'UsersController@azurirajPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.azuriraj');
+    Route::get ('/prethodni-rs-obrisi/{id}',        'UsersController@obrisiPrethodniRS')->name('drzavni-sluzbenici.prethodni-rs.obrisi');
+
+    // Zasnivanje radnog odnosa
+    Route::get ('/zasnivanje-ro/{sl_id}',            'UsersController@dodajZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.dodaj');
+    Route::post('/zasnivanje-ro-spremi',             'UsersController@spremiZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.spremi');
+    Route::get ('/zasnivanje-ro-uredi/{sl_id}',      'UsersController@urediZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.uredi');
+    Route::post('/zasnivanje-ro-azuriraj',           'UsersController@azurirajZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.azuriraj');
+    Route::get ('/zasnivanje-ro-obrisi/{id}',        'UsersController@obrisiZasnivanjeRO')->name('drzavni-sluzbenici.zasnivanje-ro.obrisi');
+
+
+    // Prestanak radnog odnosa
+    Route::get ('/prestanak-ro/{sl_id}',            'UsersController@dodajPrestanakRO')->name('drzavni-sluzbenici.prestanak-ro.dodaj');
+    Route::post('/prestanak-ro-spremi',             'UsersController@spremiPrestanakRO')->name('drzavni-sluzbenici.prestanak-ro.spremi');
+    Route::get ('/prestanak-ro-uredi/{sl_id}',      'UsersController@urediPrestanakRO')->name('drzavni-sluzbenici.prestanak-ro.uredi');
+    Route::post('/prestanak-ro-azuriraj',           'UsersController@azurirajPrestanakRO')->name('drzavni-sluzbenici.prestanak-ro.azuriraj');
+    Route::get ('/prestanak-ro-obrisi/{id}',        'UsersController@obrisiPrestanakRO')->name('drzavni-sluzbenici.prestanak-ro.obrisi');
+
+});
+
 Route::prefix('hr/sluzbenici')->group(function () {
 
     /******************************************** Službenik kontroller ************************************************/
@@ -423,6 +499,9 @@ Route::prefix('organizacija')->group(function () {
  * Registar ugovora
  */
 
+
+Route::post('radna-mjesta-organa',        'Controller@radnaMjestaOrgana')->name('main.radna-mjesta-organa');
+
 Route::prefix('ugovori')->group(function () {
 
     /*
@@ -436,6 +515,7 @@ Route::prefix('ugovori')->group(function () {
     Route::put('radni-status/store',        'UgovorController@storeRadniStatus')->name('ugovor.radni_status.store');
     Route::get('radni-status/edit/{id}',    'UgovorController@editRadniStatus')->name('ugovor.radni_status.edit');
     Route::patch('radni-status/edit/{id}',  'UgovorController@updateRadniStatus')->name('ugovor.radni_status.update');
+
 
     Route::get('mjesto-rada/index',         'UgovorController@indexMjestoRada')->name('ugovor.mjesto_rada.index');
     Route::get('mjesto-rada/destroy/{id}',  'UgovorController@destroyMjestoRada')->name('ugovor.mjesto_rada.destroy');

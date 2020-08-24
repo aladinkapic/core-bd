@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class Vjestine extends Model{
     protected $table = 'sluzbenik_vjestine_sluzbenika';
+    protected $guarded = ['id'];
 
     public function vrsta_vjestine_sl()
     {

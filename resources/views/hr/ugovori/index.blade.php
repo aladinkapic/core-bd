@@ -48,7 +48,14 @@
                     <tr>
                         <td class="text-center">{{$counter++}}</td>
                         <td>{{$ugovor->broj ?? '/'}}</td>
-                        <td>{{$ugovor->usluzbenik->ime_prezime ?? ''}}</td>
+                        <td>
+                            <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $ugovor->sluzbenik ?? ''])}}">
+                                {{$ugovor->usluzbenik->ime_prezime ?? ''}}
+                            </a>
+                        </td>
+                        <td>{{$ugovor->usluzbenik->sluzbenikRel->rm->naziv_rm ?? ''}}</td>
+                        <td>{{$ugovor->usluzbenik->sluzbenikRel->rm->orgjed->organizacija->organ->naziv ?? ''}}</td>
+                        <td>{{$ugovor->radnoMjesto->naziv_rm ?? ''}}</td>
                         <td>{{$ugovor->datumUgovora() ?? '/'}}</td>
                         <td>{{$ugovor->datumIsteka() ?? '/'}}</td>
                         <td>{{$ugovor->datumIstekaProbni() ?? '/'}}</td>

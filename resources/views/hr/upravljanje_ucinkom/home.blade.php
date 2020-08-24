@@ -71,10 +71,9 @@
                                 {{ $ucinak -> mjesto->rm->naziv_rm ?? '/' }}
                             </a>
                         </td>
-                        <td>{{$ucinak -> kategorija_ocjene->name ?? '/'}}</td>
                         <td>{{$ucinak -> godina ?? '/'}}</td>
                         <td>{{$ucinak -> ocjena ?? '/'}}</td>
-                        <td>{{$ucinak -> opisnaOcjena -> name ?? '/'}}</td>
+                        <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
                         <td class="text-center">
                             <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id ?? '1'}}">
                                 <button class="btn my-button">Pregled</button>

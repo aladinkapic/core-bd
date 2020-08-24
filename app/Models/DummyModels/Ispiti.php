@@ -15,6 +15,11 @@ class Ispiti extends Model{
             ->where('type', '=', 'kategorija_ispita');
     }
 
+    public function datumPolaganja(){
+        if(!$this->datum_polaganja) return '';
+        return Carbon::parse($this->datum_polaganja)->format('d.m.Y');
+    }
+
     public function datumZavrsetka(){
         if(!$this->datum_zavrsetka) return '';
         return Carbon::parse($this->datum_zavrsetka)->format('d.m.Y');

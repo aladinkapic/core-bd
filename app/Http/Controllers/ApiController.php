@@ -11,15 +11,14 @@ class ApiController extends Controller
     //
 
     public function pretragaSluzbenik(Request $request){
-
         $data = $request->get('data');
 
-        $sluzbenicis = Sluzbenik::select(DB::raw("CONCAT(ime, ' ', prezime) as ime, id, radno_mjesto"))->whereRaw("CONCAT(ime, ' ', prezime) LIKE ?", ['%' . $data . '%'])->with('radnoMjesto')->get();
+        $sluzbenicis = Sluzbenik::select(DB::raw("CONCAT(ime, ' ', prezime) as ime, id, radno_mjesto"))->whereRaw("CONCAT(ime, ' ', prezime) LIKE ?", ['%' . $data . '%'])->with('sluzbenikRel.rm')->get();
 
         $sluzbenici = $sluzbenicis->map(function($items){
             $data['id'] = $items->id;
             if(isset($items->radnoMjesto)){
-                $data['ime'] = $items->ime . " (" . $items->radnoMjesto->naziv_rm . ")";
+                $data['ime'] = $items->ime . " (" . $items->sluzbenikRel->rm->naziv_rm . ")";
             } else {
                 $data['ime'] = $items->ime;
             }

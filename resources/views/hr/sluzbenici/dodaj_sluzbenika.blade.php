@@ -89,6 +89,11 @@
 
                         @include('hr/sluzbenici/fajlovi/vjestine')
 
+
+                    <!--------------------------------------------------------------------------------------------------------->
+
+                        @include('hr/sluzbenici/fajlovi/prethodno_radno_iskustvo')
+
                     <!--------------------------------------------------------------------------------------------------------->
 
                         @include('hr/sluzbenici/fajlovi/zasnivanje_radnog_odnosa')
@@ -96,9 +101,6 @@
 
                     <!--------------------------------------------------------------------------------------------------------->
 
-                        @include('hr/sluzbenici/fajlovi/prethodno_radno_iskustvo')
-
-                    <!--------------------------------------------------------------------------------------------------------->
 
                         @include('hr/sluzbenici/fajlovi/prestanak_radnog_odnosa')
 

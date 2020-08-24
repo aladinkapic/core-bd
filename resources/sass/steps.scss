@@ -207,3 +207,15 @@
         }
     }
 }
+
+
+.edit-feature-box{
+    height: 0px;
+    overflow:hidden;
+    transition: 0.2s all;
+}
+.card-body:hover{
+    .edit-feature-box{
+        height: 30px;
+    }
+}

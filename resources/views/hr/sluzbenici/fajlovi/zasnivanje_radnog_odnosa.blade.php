@@ -1,9 +1,9 @@
 <div class="drop_down_option">
     <div class="single_row header header2">
         <p>{{__('Zasnivanje radnog odnosa')}}</p>
-        <i class="fas arrow-icon fa-chevron-down" onclick="prikazi_elemente(6);"></i>
+        <i class="fas arrow-icon fa-chevron-down" onclick="prikazi_elemente(7);"></i>
         @if(!isset($pregled))
-            <i class="fas fa-plus" title="Dodajte nove podatke o mjestu prebivališta" onclick="prikazi_elemente(6, 'hidden_input_form');"></i>
+            <i class="fas fa-plus" title="Dodajte nove podatke o mjestu prebivališta" onclick="prikazi_elemente(7, 'hidden_input_form');"></i>
         @endif
     </div>
 

@@ -46,17 +46,41 @@
                                     {{__('Službenik')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <select class="form-control" name="sluzbenik">
-                                        @foreach($sluzbenici as $sluzbenik)
-                                            <option @if($sluzbenik->id == $ugovor->sluzbenik) selected="selected" @endif value="{{ $sluzbenik->id ?? '1'}}">{{ $sluzbenik->ime ?? '/'}} {{ $sluzbenik->prezime ?? '/'}}</option>
-                                        @endforeach
-                                    </select>
+                                    {!! Form::text('e_slu', $e_slu->ime_prezime ?? '', ['class' => 'form-control', 'readonly']) !!}
+{{--                                    <select class="form-control" name="sluzbenik">--}}
+{{--                                        @foreach($sluzbenici as $sluzbenik)--}}
+{{--                                            <option @if($sluzbenik->id == $ugovor->sluzbenik) selected="selected" @endif value="{{ $sluzbenik->id ?? '1'}}">{{ $sluzbenik->ime ?? '/'}} {{ $sluzbenik->prezime ?? '/'}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
                                 </div>
                             </div>
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    {{__('Datum rješenja')}}
+                                    {{__('Organ javne uprave')}}
+                                </div>
+                                <div class="col-md-7">
+                                    {!! Form::text('e_org', $e_org->naziv ?? '', ['class' => 'form-control', 'readonly'])!!}
+{{--                                    {!! Form::select('organ', $organi, $ugovor->organ ?? '', ['class' => 'form-control radna-mjesta-organa',]) !!}--}}
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{__('Radno mjesto')}}
+                                </div>
+                                <div class="col-md-7">
+                                    {!! Form::text('e_rm', $e_rm->naziv_rm ?? '', ['class' => 'form-control', 'readonly'])!!}
+{{--                                    {!! Form::select('radno_mjesto', $radnaMjesta, $ugovor->radno_mjesto, ['class' => 'form-control select-2', 'id' => 'privremeno_radno_mjesto']) !!}--}}
+{{--                                    <select class="form-control select-2" name="radno_mjesto" id="privremeno_radno_mjesto">--}}
+{{--                                        <option value="1">{{__('Aktivna radna mjesta iz organa javne uprave')}}</option>--}}
+{{--                                    </select>--}}
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{__('Datum ugovora/odluke')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input value="{{ \Carbon\Carbon::parse($ugovor->datum)->format('d.m.Y') }}" id="datum-ugovora" required="required" class="form-control datepicker" type="text" name="datum"
@@ -66,7 +90,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-5">
-                                    {{__('Datum isteka rješenja')}}
+                                    {{__('Datum isteka ugovora/odluke')}}
                                 </div>
                                 <div class="col-md-7">
                                     <input value="{{ \Carbon\Carbon::parse($ugovor->datum_isteka)->format('d.m.Y') }}" id="datum-isteka-ugovora" class="form-control datepicker" type="text" name="datum_isteka"
@@ -89,8 +113,17 @@
                                     {{__('Broj sati')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input required="required" value="{{ $ugovor->broj_sati ?? '/'}}" class="form-control" type="text" name="broj_sati"
-                                           placeholder="Broj sati..."/>
+                                    {!! Form::select('broj_sati', $radno_v, $ugovor->broj_sati ?? '', ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{__('Datum početka rada')}}
+                                </div>
+                                <div class="col-md-7">
+                                    <input class="form-control datepicker-2" type="text" id="datum3" name="datum_pocetka_rada"
+                                           placeholder="Datum početka rada..." value="{{$ugovor->datumPocetkaRada() ?? ''}}"/>
                                 </div>
                             </div>
                             <br/>
