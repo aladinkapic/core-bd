@@ -566,7 +566,7 @@ class ImportController extends Controller{
 
         $institucijee = array();
 
-        /*
+
         for ($row = 2; $row <= $highestRow; ++$row) {
             $obrazovnaInstitucija = $objWorksheet->getCellByColumnAndRow(12, $row)->getValue();
 
@@ -581,7 +581,6 @@ class ImportController extends Controller{
             }
 
         }
-         */
         $counter = 1;
         foreach($institucijee as $inst){
             try{
