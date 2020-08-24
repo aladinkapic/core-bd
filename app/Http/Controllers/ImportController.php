@@ -662,7 +662,7 @@ class ImportController extends Controller{
 
                         $obr = Obrazovanje::create([
                             'id_sluzbenika' => $sluz->id,
-                            'naziv_ustanove' => ($institucija) ? $institucija->name : null,
+                            'naziv_ustanove' => ($institucija) ? $institucija->value : null,
                             'ciklus_obrazovanja' => $stepen,
                             'strucno_zvanje' => $zanimanje[$i],
                             'datum_diplomiranja' => $date_obrazovanje,
