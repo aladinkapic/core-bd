@@ -581,7 +581,7 @@ class ImportController extends Controller{
             }
 
         }
-         */
+
         $counter = 1;
         foreach($institucijee as $inst){
             try{
@@ -598,7 +598,7 @@ class ImportController extends Controller{
                 }
             }
         }
-
+        */
         $counter = 1;
         for ($row = 2; $row <= $highestRow; ++$row) {
             $ime = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
@@ -663,7 +663,7 @@ class ImportController extends Controller{
 
                         $obr = Obrazovanje::create([
                             'id_sluzbenika' => $sluz->id,
-                            'naziv_ustanove' => ($institucija) ? $institucija->name : null,
+                            'naziv_ustanove' => ($institucija) ? $institucija->value : null,
                             'ciklus_obrazovanja' => $stepen,
                             'strucno_zvanje' => $zanimanje[$i],
                             'datum_diplomiranja' => $date_obrazovanje,
@@ -676,6 +676,8 @@ class ImportController extends Controller{
         }
 
         dd($institucijee);
+
+
 
         for ($row = 2; $row <= $highestRow; ++$row) {
             $found_organ = false;

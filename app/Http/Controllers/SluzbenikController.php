@@ -812,6 +812,10 @@ class SluzbenikController extends Controller
             'ostalii'   => 'Ostali',
             'ukupno_njih' => 'Ukupno',
 
+            'vss' => 'VSS',
+            'sss.kv.vkv' => 'SSS / KV / VKV',
+            'nk' => 'NK',
+
             'manje_od_20' => 'manje od 20',
             'od21do25' => '21 - 25',
             'od25do30' => '26 - 30',

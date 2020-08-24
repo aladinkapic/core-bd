@@ -135,6 +135,16 @@
                             <td>{{$ostalo}}</td>
                             <td>{{$bosnjak + $hrvat + $srbin + $ostalo}}</td>
 
+                            <td>
+                                <!-- VSS -->
+                            </td>
+                            <td>
+                                <!-- SSS / KV / VKV -->
+                            </td>
+                            <td>
+                                <!-- NK -->
+                            </td>
+
                             <td>{{$manjeOd20}}</td>
                             <td>{{$od21do25}}</td>
                             <td>{{$od26do30}}</td>
