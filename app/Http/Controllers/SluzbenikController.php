@@ -816,6 +816,11 @@ class SluzbenikController extends Controller
             'sss.kv.vkv' => 'SSS / KV / VKV',
             'nk' => 'NK',
 
+            'b_ss' => 'SS - Bošnjak',
+            'h_ss' => 'SS - Hrvat',
+            's_ss' => 'SS - Srbin',
+            'o_ss' => 'SS - Ostali',
+
             'manje_od_20' => 'manje od 20',
             'od21do25' => '21 - 25',
             'od25do30' => '26 - 30',
