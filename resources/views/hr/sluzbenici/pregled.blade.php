@@ -125,6 +125,10 @@
                         <td>{{ $sluzbenik->staz_mjeseci ?? '/'}}</td>
                         <td>{{ $sluzbenik->staz_dana ?? '/'}}</td>
 
+                        <td>{{ $sluzbenik->mrs_g ?? '/'}}</td>
+                        <td>{{ $sluzbenik->mrs_m ?? '/'}}</td>
+                        <td>{{ $sluzbenik->mrs_d ?? '/'}}</td>
+
                         <td>{{ $sluzbenik->mjesto_rodjenja ?? '/' }}</td>
                         <td>{{ $sluzbenik->datumRodjenja() ?? '/'}}</td>
                         <td>{{ $sluzbenik->licna_karta ?? '/'}}</td>

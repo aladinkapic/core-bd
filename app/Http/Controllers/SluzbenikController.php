@@ -493,6 +493,10 @@ class SluzbenikController extends Controller
             'staz_mjeseci' => 'Obračunati radni staž - m',
             'staz_dana' => 'Obračunati radni staž - d',
 
+            'mrs_g' => 'Minuli radni staž - g',
+            'mrs_m' => 'Minuli radni staž - m',
+            'mrs_d' => 'Minuli radni staž - d',
+
             'mjesto_rodjenja' => 'Mjesto rođenja',
             'datum_rodjenja' => 'Datum rođenja',
             'licna_karta' => 'Broj lične karte',

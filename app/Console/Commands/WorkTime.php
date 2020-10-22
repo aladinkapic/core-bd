@@ -20,7 +20,7 @@ class WorkTime extends Command{
         $sluzbenici = Sluzbenik::get(['id']);
 
         foreach($sluzbenici as $sluzbenik){
-            if(1){
+            if(1){ // $sluzbenik->id == 529
                 $zasnivanje = ZasnivanjeRO::where('id_sluzbenika', $sluzbenik->id)->first();
 
                 if($zasnivanje){
