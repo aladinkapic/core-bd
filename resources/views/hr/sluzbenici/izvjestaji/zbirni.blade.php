@@ -57,10 +57,69 @@
                             $od31do35 = 0; $od36do40 = 0; $od41do45 = 0;
                             $od46do50 = 0; $od51do55 = 0; $od55do61 = 0; $od61do65=0; $veceOd65 = 0;
 
+                            $vss = 0; $sss = 0; $nk = 0;
+                            $b_vss = 0; $b_sss = 0; $b_nk = 0;
+                            $h_vss = 0; $h_sss = 0; $h_nk = 0;
+                            $s_vss = 0; $s_sss = 0; $s_nk = 0;
+                            $o_vss = 0; $o_sss = 0; $o_nk = 0;
+
+
                         @endphp
 
                         @foreach($organ->organizacija->organizacioneJedinice as $orgJedinica)
                             @foreach($orgJedinica->radnaMjesta as $rm)
+
+                                @if($rm->stepen == 2 or $rm->stepen == 3 or $rm->stepen == 4 or $rm->stepen == 5)
+                                    @foreach($rm->sluzbeniciRel as $sluzbenik)
+                                        @php $sss++; @endphp
+
+                                        @if(isset($sluzbenik->sluzbenik->nacionalnost))
+                                            @if($sluzbenik->sluzbenik->nacionalnost == 1)
+                                                @php $b_sss++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
+                                                @php $h_sss++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
+                                                @php $s_sss++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
+                                                @php $o_sss++; @endphp
+                                            @endif
+                                        @endif
+
+                                    @endforeach
+                                @elseif($rm->stepen == 8 or $rm->stepen == 7 or $rm->stepen == 8)
+                                    @foreach($rm->sluzbeniciRel as $sluzbenik)
+                                        @php $vss++; @endphp
+
+                                        @if(isset($sluzbenik->sluzbenik->nacionalnost))
+                                            @if($sluzbenik->sluzbenik->nacionalnost == 1)
+                                                @php $b_vss++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
+                                                @php $h_vss++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
+                                                @php $s_vss++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
+                                                @php $o_vss++; @endphp
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @elseif($rm->stepen == 1)
+                                    @foreach($rm->sluzbeniciRel as $sluzbenik)
+                                        @php $nk++; @endphp
+
+                                        @if(isset($sluzbenik->sluzbenik->nacionalnost))
+                                            @if($sluzbenik->sluzbenik->nacionalnost == 1)
+                                                @php $b_nk++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
+                                                @php $h_nk++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
+                                                @php $s_nk++; @endphp
+                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
+                                                @php $o_nk++; @endphp
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+
                                 @foreach($rm->sluzbeniciRel as $sluzbenik)
                                     @if(isset($sluzbenik->sluzbenik))
 
@@ -134,6 +193,39 @@
                             <td>{{$srbin}}</td>
                             <td>{{$ostalo}}</td>
                             <td>{{$bosnjak + $hrvat + $srbin + $ostalo}}</td>
+
+                            <td>{{$vss}}</td>
+                            <td>{{$sss}}</td>
+                            <td>{{$nk}}</td>
+
+                            <td>
+                                <ul>
+                                    <li>VSS  - {{$b_vss ?? ''}}</li>
+                                    <li> SSS / KV / VKV - {{$b_sss ?? ''}} </li>
+                                    <li> NK - {{$b_nk ?? ''}} </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li> VSS  - {{$h_vss ?? ''}} </li>
+                                    <li> SSS / KV / VKV - {{$h_sss ?? ''}} </li>
+                                    <li> NK - {{$h_nk ?? ''}} </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li> VSS  - {{$s_vss ?? ''}} </li>
+                                    <li> SSS / KV / VKV - {{$s_sss ?? ''}} </li>
+                                    <li> NK - {{$s_nk ?? ''}} </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li> VSS  - {{$o_vss ?? ''}} </li>
+                                    <li> SSS / KV / VKV - {{$o_sss ?? ''}} </li>
+                                    <li> NK - {{$o_nk ?? ''}} </li>
+                                </ul>
+                            </td>
 
                             <td>{{$manjeOd20}}</td>
                             <td>{{$od21do25}}</td>

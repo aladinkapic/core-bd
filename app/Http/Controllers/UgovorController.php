@@ -160,7 +160,6 @@ class UgovorController extends Controller{
         $object->save();
 
         return redirect(route('ugovor.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
-
     }
 
 

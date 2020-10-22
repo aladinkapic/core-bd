@@ -60,6 +60,7 @@
                                             <p>{{__('Uslovi za radno mjesto')}}</p>
                                         </div>
                                     </li>
+                                    <!--
                                     <li class="">
                                         <div class="list_div">
                                             <div class="back_div"></div>
@@ -68,7 +69,7 @@
                                             </div>
                                             <p>{{__('Uposleni na radnom mjestu')}}</p>
                                         </div>
-                                    </li>
+                                    </li> -->
 
                                 </ul>
 
@@ -294,66 +295,66 @@
                                 </section>
 
 
-                                <section class="">
-                                    <div class="container_block" >
-                                        <div class="split_container">
-                                            <div class="copied_form" id="nekaamo">
+{{--                                <section class="">--}}
+{{--                                    <div class="container_block" >--}}
+{{--                                        <div class="split_container">--}}
+{{--                                            <div class="copied_form" id="nekaamo">--}}
 
-                                                {!! Form::hidden('id_sluzben[]', 'empty', ['class' => 'form-control']) !!}
+{{--                                                {!! Form::hidden('id_sluzben[]', 'empty', ['class' => 'form-control']) !!}--}}
 
-                                                <div class="form-group row">
-                                                    <div class="col">
-                                                        {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
-                                                        <div class="col-lg-12">
-                                                            {!!  Form::select('sluzbenik_id[]', $sluzbenici, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+{{--                                                <div class="form-group row">--}}
+{{--                                                    <div class="col">--}}
+{{--                                                        {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            {!!  Form::select('sluzbenik_id[]', $sluzbenici, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 
-                                            <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
-                                                <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">
-                                                    {{__('Dodajte službenika')}}
-                                                    <i class="fas fa-save"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+{{--                                            <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">--}}
+{{--                                                <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">--}}
+{{--                                                    {{__('Dodajte službenika')}}--}}
+{{--                                                    <i class="fas fa-save"></i>--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
 
-                                        <div class="split_container" style="padding:0px;">
-                                            <div id="korisnici">
-                                                @php $i=0; @endphp
-                                                @foreach($uposleni as $uposlen)
-                                                    @foreach($uposlen->sluzbeniciRel as $sluzbenik)
+{{--                                        <div class="split_container" style="padding:0px;">--}}
+{{--                                            <div id="korisnici">--}}
+{{--                                                @php $i=0; @endphp--}}
+{{--                                                @foreach($uposleni as $uposlen)--}}
+{{--                                                    @foreach($uposlen->sluzbeniciRel as $sluzbenik)--}}
 
-                                                        <div class="copied_form sluzbenici*{{$sluzbenik->sluzbenik->id ?? '1'}}" id="nekaamo" style="padding-top:20px;">
+{{--                                                        <div class="copied_form sluzbenici*{{$sluzbenik->sluzbenik->id ?? '1'}}" id="nekaamo" style="padding-top:20px;">--}}
 
-                                                            {!! Form::hidden('id_sluzben[]', $sluzbenik->sluzbenik->id, ['class' => 'form-control']) !!}
+{{--                                                            {!! Form::hidden('id_sluzben[]', $sluzbenik->sluzbenik->id, ['class' => 'form-control']) !!}--}}
 
-                                                            <div class="shadow_delete">
-                                                                <div class="delete_item">
-                                                                    <a href="/hr/radna_mjesta/obrisi-sa-rm/{{$radno_mjesto->id ?? ''}}/{{$sluzbenik->sluzbenik->id ?? ''}}">
-                                                                        <i class="fas fa-times"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
+{{--                                                            <div class="shadow_delete">--}}
+{{--                                                                <div class="delete_item">--}}
+{{--                                                                    <a href="/hr/radna_mjesta/obrisi-sa-rm/{{$radno_mjesto->id ?? ''}}/{{$sluzbenik->sluzbenik->id ?? ''}}">--}}
+{{--                                                                        <i class="fas fa-times"></i>--}}
+{{--                                                                    </a>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
 
-                                                            <div class="form-group row">
-                                                                <div class="col">
-                                                                    {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}
-                                                                    <div class="col-lg-12">
-                                                                        {!!  Form::select('sluzbenik_id[]', $sluzbenici, $sluzbenik->sluzbenik->id ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+{{--                                                            <div class="form-group row">--}}
+{{--                                                                <div class="col">--}}
+{{--                                                                    {!! Form::label('ime_sluzbenika', 'Ime i prezime službenika : ', ['class' => 'control-label']) !!}--}}
+{{--                                                                    <div class="col-lg-12">--}}
+{{--                                                                        {!!  Form::select('sluzbenik_id[]', $sluzbenici, $sluzbenik->sluzbenik->id ,['class' => 'form-control', 'id' => 'tip_inp']) !!}--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
 
-                                                    @endforeach
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
+{{--                                                    @endforeach--}}
+{{--                                                @endforeach--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </section>--}}
 
 
                                 <div class="buttons" style="text-align:center;">
