@@ -52,11 +52,11 @@ class TotalWorkTime extends Command{
                     $days_insurance += $thisDays;
                 }
 
-                $years  = (int) ($days / 360);
+                $years  = (int) ($days / 365);
                 $months = (int)(($days - ($years * 365)) / 30);
                 $day    = (int)(($days - ($years * 365) - ($months * 30)));
 
-                $years_i  = (int) ($days_insurance / 360);
+                $years_i  = (int) ($days_insurance / 365);
                 $months_i = (int)(($days_insurance - ($years_i * 365)) / 30);
                 $day_i    = (int)(($days_insurance - ($years_i * 365) - ($months_i * 30)));
 
