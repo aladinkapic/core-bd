@@ -31,7 +31,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="datum_zasnivanja_o">Datum zasnivanja radnog odnosa</label>
-                {!! Form::text('datum_zasnivanja_o', $radni_odnos->datum_zasnivanja_o ?? '', ['class' => 'form-control datepicker-2', 'id' => 'datum_zasnivanja_o', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::text('datum_zasnivanja_o', isset($radni_odnos) ? $radni_odnos->datumZasnivanjaRO() : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_zasnivanja_o', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
                 @if(!isset($preview))
                     <small id="nacin_zasnivanja_r_o" class="form-text text-muted">Obavezno polje</small>
                 @endif
@@ -40,7 +40,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="datum_prestanka_ro">Datum prestanka radnog odnosa</label>
-                {!! Form::text('datum_prestanka_ro', isset($radni_odnos) ? $radni_odnos->datum_prestanka_ro ?? '' : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_prestanka_ro', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::text('datum_prestanka_ro', isset($radni_odnos) ? $radni_odnos->datumPrestankaRO() : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_prestanka_ro', isset($preview) ? 'readonly' : '']) !!}
             </div>
         </div>
     </div>
@@ -64,16 +64,27 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="koeficijent">Koeficijent</label>
-                {!! Form::text('koeficijent', $radni_odnos->koeficijent ?? '', ['class' => 'form-control', 'id' => 'koeficijent ', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::number('koeficijent', $radni_odnos->koeficijent ?? '', ['class' => 'form-control', 'id' => 'koeficijent ', isset($preview) ? 'readonly' : '']) !!}
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="datum_donosenja_dokumentacije">Datum donošenja potrebne dokumentacije</label>
-                {!! Form::text('datum_donosenja_dokumentacije', isset($radni_odnos) ? $radni_odnos->datum_donosenja_dokumentacije ?? '' : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_donosenja_dokumentacije', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::text('datum_donosenja_dokumentacije', isset($radni_odnos) ? $radni_odnos->datumDonosenjaDokumentacije() : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_donosenja_dokumentacije', isset($preview) ? 'readonly' : '']) !!}
             </div>
         </div>
     </div>
+
+    @if(isset($preview))
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="ors">Obračunati radni staž</label>
+                    {!! Form::text('ors', ($radni_odnos->obracunati_r_s_god ?? '').' god '.($radni_odnos->obracunati_r_s_mje ?? '').' mj i '.($radni_odnos->obracunati_r_s_dan ?? '').' dana', ['class' => 'form-control', 'id' => 'ors ', isset($preview) ? 'readonly' : '']) !!}
+                </div>
+            </div>
+        </div>
+    @endif
 
     <div class="row">
         <div class="col-md-12">

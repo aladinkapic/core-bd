@@ -27,6 +27,10 @@ class ZasnivanjeRO extends Model{
         if(!$this->datum_zasnivanja_o) return '';
         return Carbon::parse($this->datum_zasnivanja_o)->format('d.m.Y');
     }
+    public function datumPrestankaRO(){
+        if(!$this->datum_prestanka_ro) return '';
+        return Carbon::parse($this->datum_prestanka_ro)->format('d.m.Y');
+    }
 
     public function datumDonosenjaDokumentacije(){
         if(!$this->datum_donosenja_dokumentacije) return '';

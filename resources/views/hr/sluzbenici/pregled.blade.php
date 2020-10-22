@@ -120,6 +120,11 @@
                         <td>{{ $sluzbenik->drzavljanstvoRel->name ?? '/' }}</td>
                         <td>{{ $sluzbenik->nacionalnost_sl ? $sluzbenik->nacionalnost_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->bracni_status_sl ? $sluzbenik->bracni_status_sl->name : '' }}</td>
+
+                        <td>{{ $sluzbenik->staz_godina ?? '/'}}</td>
+                        <td>{{ $sluzbenik->staz_mjeseci ?? '/'}}</td>
+                        <td>{{ $sluzbenik->staz_dana ?? '/'}}</td>
+
                         <td>{{ $sluzbenik->mjesto_rodjenja ?? '/' }}</td>
                         <td>{{ $sluzbenik->datumRodjenja() ?? '/'}}</td>
                         <td>{{ $sluzbenik->licna_karta ?? '/'}}</td>
@@ -207,13 +212,31 @@
 
                         <!-- Ispiti službenika -->
                         <td>
-                            {{$sluzbenik->staz_godina ?? ''}}
+                            <ul>
+                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
+                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
+                                        <li>{{$zasnivanje->obracunati_r_s_god ?? ''}}</li>
+                                    @endforeach
+                                @endif
+                            </ul>
                         </td>
                         <td>
-                            {{$sluzbenik->staz_mjeseci ?? ''}}
+                            <ul>
+                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
+                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
+                                        <li>{{$zasnivanje->obracunati_r_s_mje ?? ''}}</li>
+                                    @endforeach
+                                @endif
+                            </ul>
                         </td>
                         <td>
-                            {{$sluzbenik->staz_dana ?? ''}}
+                            <ul>
+                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
+                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
+                                        <li>{{$zasnivanje->obracunati_r_s_dan ?? ''}}</li>
+                                    @endforeach
+                                @endif
+                            </ul>
                         </td>
                         <td>
                             <ul>
