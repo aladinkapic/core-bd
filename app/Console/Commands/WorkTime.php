@@ -29,37 +29,19 @@ class WorkTime extends Command{
 
                     if($zasnivanje->datum_zasnivanja_o){
                         $datum_od = Carbon::parse($zasnivanje->datum_zasnivanja_o);
-                        if($zasnivanje->koeficijent == 100){
-                            $years  = $datum_od->diff($datum_do)->format('%y');
-                            $months = $datum_od->diff($datum_do)->format('%m');
-                            $days   = $datum_od->diff($datum_do)->format('%d');
 
-                            $zasnivanje->update([
-                                'obracunati_r_s_god' => $years,
-                                'obracunati_r_s_mje' => $months,
-                                'obracunati_r_s_dan' => $days
-                            ]);
-                        }else{
-                            $total = $datum_od->diffInDays($datum_do);
-                            $total = (int)($total * $zasnivanje->koeficijent) / 100;
+                        $total = $datum_od->diffInDays($datum_do);
+                        $total = (int)($total * $zasnivanje->koeficijent) / 100;
 
-                            $years  = (int)($total / 360);
-                            $months = (int)(($total - ($years * 365)) / 30);
-                            $days   = (int)(($total - ($years * 365) - ($months * 30)));
+                        $years  = (int)($total / 360);
+                        $months = (int)(($total - ($years * 365)) / 30);
+                        $days   = (int)(($total - ($years * 365) - ($months * 30)));
 
-
-                            // $final = $datum_do->subDays($total);
-                            // $years  = $final->diff($datum_od)->format('%y');
-                            // $months = $final->diff($datum_od)->format('%m');
-                            // $days   = $final->diff($datum_od)->format('%d');
-
-                            // dd($total, $final, $years, $months, $days);
-                            $zasnivanje->update([
-                                'obracunati_r_s_god' => $years,
-                                'obracunati_r_s_mje' => $months,
-                                'obracunati_r_s_dan' => $days
-                            ]);
-                        }
+                        $zasnivanje->update([
+                            'obracunati_r_s_god' => $years,
+                            'obracunati_r_s_mje' => $months,
+                            'obracunati_r_s_dan' => $days
+                        ]);
                     }
                 }
             }
