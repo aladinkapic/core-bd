@@ -187,7 +187,8 @@ class UsersController extends Controller{
             'vrsta_ro' => $vrsta_ro,
             'nacin_zas' => $nacin_zas,
             'prestanci' => $prestanci,
-            'osnov' => $osnov
+            'osnov' => $osnov,
+            'pregled' => true
         ]);
     }
     public function urediteSluzbenika($id){

@@ -55,7 +55,18 @@ class HelpController extends Controller
 
 
     public static function dajDatum($datum){
-        return Carbon::parse($datum)->format('Y-m-d');
+        $date = null;
+        try{
+            $date = Carbon::createFromFormat('d.m.Y', $datum)->format('Y-m-d');
+        }catch (\Exception $e){
+            try{
+                $date = Carbon::createFromFormat('d.m.Y.', $datum)->format('Y-m-d');
+            }catch (\Exception $e){
+                $date = null;
+            }
+        }
+
+        return $date;
     }
 
     public static function format($datum){

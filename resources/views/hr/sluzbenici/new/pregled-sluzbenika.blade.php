@@ -300,11 +300,13 @@
                             <div class="col-md-10">
                                 <h5 class="m-0 p-0">Zasnivanje radnog odnosa</h5>
                             </div>
-                            <div class="col-md-2 d-flex flex-row-reverse">
-                                <a href="{{route('drzavni-sluzbenici.zasnivanje-ro.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
-                                    <i class="fas fa-plus-square text-success" title="Unesite nove informacije o radnom stažu"></i>
-                                </a>
-                            </div>
+                            @if(!count($zasnivanjeRO))
+                                <div class="col-md-2 d-flex flex-row-reverse">
+                                    <a href="{{route('drzavni-sluzbenici.zasnivanje-ro.dodaj', ['sl-id' => $sluzbenik->id ?? ''])}}">
+                                        <i class="fas fa-plus-square text-success" title="Unesite nove informacije o radnom stažu"></i>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     @foreach($zasnivanjeRO as $radni_odnos)

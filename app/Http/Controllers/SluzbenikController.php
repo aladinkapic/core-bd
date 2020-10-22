@@ -489,6 +489,14 @@ class SluzbenikController extends Controller
             'nacionalnost_sl.name' => 'Nacionalnost',
             'bracni_status_sl.name' => 'Bračni status',
 
+            'staz_godina' => 'Obračunati radni staž - g',
+            'staz_mjeseci' => 'Obračunati radni staž - m',
+            'staz_dana' => 'Obračunati radni staž - d',
+
+            'mrs_g' => 'Minuli radni staž - g',
+            'mrs_m' => 'Minuli radni staž - m',
+            'mrs_d' => 'Minuli radni staž - d',
+
             'mjesto_rodjenja' => 'Mjesto rođenja',
             'datum_rodjenja' => 'Datum rođenja',
             'licna_karta' => 'Broj lične karte',
@@ -507,9 +515,9 @@ class SluzbenikController extends Controller
             'zasnivanjeRORel.nacin_zasnivanja_ro_s.name' => 'Način zasnivanja radnog odnosa',
             'zasnivanjeRORel.vrsta_r_o_s.name' => 'Vrsta radnog odnosa',
             'zasnivanjeRORel.obracunati_r_staz_s.name' => 'Obračunati staž',
-            'staz_godina' => ' Staž godina',
-            'staz_mjeseci' => ' Staž mjeseci',
-            'staz_dana' => ' Staž dani',
+            'zasnivanjeRORel.obracunati_r_s_god' => ' Staž godina',
+            'zasnivanjeRORel.obracunati_r_s_mje' => ' Staž mjeseci',
+            'zasnivanjeRORel.obracunati_r_s_dan' => ' Staž dani',
             'zasnivanjeRORel.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
             'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž',
 
