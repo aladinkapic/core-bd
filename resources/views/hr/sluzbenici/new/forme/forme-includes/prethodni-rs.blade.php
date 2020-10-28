@@ -28,7 +28,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="period_zaposlenja_od">Datum početka rada</label>
-                {!! Form::text('period_zaposlenja_od', $prethodni->period_zaposlenja_od ?? '', ['class' => 'form-control datepicker-2', 'id' => 'period_zaposlenja_od', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::text('period_zaposlenja_od', isset($prethodni) ? $prethodni->datumPocetka() : '', ['class' => 'form-control datepicker-2', 'id' => 'period_zaposlenja_od', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
                 @if(!isset($preview))
                     <small id="period_zaposlenja_od" class="form-text text-muted">Obavezno polje</small>
                 @endif
@@ -37,7 +37,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="period_zaposlenja_do">Datum završetka rada</label>
-                {!! Form::text('period_zaposlenja_do', $prethodni->period_zaposlenja_do ?? '', ['class' => 'form-control datepicker-2', 'id' => 'period_zaposlenja_do', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::text('period_zaposlenja_do', isset($prethodni) ? $prethodni->datumZavrsetka() : '', ['class' => 'form-control datepicker-2', 'id' => 'period_zaposlenja_do', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
                 @if(!isset($preview))
                     <small id="period_zaposlenja_do" class="form-text text-muted">Obavezno polje</small>
                 @endif

@@ -7,6 +7,7 @@ use App\Models\DummyModels\Ispiti;
 use App\Models\DummyModels\Obrazovanje;
 use App\Models\DummyModels\Prebivaliste;
 use App\Models\DummyModels\PrestanakRO;
+use App\Models\DummyModels\PrethodnoRI;
 use App\Models\DummyModels\StrucnaSprema;
 use App\Models\DummyModels\ZasnivanjeRO;
 use App\Models\Organ;
@@ -599,82 +600,166 @@ class ImportController extends Controller{
         }
 
         $counter = 1;
+
+        $sluzbenici = array();
         for ($row = 2; $row <= $highestRow; ++$row) {
             $ime = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
             $prezime = $objWorksheet->getCellByColumnAndRow(0, $row)->getValue();
+            $jmb = $objWorksheet->getCellByColumnAndRow(3, $row)->getValue();
 
-            $stepen = $objWorksheet->getCellByColumnAndRow(10, $row)->getValue();
-            $zanimanje = $objWorksheet->getCellByColumnAndRow(11, $row)->getValue();
-            $obrazovnaInstitucija = $objWorksheet->getCellByColumnAndRow(12, $row)->getValue();
-            $datum_zavrsetka = $objWorksheet->getCellByColumnAndRow(13, $row)->getValue();
-            $nostrifikacija = $objWorksheet->getCellByColumnAndRow(14, $row)->getValue();
+            $datum = $objWorksheet->getCellByColumnAndRow(29, $row)->getValue();
+
+            $godina  = $objWorksheet->getCellByColumnAndRow(35, $row)->getValue();;
+            $mjeseci = $objWorksheet->getCellByColumnAndRow(36, $row)->getValue();
+            $dana = $objWorksheet->getCellByColumnAndRow(37, $row)->getValue();
+
+            $br_dana = ($godina * 365) + ($mjeseci * 30) + $dana;
 
             try{
-                $sluz = Sluzbenik::where('ime', $ime)->where('prezime', $prezime)->firstOrFail();
-
-                $stepen = explode('|', $stepen);
-                $zanimanje = explode('|', $zanimanje);
-                $obrazovnaInstitucija = explode('|', $obrazovnaInstitucija);
-                $datum_zavrsetka = explode('|', $datum_zavrsetka);
-
-                for($i=0; $i<count($obrazovnaInstitucija); $i++){
+                $datum = Carbon::createFromFormat('d.m.Y', $datum)->format('Y-m-d');
+            }catch (\Exception $e){
+                try{
+                    $datum = Carbon::createFromFormat('m.d.Y', $datum)->format('Y-m-d');
+                }catch (\Exception $e){
                     try{
-                        if($stepen[$i] == 'SSS-IV stepen') $stepen = 4;
-                        else if($stepen[$i] == 'VSS-240 ECTS') $stepen = 8;
-                        else if($stepen[$i] == 'VSS-180 ECTS') $stepen = 7;
-                        else if($stepen[$i] == 'VSS') $stepen = 6;
-                        else if($stepen[$i] == 'SSS-III stepen ') $stepen = 3;
-                        else if($stepen[$i] == 'SSS-III stepen') $stepen = 3;
-                        else if($stepen[$i] == 'KV') $stepen = 2;
-                        else if($stepen[$i] == 'NK') $stepen = 1;
-                        else $stepen = 9;
-
-
+                        $datum = Carbon::createFromFormat('m.d.Y.', $datum)->format('Y-m-d');
+                    }catch (\Exception $e){
                         try{
-                            $date_obrazovanje = Carbon::createFromFormat('d.m.Y', $datum_zavrsetka[$i])->format('Y-m-d');
+                            $datum = Carbon::createFromFormat('d.m.Y.', $datum)->format('Y-m-d');
                         }catch (\Exception $e){
-                            try{
-                                $date_obrazovanje = Carbon::createFromFormat('m.d.Y', $datum_zavrsetka[$i])->format('Y-m-d');
-                            }catch (\Exception $e){
-                                try{
-                                    $date_obrazovanje = Carbon::createFromFormat('m.d.Y.', $datum_zavrsetka[$i])->format('Y-m-d');
-                                }catch (\Exception $e){
-                                    $date_obrazovanje = null;
-                                }
-                            }
+                            $datum = null;
                         }
-
-                        try{
-                            $institucija = Sifrarnik::where('name', $obrazovnaInstitucija[$i])->where('type', 'obrazovna_institucija')->firstOrFail();
-                        }catch (\Exception $e){
-                            $institucija = null;
-                        }
-
-
-                        $ss = StrucnaSprema::create([
-                            'stepen_s_s' => $stepen,
-                            'datum_zavrsetka' => $date_obrazovanje,
-                            'id_sluzbenika' => $sluz->id,
-                            'nostrifikacija' => $nostrifikacija,
-                            'obrazovna_institucija' => ($institucija) ? $institucija->value : null,
-                            'vrsta_s_s' => $zanimanje[$i]
-                        ]);
-
-                        $obr = Obrazovanje::create([
-                            'id_sluzbenika' => $sluz->id,
-                            'naziv_ustanove' => ($institucija) ? $institucija->value : null,
-                            'ciklus_obrazovanja' => $stepen,
-                            'strucno_zvanje' => $zanimanje[$i],
-                            'datum_diplomiranja' => $date_obrazovanje,
-                            'broj_nostrifikacije' => $nostrifikacija
-                        ]);
-                    }catch (\Exception $e){}
+                    }
                 }
+            }
 
-            }catch (\Exception $e){}
+            if($datum){
+
+                try{
+                    $sl = Sluzbenik::where('ime', $ime)->where('prezime', $prezime)->where('jmbg', $jmb)->first();
+
+                    // dd($ime, $prezime, $godina, $mjeseci, $dana, $br_dana);
+
+                    if($datum < '2019-12-31'){
+                        $begining = Carbon::parse($datum.' 00:00:00');
+                        $endOfYear = Carbon::parse('2019-12-31 00:00:00');
+
+                        $diff = $begining->diffInDays($endOfYear);
+
+                        $before = $br_dana - $diff;
+                        if($before > 0){
+                            $from = Carbon::parse($datum)->subDays($before);
+
+
+                            $years  = (int) ($before / 365);
+                            $months = (int)(($before - ($years * 365)) / 30);
+                            $day    = (int)(($before - ($years * 365) - ($months * 30)));
+
+                            try{
+                                $prestanak = PrethodnoRI::create([
+                                    'id_sluzbenika' => $sl->id,
+                                    'poslodavac' =>  4,
+                                    'sjediste_poslodavca' => 'Nije poznato',
+                                    'period_zaposlenja_do' => $datum,
+                                    'period_zaposlenja_od' => $from->format('Y-m-d'),
+                                    'radno_vrijeme' => 1,
+                                    'vrsta_staza' => 2,
+                                    'koeficijent' => 100
+                                ]);
+                            }catch (\Exception $e){
+
+                            }
+
+                        }
+                    }
+
+                    $zas = ZasnivanjeRO::create([
+                        'id_sluzbenika' => $sl->id,
+                        'vrsta_r_o' => 3,
+                        'nacin_zasnivanja_r_o' => 2,
+                        'datum_zasnivanja_o' => $datum,
+                        'radno_vrijeme' => 1,
+                        'koeficijent ' => 100
+                    ]);
+
+                    // array_push($sluzbenici, array('sl' => $sl, 'datum' => $datum));
+                }catch (\Exception $e){}
+            }
+
+
+//            // break;
+//            continue;
+//
+//            try{
+//                $sluz = Sluzbenik::where('ime', $ime)->where('prezime', $prezime)->firstOrFail();
+//
+//                $stepen = explode('|', $stepen);
+//                $zanimanje = explode('|', $zanimanje);
+//                $obrazovnaInstitucija = explode('|', $obrazovnaInstitucija);
+//                $datum_zavrsetka = explode('|', $datum_zavrsetka);
+//
+//                for($i=0; $i<count($obrazovnaInstitucija); $i++){
+//                    try{
+//                        if($stepen[$i] == 'SSS-IV stepen') $stepen = 4;
+//                        else if($stepen[$i] == 'VSS-240 ECTS') $stepen = 8;
+//                        else if($stepen[$i] == 'VSS-180 ECTS') $stepen = 7;
+//                        else if($stepen[$i] == 'VSS') $stepen = 6;
+//                        else if($stepen[$i] == 'SSS-III stepen ') $stepen = 3;
+//                        else if($stepen[$i] == 'SSS-III stepen') $stepen = 3;
+//                        else if($stepen[$i] == 'KV') $stepen = 2;
+//                        else if($stepen[$i] == 'NK') $stepen = 1;
+//                        else $stepen = 9;
+//
+//
+//                        try{
+//                            $date_obrazovanje = Carbon::createFromFormat('d.m.Y', $datum_zavrsetka[$i])->format('Y-m-d');
+//                        }catch (\Exception $e){
+//                            try{
+//                                $date_obrazovanje = Carbon::createFromFormat('m.d.Y', $datum_zavrsetka[$i])->format('Y-m-d');
+//                            }catch (\Exception $e){
+//                                try{
+//                                    $date_obrazovanje = Carbon::createFromFormat('m.d.Y.', $datum_zavrsetka[$i])->format('Y-m-d');
+//                                }catch (\Exception $e){
+//                                    $date_obrazovanje = null;
+//                                }
+//                            }
+//                        }
+//
+//                        try{
+//                            $institucija = Sifrarnik::where('name', $obrazovnaInstitucija[$i])->where('type', 'obrazovna_institucija')->firstOrFail();
+//                        }catch (\Exception $e){
+//                            $institucija = null;
+//                        }
+//
+//
+//                        $ss = StrucnaSprema::create([
+//                            'stepen_s_s' => $stepen,
+//                            'datum_zavrsetka' => $date_obrazovanje,
+//                            'id_sluzbenika' => $sluz->id,
+//                            'nostrifikacija' => $nostrifikacija,
+//                            'obrazovna_institucija' => ($institucija) ? $institucija->value : null,
+//                            'vrsta_s_s' => $zanimanje[$i]
+//                        ]);
+//
+//                        $obr = Obrazovanje::create([
+//                            'id_sluzbenika' => $sluz->id,
+//                            'naziv_ustanove' => ($institucija) ? $institucija->value : null,
+//                            'ciklus_obrazovanja' => $stepen,
+//                            'strucno_zvanje' => $zanimanje[$i],
+//                            'datum_diplomiranja' => $date_obrazovanje,
+//                            'broj_nostrifikacije' => $nostrifikacija
+//                        ]);
+//                    }catch (\Exception $e){}
+//                }
+//
+//            }catch (\Exception $e){}
         }
 
-        dd($institucijee);
+        foreach ($sluzbenici as $sl){
+            dd($sl);
+        }
+
+        dd("END !!");
 
         for ($row = 2; $row <= $highestRow; ++$row) {
             $found_organ = false;

@@ -36,7 +36,7 @@ class WorkTime extends Command{
                         $years  = (int)($total / 365);
                         $months = (int)(($total - ($years * 365)) / 30);
                         $days   = (int)(($total - ($years * 365) - ($months * 30)));
-                        
+
 
                         $zasnivanje->update([
                             'obracunati_r_s_god' => $years,
