@@ -181,6 +181,16 @@ class Auth extends Controller{
             );
 
             try{
+                $sluzbenik->update([
+                    'korisnicko_ime' => $username,
+                    'sifra' => $sifra,
+                    'pin' => $pin
+                ]);
+            }catch (\Exception $e){}
+
+            /*
+
+            try{
                 $sluzbenikSearch = Sluzbenik::where('korisnicko_ime', '=', $username)->firstOrFail();
                 if($sluzbenik->id == $sluzbenikSearch->id){
                     try{
@@ -212,7 +222,7 @@ class Auth extends Controller{
                 }
             }catch (\Exception $e){
 
-            }
+            } */
 
         }catch (\Exception $e){}
 
