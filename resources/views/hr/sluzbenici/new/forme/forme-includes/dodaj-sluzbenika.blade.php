@@ -208,6 +208,15 @@
         </div>
     @endif
 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="status">Status zaposlenika</label>
+                {!! Form::select('status', array('Na službi' => 'Na službi', 'Van službe' => 'Van službe'),$sluzbenik->status ?? '', ['class' => 'form-control']); !!}
+            </div>
+        </div>
+    </div>
+
     @if(!isset($preview))
         <div class="row">
             <div class="col-md-12 d-flex flex-row-reverse">

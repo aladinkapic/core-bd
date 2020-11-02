@@ -219,7 +219,7 @@ class UsersController extends Controller{
     public function azurirajteSluzbenika(Request $request){
         $request->request->add(['korisnicko_ime' => $this->korisnickoIme($request->ime, $request->prezime)]);
         $request->request->add(['ime_prezime' => $request->prezime.' '.$request->ime]);
-        $request->request->add(['datum_rodjenja' => $this->datumRodjenja($request->jmbg)]);
+        $request->request->add(['datum_rodjenja' => date("Y-m-d", strtotime($this->datumRodjenja($request->jmbg)))]);
 
         try{
             $sluzbenik = Sluzbenik::where('id', $request->id)->update(

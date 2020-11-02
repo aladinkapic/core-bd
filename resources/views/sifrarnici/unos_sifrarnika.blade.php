@@ -25,7 +25,7 @@
                             </tr>
                             <tr>
                                 <td><b>Naslov :</b></td>
-                                <td>{{ Form::text('name', '', ['class' => 'form-control', 'autocomplete' => 'off', 'maxlength' => 120]) }}</td>
+                                <td>{{ Form::text('name', '', ['class' => 'form-control', 'autocomplete' => 'off', 'maxlength' => 300]) }}</td>
                             </tr>
                             <tr>
                                 <td></td>
