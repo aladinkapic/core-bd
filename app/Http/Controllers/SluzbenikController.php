@@ -466,7 +466,6 @@ class SluzbenikController extends Controller
             ->with('zasnivanjeRORel.obracunati_r_staz_s')
             ->orderBy('prezime');
 
-
 //        $sluz = Sluzbenik::get();
 //        foreach ($sluz as $s){
 //            $s->ime_prezime = $s->prezime.' '.$s->ime;
@@ -482,6 +481,7 @@ class SluzbenikController extends Controller
             'email' => 'E-Mail',
             'jmbg' => 'JMB',
             'ime_roditelja' => 'Ime roditelja',
+            'status' => 'Status',
 
             'spol_sl.name' => 'Spol',
             'kategorija_sl.name' => 'Kategorija',

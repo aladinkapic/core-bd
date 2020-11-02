@@ -115,6 +115,7 @@
                         <td>{{ $sluzbenik->email ?? '/'}}</td>
                         <td>{{ $sluzbenik->jmbg ?? '/'}}</td>
                         <td>{{ $sluzbenik->ime_roditelja ?? '/'}}</td>
+                        <td>{{ $sluzbenik->status ?? '/'}}</td>
                         <td>{{ $sluzbenik->spol_sl->name ?? '' }}</td>
                         <td>{{ $sluzbenik->kategorija_sl ? $sluzbenik->kategorija_sl->name : '' }}</td>
                         <td>{{ $sluzbenik->drzavljanstvoRel->name ?? '/' }}</td>

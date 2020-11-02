@@ -658,7 +658,7 @@ class ImportController extends Controller{
                             try{
                                 $prestanak = PrethodnoRI::create([
                                     'id_sluzbenika' => $sl->id,
-                                    'poslodavac' =>  4,
+                                    'poslodavac' =>  1,
                                     'sjediste_poslodavca' => 'Nije poznato',
                                     'period_zaposlenja_do' => $datum,
                                     'period_zaposlenja_od' => $from->format('Y-m-d'),
