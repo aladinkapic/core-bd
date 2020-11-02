@@ -81,6 +81,8 @@ class RadnaMjestaController extends Controller{
             'platni_razred' => 'required',
         ]);
 
+//        dd($request->all());
+
         if($request->rukovodioc == 'on'){
             $request['rukovodioc'] = 1;
         }else{
@@ -106,12 +108,12 @@ class RadnaMjestaController extends Controller{
                 ]);
             }
 
-            for($i=1; $i<count($request->sluzbenik_id); $i++){
-                $sluz = Sluzbenik::find($request->sluzbenik_id[$i]);
-                if($active) $sluz->radno_mjesto = $id;
-                else $sluz->radno_mjesto_temp  = $id;
-                $sluz->save();
-            }
+//            for($i=1; $i<count($request->sluzbenik_id); $i++){
+//                $sluz = Sluzbenik::find($request->sluzbenik_id[$i]);
+//                if($active) $sluz->radno_mjesto = $id;
+//                else $sluz->radno_mjesto_temp  = $id;
+//                $sluz->save();
+//            }
 
 
             return redirect(route('organizacija.radna-mjesta', ['id' => OrganizacionaJedinica::findOrFail($request->id_oj)->org_id ]));
@@ -209,7 +211,7 @@ class RadnaMjestaController extends Controller{
                 }
             }
 
-            for($i=1; $i<count($request->sluzbenik_id); $i++){
+            /* for($i=1; $i<count($request->sluzbenik_id); $i++){
                 if($request->id_sluzben[$i] == 'empty'){
                     // Ako je novi službenik na radnom mjestu, onda ga unosimo.
                     try{
@@ -243,10 +245,10 @@ class RadnaMjestaController extends Controller{
                 }else{
                     // Ovdje ne radimo ništa ! Nije moguće
                 }
-            }
+            } */
 
             return redirect(route('organizacija.radna-mjesta', ['id' => OrganizacionaJedinica::findOrFail($request->id_oj)->org_id ]));
-        }catch(\Exception $e){}
+        }catch(\Exception $e){dd($e);}
     }
 
     public function urediRadnoMjesto($id){

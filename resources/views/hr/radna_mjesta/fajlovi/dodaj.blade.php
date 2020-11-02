@@ -50,24 +50,6 @@
                         </div>
                     @endif
                 </li>
-                <li>
-                    @if(isset($radno_mjesto))
-                        <div class="tab_div">
-                            <i class="fas fa-users"></i>
-                            <p>{{__('Uposleni na radnom mjestu')}}</p>
-                        </div>
-                    @else
-                        <div class="list_div">
-                            <div class="back_div"></div>
-                            <div class="icon_circle">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <p>
-                                {{__('Uposleni na radnom mjestu')}}
-                            </p>
-                        </div>
-                    @endif
-                </li>
             </ul>
 
 
@@ -288,70 +270,70 @@
             </section>
 
 
-            <section class="">
-                <div class="container_block" >
-                    @if(!isset($radno_mjesto))
-                        <div class="split_container">
-                            <div class="copied_form" id="nekaamo">
+{{--            <section class="">--}}
+{{--                <div class="container_block" >--}}
+{{--                    @if(!isset($radno_mjesto))--}}
+{{--                        <div class="split_container">--}}
+{{--                            <div class="copied_form" id="nekaamo">--}}
 
-                                <div class="form-group row">
-                                    <div class="col">
-                                        {!! Form::label('ime_sluzbenika', __('Ime i prezime službenika').' : ', ['class' => 'control-label']) !!}
-                                        <div class="col-lg-12">
-                                            {!!  Form::select('sluzbenik_id[]', $sluzbenici, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <div class="col">--}}
+{{--                                        {!! Form::label('ime_sluzbenika', __('Ime i prezime službenika').' : ', ['class' => 'control-label']) !!}--}}
+{{--                                        <div class="col-lg-12">--}}
+{{--                                            {!!  Form::select('sluzbenik_id[]', $sluzbenici, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                                <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>
-                            </div>
+{{--                                <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>--}}
+{{--                            </div>--}}
 
-                            <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
-                                <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">
-                                    {{__('Dodajte službenika')}}
-                                    <i class="fas fa-save"></i>
-                                </button>
-                            </div>
-                        </div>
+{{--                            <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">--}}
+{{--                                <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('korisnici', 'nekaamo');">--}}
+{{--                                    {{__('Dodajte službenika')}}--}}
+{{--                                    <i class="fas fa-save"></i>--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
-                        <div class="split_container" style="padding:0px;">
-                            <div id="korisnici">
+{{--                        <div class="split_container" style="padding:0px;">--}}
+{{--                            <div id="korisnici">--}}
 
-                            </div>
-                        </div>
-                    @else
-                        <div class="split_container split_container5" style="padding:0px;">
-                            <table class="table table-bordered text-left">
-                                <thead >
-                                <tr>
-                                    <th scope="col" width="40px;" class="text-center">#</th>
-                                    <th scope="col">{{__('Ime i prezime službenika')}}</th>
-                                    <th scope="col">{{__('Organizaciona jedinica')}}</th>
-                                    <th scope="col" class="text-center" width="140px">{{__('Akcije')}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($odabrani_sluzbenici as $korisnik)
-                                    <tr>
-                                        <th scope="row" width="40px;" class="text-center"></th>
-                                        <td> {{$korisnik->ime}} {{$korisnik->prezime}} </td>
-                                        <td> {{$org_jedinice[$radno_mjesto->id_oj]}} </td>
-                                        <td class="text-center">
-                                            <a href="{{ route('sluzbenik.dodatno', ['id_sluzbenika' => $korisnik->id]) }}">
-                                                <i class="fa fa-eye" style="margin-right:10px;"></i> {{__('Pregled')}}
-                                            </a>
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @else--}}
+{{--                        <div class="split_container split_container5" style="padding:0px;">--}}
+{{--                            <table class="table table-bordered text-left">--}}
+{{--                                <thead >--}}
+{{--                                <tr>--}}
+{{--                                    <th scope="col" width="40px;" class="text-center">#</th>--}}
+{{--                                    <th scope="col">{{__('Ime i prezime službenika')}}</th>--}}
+{{--                                    <th scope="col">{{__('Organizaciona jedinica')}}</th>--}}
+{{--                                    <th scope="col" class="text-center" width="140px">{{__('Akcije')}}</th>--}}
+{{--                                </tr>--}}
+{{--                                </thead>--}}
+{{--                                <tbody>--}}
+{{--                                @foreach($odabrani_sluzbenici as $korisnik)--}}
+{{--                                    <tr>--}}
+{{--                                        <th scope="row" width="40px;" class="text-center"></th>--}}
+{{--                                        <td> {{$korisnik->ime}} {{$korisnik->prezime}} </td>--}}
+{{--                                        <td> {{$org_jedinice[$radno_mjesto->id_oj]}} </td>--}}
+{{--                                        <td class="text-center">--}}
+{{--                                            <a href="{{ route('sluzbenik.dodatno', ['id_sluzbenika' => $korisnik->id]) }}">--}}
+{{--                                                <i class="fa fa-eye" style="margin-right:10px;"></i> {{__('Pregled')}}--}}
+{{--                                            </a>--}}
 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @endif
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                @endforeach--}}
+{{--                                </tbody>--}}
+{{--                            </table>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
 
-                </div>
-            </section>
+{{--                </div>--}}
+{{--            </section>--}}
 
 
             <div class="buttons" style="text-align:center;">
