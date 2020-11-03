@@ -141,7 +141,7 @@
                                         <div class="col">
                                             {!! Form::label('strucna_sprema', 'Kompetencije : ', ['class' => 'control-label']) !!}
                                             <div class="col-lg-12">
-                                                {!!  Form::select('kompetencije', $kompetencije, isset($radno_mjesto) ? $radno_mjesto->kompetencije : '' ,['class' => 'form-control', 'id' => 'strucna_sprema', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
+                                                {!!  Form::select('strucna_sprema', $kompetencije, isset($radno_mjesto) ? $radno_mjesto->strucna_sprema : '' ,['class' => 'form-control', 'id' => 'strucna_sprema', isset($radno_mjesto) ? 'disabled  = "true"' : '']) !!}
                                             </div>
                                         </div>
 {{--                                        <div class="col">--}}
