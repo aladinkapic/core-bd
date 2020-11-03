@@ -210,46 +210,6 @@ class RadnaMjestaController extends Controller{
                     ]);
                 }
             }
-
-<<<<<<< HEAD
-//            for($i=1; $i<count($request->sluzbenik_id); $i++){
-//                if($request->id_sluzben[$i] == 'empty'){
-//                    // Ako je novi službenik na radnom mjestu, onda ga unosimo.
-//                    try{
-//                        $rel = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->sluzbenik_id[$i])->where('radno_mjesto_id', $request->id_rm)->firstOrFail();
-//                    }catch (\Exception $e){
-//                        try{
-//                            $rel = RadnoMjestoSluzbenik::create([
-//                                'sluzbenik_id'    => $request->sluzbenik_id[$i],
-//                                'radno_mjesto_id' => $request->id_rm
-//                            ]);
-//                        }catch (\Exception $e){}
-//                    }
-//
-//                    $sluz = Sluzbenik::find($request->sluzbenik_id[$i]);
-//
-//                    if($active){
-//                        // Obrišimo službenika sa stare aktivne sistematizacije
-//                        try{
-//                            $rms = RadnoMjestoSluzbenik::where('sluzbenik_id', $sluz->id)->where('radno_mjesto_id', $sluz->radno_mjesto)->delete();
-//                        }catch (\Exception $e){}
-//
-//                        // Ako je sistematizacija aktivna, onda provjeravamo da li ima uzorak prvo, ako nema
-//                        // unesemo ga, a ako ima onda ga ažuriramo
-//
-//                        $sluz->radno_mjesto = $id_rm;
-//                    }
-//                    else{
-//                        $sluz->radno_mjesto_temp  = $request->id_rm;
-//                    }
-//                    $sluz->save();
-//                }else{
-//                    // Ovdje ne radimo ništa ! Nije moguće
-//                }
-//            }
-
-            return back();
-=======
             /* for($i=1; $i<count($request->sluzbenik_id); $i++){
                 if($request->id_sluzben[$i] == 'empty'){
                     // Ako je novi službenik na radnom mjestu, onda ga unosimo.
@@ -285,7 +245,6 @@ class RadnaMjestaController extends Controller{
                     // Ovdje ne radimo ništa ! Nije moguće
                 }
             } */
->>>>>>> 1f6252f7824e3ad2b57530fd7798dcea170dd8db
 
             return redirect(route('organizacija.radna-mjesta', ['id' => OrganizacionaJedinica::findOrFail($request->id_oj)->org_id ]));
         }catch(\Exception $e){dd($e);}

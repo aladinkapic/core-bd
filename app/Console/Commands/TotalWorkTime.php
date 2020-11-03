@@ -47,6 +47,7 @@ class TotalWorkTime extends Command{
                     if($zasnivanje->datum_prestanka_ro != null) $datum_do = Carbon::parse($zasnivanje->datum_prestanka_ro);
                     else $datum_do = Carbon::now();
 
+                    if($zasnivanje->koeficijent == null) $zasnivanje->koeficijent = 100;
                     $thisDays = (int)(($datum_do->diffInDays($datum_od) * $zasnivanje->koeficijent) / 100);
                     $days += $thisDays;
                     $days_insurance += $thisDays;
