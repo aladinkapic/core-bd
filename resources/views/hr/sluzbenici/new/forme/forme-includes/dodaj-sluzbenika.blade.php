@@ -212,7 +212,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="status">Status zaposlenika</label>
-                {!! Form::select('status', array('Na službi' => 'Na službi', 'Van službe' => 'Van službe'),$sluzbenik->status ?? '', ['class' => 'form-control']); !!}
+                {!! Form::select('status', array('Na službi' => 'Na službi', 'Van službe' => 'Van službe'), $sluzbenik->status ?? '', ['class' => 'form-control', 'id' => 'mrs', isset($preview) ? 'disabled => true' : '']); !!}
             </div>
         </div>
     </div>
