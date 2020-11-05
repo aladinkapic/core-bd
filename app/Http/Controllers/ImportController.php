@@ -567,7 +567,7 @@ class ImportController extends Controller{
 
         $institucijee = array();
 
-        /*
+
         for ($row = 2; $row <= $highestRow; ++$row) {
             $obrazovnaInstitucija = $objWorksheet->getCellByColumnAndRow(12, $row)->getValue();
 
@@ -582,7 +582,6 @@ class ImportController extends Controller{
             }
 
         }
-
         $counter = 1;
         foreach($institucijee as $inst){
             try{
@@ -599,7 +598,7 @@ class ImportController extends Controller{
                 }
             }
         }
-        */
+
         $counter = 1;
 
         $sluzbenici = array();
@@ -659,7 +658,7 @@ class ImportController extends Controller{
                             try{
                                 $prestanak = PrethodnoRI::create([
                                     'id_sluzbenika' => $sl->id,
-                                    'poslodavac' =>  4,
+                                    'poslodavac' =>  1,
                                     'sjediste_poslodavca' => 'Nije poznato',
                                     'period_zaposlenja_do' => $datum,
                                     'period_zaposlenja_od' => $from->format('Y-m-d'),
@@ -761,8 +760,6 @@ class ImportController extends Controller{
         }
 
         dd("END !!");
-
-
 
         for ($row = 2; $row <= $highestRow; ++$row) {
             $found_organ = false;
@@ -1100,7 +1097,7 @@ class ImportController extends Controller{
                             'datum_do' => Carbon::now()->format('Y-m-d'),
                             'oju_id' => $organ_m->id // Insert organ id
                         ]);
-                    }catch (\Exception $e){}
+                    }catch (\Exception $e){dd($e);}
                 }catch (\Exception $e){}
                 foreach($organ['pododjeljenje'] as $pododjeljenje){
                     $k = 1;
@@ -1281,8 +1278,8 @@ class ImportController extends Controller{
                                                         'updated_at' => Carbon::now()
                                                     ]);
                                                 }
-                                            }catch (\Exception $e){}
-                                        }catch (\Exception $e){}
+                                            }catch (\Exception $e){dd($e);}
+                                        }catch (\Exception $e){dd($e);}
 
                                         foreach($radno_mjesto['sluzbenici'] as $sluzbenik){
 

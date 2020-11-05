@@ -295,7 +295,7 @@ Route::prefix('hr/radna_mjesta')->group(function () {
     Route::get('/pregledaj_radno_mjesto/{id}/{what}','RadnaMjestaController@pregledajRadnoMjesto')->name('radnamjesta.rjesenje');
     Route::get('/pregledaj_radno_mjestooo/{id}',     'RadnaMjestaController@pregledajRadnoMjestoooo')->name('radnamjesta.pregledaj-mjestooo');
 
-    Route::get('/uredi_radno_mjesto/{id}',           'RadnaMjestaController@urediRadnoMjesto');
+    Route::get('/uredi_radno_mjesto/{id}',           'RadnaMjestaController@urediRadnoMjesto')->name('radnamjesta-uredi-rm');
     Route::post('/azuriraj_rm',                      'RadnaMjestaController@azurirajRadnoMjesto');
 
     Route::get('/obrisi-sa-rm/{rm}/{sluzbenik}',     'RadnaMjestaController@obrisiSaRadnogMjesta');

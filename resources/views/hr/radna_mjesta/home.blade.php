@@ -84,6 +84,11 @@
                                 <button class="btn my-button">{{__('Pregled')}}</button>
                             </a>
 
+                            <a href="{{route('radnamjesta-uredi-rm', ['id' => $radnoMjesto->id ?? '/'])}}"
+                               title="Uredite radno mjesto">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
 {{--                            <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{ $radnoMjesto->id ?? '1'}}"--}}
 {{--                               title="Uredite radno mjesto">--}}
 {{--                                <i class="fas fa-edit"></i>--}}

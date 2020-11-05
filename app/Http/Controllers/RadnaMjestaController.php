@@ -210,7 +210,6 @@ class RadnaMjestaController extends Controller{
                     ]);
                 }
             }
-
             /* for($i=1; $i<count($request->sluzbenik_id); $i++){
                 if($request->id_sluzben[$i] == 'empty'){
                     // Ako je novi službenik na radnom mjestu, onda ga unosimo.
