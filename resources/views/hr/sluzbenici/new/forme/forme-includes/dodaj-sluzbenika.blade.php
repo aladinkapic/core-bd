@@ -195,7 +195,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="PIO">Obračunati radni staž</label>
+                    <label for="PIO">Radni staž</label>
                     {!! Form::text('ors', ($sluzbenik->staz_godina ?? '').' god '.($sluzbenik->staz_mjeseci ?? '').' mj i '.($sluzbenik->staz_dana ?? ''). ' dana', ['class' => 'form-control', 'id' => 'ors', 'required' => 'required', 'readonly']) !!}
                 </div>
             </div>

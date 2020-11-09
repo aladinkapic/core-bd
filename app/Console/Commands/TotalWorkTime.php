@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\DummyModels\PrethodnoRI;
 use App\Models\DummyModels\ZasnivanjeRO;
+use App\Models\Odsustva;
 use App\Models\Sluzbenik;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -52,6 +53,11 @@ class TotalWorkTime extends Command{
                     $days += $thisDays;
                     $days_insurance += $thisDays;
                 }
+
+                $neplaceno = Odsustva::where('sluzbenik_id', 529)->where('vrsta_odsustva', 2)->count();
+
+                $days-= $neplaceno;
+                $days_insurance-= $neplaceno;
 
                 $years  = (int) ($days / 365);
                 $months = (int)(($days - ($years * 365)) / 30);

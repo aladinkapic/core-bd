@@ -62,13 +62,11 @@
                             <a class="btn btn-primary btn-xs" href="/organizacija/edit/{{ $org->id}}">
                                 <i class="fa fa-pen"></i> {{__('Izmjena')}}
                             </a>
-                            <form style="display: inline-block;" method="POST" action="/organizacija/destroy/{{ $org->id  }}">
-                                {{ method_field('DELETE') }}
-                                @csrf
-                                <button style="display: none;" class="btn btn-danger btn-xs remove-org">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </form>
+                            @if(\App\Models\Sluzbenik::hasRole('postavke', $me))
+                            <a href="/organizacija/destroy/{{ $org->id  }}"  class="btn btn-danger btn-xs">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

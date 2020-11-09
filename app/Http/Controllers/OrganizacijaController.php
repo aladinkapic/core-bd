@@ -122,14 +122,13 @@ class OrganizacijaController extends Controller
         return view('hr.organizacija.nova');
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
 
         $org = Organizacija::find($id);
 
-        if ($org->active == 1) return redirect(route('organizacija.index'))->with(['success' => 'Ne možete obrisati aktivnu unutrašnju organizaciju!']);
-
-        Organizacija::brisanje($id);
+        if ($org->active == 1) Organizacija::brisanje_aktivne($id);
+        else Organizacija::brisanje($id);
 
         return redirect(route('organizacija.index'))->with('status', 'Uspješno obrisano!');
 

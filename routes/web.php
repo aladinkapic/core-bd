@@ -458,7 +458,7 @@ Route::prefix('organizacija')->group(function () {
     Route::get('create',            'OrganizacijaController@create')->name('organizacija.create');
     Route::get('nova',              'OrganizacijaController@nova')->name('organizacija.novaaa');
     Route::put('store',             'OrganizacijaController@store')->name('organizacija.store');
-    Route::delete('destroy/{id}',   'OrganizacijaController@destroy')->name('organizacija.destroy');
+    Route::get('destroy/{id}',   'OrganizacijaController@destroy')->name('organizacija.destroy');
     Route::post('active/{id}',      'OrganizacijaController@active')->name('organizacija.active');
 
     Route::get('izmjena/{id}',             'OrganizacijaController@izmjena')->name('organizacija.izmjena');

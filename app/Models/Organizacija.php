@@ -97,8 +97,19 @@ class Organizacija extends Model{
          RadnoMjesto::join('org_jedinica', 'radna_mjesta.id_oj', '=', 'org_jedinica.id')
             ->where('org_jedinica.org_id', '=', $org_id)
             ->delete();
+    }
 
+    public static function brisanje_aktivne($org_id){
+        Sluzbenik::join('radna_mjesta', 'sluzbenici.radno_mjesto', '=', 'radna_mjesta.id')
+                        ->join('org_jedinica', 'radna_mjesta.id_oj', '=', 'org_jedinica.id')
+                        ->where('org_jedinica.org_id', '=', $org_id)->delete();
 
+        RadnoMjesto::join('org_jedinica', 'radna_mjesta.id_oj', '=', 'org_jedinica.id')
+                        ->where('org_jedinica.org_id', '=', $org_id)->delete();
+
+        OrganizacionaJedinica::where('org_id', '=', $org_id)->delete();
+
+        Organizacija::where('id', '=', $org_id)->delete();
     }
 
     public function organizacioneJedinice(){

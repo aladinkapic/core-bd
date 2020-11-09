@@ -440,6 +440,8 @@ class SluzbenikController extends Controller
      * /******************************************************************************************************************/
 
     public function pregledSluzbenika(Request $request){
+        $dd = Odsustva::where('sluzbenik_id', 529)->where('vrsta_odsustva', 2)->count();
+
         $odsustva = $request->odsustva;
 
         $sluzbenici = Sluzbenik::with('clanoviPorodiceRel')
