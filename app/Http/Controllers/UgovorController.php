@@ -294,6 +294,7 @@ class UgovorController extends Controller{
             );
 
             $sluzbenik->privremeni_premjestaj = $privremeno->id;
+            $sluzbenik->save();
         }catch (\Exception $e){dd($e);}
 
         return redirect(route('ugovor.privremeno.index'))->with(['success' => 'Izmjene su uspješno spašene!']);

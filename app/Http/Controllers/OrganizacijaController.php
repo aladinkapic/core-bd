@@ -249,7 +249,7 @@ class OrganizacijaController extends Controller
         $tip_premjestaja      = Sifrarnik::dajSifrarnik('tip_privremenog_premjestaja');
         $tip_uslova           = Sifrarnik::dajSifrarnik('tip_uslova');
         $kompetencije         = Sifrarnik::dajSifrarnik('strucna_sprema');
-        $tip_radnog_mjesta    = Sifrarnik::dajSifrarnik('tip_radnog_mjesta');
+        $tip_radnog_mjesta    = Sifrarnik::dajSifrarnik('stepen');
         $benificirani         = Sifrarnik::dajSifrarnik('benificirani')->prepend('Odaberite', '0');
 
         $org_jedinice = OrganizacionaJedinica::select(['id', DB::raw('concat(broj, \' \', naziv) as full_name')])
