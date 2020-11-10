@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\DummyModels\ZasnivanjeRO;
+use App\Models\Odsustva;
 use App\Models\Sluzbenik;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -32,6 +33,10 @@ class WorkTime extends Command{
 
                         $total = $datum_od->diffInDays($datum_do);
                         $total = (int)($total * $zasnivanje->koeficijent) / 100;
+
+                        $neplaceno = Odsustva::where('sluzbenik_id', $sluzbenik->id)->where('vrsta_odsustva', 2)->count();
+
+                        $total-= $neplaceno;
 
                         $years  = (int)($total / 365);
                         $months = (int)(($total - ($years * 365)) / 30);
