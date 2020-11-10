@@ -2,6 +2,7 @@
 
 namespace App\Models\DummyModels;
 
+use App\Models\Sifrarnik;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
@@ -22,5 +23,9 @@ class Obrazovanje extends Model{
     public function datumNostrifikacije(){
         if(!$this->datum_nostrifikacije) return '';
         return Carbon::parse($this->datum_nostrifikacije)->format('d.m.Y');
+    }
+
+    public function ciklus(){
+        return $this->hasOne(Sifrarnik::class, 'value', 'ciklus_obrazovanja')->where('type', 'stepen');
     }
 }

@@ -124,7 +124,7 @@ class UsersController extends Controller{
         // Obrazovanje službenika
         $obrazovanja    =  Obrazovanje::where('id_sluzbenika', $id)->get();
         $ustanova       = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite ustanovu', '');
-        $ciklus         = Sifrarnik::dajSifrarnik('ciklus_obrazovanja')->prepend('Odaberite ciklus', '');
+        $ciklus         = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite ciklus', '');
 
         // Dodatne vještine
         $vjestine       = Vjestine::where('id_sluzbenika', $id)->get();
@@ -397,7 +397,7 @@ class UsersController extends Controller{
     public function dodajObrazovanje($sl_id){
         $sluzbenik = Sluzbenik::where('id', $sl_id)->first();
         $ustanova  = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite ustanovu', '');
-        $ciklus    = Sifrarnik::dajSifrarnik('ciklus_obrazovanja')->prepend('Odaberite ciklus', '');
+        $ciklus    = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite ciklus', '');
 
 
         return view('hr.sluzbenici.new.forme.obrazovanje', [
@@ -420,7 +420,7 @@ class UsersController extends Controller{
         $obrazovanje  = Obrazovanje::where('id', $id)->first();
         $sluzbenik    = Sluzbenik::where('id', $obrazovanje->id_sluzbenika)->first();
         $ustanova     = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite ustanovu', '');
-        $ciklus       = Sifrarnik::dajSifrarnik('ciklus_obrazovanja')->prepend('Odaberite ciklus', '');
+        $ciklus       = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite ciklus', '');
 
         return view('hr.sluzbenici.new.forme.obrazovanje', [
             'obrazovanje' => $obrazovanje,
