@@ -325,4 +325,8 @@ class Sluzbenik extends Model{
         }
 
     }
+
+    public function privremeniRel(){
+        return $this->hasOne(Privremeno::class, 'id', 'privremeni_premjestaj');
+    }
 }
