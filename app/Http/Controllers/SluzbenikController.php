@@ -528,7 +528,7 @@ class SluzbenikController extends Controller
 
             'strucnaSprema.stepenStrucne.name' => 'Stručna sprema tražena konkursom',
             'obrazovanjeRel.ciklus.name' => 'Obrazovanje službenika',
-            'strucnaSprema.vrsta_s_s' => 'Zanimanje',
+            'strucnaSprema.vrsta_s_s' => 'Zanimanje traženo konkursom',
             'strucnaSprema.obrazovnaInstitucija.name' => 'Obrazovna institucija',
 //            'id3' => 'Položeni ispiti',
 //            'id4' => 'Kontakt informacije',
