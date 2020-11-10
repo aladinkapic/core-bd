@@ -34,7 +34,8 @@ class WorkTime extends Command{
                         $total = $datum_od->diffInDays($datum_do);
                         $total = (int)($total * $zasnivanje->koeficijent) / 100;
 
-                        $neplaceno = Odsustva::where('sluzbenik_id', $sluzbenik->id)->where('vrsta_odsustva', 2)->count();
+                        $neplaceno = Odsustva::where('sluzbenik_id', $sluzbenik->id)->where('datum', '<=', Carbon::now()->format('Y-m-d'))->where('vrsta_odsustva', 2)->count();
+
 
                         $total-= $neplaceno;
 
