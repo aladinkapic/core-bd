@@ -63,12 +63,12 @@
                                     {!! Form::text('naziv_rm', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm', 'onkeyup' => 'verifikuj_string("naziv_rm", "Naziv radnog ne smije sadržavati brojeve !", "ima_li_brojeva"), copy_content(this, ["naziv_rm_inp"])', 'autocomplete' => 'off', 'maxlength' => '100', isset($radno_mjesto) ? 'readonly' : '']) !!}
                                 </div>
                             </div>
-                            <div class="col">
-                                {!! Form::label('sifra_rm', __('Šifra radnog mjesta').' : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!! Form::text('sifra_rm', isset($radno_mjesto) ? $radno_mjesto->sifra_rm : '' , ['class' => 'form-control', 'rows' => 1, 'id' => 'sifra_rm', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '50']) !!}
-                                </div>
-                            </div>
+{{--                            <div class="col">--}}
+{{--                                {!! Form::label('sifra_rm', __('Šifra radnog mjesta').' : ', ['class' => 'control-label']) !!}--}}
+{{--                                <div class="col-lg-12">--}}
+{{--                                    {!! Form::text('sifra_rm', isset($radno_mjesto) ? $radno_mjesto->sifra_rm : '' , ['class' => 'form-control', 'rows' => 1, 'id' => 'sifra_rm', 'autocomplete' => 'off', isset($radno_mjesto) ? 'readonly' : '', 'maxlength' => '50']) !!}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>
                         <div class="form-group row">
@@ -143,14 +143,14 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
                         </div>
-                        <div class="form-group row">
-                            <div class="col">
-                                {!! Form::label('benificirani_staz', __('Benificirani radni staž').' : ', ['class' => 'control-label']) !!}
-                                <div class="col-lg-12">
-                                    {!!  Form::select('benificirani_staz', $benificirani, isset($radno_mjesto) ? $radno_mjesto->benificirani_staz : '' ,['class' => 'form-control', 'id' => 'strucna_sprema']) !!}
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="form-group row">--}}
+{{--                            <div class="col">--}}
+{{--                                {!! Form::label('benificirani_staz', __('Benificirani radni staž').' : ', ['class' => 'control-label']) !!}--}}
+{{--                                <div class="col-lg-12">--}}
+{{--                                    {!!  Form::select('benificirani_staz', $benificirani, isset($radno_mjesto) ? $radno_mjesto->benificirani_staz : '' ,['class' => 'form-control', 'id' => 'strucna_sprema']) !!}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     @if(isset($what))
                         <div class="full_container full_container_b">
