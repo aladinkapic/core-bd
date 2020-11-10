@@ -461,6 +461,7 @@ class SluzbenikController extends Controller
             ->with('zasnivanjeRORel')
 //            ->with('poreskaUprava') // TODO
             ->with('sluzbenikRel.rm.orgjed.organizacija.organ')
+            ->with('sluzbenikRel.rm.stepenSS')
             ->with('sluzbenikRel.rm.rukovodioc_s')
             ->with('zasnivanjeRORel.nacin_zasnivanja_ro_s')
             ->with('zasnivanjeRORel.vrsta_r_o_s')
@@ -507,6 +508,7 @@ class SluzbenikController extends Controller
             'pioRel.name' => 'Poreska uprava',
             'radnoMjesto.naziv_rm' => 'Radno mjesto',
             'radnoMjesto.katgorijaa.name' => 'Kategorija radnog mjesta',
+            'radnoMjesto.stepenSS.name' => 'Stepen stručne spreme - radno mjesto',
             'privremeniRel.privremeno_mjesto.naziv_rm' => 'Privremeni premještaj',
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
             'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
@@ -524,7 +526,7 @@ class SluzbenikController extends Controller
             'zasnivanjeRORel.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
             'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž',
 
-            'strucnaSprema.stepenStrucne.name' => 'Stepen stručne spreme',
+            'strucnaSprema.stepenStrucne.name' => 'Obrazovanje službenika',
             'strucnaSprema.vrsta_s_s' => 'Zanimanje',
             'strucnaSprema.obrazovnaInstitucija.name' => 'Obrazovna institucija',
 //            'id3' => 'Položeni ispiti',
