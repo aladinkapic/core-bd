@@ -6,6 +6,7 @@ use App\Models\Odsustva;
 use App\Models\Organ;
 use DB;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use function GuzzleHttp\Promise\queue;
 use Illuminate\Http\Request;
@@ -442,7 +443,8 @@ class SluzbenikController extends Controller
     public function pregledSluzbenika(Request $request){
         $dd = Odsustva::where('sluzbenik_id', 529)->where('vrsta_odsustva', 2)->count();
 
-        $odsustva = $request->odsustva;
+        if(Route::currentRouteName() == 'odsustva.izaberi') $odsustva = true;
+        else $odsustva = null;
 
         $sluzbenici = Sluzbenik::with('clanoviPorodiceRel')
             ->with('spol_sl')
