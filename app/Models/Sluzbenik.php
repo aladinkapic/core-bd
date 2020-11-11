@@ -176,7 +176,14 @@ class Sluzbenik extends Model{
         return Carbon::parse($this->datum_rodjenja)->format('d.m.Y');
     }
 
-
+    public function neplacenoOdustvoKarton(){
+        try{
+            if($this->neplaceno_odsustvo != null) return Carbon::parse($this->neplaceno_odsustvo)->format('d.m.Y');
+            else return "";
+        }catch (\Exception $e){
+            return "";
+        }
+    }
 
     public static function whereOrgan($id){
 

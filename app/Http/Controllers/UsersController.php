@@ -221,6 +221,7 @@ class UsersController extends Controller{
         $request->request->add(['ime_prezime' => $request->prezime.' '.$request->ime]);
         $request->request->add(['datum_rodjenja' => date("Y-m-d", strtotime($this->datumRodjenja($request->jmbg)))]);
 
+        $request = HelpController::formatirajRequest($request);
         try{
             $sluzbenik = Sluzbenik::where('id', $request->id)->update(
                 $request->except(['_token', 'id'])

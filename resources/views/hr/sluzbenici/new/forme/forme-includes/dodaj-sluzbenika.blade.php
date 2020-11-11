@@ -215,6 +215,12 @@
                 {!! Form::select('status', array('Aktivan' => 'Aktivan', 'Pasivan' => 'Pasivan'), trim($sluzbenik->status ?? '') ?? '', ['class' => 'form-control', 'id' => 'mrs', isset($preview) ? 'disabled => true' : '']); !!}
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="neplaceno_odsustvo">Neplaćeno odsustvo</label>
+                {!! Form::text('neplaceno_odsustvo', isset($sluzbenik) ? $sluzbenik->neplacenoOdustvoKarton() : '', ['class' => 'form-control', 'id' => 'neplaceno_odsustvo', isset($preview) ? 'readonly' : '', 'placeholder' => '01.01.2020']); !!}
+            </div>
+        </div>
     </div>
 
     @if(!isset($preview))
