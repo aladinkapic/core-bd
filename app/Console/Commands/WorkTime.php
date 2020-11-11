@@ -36,13 +36,11 @@ class WorkTime extends Command{
 
                         $neplaceno = Odsustva::where('sluzbenik_id', $sluzbenik->id)->where('datum', '<=', Carbon::now()->format('Y-m-d'))->where('vrsta_odsustva', 2)->count();
 
-
                         $total-= $neplaceno;
 
                         $years  = (int)($total / 365);
                         $months = (int)(($total - ($years * 365)) / 30);
                         $days   = (int)(($total - ($years * 365) - ($months * 30)));
-
 
                         $zasnivanje->update([
                             'obracunati_r_s_god' => $years,

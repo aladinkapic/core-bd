@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(){
-        view()->composer(['template.menu', 'home'], function(View $view) {
+        view()->composer(['template.menu', 'home', 'hr.organizacija.index'], function(View $view) {
 
             if(Session::has('ID')){
                 $me = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->with('uloge')->first();

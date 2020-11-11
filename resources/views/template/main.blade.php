@@ -35,6 +35,7 @@
         </div>
 
 
+
         @if(!isset($withoutMenu)) @include('template.menu') @endif                      <!-- include menu -->
         @include('template.notifications')                                              <!-- include notifications -->
         @include('template/dodatni_fajlovi/loading')                                    <!-- include loading -->

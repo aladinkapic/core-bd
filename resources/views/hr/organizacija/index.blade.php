@@ -15,7 +15,6 @@
 @stop
 
 @section('content')
-
     <div class="container">
         <div class="fine-header">
             <h4>{{__('Organizacioni planovi / Pravilnici')}}</h4>
