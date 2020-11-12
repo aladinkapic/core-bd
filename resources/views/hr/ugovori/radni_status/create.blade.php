@@ -125,7 +125,7 @@
                                         {{__('Datum početka rada')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <input class="form-control datepicker-2" type="text" id="datum3" name="datum_pocetka_rada"
+                                        <input class="form-control datepicker-3" type="text" id="datum_pocetka_rada" name="datum_pocetka_rada"
                                                placeholder="Datum početka rada..."/>
                                     </div>
                                 </div>

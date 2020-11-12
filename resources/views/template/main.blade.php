@@ -72,6 +72,11 @@
                         dateFormat: 'dd.mm.yy'
                     });
                 } );
+                $( function() {
+                    $( ".datepicker-3" ).datepicker({
+                        dateFormat: 'dd.mm.yy'
+                    });
+                } );
             });
         </script>
         @yield('other_js_links')
