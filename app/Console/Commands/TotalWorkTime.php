@@ -56,19 +56,8 @@ class TotalWorkTime extends Command{
 
                 $neplaceno = Odsustva::where('sluzbenik_id', $sluzbenik->id)->where('datum', '<=', Carbon::now()->format('Y-m-d'))->where('vrsta_odsustva', 2)->count();
 
-
-
-                $sl = Sluzbenik::where('id', $sluzbenik->id)->first('neplaceno_odsustvo');
-                if($sl->neplaceno_odsustvo){
-                    try{
-                        $neplaceno_start = Carbon::parse($sl->neplaceno_odsustvo);
-                        $dana = $neplaceno_start->diffInDays(Carbon::now());
-
-                        $days-= $dana;
-                        $days_insurance-= $dana;
-                    }catch (\Exception $e){}
-                }
-
+                $days-= $neplaceno;
+                $days_insurance-= $neplaceno;
 
                 $years  = (int) ($days / 365);
                 $months = (int)(($days - ($years * 365)) / 30);
