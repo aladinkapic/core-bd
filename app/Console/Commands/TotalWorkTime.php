@@ -56,7 +56,8 @@ class TotalWorkTime extends Command{
 
                 $neplaceno = Odsustva::where('sluzbenik_id', $sluzbenik->id)->where('datum', '<=', Carbon::now()->format('Y-m-d'))->where('vrsta_odsustva', 2)->count();
 
-
+                $days-= $neplaceno;
+                $days_insurance-= $neplaceno;
 
                 $sl = Sluzbenik::where('id', $sluzbenik->id)->first('neplaceno_odsustvo');
                 if($sl->neplaceno_odsustvo){
