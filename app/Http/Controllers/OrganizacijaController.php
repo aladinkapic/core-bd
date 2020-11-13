@@ -7,6 +7,7 @@ use App\Models\Kretanje;
 use App\Models\Organ;
 use App\Models\Organizacija;
 use App\Models\OrganizacionaJedinica;
+use App\Models\RadnoMjestoSluzbenik;
 use App\Models\Sluzbenik;
 use App\Models\Sifrarnik;
 use App\Models\RadnoMjesto;
@@ -317,10 +318,28 @@ class OrganizacijaController extends Controller
 
     public function active(Request $request, $id){
         $object = Organizacija::findOrFail($id);
-        $check = Organizacija::select('active')->where('oju_id', '=', $object->oju_id)->where('id', '>', $id)->get();
-        $aktivna = Organizacija::where('oju_id', '=', $object->oju_id)->where('active', '=', 1)->first();
 
-        if ($aktivna) {
+        $check = Organizacija::select('active')->where('oju_id', '=', $object->oju_id)->where('id', '>', $id)->get();
+        $aktivna = Organizacija::where('oju_id', '=', $object->oju_id)->where('active', '=', 1)->where('id', '!=', $object->id)->first();
+
+        if ($aktivna) { // Deaktiviraj prethodnu
+            $organ_id = $aktivna->oju_id;
+
+            $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija.organ', function ($query) use ($organ_id){
+                $query->where('id', $organ_id);
+            })->whereHas('orgjed.organizacija', function ($query){
+                $query->where('active', 1);
+            })->get(['id', 'naziv_rm']);
+
+            foreach ($radnaMjesta as $rm){ // Deaktiviraj radna mjesta
+                $slRm = RadnoMjestoSluzbenik::where('radno_mjesto_id', $rm->id)->get();
+                foreach ($slRm as $srm){
+                    $srm->update([
+                        'active' => null
+                    ]);
+                }
+            }
+
             $aktivna->active = 0;
             $aktivna->save();
         }
@@ -330,42 +349,26 @@ class OrganizacijaController extends Controller
             if ($org->active == 1) return redirect(route('organizacija.edit', ['id' => $id]))->with('danger', 'Organizacioni plan ne može biti postavljen kao aktivan!');
         }
 
-        // Dohvatamo sve službenike unutar organa javne uprave za koji se aktivira sistematizacija
-        $sluzbenici = Sluzbenik::whereOrgan($object->oju_id);
-
-        // Ukoliko je radno_mjesto_temp NULL -> prebacivamo id radno_mjesto na novi iz organizacionog plana
-        foreach ($sluzbenici as $sluzbenik) {
-
-            $temp_radno = RadnoMjesto::where('before_id', '=', $sluzbenik->radno_mjesto)->orderBy('id', 'DESC')->first();
-
-            if ($sluzbenik->radno_mjesto_temp) {
-                $sluzbenik->radno_mjesto = $sluzbenik->radno_mjesto_temp;
-                $sluzbenik->radno_mjesto_temp = null;
-            } else {
-                $sluzbenik->radno_mjesto = $temp_radno->id;
-            }
-
-            /*
-                Sluzbenik mijenja radno mjesto?
-            */
-
-            if ($sluzbenik->radno_mjesto_temp) {
-                $kretanje = new Kretanje();
-                $kretanje->id_rm = $sluzbenik->radno_mjesto;
-                $kretanje->id_rm_before = $sluzbenik->radno_mjesto_temp;
-                $kretanje->sluzbenik = $sluzbenik->id;
-                $kretanje->org_id = $object->id;
-                $kretanje->save();
-            }
-
-
-            $sluzbenik->save();
-
-
-        }
-
         $object->active = 1;
         $object->save();
+
+        $object = Organizacija::findOrFail($id);
+        $organ_id = $object->oju_id;
+
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija.organ', function ($query) use ($organ_id){
+            $query->where('id', $organ_id);
+        })->whereHas('orgjed.organizacija', function ($query){
+            $query->where('active', 1);
+        })->get(['id', 'naziv_rm']);
+
+        foreach ($radnaMjesta as $rm){ // Aktiviraj radna mjesta
+            $slRm = RadnoMjestoSluzbenik::where('radno_mjesto_id', $rm->id)->get();
+            foreach ($slRm as $srm){
+                $srm->update([
+                    'active' => 1
+                ]);
+            }
+        }
 
         return redirect(route('organizacija.edit', ['id' => $id]));
 

@@ -74,6 +74,14 @@ class Organizacija extends Model{
                 $object->save();
             }
 
+            $noviSluzbenici = RadnoMjestoSluzbenik::where('radno_mjesto_id', $mjesto->id)->get();
+            foreach ($noviSluzbenici as $sl){
+                $new = RadnoMjestoSluzbenik::create([
+                    'sluzbenik_id' => $sl->sluzbenik_id,
+                    'radno_mjesto_id' => $copy_mjesto->id
+                ]);
+            }
+
 
             /*
              * Kopiranje uslova za radno mjesto
@@ -97,9 +105,9 @@ class Organizacija extends Model{
 
         Organizacija::where('id', '=', $org_id)->delete();
 
-         OrganizacionaJedinica::where('org_id', '=', $org_id)->delete();
+        OrganizacionaJedinica::where('org_id', '=', $org_id)->delete();
 
-         RadnoMjesto::join('org_jedinica', 'radna_mjesta.id_oj', '=', 'org_jedinica.id')
+        RadnoMjesto::join('org_jedinica', 'radna_mjesta.id_oj', '=', 'org_jedinica.id')
             ->where('org_jedinica.org_id', '=', $org_id)
             ->delete();
     }
