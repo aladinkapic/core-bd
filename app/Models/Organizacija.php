@@ -15,6 +15,11 @@ class Organizacija extends Model{
     public function organ(){
         return $organ = $this->hasOne(Organ::class, 'id', 'oju_id');
     }
+    public function statusRel(){
+        return $this->hasOne('App\Models\Sifrarnik', 'value', 'active')
+            ->where('type', '=', 'status_sistematizacije');
+    }
+
 
     public static function copy($id, $new_id){
         $nova_org = Organizacija::find($new_id);

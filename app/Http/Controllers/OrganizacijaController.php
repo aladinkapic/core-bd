@@ -81,7 +81,7 @@ class OrganizacijaController extends Controller
             'organ.naziv' => 'Organ javne uprave',
             'datum_od' => 'Datum važenja od',
             'datum_do' => 'Datum važenja do',
-            'aktivan.name' => 'Aktivan'
+            'statusRel.name' => 'Aktivan'
         ];
 
         return view('hr.organizacija.index')->with(compact('organizacija', 'filteri'));
@@ -109,14 +109,55 @@ class OrganizacijaController extends Controller
     }
 
     public function create(Request $request){
-        return view('hr.organizacija.create');
+        $organi = Organ::pluck('naziv', 'id')->prepend('Odaberite organ', '');
+
+        return view('hr.organizacija.create', [
+            'organi' => $organi
+        ]);
     }
     public function izmijeniteOrganizaciju($id){
         $organizacija = Organizacija::where('id', $id)->first();
+        $organi = Organ::pluck('naziv', 'id')->prepend('Odaberite organ', '');
 
-        return view('hr.organizacija.create', compact('organizacija'));
+        return view('hr.organizacija.edit-sist', compact('organizacija', 'organi'));
     }
+    public function updateThisOrg(Request $request){
 
+        $request = HelpController::formatirajRequest($request);
+
+        try{
+            if(isset($request->file)){
+                $file = $request->file('dokument');
+                $ext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $name = md5($file->getClientOriginalName() . time()) . '.' . $ext;
+
+                $file->move("pravilnici/", $name);
+            }
+        }catch (\Exception $e){}
+
+        if(isset($name)){
+            try{
+                $organizacija = Organizacija::where('id', $request->id)->update([
+                    'naziv' => $request->naziv,
+                    'opis' => $request->opis,
+                    'datum_od' => $request->datum_od,
+                    'datum_do' => $request->datum_do,
+                    'dokument' => $name
+                ]);
+            }catch (\Exception $e){}
+        }else{
+            try{
+                $organizacija = Organizacija::where('id', $request->id)->update([
+                    'naziv' => $request->naziv,
+                    'opis' => $request->opis,
+                    'datum_od' => $request->datum_od,
+                    'datum_do' => $request->datum_do
+                ]);
+            }catch (\Exception $e){}
+        }
+
+        return redirect()->route('organizacija.edit', ['id' => $request->id]);
+    }
 
     public function nova(){
         return view('hr.organizacija.nova');

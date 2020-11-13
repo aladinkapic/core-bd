@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organizacija;
+use App\Models\OrganizacionaJedinica;
 use App\Models\RadnoMjesto;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -15,11 +17,26 @@ class Controller extends BaseController{
     public function radnaMjestaOrgana(Request $request){
         $id = $request->id;
 
+        /*
+        $organizacija = Organizacija::where('oju_id', $id)->where('active', 1)->first();
+
+        dd($id);
+        $org_jedinice = OrganizacionaJedinica::where('org_id', $organizacija->id)->pluck('id')->toArray();
+        $radnaMjesta = RadnoMjesto::whereIn('id_oj', $org_jedinice)->get();
+        dd($radnaMjesta);
+
+        $org_jed = OrganizacionaJedinica::where('organizacija.organ', function ($query) use ($id){
+            $query->where('id', $id);
+        })->get('id');
+
+        dd($org_jed); */
+
         $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija.organ', function ($query) use ($id){
             $query->where('id', $id);
         })->whereHas('orgjed.organizacija', function ($query){
             $query->where('active', 1);
         })->get(['id', 'naziv_rm']);
+
         return array('radna_mjesta' => $radnaMjesta);
     }
 }
