@@ -66,7 +66,16 @@
                                         {{__('Organ javne uprave')}}
                                     </div>
                                     <div class="col-md-7">
-                                        {!! Form::select('organ', $organi, '', ['class' => 'form-control radna-mjesta-organa',]) !!}
+                                        {!! Form::select('organ', $organi, '', ['class' => 'form-control daj-aktivne-sistematizacije',]) !!}
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        {{__('Organizacioni plan / pravilnik')}}
+                                    </div>
+                                    <div class="col-md-7">
+                                        {!! Form::select('organizacioni_plan', ['0' => 'Odaberite organ'], '', ['class' => 'form-control daj-radna-mjesta-iz-sistematizacije', 'id' => 'izaberite-sistematizacije']) !!}
                                     </div>
                                 </div>
                                 <br/>
@@ -75,7 +84,7 @@
                                         {{__('Radno mjesto')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <select class="form-control select-2" name="radno_mjesto" id="privremeno_radno_mjesto">
+                                        <select class="form-control select-2" name="radno_mjesto" id="radna_mjestaa">
                                             <option value="1">{{__('Aktivna radna mjesta iz organa javne uprave')}}</option>
                                         </select>
                                     </div>

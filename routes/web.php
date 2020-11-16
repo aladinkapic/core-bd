@@ -500,7 +500,10 @@ Route::prefix('organizacija')->group(function () {
  */
 
 
-Route::post('radna-mjesta-organa',        'Controller@radnaMjestaOrgana')->name('main.radna-mjesta-organa');
+Route::post('radna-mjesta-organa',                    'Controller@radnaMjestaOrgana')->name('main.radna-mjesta-organa');
+
+Route::post('daj-sistematizacije',                    'Controller@dajSistematizacije')->name('main.daj-sistematizacije');
+Route::post('radna-mjesta-iz-sistematizacije',        'Controller@radnaMjestaizSistema')->name('main.radna-mjesta-iz-sistematizacije');
 
 Route::prefix('ugovori')->group(function () {
 

@@ -352,6 +352,25 @@ class OrganizacijaController extends Controller
         $object->active = 1;
         $object->save();
 
+        // ---------------------------------------------------------------------------------------------------------- //
+        // Službenike iz ove sistematizacije, proglasi inaktivnim u ostalim, u slučaju da je negdje nešto zaglavilo :)
+
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query) use ($id) {
+            $query->where('id', '=', $id);
+        })->with('sluzbeniciRel.sluzbenik')->get();
+
+        foreach($radnaMjesta as $rm){
+            foreach($rm->sluzbeniciRel as $sl){
+                if(isset($sl->sluzbenik_id)){
+                    $sluzRel = RadnoMjestoSluzbenik::where('sluzbenik_id', $sl->sluzbenik_id)->update([
+                        'active' => null
+                    ]);
+                }
+            }
+        }
+
+        // ---------------------------------------------------------------------------------------------------------- //
+
         $object = Organizacija::findOrFail($id);
         $organ_id = $object->oju_id;
 
@@ -371,7 +390,6 @@ class OrganizacijaController extends Controller
         }
 
         return redirect(route('organizacija.edit', ['id' => $id]));
-
     }
 
     public function shema(Request $request, $id){

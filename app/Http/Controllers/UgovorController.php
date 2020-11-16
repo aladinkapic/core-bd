@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organ;
+use App\Models\Organizacija;
 use App\Models\RadnoMjesto;
 use App\Models\RadnoMjestoSluzbenik;
 use App\Models\registarUgovora\PrestanakRadnogOdnosa;
@@ -58,52 +59,54 @@ class UgovorController extends Controller{
     public function storeRadniStatus(Request $request){
         $request = HelpController::formatirajRequest($request);
 
-//         dd($request->all());
         try{
-            $rm_s = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->sluzbenik)->get();
-            foreach($rm_s as $rm){
-                $radno_mjesto = RadnoMjesto::where('id', $rm->radno_mjesto_id)->with('orgjed.organizacija')->first();
-                if(isset($radno_mjesto->orgjed->organizacija) and $radno_mjesto->orgjed->organizacija->active == 1){
-                    $rm->delete();
+
+            $organizacija = Organizacija::where('id', $request->organizacioni_plan)->first();
+
+            if($organizacija->active == 1){ // Ako postavljamo u aktivnu sistematizaciju
+                $rms = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->sluzbenik)->get();
+
+                foreach ($rms as $r) $r->update(['active' => null]); // Inaktiviraj na svim ostalima prvo
+
+                // Obriši ako se nalazi u nekoj od aktivnih sistematizacija
+                $rm_s = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->sluzbenik)->get();
+                foreach($rm_s as $rm){
+                    $radno_mjesto = RadnoMjesto::where('id', $rm->radno_mjesto_id)->with('orgjed.organizacija')->first();
+                    if(isset($radno_mjesto->orgjed->organizacija) and $radno_mjesto->orgjed->organizacija->active == 1){
+                        $rm->delete();
+                    }
                 }
+
+                // Postavi na radno mjesto
+                $rm = RadnoMjestoSluzbenik::create([
+                    'sluzbenik_id' => $request->sluzbenik,
+                    'radno_mjesto_id' => $request->radno_mjesto,
+                    'active' => 1
+                ]);
+
+            }else{
+                $rm_s = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->sluzbenik)->get();
+                foreach($rm_s as $rm){
+                    $radno_mjesto = RadnoMjesto::where('id', $rm->radno_mjesto_id)->with('orgjed.organizacija')->first();
+
+
+                    if(isset($radno_mjesto->orgjed->organizacija)){
+                        if($radno_mjesto->orgjed->organizacija->id == $organizacija->id) $rm->delete();
+                    }
+                }
+
+                // Postavi na radno mjesto
+                $rm = RadnoMjestoSluzbenik::create([
+                    'sluzbenik_id' => $request->sluzbenik,
+                    'radno_mjesto_id' => $request->radno_mjesto
+                ]);
             }
 
             $rs = RadniStatus::create(
-                $request->except(['_token', '_method'])
+                $request->except(['_token', '_method', 'organizacioni_plan'])
             );
 
-            // Postavi na radno mjesto
-            $rm = RadnoMjestoSluzbenik::create([
-                'sluzbenik_id' => $request->sluzbenik,
-                'radno_mjesto_id' => $request->radno_mjesto
-            ]);
-
-
         }catch (\Exception $e){dd($e);}
-//        dd($request->all());
-//        $data = $request->all();
-//
-//        $pravila = [
-//            'broj' => 'required|max:255',
-//            'sluzbenik' => 'required',
-//            'datum' => 'required|date',
-//            'broj_sati' => 'required',
-//        ];
-//
-//        $poruke = HelpController::getValidationMessages();
-//        $this->validate($request, $pravila, $poruke);
-//
-//
-//        $object = new RadniStatus();
-//
-//        $object->broj = $data['broj'];
-//        $object->sluzbenik = $data['sluzbenik'];
-//        $object->datum = Carbon::parse($data['datum']);
-//        $object->datum_isteka = Carbon::parse($data['datum_isteka']);
-//        $object->datum_isteka_probni = Carbon::parse($data['datum_isteka_probni']);
-//        $object->broj_sati = $data['broj_sati'];
-//
-//        $object->save();
 
         return redirect(route('ugovor.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
     }

@@ -410,6 +410,7 @@ function radnaMjestaOrgana(response) {
     // }
 
     console.log(response['radna_mjesta']);
+    console.log("we are here !!");
 
     for(let i=0; i<response['radna_mjesta'].length; i++){
         var opt = document.createElement('option');
@@ -452,6 +453,47 @@ function privremeniPremjestajDone(response){
 }
 
 
+$(document.body).on("change",".daj-aktivne-sistematizacije",function(){
+    let value = $(this).val();
+
+    kreiraj_request('POST', '/daj-sistematizacije', "id=" + value, true, postaviSistematizacije);
+});
+
+function postaviSistematizacije(response){
+    $("#izaberite-sistematizacije").find('option').remove();
+
+    let organizacije = document.getElementById("izaberite-sistematizacije");
+
+    for(let i=0; i<response['organizacije'].length; i++){
+        let opt = document.createElement('option');
+        opt.value = response['organizacije'][i]['id'];
+        console.log(response['organizacije'][i]['active']);
+        if(parseInt(response['organizacije'][i]['active']) === 1) opt.innerHTML = response['organizacije'][i]['naziv'] + ' - Aktivna';
+        else opt.innerHTML = response['organizacije'][i]['naziv'];
+        organizacije.appendChild(opt);
+    }
+}
+
+$(document.body).on("change",".daj-radna-mjesta-iz-sistematizacije",function(){
+    let value = $(this).val();
+
+    kreiraj_request('POST', '/radna-mjesta-iz-sistematizacije', "id=" + value, true, radnaMjestaizSistema);
+});
+
+function radnaMjestaizSistema(response){
+    let radna_mjesta = document.getElementById("radna_mjestaa");
+
+    $('#radna_mjestaa')
+        .find('option')
+        .remove();
+
+    for(let i=0; i<response['radna_mjesta'].length; i++){
+        var opt = document.createElement('option');
+        opt.value = response['radna_mjesta'][i]['id'];
+        opt.innerHTML = response['radna_mjesta'][i]['naziv_rm'];
+        radna_mjesta.appendChild(opt);
+    }
+}
 /**********************************************************************************************************************/
 
 /********************************************************************************************************************* /

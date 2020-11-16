@@ -142,8 +142,8 @@
                                 {{ $sluzbenik->sluzbenikRel->rm->naziv_rm ?? '/' }}
                             </a>
                         </td>
-                        <td>{{$sluzbenik->radnoMjesto->katgorijaa->name ?? ''}}</td>
-                        <td>{{$sluzbenik->radnoMjesto->stepenSS->name ?? ''}}</td>
+                        <td>{{$sluzbenik->sluzbenikRel->rm->katgorijaa->name ?? ''}}</td>
+                        <td>{{$sluzbenik->sluzbenikRel->rm->stepenSS->name ?? ''}}</td>
                         <td>{{ $sluzbenik->privremeniRel->privremeno_mjesto->naziv_rm ?? '/'}}</td>
                         <td>{{ $sluzbenik->sluzbenikRel->rm->orgjed->naziv ?? '/'}}</td>
                         <td>{{ $sluzbenik->sluzbenikRel->rm->orgjed->organizacija->organ->naziv ?? '/'}}</td>

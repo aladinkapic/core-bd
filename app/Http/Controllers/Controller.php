@@ -39,4 +39,28 @@ class Controller extends BaseController{
 
         return array('radna_mjesta' => $radnaMjesta);
     }
+
+    public function dajSistematizacije(Request $request){
+        $id = $request->id;
+        $organizacije = Organizacija::whereHas('organ', function ($query) use ($id){
+            $query->where('id', $id);
+        })->get(['id', 'naziv', 'active']);
+
+
+        return array('organizacije' => $organizacije);
+    }
+    public function radnaMjestaizSistema(Request $request){
+        $organizacija = Organizacija::where('id', $request->id)->first();
+
+        $organ_id = $organizacija->oju_id;
+        $org_id   = $request->id;
+
+        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija.organ', function ($query) use ($organ_id){
+            $query->where('id', $organ_id);
+        })->whereHas('orgjed.organizacija', function ($query) use($org_id){
+            $query->where('id', $org_id);
+        })->get(['id', 'naziv_rm']);
+
+        return array('radna_mjesta' => $radnaMjesta);
+    }
 }
