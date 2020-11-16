@@ -465,7 +465,7 @@ Route::prefix('organizacija')->group(function () {
     Route::get('izmijenite-org/{id}',      'OrganizacijaController@izmijeniteOrganizaciju')->name('organizacija.izmjene-sistematizacije');
 
     Route::post('update-files',            'OrganizacijaController@updateFiles')->name('organizacija.update-files');
-
+    Route::post('update-this-org',         'OrganizacijaController@updateThisOrg')->name('organizacija.update-this-org');
     /*
      * Organizacija API
      */

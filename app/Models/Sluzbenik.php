@@ -261,7 +261,7 @@ class Sluzbenik extends Model{
     }
 
     public function sluzbenikRel(){
-        return $this->hasOne(RadnoMjestoSluzbenik::class, 'sluzbenik_id', 'id');
+        return $this->hasOne(RadnoMjestoSluzbenik::class, 'sluzbenik_id', 'id')->where('active', '=', 1);
     }
     public function privremeniPremjestajRel(){
         return $this->hasOne(Privremeno::class, 'id', 'privremeni_premjestaj');

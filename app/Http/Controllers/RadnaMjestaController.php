@@ -75,21 +75,16 @@ class RadnaMjestaController extends Controller{
         $active = OrganizacionaJedinica::where('id', $request->id_oj)->first()->organizacija->active;
         $validatedData = $request->validate([
             'naziv_rm' => 'required',
-            'sifra_rm' => 'required',
             'opis_rm' => 'required',
             'broj_izvrsilaca' => 'required',
             'platni_razred' => 'required',
         ]);
-
-//        dd($request->all());
 
         if($request->rukovodioc == 'on'){
             $request['rukovodioc'] = 1;
         }else{
             $request['rukovodioc'] = 0;
         }
-
-//        dd($request->all());
 
         try{
             $id = DB::table('radna_mjesta')->insertGetId(
@@ -101,19 +96,11 @@ class RadnaMjestaController extends Controller{
             for($i=1; $i<count($request->tekst_uslova_inp); $i++){
                 DB::table('radno_mjesto_uslovi')->insert([
                     'id_rm' => $request->id_rm,
-//                    'tip' => $request->tip_inp[$i],
                     'tekst_uslova' => $request->tekst_uslova_inp[$i],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]);
             }
-
-//            for($i=1; $i<count($request->sluzbenik_id); $i++){
-//                $sluz = Sluzbenik::find($request->sluzbenik_id[$i]);
-//                if($active) $sluz->radno_mjesto = $id;
-//                else $sluz->radno_mjesto_temp  = $id;
-//                $sluz->save();
-//            }
 
 
             return redirect(route('organizacija.radna-mjesta', ['id' => OrganizacionaJedinica::findOrFail($request->id_oj)->org_id ]));
