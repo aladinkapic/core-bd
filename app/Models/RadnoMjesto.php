@@ -106,7 +106,7 @@ class RadnoMjesto extends Model
     }
 
     public function sluzbeniciRel(){
-        return $this->hasMany(RadnoMjestoSluzbenik::class, 'radno_mjesto_id', 'id');
+        return $this->hasMany(RadnoMjestoSluzbenik::class, 'radno_mjesto_id', 'id')->where('active', '=', 1);;
     }
 
     public static function parent($org_jed){

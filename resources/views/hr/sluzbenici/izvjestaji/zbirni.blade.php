@@ -71,50 +71,56 @@
 
                                 @if($rm->stepen == 2 or $rm->stepen == 3 or $rm->stepen == 4 or $rm->stepen == 5)
                                     @foreach($rm->sluzbeniciRel as $sluzbenik)
-                                        @php $sss++; @endphp
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                            @php $sss++; @endphp
 
-                                        @if(isset($sluzbenik->sluzbenik->nacionalnost))
-                                            @if($sluzbenik->sluzbenik->nacionalnost == 1)
-                                                @php $b_sss++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
-                                                @php $h_sss++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
-                                                @php $s_sss++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
-                                                @php $o_sss++; @endphp
+                                            @if(isset($sluzbenik->sluzbenik->nacionalnost))
+                                                @if($sluzbenik->sluzbenik->nacionalnost == 1)
+                                                    @php $b_sss++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
+                                                    @php $h_sss++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
+                                                    @php $s_sss++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
+                                                    @php $o_sss++; @endphp
+                                                @endif
                                             @endif
                                         @endif
 
                                     @endforeach
                                 @elseif($rm->stepen == 8 or $rm->stepen == 7 or $rm->stepen == 8)
                                     @foreach($rm->sluzbeniciRel as $sluzbenik)
-                                        @php $vss++; @endphp
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                            @php $vss++; @endphp
 
-                                        @if(isset($sluzbenik->sluzbenik->nacionalnost))
-                                            @if($sluzbenik->sluzbenik->nacionalnost == 1)
-                                                @php $b_vss++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
-                                                @php $h_vss++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
-                                                @php $s_vss++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
-                                                @php $o_vss++; @endphp
+                                            @if(isset($sluzbenik->sluzbenik->nacionalnost))
+                                                @if($sluzbenik->sluzbenik->nacionalnost == 1)
+                                                    @php $b_vss++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
+                                                    @php $h_vss++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
+                                                    @php $s_vss++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
+                                                    @php $o_vss++; @endphp
+                                                @endif
                                             @endif
                                         @endif
                                     @endforeach
                                 @elseif($rm->stepen == 1)
                                     @foreach($rm->sluzbeniciRel as $sluzbenik)
-                                        @php $nk++; @endphp
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                            @php $nk++; @endphp
 
-                                        @if(isset($sluzbenik->sluzbenik->nacionalnost))
-                                            @if($sluzbenik->sluzbenik->nacionalnost == 1)
-                                                @php $b_nk++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
-                                                @php $h_nk++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
-                                                @php $s_nk++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
-                                                @php $o_nk++; @endphp
+                                            @if(isset($sluzbenik->sluzbenik->nacionalnost))
+                                                @if($sluzbenik->sluzbenik->nacionalnost == 1)
+                                                    @php $b_nk++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
+                                                    @php $h_nk++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
+                                                    @php $s_nk++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
+                                                    @php $o_nk++; @endphp
+                                                @endif
                                             @endif
                                         @endif
                                     @endforeach
@@ -123,56 +129,58 @@
                                 @foreach($rm->sluzbeniciRel as $sluzbenik)
                                     @if(isset($sluzbenik->sluzbenik))
 
-                                        <!-- Pol službenika -->
-
-                                        @if(isset($sluzbenik->sluzbenik->pol))
-                                            @if($sluzbenik->sluzbenik->pol == 1)
-                                                @php $muski++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->pol == 2)
-                                                @php $zene++; @endphp
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                            <!-- Pol službenika -->
+                                            @if(isset($sluzbenik->sluzbenik->pol))
+                                                @if($sluzbenik->sluzbenik->pol == 1)
+                                                    @php $muski++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->pol == 2)
+                                                    @php $zene++; @endphp
+                                                @endif
                                             @endif
-                                        @endif
 
-                                        <!-- Starosna struktura -->
+                                            <!-- Starosna struktura -->
 
-                                        @if(isset($sluzbenik->sluzbenik->godina))
-                                            @if($sluzbenik->sluzbenik->godina <= 20)
-                                                @php $manjeOd20++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 20 and $sluzbenik->sluzbenik->godina < 26)
-                                                @php $od21do25++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 25 and $sluzbenik->sluzbenik->godina < 31)
-                                                @php $od26do30++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 30 and $sluzbenik->sluzbenik->godina < 36)
-                                                @php $od31do35++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 35 and $sluzbenik->sluzbenik->godina < 41)
-                                                @php $od36do40++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 40 and $sluzbenik->sluzbenik->godina < 46)
-                                                @php $od41do45++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 45 and $sluzbenik->sluzbenik->godina < 51)
-                                                @php $od46do50++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 50 and $sluzbenik->sluzbenik->godina < 56)
-                                                @php $od51do55++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 55 and $sluzbenik->sluzbenik->godina < 61)
-                                                @php $od55do61++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 60 and $sluzbenik->sluzbenik->godina < 66)
-                                                @php $od61do65++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->godina > 65)
-                                                @php $veceOd65++; @endphp
+                                            @if(isset($sluzbenik->sluzbenik->godina))
+                                                @if($sluzbenik->sluzbenik->godina <= 20)
+                                                    @php $manjeOd20++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 20 and $sluzbenik->sluzbenik->godina < 26)
+                                                    @php $od21do25++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 25 and $sluzbenik->sluzbenik->godina < 31)
+                                                    @php $od26do30++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 30 and $sluzbenik->sluzbenik->godina < 36)
+                                                    @php $od31do35++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 35 and $sluzbenik->sluzbenik->godina < 41)
+                                                    @php $od36do40++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 40 and $sluzbenik->sluzbenik->godina < 46)
+                                                    @php $od41do45++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 45 and $sluzbenik->sluzbenik->godina < 51)
+                                                    @php $od46do50++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 50 and $sluzbenik->sluzbenik->godina < 56)
+                                                    @php $od51do55++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 55 and $sluzbenik->sluzbenik->godina < 61)
+                                                    @php $od55do61++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 60 and $sluzbenik->sluzbenik->godina < 66)
+                                                    @php $od61do65++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->godina > 65)
+                                                    @php $veceOd65++; @endphp
+                                                @endif
                                             @endif
-                                        @endif
 
-                                        <!-- Nacionalnost -->
+                                            <!-- Nacionalnost -->
 
-                                        @if(isset($sluzbenik->sluzbenik->nacionalnost))
-                                            @if($sluzbenik->sluzbenik->nacionalnost == 1)
-                                                @php $bosnjak++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
-                                                @php $hrvat++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
-                                                @php $srbin++; @endphp
-                                            @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
-                                                @php $ostalo++; @endphp
+                                            @if(isset($sluzbenik->sluzbenik->nacionalnost))
+                                                @if($sluzbenik->sluzbenik->nacionalnost == 1)
+                                                    @php $bosnjak++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 2)
+                                                    @php $hrvat++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 3)
+                                                    @php $srbin++; @endphp
+                                                @elseif($sluzbenik->sluzbenik->nacionalnost == 4)
+                                                    @php $ostalo++; @endphp
+                                                @endif
                                             @endif
+
                                         @endif
                                     @endif
                                 @endforeach
@@ -184,7 +192,8 @@
                             <td>{{$counter++}}</td>
                             <td>{{$organ->naziv ?? '/'}}</td>
                             <td></td>
-
+                            <td>{{$bosnjak + $hrvat + $srbin + $ostalo}}</td>
+                            
                             <td>{{$muski}}</td>
                             <td>{{$zene}}</td>
 
@@ -192,7 +201,6 @@
                             <td>{{$hrvat}}</td>
                             <td>{{$srbin}}</td>
                             <td>{{$ostalo}}</td>
-                            <td>{{$bosnjak + $hrvat + $srbin + $ostalo}}</td>
 
                             <td>{{$vss}}</td>
                             <td>{{$sss}}</td>
@@ -243,6 +251,7 @@
                                 <button class="btn my-button delete-this-row">{{__('Obrišite')}}</button>
                             </td>
                         </tr>
+
                     @endforeach
                 </tbody>
             </table>
