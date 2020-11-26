@@ -818,6 +818,7 @@ class SluzbenikController extends Controller
             'id' => '#',
             'naziv' => 'Organ javne uprave',
             'pregleeed' => ':: PREGLED ::',
+            'ukupno_njih' => 'Ukupno',
 
             'muskarci'  => 'Muškaraca',
             'zene'      => 'Žena',
@@ -826,7 +827,6 @@ class SluzbenikController extends Controller
             'rvat'      => 'Hrvat',
             'srbin'     => 'Srbin',
             'ostalii'   => 'Ostali',
-            'ukupno_njih' => 'Ukupno',
 
             'vss' => 'VSS',
             'sss.kv.vkv' => 'SSS / KV / VKV',
