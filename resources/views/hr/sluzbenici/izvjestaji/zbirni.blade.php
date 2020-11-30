@@ -193,7 +193,7 @@
                             <td>{{$organ->naziv ?? '/'}}</td>
                             <td></td>
                             <td>{{$bosnjak + $hrvat + $srbin + $ostalo}}</td>
-                            
+
                             <td>{{$muski}}</td>
                             <td>{{$zene}}</td>
 
