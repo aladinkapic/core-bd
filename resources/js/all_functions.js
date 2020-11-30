@@ -464,6 +464,12 @@ function postaviSistematizacije(response){
 
     let organizacije = document.getElementById("izaberite-sistematizacije");
 
+    var opt = document.createElement('option');
+    opt.value = '0';
+    opt.innerHTML = 'Odaberite organizacioni plan / pravilnik';
+    organizacije.appendChild(opt);
+    
+
     for(let i=0; i<response['organizacije'].length; i++){
         let opt = document.createElement('option');
         opt.value = response['organizacije'][i]['id'];
