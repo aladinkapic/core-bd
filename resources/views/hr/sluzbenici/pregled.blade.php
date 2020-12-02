@@ -284,6 +284,17 @@
                         <td>
                             @if($sluzbenik->strucnaSprema)
                                 <ul>
+                                    @foreach($sluzbenik->obrazovanjeRel as $obrazovanje)
+                                        <li>
+                                            {{ $obrazovanje->strucno_zvanje ?? '/'}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                        <td>
+                            @if($sluzbenik->strucnaSprema)
+                                <ul>
                                     @foreach($sluzbenik->strucnaSprema as $sprema)
                                         <li>
                                             {{ $sprema->vrsta_s_s ?? '/'}}

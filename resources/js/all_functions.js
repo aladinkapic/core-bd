@@ -468,7 +468,7 @@ function postaviSistematizacije(response){
     opt.value = '0';
     opt.innerHTML = 'Odaberite organizacioni plan / pravilnik';
     organizacije.appendChild(opt);
-    
+
 
     for(let i=0; i<response['organizacije'].length; i++){
         let opt = document.createElement('option');
