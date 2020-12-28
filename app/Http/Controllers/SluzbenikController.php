@@ -490,7 +490,7 @@ class SluzbenikController extends Controller
             'status' => 'Status',
 
             'spol_sl.name' => 'Spol',
-            'kategorija_sl.name' => 'Kategorija',
+            'kategorija_sl.name' => 'Kategorija službenika',
             'drzavljanstvoRel.name' => 'Državljanstvo',
             'nacionalnost_sl.name' => 'Nacionalnost',
             'bracni_status_sl.name' => 'Bračni status',
