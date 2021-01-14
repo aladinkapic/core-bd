@@ -145,7 +145,7 @@ class HelpController extends Controller
 
 
     public function pocetak(){
-        return view('welcome');
+        return view('/prijava/prvi_stepen');
     }
 
     public function naslovna(){

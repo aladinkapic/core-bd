@@ -274,9 +274,12 @@ class OdsustvaController extends Controller{
         $godina_od = explode('-', $datum_od)[0];
         $godina_do = explode('-', $datum_do)[0];
 
-        if(date('Y') != $godina_od or date('Y') != $godina_do){                   // Zabranimo unos odsustva za prethodnu
-            return Code::generateCode(App::make('App\Models\Check')->getErrorCode('3000'));    // ili sljedeću kalendarsku godinu
-        }
+
+
+
+//        if(date('Y') != $godina_od or date('Y') != $godina_do){                   // Zabranimo unos odsustva za prethodnu
+//            return Code::generateCode(App::make('App\Models\Check')->getErrorCode('3000'));    // ili sljedeću kalendarsku godinu
+//        }
 
         $sva_odsustva = DB::table('odsustva')->whereYear('datum', '=', $godina_od)->get();                   // Sva odsustva u obliku liste koji su već rezervisani
         $limit = $this->limitiZaKorisnika($request->sluzbenik_id, 2019, $request->vrsta_odsustva);    // Maksimalan broj dana koji se mogu registrovati kao odsustvo za određenog korisnika i određeno odsustvo
@@ -292,9 +295,14 @@ class OdsustvaController extends Controller{
         for($i=0; $i<=$broj_dana_odsustva; $i++){
             $request->request->add(['datum' => $pocetni_datum->format('Y-m-d'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
 
-            DB::table('odsustva')->insertGetId(
-                $request->except('_token', 'datum_od', 'datum_do')
-            );
+
+            $weekDay = Carbon::parse($request->datum)->dayOfWeek;
+
+            if($weekDay != 0 and $weekDay != 6){
+                DB::table('odsustva')->insertGetId(
+                    $request->except('_token', 'datum_od', 'datum_do')
+                );
+            }
 
             $pocetni_datum->addDays();
         }

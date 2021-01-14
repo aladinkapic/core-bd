@@ -257,8 +257,6 @@ Route::prefix('hr/sluzbenici')->group(function () {
     Route::post('/pregledaj', 'SluzbenikController@pregledSluzbenika')->name('sluzbenik.pregled');
     Route::get('/seedaj',     'SluzbenikController@seedaj')->name('sluzbenik.seedaj');
 
-
-
     /************************************************ Spremi sadržaj **************************************************/
     Route::post('spremi_sadrzaj',     'SluzbenikController@spremiSadrzaj');
 
