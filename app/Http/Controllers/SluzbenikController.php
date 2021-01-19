@@ -470,6 +470,7 @@ class SluzbenikController extends Controller
             ->with('pioRel')
             ->with('zasnivanjeRORel.obracunati_r_staz_s')
             ->with('privremeniRel.privremeno_mjesto')
+            ->where('id', '!=', 1)
             ->orderBy('prezime');
 
 //        $sluz = Sluzbenik::get();
@@ -513,7 +514,7 @@ class SluzbenikController extends Controller
             'sluzbenikRel.rm.stepenSS.name' => 'Stepen stručne spreme - radno mjesto',
             'privremeniRel.privremeno_mjesto.naziv_rm' => 'Privremeni premještaj',
             'radnoMjesto.orgjed.naziv' => 'Organizaciona jedinica',
-            'radnoMjesto.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
+            'sluzbenikRel.rm.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'prebivaliste.adresa_prebivalista' => 'Adresa boravišta',
             'prebivaliste.mjesto_prebivalista' => 'Mjesto prebivališta',
             'prebivaliste.adresa_boravista' => 'Adresa prebivališta',
