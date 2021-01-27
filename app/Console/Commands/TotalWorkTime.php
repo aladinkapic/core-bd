@@ -20,7 +20,7 @@ class TotalWorkTime extends Command{
     public function handle(){
         $sluzbenici = Sluzbenik::get(['id']);
         foreach($sluzbenici as $sluzbenik){
-            if($sluzbenik->id == 414){ // $sluzbenik->id == 529
+            if(1){ // $sluzbenik->id == 529
                 $days = 0; // Total number of days
                 $days_insurance = 0;
 
