@@ -20,7 +20,7 @@ class TotalWorkTime extends Command{
     public function handle(){
         $sluzbenici = Sluzbenik::get(['id']);
         foreach($sluzbenici as $sluzbenik){
-            if(1){ // $sluzbenik->id == 529
+            if($sluzbenik->id == 414){ // $sluzbenik->id == 529
                 $days = 0; // Total number of days
                 $days_insurance = 0;
 
@@ -41,6 +41,7 @@ class TotalWorkTime extends Command{
                         $days_insurance += $thisDays;
                     }
                 }
+
 
                 $zasnivanje = ZasnivanjeRO::where('id_sluzbenika', $sluzbenik->id)->first();
                 if($zasnivanje){
@@ -77,6 +78,9 @@ class TotalWorkTime extends Command{
                 $years_i  = (int) ($days_insurance / 365);
                 $months_i = (int)(($days_insurance - ($years_i * 365)) / 30);
                 $day_i    = (int)(($days_insurance - ($years_i * 365) - ($months_i * 30)));
+
+
+                dd($years, $years_i);
 
                 $sluzbenik->update([
                     'staz_godina' => $years,
