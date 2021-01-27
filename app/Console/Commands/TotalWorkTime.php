@@ -81,8 +81,6 @@ class TotalWorkTime extends Command{
                 $day_i    = (int)(($days_insurance - ($years_i * 365) - ($months_i * 30)));
 
 
-                dd($years, $years_i);
-
                 $sluzbenik->update([
                     'staz_godina' => $years,
                     'staz_mjeseci' => $months,
