@@ -874,3 +874,14 @@ Route::prefix('podrska/')->group(function () {
     Route::get('/korisnicka_uputstva',                  'PodrskaController@korisnicka_uputstva')->name('korisnicka_uputstva');
     Route::get('/administratorska_uputstva',                  'PodrskaController@administratorska_uputstva')->name('administratorska_uputstva');
 });
+
+
+
+
+
+Route::group(['prefix' => '/console',], function(){
+    Route::get('/radni-staz', function(){
+        Artisan::call('total:worktime');
+    });
+});
+
