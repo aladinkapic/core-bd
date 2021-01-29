@@ -86,7 +86,7 @@ class createNotifications extends Command{
                             'sluzbenik_id' => $user->id,
                             'what' => 'starosna_dob',
                             'to_who' => $sluzbenik->id,
-                            'message' => $sluzbenik->ime.' '.$sluzbenik->prezime.' stiče uslove za penzionisanje za menje od 6 mjeseci !'
+                            'message' => $sluzbenik->ime.' '.$sluzbenik->prezime.' stiče uslove za penzionisanje za manje od 6 mjeseci !'
                         ]);
                     }
                     // $message = 'Obaviještavamo Vas da je službenik '.$sluzbenik->ime.' '.$sluzbenik->prezime.' napunio 64 godine života !';
@@ -140,7 +140,7 @@ class createNotifications extends Command{
                             'sluzbenik_id' => $user->id,
                             'what' => 'radni_staz',
                             'to_who' => $sluzbenik->id,
-                            'message' => $sluzbenik->ime.' '.$sluzbenik->prezime.' stiče uslove za penzionisanje za menje od 6 mjeseci !'
+                            'message' => $sluzbenik->ime.' '.$sluzbenik->prezime.' stiče uslove za penzionisanje za manje od 6 mjeseci !'
                         ]);
                     }
                     // $message = 'Obaviještavamo Vas da je službenik '.$sluzbenik->ime.' '.$sluzbenik->prezime.' napunio 64 godine života !';
