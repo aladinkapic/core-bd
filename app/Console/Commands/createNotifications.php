@@ -76,7 +76,6 @@ class createNotifications extends Command{
 
                     // Sad za sad samo kreiramo notifikaciju;; Bez slanja emailvoa : )
 
-
                     try{
                         $not = Notifikacija::where('sluzbenik_id', $user->id)
                             ->where('what', 'starosna_dob')
@@ -109,27 +108,16 @@ class createNotifications extends Command{
              *
              **********************************************************************************************************/
 
-            $sluzbenik->radniStaz();
 
-            $brojDana = (($sluzbenik->staz_godina * 365) + ($sluzbenik->staz_mjeseci * 30) + $sluzbenik->staz_dana);
-
-            $sluzbenik->update([
-                'staz_godina' => $sluzbenik->godinaStaza(),
-                'staz_mjeseci' => $sluzbenik->mjeseciIStaza(),
-                'staz_dana' => $sluzbenik->danaStaza()
-            ]);
-
-
-
-            if($brojDana > 14160){
+            if($sluzbenik->staz_godina > 39 and $sluzbenik->staz_mjeseci > 6){
                 $sluzbeniciZaNotifikacije = Uloge::where('keyword', 'sluzbenici')->get(['sluzbenik_id'])->toArray();
+
                 $users = Sluzbenik::whereIn('id', $sluzbeniciZaNotifikacije)->get();
                 foreach($users as $user){
                     $user['ime_i_prezime'] = $sluzbenik->ime.' '.$sluzbenik->prezime;
                     $user['notifable_id']  = $sluzbenik->id;
 
                     // Sad za sad samo kreiramo notifikaciju;; Bez slanja emailvoa : )
-
 
                     try{
                         $not = Notifikacija::where('sluzbenik_id', $user->id)
@@ -147,44 +135,6 @@ class createNotifications extends Command{
                     // $user->notify(new StarosnaPenzija(array(' subject' => 'Obavijest o navršavanju 65 godina života.', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
                 }
             }
-
-            continue;
-
-            if($sluzbenik->zasnivanjeRORel){
-                foreach($sluzbenik->zasnivanjeRORel as $trenutno){
-                    $sluzbenik->ukupan_broj_dana += $this->broj_dana_izmedju($trenutno->datum_zasnivanja_o, Carbon::now());
-
-                    if($this->broj_dana_izmedju($trenutno->datum_zasnivanja_o, Carbon::now()) > 100){
-                        $broj_dana_po_zasnivanju = $this->broj_dana_izmedju($trenutno->datum_zasnivanja_o, Carbon::now());
-                        $zasnivanje_found = false;
-
-                        foreach($sluzbenik->notifications as $notification){
-                            if($notification->data['what'] == 'zasnivanjeRO' and $notification->data['property_id'] == $trenutno->id){
-                                $zasnivanje_found = true;
-                            }
-                        }
-
-                        if(!$zasnivanje_found){
-                            $message = "Poštovani ".$sluzbenik->ime.' '.$sluzbenik->prezime."<br><br>";
-                            $message .= "Obaviještevamo vas da ste napunili 6 mjeseci od trenutnka zasnivanja radnog odnosa. Čestitamo !  <br><br>";
-                            $message .= "Za sva ostala pitanja obratite se Pododjeljenju za ljudske resurse Vlade Bričkog Distrikta ! ";
-
-                            try{
-                                $sluzbenik->notify(new ZasnivanjeRO(array(' subject' => 'Obavijest o zasnivanju radnog odnosa', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
-                            }catch (\Exception $e){}
-                        }
-                    }
-                }
-            }
-
-            $sluzbenik->godina  = (int)(($sluzbenik->ukupan_broj_dana / 30 / 12));
-            $sluzbenik->mjeseci = (int)(($sluzbenik->ukupan_broj_dana / 30) - ($sluzbenik->godina * 12));
-            $sluzbenik->dana    = ($sluzbenik->ukupan_broj_dana % 30);
-
-
-            dd($sluzbenik->godina, $sluzbenik->mjeseci, $sluzbenik->dana);
-
-
         }
     }
 
