@@ -45,7 +45,7 @@ class createNotifications extends Command{
     public function penzionisanje(){
         Session::put('_token', 'TxVramwuKWsHgYG6dpRhFUGWrNcndmCpkJPKcXRy');
 
-        $sluzbenici = Sluzbenik::where('id', 414)->with('prethodnoRIRel')->with('zasnivanjeRORel')->get();
+        $sluzbenici = Sluzbenik::with('prethodnoRIRel')->with('zasnivanjeRORel')->get();
 
         foreach ($sluzbenici as $sluzbenik){
             $broj_dana_po_zasnivanju = 0;
