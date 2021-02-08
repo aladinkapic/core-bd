@@ -527,7 +527,7 @@ class SluzbenikController extends Controller
             'zasnivanjeRORel.obracunati_r_s_mje' => ' Staž mjeseci',
             'zasnivanjeRORel.obracunati_r_s_dan' => ' Staž dani',
             'zasnivanjeRORel.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
-            'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž',
+            // 'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž - Zasnivanje',
 
             'strucnaSprema.stepenStrucne.name' => 'Stručna sprema tražena konkursom',
             'obrazovanjeRel.ciklus.name' => 'Ciklus obrazovanja',

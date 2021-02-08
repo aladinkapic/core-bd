@@ -251,13 +251,13 @@
                                 @endforeach
                             </ul>
                         </td>
-                        <td>
-                            <ul>
-                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                    <li>{{$zasnivanje->minuli_radni_staz}}</li>
-                                @endforeach
-                            </ul>
-                        </td>
+{{--                        <td>--}}
+{{--                            <ul>--}}
+{{--                                @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)--}}
+{{--                                    <li>{{$zasnivanje->minuli_radni_staz}}</li>--}}
+{{--                                @endforeach--}}
+{{--                            </ul>--}}
+{{--                        </td>--}}
                         <!---- Stručna sprema službenika ---->
                         <td>
                             @if($sluzbenik->strucnaSprema)
