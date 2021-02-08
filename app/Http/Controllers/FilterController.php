@@ -141,6 +141,17 @@ class FilterController extends Controller
 
         }
 
+        if (strpos($value, "|") !== false) {
+            $strings = explode("|", $value);
+            for($i=0; $i<count($strings); $i++){
+                if($i==0) $query->whereRaw($column. " LIKE ?", ["%" . $strings[$i] . "%"]);
+                else $query->orWhereRaw($column. " LIKE ?", ["%" . $strings[$i] . "%"]);
+            }
+
+            return $query;
+
+        }
+
         if (self::validateDate($value)) {
 
             $date = Carbon::parse($value);
