@@ -738,4 +738,33 @@ class UsersController extends Controller{
         }catch (\Exception $e){}
         return redirect()->route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $sluzbenik_id]);
     }
+
+
+
+
+    public function podesiJMBG(){
+        $sluzbenici = Sluzbenik::get();
+
+        foreach ($sluzbenici as $sluzbenik){
+            if($sluzbenik->jmbg){
+
+                $jmbg = $sluzbenik->jmbg;
+                if(strlen($jmbg) != 13){
+                    $jmbg = str_replace(' ', '', $sluzbenik->jmbg);
+                }
+
+                if(strlen($jmbg) == 13){
+                    $dr = $this->datumRodjenja($jmbg);
+                    try{
+                        $sluzbenik->update([
+                            'datum_rodjenja' => $dr,
+                            'jmbg' => $jmbg
+                        ]);
+                    }catch (\Exception $e){
+                        $JMBG = $sluzbenik->jmbg;
+                    }
+                }
+            }
+        }
+    }
 }

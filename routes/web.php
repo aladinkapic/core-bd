@@ -235,6 +235,8 @@ Route::prefix('hr/drzavni-sluzbenici')->group(function () {
     Route::post('/prestanak-ro-azuriraj',           'UsersController@azurirajPrestanakRO')->name('drzavni-sluzbenici.prestanak-ro.azuriraj');
     Route::get ('/prestanak-ro-obrisi/{id}',        'UsersController@obrisiPrestanakRO')->name('drzavni-sluzbenici.prestanak-ro.obrisi');
 
+
+    Route::get ('/podesi-jmbg',                     'UsersController@podesiJMBG')->name('drzavni-sluzbenici.podesi-jmbg');
 });
 
 Route::prefix('hr/sluzbenici')->group(function () {
