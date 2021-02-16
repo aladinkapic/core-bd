@@ -40,15 +40,15 @@
                                     <p>{{__('Radno mjesto')}}</p>
                                 </div>
                             </li>
-                            <li class="">
-                                <div class="list_div">
-                                    <div class="back_div"></div>
-                                    <div class="icon_circle">
-                                        <i class="fas fa-network-wired"></i>
-                                    </div>
-                                    <p>{{__('Uslovi za radno mjesto')}}</p>
-                                </div>
-                            </li>
+{{--                            <li class="">--}}
+{{--                                <div class="list_div">--}}
+{{--                                    <div class="back_div"></div>--}}
+{{--                                    <div class="icon_circle">--}}
+{{--                                        <i class="fas fa-network-wired"></i>--}}
+{{--                                    </div>--}}
+{{--                                    <p>{{__('Uslovi za radno mjesto')}}</p>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
                             <li class="">
                                 <div class="list_div">
                                     <div class="back_div"></div>
@@ -168,30 +168,30 @@
                         </section>
 
 
-                        <section class="">
-                            <div class="container_block" >
+{{--                        <section class="">--}}
+{{--                            <div class="container_block" >--}}
 
-                                @foreach($uslovi as $uslov)
-                                    <div class="split_container split_container5" style="padding:0px;">
-                                        <div id="uslovi_za_radno_mjesto">
-                                            <div class="copied_form copied_form2" id="form_for_copy">
-                                                <div class="form-group row">
+{{--                                @foreach($uslovi as $uslov)--}}
+{{--                                    <div class="split_container split_container5" style="padding:0px;">--}}
+{{--                                        <div id="uslovi_za_radno_mjesto">--}}
+{{--                                            <div class="copied_form copied_form2" id="form_for_copy">--}}
+{{--                                                <div class="form-group row">--}}
 {{--                                                    <div class="col">--}}
 {{--                                                        {!! Form::label('tip_inp', 'Tip : ', ['class' => 'control-label']) !!}--}}
 {{--                                                        <div class="col-lg-12">--}}
 {{--                                                            {!!  Form::select('', $tip_uslova, $uslov->tip ,['class' => 'form-control', 'id' => 'tip_inp', 'disabled' => 'true']) !!}--}}
 {{--                                                        </div>--}}
 {{--                                                    </div>--}}
-                                                </div>
+{{--                                                </div>--}}
 
-                                                <div class="form-group row">
-                                                    <div class="col">
-                                                        {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}
-                                                        <div class="col-lg-12">
-                                                            {!! Form::textarea('', $uslov->tekst_uslova, ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100', 'readonly']) !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
+{{--                                                <div class="form-group row">--}}
+{{--                                                    <div class="col">--}}
+{{--                                                        {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            {!! Form::textarea('', $uslov->tekst_uslova, ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100', 'readonly']) !!}--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
 {{--                                                <div class="form-group row">--}}
 {{--                                                    <div c  lass="col">--}}
@@ -201,12 +201,12 @@
 {{--                                                        </div>--}}
 {{--                                                    </div>--}}
 {{--                                                </div>--}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </section>
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+{{--                        </section>--}}
 
 
                         <section class="">

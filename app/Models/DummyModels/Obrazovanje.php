@@ -24,6 +24,10 @@ class Obrazovanje extends Model{
         if(!$this->datum_nostrifikacije) return '';
         return Carbon::parse($this->datum_nostrifikacije)->format('d.m.Y');
     }
+    public function datumDostavljanjaDiplome(){
+        if(!$this->datum_dostavljanja_dip) return '';
+        return Carbon::parse($this->datum_dostavljanja_dip)->format('d.m.Y');
+    }
 
     public function ciklus(){
         return $this->hasOne(Sifrarnik::class, 'value', 'ciklus_obrazovanja')->where('type', 'stepen');

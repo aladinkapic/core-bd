@@ -28,7 +28,7 @@ class RadnaMjestaController extends Controller{
 
         $filteri = [
             'naziv_rm' => 'Naziv radnog mjesta',
-            'sifra_rm' => 'Šifra radnog mjesta',
+            // 'sifra_rm' => 'Šifra radnog mjesta',
             'broj_izvrsilaca' => 'Broj izvršilaca',
             'platni_razred' => 'Platni razred',
             'stepenSS.name' => 'Stepen',
@@ -151,6 +151,7 @@ class RadnaMjestaController extends Controller{
         $tip_radnog_mjesta   = Sifrarnik::dajSifrarnik('stepen');
 
 
+        dd($uslovi);
         $org_jedinice = OrganizacionaJedinica::with('parent') // Organizaciona jedinica
         ->where('org_id', '=', $organizacija->id)
             ->orderBy('broj', 'ASC')

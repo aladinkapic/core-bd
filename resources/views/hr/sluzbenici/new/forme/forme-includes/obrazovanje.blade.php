@@ -108,6 +108,36 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="dip_poslana_na_pr">Diploma poslana na provjeru</label>
+                {!! Form::select('dip_poslana_na_pr', $da_ne, $obrazovanje->dip_poslana_na_pr ?? '', ['class' => 'form-control', 'id' => 'dip_poslana_na_pr', isset($preview) ? 'disabled => true' : '']) !!}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="dip_vracena_sa_pr">Diploma vraćena sa provjere</label>
+                {!! Form::select('dip_vracena_sa_pr', $da_ne, $obrazovanje->dip_vracena_sa_pr ?? '', ['class' => 'form-control', 'id' => 'dip_vracena_sa_pr', isset($preview) ? 'disabled => true' : '']) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="datum_dostavljanja_dip">Datum dostavljanja diplome u toku radnog odnosa</label>
+                {!! Form::text('datum_dostavljanja_dip', isset($obrazovanje) ? $obrazovanje->datumDostavljanjaDiplome() : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_dostavljanja_dip', isset($preview) ? 'readonly' : '']) !!}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="dodatak_diplomi">Dodatak diplomi</label>
+                {!! Form::text('dodatak_diplomi', $obrazovanje->dodatak_diplomi ?? '', ['class' => 'form-control', 'id' => 'dodatak_diplomi', isset($preview) ? 'readonly' : '']) !!}
+            </div>
+        </div>
+    </div>
+
     @if(!isset($preview))
         <div class="row">
             <div class="col-md-12 d-flex flex-row-reverse">

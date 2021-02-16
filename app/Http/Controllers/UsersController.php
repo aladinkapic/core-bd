@@ -399,12 +399,13 @@ class UsersController extends Controller{
         $sluzbenik = Sluzbenik::where('id', $sl_id)->first();
         $ustanova  = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite ustanovu', '');
         $ciklus    = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite ciklus', '');
-
+        $da_ne     = Sifrarnik::dajSifrarnik('da_ne');
 
         return view('hr.sluzbenici.new.forme.obrazovanje', [
             'sluzbenik' => $sluzbenik,
             'ustanova'  => $ustanova,
-            'ciklus'    => $ciklus
+            'ciklus'    => $ciklus,
+            'da_ne'     => $da_ne
         ]);
     }
     public function spremiObrazovanje(Request $request){
@@ -422,13 +423,15 @@ class UsersController extends Controller{
         $sluzbenik    = Sluzbenik::where('id', $obrazovanje->id_sluzbenika)->first();
         $ustanova     = Sifrarnik::dajSifrarnik('obrazovna_institucija')->prepend('Odaberite ustanovu', '');
         $ciklus       = Sifrarnik::dajSifrarnik('stepen')->prepend('Odaberite ciklus', '');
+        $da_ne     = Sifrarnik::dajSifrarnik('da_ne');
 
         return view('hr.sluzbenici.new.forme.obrazovanje', [
             'obrazovanje' => $obrazovanje,
             'sluzbenik'   => $sluzbenik,
             'ustanova'    => $ustanova,
             'ciklus'      => $ciklus,
-            'edit'        => true
+            'edit'        => true,
+            'da_ne'       => $da_ne
         ]);
     }
     public function azurirajObrazovanje(Request $request){

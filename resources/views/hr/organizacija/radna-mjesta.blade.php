@@ -81,11 +81,11 @@
                                 </ul>
                             </td>
                             <td class="text-center">
-                                <a href="/hr/radna_mjesta/pregledaj_radno_mjesto/{{$rm->id ?? '1'}}" title="Pregledajte radno mjesto">
+                                <a href="{{route('rm.o-pregledaj-radno-mjesto', ['id' => $rm->id])}}" title="Pregledajte radno mjesto">
                                     <i class="fa fa-eye" style="margin-right:10px;"></i>
                                 </a>
 
-                                <a href="/hr/radna_mjesta/uredi_radno_mjesto/{{$rm->id ?? '1'}}" title="Uredite radno mjesto">
+                                <a href="{{route('rm.o-uredi-radno-mjesto', ['id' => $rm->id])}}" title="Uredite radno mjesto">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
@@ -100,10 +100,11 @@
                 </table>
             </div>
 
-            <button class="btn btn-success" v-on:click="toggle('#dodaj')">
-                <i class="fa fa-plus"></i> {{__('Dodaj radno mjesto')}}
-            </button>
-
+            <a href="{{route('rm.dodaj-radno-mjesto', ['id' => $organizacija->id ?? ''])}}" style="color:#fff;">
+                <button class="btn btn-success">
+                    <i class="fa fa-plus"></i> {{__('Dodaj radno mjesto')}}
+                </button>
+            </a>
             <div id="dodaj" style="display: none;">
                 @include('hr.radna_mjesta.fajlovi.dodaj')
             </div>
