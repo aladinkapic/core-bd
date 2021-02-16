@@ -51,15 +51,15 @@
                                             <p>{{__('Radno mjesto')}}</p>
                                         </div>
                                     </li>
-                                    <li class="">
-                                        <div class="list_div">
-                                            <div class="back_div"></div>
-                                            <div class="icon_circle">
-                                                <i class="fas fa-network-wired"></i>
-                                            </div>
-                                            <p>{{__('Uslovi za radno mjesto')}}</p>
-                                        </div>
-                                    </li>
+{{--                                    <li class="">--}}
+{{--                                        <div class="list_div">--}}
+{{--                                            <div class="back_div"></div>--}}
+{{--                                            <div class="icon_circle">--}}
+{{--                                                <i class="fas fa-network-wired"></i>--}}
+{{--                                            </div>--}}
+{{--                                            <p>{{__('Uslovi za radno mjesto')}}</p>--}}
+{{--                                        </div>--}}
+{{--                                    </li>--}}
                                     <!--
                                     <li class="">
                                         <div class="list_div">
@@ -183,116 +183,116 @@
                                 </section>
 
 
-                                <section class="">
-                                    <div class="container_block" >
-                                        <div class="split_container">
-                                            <div class="copied_form" id="form_for_copy">
-                                                <div class="form-group row">
+{{--                                <section class="">--}}
+{{--                                    <div class="container_block" >--}}
+{{--                                        <div class="split_container">--}}
+{{--                                            <div class="copied_form" id="form_for_copy">--}}
+{{--                                                <div class="form-group row">--}}
 
-                                                    {!! Form::hidden('id_uslova[]', 'empty', ['class' => 'form-control']) !!}
+{{--                                                    {!! Form::hidden('id_uslova[]', 'empty', ['class' => 'form-control']) !!}--}}
 
 
-                                                    <div class="col">
-                                                        {!! Form::label('naziv_rm_inp[]', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}
-                                                        <div class="col-lg-12">
-                                                            {!! Form::text('', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm_inp', 'readonly']) !!}
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="col">--}}
+{{--                                                        {!! Form::label('naziv_rm_inp[]', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            {!! Form::text('', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm_inp', 'readonly']) !!}--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
 {{--                                                    <div class="col">--}}
 {{--                                                        {!! Form::label('tip_inp', 'Tip : ', ['class' => 'control-label']) !!}--}}
 {{--                                                        <div class="col-lg-12">--}}
 {{--                                                            {!!  Form::select('tip_inp[]', $tip_uslova, '' ,['class' => 'form-control', 'id' => 'tip_inp']) !!}--}}
 {{--                                                        </div>--}}
 {{--                                                    </div>--}}
-                                                </div>
+{{--                                                </div>--}}
 
-                                                <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>
+{{--                                                <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>--}}
 
-                                                <div class="form-group row">
-                                                    <div class="col">
-                                                        {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}
-                                                        <div class="col-lg-12">
-                                                            {!! Form::textarea('tekst_uslova_inp[]', '', ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100']) !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
+{{--                                                <div class="form-group row">--}}
+{{--                                                    <div class="col">--}}
+{{--                                                        {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            {!! Form::textarea('tekst_uslova_inp[]', '', ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100']) !!}--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
-                                                {{--                                            <div class="form-group row">--}}
-                                                {{--                                                <div class="col">--}}
-                                                {{--                                                    {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
-                                                {{--                                                    <div class="col-lg-12">--}}
-                                                {{--                                                        {!! Form::textarea('vrijednost_inp[]', '', ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}--}}
-                                                {{--                                                    </div>--}}
-                                                {{--                                                </div>--}}
-                                                {{--                                            </div>--}}
-                                            </div>
+{{--                                                --}}{{--                                            <div class="form-group row">--}}
+{{--                                                --}}{{--                                                <div class="col">--}}
+{{--                                                --}}{{--                                                    {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
+{{--                                                --}}{{--                                                    <div class="col-lg-12">--}}
+{{--                                                --}}{{--                                                        {!! Form::textarea('vrijednost_inp[]', '', ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}--}}
+{{--                                                --}}{{--                                                    </div>--}}
+{{--                                                --}}{{--                                                </div>--}}
+{{--                                                --}}{{--                                            </div>--}}
+{{--                                            </div>--}}
 
-                                            <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">
-                                                <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('uslovi_za_radno_mjesto', 'form_for_copy');">
-                                                    {{__('Dodajte uslov')}}
-                                                    <i class="fas fa-save"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+{{--                                            <div class="form-group" style="text-align:right; padding-right:16px; margin-top:30px;">--}}
+{{--                                                <button type="button" class="btn btn-dark" id="custom_button" onclick="createNewDomElements('uslovi_za_radno_mjesto', 'form_for_copy');">--}}
+{{--                                                    {{__('Dodajte uslov')}}--}}
+{{--                                                    <i class="fas fa-save"></i>--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                        <div class="split_container" style="padding:0px;">
-                                            <div id="uslovi_za_radno_mjesto">
-                                                @php $i = 0; @endphp
-                                                @foreach($uslovi as $uslov)
-                                                    <div class="copied_form radno_mjesto_uslovi*{{$uslov->id}}" id="form_for_copy" style="padding-top:20px;">
+{{--                                        <div class="split_container" style="padding:0px;">--}}
+{{--                                            <div id="uslovi_za_radno_mjesto">--}}
+{{--                                                @php $i = 0; @endphp--}}
+{{--                                                @foreach($uslovi as $uslov)--}}
+{{--                                                    <div class="copied_form radno_mjesto_uslovi*{{$uslov->id}}" id="form_for_copy" style="padding-top:20px;">--}}
 
-                                                        <div class="shadow_delete">
-                                                            <div class="delete_item" onclick="obrisiDomElement('uslovi_za_radno_mjesto', '{{$i}}'); obrisiIzBaze('{{$uslov->id}}'); ">
-                                                                <i class="fas fa-trash"></i>
-                                                            </div>
+{{--                                                        <div class="shadow_delete">--}}
+{{--                                                            <div class="delete_item" onclick="obrisiDomElement('uslovi_za_radno_mjesto', '{{$i}}'); obrisiIzBaze('{{$uslov->id}}'); ">--}}
+{{--                                                                <i class="fas fa-trash"></i>--}}
+{{--                                                            </div>--}}
 
-                                                            <div class="delete_item edit_item" onclick="urediDomElement('uslovi_za_radno_mjesto', '{{$i++}}');">
-                                                                <i class="fas fa-edit"></i>
-                                                            </div>
-                                                        </div>
+{{--                                                            <div class="delete_item edit_item" onclick="urediDomElement('uslovi_za_radno_mjesto', '{{$i++}}');">--}}
+{{--                                                                <i class="fas fa-edit"></i>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
 
-                                                        {!! Form::hidden('id_uslova[]', $uslov->id, ['class' => 'form-control']) !!}
+{{--                                                        {!! Form::hidden('id_uslova[]', $uslov->id, ['class' => 'form-control']) !!}--}}
 
-                                                        <div class="form-group row">
-                                                            <div class="col">
-                                                                {!! Form::label('naziv_rm_inp', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}
-                                                                <div class="col-lg-12">
-                                                                    {!! Form::text('naziv_rm_inp[]', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm_inp', 'readonly']) !!}
-                                                                </div>
-                                                            </div>
+{{--                                                        <div class="form-group row">--}}
+{{--                                                            <div class="col">--}}
+{{--                                                                {!! Form::label('naziv_rm_inp', 'Naziv radnog mjesta : ', ['class' => 'control-label']) !!}--}}
+{{--                                                                <div class="col-lg-12">--}}
+{{--                                                                    {!! Form::text('naziv_rm_inp[]', isset($radno_mjesto) ? $radno_mjesto->naziv_rm : '', ['class' => 'form-control', 'rows' => 1, 'id' => 'naziv_rm_inp', 'readonly']) !!}--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
 {{--                                                            <div class="col">--}}
 {{--                                                                {!! Form::label('tip_inp', 'Tip : ', ['class' => 'control-label']) !!}--}}
 {{--                                                                <div class="col-lg-12">--}}
 {{--                                                                    {!!  Form::select('tip_inp[]', $tip_uslova, $uslov->tip ,['class' => 'form-control', 'id' => 'tip_inp']) !!}--}}
 {{--                                                                </div>--}}
 {{--                                                            </div>--}}
-                                                        </div>
+{{--                                                        </div>--}}
 
-                                                        <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>
+{{--                                                        <div class="notificaiton_area" id="naziv_rm_not"> <p id="naziv_rm_not_v"></p> </div>--}}
 
-                                                        <div class="form-group row">
-                                                            <div class="col">
-                                                                {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}
-                                                                <div class="col-lg-12">
-                                                                    {!! Form::textarea('tekst_uslova_inp[]', $uslov->tekst_uslova, ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100']) !!}
-                                                                </div>
-                                                            </div>
-                                                        </div>
+{{--                                                        <div class="form-group row">--}}
+{{--                                                            <div class="col">--}}
+{{--                                                                {!! Form::label('tekst_uslova_inp', 'Tekst uslova : ', ['class' => 'control-label']) !!}--}}
+{{--                                                                <div class="col-lg-12">--}}
+{{--                                                                    {!! Form::textarea('tekst_uslova_inp[]', $uslov->tekst_uslova, ['class' => 'form-control', 'rows' => 6, 'id' => 'tekst_uslova_inp', 'maxlength' => '100']) !!}--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
 
-                                                        {{--                                                    <div class="form-group row">--}}
-                                                        {{--                                                        <div class="col">--}}
-                                                        {{--                                                            {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
-                                                        {{--                                                            <div class="col-lg-12">--}}
-                                                        {{--                                                                {!! Form::textarea('vrijednost_inp[]', $uslov->vrijednost, ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}--}}
-                                                        {{--                                                            </div>--}}
-                                                        {{--                                                        </div>--}}
-                                                        {{--                                                    </div>--}}
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
+{{--                                                        --}}{{--                                                    <div class="form-group row">--}}
+{{--                                                        --}}{{--                                                        <div class="col">--}}
+{{--                                                        --}}{{--                                                            {!! Form::label('vrijednost_inp', 'Vrijednost : ', ['class' => 'control-label']) !!}--}}
+{{--                                                        --}}{{--                                                            <div class="col-lg-12">--}}
+{{--                                                        --}}{{--                                                                {!! Form::textarea('vrijednost_inp[]', $uslov->vrijednost, ['class' => 'form-control', 'rows' => 2, 'id' => 'vrijednost_inp', 'maxlength' => '100']) !!}--}}
+{{--                                                        --}}{{--                                                            </div>--}}
+{{--                                                        --}}{{--                                                        </div>--}}
+{{--                                                        --}}{{--                                                    </div>--}}
+{{--                                                    </div>--}}
+{{--                                                @endforeach--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </section>--}}
 
 
 {{--                                <section class="">--}}

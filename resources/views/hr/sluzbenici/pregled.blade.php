@@ -206,44 +206,44 @@
                             </ul>
                         </td>
 
-                        <td>
-                            <ul>
-                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
-                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                        <li>{{$zasnivanje->obracunati_r_staz_s->name ?? ''}}</li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </td>
+{{--                        <td>--}}
+{{--                            <ul>--}}
+{{--                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))--}}
+{{--                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)--}}
+{{--                                        <li>{{$zasnivanje->obracunati_r_staz_s->name ?? ''}}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            </ul>--}}
+{{--                        </td>--}}
 
                         <!-- Ispiti službenika -->
-                        <td>
-                            <ul>
-                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
-                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                        <li>{{$zasnivanje->obracunati_r_s_god ?? ''}}</li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </td>
-                        <td>
-                            <ul>
-                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
-                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                        <li>{{$zasnivanje->obracunati_r_s_mje ?? ''}}</li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </td>
-                        <td>
-                            <ul>
-                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))
-                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
-                                        <li>{{$zasnivanje->obracunati_r_s_dan ?? ''}}</li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </td>
+{{--                        <td>--}}
+{{--                            <ul>--}}
+{{--                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))--}}
+{{--                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)--}}
+{{--                                        <li>{{$zasnivanje->obracunati_r_s_god ?? ''}}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            </ul>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <ul>--}}
+{{--                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))--}}
+{{--                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)--}}
+{{--                                        <li>{{$zasnivanje->obracunati_r_s_mje ?? ''}}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            </ul>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <ul>--}}
+{{--                                @if(isset($sluzbenik->zasnivanjeRORel) and count($sluzbenik->zasnivanjeRORel))--}}
+{{--                                    @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)--}}
+{{--                                        <li>{{$zasnivanje->obracunati_r_s_dan ?? ''}}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            </ul>--}}
+{{--                        </td>--}}
                         <td>
                             <ul>
                                 @foreach($sluzbenik->zasnivanjeRORel as $zasnivanje)
@@ -259,17 +259,17 @@
 {{--                            </ul>--}}
 {{--                        </td>--}}
                         <!---- Stručna sprema službenika ---->
-                        <td>
-                            @if($sluzbenik->strucnaSprema)
-                                <ul>
-                                    @foreach($sluzbenik->strucnaSprema as $sprema)
-                                        <li>
-                                            {{ $sprema->stepenStrucne->name ??  '/'}}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </td>
+{{--                        <td>--}}
+{{--                            @if($sluzbenik->strucnaSprema)--}}
+{{--                                <ul>--}}
+{{--                                    @foreach($sluzbenik->strucnaSprema as $sprema)--}}
+{{--                                        <li>--}}
+{{--                                            {{ $sprema->stepenStrucne->name ??  '/'}}--}}
+{{--                                        </li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
                         <td>
                             @if($sluzbenik->strucnaSprema)
                                 <ul>
@@ -282,7 +282,7 @@
                             @endif
                         </td>
                         <td>
-                            @if($sluzbenik->strucnaSprema)
+                            @if($sluzbenik->obrazovanjeRel)
                                 <ul>
                                     @foreach($sluzbenik->obrazovanjeRel as $obrazovanje)
                                         <li>
@@ -292,28 +292,28 @@
                                 </ul>
                             @endif
                         </td>
-                        <td>
-                            @if($sluzbenik->strucnaSprema)
-                                <ul>
-                                    @foreach($sluzbenik->strucnaSprema as $sprema)
-                                        <li>
-                                            {{ $sprema->vrsta_s_s ?? '/'}}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </td>
-                        <td>
-                            @if($sluzbenik->strucnaSprema)
-                                <ul>
-                                    @foreach($sluzbenik->strucnaSprema as $sprema)
-                                        <li>
-                                            {{ $sprema->obrazovnaInstitucija->name ?? '/'}}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </td>
+{{--                        <td>--}}
+{{--                            @if($sluzbenik->obrazovanjeRel)--}}
+{{--                                <ul>--}}
+{{--                                    @foreach($sluzbenik->obrazovanjeRel as $sprema)--}}
+{{--                                        <li>--}}
+{{--                                            {{ $sprema->vrsta_s_s ?? '/'}}--}}
+{{--                                        </li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            @if($sluzbenik->strucnaSprema)--}}
+{{--                                <ul>--}}
+{{--                                    @foreach($sluzbenik->strucnaSprema as $sprema)--}}
+{{--                                        <li>--}}
+{{--                                            {{ $sprema->obrazovnaInstitucija->name ?? '/'}}--}}
+{{--                                        </li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
 
                         <td style="text-align:center;" class="akcije">
                             @if(isset($odsustva))

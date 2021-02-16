@@ -302,6 +302,15 @@ Route::prefix('hr/radna_mjesta')->group(function () {
     Route::get('/obrisi-rm-sa-sluz/{id}',            'RadnaMjestaController@obrisiRMsaSluzbenicima');
 });
 
+Route::prefix('hr/radna_mjesta')->group(function () {
+    Route::get ('/rm-dodaj-radno-mjesto/{id}',                     'RMController@dodaj')->name('rm.dodaj-radno-mjesto');
+    Route::post('/rm-spremi-radno-mjesto',                         'RMController@spremi')->name('rm.spremi-radno-mjesto');
+
+    Route::get ('/o-rm-pregledaj-radno-mjesto/{id}',               'RMController@pregledOrganizaciona')->name('rm.o-pregledaj-radno-mjesto');
+    Route::get ('/rm-pregledaj-radno-mjesto/{id}',                 'RMController@pregled')->name('rm.pregledaj-radno-mjesto');
+    Route::get ('/o-rm-uredi-radno-mjesto/{id}',                   'RMController@urediOrganizaciona')->name('rm.o-uredi-radno-mjesto');
+    Route::post('/rm-azuriraj-radno-mjesto',                       'RMController@azuriraj')->name('rm.azuriraj-radno-mjesto');
+});
 
 
 /*********************************************** UPRAVLJANJE UČINKOM **************************************************/
@@ -884,6 +893,13 @@ Route::prefix('podrska/')->group(function () {
 Route::group(['prefix' => '/console',], function(){
     Route::get('/radni-staz', function(){
         Artisan::call('total:worktime');
+    });
+
+    Route::get('/azuriraj-obrazovanje', function(){
+        Artisan::call('fix:azuriraj-obrazovanje');
+    });
+    Route::get('/azuriraj-rm', function(){
+        Artisan::call('fix:radnaMjesta');
     });
 });
 

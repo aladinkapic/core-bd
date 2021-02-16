@@ -45,9 +45,9 @@
                         <td>
                             {{ $radnoMjesto->naziv_rm ?? '/'}}
                         </td>
-                        <td>
-                            {{ $radnoMjesto->sifra_rm ?? '/'}}
-                        </td>
+{{--                        <td>--}}
+{{--                            {{ $radnoMjesto->sifra_rm ?? '/'}}--}}
+{{--                        </td>--}}
                         <td>
                             {{ $radnoMjesto->broj_izvrsilaca ?? '/'}}
                         </td>
@@ -79,12 +79,12 @@
                         </td>
 
                         <td class="text-center akcije">
-                            <a href="{{route('radnamjesta.pregledaj-mjestooo', ['id' => $radnoMjesto->id ?? '/'])}}"
+                            <a href="{{route('rm.pregledaj-radno-mjesto', ['id' => $radnoMjesto->id])}}"
                                title="Pregledajte radno mjesto">
                                 <button class="btn my-button">{{__('Pregled')}}</button>
                             </a>
 
-                            <a href="{{route('radnamjesta-uredi-rm', ['id' => $radnoMjesto->id ?? '/'])}}"
+                            <a href="{{route('rm.o-uredi-radno-mjesto', ['id' => $radnoMjesto->id])}}"
                                title="Uredite radno mjesto">
                                 <i class="fas fa-edit"></i>
                             </a>
