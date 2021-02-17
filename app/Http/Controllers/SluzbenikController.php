@@ -510,6 +510,8 @@ class SluzbenikController extends Controller
             'mjesto_izdavanja_lk' => 'Mjesto izdavanja lične karte',
             'pioRel.name' => 'Poreska uprava',
             'sluzbenikRel.rm.naziv_rm' => 'Radno mjesto',
+            'sluzbenikRel.rm.stepen__ss__' => 'Stepen/Vrsta S.S. za R.M. propisano OP',
+            'sluzbenikRel.rm.ostale_kvalifikacije' => 'Ostale kvalifikacije za R.M. iz OP',
             'sluzbenikRel.rm.katgorijaa.name' => 'Kategorija radnog mjesta',
             'sluzbenikRel.rm.stepenSS.name' => 'S.S.S za R.M. propisano OP',
             'privremeniRel.privremeno_mjesto.naziv_rm' => 'Privremeni premještaj',

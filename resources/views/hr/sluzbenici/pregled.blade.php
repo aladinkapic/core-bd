@@ -142,6 +142,9 @@
                                 {{ $sluzbenik->sluzbenikRel->rm->naziv_rm ?? '/' }}
                             </a>
                         </td>
+                        <td> {{ $sluzbenik->sluzbenikRel->rm->stepen__ss__ ?? '/' }} </td>
+                        <td> {{ $sluzbenik->sluzbenikRel->rm->ostale_kvalifikacije ?? '/' }} </td>
+
                         <td>{{$sluzbenik->sluzbenikRel->rm->katgorijaa->name ?? ''}}</td>
                         <td>{{$sluzbenik->sluzbenikRel->rm->stepenSS->name ?? ''}}</td>
                         <td>{{ $sluzbenik->privremeniRel->privremeno_mjesto->naziv_rm ?? '/'}}</td>
