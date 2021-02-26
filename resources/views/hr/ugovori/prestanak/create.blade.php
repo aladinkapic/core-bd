@@ -18,7 +18,7 @@
 
                     <div class="tittle">
                         <h2>
-                            {{__('Privremeni premještaj državnog službenika')}}
+                            {{__('Prestanak radnog odnosa')}}
                         </h2>
                         <p>{{__('Molimo Vas da popunite sva potrebna polja za unos. Sve aktivnosti na ovoj stranici će biti zabilježene.')}}</p>
                         <br />
