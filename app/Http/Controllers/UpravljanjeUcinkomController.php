@@ -90,10 +90,12 @@ class UpravljanjeUcinkomController extends Controller{
         $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene');
         $sluzbenik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
         $sluzbenik = $sluzbenik['ime'] . ' ' . $sluzbenik['prezime'];
+        $ocjenjivac = Sluzbenik::where('id', '=', $ucinak->ocjenjivac)->first();
+        $ocjenjivac = $ocjenjivac['ime'] . ' ' . $ocjenjivac['prezime'];
         $preview = true;
 
 
-        return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik', 'kategorija', 'preview'));
+        return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik', 'ocjenjivac', 'kategorija', 'preview'));
     }
 
     public function edit($id){
@@ -110,6 +112,7 @@ class UpravljanjeUcinkomController extends Controller{
     }
 
     public function update(Request $request, $id){
+        //dd($request->ocjenjivac);
         $pravila = [
             'sluzbenik' => 'required',
             'ocjena' => 'required',
@@ -133,7 +136,8 @@ class UpravljanjeUcinkomController extends Controller{
                 'godina'    => $request->godina,
                 'ocjena'    => $request->ocjena,
                 'kategorija' => $request->kategorija,
-                'opisna_ocjena' => $request->opisna_ocjena
+                'opisna_ocjena' => $request->opisna_ocjena,
+                'ocjenjivac' => $request->ocjenjivac
             ]);
 //            dd($ucinak);
         }catch (\Exception $e){dd($e);}

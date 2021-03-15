@@ -64,7 +64,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="koeficijent">Koeficijent</label>
-                {!! Form::number('koeficijent', $radni_odnos->koeficijent ?? '', ['class' => 'form-control', 'id' => 'koeficijent ', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::number('koeficijent', $radni_odnos->koeficijent ?? '', ['class' => 'form-control', 'id' => 'koeficijent ', isset($preview) ? 'readonly' : '', 'required' =>'required']) !!}
             </div>
         </div>
         <div class="col-md-6">

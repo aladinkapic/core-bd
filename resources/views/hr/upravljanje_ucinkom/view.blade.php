@@ -52,7 +52,6 @@
                     @if(isset($probni))
                         {!! Form::hidden('id', $probni->id) !!}
                     @endif
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -86,6 +85,12 @@
                                         <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Opisna ocjena')}}</label>
                                         <div class="col-sm-9">
                                             {!! Form::text('opisnaOcjena', $ucinak -> opisna_ocjena ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjena_drugi', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Ocjenjivač')}}</label>
+                                        <div class="col-sm-9">
+                                            {!! Form::text('ocjenjivac', $ocjenjivac ?? '', ['class' => 'form-control', 'rows' => 1, 'id' => 'ocjenjivac', 'min'=>0,'max'=>3, 'autocomplete' => 'off',  isset($preview) ? 'readonly' : '', 'step' => '0.01']) !!}
                                         </div>
                                     </div>
                                 </div>
