@@ -93,7 +93,7 @@
                                     {{__('Datum isteka ugovora/odluke')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input value="{{ \Carbon\Carbon::parse($ugovor->datum_isteka)->format('d.m.Y') }}" id="datum-isteka-ugovora" class="form-control datepicker" type="text" name="datum_isteka"
+                                    <input value="{{isset($ugovor) ? $ugovor->datumIsteka() : ''}}" id="datum-isteka-ugovora" class="form-control datepicker" type="text" name="datum_isteka"
                                            placeholder="Datum isteka ugovora/odluke..."/>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     {{__('Datum isteka probnog perioda')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input value="{{ \Carbon\Carbon::parse($ugovor->datum_isteka_probni)->format('d.m.Y') }}" id="datum-isteka-probnog" class="form-control datepicker" type="text" name="datum_isteka_probni"
+                                    <input value="{{isset($ugovor) ? $ugovor->datumIstekaProbni() : ''}}" id="datum-isteka-probnog" class="form-control datepicker" type="text" name="datum_isteka_probni"
                                            placeholder="Datum isteka probnog perioda..."/>
                                 </div>
                             </div>

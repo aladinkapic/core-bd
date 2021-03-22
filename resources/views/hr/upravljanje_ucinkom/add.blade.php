@@ -56,6 +56,29 @@
                                                 </div>
                                             </div>
                                             @if ($errors ->has('ocjena'))<div class="notificaiton_area alert-danger"><p> {{ $errors->first('ocjena')}}</p></div>@endif
+
+                                            <div class="form-group row" style="height: 38px;">
+                                                <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Ocjenivač')}}</label>
+                                                <div class="col-sm-9">
+                                                    <select class="js-example-basic-single form-control" name="ocjenjivac">
+                                                        @foreach($niz_sluzbenika as $key => $value)
+                                                            <option value="{{$key}}" @if(isset($ucinak)) @if ($ucinak->ocjenjivac == $key) selected @endif  @endif>{{$value}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+{{--                                            <div class="form-group row" style="height: 38px;">--}}
+{{--                                                <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Ocjenivač')}}</label>--}}
+{{--                                                <div class="col-sm-9">--}}
+{{--                                                    <select class="js-example-basic-single form-control" name="ocjenjivac">--}}
+{{--                                                        @foreach($niz_sluzbenika as $key => $value)--}}
+{{--                                                            <option value="{{$key}}" @if(isset($ucinak)) @if ($ucinak->ocjenjivac == $key) selected @endif  @endif>{{$value}}</option>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </select>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
 
