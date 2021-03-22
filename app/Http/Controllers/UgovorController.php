@@ -58,7 +58,6 @@ class UgovorController extends Controller{
 
     public function storeRadniStatus(Request $request){
         $request = HelpController::formatirajRequest($request);
-
         try{
 
             $organizacija = Organizacija::where('id', $request->organizacioni_plan)->first();
@@ -114,7 +113,7 @@ class UgovorController extends Controller{
     public function editRadniStatus(Request $request, $id){
 
         $sluzbenici = Sluzbenik::select(['id', 'ime', 'prezime'])->get();
-        $ugovor = RadniStatus::findOrFail($id);
+        $ugovor     = RadniStatus::findOrFail($id);
         $organi     = Organ::pluck('naziv', 'id')->prepend('Odaberite organ', '');
         $radno_v    = Sifrarnik::dajSifrarnik('radno_vrijeme')->prepend('Odaberite radno vrijeme', '');
 
