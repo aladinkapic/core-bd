@@ -8,11 +8,14 @@ class UpravljanjeUcinkom extends Model{
     protected $table = "upravljanje_ucinkom";
 
     protected $fillable = [
-        'sluzbenik', 'radno_mjesto', 'godina','ocjena', 'opisna_ocjena','kategorija'
+        'sluzbenik', 'radno_mjesto', 'godina','ocjena', 'opisna_ocjena','kategorija', 'ocjenjivac'
     ];
 
     public function usluzbenik(){
         return $this->hasOne(Sluzbenik::class, 'id', 'sluzbenik');
+    }
+    public function ocjenjivacRel(){
+        return $this->hasOne(Sluzbenik::class, 'id', 'ocjenjivac');
     }
 
     public function mjesto(){

@@ -24,7 +24,8 @@ class UpravljanjeUcinkomController extends Controller{
             'mjesto.rm.naziv_rm'=>'Radno mjesto',
             'godina'=>'Godina ocjenjivanja',
             'ocjena'=>'Ocjena',
-            'opisna_ocjena'=>'Opisna ocjena'
+            'opisna_ocjena'=>'Opisna ocjena',
+            'ocjenjivacRel.ime_prezime' => 'Ocjenjivač'
         ];
 
 
@@ -93,7 +94,6 @@ class UpravljanjeUcinkomController extends Controller{
         $ocjenjivac = Sluzbenik::where('id', '=', $ucinak->ocjenjivac)->first();
         $ocjenjivac = $ocjenjivac['ime'] . ' ' . $ocjenjivac['prezime'];
         $preview = true;
-
 
         return view('/hr/upravljanje_ucinkom/view', compact('ucinak', 'radnoMjesto', 'sluzbenik', 'ocjenjivac', 'kategorija', 'preview'));
     }

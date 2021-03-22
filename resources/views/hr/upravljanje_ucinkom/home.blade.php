@@ -62,7 +62,7 @@
                     <tr>
                         <td class="text-center">{{$i++}}</td>
                         <td>
-                            <a href="{{route('sluzbenik.dodatno', ['id' => $ucinak -> usluzbenik->id ?? '1'])}}">
+                            <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $ucinak -> usluzbenik->id ?? '1'])}}">
                                 {{$ucinak -> usluzbenik->ime_prezime ?? ''}}
                             </a>
                         </td>
@@ -74,6 +74,12 @@
                         <td>{{$ucinak -> godina ?? '/'}}</td>
                         <td>{{$ucinak -> ocjena ?? '/'}}</td>
                         <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
+                        <td>
+                            <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $ucinak -> ocjenjivacRel->id ?? '1'])}}">
+                                {{$ucinak -> ocjenjivacRel->ime_prezime ?? ''}}
+                            </a>
+                        </td>
+
                         <td class="text-center">
                             <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id ?? '1'}}">
                                 <button class="btn my-button">Pregled</button>
