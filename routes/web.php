@@ -795,6 +795,8 @@ Route::prefix('/hr/upravljanje_ucinkom/')->group(function() {
     Route::get('viewUcinak/{id}',            'UpravljanjeUcinkomController@show')->name('upravljanje-ucinkom-pregledaj');
 
     Route::get('pregled-izvjestaja',         'UpravljanjeUcinkomController@pregledIzvjestaja')->name('upravljanje-ucinkom.pregled-izvjestaja');
+
+    Route::get('updateAll',                  'UpravljanjeUcinkomController@updateAll')->name('upravljanje-ucinkom-pregledaj.update-all');
 });
 
 

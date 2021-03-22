@@ -91,6 +91,13 @@ class UpravljanjeUcinkomController extends Controller{
         }catch (\Exception $e){}
     }
 
+    public function updateAll (){
+        $ucinci = UpravljanjeUcinkom::get();
+        foreach ($ucinci as $ucinak){
+            $this->updateIzvjestaj($ucinak->sluzbenik, $ucinak->godina);
+        }
+    }
+
     public function storeUcinci(Request $request){
         $pravila = [
             'sluzbenik' => 'required',
