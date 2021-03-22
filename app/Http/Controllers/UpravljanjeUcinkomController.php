@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\Sifrarnik;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
+use function foo\func;
 
 class UpravljanjeUcinkomController extends Controller{
     public function index(){
@@ -47,6 +48,49 @@ class UpravljanjeUcinkomController extends Controller{
         return view('hr/upravljanje_ucinkom/add', compact('niz_sluzbenika', 'radna_mjesta', 'kategorija'));
     }
 
+    public function updateIzvjestaj($sl_id, $godina){
+        try{
+            $sluzbenik = Sluzbenik::where('id', $sl_id)->with('radnoMjesto.orgjed')->first();
+
+            $orgJed_id = $sluzbenik->radnoMjesto->orgjed->id ?? 0;
+            if($orgJed_id){
+
+                $nijeZadovoljio = UpravljanjeUcinkom::whereHas('usluzbenik.radnoMjesto.orgjed', function($query) use($orgJed_id){
+                    $query->where('id', $orgJed_id);
+                })->where('godina', $godina)->where('ocjena', '<', '1.5')->count();
+                $zadovoljava = UpravljanjeUcinkom::whereHas('usluzbenik.radnoMjesto.orgjed', function($query) use($orgJed_id){
+                    $query->where('id', $orgJed_id);
+                })->where('godina', $godina)->where('ocjena', '>=', '1.5')->where('ocjena', '<', '2.5')->count();
+                $nadmasuje = UpravljanjeUcinkom::whereHas('usluzbenik.radnoMjesto.orgjed', function($query) use($orgJed_id){
+                    $query->where('id', $orgJed_id);
+                })->where('godina', $godina)->where('ocjena', '>=', '2.5')->count();
+
+
+                try{
+                    // Ako pronađemo rel sa željenim rezultatima, updejtujemo, ako ne, unosimo novu
+                    $rel = OrgJedinicaIzvjestaj::where('org_jed', $orgJed_id)->where('godina', $godina)->firstOrFail();
+                    $rel->update([
+                        'ne_zadovoljava' => $nijeZadovoljio,
+                        'zadovoljava'    => $zadovoljava,
+                        'nadmasuje'      => $nadmasuje,
+                        'ukupno'         => $nijeZadovoljio + $zadovoljava + $nadmasuje
+                    ]);
+                }catch (\Exception $e){
+                    try{
+                        OrgJedinicaIzvjestaj::create([
+                            'org_jed'        => $orgJed_id,
+                            'godina'         => $godina,
+                            'ne_zadovoljava' => $nijeZadovoljio,
+                            'zadovoljava'    => $zadovoljava,
+                            'nadmasuje'      => $nadmasuje,
+                            'ukupno'         => $nijeZadovoljio + $zadovoljava + $nadmasuje
+                        ]);
+                    }catch (\Exception $e){}
+                }
+            }
+        }catch (\Exception $e){}
+    }
+
     public function storeUcinci(Request $request){
         $pravila = [
             'sluzbenik' => 'required',
@@ -70,6 +114,8 @@ class UpravljanjeUcinkomController extends Controller{
         else {
             try {
                 $ucinak = UpravljanjeUcinkom::create($request->except(['_method']));
+
+                $this->updateIzvjestaj($request->sluzbenik, $request->godina);
             } catch (\Exception $e) {
                 return $e->getMessage();
             }
@@ -112,17 +158,13 @@ class UpravljanjeUcinkomController extends Controller{
     }
 
     public function update(Request $request, $id){
-        //dd($request->ocjenjivac);
         $pravila = [
             'sluzbenik' => 'required',
             'ocjena' => 'required',
             'kategorija' => 'required'
         ];
 
-//        dd($request->all());
-
         $poruke = HelpController::getValidationMessages();
-//        $this->validate($request, $pravila, $poruke);
 
         if($request->ocjena < 1.5){
             $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
@@ -139,16 +181,12 @@ class UpravljanjeUcinkomController extends Controller{
                 'opisna_ocjena' => $request->opisna_ocjena,
                 'ocjenjivac' => $request->ocjenjivac
             ]);
-//            dd($ucinak);
+            $this->updateIzvjestaj($request->sluzbenik, $request->godina);
         }catch (\Exception $e){dd($e);}
-
-//        $u = UpravljanjeUcinkom::findOrFail($id);
-//        $u->update($request->all());
 
         return redirect()
             ->back()
             ->with('success', 'Uspješno ste izvršili izmjene!');
-
     }
 
     public function destroy($id){
@@ -263,17 +301,14 @@ class UpravljanjeUcinkomController extends Controller{
         // $opisna = (round(($request->ocjena_prvi + $request->ocjena_drugi + $request->ocjena_treci) / 3, 2));
 
         $opisna = $request->ocjena;
-
         if($opisna > 1.5) $request->request->add(['opisna_ocjena' => 'Zadovoljio']);
         else $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
-
 
         try{
             $probni = UpravljanjeUcinkomProbni::create(
                 $request->except(['id'])
             );
         }catch (\Exception $e){dd($e);}
-
         return redirect()->route('probni-rad.pregled');
     }
 
