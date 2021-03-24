@@ -323,13 +323,13 @@
                                 {{__('Službenici koji stiču pravo na penzionisanje')}}
                                 <span class="badge badge-primary badge-pill">14</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{__('Ukupno upražnjenih radni mjesta')}}
-                                <span class="badge badge-primary badge-pill">2</span>
-                            </li>
+{{--                            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
+{{--                                {{__('Ukupno upražnjenih radni mjesta')}}--}}
+{{--                                <span class="badge badge-primary badge-pill">2</span>--}}
+{{--                            </li>--}}
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 {{__('Privremeno premještenih službenika')}}
-                                <span class="badge badge-primary badge-pill">1</span>
+                                <span class="badge badge-primary badge-pill"> {{ $privremenoPremjestenih }} </span>
                             </li>
                         </ul>
                     </div>
