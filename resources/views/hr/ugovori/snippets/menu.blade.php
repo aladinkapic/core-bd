@@ -12,10 +12,10 @@
             <i class="fa fa-retweet"></i>
             <a href="{{ route('ugovor.privremeno.index') }}">{{__('Privremeni premještaj')}} </a>
         </li>
-        <li class="{{ (request()->is('ugovori/prestanak/*')) ? 'active' : '' }}">
-            <i class="fa fa-ban"></i>
-            <a href="{{ route('ugovor.prestanak.index') }}">{{__('Prestanak radnog odnosa')}} </a>
-        </li>
+{{--        <li class="{{ (request()->is('ugovori/prestanak/*')) ? 'active' : '' }}">--}}
+{{--            <i class="fa fa-ban"></i>--}}
+{{--            <a href="{{ route('ugovor.prestanak.index') }}">{{__('Prestanak radnog odnosa')}} </a>--}}
+{{--        </li>--}}
         <li class="{{ (request()->is('ugovori/dodatno/*')) ? 'active' : '' }}">
             <i class="fa fa-box"></i>
             <a href="{{ route('ugovor.dodatno.index') }}">{{__('Dodatne djelatnosti')}}</a>

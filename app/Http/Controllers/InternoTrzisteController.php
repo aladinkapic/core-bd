@@ -136,7 +136,7 @@ class InternoTrzisteController extends Controller{
     /****************************************** PRIVREMENI PREMJEŠTAJ *************************************************/
 
     public function privremeniPremjestaj(){
-        $ugovori = Privremeno::with('usluzbenik')->with('mjesto')->with('privremeno_mjesto');
+        $ugovori = Privremeno::where('datum_do', null)->with('usluzbenik')->with('mjesto')->with('privremeno_mjesto');
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [

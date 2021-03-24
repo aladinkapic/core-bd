@@ -8,7 +8,7 @@ class UpravljanjeUcinkom extends Model{
     protected $table = "upravljanje_ucinkom";
 
     protected $fillable = [
-        'sluzbenik', 'radno_mjesto', 'godina','ocjena', 'opisna_ocjena','kategorija', 'ocjenjivac'
+        'sluzbenik', 'radno_mjesto', 'godina','ocjena', 'opisna_ocjena','kategorija', 'ocjenjivac', 'nije_ocjenjen'
     ];
 
     public function usluzbenik(){
@@ -16,6 +16,9 @@ class UpravljanjeUcinkom extends Model{
     }
     public function ocjenjivacRel(){
         return $this->hasOne(Sluzbenik::class, 'id', 'ocjenjivac');
+    }
+    public function nijeOcjenjenRel(){
+        return $this->hasOne(Sifrarnik::class, 'value', 'nije_ocjenjen')->where('type', 'da_ne');
     }
 
     public function mjesto(){

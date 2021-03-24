@@ -88,7 +88,7 @@
                                         {{__('Datum od')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_od) }}" class="form-control datepicker" id="datum_od" name="datum_od" placeholder="Datum od..." >
+                                        <input type="text" value="{{isset($ugovor) ? $ugovor->datumOd() : ''}}" class="form-control datepicker" id="datum_od" name="datum_od" placeholder="Datum od..." >
                                     </div>
                                 </div>
                                 <br/>
@@ -97,13 +97,13 @@
                                         {{__('Datum do')}}
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="text" value="{{ \App\Http\Controllers\HelpController::obrniDatum($ugovor->datum_do) }}" class="form-control datepicker" id="datum_do" name="datum_do" placeholder="Datum do..." >
+                                        <input type="text" value="{{isset($ugovor) ? $ugovor->datumDo() : ''}}" class="form-control datepicker" id="datum_do" name="datum_do" placeholder="Datum do..." >
                                     </div>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        {{__('Datum do')}}
+                                        {{__('Platni razred')}}
                                     </div>
                                     <div class="col-md-7">
                                         <input type="text" value="{{$ugovor->platni_razred ?? ''}}" class="form-control" id="platni_razred" name="platni_razred" placeholder="Platni razred..." >

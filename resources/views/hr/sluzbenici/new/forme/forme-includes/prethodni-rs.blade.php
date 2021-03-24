@@ -79,6 +79,16 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="napomena">Napomena</label>
+                {!! Form::textarea('napomena', $prethodni->napomena ?? '', ['class' => 'form-control', 'id' => 'napomena', isset($preview) ? 'readonly' : '', 'style' => 'height:120px;']) !!}
+                <small id="napomena" class="form-text text-muted"> Unesite željenu napomenu </small>
+            </div>
+        </div>
+    </div>
+
     @if(!isset($preview))
         <div class="row">
             <div class="col-md-12 d-flex flex-row-reverse">

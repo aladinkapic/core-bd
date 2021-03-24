@@ -23,6 +23,7 @@ class UpravljanjeUcinkomTabela extends Migration
             $table->text('opisna_ocjena')->nullable();
             $table->integer('kategorija')->nullable();
             $table->integer('ocjenjivac')->nullable();
+            $table->integer('nije_ocjenjen')->default(0);
         });
 
     }

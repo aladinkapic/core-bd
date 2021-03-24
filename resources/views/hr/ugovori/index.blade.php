@@ -57,6 +57,7 @@
                         <td>{{$ugovor->usluzbenik->sluzbenikRel->rm->orgjed->organizacija->organ->naziv ?? ''}}</td>
                         <td>{{$ugovor->radnoMjesto->naziv_rm ?? ''}}</td>
                         <td>{{$ugovor->datumUgovora() ?? '/'}}</td>
+                        <td>{{$ugovor->datumPocetkaRada() ?? '/'}}</td>
                         <td>{{$ugovor->datumIsteka() ?? '/'}}</td>
                         <td>{{$ugovor->datumIstekaProbni() ?? '/'}}</td>
                         <td>{{$ugovor->broj_sati ?? '/'}}</td>
