@@ -107,7 +107,7 @@ class UpravljanjeUcinkomController extends Controller{
 
         if($request->ocjena < 1.5){
             $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
-        }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
+        }else if($request->ocjena >= 1.5 and $request->ocjena <= 2.5){
             $request->request->add(['opisna_ocjena' => 'Zadovoljava očekivanja']);
         }else $request->request->add(['opisna_ocjena' => 'Nadmašuje očekivanja']);
 
@@ -175,13 +175,13 @@ class UpravljanjeUcinkomController extends Controller{
 
         if($request->ocjena < 1.5){
             $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
-        }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
+        }else if($request->ocjena >= 1.5 and $request->ocjena <= 2.5){
             $request->request->add(['opisna_ocjena' => 'Zadovoljava očekivanja']);
         }else $request->request->add(['opisna_ocjena' => 'Nadmašuje očekivanja']);
 
         if(isset($request->ocjena) and $request->ocjena) $nije = 1;
         else $nije = 1;
-        
+
 
         try{
             $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([
