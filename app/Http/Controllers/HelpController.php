@@ -208,11 +208,12 @@ class HelpController extends Controller
 
         $trenutno = Carbon::now()->format('Y-m-d');
         $privremenoPremjestenih = Privremeno::whereDate('datum_do', '>=', $trenutno)->orWhere('datum_do', null)->count();
+        $brojZaPenzionisanje    = Sluzbenik::where('vakaz_za_penzionisanje', 1)->count();
 
         /** Ovo izvršavati u sklopu nekog job-a **/
         //$this->kreirajNotifikacije();
 
-        return view('home', compact('radnih_mjesta', 'sluzbenika', 'obukeNotifikacija', 'broj_obuka', 'interno_trzis', 'notifications', 'brojNotifikacija', 'privremenoPremjestenih'));
+        return view('home', compact('radnih_mjesta', 'sluzbenika', 'obukeNotifikacija', 'broj_obuka', 'interno_trzis', 'notifications', 'brojNotifikacija', 'privremenoPremjestenih', 'brojZaPenzionisanje'));
     }
 
     public function unistiSesije($naziv_sesije)

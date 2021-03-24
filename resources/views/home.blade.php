@@ -321,7 +321,7 @@
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 {{__('Službenici koji stiču pravo na penzionisanje')}}
-                                <span class="badge badge-primary badge-pill">14</span>
+                                <span class="badge badge-primary badge-pill">{{$brojZaPenzionisanje}}</span>
                             </li>
 {{--                            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
 {{--                                {{__('Ukupno upražnjenih radni mjesta')}}--}}
