@@ -30,7 +30,6 @@ class UgovorController extends Controller{
     public function index(Request $request){
         $ugovori = RadniStatus::with('usluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ');
 
-
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [
@@ -40,6 +39,7 @@ class UgovorController extends Controller{
             'usluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ.naziv' => 'Organ',
             'radnoMjesto.naziv_rm' => 'Radno mjesto na koje je postavljen',
             'datum'=>'Datum ugovora/odluke',
+            'datum_pocetka_rada' => 'Datum početka rada',
             'datum_isteka'=>'Datum isteka ugovora/odluke',
             'datum_isteka_probni'=>'Datum isteka probnog perioda',
             'broj_sati'=>'Broj sati',
@@ -58,6 +58,13 @@ class UgovorController extends Controller{
 
     public function storeRadniStatus(Request $request){
         $request = HelpController::formatirajRequest($request);
+
+        try{
+            $zavrsetakProbnog = Carbon::parse($request->datum_pocetka_rada)->addMonths(6)->format('Y-m-d');
+        }catch (\Exception $e){
+            $zavrsetakProbnog = Carbon::now()->addMonths(6)->format('Y-m-d');
+        }
+        $request->request->add(['datum_isteka_probni' => $zavrsetakProbnog]); //add request
         try{
 
             $organizacija = Organizacija::where('id', $request->organizacioni_plan)->first();

@@ -80,6 +80,7 @@
                             </a>
                         </td>
 
+                        <td> {{ $ucinak->nijeOcjenjenRel->name ?? '' }} </td>
                         <td class="text-center">
                             <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id ?? '1'}}">
                                 <button class="btn my-button">Pregled</button>

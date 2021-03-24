@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 namespace App\Console\Commands;
 use App\Models\DisciplinskaOdgovornost;
+use App\Models\RadniStatus;
 use App\Models\Uloge;
 use App\Models\Updates\Notifikacija;
 use Illuminate\Support\Facades\Notification;
@@ -170,13 +171,6 @@ class createNotifications extends Command{
                     ]);
                 }
             }
-
-//            dd($odgovornost);
-//            $message = "Poštovani ".$odgovornost->sluzbenik->ime.' '.$odgovornost->sluzbenik->prezime."<br><br>";
-//            $message .= "Obaviještavamo Vas da vaša disciplinska mjera ističe za 15 dana.<br><br>";
-//            $message .= "Za sva ostala pitanja obratite se Vladi Brčko Distrikta koja je zaposlila ove ljude. P.S. Jesam slatki, right ? Vaš email";
-//
-//            $odgovornost->sluzbenik->notify(new DisciplinskaOdg(array(' subject' => 'Obavijest sa portala', 'from_address' => 'bot@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
         }
     }
 
@@ -204,9 +198,55 @@ class createNotifications extends Command{
         }
     }
 
+    /*******************************************************************************************************************
+     *
+     *      Obavijesti o isteku probnog rada
+     *
+     ******************************************************************************************************************/
+
+    public function probniRad(){
+        try{
+            $lastSix = Carbon::now()->subMonths(12)->format('Y-m-d');
+            $today   = Carbon::now()->format('Y-m-d');
+
+            $radniStatus = RadniStatus::whereDate('datum_pocetka_rada', '>=', $lastSix)->get();
+
+            $uloge = Uloge::where('keyword', 'regitar_ugovora')->where('vrijednost', 1)->get();
+
+            foreach ($radniStatus as $rs){
+                $datumIsteka = Carbon::parse($rs->datum_pocetka_rada)->addMonths(5)->addDays(15)->format('Y-m-d');
+
+                $kraj = Carbon::parse($rs->datum_pocetka_rada)->addMonths(6)->format('d.m.Y');
+
+                if($datumIsteka < $today){
+                    $sluzbenik = Sluzbenik::where('id', $rs->sluzbenik)->first();
+                    foreach ($uloge as $uloga){
+                        try{
+                            $not = Notifikacija::where('sluzbenik_id', $uloga->sluzbenik_id )
+                                ->where('what', 'probni_rad')
+                                ->where('to_who', $rs->sluzbenik)->firstOrFail();
+                        }catch (\Exception $e){
+                            $notifikacija = Notifikacija::create([
+                                'sluzbenik_id' => $uloga->sluzbenik_id,
+                                'what' => 'probni_rad',
+                                'to_who' => $rs->sluzbenik,
+                                'message' => ':: Probni rad za službenika / cu '.$sluzbenik->ime.' '.$sluzbenik->prezime.' ističe za manje 15 dana ('.$kraj.').'
+                            ]);
+                        }
+                    }
+                }
+                // dd($rs->datum_pocetka_rada, $datumIsteka);
+            }
+        }catch (\Exception $e){
+            dd($e);
+        }
+    }
+
     public function handle(){
         $this->penzionisanje();
         $this->disciplinskaOdgovornost();
         $this->starost();
+
+        $this->probniRad();
     }
 }

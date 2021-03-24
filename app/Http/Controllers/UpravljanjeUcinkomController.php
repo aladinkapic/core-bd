@@ -26,7 +26,8 @@ class UpravljanjeUcinkomController extends Controller{
             'godina'=>'Godina ocjenjivanja',
             'ocjena'=>'Ocjena',
             'opisna_ocjena'=>'Opisna ocjena',
-            'ocjenjivacRel.ime_prezime' => 'Ocjenjivač'
+            'ocjenjivacRel.ime_prezime' => 'Ocjenjivač',
+            'nijeOcjenjenRel.name' => 'Ocijenjen'
         ];
 
 
@@ -101,8 +102,7 @@ class UpravljanjeUcinkomController extends Controller{
     public function storeUcinci(Request $request){
         $pravila = [
             'sluzbenik' => 'required',
-            'godina' => 'required|min:4|max:4',
-            'ocjena' => 'required'
+            'godina' => 'required|min:4|max:4'
         ];
 
         if($request->ocjena < 1.5){
@@ -178,6 +178,9 @@ class UpravljanjeUcinkomController extends Controller{
         }else if($request->ocjena >= 1.5 and $request->ocjena < 2.5){
             $request->request->add(['opisna_ocjena' => 'Zadovoljava očekivanja']);
         }else $request->request->add(['opisna_ocjena' => 'Nadmašuje očekivanja']);
+
+        if(isset($request->ocjena) and $request->ocjena) $nije = 1;
+        else $nije = 1;
 
         try{
             $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([

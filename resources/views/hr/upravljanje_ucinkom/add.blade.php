@@ -68,6 +68,14 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row">
+                                                <label for="staticEmail" class="col-sm-3 col-form-label">{{ __('Nije ocijenjen')}}</label>
+                                                <div class="col-sm-9 text-left">
+                                                    <div class="form-check mt-0">
+                                                        <input class="form-check-input mt-2 pt-0" type="checkbox" name="nije_ocjenjen" value="1" id="nije_ocjenjen">
+                                                    </div>
+                                                </div>
+                                            </div>
 
 {{--                                            <div class="form-group row" style="height: 38px;">--}}
 {{--                                                <label for="staticEmail" class="col-sm-3 col-form-label"> {{__('Ocjenivač')}}</label>--}}
