@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Penzionisanje;
+use App\Models\Privremeno;
 use App\Models\Updates\Notifikacija;
 use Carbon\Carbon;
 use Faker\Provider\Uuid;
@@ -171,30 +172,11 @@ class HelpController extends Controller
          *          notifiable_type App\Models\Sluzbenik
          *
          **************************************************************************************************************/
-
-//        $sluzbeniciRaw = DB::table('sluzbenici')
-//            ->select(['sluzbenici.id'])
-//            ->rightJoin('notifications', function ($param) {
-//                $param->on('sluzbenici.id', '=', 'notifications.notifiable_id');
-//            })
-//            ->where('notifications.read_at', '=', null)
-//            ->get();
-
         $user = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->first();
 //        $notifications = App\myNotifications::where('notifiable_id', '=', $user->id)->where('read_at', '=', null)->with('sluzbenik')->get();
 
         $notifications = Notifikacija::where('sluzbenik_id', $user->id)->where('read_at', null)->with('toWho')->orderBy('created_at', 'desc')->get()->take(5);
         $brojNotifikacija = Notifikacija::where('sluzbenik_id', $user->id)->where('read_at', null)->count();
-
-
-//        dd($notifications);
-
-//        dd($notifications);
-//        foreach ($sluzbeniciRaw as $sluzbenik) {
-//            array_push($sluzbenici, Sluzbenik::where('id', '=', $sluzbenik->id)->first());
-//        }
-
-
 
         /***************************************************************************************************************
          *
@@ -221,25 +203,16 @@ class HelpController extends Controller
             }
 
         }
-//        $s = Sluzbenik::find(1);
-//
-//        $sluzbenik = Sluzbenik::find(1);
-//        $sluzbenik->setAttribute('nesto', 'weee');
-//        $message = "Poštovani ".$sluzbenik->ime.' '.$sluzbenik->prezime."<br><br>";
-//        $message .= "Obaviještavamo vas da je ovo poruka samo testnog karaktera i kao takva ne treb biti shvaćena ozbiljno. U slučaju da vas stvarno zanima svrha ove poruke, obratite se njenom tvorcu koji također veze nema šta ona treba da predstavlja. Cilj pisanja ove poruke je da bi se ustanovio konzistentan template koji će se moći u opštem slučaju koristiti u mnoge svrhe. <br><br>";
-//        $message .= "Za sva ostala pitanja obratite se Vladi Brčko Distrikta koja je zaposlila ove ljude. P.S. Jesam slatki, right ? Vaš email";
-//
-//        $sluzbenik->notify(new NotifyMe(array(' subject' => 'Obavijest sa portala', 'from' => 'noreply@core.bd', 'link' => 'home', 'message' => $message, 'send_email' => true)));
-//
 
-        // Notification::route('mail', 'aladin.kapic@teneo.ba')
-        //     ->notify(new NotifyMe());
-        // $me = Sluzbenik::where('id', Crypt::decryptString(Session::get('ID')))->with('uloge')->first();
+        // ** Statistika ** //
+
+        $trenutno = Carbon::now()->format('Y-m-d');
+        $privremenoPremjestenih = Privremeno::whereDate('datum_do', '>=', $trenutno)->orWhere('datum_do', null)->count();
 
         /** Ovo izvršavati u sklopu nekog job-a **/
         //$this->kreirajNotifikacije();
 
-        return view('home', compact('radnih_mjesta', 'sluzbenika', 'obukeNotifikacija', 'broj_obuka', 'interno_trzis', 'notifications', 'brojNotifikacija'));
+        return view('home', compact('radnih_mjesta', 'sluzbenika', 'obukeNotifikacija', 'broj_obuka', 'interno_trzis', 'notifications', 'brojNotifikacija', 'privremenoPremjestenih'));
     }
 
     public function unistiSesije($naziv_sesije)
