@@ -7,6 +7,7 @@ use App\Models\Organizacija;
 use App\Models\Privremeno;
 use App\Models\RadnoMjesto;
 use App\Models\Sluzbenik;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Code;
 use App\Models\Check;
@@ -136,7 +137,9 @@ class InternoTrzisteController extends Controller{
     /****************************************** PRIVREMENI PREMJEŠTAJ *************************************************/
 
     public function privremeniPremjestaj(){
-        $ugovori = Privremeno::where('datum_do', null)->with('usluzbenik')->with('mjesto')->with('privremeno_mjesto');
+        $trenutno = Carbon::now()->format('Y-m-d');
+
+        $ugovori = Privremeno::whereDate('datum_do', '>=', $trenutno)->orWhere('datum_do', null)->with('usluzbenik')->with('mjesto')->with('privremeno_mjesto');
         $ugovori = FilterController::filter($ugovori);
 
         $filteri = [
