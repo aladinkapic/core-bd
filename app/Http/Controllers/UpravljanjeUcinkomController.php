@@ -181,6 +181,7 @@ class UpravljanjeUcinkomController extends Controller{
 
         if(isset($request->ocjena) and $request->ocjena) $nije = 1;
         else $nije = 1;
+        
 
         try{
             $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([
@@ -189,7 +190,8 @@ class UpravljanjeUcinkomController extends Controller{
                 'ocjena'    => $request->ocjena,
                 'kategorija' => $request->kategorija,
                 'opisna_ocjena' => $request->opisna_ocjena,
-                'ocjenjivac' => $request->ocjenjivac
+                'ocjenjivac' => $request->ocjenjivac,
+                'nije_ocjenjen' => $nije
             ]);
             $this->updateIzvjestaj($request->sluzbenik, $request->godina);
         }catch (\Exception $e){dd($e);}
