@@ -43,6 +43,15 @@ class createNotifications extends Command{
      *      je ostalo manje od 8 mjeseci za penzionisanje.
      *
      ******************************************************************************************************************/
+
+    public function vakatZaPenzionisanje($sl_id){
+        try{
+            $sluzbenik = Sluzbenik::where('id', $sl_id)->update([
+                'vakaz_za_penzionisanje' => 1
+            ]);
+        }catch (\Exception $e){}
+    }
+
     public function penzionisanje(){
         Session::put('_token', 'TxVramwuKWsHgYG6dpRhFUGWrNcndmCpkJPKcXRy');
 
@@ -60,6 +69,8 @@ class createNotifications extends Command{
             $years  = $date->diffInYears($now);
 
             if($years >= 64 and $months >= 6){
+                $this->vakatZaPenzionisanje($sluzbenik->id);
+
                 $starosna_dob = false;
 
                 foreach($sluzbenik->notifications as $notification){
@@ -111,6 +122,8 @@ class createNotifications extends Command{
 
 
             if($sluzbenik->staz_godina > 39 and $sluzbenik->staz_mjeseci > 6){
+                $this->vakatZaPenzionisanje($sluzbenik->id);
+
                 $sluzbeniciZaNotifikacije = Uloge::where('keyword', 'sluzbenici')->get(['sluzbenik_id'])->toArray();
 
                 $users = Sluzbenik::whereIn('id', $sluzbeniciZaNotifikacije)->get();
@@ -244,9 +257,9 @@ class createNotifications extends Command{
 
     public function handle(){
         $this->penzionisanje();
-        $this->disciplinskaOdgovornost();
-        $this->starost();
-
-        $this->probniRad();
+//        $this->disciplinskaOdgovornost();
+//        $this->starost();
+//
+//        $this->probniRad();
     }
 }
