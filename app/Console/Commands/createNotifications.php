@@ -274,23 +274,27 @@ class createNotifications extends Command{
             $privremeni = Privremeno::where(function ($query) use ($now) {
                 $query->whereDate('datum_do', '>=', $now)
                     ->orWhere('datum_do', null);
-            })->where('sluzbenik', $sluzbenik->id)->count();
+            })->where('sluzbenik', $sluzbenik->id)->orderBy('datum_od', 'DESC')->first();
 
 
             if(!$privremeni){
                 $sluzbenik->update([
                     'privremeni_premjestaj' => null
                 ]);
+            }else{
+                $sluzbenik->update([
+                    'privremeni_premjestaj' => $privremeni->privremeno_radno_mjesto
+                ]);
             }
         }
     }
 
     public function handle(){
-        $this->penzionisanje();
-        $this->disciplinskaOdgovornost();
-        $this->starost();
-
-        $this->probniRad();
+//        $this->penzionisanje();
+//        $this->disciplinskaOdgovornost();
+//        $this->starost();
+//
+//        $this->probniRad();
 
         $this->privremeniPremjestaj();
     }
