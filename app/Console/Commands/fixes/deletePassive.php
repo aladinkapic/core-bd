@@ -41,9 +41,9 @@ class deletePassive extends Command
     public function handle()
     {
         $sluzbenici = Sluzbenik::where('status', 'Pasivan')->get();
-        foreach ($sluzbenici as $sl){
 
-            $rm_s = RadnoMjestoSluzbenik::where('sluzbenik_id', $sl->sluzbenik)->get();
+        foreach ($sluzbenici as $sl){
+            $rm_s = RadnoMjestoSluzbenik::where('sluzbenik_id', $sl->id)->get();
             foreach($rm_s as $rm){
                 $radno_mjesto = RadnoMjesto::where('id', $rm->radno_mjesto_id)->with('orgjed.organizacija')->first();
                 if(isset($radno_mjesto->orgjed->organizacija) and $radno_mjesto->orgjed->organizacija->active == 1){
