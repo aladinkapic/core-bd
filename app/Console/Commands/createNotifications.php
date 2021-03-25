@@ -283,7 +283,7 @@ class createNotifications extends Command{
                 ]);
             }else{
                 $sluzbenik->update([
-                    'privremeni_premjestaj' => $privremeni->privremeno_radno_mjesto
+                    'privremeni_premjestaj' => $privremeni->id
                 ]);
             }
         }
