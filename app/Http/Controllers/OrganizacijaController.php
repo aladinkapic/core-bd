@@ -258,8 +258,7 @@ class OrganizacijaController extends Controller
 
         $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query) use ($id) {
             $query->where('id', '=', $id);
-        })
-            ->with('sluzbeniciRel.sluzbenik')
+        })->with('sluzbeniciRel.sluzbenik')
             ->with('strucnaSprema')
             ->with('tipRadnogMjesta')
             ->with('tipPrivremenogPremjestaja')
@@ -272,14 +271,13 @@ class OrganizacijaController extends Controller
             'id' => '#',
             'orgjed.naziv' => 'Organizaciona jedinica',
             'naziv_rm' => 'Naziv radnog mjesta',
-            'sifra' => 'Šifra',
-            'katgorijaa.name' => 'Kategorija',
-            'tipRadnogMjesta.name' => 'Stepen',
-            'opis_rm' => 'Opis radnog mjesta',
+            'opis_rm' => 'Opis poslova radnog mjesta i odgovornosti',
             'broj_izvrsilaca' => 'Broj izvršilaca',
             'platni_razred' => 'Platni razred',
-            'strucnaSprema.name' => 'Kompetencije',
-            'usloviRM.tekst_uslova' => 'Uslovi',
+            'stepenSS.name' => 'Stepen stručne spreme',
+            'katgorijaa.name' => 'Kategorija',
+            'stepen__ss__' => 'Stepen/Vrsta stručne spreme ',
+            'ostale_kvalifikacije' => 'Ostale kvalifikacije',
             'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
         ];
 

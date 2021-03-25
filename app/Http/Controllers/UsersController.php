@@ -11,6 +11,8 @@ use App\Models\DummyModels\PrethodnoRI;
 use App\Models\DummyModels\StrucnaSprema;
 use App\Models\DummyModels\Vjestine;
 use App\Models\DummyModels\ZasnivanjeRO;
+use App\Models\RadnoMjesto;
+use App\Models\RadnoMjestoSluzbenik;
 use App\Models\Sifrarnik;
 use App\Models\Sluzbenik;
 use Illuminate\Http\Request;
@@ -704,6 +706,15 @@ class UsersController extends Controller{
         $request = HelpController::formatirajRequest($request);
 
         try{
+
+            $rm_s = RadnoMjestoSluzbenik::where('sluzbenik_id', $request->id_sluzbenika)->get();
+            foreach($rm_s as $rm){
+                $radno_mjesto = RadnoMjesto::where('id', $rm->radno_mjesto_id)->with('orgjed.organizacija')->first();
+                if(isset($radno_mjesto->orgjed->organizacija) and $radno_mjesto->orgjed->organizacija->active == 1){
+                    $rm->delete();
+                }
+            }
+
             $prestanak = PrestanakRO::create(
                 $request->except(['_token'])
             );
