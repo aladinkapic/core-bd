@@ -71,8 +71,8 @@
                         </td>
                         <td>
                             <ul class="custom-one-to-many">
-                                @foreach($radnoMjesto->sluzbenici as $sluzbenik)
-                                    <li > {{ $sluzbenik->ime_prezime }} </li>
+                                @foreach($radnoMjesto->sluzbeniciRel as $sluzbenik)
+                                    <li > {{ $sluzbenik->sluzbenik->ime_prezime }} </li>
                                 @endforeach
                             </ul>
 

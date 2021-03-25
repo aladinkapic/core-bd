@@ -23,7 +23,7 @@ class RadnaMjestaController extends Controller{
         // Ovdje trebamo samo isfiltrirati radna mjesta u odnosu na organizacionu jedinuc
         //$radna_mjesta = RadnoMjesto::aktivna();
 
-        $radna_mjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel');
+        $radna_mjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel', 'sluzbeniciRel');
         $radna_mjesta = FilterController::filter($radna_mjesta);
 
         $filteri = [
@@ -36,7 +36,7 @@ class RadnaMjestaController extends Controller{
             'orgjed.naziv' => 'Organizacijska jedinica',
             'orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'kompetencijeRel.name' => 'Kompetencije',
-            'sluzbenici.ime_prezime' => 'Službenici',
+            'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici',
         ];
 
 
@@ -44,7 +44,6 @@ class RadnaMjestaController extends Controller{
 //        foreach ($ids as $id){
 //            $radna_mjesta->push(RadnoMjesto::where('id', $id->id)->with('orgjed')->first());
 //        }
-
 
 
         return view('/hr/radna_mjesta/home', compact('radna_mjesta', 'filteri'));
