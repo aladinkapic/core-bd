@@ -470,6 +470,7 @@ class SluzbenikController extends Controller
             ->with('pioRel')
             ->with('zasnivanjeRORel.obracunati_r_staz_s')
             ->with('privremeniRel.privremeno_mjesto')
+            ->with('privremeniPremjestajRel.privremeno_mjesto')
             ->where('id', '!=', 1)
             ->orderBy('prezime');
 
