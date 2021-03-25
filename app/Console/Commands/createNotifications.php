@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 namespace App\Console\Commands;
 use App\Models\DisciplinskaOdgovornost;
+use App\Models\Privremeno;
 use App\Models\RadniStatus;
 use App\Models\Uloge;
 use App\Models\Updates\Notifikacija;
@@ -59,6 +60,9 @@ class createNotifications extends Command{
 
         foreach ($sluzbenici as $sluzbenik){
             $broj_dana_po_zasnivanju = 0;
+
+            // ------------------------------------------------------------------------------------------------------ //
+
 
             $date = Carbon::createFromDate( $sluzbenik->datum_rodjenja );
             $now  = Carbon::now();
@@ -255,11 +259,39 @@ class createNotifications extends Command{
         }
     }
 
+    /*******************************************************************************************************************
+     *
+     *      Privremeni premještaj
+     *
+     ******************************************************************************************************************/
+
+    public function privremeniPremjestaj(){
+        $sluzbenici = Sluzbenik::where('privremeni_premjestaj', '!=', null)->get();
+        $now = Carbon::now()->format('Y-m-d');
+
+        foreach ($sluzbenici as $sluzbenik){
+
+            $privremeni = Privremeno::where(function ($query) use ($now) {
+                $query->whereDate('datum_do', '>=', $now)
+                    ->orWhere('datum_do', null);
+            })->where('sluzbenik', $sluzbenik->id)->count();
+
+
+            if(!$privremeni){
+                $sluzbenik->update([
+                    'privremeni_premjestaj' => null
+                ]);
+            }
+        }
+    }
+
     public function handle(){
         $this->penzionisanje();
         $this->disciplinskaOdgovornost();
         $this->starost();
 
         $this->probniRad();
+
+        $this->privremeniPremjestaj();
     }
 }
