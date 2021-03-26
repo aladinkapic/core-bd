@@ -288,7 +288,7 @@ class UgovorController extends Controller{
 
         $radnaMjesta = DB::table('radna_mjesta')
             ->select(['radna_mjesta.id', 'radna_mjesta.naziv_rm'])->get();
-        return array('radnaMjesta' => $radnaMjesta, 'naziv_radnog_mjesta' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->radnoMjesto->naziv_rm : '', 'rm_id' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->radnoMjesto->id : '');
+        return array('radnaMjesta' => $radnaMjesta, 'naziv_radnog_mjesta' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->sluzbenikRel->rm->naziv_rm : '', 'rm_id' => (Sluzbenik::where('id', $request->id)->first()->radnoMjesto) ? Sluzbenik::where('id', $request->id)->first()->sluzbenikRel->rm->id : '');
     }
 
 
