@@ -102,7 +102,7 @@
                                     {{__('Datum rješenja')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="datum_rjesenja" class="form-control datepicker" name="datum_rjesenja" placeholder="Datum rješenja..." >
+                                    <input type="text" id="datum_rjesenja" class="form-control datepicker-2" name="datum_rjesenja" placeholder="Datum rješenja..." >
                                 </div>
                             </div>
                             <br/>
@@ -111,7 +111,7 @@
                                     {{__('Datum od')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="datum_od" class="form-control datepicker" name="datum_od" placeholder="Datum od..." >
+                                    <input type="text" id="datum_od" class="form-control datepicker-2" name="datum_od" placeholder="Datum od..." >
                                 </div>
                             </div>
                             <br/>
@@ -120,7 +120,7 @@
                                     {{__('Datum do')}}
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="datum_do" class="form-control datepicker" name="datum_do" placeholder="Datum do..." >
+                                    <input type="text" id="datum_do" class="form-control datepicker-2" name="datum_do" placeholder="Datum do..." >
                                 </div>
                             </div>
                             <br/>
