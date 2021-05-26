@@ -71,7 +71,6 @@ class TotalWorkTime extends Command{
                     }catch (\Exception $e){}
                 }
 
-
                 $years  = (int) ($days / 365);
                 $months = (int)(($days - ($years * 365)) / 30);
                 $day    = (int)(($days - ($years * 365) - ($months * 30)));
