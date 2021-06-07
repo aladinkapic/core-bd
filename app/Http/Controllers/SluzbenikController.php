@@ -535,6 +535,10 @@ class SluzbenikController extends Controller
             // 'strucnaSprema.stepenStrucne.name' => 'Stručna sprema tražena konkursom',
             'obrazovanjeRel.ciklus.name' => 'Ciklus obrazovanja',
             'obrazovanjeRel.strucno_zvanje' => 'Stručno zvanje',
+            'obrazovanjeRel.nazivUstanove.name' => 'Naziv ustanove stečene diplome',
+            'obrazovanjeRel.sjediste_ustanove' => 'Sjedište ustanove stečene diplome',
+            'obrazovanjeRel.drzavaSticanja.name' => 'Država sticanja diplome',
+            'obrazovanjeRel.nostrifikacijaRel.name' => 'Rješenje o priznavanju diplome / nostrifikacija'
             //'strucnaSprema.vrsta_s_s' => 'Zanimanje traženo konkursom',
             //'strucnaSprema.obrazovnaInstitucija.name' => 'Obrazovna institucija',
 //            'id3' => 'Položeni ispiti',

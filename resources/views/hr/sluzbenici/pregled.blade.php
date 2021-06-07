@@ -295,6 +295,50 @@
                                 </ul>
                             @endif
                         </td>
+                        <td>
+                            @if($sluzbenik->obrazovanjeRel)
+                                <ul>
+                                    @foreach($sluzbenik->obrazovanjeRel as $obrazovanje)
+                                        <li>
+                                            {{ $obrazovanje->nazivUstanove->name ?? '/'}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                        <td>
+                            @if($sluzbenik->obrazovanjeRel)
+                                <ul>
+                                    @foreach($sluzbenik->obrazovanjeRel as $obrazovanje)
+                                        <li>
+                                            {{ $obrazovanje->sjediste_ustanove ?? '/'}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                        <td>
+                            @if($sluzbenik->obrazovanjeRel)
+                                <ul>
+                                    @foreach($sluzbenik->obrazovanjeRel as $obrazovanje)
+                                        <li>
+                                            {{ $obrazovanje->drzavaSticanja->name ?? '/'}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
+                        <td>
+                            @if($sluzbenik->obrazovanjeRel)
+                                <ul>
+                                    @foreach($sluzbenik->obrazovanjeRel as $obrazovanje)
+                                        <li>
+                                            {{ $obrazovanje->nostrifikacijaRel->name ?? '/'}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
 {{--                        <td>--}}
 {{--                            @if($sluzbenik->obrazovanjeRel)--}}
 {{--                                <ul>--}}

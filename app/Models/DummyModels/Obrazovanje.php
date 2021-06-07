@@ -32,4 +32,13 @@ class Obrazovanje extends Model{
     public function ciklus(){
         return $this->hasOne(Sifrarnik::class, 'value', 'ciklus_obrazovanja')->where('type', 'stepen');
     }
+    public function nazivUstanove(){
+        return $this->hasOne(Sifrarnik::class, 'value', 'naziv_ustanove')->where('type', 'obrazovna_institucija');
+    }
+    public function drzavaSticanja(){
+        return $this->hasOne(Sifrarnik::class, 'value', 'vrsta_obrazovanja')->where('type', 'drzava');
+    }
+    public function nostrifikacijaRel(){
+        return $this->hasOne(Sifrarnik::class, 'value', 'broj_nostrifikacije')->where('type', 'rjesenje_nostrifikacija');
+    }
 }

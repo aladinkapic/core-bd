@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="naziv_ustanove">Naziv ustanove</label>
+                <label for="naziv_ustanove">Naziv ustanove stečene diplome</label>
                 {!! Form::select('naziv_ustanove', $ustanova, $obrazovanje->naziv_ustanove ?? '', ['class' => 'form-control'.((!isset($preview)) ? ' select-2' : ''), 'id' => 'naziv_ustanove', 'required' => 'required', isset($preview) ? 'disabled => true' : '']) !!}
                 @if(!isset($preview))
                     <small id="naziv_ustanove" class="form-text text-muted">Obavezno polje</small>
@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="sjediste_ustanove">Sjedište ustanove</label>
+                <label for="sjediste_ustanove">Sjedište ustanove stečene diplome</label>
                 {!! Form::text('sjediste_ustanove', $obrazovanje->sjediste_ustanove ?? '', ['class' => 'form-control', 'id' => 'sjediste_ustanove', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
                 @if(!isset($preview))
                     <small id="sjediste_ustanove" class="form-text text-muted">Obavezno polje</small>
@@ -39,8 +39,8 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="vrsta_obrazovanja">Vrsta obrazovanja</label>
-                {!! Form::text('vrsta_obrazovanja', $obrazovanje->vrsta_obrazovanja ?? '', ['class' => 'form-control', 'id' => 'vrsta_obrazovanja', isset($preview) ? 'readonly' : '']) !!}
+                <label for="vrsta_obrazovanja">Država sticanja diplome</label>
+                {!! Form::select('vrsta_obrazovanja', $drzavaObr, $obrazovanje->vrsta_obrazovanja ?? '', ['class' => 'form-control select-2', 'id' => 'vrsta_obrazovanja', isset($preview) ? 'disabled => true' : '']) !!}
             </div>
         </div>
     </div>
@@ -96,8 +96,8 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="broj_nostrifikacije">Broj nostrifikacije</label>
-                {!! Form::text('broj_nostrifikacije', $obrazovanje->broj_nostrifikacije ?? '', ['class' => 'form-control', 'id' => 'broj_nostrifikacije', isset($preview) ? 'readonly' : '']) !!}
+                <label for="broj_nostrifikacije">Rješenje o priznavanju diplome / nostrifikacija</label>
+                {!! Form::select('broj_nostrifikacije', $nostrif, $obrazovanje->broj_nostrifikacije ?? '', ['class' => 'form-control', 'id' => 'broj_nostrifikacije', isset($preview) ? 'disabled => true' : '']) !!}
             </div>
         </div>
         <div class="col-md-6">
