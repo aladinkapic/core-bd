@@ -98,7 +98,7 @@
         {{__('Datum važenja do')}}
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{ Carbon\Carbon::parse($organizacija->datum_od)->format('d.m.Y') }}</li>
+        <li class="list-group-item">{{ Carbon\Carbon::parse($organizacija->datum_do)->format('d.m.Y') }}</li>
     </ul>
 </div>
 <br />
