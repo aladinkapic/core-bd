@@ -18,7 +18,7 @@ class ApiController extends Controller
         $sluzbenici = $sluzbenicis->map(function($items){
             $data['id'] = $items->id;
             if(isset($items->sluzbenikRel)){
-                $data['ime'] = $items->ime . " (" . $items->sluzbenikRel->rm->naziv_rm . ")";
+                $data['ime'] = $items->ime . " (" . ($items->sluzbenikRel->rm->naziv_rm ?? 'Nema radnog mjesta') . ")";
             } else {
                 $data['ime'] = $items->ime;
             }
