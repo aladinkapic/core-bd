@@ -11,12 +11,14 @@ class FilterController extends Controller
 
     private static $limit = 10;
 
-    public static function filter($query)
+    public static function filter($query, $limit = false)
     {
 
         if(request()->has('limit')){
             self::$limit = request()->get('limit');
         }
+
+        if($limit) self::$limit = $limit;
 
         $filters = request()->get('filter');
         $filter_values = request()->get('filter_values');

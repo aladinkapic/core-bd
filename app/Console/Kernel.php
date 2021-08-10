@@ -35,6 +35,7 @@ class Kernel extends ConsoleKernel{
 
 
         $schedule->command('create:Notifications')->everyMinute();
+        $schedule->command('workplace:no-of-employees')->dailyAt('01:00');
 //        $schedule->command('create:TryCommand')->everyMinute();
 
         // $schedule->command('inspire')
