@@ -41,8 +41,7 @@ class WorkPlaces extends Command
         foreach ($radna_mjesta as $rm){
             try{
                 $rm->update([
-                    'uposlenika' => count($rm->sluzbeniciRel),
-                    'izvrsilaca' => (int)$rm->broj_izvrsilaca
+                    'uposlenika' => count($rm->sluzbeniciRel)
                 ]);
             }catch (\Exception $e){}
         }

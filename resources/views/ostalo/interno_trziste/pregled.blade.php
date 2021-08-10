@@ -32,7 +32,7 @@
                 @php $counter = 1; @endphp
 
                 @foreach($radnaMjesta as $radnoMjesto)
-                    @if($radnoMjesto->uposlenika < $radnoMjesto->izvrsilaca)
+                    @if($radnoMjesto->uposlenika < $radnoMjesto->broj_izvrsilaca)
                         <tr class="radnoMjesto-row">
                             <td class="text-center">{{ $counter++}}</td>
                             <td>
