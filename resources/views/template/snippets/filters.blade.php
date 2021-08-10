@@ -81,19 +81,21 @@
                </form>
            </div>
            <div class="col-md-6 text-right">
-               <div class="col-md-12 mb-3">
-                   {{__('Ukupno:')}} <b>{{ $var->total() }}</b> {{__('prikaži:')}}
+               @if(!isset($withoutPag))
+                   <div class="col-md-12 mb-3">
+                       {{__('Ukupno:')}} <b>{{ $var->total() }}</b> {{__('prikaži:')}}
 
-                   <select form="filter-form" class="form-control form-control-sm col-md-2 d-inline-block" name="limit" onchange="this.form.submit()">
-                       @foreach([15, 25, 50, 100, $var->total()] as $k)
-                           <option {{ (request()->get('limit') == $k) ? 'selected="selected"' : '' }} value="{{ $k }}">{{ $k }}</option>
-                       @endforeach
-                   </select>
+                       <select form="filter-form" class="form-control form-control-sm col-md-2 d-inline-block" name="limit" onchange="this.form.submit()">
+                           @foreach([15, 25, 50, 100, $var->total()] as $k)
+                               <option {{ (request()->get('limit') == $k) ? 'selected="selected"' : '' }} value="{{ $k }}">{{ $k }}</option>
+                           @endforeach
+                       </select>
 
-               </div>
-               <div class="col-md-12 text-right pull-pagination-right">
-                   {{ $var->appends(request()->query())->links() }}
-               </div>
+                   </div>
+                   <div class="col-md-12 text-right pull-pagination-right">
+                       {{ $var->appends(request()->query())->links() }}
+                   </div>
+               @endif
            </div>
        </div>
    </div>

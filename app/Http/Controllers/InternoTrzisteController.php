@@ -31,8 +31,6 @@ class InternoTrzisteController extends Controller{
         $radnaMjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel', 'sluzbeniciRel');
         $radnaMjesta = FilterController::filter($radnaMjesta, 100);
 
-
-
         $filteri = [
             'id' => '#',
             'naziv_rm' => 'Naziv radnog mjesta',
@@ -80,7 +78,9 @@ class InternoTrzisteController extends Controller{
 //            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
 //        ];
 
-        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri'));
+        $withoutPag = true;
+
+        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri', 'withoutPag'));
     }
 
     public function radnoMjesto($id){
