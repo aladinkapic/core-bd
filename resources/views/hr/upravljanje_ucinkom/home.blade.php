@@ -59,40 +59,36 @@
                 <tbody>
                 @php $i=1; @endphp
                 @foreach($ucinci as $ucinak)
-                    <tr>
-                        <td class="text-center">{{$i++}}</td>
-                        <td>
-                            <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $ucinak -> usluzbenik->id ?? '1'])}}">
-                                {{$ucinak -> usluzbenik->ime_prezime ?? ''}}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{route('radnamjesta.pregledaj', ['id' => $ucinak -> mjesto->rm->id ?? '1'])}}">
-                                {{ $ucinak -> mjesto->rm->naziv_rm ?? '/' }}
-                            </a>
-                        </td>
-                        <td>{{$ucinak -> godina ?? '/'}}</td>
-                        <td>{{$ucinak -> ocjena ?? '/'}}</td>
-                        <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
-                        <td>
-                            <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $ucinak -> ocjenjivacRel->id ?? '1'])}}">
-                                {{$ucinak -> ocjenjivacRel->ime_prezime ?? ''}}
-                            </a>
-                        </td>
+                    @if(isset($ucinak -> usluzbenik))
+                        <tr>
+                            <td class="text-center">{{$i++}}</td>
+                            <td>
+                                <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $ucinak -> usluzbenik->id ?? '1'])}}">
+                                    {{$ucinak -> usluzbenik->ime_prezime ?? ''}}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{route('radnamjesta.pregledaj', ['id' => $ucinak -> mjesto->rm->id ?? '1'])}}">
+                                    {{ $ucinak -> mjesto->rm->naziv_rm ?? '/' }}
+                                </a>
+                            </td>
+                            <td>{{$ucinak -> godina ?? '/'}}</td>
+                            <td>{{$ucinak -> ocjena ?? '/'}}</td>
+                            <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>
+                            <td>
+                                <a href="{{route('drzavni-sluzbenici.pregled-sluzbenika', ['id' => $ucinak -> ocjenjivacRel->id ?? '1'])}}">
+                                    {{$ucinak -> ocjenjivacRel->ime_prezime ?? ''}}
+                                </a>
+                            </td>
 
-                        <td> {{ $ucinak->nijeOcjenjenRel->name ?? '' }} </td>
-                        <td class="text-center">
-                            <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id ?? '1'}}">
-                                <button class="btn my-button">Pregled</button>
-                            </a>
-{{--                            <a href="/hr/upravljanje_ucinkom/editUcinak/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">--}}
-{{--                                <i class="fas fa-edit"></i>--}}
-{{--                            </a>--}}
-{{--                            <a href="/hr/upravljanje_ucinkom/delete/{{$ucinak -> id ?? '1'}}" style="margin-left:10px;">--}}
-{{--                                <i class="fas fa-times"></i>--}}
-{{--                            </a>--}}
-                        </td>
-                    </tr>
+                            <td> {{ $ucinak->nijeOcjenjenRel->name ?? '' }} </td>
+                            <td class="text-center">
+                                <a href="/hr/upravljanje_ucinkom/viewUcinak/{{$ucinak -> id ?? '1'}}">
+                                    <button class="btn my-button">Pregled</button>
+                                </a>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
