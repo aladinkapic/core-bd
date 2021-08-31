@@ -17,8 +17,7 @@ class Controller extends BaseController{
     public function radnaMjestaOrgana(Request $request){
         $id = $request->id;
 
-        /*
-        $organizacija = Organizacija::where('oju_id', $id)->where('active', 1)->first();
+        /* $organizacija = Organizacija::where('oju_id', $id)->where('active', 1)->first();
 
         dd($id);
         $org_jedinice = OrganizacionaJedinica::where('org_id', $organizacija->id)->pluck('id')->toArray();
@@ -39,7 +38,6 @@ class Controller extends BaseController{
 
         return array('radna_mjesta' => $radnaMjesta);
     }
-
     public function dajSistematizacije(Request $request){
         $id = $request->id;
         $organizacije = Organizacija::whereHas('organ', function ($query) use ($id){
@@ -59,7 +57,11 @@ class Controller extends BaseController{
             $query->where('id', $organ_id);
         })->whereHas('orgjed.organizacija', function ($query) use($org_id){
             $query->where('id', $org_id);
-        })->get(['id', 'naziv_rm']);
+        })->with('orgjed')->get(['id', 'naziv_rm', 'id_oj']);
+
+        foreach ($radnaMjesta as &$rm){
+            $rm->naziv_rm = ($rm->naziv_rm . ' ( '. ($rm->orgjed->naziv ?? '') .' )' );
+        }
 
         return array('radna_mjesta' => $radnaMjesta);
     }
