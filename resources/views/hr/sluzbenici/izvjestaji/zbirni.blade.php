@@ -71,7 +71,7 @@
 
                                 @if($rm->stepen == 2 or $rm->stepen == 3 or $rm->stepen == 4 or $rm->stepen == 5)
                                     @foreach($rm->sluzbeniciRel as $sluzbenik)
-                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id ?? 0)->where('status', 'Aktivan')->first())
                                             @php $sss++; @endphp
 
                                             @if(isset($sluzbenik->sluzbenik->nacionalnost))
@@ -90,7 +90,7 @@
                                     @endforeach
                                 @elseif($rm->stepen == 8 or $rm->stepen == 7 or $rm->stepen == 8)
                                     @foreach($rm->sluzbeniciRel as $sluzbenik)
-                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id ?? 0)->where('status', 'Aktivan')->first())
                                             @php $vss++; @endphp
 
                                             @if(isset($sluzbenik->sluzbenik->nacionalnost))
@@ -108,7 +108,7 @@
                                     @endforeach
                                 @elseif($rm->stepen == 1)
                                     @foreach($rm->sluzbeniciRel as $sluzbenik)
-                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id ?? 0)->where('status', 'Aktivan')->first())
                                             @php $nk++; @endphp
 
                                             @if(isset($sluzbenik->sluzbenik->nacionalnost))
@@ -129,7 +129,7 @@
                                 @foreach($rm->sluzbeniciRel as $sluzbenik)
                                     @if(isset($sluzbenik->sluzbenik))
 
-                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id)->where('status', 'Aktivan')->first())
+                                        @if(\App\Models\Sluzbenik::where('id', $sluzbenik->sluzbenik->id ?? 0)->where('status', 'Aktivan')->first())
                                             <!-- Pol službenika -->
                                             @if(isset($sluzbenik->sluzbenik->pol))
                                                 @if($sluzbenik->sluzbenik->pol == 1)
