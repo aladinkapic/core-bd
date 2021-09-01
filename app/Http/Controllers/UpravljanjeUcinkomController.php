@@ -266,7 +266,9 @@ class UpravljanjeUcinkomController extends Controller{
 
 
     public function pregledIzvjestaja(){
-        $jedinice = OrgJedinicaIzvjestaj::with('orgJedinica.organizacija.organ');
+        $jedinice = OrgJedinicaIzvjestaj::whereHas('orgJedinica.organizacija.organ', function($query){
+            $query->whereNotNull('naziv');
+        })->with('orgJedinica.organizacija.organ');
         $jedinice = FilterController::filter($jedinice);
 
         $filteri = [
