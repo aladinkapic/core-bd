@@ -293,7 +293,8 @@ class UgovorController extends Controller{
 
         return array(
             'radnaMjesta' => $radnaMjesta,
-            'naziv_radnog_mjesta' => $sluzbenik->sluzbenikRel->rm->naziv_rm ?? 'Nema radnog mjesta'
+            'naziv_radnog_mjesta' => $sluzbenik->sluzbenikRel->rm->naziv_rm ?? 'Nema radnog mjesta',
+            'rm_id' => $sluzbenik->sluzbenikRel->rm->id ?? '',
         );
     }
 
