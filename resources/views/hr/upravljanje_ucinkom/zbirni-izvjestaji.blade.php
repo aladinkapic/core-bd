@@ -50,46 +50,48 @@
                 <tbody>
                 @php $counter=1; @endphp
                 @foreach($jedinice as $jedinica)
-                    <tr>
-                        <td>{{$counter++}}</td>
-                        <td>
-                            {{$jedinica->orgJedinica->organizacija->organ->naziv ?? '/'}}
-                        </td>
-                        <td>{{$jedinica->orgJedinica->naziv ?? '/'}}</td>
-                        <td class="text-center">{{$jedinica->godina}}</td>
-                        <td class="text-center layer-td" style="padding:0px;">
-                            <div class="top-layer">
-                                {{$jedinica->ne_zadovoljava}}
-                            </div>
-                            <div class="bottom-layer">
-                                {{$jedinica->postotakNeZadovoljava()}}%
-                            </div>
-                        </td>
-                        <td class="text-center layer-td" style="padding:0px;">
-                            <div class="top-layer">
-                                {{$jedinica->zadovoljava}}
-                            </div>
-                            <div class="bottom-layer">
-                                {{$jedinica->postotakZadovoljava()}}%
-                            </div>
-                        </td>
-                        <td class="text-center layer-td" style="padding:0px;">
-                            <div class="top-layer">
-                                {{$jedinica->nadmasuje}}
-                            </div>
-                            <div class="bottom-layer">
-                                {{$jedinica->postotakNadmasuje()}}%
-                            </div>
-                        </td>
-                        <td class="text-center layer-td" style="padding:0px;">
-                            <div class="top-layer">
-                                {{$jedinica->ukupno}}
-                            </div>
-                            <div class="bottom-layer">
-                                100%
-                            </div>
-                        </td>
-                    </tr>
+                    @if(isset($jedinica->orgJedinica->organizacija->organ->naziv))
+                        <tr>
+                            <td>{{$counter++}}</td>
+                            <td>
+                                {{$jedinica->orgJedinica->organizacija->organ->naziv ?? '/'}}
+                            </td>
+                            <td>{{$jedinica->orgJedinica->naziv ?? '/'}}</td>
+                            <td class="text-center">{{$jedinica->godina}}</td>
+                            <td class="text-center layer-td" style="padding:0px;">
+                                <div class="top-layer">
+                                    {{$jedinica->ne_zadovoljava}}
+                                </div>
+                                <div class="bottom-layer">
+                                    {{$jedinica->postotakNeZadovoljava()}}%
+                                </div>
+                            </td>
+                            <td class="text-center layer-td" style="padding:0px;">
+                                <div class="top-layer">
+                                    {{$jedinica->zadovoljava}}
+                                </div>
+                                <div class="bottom-layer">
+                                    {{$jedinica->postotakZadovoljava()}}%
+                                </div>
+                            </td>
+                            <td class="text-center layer-td" style="padding:0px;">
+                                <div class="top-layer">
+                                    {{$jedinica->nadmasuje}}
+                                </div>
+                                <div class="bottom-layer">
+                                    {{$jedinica->postotakNadmasuje()}}%
+                                </div>
+                            </td>
+                            <td class="text-center layer-td" style="padding:0px;">
+                                <div class="top-layer">
+                                    {{$jedinica->ukupno}}
+                                </div>
+                                <div class="bottom-layer">
+                                    100%
+                                </div>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
