@@ -72,7 +72,7 @@
                         <td>
                             <ul class="custom-one-to-many">
                                 @foreach($radnoMjesto->sluzbeniciRel as $sluzbenik)
-                                    <li > {{ $sluzbenik->sluzbenik->ime_prezime }} </li>
+                                    <li > {{ $sluzbenik->sluzbenik->ime_prezime ?? '' }} </li>
                                 @endforeach
                             </ul>
 
