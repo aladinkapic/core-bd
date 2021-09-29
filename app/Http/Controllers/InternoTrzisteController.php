@@ -163,10 +163,12 @@ class InternoTrzisteController extends Controller{
         $ugovori = Privremeno::whereDate('datum_do', '>=', $trenutno)->orWhere('datum_do', null)->with('usluzbenik')->with('mjesto')->with('privremeno_mjesto');
         $ugovori = FilterController::filter($ugovori);
 
+//        dd($ugovori[1]);
+
         $filteri = [
             'id' => '#',
             'usluzbenik.ime_prezime'=>'Službenik',
-            'mjesto.naziv_rm'=>'Redovno radno mjesto',
+            'usluzbenik.sluzbenikRel.rm.naziv_rm'=>'Redovno radno mjesto',
             'privremeno_mjesto.naziv_rm'=>'Privremeno radno mjesto',
             'privremeno_mjesto.orgjed.naziv'=>'Privremena organizaciona jedinica',
             'privremeno_mjesto.orgjed.organizacija.organ.naziv'=>'Privremeni organ',
@@ -175,28 +177,6 @@ class InternoTrzisteController extends Controller{
             'datum_od'=>'Datum od',
             'datum_do'=>'Datum do',
         ];
-
-//        return view('hr.ugovori.privremeno.index')->with(compact('ugovori', 'filteri'));
-//
-//
-//        $sluzbenici = Sluzbenik::whereNotNull('privremeni_premjestaj')->with('privremeniPremjestajRel.privremeno_mjesto')
-//            ->with('radnoMjesto')
-//        ;
-
-//        dd($sluzbenici->get()[1]->privremeniPremjestajRel->datumRjesenja());
-
-//        $sluzbenici = FilterController::filter($sluzbenici);
-
-//        $filteri = [
-//            'id' => '#',
-//            'ime_prezime'=>'Ime i prezime službenika',
-//            'radnoMjesto.naziv_rm'=>'Radno mjesto',
-//            'privremeniPremjestajRel.privremeno_mjesto.naziv_rm'=>'Privremeni premještaj',
-//            'privremeniPremjestajRel.broj_rjesenja'=>'Broj rješenja',
-//            'privremeniPremjestajRel.datum_rjesenja'=>'Datum rješenja',
-//            'privremeniPremjestajRel.datum_od'=>'Datum od',
-//            'privremeniPremjestajRel.datum_do'=>'Datum do',
-//        ];
 
         return view('ostalo.interno_trziste.privremeni_premjestaj', compact('ugovori', 'filteri'));
     }

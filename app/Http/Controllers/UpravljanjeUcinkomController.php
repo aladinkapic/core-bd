@@ -278,7 +278,8 @@ class UpravljanjeUcinkomController extends Controller{
             'ne_zadovoljava' => 'Ne zadovoljava očekivanja',
             'zadovoljava'    => 'Zadovoljava očekivanja',
             'nadmasuje'      => 'Nadmašuje očekivanja',
-            'ukupno'         => 'Ukupno ocjenjenih'
+            'ukupno'         => 'Ukupno ocjenjenih',
+            'akcije' => 'Akcije'
         ];
 
         return view('hr.upravljanje_ucinkom.zbirni-izvjestaji', compact('jedinice', 'filteri'));

@@ -45,6 +45,7 @@
                     <th width="150px" class="text-center">Zadovoljava očekivanja</th>
                     <th width="150px" class="text-center">Nadmašuje očekivanja</th>
                     <th width="150px" class="text-center">UKUPNO OCJENJENIH</th>
+                    <th width="80px" class="text-center">Akcije</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -89,6 +90,11 @@
                                 <div class="bottom-layer">
                                     100%
                                 </div>
+                            </td>
+                            <td class="text-center">
+                                <a href="/hr/uprava/viewUprava/{{ $jedinica->orgJedinica->organizacija->organ->id ?? '1' }}">
+                                    <button class="btn my-button">Pregled</button>
+                                </a>
                             </td>
                         </tr>
                     @endif

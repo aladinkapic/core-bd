@@ -29,7 +29,7 @@
                     <tr>
                         <td class="text-center">{{$counter++}}</td>
                         <td><a href="{{route('sluzbenik.dodatno', ['id_sluzbenika'=>$ugovor->sluzbenik])}}">{{$ugovor->usluzbenik->ime_prezime ?? ''}}</a></td>
-                        <td><a href="{{route('radnamjesta.pregledaj', ['id'=>$ugovor->mjesto->id ?? '1'])}}">{{$ugovor->mjesto->naziv_rm ?? ''}}</a></td>
+                        <td><a href="{{route('radnamjesta.pregledaj', ['id'=>$ugovor->mjesto->id ?? '1'])}}">{{$ugovor->usluzbenik->sluzbenikRel->rm->naziv_rm ?? ''}}</a></td>
                         <td><a href="{{route('radnamjesta.pregledaj', ['id'=> $ugovor->privremeno_mjesto->id ?? '1'])}}">{{$ugovor->privremeno_mjesto->naziv_rm ?? ''}}</a></td>
 
                         <td>{{$ugovor->privremeno_mjesto->orgjed->naziv ?? ''}}</td>
