@@ -256,7 +256,10 @@ class UgovorController extends Controller{
         $filteri = [
             'usluzbenik.ime_prezime'=>'Službenik',
             'mjesto.naziv_rm'=>'Redovno radno mjesto',
+            'usluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'privremeno_mjesto.naziv_rm'=>'Privremeno radno mjesto',
+            'privremeno_mjesto.orgjed.naziv'=>'Privremena organizaciona jedinica',
+            'privremeno_mjesto.orgjed.organizacija.organ.naziv'=>'Privremeni organ',
             'broj_rjesenja'=>'Broj rješenja',
             'datum_rjesenja'=>'Datum rješenja',
             'datum_od'=>'Datum od',
