@@ -511,7 +511,7 @@ class SluzbenikController extends Controller
             'sluzbenikRel.rm.stepenSS.name' => 'S.S.S za R.M. propisano OP',
             'privremeniRel.privremeno_mjesto.naziv_rm' => 'Privremeno radno mjesto',
             'privremeniRel.privremeno_mjesto.orgjed.naziv' => 'Privremena Org. Jedinica',
-            'privremeniRel.privremeno_mjesto.orgjed.organizacija.organ.naziv' => 'Privremeni Organ javne uprave',
+            'privremeniRel.privremeno_mjesto.orgjed.organizacija.organ.naziv' => 'Privremeni Organ JU',
             'sluzbenikRel.rm.orgjed.naziv' => 'Organizaciona jedinica',
             'sluzbenikRel.rm.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'prebivaliste.adresa_prebivalista' => 'Adresa boravišta',
