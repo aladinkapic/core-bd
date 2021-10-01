@@ -169,12 +169,12 @@ class InternoTrzisteController extends Controller{
 
         $ugovori = FilterController::filter($ugovori);
 
-//        dd($ugovori[0]);
-
         $filteri = [
             'id' => '#',
             'usluzbenik.ime_prezime'=>'Službenik',
             'usluzbenik.sluzbenikRel.rm.naziv_rm'=>'Redovno radno mjesto',
+            'usluzbenik.sluzbenikRel.rm.orgjed.naziv' => 'Organizaciona jedinica',
+            'usluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'privremeno_mjesto.naziv_rm'=>'Privremeno radno mjesto',
             'privremeno_mjesto.orgjed.naziv'=>'Privremena organizaciona jedinica',
             'privremeno_mjesto.orgjed.organizacija.organ.naziv'=>'Privremeni organ',

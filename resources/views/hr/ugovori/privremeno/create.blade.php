@@ -70,7 +70,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-5">
-                                    {{__('Organ javne uprave')}}
+                                    {{__('Privremeni Organ javne uprave')}}
                                 </div>
                                 <div class="col-md-7">
                                     {!! Form::select('organ', $organi, '', ['class' => 'form-control radna-mjesta-organa',]) !!}

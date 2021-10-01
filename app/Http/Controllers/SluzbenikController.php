@@ -474,14 +474,8 @@ class SluzbenikController extends Controller
             ->where('id', '!=', 1)
             ->orderBy('prezime');
 
-//        $sluz = Sluzbenik::get();
-//        foreach ($sluz as $s){
-//            $s->ime_prezime = $s->prezime.' '.$s->ime;
-//            $s->save();
-//        }
 
         $sluzbenici = FilterController::filter($sluzbenici);
-//      dd($sluzbenici[2]->strucnaSprema);
 
         $filteri = [
             'id' => '#',
@@ -525,30 +519,14 @@ class SluzbenikController extends Controller
             'zasnivanjeRORel.datum_zasnivanja_o' => 'Datum zasnivanja radnog odnosa',
             'zasnivanjeRORel.nacin_zasnivanja_ro_s.name' => 'Način zasnivanja radnog odnosa',
             'zasnivanjeRORel.vrsta_r_o_s.name' => 'Vrsta radnog odnosa',
-//            'zasnivanjeRORel.obracunati_r_staz_s.name' => 'Obračunati staž',
-//            'zasnivanjeRORel.obracunati_r_s_god' => ' Staž godina',
-//            'zasnivanjeRORel.obracunati_r_s_mje' => ' Staž mjeseci',
-//            'zasnivanjeRORel.obracunati_r_s_dan' => ' Staž dani',
             'zasnivanjeRORel.datum_donosenja_dokumentacije' => 'Datum donošenja dokumentacije',
-            // 'zasnivanjeRORel.minuli_radni_staz' => 'Minuli radni staž - Zasnivanje',
-
-            // 'strucnaSprema.stepenStrucne.name' => 'Stručna sprema tražena konkursom',
             'obrazovanjeRel.ciklus.name' => 'Ciklus obrazovanja',
             'obrazovanjeRel.strucno_zvanje' => 'Stručno zvanje',
             'obrazovanjeRel.nazivUstanove.name' => 'Naziv ustanove stečene diplome',
             'obrazovanjeRel.sjediste_ustanove' => 'Sjedište ustanove stečene diplome',
             'obrazovanjeRel.drzavaSticanja.name' => 'Država sticanja diplome',
             'obrazovanjeRel.nostrifikacijaRel.name' => 'Rješenje o priznavanju diplome / nostrifikacija'
-            //'strucnaSprema.vrsta_s_s' => 'Zanimanje traženo konkursom',
-            //'strucnaSprema.obrazovnaInstitucija.name' => 'Obrazovna institucija',
-//            'id3' => 'Položeni ispiti',
-//            'id4' => 'Kontakt informacije',
-//            'id5' => 'Dodatne vještine',
-//            'id7' => 'Prethodno radno iskustvo',
-//            'id8' => 'Prestanak radnog odnosa',
-//            'id9' => 'Članovi porodice',
         ];
-
 
         return view('hr.sluzbenici.pregled', compact('sluzbenici', 'filteri', 'odsustva'));
     }
