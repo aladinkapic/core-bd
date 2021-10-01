@@ -47,7 +47,7 @@ class ObrniDatume extends Command
             try{
                 $z->datum_zasnivanja_o = $datum->format('Y-d-m');
                 $z->save();
-                
+
             }catch (\Exception $e){
                 dump($e->getMessage());
             }
