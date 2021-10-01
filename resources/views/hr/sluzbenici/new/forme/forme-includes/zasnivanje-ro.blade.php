@@ -31,7 +31,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="datum_zasnivanja_o">Datum zasnivanja radnog odnosa</label>
-                {!! Form::text('datum_zasnivanja_o', isset($radni_odnos) ? $radni_odnos->datumZasnivanjaRO() : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_zasnivanja_o', 'required' => 'required', isset($preview) ? 'readonly' : '']) !!}
+                {!! Form::text('datum_zasnivanja_o', isset($radni_odnos) ? $radni_odnos->datumZasnivanjaRO() : '', ['class' => 'form-control datepicker-2', 'id' => 'datum_zasnivanja_o', 'required' => 'required', isset($preview) ? 'readonly' : '', 'readonly']) !!}
                 @if(!isset($preview))
                     <small id="nacin_zasnivanja_r_o" class="form-text text-muted">Obavezno polje</small>
                 @endif
