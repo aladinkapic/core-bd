@@ -160,10 +160,16 @@ class InternoTrzisteController extends Controller{
     public function privremeniPremjestaj(){
         $trenutno = Carbon::now()->format('Y-m-d');
 
-        $ugovori = Privremeno::whereDate('datum_do', '>=', $trenutno)->orWhere('datum_do', null)->with('usluzbenik')->with('mjesto')->with('privremeno_mjesto');
+        $ugovori = Privremeno::whereDate('datum_do', '>=', $trenutno)->orWhere('datum_do', null);
+
+        $ugovori = Privremeno::where(function ($query) use ($trenutno){
+            $query->whereDate('datum_do', '>=', $trenutno)
+                ->orWhereNULL('datum_do');
+        });
+
         $ugovori = FilterController::filter($ugovori);
 
-//        dd($ugovori[1]);
+//        dd($ugovori[0]);
 
         $filteri = [
             'id' => '#',
