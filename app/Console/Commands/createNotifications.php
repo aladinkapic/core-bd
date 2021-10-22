@@ -306,13 +306,13 @@ class createNotifications extends Command{
     }
 
     public function handle(){
-//        $this->penzionisanje();
-//        $this->disciplinskaOdgovornost();
-//        $this->starost();
-//
-//        $this->probniRad();
-//
-//        $this->privremeniPremjestaj();
+        $this->penzionisanje();
+        $this->disciplinskaOdgovornost();
+        $this->starost();
+
+        $this->probniRad();
+
+        $this->privremeniPremjestaj();
 
         $this->upraznjenaRadnaMjesta();
     }
