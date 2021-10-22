@@ -32,6 +32,8 @@ class RMController extends Controller{
         ]);
     }
     public function spremi (Request $request){
+        $request['uposleno'] = 0;
+
         try{
             $rm = RadnoMjesto::create(
                 $request->except(['_token', 'organ_id'])
@@ -78,6 +80,8 @@ class RMController extends Controller{
             $rm = RadnoMjesto::where('id', $request->id)->update(
                 $request->except(['id', '_token', 'organ_id'])
             );
+
+            RadnaMjestaController::upraznjenoRM($request->id);
         }catch (\Exception $e){}
         return back();
     }

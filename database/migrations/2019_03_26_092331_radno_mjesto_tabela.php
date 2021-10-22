@@ -11,7 +11,7 @@ class RadnoMjestoTabela extends Migration{
             $table->bigIncrements('id');
             $table->string('naziv_rm', 2000)->nullable();
             $table->string('sifra_rm', 50)->nullable();
-            $table->text('opis_rm', 5000)->nullable();
+            $table->text('opis_rm')->nullable();
             $table->integer('broj_izvrsilaca')->nullable();
             $table->string('platni_razred', 100)->nullable();
             $table->integer('tip_rm')->nullable();                                      // FK
@@ -20,6 +20,8 @@ class RadnoMjestoTabela extends Migration{
             $table->integer('strucna_sprema')->nullable();                              // FK
             $table->integer('tip_pm')->nullable();                                      // FK  -  // Tip privremeenog promjestaja
             $table->integer('parent_id')->nullable();                                   // FK  -  // U slučaju da bude nadređenih
+            $table->integer('status')->default(0);                                // 1 - upražnjeno; 2 - prekomjerno
+            $table->integer('uposleno')->default(0);
 
             $table->timestamps();
         });

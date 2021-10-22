@@ -114,6 +114,11 @@ class UgovorController extends Controller{
 
         }catch (\Exception $e){dd($e);}
 
+
+        try{
+            RadnaMjestaController::upraznjenoRM($request->radno_mjesto);
+        }catch (\Exception $e){}
+
         return redirect(route('ugovor.index'))->with(['success' => 'Izmjene su uspješno spašene!']);
     }
 

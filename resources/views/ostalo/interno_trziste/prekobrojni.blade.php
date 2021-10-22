@@ -27,25 +27,52 @@
 
                 @php $counter = 1; @endphp
 
-                @foreach($radnaMjesta as $rm)
-                    @if($rm->broj_izvrsilaca < $rm->sluzbeniciRel->count())
+                @foreach($radnaMjesta as $radnoMjesto)
+                    <tr class="radnoMjesto-row">
+                        <td class="text-center">{{ $counter++}}</td>
+                        <td>
+                            {{ $radnoMjesto->naziv_rm ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->broj_izvrsilaca ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->uposleno ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->platni_razred ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->stepenSS->name ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->katgorijaa->name ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->orgjed->naziv ?? '/'}}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->orgjed->organizacija->organ->naziv ?? '/' }}
+                        </td>
+                        <td>
+                            {{ $radnoMjesto->kompetencijeRel->name ?? '/'}}
+                        </td>
+                        <td>
+                            <ul class="custom-one-to-many">
+                                @foreach($radnoMjesto->sluzbeniciRel as $sluzbenik)
+                                    <li > {{ $sluzbenik->sluzbenik->ime_prezime }} </li>
+                                @endforeach
+                            </ul>
 
-                        <tr>
-                            <td>{{$counter++}}</td>
-                            <td>{{$rm->naziv_rm}}</td>
-                            <td>{{$rm->orgjed->naziv }}</td>
-                            <td>{{$rm->orgjed->organizacija->organ->naziv}}</td>
-                            <td>{{$rm->sifra_rm ?? '/'}}</td>
-                            <td>{{$rm->broj_izvrsilaca ?? '/'}}</td>
-                            <td>{{$rm->sluzbeniciRel->count()}}</td>
-                            <td class="text-center">
-                                <a href="{{route('radnamjesta.rjesenje', ['id' => $rm->id, 'what' => 'true'])}}"
-                                   title="Pregledajte radno mjesto">
-                                    <button class="btn my-button">{{__('Pregled')}}</button>
-                                </a>
-                            </td>
-                        </tr>
-                    @endif
+                        </td>
+
+                        <td class="text-center akcije">
+                            <a href="{{route('rm.pregledaj-radno-mjesto', ['id' => $radnoMjesto->id])}}"
+                               title="Pregledajte radno mjesto">
+                                <button class="btn my-button">{{__('Pregled')}}</button>
+                            </a>
+                        </td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>

@@ -28,15 +28,18 @@ class InternoTrzisteController extends Controller{
 
     public function pregled(){
 
-        $radnaMjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel', 'sluzbeniciRel');
-        $radnaMjesta = FilterController::filter($radnaMjesta, 100);
+        $radnaMjesta = $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
+            $query->where('active', '=', 1);
+        })->where('status', '1')->with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel', 'sluzbeniciRel');;
+
+        // $radnaMjesta = RadnoMjesto::with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel', 'sluzbeniciRel');
+        $radnaMjesta = FilterController::filter($radnaMjesta);
 
         $filteri = [
             'id' => '#',
             'naziv_rm' => 'Naziv radnog mjesta',
-            // 'sifra_rm' => 'Šifra radnog mjesta',
             'broj_izvrsilaca' => 'Broj izvršilaca',
-            'uposlenika' => 'Zaposlenih',
+            'uposleno' => 'Zaposlenih',
             'platni_razred' => 'Platni razred',
             'stepenSS.name' => 'Stepen',
             'katgorijaa.name' => 'Kategorija radnog mjesta',
@@ -46,41 +49,7 @@ class InternoTrzisteController extends Controller{
             'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici',
         ];
 
-
-//        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
-//            $query->where('active', '=', 1);
-//        })->with('sluzbeniciRel.sluzbenik')
-//        ->with('orgjed.organizacija.organ');
-//
-//
-//        $radnaMjesta = FilterController::filter($radnaMjesta);
-//
-//        $filteri = [
-//            'id' => '#',
-//            'naziv_rm'=>'Naziv radnog mjesta',
-//            'orgjed.naziv'=>'Naziv organizacione jedinice',
-//            'orgjed.organizacija.organ.naziv'=>'Organ javne uprave',
-//            'sifra_rm'=>'Šifra radnog mjesta',
-//            'broj_izvrsilaca'=>'Ukupan broj izvršilaca',
-//            ''=>'Broj izvršilaca',
-//            'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici'
-//        ];
-//
-//        $planovi = Organizacija::where('active', '1');
-//        $planovi = FilterController::filter($planovi);
-//
-//        $filteri = [
-//            'id' => '#',
-//            'organizacioneJedinice.radnaMjesta.naziv_rm'=>'Naziv radnog mjesta',
-//            'organizacioneJedinice.naziv'=>'Naziv organizacione jedinice',
-//            'organizacioneJedinice.radnaMjesta.sifra_rm'=>'Šifra radnog mjesta',
-//            'organizacioneJedinice.radnaMjesta.broj_izvrsilaca'=>'Ukupan broj izvršilaca',
-//            'organizacioneJedinice.radnaMjesta.sluzbenici.count()'=>'Broj izvršilaca',
-//        ];
-
-        $withoutPag = true;
-
-        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri', 'withoutPag'));
+        return view('ostalo.interno_trziste.pregled', compact('radnaMjesta', 'filteri'));
     }
 
     public function radnoMjesto($id){
@@ -95,7 +64,6 @@ class InternoTrzisteController extends Controller{
     public function rjesenjeKorisnika(Request $request){
         return Sluzbenik::where('id', $request->id)->first()->rjesenje;
     }
-
 
     public function dbUnos(Request $request, $radnoMjesto = null){
         if($radnoMjesto){ // Ovdje updejtujemo radna mjesta
@@ -125,23 +93,26 @@ class InternoTrzisteController extends Controller{
 
     /******************************************* PREKOBROJNI LJUDI ****************************************************/
     public function prekobrojniLjudi(){
-        $prekobrojni = true;
 
-        $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
+        $radnaMjesta = $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
             $query->where('active', '=', 1);
-        })->with('sluzbeniciRel.sluzbenik')
-            ->with('orgjed.organizacija.organ');
+        })->where('status', '2')->with('orgjed.organizacija.organ')->with('sluzbenici')->with('rukovodeca_pozicija', 'stepenSS', 'katgorijaa', 'kompetencijeRel', 'sluzbeniciRel');;
+        $prekobrojni = true;
 
         $radnaMjesta = FilterController::filter($radnaMjesta);
 
         $filteri = [
             'id' => '#',
-            'naziv_rm'=>'Naziv radnog mjesta',
-            'orgjed.naziv'=>'Naziv organizacione jedinice',
-            'orgjed.organizacija.organ.naziv'=>'Organ javne uprave',
-            'sifra_rm'=>'Šifra radnog mjesta',
-            'broj_izvrsilaca'=>'Ukupan broj izvršilaca',
-            ''=>'Broj izvršilaca',
+            'naziv_rm' => 'Naziv radnog mjesta',
+            'broj_izvrsilaca' => 'Broj izvršilaca',
+            'uposleno' => 'Zaposlenih',
+            'platni_razred' => 'Platni razred',
+            'stepenSS.name' => 'Stepen',
+            'katgorijaa.name' => 'Kategorija radnog mjesta',
+            'orgjed.naziv' => 'Organizacijska jedinica',
+            'orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
+            'kompetencijeRel.name' => 'Kompetencije',
+            'sluzbeniciRel.sluzbenik.ime_prezime' => 'Službenici',
         ];
 
         return view('ostalo.interno_trziste.prekobrojni', compact('radnaMjesta', 'prekobrojni', 'filteri'));

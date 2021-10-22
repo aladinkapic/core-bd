@@ -19,6 +19,27 @@ class RadnaMjestaController extends Controller{
         $this->middleware('role:radna_mjesta');
     }
 
+    public static function upraznjenoRM($id){
+        try{
+            $radnoMjesto = RadnoMjesto::where('id', $id)->first();
+            $counter = 0; $status = 0;
+
+            if(isset($radnoMjesto->sluzbeniciRel)){
+                foreach ($radnoMjesto->sluzbeniciRel as $sl){ if(isset($sl->sluzbenik)) $counter++; }
+            }
+
+            if($radnoMjesto->broj_izvrsilaca > $counter) $status = 1;
+            else if($radnoMjesto->broj_izvrsilaca < $counter) $status = 2;
+
+            RadnoMjesto::where('id', $id)->update([
+                'status' => $status,
+                'uposleno' => $counter
+            ]);
+        }catch (\Exception $e){
+            dd($e);
+        }
+    }
+
     public function svaRadnaMjesta(){
         // Ovdje trebamo samo isfiltrirati radna mjesta u odnosu na organizacionu jedinuc
         //$radna_mjesta = RadnoMjesto::aktivna();

@@ -903,5 +903,8 @@ Route::group(['prefix' => '/console',], function(){
     Route::get('/azuriraj-rm', function(){
         Artisan::call('fix:radnaMjesta');
     });
+    Route::get('/create-notifications', function(){
+        Artisan::call('create:Notifications');
+    });
 });
 

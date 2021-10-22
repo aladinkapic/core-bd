@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 namespace App\Console\Commands;
+use App\Http\Controllers\RadnaMjestaController;
 use App\Models\DisciplinskaOdgovornost;
 use App\Models\Privremeno;
 use App\Models\RadniStatus;
+use App\Models\RadnoMjesto;
 use App\Models\Uloge;
 use App\Models\Updates\Notifikacija;
 use Illuminate\Support\Facades\Notification;
@@ -254,9 +256,7 @@ class createNotifications extends Command{
                 }
                 // dd($rs->datum_pocetka_rada, $datumIsteka);
             }
-        }catch (\Exception $e){
-            dd($e);
-        }
+        }catch (\Exception $e){}
     }
 
     /*******************************************************************************************************************
@@ -289,13 +289,31 @@ class createNotifications extends Command{
         }
     }
 
+    // ************************************************************************************************************** //
+    /*
+     *  Upražnjena radna mjesta -- put a flag on it !
+     */
+    public function upraznjenaRadnaMjesta(){
+        try{
+            $radnaMjesta = $radnaMjesta = RadnoMjesto::whereHas('orgjed.organizacija', function ($query){
+                $query->where('active', '=', 1);
+            })->get(['id']);
+
+            foreach ($radnaMjesta as $rm){
+                RadnaMjestaController::upraznjenoRM($rm->id);
+            }
+        }catch (\Exception $e){}
+    }
+
     public function handle(){
-        $this->penzionisanje();
-        $this->disciplinskaOdgovornost();
-        $this->starost();
+//        $this->penzionisanje();
+//        $this->disciplinskaOdgovornost();
+//        $this->starost();
+//
+//        $this->probniRad();
+//
+//        $this->privremeniPremjestaj();
 
-        $this->probniRad();
-
-        $this->privremeniPremjestaj();
+        $this->upraznjenaRadnaMjesta();
     }
 }
