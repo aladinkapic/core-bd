@@ -117,10 +117,14 @@ class UpravljanjeUcinkomController extends Controller{
         if(isset($request->nije_ocjenjen) and $request->nije_ocjenjen == 1){
             $request->request->add(['opisna_ocjena' => 'Nije ocijenjen']);
             $request['ocjena'] = NULL;
+            $request['ocjenjivac'] = NULL;
+        }else{
+            $request['nije_ocjenjen'] = 2;
         }
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
+
 
         $exists = UpravljanjeUcinkom::where('sluzbenik', '=', $request->sluzbenik)->where('godina', '=', $request->godina)->where('kategorija', '=', $request->kategorija)->first();
         if ($exists) {
@@ -132,6 +136,7 @@ class UpravljanjeUcinkomController extends Controller{
 
                 $this->updateIzvjestaj($request->sluzbenik, $request->godina);
             } catch (\Exception $e) {
+                dd($e);
                 return $e->getMessage();
             }
 
@@ -193,6 +198,9 @@ class UpravljanjeUcinkomController extends Controller{
         if(isset($request->nije_ocjenjen) and $request->nije_ocjenjen == 1){
             $request->request->add(['opisna_ocjena' => 'Nije ocijenjen']);
             $request['ocjena'] = NULL;
+            $request['ocjenjivac'] = NULL;
+        }else{
+            $request['nije_ocjenjen'] = 2;
         }
 
         try{
