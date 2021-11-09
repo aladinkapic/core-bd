@@ -58,13 +58,15 @@ class UpravljanjeUcinkomController extends Controller{
 
                 $nijeZadovoljio = UpravljanjeUcinkom::whereHas('usluzbenik.radnoMjesto.orgjed', function($query) use($orgJed_id){
                     $query->where('id', $orgJed_id);
-                })->where('godina', $godina)->where('ocjena', '<', '1.5')->count();
+                })->where('godina', $godina)->where('ocjena', '>=', '0')->where('ocjena', '<', '1.5')->whereNull('nije_ocjenjen')->count();
+
                 $zadovoljava = UpravljanjeUcinkom::whereHas('usluzbenik.radnoMjesto.orgjed', function($query) use($orgJed_id){
                     $query->where('id', $orgJed_id);
-                })->where('godina', $godina)->where('ocjena', '>=', '1.5')->where('ocjena', '<', '2.5')->count();
+                })->where('godina', $godina)->where('ocjena', '>=', '1.5')->where('ocjena', '<', '2.5')->whereNull('nije_ocjenjen')->count();
+
                 $nadmasuje = UpravljanjeUcinkom::whereHas('usluzbenik.radnoMjesto.orgjed', function($query) use($orgJed_id){
                     $query->where('id', $orgJed_id);
-                })->where('godina', $godina)->where('ocjena', '>=', '2.5')->count();
+                })->where('godina', $godina)->where('ocjena', '>=', '2.5')->whereNull('nije_ocjenjen')->count();
 
 
                 try{
@@ -105,11 +107,17 @@ class UpravljanjeUcinkomController extends Controller{
             'godina' => 'required|min:4|max:4'
         ];
 
+
         if($request->ocjena < 1.5){
             $request->request->add(['opisna_ocjena' => 'Nije zadovoljio']);
         }else if($request->ocjena >= 1.5 and $request->ocjena <= 2.5){
             $request->request->add(['opisna_ocjena' => 'Zadovoljava očekivanja']);
         }else $request->request->add(['opisna_ocjena' => 'Nadmašuje očekivanja']);
+
+        if(isset($request->nije_ocjenjen) and $request->nije_ocjenjen == 1){
+            $request->request->add(['opisna_ocjena' => 'Nije ocijenjen']);
+            $request['ocjena'] = NULL;
+        }
 
         $poruke = HelpController::getValidationMessages();
         $this->validate($request, $pravila, $poruke);
@@ -179,9 +187,13 @@ class UpravljanjeUcinkomController extends Controller{
             $request->request->add(['opisna_ocjena' => 'Zadovoljava očekivanja']);
         }else $request->request->add(['opisna_ocjena' => 'Nadmašuje očekivanja']);
 
-        if(isset($request->ocjena) and $request->ocjena) $nije = 1;
+        if(isset($request->ocjena) and $request->ocjena) $nije = NULL;
         else $nije = 1;
 
+        if(isset($request->nije_ocjenjen) and $request->nije_ocjenjen == 1){
+            $request->request->add(['opisna_ocjena' => 'Nije ocijenjen']);
+            $request['ocjena'] = NULL;
+        }
 
         try{
             $ucinak = UpravljanjeUcinkom::where('id', $id)->first()->update([
