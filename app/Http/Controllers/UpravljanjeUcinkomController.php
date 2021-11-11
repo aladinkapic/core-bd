@@ -22,7 +22,7 @@ class UpravljanjeUcinkomController extends Controller{
 
         $filteri = [
             'usluzbenik.ime_prezime'=>'Službenik',
-            'mjesto.rm.naziv_rm'=>'Radno mjesto',
+            'usluzbenik.sluzbenikRel.rm.naziv_rm'=>'Radno mjesto',
             'godina'=>'Godina ocjenjivanja',
             'ocjena'=>'Ocjena',
             'opisna_ocjena'=>'Opisna ocjena',

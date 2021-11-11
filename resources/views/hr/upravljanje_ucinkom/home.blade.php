@@ -68,8 +68,8 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{route('radnamjesta.pregledaj', ['id' => $ucinak -> mjesto->rm->id ?? '1'])}}">
-                                    {{ $ucinak -> mjesto->rm->naziv_rm ?? '/' }}
+                                <a href="{{route('radnamjesta.pregledaj', ['id' => $ucinak->usluzbenik->sluzbenikRel->rm->id ?? '1'])}}">
+                                    {{ $ucinak->usluzbenik->sluzbenikRel->rm->naziv_rm ?? '' }}
                                 </a>
                             </td>
                             <td>{{$ucinak -> godina ?? '/'}}</td>
