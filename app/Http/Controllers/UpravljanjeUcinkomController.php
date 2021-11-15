@@ -150,9 +150,12 @@ class UpravljanjeUcinkomController extends Controller{
         $radnoMjesto = 'Nema radnog mjesta';
         $sluzbnik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
 
-        if ($sluzbnik->radnoMjesto) {
-            $radnoMjesto = $sluzbnik->radnoMjesto->naziv_rm;
-        }
+
+        if(isset($sluzbnik->sluzbenikRel->rm)) $radnoMjesto = $sluzbnik->sluzbenikRel->rm->naziv_rm;
+
+//        if ($sluzbnik->radnoMjesto) {
+//            $radnoMjesto = $sluzbnik->radnoMjesto->naziv_rm;
+//        }
 
         $kategorija = Sifrarnik::dajSifrarnik('kategorija_ocjene');
         $sluzbenik = Sluzbenik::where('id', '=', $ucinak->sluzbenik)->first();
