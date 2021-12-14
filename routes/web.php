@@ -904,5 +904,9 @@ Route::group(['prefix' => '/console',], function(){
     Route::get('/create-notifications', function(){
         Artisan::call('create:Notifications');
     });
+
+    Route::get('/uc-izvjestaj', function(){
+        Artisan::call('upravljanje-ucinkom:izvjestaj');
+    });
 });
 

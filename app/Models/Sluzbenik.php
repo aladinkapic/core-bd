@@ -269,7 +269,9 @@ class Sluzbenik extends Model{
     public function upravljanjeUcinkom(){
         return $this->hasOne(UpravljanjeUcinkom::class, 'sluzbenik', 'id')->where('godina', date('Y'));
     }
-
+    public function upravljanjeUcinkomGen(){
+        return $this->hasMany(UpravljanjeUcinkom::class, 'sluzbenik', 'id');
+    }
 
 
     // Radni staž

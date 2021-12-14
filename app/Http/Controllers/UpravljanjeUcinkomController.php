@@ -252,6 +252,8 @@ class UpravljanjeUcinkomController extends Controller{
                     if(isset($radnoMjesto->sluzbeniciRel)){
                         foreach($radnoMjesto->sluzbeniciRel as $sluzbenik){
                             if(isset($sluzbenik->sluzbenik->upravljanjeUcinkom)){
+
+
                                 if($sluzbenik->sluzbenik->upravljanjeUcinkom->opisna_ocjena == 'Nadmašuje očekivanja') $nadmasuje ++;
                                 else if($sluzbenik->sluzbenik->upravljanjeUcinkom->opisna_ocjena == 'Zadovoljava očekivanja') $zadovoljava ++;
                                 else $ne_zadovoljava ++;
