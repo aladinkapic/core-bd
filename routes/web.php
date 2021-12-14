@@ -783,8 +783,6 @@ Route::group(['prefix'=>'hr/odsustva','as'=>'odsustva'], function() {
         return view('hr/odsustva/edit');
     });
 
-
-
 });
 
 //UPRAVLJANJE UČINKOM

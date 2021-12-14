@@ -72,6 +72,12 @@
                                     {{ $ucinak->usluzbenik->sluzbenikRel->rm->naziv_rm ?? '' }}
                                 </a>
                             </td>
+                            <td>
+                                {{ $ucinak->usluzbenik->sluzbenikRel->rm->orgjed->naziv ?? '' }}
+                            </td>
+                            <td>
+                                {{ $ucinak->usluzbenik->sluzbenikRel->rm->orgjed->organizacija->organ->naziv ?? '' }}
+                            </td>
                             <td>{{$ucinak -> godina ?? '/'}}</td>
                             <td>{{$ucinak -> ocjena ?? '/'}}</td>
                             <td>{{$ucinak -> opisna_ocjena ?? '/'}}</td>

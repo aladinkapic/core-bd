@@ -23,13 +23,14 @@ class UpravljanjeUcinkomController extends Controller{
         $filteri = [
             'usluzbenik.ime_prezime'=>'Službenik',
             'usluzbenik.sluzbenikRel.rm.naziv_rm'=>'Radno mjesto',
+            'usluzbenik.sluzbenikRel.rm.orgjed.naziv' => 'Organizaciona jedinica',
+            'usluzbenik.sluzbenikRel.rm.orgjed.organizacija.organ.naziv' => 'Organ javne uprave',
             'godina'=>'Godina ocjenjivanja',
             'ocjena'=>'Ocjena',
             'opisna_ocjena'=>'Opisna ocjena',
             'ocjenjivacRel.ime_prezime' => 'Ocjenjivač',
             'nijeOcjenjenRel.name' => 'Ocijenjen'
         ];
-
 
         return view('/hr/upravljanje_ucinkom/home', compact('ucinci', 'filteri'));
     }
@@ -385,3 +386,6 @@ class UpravljanjeUcinkomController extends Controller{
         return redirect()->route('probni-rad.pregled');
     }
 }
+
+
+
